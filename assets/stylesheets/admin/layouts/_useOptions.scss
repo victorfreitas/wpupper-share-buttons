@@ -1,0 +1,88 @@
+.#{$prefixClass}-wrap-faq {
+    background-color: $bgAdmin;
+    color: #333;
+    padding: 5px;
+
+    code {
+        background-color: transparent;
+    }
+}
+
+.#{$prefixClass}-pre {
+    display: inline;
+    font-family: monospace;
+    white-space: pre-line;
+}
+
+.#{$prefixClass}-code {
+    color: #F4F4F4;
+    height: 275px;
+    padding: 10px;
+    position: relative;
+    top: 5px;
+    width: 100%;
+
+    .#{$prefixClass}-code-align {
+        left: 15px;
+        position: absolute;
+        top: 0;
+        font-family: monospace;
+    }
+
+    .nc {
+        color: #f92672;
+    }
+
+    .s1 {
+        color: #e6db74;
+    }
+
+    .k {
+        color: #66d9ef;
+    }
+
+    .mi {
+        color: #ae81ff;
+    }
+
+    .sp {
+        position: relative;
+        top: 5px;
+    }
+
+    .alr {
+        left: 30px;
+        position: relative;
+        top: -20px;
+    }
+
+    .gn {
+        color: #a6e22e;
+    }
+}
+
+.#{$prefixClass}-code-shortcode {
+    height: 10px;
+    line-height: 16px;
+
+    .#{$prefixClass}-code-align {
+        position: absolute;
+        top: 8px;
+    }
+}
+
+.#{$prefixClass}-faq-footer {
+    margin-bottom: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: -1em;
+}
+
+.start-method {
+    display: inline-table;
+}
+
+.end-method {
+    position: relative;
+    top: -39px;
+}

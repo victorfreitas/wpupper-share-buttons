@@ -1,0 +1,314 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WPUpper Share Buttons 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-buttons\n"
+"POT-Creation-Date: 2016-03-07 01:57-0300\n"
+"PO-Revision-Date: 2016-03-07 01:59-0300\n"
+"Last-Translator: \n"
+"Language-Team: WPUpper\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-SearchPath-0: Config\n"
+"X-Poedit-SearchPath-1: Controller\n"
+"X-Poedit-SearchPath-2: Helper\n"
+"X-Poedit-SearchPath-3: Model\n"
+"X-Poedit-SearchPath-4: View\n"
+"X-Poedit-SearchPath-5: wpupper-share-buttons.php\n"
+
+#: Config/core.php:109
+msgid "I just saw"
+msgstr ""
+
+#: Config/core.php:110
+msgid "Click to see also"
+msgstr ""
+
+#: Config/core.php:117
+msgid "Share on Facebook"
+msgstr ""
+
+#: Config/core.php:123 Config/core.php:149 Config/core.php:162
+#: Config/core.php:175 Config/core.php:188 Config/core.php:201
+msgid "Share"
+msgstr ""
+
+#: Config/core.php:130 Config/core.php:136
+msgid "Tweet"
+msgstr ""
+
+#: Config/core.php:143
+msgid "Share on Google+"
+msgstr ""
+
+#: Config/core.php:156
+msgid "Share on WhatsApp"
+msgstr ""
+
+#: Config/core.php:169
+msgid "Share on Pinterest"
+msgstr ""
+
+#: Config/core.php:182
+msgid "Share on Linkedin"
+msgstr ""
+
+#: Config/core.php:195
+msgid "Share on Tumblr"
+msgstr ""
+
+#: Config/core.php:208
+msgid "Send by email"
+msgstr ""
+
+#: Config/core.php:221
+msgid "Print via PrintFriendly"
+msgstr ""
+
+#: Config/core.php:227
+msgid "Print"
+msgstr ""
+
+#: Controller/settings.controller.php:46 View/settings.view.php:38
+msgid "Settings"
+msgstr ""
+
+#: Controller/settings.controller.php:146 View/settings-extra.view.php:29
+#: View/settings-faq.view.php:28 View/settings.view.php:30
+#: View/share-report.view.php:34
+msgid "WPUpper Share Buttons"
+msgstr ""
+
+#: Controller/settings.controller.php:147
+msgid "WPUpper Share"
+msgstr ""
+
+#: Controller/settings.controller.php:156
+msgid "Extra Settings | WPUpper Share Buttons"
+msgstr ""
+
+#: Controller/settings.controller.php:157 View/settings-extra.view.php:37
+msgid "Extra Settings"
+msgstr ""
+
+#: Controller/settings.controller.php:165
+msgid "Use options | WPUpper Share Buttons"
+msgstr ""
+
+#: Controller/settings.controller.php:166 View/settings-faq.view.php:31
+msgid "Use options"
+msgstr ""
+
+#: Controller/share-reports.controller.php:211
+msgid "Title"
+msgstr ""
+
+#: Controller/share-reports.controller.php:212
+msgid "Facebook"
+msgstr ""
+
+#: Controller/share-reports.controller.php:213
+msgid "Google+"
+msgstr ""
+
+#: Controller/share-reports.controller.php:214
+msgid "Twitter"
+msgstr ""
+
+#: Controller/share-reports.controller.php:215
+msgid "Linkedin"
+msgstr ""
+
+#: Controller/share-reports.controller.php:216
+msgid "Pinterest"
+msgstr ""
+
+#: Controller/share-reports.controller.php:217
+msgid "Total"
+msgstr ""
+
+#: Controller/share-reports.controller.php:283
+msgid "There is no record available at the moment!"
+msgstr ""
+
+#: Controller/share-reports.controller.php:297
+msgid "Sharing Report | WPUpper Share Buttons"
+msgstr ""
+
+#: Controller/share-reports.controller.php:298
+msgid "Sharing Report"
+msgstr ""
+
+#: View/settings-extra.view.php:36 View/settings-faq.view.php:29
+#: View/settings.view.php:37 View/share-report.view.php:35
+msgid "Add the Share Buttons automatically."
+msgstr ""
+
+#: View/settings-extra.view.php:45
+msgid "Cache time"
+msgstr ""
+
+#: View/settings-extra.view.php:52
+msgid "Minute"
+msgstr ""
+
+#: View/settings-extra.view.php:54
+msgid "Set the time in minutes that will be cached in the Sharing report page"
+msgstr ""
+
+#: View/settings-extra.view.php:61 View/settings-extra.view.php:67
+msgid "Twitter username"
+msgstr ""
+
+#: View/settings-extra.view.php:70
+msgid "Your twitter username"
+msgstr ""
+
+#: View/settings-extra.view.php:76
+msgid "UTM tracking"
+msgstr ""
+
+#: View/settings-extra.view.php:82
+msgid "Add UTM tracking (Analytics)"
+msgstr ""
+
+#: View/settings-extra.view.php:86
+msgid "Example: "
+msgstr ""
+
+#: View/settings-extra.view.php:90
+msgid "Use <code>?</code> and"
+msgstr ""
+
+#: View/settings-extra.view.php:91
+msgid "adding parameters to use <code>&</code> in the tracking."
+msgstr ""
+
+#: View/settings-extra.view.php:98
+msgid "Bitly access token"
+msgstr ""
+
+#: View/settings-extra.view.php:104
+msgid "Insert your access token Bitly"
+msgstr ""
+
+#: View/settings-extra.view.php:108
+msgid "Shorten urls using bitly, generate token in "
+msgstr ""
+
+#: View/settings-extra.view.php:116
+msgid "Remove counter"
+msgstr ""
+
+#: View/settings-extra.view.php:131
+msgid "Remove button title"
+msgstr ""
+
+#: View/settings-extra.view.php:146
+msgid "Disable CSS"
+msgstr ""
+
+#: View/settings-extra.view.php:161
+msgid "Disable JS"
+msgstr ""
+
+#: View/settings-extra.view.php:177 View/settings.view.php:220
+msgid "Save Changes"
+msgstr ""
+
+#: View/settings.view.php:46
+msgid "Places available"
+msgstr ""
+
+#: View/settings.view.php:54
+msgid "Single"
+msgstr ""
+
+#: View/settings.view.php:63
+msgid "Pages"
+msgstr ""
+
+#: View/settings.view.php:72
+msgid "Page home"
+msgstr ""
+
+#: View/settings.view.php:81
+msgid "Before content"
+msgstr ""
+
+#: View/settings.view.php:90
+msgid "After content"
+msgstr ""
+
+#: View/settings.view.php:100
+msgid "Fixed"
+msgstr ""
+
+#: View/settings.view.php:106
+msgid "Social networks available"
+msgstr ""
+
+#: View/settings.view.php:126
+msgid "Custom class"
+msgstr ""
+
+#: View/settings.view.php:131
+msgid "Custom class for primary div"
+msgstr ""
+
+#: View/settings.view.php:138
+msgid "Layout options"
+msgstr ""
+
+#: View/settings.view.php:140
+msgid "All layout supports responsive"
+msgstr ""
+
+#: View/settings.view.php:151
+msgid "Default"
+msgstr ""
+
+#: View/settings.view.php:162
+msgid "Button"
+msgstr ""
+
+#: View/settings.view.php:173
+msgid "Rounded"
+msgstr ""
+
+#: View/settings.view.php:184
+msgid "Square"
+msgstr ""
+
+#: View/settings.view.php:195
+msgid "Square plus"
+msgstr ""
+
+#: View/settings.view.php:201
+msgid "Position fixed"
+msgstr ""
+
+#: View/settings.view.php:211
+msgid "Fixed left"
+msgstr ""
+
+#: View/settings.view.php:241
+msgid "Settings saved."
+msgstr ""
+
+#: View/share-report.view.php:27
+msgid "Search"
+msgstr ""
+
+#: View/share-report.view.php:28
+msgid "This report has a cache of "
+msgstr ""
+
+#: View/share-report.view.php:29
+msgid "minutes"
+msgstr ""

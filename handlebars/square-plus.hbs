@@ -1,0 +1,36 @@
+{{#each this}}
+
+	{{#if first}}
+		<div class="{{prefix}} {{prefix}}-{{layout}} social-share {{prefix}}-preview">
+
+			<div class="{{prefix}}-item {{prefix}}-counter wpusb-counter">
+				<span class="{{prefix}}-counter">{{counter}}</span>
+				<span class="{{prefix}}-text"></span>
+				<div class="{{prefix}}-slash">{{{slash}}}</div>
+			</div>
+
+			<div class="{{prefix}}-item {{prefix}}-{{item_class}} {{prefix}}-full {{prefix}}-inside">
+				<a href="#" class="{{prefix}}-link" title="{{item_title}}">
+					<i class="{{prefix}}-icon-{{item_class}}-square-plus"></i>
+
+					{{#if inside}}
+						<span class="wpusb-title">{{item_name}}</span>
+					{{/if}}
+				</a>
+			</div>
+
+	{{/if}}
+
+	{{#unless first}}
+
+			<div class="{{prefix}}-item {{prefix}}-{{item_class}}">
+				<a href="#" class="{{prefix}}-link" title="{{item_title}}">
+					<i class="{{prefix}}-icon-{{item_class}}-square-plus"></i>
+				</a>
+			</div>
+
+	{{/unless}}
+{{/each}}
+</div>
+<button class="button" data-action="remove-title"></button>
+<button class="button" data-action="remove-counter"></button>

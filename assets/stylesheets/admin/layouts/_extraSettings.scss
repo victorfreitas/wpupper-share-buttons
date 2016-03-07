@@ -1,0 +1,7 @@
+.extra-settings-wrap .large-text {
+	border: 1px solid #ebebeb;
+}
+
+.extra-settings-wrap .description {
+	@extend %onSelect;
+}

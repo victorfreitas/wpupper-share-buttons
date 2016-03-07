@@ -1,0 +1,45 @@
+.#{$prefixClass} .#{$prefixClass}-whatsapp {
+    display: inline-block;
+}
+
+.#{$prefixClass}-preview {
+    left: 250px;
+    bottom: 5px;
+    position: absolute;
+
+    .#{$prefixClass}-count {
+        padding: 5px 8px;
+    }
+}
+
+.#{$prefixClass}-fixed-left {
+    z-index: 99999;
+}
+
+.#{$prefixClass}-square-plus {
+    .#{$prefixClass}-counter {
+        top: 2px;
+
+        .#{$prefixClass}-text {
+            bottom: 4px;
+        }
+
+        .#{$prefixClass}-slash {
+            font-size: 30px;
+            font-weight: normal;
+            left: 83px;
+            top: 10px;
+        }
+    }
+}
+
+button[data-action="remove-title"],
+button[data-action="remove-counter"] {
+    bottom: 22%;
+    left: 380px;
+    position: absolute;
+}
+
+button[data-action="remove-counter"] {
+    left: 500px;
+}

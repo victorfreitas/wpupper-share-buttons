@@ -1,0 +1,140 @@
+.#{$prefixClass}-item a {
+    border-bottom: none;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+
+    i,
+    span {
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    i {
+        font-size: $size;
+        height: $size;
+        width: $size;
+    }
+
+    span {
+        font-size: 12px;
+        margin-left: 5px;
+
+        &:before {
+            content: attr(data-title);
+        }
+    }
+
+    .#{$prefixClass}-buttons & {
+        border-radius: 3px;
+        color: #fff;
+
+        i,
+        i:hover {
+            color: inherit;
+            font-size: 26px;
+            height: 31px;
+            line-height: $size;
+        }
+
+        span {
+            margin-left: 0;
+            padding: 0 5px;
+            position: relative;
+            right: 2px;
+        }
+
+        .#{$prefixClass}-icon-facebook:before {
+            bottom: 1px;
+            position: relative;
+        }
+    }
+}
+
+// ----------------------------------------------------------------------------
+// -- Theme > Other
+// ----------------------------------------------------------------------------
+@include icon( facebook, $colorfacebook );
+@include icon( google-plus, $colorGooglePlus );
+@include icon( twitter, $colorTwitter );
+@include icon( email, $colorEmail );
+@include icon( printer, $colorPrint );
+@include icon( pinterest, $colorPinterest );
+@include icon( linkedin, $colorLinkedin );
+@include icon( tumblr, $colorTumblr );
+@include icon( whatsapp, $colorWhatsapp );
+
+// ----------------------------------------------------------------------------
+// -- Theme > Buttons
+// ----------------------------------------------------------------------------
+@include icon( facebook, $colorfacebook, buttons );
+@include icon( google-plus, $colorGooglePlus, buttons );
+@include icon( twitter, $colorTwitter, buttons );
+@include icon( email, $colorEmail, buttons );
+@include icon( printer, $colorPrint, buttons );
+@include icon( pinterest, $colorPinterest, buttons );
+@include icon( linkedin, $colorLinkedin, buttons );
+@include icon( tumblr, $colorTumblr, buttons );
+@include icon( whatsapp, $colorWhatsapp, buttons );
+
+// ----------------------------------------------------------------------------
+// -- Theme > Square Plus
+// ----------------------------------------------------------------------------
+@include icon( facebook, $colorfacebook, 'square-plus' );
+@include icon( google-plus, $colorGooglePlus, 'square-plus' );
+@include icon( twitter, $colorTwitter, 'square-plus' );
+@include icon( email, $colorEmail, 'square-plus' );
+@include icon( printer, $colorPrint, 'square-plus' );
+@include icon( pinterest, $colorPinterest, 'square-plus' );
+@include icon( linkedin, $colorLinkedin, 'square-plus' );
+@include icon( tumblr, $colorTumblr, 'square-plus' );
+@include icon( whatsapp, $colorWhatsapp, 'square-plus' );
+
+// ----------------------------------------------------------------------------
+// -- Theme > items hover
+// ----------------------------------------------------------------------------
+@include items-hover( facebook, $colorfacebook );
+@include items-hover( google-plus, $colorGooglePlus );
+@include items-hover( twitter, $colorTwitter );
+@include items-hover( email, $colorEmail );
+@include items-hover( printer, $colorPrint );
+@include items-hover( pinterest, $colorPinterest );
+@include items-hover( linkedin, $colorLinkedin );
+@include items-hover( tumblr, $colorTumblr );
+@include items-hover( whatsapp, $colorWhatsapp );
+
+.#{$prefixClass}-square .#{$prefixClass}-whatsapp i {
+    background: $colorWhatsapp;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 30px;
+    line-height: 35px;
+}
+
+.#{$prefixClass}-square .#{$prefixClass}-whatsapp a:hover i {
+    background: darken( $colorWhatsapp, 5% );
+    color: #fff;
+}
+
+.#{$prefixClass}-rounded .#{$prefixClass}-printer i,
+ .#{$prefixClass}-square .#{$prefixClass}-printer i {
+    background: $colorPrint;
+    color: #fff;
+    font-size: 25px;
+    line-height: 38px;
+}
+
+.#{$prefixClass}-rounded .#{$prefixClass}-printer a:hover i,
+.#{$prefixClass}-square .#{$prefixClass}-printer a:hover i {
+    background: darken( $colorPrint, 10 );
+    color: #fff;
+}
+
+.#{$prefixClass}-rounded .#{$prefixClass}-printer i {
+    border-radius: 16px;
+}
+
+.#{$prefixClass}-square .#{$prefixClass}-printer i {
+    border-radius: 4px;
+}

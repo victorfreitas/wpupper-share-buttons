@@ -1,0 +1,81 @@
+//-- mixin > icon
+@mixin icon($icon, $iconColor, $theme : other, $amount : 12) {
+    @if $theme == buttons or $theme == 'square-plus' {
+        .#{$prefixClass}-#{$theme} .#{$prefixClass}-#{$icon} a {
+            background-color: $iconColor;
+            -moz-box-shadow:  0 2px darken( $iconColor, $amount );
+            -webkit-box-shadow:  0 2px darken( $iconColor, $amount );
+                    box-shadow: 0 2px darken( $iconColor, $amount );
+
+           &:hover {
+                -moz-box-shadow:  0 2px darken( $iconColor, $amount );
+                -webkit-box-shadow:  0 2px darken( $iconColor, $amount );
+                        box-shadow: 0 2px darken( $iconColor, $amount );
+                background-color: $iconColor;
+           }
+
+           &:active {
+                -moz-box-shadow: none;
+                -webkit-box-shadow: none;
+                        box-shadow: none;
+                position: relative;
+                top: 2px;
+           }
+        }
+    } @else {
+        .#{$prefixClass} .#{$prefixClass}-#{$icon} i,
+        .#{$prefixClass} .#{$prefixClass}-#{$icon} i:hover {
+            color: $iconColor;
+        }
+    }
+}
+
+@mixin items-hover($element, $color) {
+    .#{$prefixClass}-buttons,
+    .#{$prefixClass}-square-plus,
+    .#{$prefixClass}-fixed-left {
+        .#{$prefixClass}-#{$element} a:hover {
+            background: darken( $color, 6 );
+        }
+    }
+
+    .#{$prefixClass}-default,
+    .#{$prefixClass}-rounded,
+    .#{$prefixClass}-square {
+        .#{$prefixClass}-#{$element} a:hover,
+        .#{$prefixClass}-#{$element} a:hover i {
+            color: darken( $color, 6 );
+        }
+    }
+}
+
+//-- mixin > input-remove
+@mixin input-remove($selector) {
+    ##{$prefixClass}-#{$selector} {
+        cursor: pointer;
+        display: none;
+        left: -100%;
+        position: absolute;
+        top: -100%;
+    }
+}
+
+//-- mixin > social-item
+@mixin social-item($color, $element, $content) {
+    .#{$prefixClass}-social-networks {
+
+        @if pinterest == $element {
+            input + label[for="#{$prefixClass}-#{$element}"] {
+                padding: 5px 11px;
+            }
+        }
+
+        input + label[for="#{$prefixClass}-#{$element}"]:before {
+            background: $color;
+        }
+
+        input + .#{$prefixClass}-#{$element}-icon:after {
+            content: "#{$content}";
+        }
+    }
+}

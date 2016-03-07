@@ -1,0 +1,121 @@
+// ----------------------------------------------------------------------------
+// -- Default
+// ----------------------------------------------------------------------------
+.#{$prefixClass}-icon-facebook-default:before {
+	@extend .#{$prefixClass}-icon-facebook:before;
+}
+.#{$prefixClass}-icon-twitter-default:before {
+	@extend .#{$prefixClass}-icon-twitter:before;
+}
+.#{$prefixClass}-icon-google-plus-default:before {
+	@extend .#{$prefixClass}-icon-google-plus:before;
+}
+.#{$prefixClass}-icon-whatsapp-default:before {
+	@extend .#{$prefixClass}-icon-whatsapp:before;
+}
+.#{$prefixClass}-icon-pinterest-default:before {
+	@extend .#{$prefixClass}-icon-pinterest:before;
+}
+.#{$prefixClass}-icon-linkedin-default:before {
+	@extend .#{$prefixClass}-icon-linkedin:before;
+}
+.#{$prefixClass}-icon-tumblr-default:before {
+	@extend .#{$prefixClass}-icon-tumblr:before;
+}
+.#{$prefixClass}-icon-email-default:before {
+	@extend .#{$prefixClass}-icon-email:before;
+}
+.#{$prefixClass}-icon-printer-default:before {
+	@extend .#{$prefixClass}-icon-printer:before;
+}
+.#{$prefixClass}-icon-flickr-default:before {
+	@extend .#{$prefixClass}-icon-flickr:before;
+}
+.#{$prefixClass}-icon-phone-default:before {
+	@extend .#{$prefixClass}-icon-phone:before;
+}
+
+// ----------------------------------------------------------------------------
+// -- Buttons
+// ----------------------------------------------------------------------------
+.#{$prefixClass}-icon-facebook-buttons:before {
+	@extend .#{$prefixClass}-icon-facebook:before;
+}
+.#{$prefixClass}-icon-twitter-buttons:before {
+	@extend .#{$prefixClass}-icon-twitter:before;
+}
+.#{$prefixClass}-icon-google-plus-buttons:before {
+	@extend .#{$prefixClass}-icon-google-plus:before;
+}
+.#{$prefixClass}-icon-whatsapp-buttons:before {
+	@extend .#{$prefixClass}-icon-whatsapp:before;
+}
+.#{$prefixClass}-icon-pinterest-buttons:before {
+	@extend .#{$prefixClass}-icon-pinterest:before;
+}
+.#{$prefixClass}-icon-linkedin-buttons:before {
+	@extend .#{$prefixClass}-icon-linkedin:before;
+}
+.#{$prefixClass}-icon-tumblr-buttons:before {
+	@extend .#{$prefixClass}-icon-tumblr:before;
+}
+.#{$prefixClass}-icon-email-buttons:before {
+	@extend .#{$prefixClass}-icon-email:before;
+}
+.#{$prefixClass}-icon-printer-buttons:before {
+	@extend .#{$prefixClass}-icon-printer:before;
+}
+.#{$prefixClass}-icon-flickr-buttons:before {
+	@extend .#{$prefixClass}-icon-flickr:before;
+}
+.#{$prefixClass}-icon-phone-buttons:before {
+	@extend .#{$prefixClass}-icon-phone:before;
+}
+
+// ----------------------------------------------------------------------------
+// -- Rounded, Square
+// ----------------------------------------------------------------------------
+.#{$prefixClass}-icon-printer-square:before,
+.#{$prefixClass}-icon-printer-rounded:before {
+	@extend .#{$prefixClass}-icon-printer:before;
+}
+.#{$prefixClass}-icon-whatsapp-square:before {
+	@extend .#{$prefixClass}-icon-whatsapp:before;
+}
+
+// ----------------------------------------------------------------------------
+// -- Square Plus
+// ----------------------------------------------------------------------------
+.#{$prefixClass}-icon-facebook-square-plus:before {
+	@extend .#{$prefixClass}-icon-facebook:before;
+}
+.#{$prefixClass}-icon-twitter-square-plus:before {
+	@extend .#{$prefixClass}-icon-twitter:before;
+}
+.#{$prefixClass}-icon-google-plus-square-plus:before {
+	@extend .#{$prefixClass}-icon-google-plus:before;
+}
+.#{$prefixClass}-icon-whatsapp-square-plus:before {
+	@extend .#{$prefixClass}-icon-whatsapp:before;
+}
+.#{$prefixClass}-icon-pinterest-square-plus:before {
+	@extend .#{$prefixClass}-icon-pinterest:before;
+}
+.#{$prefixClass}-icon-linkedin-square-plus:before {
+	@extend .#{$prefixClass}-icon-linkedin:before;
+}
+.#{$prefixClass}-icon-tumblr-square-plus:before {
+	@extend .#{$prefixClass}-icon-tumblr:before;
+}
+.#{$prefixClass}-icon-email-square-plus:before {
+	@extend .#{$prefixClass}-icon-email:before;
+}
+.#{$prefixClass}-icon-printer-square-plus:before {
+	@extend .#{$prefixClass}-icon-printer:before;
+}
+.#{$prefixClass}-icon-flickr-square-plus:before {
+	@extend .#{$prefixClass}-icon-flickr:before;
+}
+.#{$prefixClass}-icon-phone-square-plus:before {
+	@extend .#{$prefixClass}-icon-phone:before;
+}

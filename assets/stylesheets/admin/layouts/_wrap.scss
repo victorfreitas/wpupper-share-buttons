@@ -1,0 +1,199 @@
+$_itemsAvailable : 'items-available';
+
+.#{$prefixClass}-wrap {
+    @extend %noSelect;
+	background: $bgAdmin;
+	border: 1px solid #e1e1e1;
+	padding: 0 10px;
+    position: relative;
+
+    label { cursor: auto; }
+}
+
+.#{$prefixClass}-#{$_itemsAvailable} td,
+.#{$prefixClass}-social-networks td,
+.#{$prefixClass}-layout-options td,
+.#{$prefixClass}-remove-elements td {
+    float: left;
+    padding-right: 0;
+}
+
+.#{$prefixClass}-title-wrap {
+    color: #5B5959;
+    display: inline-block;
+    font-size: 18px;
+    font-style: italic;
+    padding: 10px 0;
+    text-shadow: 1px 1px 1px #FFF;
+}
+
+// ----------------------------------------------------------------------------
+// -- Advanced selector > Settings > Places available
+// ----------------------------------------------------------------------------
+@include input-remove( single );
+@include input-remove( pages );
+@include input-remove( home );
+@include input-remove( before );
+@include input-remove( after );
+@include input-remove( fixed );
+
+// ----------------------------------------------------------------------------
+// -- Advanced selector > Settings > Social networks available
+// ----------------------------------------------------------------------------
+@include input-remove( facebook );
+@include input-remove( twitter );
+@include input-remove( 'google-plus' );
+@include input-remove( whatsapp );
+@include input-remove( pinterest );
+@include input-remove( linkedin );
+@include input-remove( tumblr );
+@include input-remove( email );
+@include input-remove( printer );
+
+// ----------------------------------------------------------------------------
+// -- Advanced selector > Settings > Layout options
+// ----------------------------------------------------------------------------
+@include input-remove( default );
+@include input-remove( buttons );
+@include input-remove( rounded );
+@include input-remove( square );
+@include input-remove( 'square-plus' );
+
+// ----------------------------------------------------------------------------
+// -- Advanced selector > Settings > Position fixed
+// ----------------------------------------------------------------------------
+@include input-remove( 'fixed-left' );
+
+// ----------------------------------------------------------------------------
+// -- Advanced selector > Extra settings > Remove elements
+// ----------------------------------------------------------------------------
+@include input-remove( 'remove-count' );
+@include input-remove( 'remove-inside' );
+@include input-remove( 'disable-css' );
+@include input-remove( 'disable-script' );
+
+.#{$prefixClass}-#{$_itemsAvailable},
+.#{$prefixClass}-social-networks,
+.#{$prefixClass}-layout-options,
+.#{$prefixClass}-remove-elements,
+.#{$prefixClass}-position-fixed {
+    input + label {
+        background: #F6FBFD;
+        border-radius: 5px;
+        box-shadow: inset 0 0 1px 1px #D2D2D2;
+        color: #7996A1;
+        cursor: pointer;
+        float: left;
+        padding: 5px 8px;
+        position: relative;
+        text-shadow: 1px 1px 1px #FFF;
+        transition:  width .3s;
+        white-space: nowrap;
+    }
+}
+
+.#{$prefixClass}-#{$_itemsAvailable},
+.#{$prefixClass}-layout-options,
+.#{$prefixClass}-remove-elements,
+.#{$prefixClass}-position-fixed {
+    input + label:before {
+        background: #27AE61;
+    }
+}
+
+.#{$prefixClass}-#{$_itemsAvailable},
+.#{$prefixClass}-social-networks,
+.#{$prefixClass}-layout-options,
+.#{$prefixClass}-remove-elements,
+.#{$prefixClass}-position-fixed {
+    input + label:before {
+        border-radius: 5px;
+        bottom: 0;
+        content: "";
+        left: 0;
+        position: absolute;
+        top: 0;
+        transition: width .3s;
+        width: 0;
+    }
+}
+
+// ----------------------------------------------------------------------------
+// -- Social item > Settings > Social networks available
+// ----------------------------------------------------------------------------
+@include social-item( $colorfacebook, facebook, "\ea8c" );
+@include social-item( $colorTwitter, twitter, "\ea91" );
+@include social-item( $colorGooglePlus, 'google-plus', "\e904" );
+@include social-item( $colorWhatsapp, whatsapp, "\e610" );
+@include social-item( $colorPinterest, pinterest, "\e600" );
+@include social-item( $colorLinkedin, linkedin, "\eac9" );
+@include social-item( $colorTumblr, tumblr, "\e60d" );
+@include social-item( $colorEmail, email, "\e605" );
+@include social-item( $colorPrint, printer, "\e607" );
+
+.#{$prefixClass}-social-networks {
+    input + label:after {
+        color: #807E7E;
+        font-size: 20px;
+        position: relative;
+        text-shadow: initial;
+    }
+
+    input:checked + label:after {
+        color: #fff;
+    }
+}
+
+.#{$prefixClass}-#{$_itemsAvailable},
+.#{$prefixClass}-social-networks,
+.#{$prefixClass}-layout-options,
+.#{$prefixClass}-remove-elements,
+.#{$prefixClass}-position-fixed {
+    input:checked + label:before {
+        width: 100%;
+    }
+
+    input:checked + label span {
+        color: #fff;
+        position: relative;
+        text-shadow: none;
+        z-index: 2;
+    }
+}
+
+.#{$prefixClass}-remove-elements input + label {
+    color: #939393;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: normal;
+    text-shadow: none;
+}
+
+.#{$prefixClass}-remove-elements input:checked + label {
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: normal;
+    text-shadow: none;
+    z-index: 2;
+}
+
+.#{$prefixClass}-remove-elements input + label:after {
+    @extend .#{$prefixClass}-icon-remove:before;
+}
+
+
+.#{$prefixClass}-remove-elements input:checked + label:after {
+    position: relative;
+    @extend .#{$prefixClass}-icon-checked:before;
+}
+
+.#{$prefixClass}-highlight {
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px dotted #a0a5aa;
+    left: 5px;
+    position: relative;
+    top: 14px;
+    width: 30px;
+}

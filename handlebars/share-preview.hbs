@@ -1,0 +1,21 @@
+{{#each this}}
+
+	{{#if first}}
+		<div class="{{prefix}} {{prefix}}-{{layout}} social-share {{prefix}}-preview">
+	{{/if}}
+
+	<div class="{{prefix}}-item {{prefix}}-{{item_class}}">
+		<a class="{{prefix}}-button" title="{{item_title}}">
+			<i class="{{prefix}}-icon-{{item_class}}-{{layout}}"></i>
+			<span class="wpusb-title">{{item_inside}}</span>
+		</a>
+
+		{{#if has_counter}}
+			<span class="{{prefix}}-count wpusb-counter">{{counter}}</span>
+		{{/if}}
+	</div>
+
+{{/each}}
+</div>
+<button class="button" data-action="remove-title"></button>
+<button class="button" data-action="remove-counter"></button>

@@ -1,0 +1,23 @@
+{{#each this}}
+
+	{{#if first}}
+		<div class="{{prefix}} {{prefix}}-buttons {{prefix}}-fixed-left social-share">
+
+			<div class="{{prefix}}-item {{prefix}}-total-share wpusb-counter">
+				<div class="{{prefix}}-button">
+					<span>{{counter}}</span>
+				</div>
+			</div>
+	{{/if}}
+
+	<div class="{{prefix}}-item {{prefix}}-{{item_class}}">
+		<a title="Tweet" rel="nofollow">
+		<i class="{{prefix}}-icon-{{item_class}}-buttons "></i>
+		</a>
+	</div>
+
+{{/each}}
+	<span class="wpusb-toggle"></span>
+</div>
+
+<button class="button" data-action="remove-counter"></button>

@@ -1,0 +1,72 @@
+.#{$prefixClass}-square-plus {
+	margin-bottom: 10px;
+	margin-top: 10px;
+
+	.#{$prefixClass}-item .#{$prefixClass}-link {
+		border-radius: 3px;
+		color: white;
+		height: $size - 5;
+		position: relative;
+		padding: 2px 0 0 2px;
+	    display: table-cell;
+		text-align: center;
+		width: $size;
+
+	    i {
+			color: #fff;
+			font-size: 22px;
+			height: initial;
+			width: initial;
+		    left: -1px;
+		    position: relative;
+    		line-height: 28px;
+
+	    	&:hover {
+	    		color: inherit;
+	    	}
+
+	    	&.#{$prefixClass}-icon-whatsapp-square-plus,
+	    	&.#{$prefixClass}-icon-google-plus-square-plus {
+				position: relative;
+	    		font-size: 28px;
+	    	    top: -1px;
+	    	}
+
+	    	&.#{$prefixClass}-icon-email-square-plus {
+				position: relative;
+				right: 1px;
+	    	}
+	    }
+	}
+
+
+	.#{$prefixClass}-inside .#{$prefixClass}-link {
+
+	    i {
+            vertical-align: -moz-middle-with-baseline;
+            vertical-align: -webkit-baseline-middle;
+	    }
+
+	    span { display: none; }
+
+	    @media ( min-width: $mobile ) {
+			width: 100%;
+			padding: 0 15px 0 10px;
+			text-align: initial;
+
+		    span {
+				display: inline-block;
+				font-weight: bold;
+				left: 1px;
+				margin-left: 3px;
+				position: relative;
+				text-transform: uppercase;
+				top: 3px;
+		    }
+	    }
+	}
+
+	i.#{$prefixClass}-icon-facebook-square-plus {
+		vertical-align: middle;
+	}
+}

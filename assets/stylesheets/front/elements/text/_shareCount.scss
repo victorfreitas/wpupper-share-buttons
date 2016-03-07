@@ -1,0 +1,21 @@
+.#{$prefixClass}-count {
+    background: #ededed;
+    border: 1px solid #dedede;
+    border-radius: 3px;
+    font-family: Arial;
+    font-size: 14px;
+    padding: 0 5px;
+    position: relative;
+    text-align: center;
+
+    &:before {
+        border-color: transparent #ededed transparent transparent;
+        border-style: solid;
+        border-width: 10px;
+        content: "";
+        margin-top: -10px;
+        position: absolute;
+        right: 100%;
+        top: 50%;
+    }
+}
