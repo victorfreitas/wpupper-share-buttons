@@ -3,7 +3,7 @@
 Author URL:
 Contributors: victorfreitas
 Donate link: https://www.redcross.org/donate/donation
-Tags: share, social, buttons, share buttons, compartir, botones compartir, sharing Buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, sharing, social bookmarking, email form, social media buttons, click to tweet, pinterest, linkedin
+Tags: share, social, buttons, share buttons, compartir, botones compartir, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email form, social media buttons, click to tweet, pinterest, linkedin
 Requires at least: 3.0
 Tested up to: 4.4.2
 Stable tag: 1.0.0
@@ -22,7 +22,7 @@ Implement the Share Buttons of the major social networks, including the Whats Ap
 
 * Adds before, after the contents post or both
 
-* Create a new table to store the sharing number of posts
+* Create a new table to store the share number of posts
 
 * Store some options with the data that will be used to show, hide, stylize and remove specific buttons.
 
@@ -78,7 +78,7 @@ and for validating the ["Poedit Editor"](http://www.poedit.net/).
 
 * Share buttons
 * Settings panel
-* Set for your sharing icons
+* Set for your share icons
 
 == Changelog ==
 

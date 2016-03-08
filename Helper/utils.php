@@ -181,6 +181,9 @@ class WPUSB_Utils
 		if ( isset( $post->ID ) )
 			$permalink = esc_url( get_permalink( $post->ID ) );
 
+		if ( is_home() || is_front_page() )
+			$permalink = esc_url( get_site_url( null, '/' ) );
+
 		return $permalink;
 	}
 

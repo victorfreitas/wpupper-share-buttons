@@ -82,7 +82,7 @@ class WPUSB_Setting
 	 * @since 1.0
 	 * @var string
 	 */
-	private $google_plus;
+	private $google;
 
 	/**
 	 * Pinterest value verify option
@@ -332,144 +332,14 @@ class WPUSB_Setting
 					$this->full_options = $this->get_options();
 				break;
 
-			case 'single' :
-				if ( ! isset( $this->single ) )
-					$this->single = WPUSB_Utils::option( 'single' );
-				break;
-
-			case 'before' :
-				if ( ! isset( $this->before ) )
-					$this->before = WPUSB_Utils::option( 'before' );
-				break;
-
-			case 'after' :
-				if ( ! isset( $this->after ) )
-					$this->after = WPUSB_Utils::option( 'after' );
-				break;
-
-			case 'pages' :
-				if ( ! isset( $this->pages ) )
-					$this->pages = WPUSB_Utils::option( 'pages' );
-				break;
-
-			case 'home' :
-				if ( ! isset( $this->home ) )
-					$this->home = WPUSB_Utils::option( 'home' );
-				break;
-
-			case 'class' :
-				if ( ! isset( $this->class ) )
-					$this->class = WPUSB_Utils::option( 'class' );
-				break;
-
-			case 'printer' :
-				if ( ! isset( $this->printer ) )
-					$this->printer = WPUSB_Utils::option( 'printer' );
-				break;
-
-			case 'google_plus' :
-				if ( ! isset( $this->google_plus ) )
-					$this->google_plus = WPUSB_Utils::option( 'google-plus' );
-				break;
-
-			case 'pinterest' :
-				if ( ! isset( $this->pinterest ) )
-					$this->pinterest = WPUSB_Utils::option( 'pinterest' );
-				break;
-
-			case 'linkedin' :
-				if ( ! isset( $this->linkedin ) )
-					$this->linkedin = WPUSB_Utils::option( 'linkedin' );
-				break;
-
-			case 'facebook' :
-				if ( ! isset( $this->facebook ) )
-					$this->facebook = WPUSB_Utils::option( 'facebook' );
-				break;
-
-			case 'whatsapp' :
-				if ( ! isset( $this->whatsapp ) )
-					$this->whatsapp = WPUSB_Utils::option( 'whatsapp' );
-				break;
-
-			case 'twitter' :
-				if ( ! isset( $this->twitter ) )
-					$this->twitter = WPUSB_Utils::option( 'twitter' );
-				break;
-
-			case 'tumblr' :
-				if ( ! isset( $this->tumblr ) )
-					$this->tumblr = WPUSB_Utils::option( 'tumblr' );
-				break;
-
-			case 'email' :
-				if ( ! isset( $this->email ) )
-					$this->email = WPUSB_Utils::option( 'email' );
-				break;
-
-			case 'disable_css' :
-				if ( ! isset( $this->disable_css ) )
-					$this->disable_css = WPUSB_Utils::option( 'disable_css' );
-				break;
-
-			case 'disable_js' :
-				if ( ! isset( $this->disable_js ) )
-					$this->disable_js = WPUSB_Utils::option( 'disable_js' );
-				break;
-
-			case 'layout' :
-				if ( ! isset( $this->layout ) )
-					$this->layout = WPUSB_Utils::option( 'layout', 'default' );
-				break;
-
-			case 'twitter_username' :
-				if ( ! isset( $this->twitter_username ) )
-					$this->twitter_username = WPUSB_Utils::option( 'twitter_via' );
-				break;
-
-			case 'tracking' :
-				if ( ! isset( $this->tracking ) )
-					$this->tracking = WPUSB_Utils::option( 'tracking' );
-				break;
-
-			case 'report_cache_time' :
-				if ( ! isset( $this->report_cache_time ) )
-					$this->report_cache_time = WPUSB_Utils::option( 'report_cache_time', 10, 'intval' );
-				break;
-
 			case 'social_media' :
 				if ( ! isset( $this->social_media ) )
 					$this->social_media = get_option( self::PREFIX . '_social_media' );
 				break;
 
-			case 'remove_count' :
-				if ( ! isset( $this->remove_count ) )
-					$this->remove_count = WPUSB_Utils::option( 'remove_count', 0, 'intval' );
-				break;
-
-			case 'remove_inside' :
-				if ( ! isset( $this->remove_inside ) )
-					$this->remove_inside = WPUSB_Utils::option( 'remove_inside', 0, 'intval' );
-				break;
-
-			case 'position_fixed' :
-				if ( ! isset( $this->position_fixed ) )
-					$this->position_fixed = WPUSB_Utils::option( 'position_fixed' );
-				break;
-
-			case 'fixed' :
-				if ( ! isset( $this->fixed ) )
-					$this->fixed = WPUSB_Utils::option( 'fixed' );
-				break;
-
-			case 'bitly_token' :
-				if ( ! isset( $this->bitly_token ) )
-					$this->bitly_token = WPUSB_Utils::option( 'bitly_token' );
-				break;
-
 			default :
-				return false;
-				break;
+				if ( ! isset( $this->$prop_name ) )
+					$this->$prop_name = WPUSB_Utils::option( $prop_name );
 
 		endswitch;
 

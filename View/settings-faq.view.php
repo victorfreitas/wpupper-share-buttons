@@ -33,15 +33,13 @@ class WPUSB_Settings_Faq_View
 			<div class="<?php echo "{$prefix}-wrap-faq"; ?>">
 				<code>
 					<span style="color: #000000">
-						<span style="color: #FF8000">Via&nbsp;shortcode:<br>&nbsp;<span style="color: #333333">[wpusb&nbsp;class_first=""&nbsp;class_second=""&nbsp;class_link=""&nbsp;class_icon=""&nbsp;layout="default"&nbsp;remove_inside="0"&nbsp;remove_counter="0"]</span><br><br>Via&nbsp;PHP&nbsp;Using&nbsp;function&nbsp;WordPress<br>&nbsp;</span>
+						<span style="color: #FF8000">Via&nbsp;shortcode:<br>&nbsp;<span style="color: #333333">[wpusb]</span><br><br>Via&nbsp;PHP&nbsp;Using&nbsp;function&nbsp;WordPress<br>&nbsp;</span>
 						<span style="color: #007700">echo</span>
 						<span style="color: #0000BB">do_shortcode(</span>
-						<span style="color: #DD0000">'[wpusb&nbsp;class_first=""&nbsp;class_second=""&nbsp;class_link=""&nbsp;class_icon=""&nbsp;layout="default"&nbsp;remove_inside="0"&nbsp;remove_counter="0"]'</span>
+						<span style="color: #DD0000">'[wpusb]'</span>
 						<span style="color: #007700">);<br><br></span>
 						<span style="color: #FF8000">Returns&nbsp;all&nbsp;the&nbsp;buttons&nbsp;and&nbsp;the&nbsp;use&nbsp;of&nbsp;classes&nbsp;is&nbsp;optional<br><br>Via&nbsp;method&nbsp;PHP:<br></span>
-						<span style="color: #007700">use</span>
-						<span style="color: #0000BB">WPUSB_Shares_View;</span>
-						<span style="color: #007700"><br><br></span>
+						<span style="color: #007700"><br></span>
 						<span style="color: #0000BB">$args</span>
 						<span style="color: #007700">=&nbsp;array(<br>&nbsp;&nbsp;&nbsp;&nbsp;</span>
 						<span style="color: #DD0000">'class_first'&nbsp;</span>

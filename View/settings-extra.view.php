@@ -65,7 +65,7 @@ class WPUSB_Settings_Extra_View
 									<input id="<?php echo $prefix; ?>-twitter-username"
 									       class="large-text"
 										   placeholder="<?php _e( 'Twitter username', WPUSB_App::TEXTDOMAIN ); ?>"
-									       name="<?php echo "{$extra_setting}[twitter_via]"; ?>"
+									       name="<?php echo "{$extra_setting}[twitter_username]"; ?>"
 										   value="<?php echo $model->twitter_username; ?>">
 									<p class="description"><?php _e( 'Your twitter username', WPUSB_App::TEXTDOMAIN ); ?></p>
 								</td>
