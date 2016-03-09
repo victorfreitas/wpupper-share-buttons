@@ -5,6 +5,7 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 		this.prefix           = SB.vars.prefix + '-';
 		this.data             = container.data();
 		this.facebook         = this.$el.byElement( 'facebook' );
+		this.twitter          = this.$el.byElement( 'twitter' );
 		this.google           = this.$el.byElement( 'google-plus' );
 		this.pinterest        = this.$el.byElement( 'pinterest' );
 		this.linkedin         = this.$el.byElement( 'linkedin' );
@@ -13,10 +14,11 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 		this.closeButtons     = SB.vars.body.byAction( 'close-buttons' );
 		this.totalCounter     = 0;
 		this.facebookCounter  = 0;
+		this.twitterCounter   = 0;
 		this.googleCounter    = 0;
 		this.linkedinCounter  = 0;
 		this.pinterestCounter = 0;
-		this.max              = 4;
+		this.max              = 5;
 		this.items            = [];
 		this.init();
 	};
@@ -52,6 +54,11 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 				url       : 'http://graph.facebook.com/?id=' + this.data.elementUrl
 			},
 			{
+				reference : 'twitterCounter',
+				element   : 'twitter',
+				url       : 'http://public.newsharecounts.com/count.json?url=' + this.data.elementUrl
+			},
+			{
 				reference : 'googleCounter',
 				element   : 'google',
 				url       : $.prototype.getAjaxUrl(),
@@ -76,7 +83,7 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 		this.items.forEach( this._iterateItems.bind( this ) );
 	};
 
-	CounterSocialShare.prototype._iterateItems = function(item, index, array) {
+	CounterSocialShare.prototype._iterateItems = function(item, index) {
 		var counter = 0;
 		this.totalShare.text( counter );
 		this[item.element].text( counter );
@@ -90,8 +97,8 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 	};
 
 	CounterSocialShare.prototype.setCounterCache = function(counter, item) {
-		counter = this._getItem( item.element );
-		this.totalCounter   += parseFloat( counter );
+		counter = parseFloat( this._getItem( item.element ) );
+		this.totalCounter   += counter;
 		this[item.reference] = counter;
 		this[item.element].text( counter );
 		this.totalShare.text( this.totalCounter );
@@ -150,6 +157,7 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 	       	action          : 'counts_social_share',
 		    reference       : this.data.attrReference,
 		    count_facebook  : this.facebookCounter,
+		    count_twitter   : this.twitterCounter,
 		    count_google    : this.googleCounter,
 		    count_linkedin  : this.linkedinCounter,
 		    count_pinterest : this.pinterestCounter,

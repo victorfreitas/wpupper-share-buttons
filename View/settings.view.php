@@ -212,6 +212,19 @@ class WPUSB_Settings_View extends WPUSB_Shares_View
 									</label>
 								</td>
 							</tr>
+
+							<tr class="<?php echo $prefix; ?>-info-twitter">
+								<th scope="row">
+									Twiiter share counter
+								</th>
+								<td>
+									<p class="description">
+									<?php
+										_e( 'The share count Twitter is powered by <a href="http://newsharecounts.com" target="_blank">newsharecounts.com</a>, you have to sign up with your Twitter account to get free service and twitter count. Just visit the website, fill in the domain of your site and click Sign in with Twitter. That, and nothing else!', WPUSB_App::TEXTDOMAIN );
+									?>
+									</p>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 					<input type="hidden" name="<?php echo $option_social_media; ?>[order]" data-element="order">

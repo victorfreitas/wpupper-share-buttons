@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WPUpper Share Buttons 1.0.0\n"
-"POT-Creation-Date: 2016-03-07 01:58-0300\n"
-"PO-Revision-Date: 2016-03-07 01:58-0300\n"
+"POT-Creation-Date: 2016-03-09 14:00-0300\n"
+"PO-Revision-Date: 2016-03-09 14:02-0300\n"
 "Last-Translator: \n"
 "Language-Team: WPUpper\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.5\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -21,56 +21,56 @@ msgstr ""
 "X-Poedit-SearchPath-4: View\n"
 "X-Poedit-SearchPath-5: wpupper-share-buttons.php\n"
 
-#: Config/core.php:109
+#: Config/core.php:111
 msgid "I just saw"
 msgstr "Acabo de ver"
 
-#: Config/core.php:110
+#: Config/core.php:115
 msgid "Click to see also"
 msgstr "Haga clic ver también"
 
-#: Config/core.php:117
+#: Config/core.php:128
 msgid "Share on Facebook"
 msgstr "Compartir en Facebook"
 
-#: Config/core.php:123 Config/core.php:149 Config/core.php:162
-#: Config/core.php:175 Config/core.php:188 Config/core.php:201
+#: Config/core.php:134 Config/core.php:160 Config/core.php:173
+#: Config/core.php:186 Config/core.php:199 Config/core.php:212
 msgid "Share"
 msgstr "Compartir"
 
-#: Config/core.php:130 Config/core.php:136
+#: Config/core.php:141 Config/core.php:147
 msgid "Tweet"
 msgstr "Tweet"
 
-#: Config/core.php:143
+#: Config/core.php:154
 msgid "Share on Google+"
 msgstr "Compartir en Google+"
 
-#: Config/core.php:156
+#: Config/core.php:167
 msgid "Share on WhatsApp"
 msgstr "Compartir en WhatsApp"
 
-#: Config/core.php:169
+#: Config/core.php:180
 msgid "Share on Pinterest"
 msgstr "Compartir en Pinterest"
 
-#: Config/core.php:182
+#: Config/core.php:193
 msgid "Share on Linkedin"
 msgstr "Compartir en Linkedin"
 
-#: Config/core.php:195
+#: Config/core.php:206
 msgid "Share on Tumblr"
 msgstr "Compartir en Tumblr"
 
-#: Config/core.php:208
+#: Config/core.php:219
 msgid "Send by email"
 msgstr "Enviar por correo electrónico"
 
-#: Config/core.php:221
+#: Config/core.php:232
 msgid "Print via PrintFriendly"
 msgstr "imprimir por PrintFriendly"
 
-#: Config/core.php:227
+#: Config/core.php:238
 msgid "Print"
 msgstr "Impresión"
 
@@ -219,7 +219,7 @@ msgstr "CSS Desactivar"
 msgid "Disable JS"
 msgstr "Inhabilitar JS"
 
-#: View/settings-extra.view.php:177 View/settings.view.php:220
+#: View/settings-extra.view.php:177 View/settings.view.php:233
 msgid "Save Changes"
 msgstr "Guardar Cambios"
 
@@ -299,7 +299,21 @@ msgstr "Posición fija"
 msgid "Fixed left"
 msgstr "Fijo izquierda"
 
-#: View/settings.view.php:241
+#: View/settings.view.php:223
+msgid ""
+"The share count Twitter is powered by <a href=\"http://newsharecounts.com\" "
+"target=\"_blank\">newsharecounts.com</a>, you have to sign up with your "
+"Twitter account to get free service and twitter count. Just visit the "
+"website, fill in the domain of your site and click Sign in with Twitter. "
+"That, and nothing else!"
+msgstr ""
+"El número de acciones de Twitter es alimentado por <a href=\"http://"
+"newsharecounts.com\" target=\"_blank\">newsharecounts.com</a>, usted tiene "
+"que registrarse con su cuenta de Twitter para obtener servicio gratuito y el "
+"recuento de twitter. Sólo hay que visitar la página web, rellenar el dominio "
+"de su sitio y haga clic en Iniciar sesión con Twitter. Eso, y nada más!"
+
+#: View/settings.view.php:254
 msgid "Settings saved."
 msgstr "Ajustes guardados."
 

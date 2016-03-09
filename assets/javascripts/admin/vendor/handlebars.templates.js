@@ -124,9 +124,9 @@ templates['square-plus'] = template({"1":function(container,depth0,helpers,parti
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
     + "-text\"></span>\n				<div class=\""
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
-    + "-slash\">"
+    + "-slash\" data-slash=\""
     + ((stack1 = ((helper = (helper = helpers.slash || (depth0 != null ? depth0.slash : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"slash","hash":{},"data":data}) : helper))) != null ? stack1 : "")
-    + "</div>\n			</div>\n\n			<div class=\""
+    + "\"></div>\n			</div>\n\n			<div class=\""
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
     + "-item "
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
@@ -150,9 +150,9 @@ templates['square-plus'] = template({"1":function(container,depth0,helpers,parti
 },"3":function(container,depth0,helpers,partials,data) {
     var helper;
 
-  return "						<span class=\"wpusb-title\">"
+  return "						<span class=\"wpusb-title\" data-title=\""
     + container.escapeExpression(((helper = (helper = helpers.item_name || (depth0 != null ? depth0.item_name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"item_name","hash":{},"data":data}) : helper)))
-    + "</span>\n";
+    + "\"></span>\n";
 },"5":function(container,depth0,helpers,partials,data) {
     var helper, alias1=helpers.helperMissing, alias2="function", alias3=container.escapeExpression;
 

@@ -106,10 +106,21 @@ class WPUSB_Core
 		$prefix         = WPUSB_Setting::PREFIX;
 		$item           = "{$prefix}-item";
 		$class_button   = "{$prefix}-button";
-		$twitter_text_a = apply_filters( WPUSB_App::SLUG . '-twitter-after', __( 'I just saw', WPUSB_App::TEXTDOMAIN ) );
-		$twitter_text_b = apply_filters( WPUSB_App::SLUG . '-twitter-before', __( 'Click to see also', WPUSB_App::TEXTDOMAIN ) );
-		$caracter       = rawurlencode( apply_filters( WPUSB_App::SLUG . '-caracter', html_entity_decode( ' &#x261B; ' ) ) );
-		$share_items    = array(
+		$twitter_text_a = apply_filters(
+			WPUSB_App::SLUG . '-twitter-after',
+			__( 'I just saw', WPUSB_App::TEXTDOMAIN )
+		);
+		$twitter_text_b = apply_filters(
+			WPUSB_App::SLUG . '-twitter-before',
+			__( 'Click to see also', WPUSB_App::TEXTDOMAIN )
+		);
+		$caracter       = rawurlencode(
+			apply_filters(
+				WPUSB_App::SLUG . '-caracter',
+				html_entity_decode( ' &#x261B; ' )
+			)
+		);
+		$share_items = array(
 			'facebook'  => array(
 				'name'        => 'Facebook',
 				'element'     => 'facebook',
@@ -134,7 +145,7 @@ class WPUSB_Core
 				'class_icon'  => "{$prefix}-icon-twitter",
 				'popup'       => $action,
 				'inside'      => __( 'Tweet', WPUSB_App::TEXTDOMAIN ),
-				'has_counter' => false,
+				'has_counter' => true,
 			),
 			'google'    => array(
 				'name'        => 'Google Plus',

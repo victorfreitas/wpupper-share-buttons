@@ -4,7 +4,7 @@
 
 .#{$prefixClass}-preview {
     left: 250px;
-    bottom: 5px;
+    bottom: -20px;
     position: absolute;
 
     .#{$prefixClass}-count {
@@ -28,6 +28,7 @@
             font-size: 30px;
             font-weight: normal;
             left: 83px;
+            line-height: 15px;
             top: 10px;
         }
     }
@@ -35,7 +36,7 @@
 
 button[data-action="remove-title"],
 button[data-action="remove-counter"] {
-    bottom: 22%;
+    bottom: 178px;
     left: 380px;
     position: absolute;
 }

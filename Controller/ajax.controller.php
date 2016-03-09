@@ -251,21 +251,9 @@ class WPUSB_Ajax_Controller
 				'pinterest'  => $data['count_pinterest'],
 				'total'      => $data['total'],
 			),
-			array(
-				'post_id' => $data['post_id'],
-			),
-			array(
-				'%s',
-				'%d',
-				'%d',
-				'%d',
-				'%d',
-				'%d',
-				'%d',
-			),
-			array(
-				'%d',
-			)
+			array( 'post_id' => $data['post_id'], ),
+			array( '%s', '%d', '%d', '%d', '%d', '%d', '%d', ),
+			array( '%d', )
 		);
 
 		exit(1);
@@ -341,9 +329,7 @@ class WPUSB_Ajax_Controller
 		$share_args = static::_get_objects_cache();
 
 		foreach ( $items as $key => $element ) :
-			$item_name = ( 'google' == $element ) ? 'google-plus' : $element;
-
-			if ( ! in_array( $item_name, $checked ) )
+			if ( ! in_array( $element, $checked ) )
 				continue;
 
 			$item   = $share_args->$element;
@@ -410,7 +396,7 @@ class WPUSB_Ajax_Controller
 			return $cache;
 
 		$objects = WPUSB_Core::social_media_objects();
-		set_transient( WPUSB_Setting::TRANSIENT_SHARE_OBJECTS, $objects, WEEK_IN_SECONDS * 1 );
+		set_transient( WPUSB_Setting::TRANSIENT_SHARE_OBJECTS, $objects, WEEK_IN_SECONDS );
 
 		return $objects;
 	}

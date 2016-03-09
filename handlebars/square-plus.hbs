@@ -6,7 +6,7 @@
 			<div class="{{prefix}}-item {{prefix}}-counter wpusb-counter">
 				<span class="{{prefix}}-counter">{{counter}}</span>
 				<span class="{{prefix}}-text"></span>
-				<div class="{{prefix}}-slash">{{{slash}}}</div>
+				<div class="{{prefix}}-slash" data-slash="{{{slash}}}"></div>
 			</div>
 
 			<div class="{{prefix}}-item {{prefix}}-{{item_class}} {{prefix}}-full {{prefix}}-inside">
@@ -14,7 +14,7 @@
 					<i class="{{prefix}}-icon-{{item_class}}-square-plus"></i>
 
 					{{#if inside}}
-						<span class="wpusb-title">{{item_name}}</span>
+						<span class="wpusb-title" data-title="{{item_name}}"></span>
 					{{/if}}
 				</a>
 			</div>

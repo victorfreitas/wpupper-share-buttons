@@ -197,3 +197,11 @@ $_itemsAvailable : 'items-available';
     top: 14px;
     width: 30px;
 }
+
+@media ( min-width: 520px ) {
+    .#{$prefixClass}-square-plus
+    .#{$prefixClass}-inside
+    .#{$prefixClass}-link span {
+        top: 5px;
+    }
+}
