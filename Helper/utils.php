@@ -106,12 +106,7 @@ class WPUSB_Utils
 		if ( is_array( $string ) )
 			return array_map( array( __CLASS__, 'rip_tags' ), $string );
 
-		$string = rawurldecode( $string );
-		$string = html_entity_decode( $string );
-	    $string = wp_strip_all_tags( $string, true );
-	    $string = preg_replace( '/([()]).*/', ' ', $string );
-
-	    return $string;
+	    return wp_strip_all_tags( $string, true );
 	}
 
 	/**
@@ -434,12 +429,10 @@ class WPUSB_Utils
 	{
 		global $wp_version;
 
-		if ( version_compare( $wp_version, '4.4', '>=' ) ) :
-			require_once( ABSPATH . 'wp-admin/includes/class-wp-screen.php' );
-			return;
-		endif;
-
 		require_once( ABSPATH . 'wp-admin/includes/screen.php' );
+
+		if ( version_compare( $wp_version, '4.4', '>=' ) )
+			require_once( ABSPATH . 'wp-admin/includes/class-wp-screen.php' );
 	}
 
 	/**
