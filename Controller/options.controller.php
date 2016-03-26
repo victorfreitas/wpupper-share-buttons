@@ -103,11 +103,11 @@ class WPUSB_Options_Controller
 		$value = array(
 			'disable_css'       => 'off',
 			'disable_js'        => 'off',
-			'twitter_via'       => '',
+			'twitter_username'  => '',
 			'bitly_token'       => '',
 			'remove_count'      => 0,
 			'remove_inside'     => 0,
-			'tracking'          => '?utm_source=share_buttons&utm_medium=social_media&utm_campaign=social_share',
+			'tracking'          => '',
 			'report_cache_time' => 10,
 		);
 		$value = apply_filters( WPUSB_App::SLUG . '-options-extra-settings', $value );

@@ -96,10 +96,10 @@ class WPUSB_Core
 	 * @param String $tracking
 	 * @param String $thumbnail
 	 * @param String $body_mail
-	 * @param String $twitter_via
+	 * @param String $twitter_username
 	 * @return Object all data links
 	 */
-	private static function _set_elements( $title, $url, $tracking, $thumbnail, $body_mail, $twitter_via )
+	private static function _set_elements( $title, $url, $tracking, $thumbnail, $body_mail, $twitter_username )
 	{
 		$action         = 'data-action="open-popup"';
 		$url            = static::_generate_short_url( $url, $tracking );
@@ -137,7 +137,7 @@ class WPUSB_Core
 			'twitter'   => array(
 				'name'        => 'Twitter',
 				'element'     => 'twitter',
-				'link'        => "https://twitter.com/share?url={$url}&text={$twitter_text_a}%20{$title}%20-%20{$twitter_text_b}{$caracter}&via={$twitter_via}",
+				'link'        => "https://twitter.com/share?url={$url}&text={$twitter_text_a}%20{$title}%20-%20{$twitter_text_b}{$caracter}&via={$twitter_username}",
 				'title'       => __( 'Tweet', WPUSB_App::TEXTDOMAIN ),
 				'class'       => "{$prefix}-twitter",
 				'class_item'  => $item,
@@ -280,7 +280,7 @@ class WPUSB_Core
 			rawurlencode( $tracking ),
 			rawurlencode( $arguments['thumbnail'] ),
 			rawurlencode( $arguments['body_mail'] ),
-			WPUSB_Utils::option( 'twitter_via' )
+			WPUSB_Utils::option( 'twitter_username' )
 		);
 
 		return apply_filters( WPUSB_App::SLUG . 'elements-econded', $elements );

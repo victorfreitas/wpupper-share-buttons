@@ -1,13 +1,13 @@
 <?php
 /**
- * @package Share Buttons
+ * @package WPUpper Share Buttons
  */
 /*
 	Plugin Name: WPUpper Share Buttons
-	Plugin URI:
-	Version:     1.0.0
+	Plugin URI:  https://github.com/victorfreitas
+	Version:     2.4.1
 	Author:      WPUpper
-	Author URI:
+	Author URI:  https://github.com/victorfreitas
 	License:     GPL2
 	Text Domain: wpupper-share-buttons
 	Domain Path: /languages
@@ -58,7 +58,7 @@ class WPUSB_App
      *
      * @var String
      */
-	const VERSION = '1.0.0';
+	const VERSION = '2.4.1';
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
