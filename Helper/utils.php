@@ -360,7 +360,7 @@ class WPUSB_Utils
 	 * @param Array $arguments
 	 * @return Object
 	 */
-	public static function array_to_object( array $arguments = array() )
+	public static function parse( $arguments )
 	{
         foreach( $arguments as $key => $value )
         	$object[$key] = (object) $value;

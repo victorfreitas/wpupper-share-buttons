@@ -277,14 +277,6 @@ class WPUSB_Setting
 	const DS = DIRECTORY_SEPARATOR;
 
 	/**
-	 * Transiente name for cache share objects
-	 *
-	 * @since 1.0
-	 * @var string
-	 */
-	const TRANSIENT_SHARE_OBJECTS = 'wpusb-objects';
-
-	/**
 	 * Name for transient function
 	 *
 	 * @since 1.0

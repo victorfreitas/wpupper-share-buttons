@@ -31,8 +31,8 @@
 .#{$prefixClass}-icon-flickr-default:before {
 	@extend .#{$prefixClass}-icon-flickr:before;
 }
-.#{$prefixClass}-icon-phone-default:before {
-	@extend .#{$prefixClass}-icon-phone:before;
+.#{$prefixClass}-icon-youtube-default:before {
+	@extend .#{$prefixClass}-icon-youtube:before;
 }
 
 // ----------------------------------------------------------------------------
@@ -68,8 +68,8 @@
 .#{$prefixClass}-icon-flickr-buttons:before {
 	@extend .#{$prefixClass}-icon-flickr:before;
 }
-.#{$prefixClass}-icon-phone-buttons:before {
-	@extend .#{$prefixClass}-icon-phone:before;
+.#{$prefixClass}-icon-youtube-buttons:before {
+	@extend .#{$prefixClass}-icon-youtube:before;
 }
 
 // ----------------------------------------------------------------------------
@@ -116,6 +116,6 @@
 .#{$prefixClass}-icon-flickr-square-plus:before {
 	@extend .#{$prefixClass}-icon-flickr:before;
 }
-.#{$prefixClass}-icon-phone-square-plus:before {
-	@extend .#{$prefixClass}-icon-phone:before;
+.#{$prefixClass}-icon-youtube-square-plus:before {
+	@extend .#{$prefixClass}-icon-youtube:before;
 }

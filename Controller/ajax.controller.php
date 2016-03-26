@@ -326,7 +326,7 @@ class WPUSB_Ajax_Controller
 		global $wp_version;
 
 		$list       = array();
-		$share_args = static::_get_objects_cache();
+		$share_args = WPUSB_Core::social_media_objects();
 
 		foreach ( $items as $key => $element ) :
 			if ( ! in_array( $element, $checked ) )
@@ -379,25 +379,5 @@ class WPUSB_Ajax_Controller
 		$text = str_replace( '\\', '', $text );
 
 		return json_decode( $text, true );
-	}
-
-	/**
-	 * Generate cache elements objects
-	 *
-	 * @since 1.0
-	 * @param Null
-	 * @return Object
-	 */
-	private static function _get_objects_cache()
-	{
-		$cache = get_transient( WPUSB_Setting::TRANSIENT_SHARE_OBJECTS );
-
-		if ( false !== $cache )
-			return $cache;
-
-		$objects = WPUSB_Core::social_media_objects();
-		set_transient( WPUSB_Setting::TRANSIENT_SHARE_OBJECTS, $objects, WEEK_IN_SECONDS );
-
-		return $objects;
 	}
 }

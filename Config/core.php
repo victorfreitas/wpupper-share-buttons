@@ -39,22 +39,8 @@ class WPUSB_Core
 	{
 		add_action( 'plugins_loaded', array( __CLASS__, 'share_report_update_db_check' ) );
 		add_action( 'plugins_loaded', array( __CLASS__, 'load_text_domain' ) );
-		add_action( 'admin_init', array( __CLASS__, 'settings_update' ) );
 		static::_register_actions();
 		static::_instantiate_controllers();
-	}
-
-	/**
-	 * Delete transient in update lang
-	 *
-	 * @since 1.1
-	 * @param Null
-	 * @return Void
-	 */
-	public static function settings_update()
-	{
-		if ( isset( $_POST['WPLANG'] ) )
-			delete_transient( WPUSB_Setting::TRANSIENT_SHARE_OBJECTS );
 	}
 
 	/**
@@ -240,9 +226,18 @@ class WPUSB_Core
 			),
 		);
 
-		$share_items = static::_ksort( $share_items );
+		$elements = new ArrayIterator( $share_items );
+		$elements = apply_filters( WPUSB_App::SLUG . '-elements-share', $elements );
 
-		return WPUSB_Utils::array_to_object( $share_items );
+		return static::_elements_transform( $elements );
+	}
+
+	private static function _elements_transform( $elements )
+	{
+		$elements = static::_ksort( $elements );
+		$elements = WPUSB_Utils::parse( $elements );
+
+		return $elements;
 	}
 
 	private static function _ksort( $elements )
@@ -253,9 +248,9 @@ class WPUSB_Core
 		if ( $order ) :
 			$order = json_decode( $order );
 
-			foreach ( $order as $key => $item ) {
+			foreach ( $order as $key => $item )
 				$sort[$item] = apply_filters( WPUSB_App::SLUG . "-{$item}-items", $elements[$item] );
-			}
+
 			$elements = $sort;
 		endif;
 
