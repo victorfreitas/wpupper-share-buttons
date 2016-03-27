@@ -34,7 +34,27 @@
 .#{$prefixClass}-icon-youtube-default:before {
 	@extend .#{$prefixClass}-icon-youtube:before;
 }
-
+.#{$prefixClass}-icon-like-default:before {
+	@extend .#{$prefixClass}-icon-like:before;
+}
+.#{$prefixClass}-icon-flickr-default:before {
+	@extend .#{$prefixClass}-icon-flickr:before;
+}
+.#{$prefixClass}-icon-share-default:before {
+	@extend .#{$prefixClass}-icon-share:before;
+}
+.#{$prefixClass}-icon-telegram-default:before {
+	@extend .#{$prefixClass}-icon-telegram:before;
+}
+.#{$prefixClass}-icon-vine-default:before {
+	@extend .#{$prefixClass}-icon-vine:before;
+}
+.#{$prefixClass}-icon-rss-default:before {
+	@extend .#{$prefixClass}-icon-rss:before;
+}
+.#{$prefixClass}-icon-instagram-default:before {
+	@extend .#{$prefixClass}-icon-instagram-square:before;
+}
 // ----------------------------------------------------------------------------
 // -- Buttons
 // ----------------------------------------------------------------------------
@@ -70,6 +90,9 @@
 }
 .#{$prefixClass}-icon-youtube-buttons:before {
 	@extend .#{$prefixClass}-icon-youtube:before;
+}
+.#{$prefixClass}-icon-instagram-buttons:before {
+	@extend .#{$prefixClass}-icon-instagram-square:before;
 }
 
 // ----------------------------------------------------------------------------
@@ -118,4 +141,25 @@
 }
 .#{$prefixClass}-icon-youtube-square-plus:before {
 	@extend .#{$prefixClass}-icon-youtube:before;
+}
+.#{$prefixClass}-icon-like-square-plus:before {
+	@extend .#{$prefixClass}-icon-like:before;
+}
+.#{$prefixClass}-icon-flickr-square-plus:before {
+	@extend .#{$prefixClass}-icon-flickr:before;
+}
+.#{$prefixClass}-icon-share-square-plus:before {
+	@extend .#{$prefixClass}-icon-share:before;
+}
+.#{$prefixClass}-icon-telegram-square-plus:before {
+	@extend .#{$prefixClass}-icon-telegram:before;
+}
+.#{$prefixClass}-icon-vine-square-plus:before {
+	@extend .#{$prefixClass}-icon-vine:before;
+}
+.#{$prefixClass}-icon-rss-square-plus:before {
+	@extend .#{$prefixClass}-icon-rss:before;
+}
+.#{$prefixClass}-icon-instagram-square-plus:before {
+	@extend .#{$prefixClass}-icon-instagram-square:before;
 }

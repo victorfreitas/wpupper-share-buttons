@@ -2,10 +2,27 @@
     display: inline-block;
 }
 
-.#{$prefixClass}-preview {
-    left: 250px;
-    bottom: -20px;
-    position: absolute;
+div[data-component="share-preview"] {
+    position: relative;
+
+    button[data-action="no-title"],
+    button[data-action="no-counter"] {
+        margin: 10px;
+    }
+}
+
+.#{$prefixClass}-preview-container {
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid #ECECEC;
+    box-shadow: 1px 1px 3px #989898;
+    margin-top: 10px;
+    padding: 8px 6px 0 6px;
+
+    .#{$prefixClass} {
+        margin: 0;
+        padding: 0;
+    }
 
     .#{$prefixClass}-count {
         padding: 5px 8px;
@@ -32,15 +49,4 @@
             top: 10px;
         }
     }
-}
-
-button[data-action="remove-title"],
-button[data-action="remove-counter"] {
-    bottom: 178px;
-    left: 380px;
-    position: absolute;
-}
-
-button[data-action="remove-counter"] {
-    left: 500px;
 }

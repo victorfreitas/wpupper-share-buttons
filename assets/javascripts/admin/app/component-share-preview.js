@@ -1,7 +1,7 @@
 WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 
 	SharePreview.prototype.start = function(container) {
-		this.preview       = container;
+		this.$el           = container;
 		this.spinner       = $( '.ajax-spinner' );
 		this.prefix        = SB.vars.prefix;
 		this.container     = container.closest( '.wpusb-wrap' );
@@ -77,9 +77,7 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 
 	SharePreview.prototype.request = function() {
 		this.spinner.css( 'visibility', 'visible' );
-		var done   = $.proxy( this, '_done' )
-		  , fail   = $.proxy( this, '_fail' )
-		  ,	params = {
+		var params = {
 				action  : 'share_preview',
 				layout  : this.layout,
 				items   : JSON.stringify( this.itemsOrder ),
@@ -94,13 +92,16 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 			dataType : 'json'
 		});
 
-		ajax.then( done, fail );
+		ajax.then( $.proxy( this, '_done' ), $.proxy( this, '_fail' ) );
 	};
 
 	SharePreview.prototype._done = function(response) {
 		this.spinner.css( 'visibility', 'hidden' );
-		this.preview.html( this.render( response ) );
-		SB.Preview.create( this.preview );
+		this.$el
+		     .byElement( this.prefix )
+		      .addClass( this.prefix + '-preview-container' )
+		      .html( this.render( response ) );
+		SB.Preview.create( this.$el );
 	};
 
 	SharePreview.prototype._fail = function(throwError, status) {

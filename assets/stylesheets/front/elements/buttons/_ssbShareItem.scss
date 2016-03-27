@@ -64,6 +64,8 @@
 @include icon( linkedin, $colorLinkedin );
 @include icon( tumblr, $colorTumblr );
 @include icon( whatsapp, $colorWhatsapp );
+@include icon( youtube, $colorYouTube );
+@include icon( instagram, $colorInstagram );
 
 // ----------------------------------------------------------------------------
 // -- Theme > Buttons
@@ -77,6 +79,8 @@
 @include icon( linkedin, $colorLinkedin, buttons );
 @include icon( tumblr, $colorTumblr, buttons );
 @include icon( whatsapp, $colorWhatsapp, buttons );
+@include icon( youtube, $colorYouTube, buttons );
+@include icon( instagram, $colorInstagram, buttons );
 
 // ----------------------------------------------------------------------------
 // -- Theme > Square Plus
@@ -90,6 +94,8 @@
 @include icon( linkedin, $colorLinkedin, 'square-plus' );
 @include icon( tumblr, $colorTumblr, 'square-plus' );
 @include icon( whatsapp, $colorWhatsapp, 'square-plus' );
+@include icon( youtube, $colorYouTube, 'square-plus' );
+@include icon( instagram, $colorInstagram, 'square-plus' );
 
 // ----------------------------------------------------------------------------
 // -- Theme > items hover
@@ -103,6 +109,8 @@
 @include items-hover( linkedin, $colorLinkedin );
 @include items-hover( tumblr, $colorTumblr );
 @include items-hover( whatsapp, $colorWhatsapp );
+@include items-hover( youtube, $colorYouTube );
+@include items-hover( instagram, $colorInstagram );
 
 .#{$prefixClass}-square .#{$prefixClass}-whatsapp i {
     background: $colorWhatsapp;

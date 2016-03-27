@@ -4,7 +4,7 @@
  * @package WPUpper Share Buttons
  * @subpackage Functions
  * @author  WPUpper
- * @version 2.1.1
+ * @version 3.0.0
  */
 
 if ( ! function_exists( 'add_action' ) )
@@ -227,7 +227,7 @@ class WPUSB_Core
 		);
 
 		$elements = new ArrayIterator( $share_items );
-		$elements = apply_filters( WPUSB_App::SLUG . '-elements-share', $elements );
+		$elements = apply_filters( WPUSB_App::SLUG . '-elements-share', $share_items );
 
 		return static::_elements_transform( $elements );
 	}

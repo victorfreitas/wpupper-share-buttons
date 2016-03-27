@@ -38,7 +38,7 @@ templates['fixed-left'] = template({"1":function(container,depth0,helpers,partia
     var stack1;
 
   return ((stack1 = helpers.each.call(depth0,depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "	<span class=\"wpusb-toggle\"></span>\n</div>\n\n<button class=\"button\" data-action=\"remove-counter\"></button>";
+    + "	<span class=\"wpusb-toggle\"></span>\n</div>\n\n<button class=\"button\" data-action=\"no-counter\"></button>";
 },"useData":true});
 
 templates['share-preview'] = template({"1":function(container,depth0,helpers,partials,data) {
@@ -91,7 +91,7 @@ templates['share-preview'] = template({"1":function(container,depth0,helpers,par
     var stack1;
 
   return ((stack1 = helpers.each.call(depth0,depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</div>\n<button class=\"button\" data-action=\"remove-title\"></button>\n<button class=\"button\" data-action=\"remove-counter\"></button>";
+    + "</div>\n<button class=\"button\" data-action=\"no-title\"></button>\n<button class=\"button\" data-action=\"no-counter\"></button>";
 },"useData":true});
 
 templates['square-plus'] = template({"1":function(container,depth0,helpers,partials,data) {
@@ -175,6 +175,6 @@ templates['square-plus'] = template({"1":function(container,depth0,helpers,parti
     var stack1;
 
   return ((stack1 = helpers.each.call(depth0,depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</div>\n<button class=\"button\" data-action=\"remove-title\"></button>\n<button class=\"button\" data-action=\"remove-counter\"></button>";
+    + "</div>\n<button class=\"button\" data-action=\"no-title\"></button>\n<button class=\"button\" data-action=\"no-counter\"></button>";
 },"useData":true});
 }());

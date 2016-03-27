@@ -38,6 +38,12 @@ class WPUSB_Settings_View extends WPUSB_Shares_View
 			<span class="<?php echo "{$prefix}-title-wrap"; ?>"><?php _e( 'Settings', WPUSB_App::TEXTDOMAIN ); ?></span>
 
 			<div class="<?php echo "{$prefix}-wrap"; ?>" data-component="share-settings">
+
+			<div data-component="share-preview">
+				<span class="ajax-spinner">loading...</span>
+				<div data-element="<?php echo $prefix; ?>"></div>
+			</div>
+
 				<form action="options.php" method="post">
 					<table class="form-table <?php echo "{$prefix}-table"; ?>" data-table="configurations">
 						<tbody>
@@ -233,8 +239,6 @@ class WPUSB_Settings_View extends WPUSB_Shares_View
 						submit_button( __( 'Save Changes', WPUSB_App::TEXTDOMAIN ) );
 					?>
 				</form>
-				<span class="ajax-spinner">loading...</span>
-				<div data-component="share-preview"></div>
 			</div>
 		</div>
 <?php

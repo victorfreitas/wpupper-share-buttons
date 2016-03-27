@@ -2,8 +2,8 @@ WPUPPER( 'SB.Preview', function(Preview, $) {
 
 	Preview.create = function(container) {
 		this.locale  = $.prototype.getLocale();
-		this.title   = $( '[data-action="remove-title"]' );
-		this.counter = $( '[data-action="remove-counter"]' );
+		this.title   = $( '[data-action="no-title"]' );
+		this.counter = $( '[data-action="no-counter"]' );
 		this.init();
 	};
 
@@ -52,24 +52,24 @@ WPUPPER( 'SB.Preview', function(Preview, $) {
 	Preview.defineTextByLocale = function() {
 		switch( this.locale ) {
 			case 'pt_BR' :
-				this.titleRemove   = 'Remover titúlo';
-				this.counterRemove = 'Remover contador';
-				this.titleInsert   = 'Adicionar titúlo';
-				this.counterInsert = 'Adicionar contador';
+				this.titleRemove   = 'Sem titúlo';
+				this.counterRemove = 'Sem contador';
+				this.titleInsert   = 'Com titúlo';
+				this.counterInsert = 'Com contador';
 				break;
 
 			case 'es_ES' :
-				this.titleRemove   = 'Retire del título';
-				this.counterRemove = 'Retire contador';
-				this.titleInsert   = 'Añadir del título';
-				this.counterInsert = 'Añadir contador';
+				this.titleRemove   = 'Con el título';
+				this.counterRemove = 'Con el recuento';
+				this.titleInsert   = 'Sin título';
+				this.counterInsert = 'Sin recuento';
 				break;
 
 			default:
-				this.titleRemove   = 'Remove title';
-				this.counterRemove = 'Remove counter';
-				this.titleInsert   = 'Add title';
-				this.counterInsert = 'Add counter';
+				this.titleRemove   = 'Untitled';
+				this.counterRemove = 'No count';
+				this.titleInsert   = 'With title';
+				this.counterInsert = 'With count';
 		}
 	};
 
