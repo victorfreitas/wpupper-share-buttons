@@ -1,76 +1,69 @@
+# Translation of Development (trunk) in Portuguese (Brazil)
+# This file is distributed under the same license as the Development (trunk) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPUpper Share Buttons 1.0.0\n"
-"POT-Creation-Date: 2016-03-09 14:00-0300\n"
-"PO-Revision-Date: 2016-03-09 14:01-0300\n"
-"Last-Translator: \n"
-"Language-Team: WPUpper\n"
-"Language: pt_BR\n"
+"PO-Revision-Date: 2016-04-03 12:28-0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.5\n"
-"X-Poedit-Basepath: ..\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: _e;__;_n\n"
-"X-Poedit-SearchPath-0: Config\n"
-"X-Poedit-SearchPath-1: Controller\n"
-"X-Poedit-SearchPath-2: Helper\n"
-"X-Poedit-SearchPath-3: Model\n"
-"X-Poedit-SearchPath-4: View\n"
-"X-Poedit-SearchPath-5: wpupper-share-buttons.php\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Project-Id-Version: Development (trunk)\n"
+"POT-Creation-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt_BR\n"
 
-#: Config/core.php:111
+#: Config/core.php:97
 msgid "I just saw"
 msgstr "Acabei de ver"
 
-#: Config/core.php:115
+#: Config/core.php:101
 msgid "Click to see also"
 msgstr "Clique para ver também"
 
-#: Config/core.php:128
+#: Config/core.php:114
 msgid "Share on Facebook"
 msgstr "Compartilhar no Facebook"
 
-#: Config/core.php:134 Config/core.php:160 Config/core.php:173
-#: Config/core.php:186 Config/core.php:199 Config/core.php:212
+#: Config/core.php:120 Config/core.php:146 Config/core.php:159
+#: Config/core.php:172 Config/core.php:185 Config/core.php:198
 msgid "Share"
 msgstr "Compartilhar"
 
-#: Config/core.php:141 Config/core.php:147
+#: Config/core.php:127 Config/core.php:133
 msgid "Tweet"
 msgstr "Tweetar"
 
-#: Config/core.php:154
+#: Config/core.php:140
 msgid "Share on Google+"
 msgstr "Compartilhar no Google+"
 
-#: Config/core.php:167
+#: Config/core.php:153
 msgid "Share on WhatsApp"
 msgstr "Compartilhar via WhatsApp"
 
-#: Config/core.php:180
+#: Config/core.php:166
 msgid "Share on Pinterest"
 msgstr "Compartilhar no Pinterest"
 
-#: Config/core.php:193
+#: Config/core.php:179
 msgid "Share on Linkedin"
 msgstr "Compartilhar no Linkedin"
 
-#: Config/core.php:206
+#: Config/core.php:192
 msgid "Share on Tumblr"
 msgstr "Compartilhar no Tumblr"
 
-#: Config/core.php:219
+#: Config/core.php:205
 msgid "Send by email"
 msgstr "Enviar por email"
 
-#: Config/core.php:232
+#: Config/core.php:218
 msgid "Print via PrintFriendly"
 msgstr "Imprimir via PrintFriendly"
 
-#: Config/core.php:238
+#: Config/core.php:224
 msgid "Print"
 msgstr "Imprimir"
 
@@ -78,6 +71,8 @@ msgstr "Imprimir"
 msgid "Settings"
 msgstr "Configurações"
 
+#. #-#-#-#-#  tmp-wpupper-share-buttons.pot (WPUpper Share Buttons 2.5.0)
+#. Plugin Name of the plugin/theme
 #: Controller/settings.controller.php:146 View/settings-extra.view.php:29
 #: View/settings-faq.view.php:28 View/settings.view.php:30
 #: View/share-report.view.php:34
@@ -86,7 +81,7 @@ msgstr "Botões de Compartilhamento Social"
 
 #: Controller/settings.controller.php:147
 msgid "WPUpper Share"
-msgstr ""
+msgstr "WPUpper Share"
 
 #: Controller/settings.controller.php:156
 msgid "Extra Settings | WPUpper Share Buttons"
@@ -159,9 +154,7 @@ msgstr "Minuto"
 
 #: View/settings-extra.view.php:54
 msgid "Set the time in minutes that will be cached in the Sharing report page"
-msgstr ""
-"Defina o tempo em minutos que terá o cache na página relatório de "
-"compartilhamento"
+msgstr "Defina o tempo em minutos que terá o cache na página relatório de compartilhamento"
 
 #: View/settings-extra.view.php:61 View/settings-extra.view.php:67
 msgid "Twitter username"
@@ -219,101 +212,91 @@ msgstr "Desabilitar CSS"
 msgid "Disable JS"
 msgstr "Desabilitar JS"
 
-#: View/settings-extra.view.php:177 View/settings.view.php:233
+#: View/settings-extra.view.php:177 View/settings.view.php:239
 msgid "Save Changes"
 msgstr "Salvar Alterações"
 
-#: View/settings.view.php:46
+#: View/settings.view.php:52
 msgid "Places available"
 msgstr "Locais disponíveis"
 
-#: View/settings.view.php:54
+#: View/settings.view.php:60
 msgid "Single"
 msgstr "Single"
 
-#: View/settings.view.php:63
+#: View/settings.view.php:69
 msgid "Pages"
 msgstr "Páginas"
 
-#: View/settings.view.php:72
+#: View/settings.view.php:78
 msgid "Page home"
 msgstr "Página home"
 
-#: View/settings.view.php:81
+#: View/settings.view.php:87
 msgid "Before content"
 msgstr "Antes do conteúdo"
 
-#: View/settings.view.php:90
+#: View/settings.view.php:96
 msgid "After content"
 msgstr "Depois do conteúdo"
 
-#: View/settings.view.php:100
+#: View/settings.view.php:106
 msgid "Fixed"
 msgstr "Fixo"
 
-#: View/settings.view.php:106
+#: View/settings.view.php:112
 msgid "Social networks available"
 msgstr "Redes sociais disponíveis"
 
-#: View/settings.view.php:126
+#: View/settings.view.php:132
 msgid "Custom class"
 msgstr "Classe personalizada"
 
-#: View/settings.view.php:131
+#: View/settings.view.php:137
 msgid "Custom class for primary div"
 msgstr "Classe personalizada para div princípal"
 
-#: View/settings.view.php:138
+#: View/settings.view.php:144
 msgid "Layout options"
 msgstr "Opções de aparência"
 
-#: View/settings.view.php:140
+#: View/settings.view.php:146
 msgid "All layout supports responsive"
 msgstr "Todos os botões tem suporte responsivo"
 
-#: View/settings.view.php:151
+#: View/settings.view.php:157
 msgid "Default"
 msgstr "Padrão"
 
-#: View/settings.view.php:162
+#: View/settings.view.php:168
 msgid "Button"
 msgstr "Botão"
 
-#: View/settings.view.php:173
+#: View/settings.view.php:179
 msgid "Rounded"
 msgstr "Arredondado"
 
-#: View/settings.view.php:184
+#: View/settings.view.php:190
 msgid "Square"
 msgstr "Quadrado"
 
-#: View/settings.view.php:195
+#: View/settings.view.php:201
 msgid "Square plus"
 msgstr "Quadrado plus"
 
-#: View/settings.view.php:201
+#: View/settings.view.php:207
 msgid "Position fixed"
 msgstr "Posição fixa"
 
-#: View/settings.view.php:211
+#: View/settings.view.php:217
 msgid "Fixed left"
 msgstr "Fixo à esquerda"
 
-#: View/settings.view.php:223
-msgid ""
-"The share count Twitter is powered by <a href=\"http://newsharecounts.com\" "
-"target=\"_blank\">newsharecounts.com</a>, you have to sign up with your "
-"Twitter account to get free service and twitter count. Just visit the "
-"website, fill in the domain of your site and click Sign in with Twitter. "
-"That, and nothing else!"
-msgstr ""
-"O contador de compartilhamento do Twitter é alimentado por <a href=\"http://"
-"newsharecounts.com\" target=\"_blank\">newsharecounts.com</a>, você tem que "
-"se inscrever com sua conta do Twitter para obter o serviço gratuito e a "
-"contagem do twitter. Basta visitar o site, preencher o domínio do seu site "
-"e clique em Sign in with Twitter. É isso, e nada mais!"
+#: View/settings.view.php:229
+msgid "The share count Twitter is powered by <a href=\"http://newsharecounts.com\" target=\"_blank\">newsharecounts.com</a>, you have to sign up with your Twitter account to get free service and twitter count. Just visit the website, fill in the domain of your site and click Sign in with Twitter. That, and nothing else!"
+msgstr "O contador de compartilhamento do Twitter é alimentado por <a href=\"http://newsharecounts.com\" target=\"_blank\">newsharecounts.com</a>, você tem que se inscrever com sua conta do Twitter para obter o serviço gratuito e a contagem do twitter. Basta visitar o site, preencher o domínio do seu site e clique em Sign in with Twitter. É isso, e nada mais!"
 
-#: View/settings.view.php:254
+#: View/settings.view.php:258
 msgid "Settings saved."
 msgstr "Configurações salvas."
 
@@ -329,144 +312,17 @@ msgstr "Este relatório tem um cache de "
 msgid "minutes"
 msgstr "minutos"
 
-#: View/share-report.view.php:30
-#, php-format
-msgid "%d minute"
-msgstr "%d minuto"
+#. #-#-#-#-#  tmp-wpupper-share-buttons.pot (WPUpper Share Buttons 2.5.0)
+#. Plugin URI of the plugin/theme
+#. #-#-#-#-#  tmp-wpupper-share-buttons.pot (WPUpper Share Buttons 2.5.0)
+#. Author URI of the plugin/theme
+msgid "https://github.com/victorfreitas"
+msgstr "https://github.com/victorfreitas"
 
-#~ msgid "Share Buttons"
-#~ msgstr "Botões de Compartilhamento"
+#. Description of the plugin/theme
+msgid "Insert share buttons of social networks. The buttons are inserted automatically or can be called via shortcode or php method."
+msgstr "Inserir botões de compartilhamento de redes sociais. Os botões são inseridos automaticamente ou podem ser chamados através de shortcode ou método de php."
 
-#~ msgid "Social Sharing Buttons"
-#~ msgstr "Social Sharing Buttons"
-
-#~ msgid "Sharing Buttons"
-#~ msgstr "Sharing Buttons"
-
-#~ msgid "Extra Settings | Social Sharing Buttons"
-#~ msgstr "Configurações extra | Social Sharing Buttons"
-
-#~ msgid "Use options | Social Sharing Buttons"
-#~ msgstr "Opções de uso | Social Sharing Buttons"
-
-#~ msgid "Sharing Report | Social Sharing Buttons"
-#~ msgstr "Relatório de compartilhamento | Social Sharing Buttons"
-
-#~ msgid "Add the sharing buttons automatically."
-#~ msgstr "Adiciona os botões de compartilhamento automáticamente."
-
-#~ msgid "This report has a cache of %d minute"
-#~ msgstr "Este relatório tem um cache de %d minuto"
-
-#~ msgid "Use the encode"
-#~ msgstr "Utilize o encode"
-
-#~ msgid "to add parameters to your tracking."
-#~ msgstr "para adicionar parâmetros em seu tracking."
-
-#~ msgid "Shorten urls using bitly"
-#~ msgstr "Encurtar URLs usando bitly"
-
-#~ msgid "Insert you access token Bitly"
-#~ msgstr "Insira o seu token de acesso Bitly"
-
-#~ msgid "UTM de tracking"
-#~ msgstr "UTM de tracking"
-
-#~ msgid "Via shortcode"
-#~ msgstr "Via shortcode"
-
-#~ msgid "Via"
-#~ msgstr "Via"
-
-#~ msgid "Returns all the buttons and the use of classes is optional"
-#~ msgstr "Retorna todos os botões e o uso das classes é opcional"
-
-#~ msgid "Via method PHP:"
-#~ msgstr "Via método PHP"
-
-#~ msgid "Returns according to the parameters sharing buttons"
-#~ msgstr "Retorna os botões de compartilhamento de acordo com os parâmetros"
-
-#~ msgid "optional"
-#~ msgstr "opcional"
-
-#~ msgid "Remove"
-#~ msgstr "Remover"
-
-#~ msgid "Check to disable"
-#~ msgstr "Desabilitar"
-
-#~ msgid "Disable Scripts"
-#~ msgstr "Desabilitar Scripts"
-
-#~ msgid "Page Home"
-#~ msgstr "Página Home"
-
-#~ msgid "Before Contents"
-#~ msgstr "Antes do Conteúdo"
-
-#~ msgid "After Contents"
-#~ msgstr "Depois do Conteúdo"
-
-#~ msgid "Add the sharing buttons automatically in posts and pages."
-#~ msgstr ""
-#~ "Adiciona os botões de compartilhamento automáticamente em posts e páginas"
-
-#~ msgid "Share on Twitter"
-#~ msgstr "Compartilhar no Twitter"
-
-#~ msgid "Send via SMS"
-#~ msgstr "Enviar via SMS"
-
-#~ msgid "Send via Gmail"
-#~ msgstr "Enviar via Gmail"
-
-#~ msgid "Print via Print Friendly"
-#~ msgstr "Imprimir via Print Friendly"
-
-#~ msgid "Single Post"
-#~ msgstr "Single Post"
-
-#~ msgid "View short content"
-#~ msgstr "Exibir em conteúdo curto"
-
-#~ msgid "Available options only for the main theme."
-#~ msgstr "Opções disponíveis apenas para o tema princípal."
-
-#~ msgid "Appearance options"
-#~ msgstr "Opções de aparência"
-
-#~ msgid "Main theme"
-#~ msgstr "Tema princípal"
-
-#~ msgid "Theme"
-#~ msgstr "Tema"
-
-#~ msgid "All themes supports responsive."
-#~ msgstr "Todos os temas tem suporte para responsivo"
-
-#~ msgid "Size of Icons"
-#~ msgstr "Tamanho dos Ícones"
-
-#~ msgid "Just for the main theme"
-#~ msgstr "Apenas para o tema princípal"
-
-#~ msgid "Returns only WhatsApp button and use the class is optional"
-#~ msgstr "Retorna apenas o botão do WhatsApp e o uso da classe é opcional"
-
-#~ msgid "Options theme"
-#~ msgstr "Opcões de tema"
-
-#~ msgid "Share on Whats App"
-#~ msgstr "Compartilhar no WhatsApp"
-
-#~ msgid "Use options "
-#~ msgstr "Opções de uso"
-
-#~ msgid "Add the sharing buttons automatically in posts and pages"
-#~ msgstr ""
-#~ "Adiciona os botões de compartilhamento automáticamente em posts e páginas"
-
-#~ msgid "All themes supports responsive"
-#~ msgstr "Todos os temas tem suporte para responsivo"
+#. Author of the plugin/theme
+msgid "WPUpper"
+msgstr "WPUpper"
