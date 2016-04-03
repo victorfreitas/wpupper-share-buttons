@@ -3,11 +3,11 @@
 // ----------------------------------------------------------------------------
 @font-face {
     font-family: 'wpusb';
-    src: url('../fonts/wpusb.eot?1b830v');
-    src: url('../fonts/wpusb.eot?1b830v#iefix') format('embedded-opentype'),
-         url('../fonts/wpusb.ttf?1b830v') format('truetype'),
-         url('../fonts/wpusb.woff?1b830v') format('woff'),
-         url('../fonts/wpusb.svg?1b830v#wpusb') format('svg');
+    src: url('../fonts/wpusb.eot?x3nxkp');
+    src: url('../fonts/wpusb.eot?x3nxkp#iefix') format('embedded-opentype'),
+         url('../fonts/wpusb.ttf?x3nxkp') format('truetype'),
+         url('../fonts/wpusb.woff?x3nxkp') format('woff'),
+         url('../fonts/wpusb.svg?x3nxkp#wpusb') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -150,4 +150,10 @@
 }
 .wpusb-icon-rss-square:before {
     content: "\e911";
+}
+.wpusb-icon-toggle-off:before {
+    content: "\f204";
+}
+.wpusb-icon-toggle-on:before {
+    content: "\f205";
 }
