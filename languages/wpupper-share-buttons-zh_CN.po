@@ -1,0 +1,331 @@
+# Translation of Development (trunk) in Chinese (China)
+# This file is distributed under the same license as the Development (trunk) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2016-04-03 12:13-0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Project-Id-Version: Development (trunk)\n"
+"POT-Creation-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+
+#: View/settings.view.php:262
+msgid "WPUpper Share Buttons has been discontinued, upgrade to the new one with the same features and more, automatically install by clicking on this link <a href=\"%s\" class=\"install-now\" data-slug=\"wpupper-share-buttons\">WPUpper Share Buttons</a>."
+msgstr ""
+
+#: View/sharing-report.view.php:31
+msgid "This report has a cache of "
+msgstr ""
+
+#: View/sharing-report.view.php:32
+msgid "minutes"
+msgstr "分钟"
+
+#: Controller/settings.controller.php:160
+msgid "Share Buttons"
+msgstr "分享按钮"
+
+#: View/sharing-report.view.php:30
+msgid "Search"
+msgstr "查找"
+
+#: View/settings-extra.view.php:89
+msgid "Example: "
+msgstr ""
+
+#: View/settings-extra.view.php:93
+msgid "Use <code>?</code> and"
+msgstr ""
+
+#: View/settings-extra.view.php:94
+msgid "adding parameters to use <code>&</code> in the tracking."
+msgstr ""
+
+#: View/settings-extra.view.php:111
+msgid "Shorten urls using bitly, generate token in "
+msgstr ""
+
+#. #-#-#-#-#  wpupper-share-buttons.pot (WPUpper Share Buttons
+#. 2.5.1)  #-#-#-#-#
+#. Plugin URI of the plugin/theme
+#. #-#-#-#-#  wpupper-share-buttons.pot (WPUpper Share Buttons
+#. 2.5.1)  #-#-#-#-#
+#. Author URI of the plugin/theme
+msgid "https://github.com/victorfreitas"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Insert share buttons of social networks. The buttons are inserted automatically or can be called via shortcode or php method."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Victor Freitas"
+msgstr ""
+
+#: View/settings.view.php:180
+msgid "Rounded"
+msgstr ""
+
+#: View/settings.view.php:191
+msgid "Square"
+msgstr "方"
+
+#: View/settings.view.php:202
+msgid "Square plus"
+msgstr ""
+
+#: View/settings.view.php:208
+msgid "Position fixed"
+msgstr ""
+
+#: View/settings.view.php:218
+msgid "Fixed left"
+msgstr ""
+
+#: View/settings.view.php:248
+msgid "Settings saved."
+msgstr "设置已保存."
+
+#: View/settings.view.php:169
+msgid "Button"
+msgstr "按钮"
+
+#: View/settings.view.php:113
+msgid "Social networks available"
+msgstr ""
+
+#: View/settings.view.php:133
+msgid "Custom class"
+msgstr ""
+
+#: View/settings.view.php:138
+msgid "Custom class for primary div"
+msgstr ""
+
+#: View/settings.view.php:145
+msgid "Layout options"
+msgstr "布局设定"
+
+#: View/settings.view.php:147
+msgid "All layout supports responsive"
+msgstr ""
+
+#: View/settings.view.php:158
+msgid "Default"
+msgstr "默认值"
+
+#: View/settings.view.php:79
+msgid "Page home"
+msgstr ""
+
+#: View/settings.view.php:88
+msgid "Before content"
+msgstr ""
+
+#: View/settings.view.php:97
+msgid "After content"
+msgstr ""
+
+#: View/settings.view.php:107
+msgid "Fixed"
+msgstr "固定"
+
+#: View/settings.view.php:53
+msgid "Places available"
+msgstr ""
+
+#: View/settings.view.php:61
+msgid "Single"
+msgstr "文章页"
+
+#: View/settings.view.php:70
+msgid "Pages"
+msgstr "頁面"
+
+#: Controller/sharing-reports.controller.php:286
+msgid "There is no record available at the moment!"
+msgstr ""
+
+#: Controller/sharing-reports.controller.php:300
+msgid "Sharing Report | WPUpper Share Buttons"
+msgstr ""
+
+#: Controller/sharing-reports.controller.php:301
+msgid "Sharing Report"
+msgstr ""
+
+#: View/settings-extra.view.php:39 View/settings-faq.view.php:31
+#: View/settings.view.php:41 View/sharing-report.view.php:38
+msgid "Add the Share Buttons automatically."
+msgstr ""
+
+#: View/settings-extra.view.php:48
+msgid "Cache time"
+msgstr ""
+
+#: View/settings-extra.view.php:55
+msgid "Minute"
+msgstr "分钟"
+
+#: View/settings-extra.view.php:57
+msgid "Set the time in minutes that will be cached in the Sharing report page"
+msgstr ""
+
+#: View/settings-extra.view.php:64 View/settings-extra.view.php:70
+msgid "Twitter username"
+msgstr ""
+
+#: View/settings-extra.view.php:73
+msgid "Your twitter username"
+msgstr ""
+
+#: View/settings-extra.view.php:79
+msgid "UTM tracking"
+msgstr ""
+
+#: View/settings-extra.view.php:85
+msgid "Add UTM tracking (Analytics)"
+msgstr ""
+
+#: View/settings-extra.view.php:101
+msgid "Bitly access token"
+msgstr ""
+
+#: View/settings-extra.view.php:107
+msgid "Insert your access token Bitly"
+msgstr ""
+
+#: View/settings-extra.view.php:119
+msgid "Remove counter"
+msgstr ""
+
+#: View/settings-extra.view.php:134
+msgid "Remove button title"
+msgstr ""
+
+#: View/settings-extra.view.php:149
+msgid "Disable CSS"
+msgstr ""
+
+#: View/settings-extra.view.php:164
+msgid "Disable JS"
+msgstr ""
+
+#: View/settings-extra.view.php:180 View/settings.view.php:227
+msgid "Save Changes"
+msgstr "保存改变"
+
+#: Controller/sharing-reports.controller.php:219
+msgid "Pinterest"
+msgstr "Printerest"
+
+#: Controller/sharing-reports.controller.php:220
+msgid "Total"
+msgstr "Total"
+
+#: Controller/sharing-reports.controller.php:218
+msgid "Linkedin"
+msgstr "LinkedIn"
+
+#: Controller/sharing-reports.controller.php:216
+msgid "Google+"
+msgstr "Google+"
+
+#: Controller/sharing-reports.controller.php:217
+msgid "Twitter"
+msgstr "Twitter"
+
+#: Controller/sharing-reports.controller.php:215
+msgid "Facebook"
+msgstr "Facebook"
+
+#: Controller/settings.controller.php:169
+msgid "Extra Settings | WPUpper Share Buttons"
+msgstr ""
+
+#: Controller/settings.controller.php:170 View/settings-extra.view.php:40
+msgid "Extra Settings"
+msgstr ""
+
+#: Controller/settings.controller.php:178
+msgid "Use options | WPUpper Share Buttons"
+msgstr ""
+
+#: Controller/settings.controller.php:179 View/settings-faq.view.php:33
+msgid "Use options"
+msgstr ""
+
+#: Controller/sharing-reports.controller.php:214
+msgid "Title"
+msgstr "书名"
+
+#. #-#-#-#-#  wpupper-share-buttons.pot (WPUpper Share Buttons
+#. 2.5.1)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: Controller/settings.controller.php:159 View/settings-extra.view.php:32
+#: View/settings-faq.view.php:30 View/settings.view.php:34
+#: View/sharing-report.view.php:37
+msgid "WPUpper Share Buttons"
+msgstr ""
+
+#: Controller/settings.controller.php:59 View/settings.view.php:43
+msgid "Settings"
+msgstr "設定"
+
+#: Config/core.php:148
+msgid "Share on Google+"
+msgstr "在Google+上分享"
+
+#: Config/core.php:161
+msgid "Share on WhatsApp"
+msgstr ""
+
+#: Config/core.php:174
+msgid "Share on Pinterest"
+msgstr "分享到 Pinterest"
+
+#: Config/core.php:187
+msgid "Share on Linkedin"
+msgstr ""
+
+#: Config/core.php:200
+msgid "Share on Tumblr"
+msgstr "在 Tumblr 上共享"
+
+#: Config/core.php:213
+msgid "Send by email"
+msgstr ""
+
+#: Config/core.php:226
+msgid "Print via PrintFriendly"
+msgstr ""
+
+#: Config/core.php:232
+msgid "Print"
+msgstr "列印"
+
+#: Config/core.php:114
+msgid "I just saw"
+msgstr ""
+
+#: Config/core.php:115
+msgid "Click to see also"
+msgstr ""
+
+#: Config/core.php:122
+msgid "Share on Facebook"
+msgstr "在 Facebook 上共享"
+
+#: Config/core.php:128 Config/core.php:154 Config/core.php:167
+#: Config/core.php:180 Config/core.php:193 Config/core.php:206
+msgid "Share"
+msgstr "分享"
+
+#: Config/core.php:135 Config/core.php:141
+msgid "Tweet"
+msgstr "推文"

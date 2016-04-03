@@ -1,0 +1,328 @@
+# Translation of Development (trunk) in Japanese
+# This file is distributed under the same license as the Development (trunk) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2016-04-03 12:14-0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Project-Id-Version: Development (trunk)\n"
+"POT-Creation-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ja\n"
+
+#: Config/core.php:97
+msgid "I just saw"
+msgstr "閲覧中…"
+
+#: Config/core.php:101
+msgid "Click to see also"
+msgstr "クリックして表示"
+
+#: Config/core.php:114
+msgid "Share on Facebook"
+msgstr "Facebook で共有"
+
+#: Config/core.php:120 Config/core.php:146 Config/core.php:159
+#: Config/core.php:172 Config/core.php:185 Config/core.php:198
+msgid "Share"
+msgstr "共有"
+
+#: Config/core.php:127 Config/core.php:133
+msgid "Tweet"
+msgstr "ツイート"
+
+#: Config/core.php:140
+msgid "Share on Google+"
+msgstr "Google+ で共有"
+
+#: Config/core.php:153
+msgid "Share on WhatsApp"
+msgstr "WhatsApp で共有"
+
+#: Config/core.php:166
+msgid "Share on Pinterest"
+msgstr "Pinterest で共有"
+
+#: Config/core.php:179
+msgid "Share on Linkedin"
+msgstr "LinkedIn で共有"
+
+#: Config/core.php:192
+msgid "Share on Tumblr"
+msgstr "Tumblr で共有"
+
+#: Config/core.php:205
+msgid "Send by email"
+msgstr "メールで送信"
+
+#: Config/core.php:218
+msgid "Print via PrintFriendly"
+msgstr "PrintFriendly で印刷"
+
+#: Config/core.php:224
+msgid "Print"
+msgstr "印刷"
+
+#: Controller/settings.controller.php:46 View/settings.view.php:38
+msgid "Settings"
+msgstr "設定"
+
+#. #-#-#-#-#  tmp-wpupper-share-buttons.pot (WPUpper Share Buttons 2.5.0)
+#. Plugin Name of the plugin/theme
+#: Controller/settings.controller.php:146 View/settings-extra.view.php:29
+#: View/settings-faq.view.php:28 View/settings.view.php:30
+#: View/share-report.view.php:34
+msgid "WPUpper Share Buttons"
+msgstr "WPUpper 共有ボタン"
+
+#: Controller/settings.controller.php:147
+msgid "WPUpper Share"
+msgstr "WPUpper 共有"
+
+#: Controller/settings.controller.php:156
+msgid "Extra Settings | WPUpper Share Buttons"
+msgstr "追加設定 | WPUpper 共有ボタン"
+
+#: Controller/settings.controller.php:157 View/settings-extra.view.php:37
+msgid "Extra Settings"
+msgstr "追加設定"
+
+#: Controller/settings.controller.php:165
+msgid "Use options | WPUpper Share Buttons"
+msgstr "オプションを使用 | WPUpper 共有ボタン"
+
+#: Controller/settings.controller.php:166 View/settings-faq.view.php:31
+msgid "Use options"
+msgstr "オプションを使用"
+
+#: Controller/share-reports.controller.php:211
+msgid "Title"
+msgstr "タイトル"
+
+#: Controller/share-reports.controller.php:212
+msgid "Facebook"
+msgstr "Facebook"
+
+#: Controller/share-reports.controller.php:213
+msgid "Google+"
+msgstr "Google+"
+
+#: Controller/share-reports.controller.php:214
+msgid "Twitter"
+msgstr "Twitter"
+
+#: Controller/share-reports.controller.php:215
+msgid "Linkedin"
+msgstr "LinkedIn"
+
+#: Controller/share-reports.controller.php:216
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#: Controller/share-reports.controller.php:217
+msgid "Total"
+msgstr "合計"
+
+#: Controller/share-reports.controller.php:283
+msgid "There is no record available at the moment!"
+msgstr "現在利用できる記録がありません。"
+
+#: Controller/share-reports.controller.php:297
+msgid "Sharing Report | WPUpper Share Buttons"
+msgstr "共有レポート | WPUpper 共有ボタン"
+
+#: Controller/share-reports.controller.php:298
+msgid "Sharing Report"
+msgstr "共有レポート"
+
+#: View/settings-extra.view.php:36 View/settings-faq.view.php:29
+#: View/settings.view.php:37 View/share-report.view.php:35
+msgid "Add the Share Buttons automatically."
+msgstr "共有ボタンを自動追加。"
+
+#: View/settings-extra.view.php:45
+msgid "Cache time"
+msgstr "キャッシュ期間"
+
+#: View/settings-extra.view.php:52
+msgid "Minute"
+msgstr "分"
+
+#: View/settings-extra.view.php:54
+msgid "Set the time in minutes that will be cached in the Sharing report page"
+msgstr "共有レポートページをキャッシュする時間を分単位で指定"
+
+#: View/settings-extra.view.php:61 View/settings-extra.view.php:67
+msgid "Twitter username"
+msgstr "Twitter ユーザー名"
+
+#: View/settings-extra.view.php:70
+msgid "Your twitter username"
+msgstr "Twitter ユーザー名"
+
+#: View/settings-extra.view.php:76
+msgid "UTM tracking"
+msgstr "UTM トラッキング"
+
+#: View/settings-extra.view.php:82
+msgid "Add UTM tracking (Analytics)"
+msgstr "UTM トラッキングを追加 (アナリティクス)"
+
+#: View/settings-extra.view.php:86
+msgid "Example: "
+msgstr "例: "
+
+#: View/settings-extra.view.php:90
+msgid "Use <code>?</code> and"
+msgstr "<code>?</code> を使用し"
+
+#: View/settings-extra.view.php:91
+msgid "adding parameters to use <code>&</code> in the tracking."
+msgstr "パラメーターを追加するにはトラッキングに <code>&</code> を追加します。"
+
+#: View/settings-extra.view.php:98
+msgid "Bitly access token"
+msgstr "Bitly アクセストークン"
+
+#: View/settings-extra.view.php:104
+msgid "Insert your access token Bitly"
+msgstr "Bitly のアクセストークンを挿入"
+
+#: View/settings-extra.view.php:108
+msgid "Shorten urls using bitly, generate token in "
+msgstr "Bitly を使って URL を短縮します。トークンを生成:"
+
+#: View/settings-extra.view.php:116
+msgid "Remove counter"
+msgstr "カウンターを削除"
+
+#: View/settings-extra.view.php:131
+msgid "Remove button title"
+msgstr "ボタンのタイトルを削除"
+
+#: View/settings-extra.view.php:146
+msgid "Disable CSS"
+msgstr "CSS を無効化"
+
+#: View/settings-extra.view.php:161
+msgid "Disable JS"
+msgstr "JS を無効化"
+
+#: View/settings-extra.view.php:177 View/settings.view.php:239
+msgid "Save Changes"
+msgstr "変更を保存"
+
+#: View/settings.view.php:52
+msgid "Places available"
+msgstr "利用できる場所"
+
+#: View/settings.view.php:60
+msgid "Single"
+msgstr "シングル"
+
+#: View/settings.view.php:69
+msgid "Pages"
+msgstr "固定ページ"
+
+#: View/settings.view.php:78
+msgid "Page home"
+msgstr "ページホーム"
+
+#: View/settings.view.php:87
+msgid "Before content"
+msgstr "コンテンツの前"
+
+#: View/settings.view.php:96
+msgid "After content"
+msgstr "コンテンツの後"
+
+#: View/settings.view.php:106
+msgid "Fixed"
+msgstr "固定"
+
+#: View/settings.view.php:112
+msgid "Social networks available"
+msgstr "利用可能な SNS"
+
+#: View/settings.view.php:132
+msgid "Custom class"
+msgstr "カスタムクラス"
+
+#: View/settings.view.php:137
+msgid "Custom class for primary div"
+msgstr "メイン div のカスタムクラス"
+
+#: View/settings.view.php:144
+msgid "Layout options"
+msgstr "レイアウトオプション"
+
+#: View/settings.view.php:146
+msgid "All layout supports responsive"
+msgstr "すべてのレイアウトはレスポンシブデザイン対応です"
+
+#: View/settings.view.php:157
+msgid "Default"
+msgstr "デフォルト"
+
+#: View/settings.view.php:168
+msgid "Button"
+msgstr "ボタン"
+
+#: View/settings.view.php:179
+msgid "Rounded"
+msgstr "丸"
+
+#: View/settings.view.php:190
+msgid "Square"
+msgstr "スクエア"
+
+#: View/settings.view.php:201
+msgid "Square plus"
+msgstr "スクエア+"
+
+#: View/settings.view.php:207
+msgid "Position fixed"
+msgstr "固定位置"
+
+#: View/settings.view.php:217
+msgid "Fixed left"
+msgstr "左固定"
+
+#: View/settings.view.php:229
+msgid "The share count Twitter is powered by <a href=\"http://newsharecounts.com\" target=\"_blank\">newsharecounts.com</a>, you have to sign up with your Twitter account to get free service and twitter count. Just visit the website, fill in the domain of your site and click Sign in with Twitter. That, and nothing else!"
+msgstr "Twitter の共有数カウントには <a href=\"http://newsharecounts.com\" target=\"_blank\">newsharecounts.com</a> を使っています。この無料サービスを利用するには、Twitter アカウントで登録する必要があります。サイトを訪問し、サイトのドメインを入力し、\"Sign in with Twitter\" をクリックするだけです。"
+
+#: View/settings.view.php:258
+msgid "Settings saved."
+msgstr "設定を保存しました。"
+
+#: View/share-report.view.php:27
+msgid "Search"
+msgstr "検索"
+
+#: View/share-report.view.php:28
+msgid "This report has a cache of "
+msgstr "このレポートのキャッシュ:"
+
+#: View/share-report.view.php:29
+msgid "minutes"
+msgstr "分"
+
+#. #-#-#-#-#  tmp-wpupper-share-buttons.pot (WPUpper Share Buttons 2.5.0)
+#. Plugin URI of the plugin/theme
+#. #-#-#-#-#  tmp-wpupper-share-buttons.pot (WPUpper Share Buttons 2.5.0)
+#. Author URI of the plugin/theme
+msgid "https://github.com/victorfreitas"
+msgstr "https://github.com/victorfreitasな"
+
+#. Description of the plugin/theme
+msgid "Insert share buttons of social networks. The buttons are inserted automatically or can be called via shortcode or php method."
+msgstr "SNS の共有ボタンを挿入します。ボタンは自動またはショートコードか PHP メソッドでの呼び出しで挿入できます。"
+
+#. Author of the plugin/theme
+msgid "WPUpper"
+msgstr "WPUpper"
