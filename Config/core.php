@@ -76,7 +76,7 @@ class WPUSB_Core
 	/**
 	 * Generate object all social icons
 	 *
-	 * @since 2.3
+	 * @since 2.4
 	 * @param String $title
 	 * @param String $url
 	 * @param String $tracking
@@ -88,7 +88,7 @@ class WPUSB_Core
 	private static function _set_elements( $title, $url, $tracking, $thumbnail, $body_mail, $twitter_username )
 	{
 		$action         = 'data-action="open-popup"';
-		$url            = static::_generate_short_url( $url, $tracking );
+		$url            = ( is_admin() ) ? '' : static::_generate_short_url( $url, $tracking );
 		$prefix         = WPUSB_Setting::PREFIX;
 		$item           = "{$prefix}-item";
 		$class_button   = "{$prefix}-button";
