@@ -201,7 +201,7 @@
             text-transform: uppercase;
 
             &:before {
-                content: 'Shares';
+                content:  attr(data-title);
             }
         }
 

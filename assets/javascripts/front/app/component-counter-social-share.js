@@ -51,12 +51,12 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 			{
 				reference : 'facebookCounter',
 				element   : 'facebook',
-				url       : 'http://graph.facebook.com/?id=' + this.data.elementUrl
+				url       : 'https://graph.facebook.com/?id=' + this.data.elementUrl
 			},
 			{
 				reference : 'twitterCounter',
 				element   : 'twitter',
-				url       : 'http://public.newsharecounts.com/count.json?url=' + this.data.elementUrl
+				url       : 'https://public.newsharecounts.com/count.json?url=' + this.data.elementUrl
 			},
 			{
 				reference : 'googleCounter',
@@ -67,12 +67,12 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 			{
 				reference : 'linkedinCounter',
 				element   : 'linkedin',
-				url       : 'http://www.linkedin.com/countserv/count/share?url=' + this.data.elementUrl
+				url       : 'https://www.linkedin.com/countserv/count/share?url=' + this.data.elementUrl
 			},
 			{
 				reference : 'pinterestCounter',
 				element   : 'pinterest',
-				url       : 'http://api.pinterest.com/v1/urls/count.json?url=' + this.data.elementUrl
+				url       : 'https://api.pinterest.com/v1/urls/count.json?url=' + this.data.elementUrl
 			}
 		];
 
