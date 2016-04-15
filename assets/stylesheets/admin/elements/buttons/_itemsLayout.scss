@@ -1,4 +1,6 @@
-.#{$prefixClass} .#{$prefixClass}-whatsapp {
+.#{$prefixClass} .#{$prefixClass}-whatsapp,
+.#{$prefixClass} .#{$prefixClass}-telegram,
+.#{$prefixClass} .#{$prefixClass}-viber {
     display: inline-block;
 }
 
