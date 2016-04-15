@@ -423,7 +423,7 @@ class WPUSB_Core
 	public static function activate()
 	{
 		self::$report->create_table();
-		Utils::add_options_defaults();
+		WPUSB_Utils::add_options_defaults();
 	}
 
 	/**
