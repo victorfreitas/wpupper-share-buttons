@@ -154,7 +154,9 @@
 // ----------------------------------------------------------------------------
 @media ( min-width: $tablet ) {
     .#{$prefixClass} {
-        .#{$prefixClass}-whatsapp {
+        .#{$prefixClass}-whatsapp,
+        .#{$prefixClass}-telegram,
+        .#{$prefixClass}-viber {
             display: none;
         }
 

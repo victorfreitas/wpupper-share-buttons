@@ -517,4 +517,114 @@ class WPUSB_Utils
 
 		return $response->data->url;
 	}
+
+	/**
+	 * Add options social media default
+	 *
+	 * @since 1.0
+	 * @param Null
+	 * @return Void
+	 */
+	public static function add_options_defaults()
+	{
+		static::_add_options_settings();
+		static::_add_options_social_media();
+		static::_add_options_extra_settings();
+	}
+
+	/**
+	 * Add options settings default
+	 *
+	 * @since 1.0
+	 * @param Null
+	 * @return Void
+	 */
+	private static function _add_options_settings()
+	{
+		$option = self::get_option_group_name( 'settings' );
+		$value  = array(
+			'single'  => 'on',
+			'before'  => 'on',
+			'after'   => 'off',
+			'pages'   => 'off',
+			'home'    => 'off',
+			'class'   => '',
+			'layout'  => 'default',
+		);
+		$value  = apply_filters( WPUSB_App::SLUG . '-options-settings', $value );
+
+		add_option( $option['name'], $value );
+	}
+
+	/**
+	 * Add options social media default
+	 *
+	 * @since 1.0
+	 * @param Null
+	 * @return Void
+	 */
+	private static function _add_options_social_media()
+	{
+		$option = self::get_option_group_name( 'extra_settings', 'social_media' );
+		$value  = array(
+			'facebook'  => 'facebook',
+			'twitter'   => 'twitter',
+			'google'    => 'google',
+			'whatsapp'  => 'whatsapp',
+			'telegram'  => 'telegram',
+			'skype'     => 'skype',
+			'viber'     => 'viber',
+			'pinterest' => 'pinterest',
+			'linkedin'  => 'linkedin',
+			'tumblr'    => 'tumblr',
+			'email'     => 'email',
+			'printer'   => 'printer',
+		);
+		$value  = apply_filters( WPUSB_App::SLUG . '-options-social-media', $value );
+
+		add_option( $option['name'], $value );
+	}
+
+	/**
+	 * Add options extra settings default
+	 *
+	 * @since 1.0
+	 * @param Null
+	 * @return Void
+	 */
+	private static function _add_options_extra_settings()
+	{
+		$option = self::get_option_group_name( 'extra_settings' );
+		$value  = array(
+			'disable_css'       => 'off',
+			'disable_js'        => 'off',
+			'twitter_username'  => '',
+			'bitly_token'       => '',
+			'remove_count'      => 0,
+			'remove_inside'     => 0,
+			'tracking'          => '',
+			'report_cache_time' => 10,
+		);
+		$value  = apply_filters( WPUSB_App::SLUG . '-options-extra-settings', $value );
+
+		add_option( $option['name'], $value );
+	}
+
+	/**
+	 * Get option name and group to register settings
+	 *
+	 * @since 1.0
+	 * @param String $name
+	 * @param String $group
+	 * @return Array
+	 */
+	public static function get_option_group_name( $name, $group = 'group' )
+	{
+		$prefix       = WPUSB_Setting::PREFIX;
+		$option_name  = "{$prefix}_{$name}";
+		$group_name   = ( 'group' !== $group ) ? $prefix : $option_name;
+		$option_group = "{$group_name}_{$group}";
+
+		return array( 'name' => $option_name, 'group' => $option_group );
+	}
 }

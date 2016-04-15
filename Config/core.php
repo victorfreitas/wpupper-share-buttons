@@ -103,7 +103,7 @@ class WPUSB_Core
 		$caracter       = rawurlencode(
 			apply_filters(
 				WPUSB_App::SLUG . '-caracter',
-				html_entity_decode( ' &#x261B; ' )
+				html_entity_decode( '&#x261B;' )
 			)
 		);
 		$share_items = array(
@@ -123,7 +123,7 @@ class WPUSB_Core
 			'twitter'   => array(
 				'name'        => 'Twitter',
 				'element'     => 'twitter',
-				'link'        => "https://twitter.com/share?url={$url}&text={$twitter_text_a}%20{$title}%20-%20{$twitter_text_b}{$caracter}&via={$twitter_username}",
+				'link'        => "https://twitter.com/share?url={$url}&text={$twitter_text_a}%20{$title}%20-%20{$twitter_text_b}%20{$caracter}%20&via={$twitter_username}",
 				'title'       => __( 'Tweet', WPUSB_App::TEXTDOMAIN ),
 				'class'       => "{$prefix}-twitter",
 				'class_item'  => $item,
@@ -149,7 +149,7 @@ class WPUSB_Core
 			'whatsapp'  => array(
 				'name'        => 'WhatsApp',
 				'element'     => 'whatsapp',
-				'link'        => "whatsapp://send?text={$title}{$caracter}{$url}",
+				'link'        => "whatsapp://send?text={$title}%20{$caracter}%20{$url}",
 				'title'       => __( 'Share on WhatsApp', WPUSB_App::TEXTDOMAIN ),
 				'class'       => "{$prefix}-whatsapp",
 				'class_item'  => $item,
@@ -224,12 +224,50 @@ class WPUSB_Core
 				'inside'      => __( 'Print', WPUSB_App::TEXTDOMAIN ),
 				'has_counter' => false,
 			),
+			'telegram'  => array(
+				'name'        => 'Telegram',
+				'element'     => 'telegram',
+				'link'        => "tg://msg_url?url={$url}&text={$title}",
+				'title'       => __( 'Share on Telegram', WPUSB_App::TEXTDOMAIN ),
+				'class'       => "{$prefix}-telegram",
+				'class_item'  => $item,
+				'class_link'  => $class_button,
+				'class_icon'  => "{$prefix}-icon-telegram",
+				'popup'       => $action,
+				'inside'      => __( 'Share', WPUSB_App::TEXTDOMAIN ),
+				'has_counter' => false,
+			),
+			'skype'  => array(
+				'name'        => 'Skype',
+				'element'     => 'skype',
+				'link'        => "https://web.skype.com/share?url={$url}&text={$title}",
+				'title'       => __( 'Share on Skype', WPUSB_App::TEXTDOMAIN ),
+				'class'       => "{$prefix}-skype",
+				'class_item'  => $item,
+				'class_link'  => $class_button,
+				'class_icon'  => "{$prefix}-icon-skype",
+				'popup'       => $action,
+				'inside'      => __( 'Share', WPUSB_App::TEXTDOMAIN ),
+				'has_counter' => false,
+			),
+			'viber'  => array(
+				'name'        => 'Viber',
+				'element'     => 'viber',
+				'link'        => "viber://forward?text={$title}%20{$caracter}%20{$url}",
+				'title'       => __( 'Share on Viber', WPUSB_App::TEXTDOMAIN ),
+				'class'       => "{$prefix}-viber",
+				'class_item'  => $item,
+				'class_link'  => $class_button,
+				'class_icon'  => "{$prefix}-icon-viber",
+				'popup'       => $action,
+				'inside'      => __( 'Share', WPUSB_App::TEXTDOMAIN ),
+				'has_counter' => false,
+			),
 		);
 
 		$elements = new ArrayIterator( $share_items );
-		$elements = apply_filters( WPUSB_App::SLUG . '-elements-share', $share_items );
 
-		return static::_elements_transform( $elements );
+		return apply_filters( WPUSB_App::SLUG . '-elements-share', $elements );
 	}
 
 	private static function _elements_transform( $elements )
@@ -242,8 +280,10 @@ class WPUSB_Core
 
 	private static function _ksort( $elements )
 	{
-		$order = WPUSB_Utils::option( 'order', false );
-		$sort  = array();
+		$order    = WPUSB_Utils::option( 'order', false );
+		$defaluts = $elements;
+		$sort     = array();
+
 
 		if ( $order ) :
 			$order = json_decode( $order );
@@ -251,7 +291,7 @@ class WPUSB_Core
 			foreach ( $order as $key => $item )
 				$sort[$item] = apply_filters( WPUSB_App::SLUG . "-{$item}-items", $elements[$item] );
 
-			$elements = $sort;
+			$elements = array_merge( $sort, $elements->getArrayCopy() );
 		endif;
 
 		return apply_filters( WPUSB_App::SLUG . '-elements-args', $elements );
@@ -264,7 +304,7 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Object
 	 */
-	private static function _get_elements_encode()
+	private static function _get_elements()
 	{
 		$arguments = self::_get_arguments();
 		$tracking  = WPUSB_Utils::option( 'tracking' );
@@ -347,7 +387,7 @@ class WPUSB_Core
 	}
 
 	/**
-	 * Encode all items from data services
+	 * Get all items from data services sortable
 	 *
 	 * @since 1.2
 	 * @param Null
@@ -355,7 +395,22 @@ class WPUSB_Core
 	 */
 	public static function social_media_objects()
 	{
-		return self::_get_elements_encode();
+		$elements          = self::_get_elements();
+		$elements_sortable = static::_elements_transform( $elements );
+
+		return apply_filters( WPUSB_App::SLUG . '-elements-share-sortable', $elements_sortable );
+	}
+
+	/**
+	 * Get all items defaults
+	 *
+	 * @since 1.2
+	 * @param Null
+	 * @return array
+	 */
+	public static function get_all_elements()
+	{
+		return self::social_media_objects();
 	}
 
 	/**
@@ -368,6 +423,7 @@ class WPUSB_Core
 	public static function activate()
 	{
 		self::$report->create_table();
+		Utils::add_options_defaults();
 	}
 
 	/**

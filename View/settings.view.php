@@ -112,8 +112,8 @@ class WPUSB_Settings_View extends WPUSB_Shares_View
 									<label for="social-media"><?php _e( 'Social networks available', WPUSB_App::TEXTDOMAIN ); ?></label>
 								</th>
 									<?php
-									foreach ( WPUSB_Core::social_media_objects() as $key => $social ) :
-										$content  = "<td id=\"{$key}\" class=\"{$prefix}-select-item\">";
+									foreach ( WPUSB_Core::get_all_elements() as $key => $social ) :
+										$content  = "<td id=\"{$key}\" class=\"{$prefix}-select-item\" title=\"{$social->name}\">";
 										$content .= sprintf( "<input id=\"%s\" type=\"checkbox\" name=\"{$option_social_media}[%s]\" value=\"%2\$s\" %s>",
 											$social->class,
 											$key,
@@ -233,7 +233,10 @@ class WPUSB_Settings_View extends WPUSB_Shares_View
 							</tr>
 						</tbody>
 					</table>
-					<input type="hidden" name="<?php echo $option_social_media; ?>[order]" data-element="order">
+					<input type="hidden"
+					       name="<?php echo $option_social_media; ?>[order]"
+					       data-element="order"
+					       value='<?php echo WPUSB_Utils::option( 'order' ); ?>'>
 					<?php
 						settings_fields( "{$option_name}_group" );
 						submit_button( __( 'Save Changes', WPUSB_App::TEXTDOMAIN ) );

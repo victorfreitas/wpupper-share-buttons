@@ -43,9 +43,6 @@
 .#{$prefixClass}-icon-share-default:before {
 	@extend .#{$prefixClass}-icon-share:before;
 }
-.#{$prefixClass}-icon-telegram-default:before {
-	@extend .#{$prefixClass}-icon-telegram:before;
-}
 .#{$prefixClass}-icon-vine-default:before {
 	@extend .#{$prefixClass}-icon-vine:before;
 }
@@ -54,6 +51,15 @@
 }
 .#{$prefixClass}-icon-instagram-default:before {
 	@extend .#{$prefixClass}-icon-instagram-square:before;
+}
+.#{$prefixClass}-icon-telegram-default:before {
+	@extend .#{$prefixClass}-icon-telegram:before;
+}
+.#{$prefixClass}-icon-skype-default:before {
+	@extend .#{$prefixClass}-icon-skype:before;
+}
+.#{$prefixClass}-icon-viber-default:before {
+	@extend .#{$prefixClass}-icon-viber:before;
 }
 // ----------------------------------------------------------------------------
 // -- Buttons
@@ -93,6 +99,15 @@
 }
 .#{$prefixClass}-icon-instagram-buttons:before {
 	@extend .#{$prefixClass}-icon-instagram-square:before;
+}
+.#{$prefixClass}-icon-telegram-buttons:before {
+	@extend .#{$prefixClass}-icon-telegram:before;
+}
+.#{$prefixClass}-icon-skype-buttons:before {
+	@extend .#{$prefixClass}-icon-skype:before;
+}
+.#{$prefixClass}-icon-viber-buttons:before {
+	@extend .#{$prefixClass}-icon-viber:before;
 }
 
 // ----------------------------------------------------------------------------
@@ -151,9 +166,6 @@
 .#{$prefixClass}-icon-share-square-plus:before {
 	@extend .#{$prefixClass}-icon-share:before;
 }
-.#{$prefixClass}-icon-telegram-square-plus:before {
-	@extend .#{$prefixClass}-icon-telegram:before;
-}
 .#{$prefixClass}-icon-vine-square-plus:before {
 	@extend .#{$prefixClass}-icon-vine:before;
 }
@@ -162,4 +174,13 @@
 }
 .#{$prefixClass}-icon-instagram-square-plus:before {
 	@extend .#{$prefixClass}-icon-instagram-square:before;
+}
+.#{$prefixClass}-icon-telegram-square-plus:before {
+	@extend .#{$prefixClass}-icon-telegram:before;
+}
+.#{$prefixClass}-icon-skype-square-plus:before {
+	@extend .#{$prefixClass}-icon-skype:before;
+}
+.#{$prefixClass}-icon-viber-square-plus:before {
+	@extend .#{$prefixClass}-icon-viber:before;
 }

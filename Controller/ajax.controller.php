@@ -326,7 +326,8 @@ class WPUSB_Ajax_Controller
 		global $wp_version;
 
 		$list       = array();
-		$share_args = WPUSB_Core::social_media_objects();
+		$share_args = WPUSB_Core::get_all_elements();
+		$count      = 0;
 
 		foreach ( $items as $key => $element ) :
 			if ( ! in_array( $element, $checked ) )
@@ -340,12 +341,13 @@ class WPUSB_Ajax_Controller
 				'item_class'  => $item->element,
 				'item_name'   => $item->name,
 				'inside'      => true,
-				'first'       => ( 0 === $key ) ? true : false,
+				'first'       => ( 0 === $count ) ? true : false,
 				'layout'      => $layout,
 				'item_title'  => $item->title,
 				'has_counter' => $item->has_counter,
 				'item_inside' => $item->inside,
 			);
+			$count++;
 		endforeach;
 
 		echo wp_send_json( $list );

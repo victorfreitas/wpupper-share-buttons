@@ -2,17 +2,26 @@
 # This file is distributed under the same license as the Development (trunk) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-04-03 12:31-0300\n"
+"Project-Id-Version: Development (trunk)\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
+"buttons\n"
+"POT-Creation-Date: 2016-04-15 04:59-0300\n"
+"PO-Revision-Date: 2016-04-15 05:00-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Poedit 1.8.7.1\n"
-"Project-Id-Version: Development (trunk)\n"
-"POT-Creation-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: es_ES\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: Config\n"
+"X-Poedit-SearchPath-1: Controller\n"
+"X-Poedit-SearchPath-2: Helper\n"
+"X-Poedit-SearchPath-3: Model\n"
+"X-Poedit-SearchPath-4: View\n"
+"X-Poedit-SearchPath-5: wpupper-share-buttons.php\n"
 
 #: Config/core.php:97
 msgid "I just saw"
@@ -28,6 +37,7 @@ msgstr "Compartir en Facebook"
 
 #: Config/core.php:120 Config/core.php:146 Config/core.php:159
 #: Config/core.php:172 Config/core.php:185 Config/core.php:198
+#: Config/core.php:237 Config/core.php:250 Config/core.php:263
 msgid "Share"
 msgstr "Compartir"
 
@@ -67,12 +77,22 @@ msgstr "imprimir por PrintFriendly"
 msgid "Print"
 msgstr "Impresión"
 
+#: Config/core.php:231
+msgid "Share on Telegram"
+msgstr "Compartir en Telegram"
+
+#: Config/core.php:244
+msgid "Share on Skype"
+msgstr "Compartir en Skype"
+
+#: Config/core.php:257
+msgid "Share on Viber"
+msgstr "Compartir en Viber"
+
 #: Controller/settings.controller.php:46 View/settings.view.php:38
 msgid "Settings"
 msgstr "Ajustes"
 
-#. #-#-#-#-#  tmp-wpupper-share-buttons.pot (WPUpper Share Buttons 2.5.0)
-#. Plugin Name of the plugin/theme
 #: Controller/settings.controller.php:146 View/settings-extra.view.php:29
 #: View/settings-faq.view.php:28 View/settings.view.php:30
 #: View/share-report.view.php:34
@@ -154,7 +174,9 @@ msgstr "Minuto"
 
 #: View/settings-extra.view.php:54
 msgid "Set the time in minutes that will be cached in the Sharing report page"
-msgstr "Ajuste el tiempo en minutos que se almacenan en caché en la página del informe Compartiendo"
+msgstr ""
+"Ajuste el tiempo en minutos que se almacenan en caché en la página del "
+"informe Compartiendo"
 
 #: View/settings-extra.view.php:61 View/settings-extra.view.php:67
 msgid "Twitter username"
@@ -212,7 +234,7 @@ msgstr "CSS Desactivar"
 msgid "Disable JS"
 msgstr "Inhabilitar JS"
 
-#: View/settings-extra.view.php:177 View/settings.view.php:239
+#: View/settings-extra.view.php:177 View/settings.view.php:242
 msgid "Save Changes"
 msgstr "Guardar Cambios"
 
@@ -293,10 +315,20 @@ msgid "Fixed left"
 msgstr "Fijo izquierda"
 
 #: View/settings.view.php:229
-msgid "The share count Twitter is powered by <a href=\"http://newsharecounts.com\" target=\"_blank\">newsharecounts.com</a>, you have to sign up with your Twitter account to get free service and twitter count. Just visit the website, fill in the domain of your site and click Sign in with Twitter. That, and nothing else!"
-msgstr "El número de acciones de Twitter es alimentado por <a href=\"http://newsharecounts.com\" target=\"_blank\">newsharecounts.com</a>, usted tiene que registrarse con su cuenta de Twitter para obtener servicio gratuito y el recuento de twitter. Sólo hay que visitar la página web, rellenar el dominio de su sitio y haga clic en Iniciar sesión con Twitter. Eso, y nada más!"
+msgid ""
+"The share count Twitter is powered by <a href=\"http://newsharecounts.com\" "
+"target=\"_blank\">newsharecounts.com</a>, you have to sign up with your "
+"Twitter account to get free service and twitter count. Just visit the "
+"website, fill in the domain of your site and click Sign in with Twitter. "
+"That, and nothing else!"
+msgstr ""
+"El número de acciones de Twitter es alimentado por <a href=\"http://"
+"newsharecounts.com\" target=\"_blank\">newsharecounts.com</a>, usted tiene "
+"que registrarse con su cuenta de Twitter para obtener servicio gratuito y el "
+"recuento de twitter. Sólo hay que visitar la página web, rellenar el dominio "
+"de su sitio y haga clic en Iniciar sesión con Twitter. Eso, y nada más!"
 
-#: View/settings.view.php:258
+#: View/settings.view.php:261
 msgid "Settings saved."
 msgstr "Ajustes guardados."
 
@@ -312,17 +344,25 @@ msgstr "Este informe tiene un caché de"
 msgid "minutes"
 msgstr "minutos"
 
-#. #-#-#-#-#  tmp-wpupper-share-buttons.pot (WPUpper Share Buttons 2.5.0)
-#. Plugin URI of the plugin/theme
-#. #-#-#-#-#  tmp-wpupper-share-buttons.pot (WPUpper Share Buttons 2.5.0)
-#. Author URI of the plugin/theme
-msgid "https://github.com/victorfreitas"
-msgstr "https://github.com/victorfreitas"
+#: View/share-report.view.php:30
+#, php-format
+msgid "%d minute"
+msgstr "%d minutos"
 
-#. Description of the plugin/theme
-msgid "Insert share buttons of social networks. The buttons are inserted automatically or can be called via shortcode or php method."
-msgstr "Insertar botones de acción de las redes sociales. Los botones se insertan de forma automática o se puede llamar a través de código corto y el método php."
+#: View/shares.view.php:295
+msgid "Shares"
+msgstr ""
 
-#. Author of the plugin/theme
-msgid "WPUpper"
-msgstr "WPUpper"
+#~ msgid "https://github.com/victorfreitas"
+#~ msgstr "https://github.com/victorfreitas"
+
+#~ msgid ""
+#~ "Insert share buttons of social networks. The buttons are inserted "
+#~ "automatically or can be called via shortcode or php method."
+#~ msgstr ""
+#~ "Insertar botones de acción de las redes sociales. Los botones se insertan "
+#~ "de forma automática o se puede llamar a través de código corto y el "
+#~ "método php."
+
+#~ msgid "WPUpper"
+#~ msgstr "WPUpper"

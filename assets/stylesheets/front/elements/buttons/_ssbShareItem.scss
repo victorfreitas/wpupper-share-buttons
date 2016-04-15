@@ -65,7 +65,9 @@
 @include icon( tumblr, $colorTumblr );
 @include icon( whatsapp, $colorWhatsapp );
 @include icon( youtube, $colorYouTube );
-@include icon( instagram, $colorInstagram );
+@include icon( telegram, $colorTelegram );
+@include icon( skype, $colorSkype );
+@include icon( viber, $colorViber );
 
 // ----------------------------------------------------------------------------
 // -- Theme > Buttons
@@ -81,6 +83,9 @@
 @include icon( whatsapp, $colorWhatsapp, buttons );
 @include icon( youtube, $colorYouTube, buttons );
 @include icon( instagram, $colorInstagram, buttons );
+@include icon( telegram, $colorTelegram, buttons );
+@include icon( skype, $colorSkype, buttons );
+@include icon( viber, $colorViber, buttons );
 
 // ----------------------------------------------------------------------------
 // -- Theme > Square Plus
@@ -96,6 +101,9 @@
 @include icon( whatsapp, $colorWhatsapp, 'square-plus' );
 @include icon( youtube, $colorYouTube, 'square-plus' );
 @include icon( instagram, $colorInstagram, 'square-plus' );
+@include icon( telegram, $colorTelegram, 'square-plus' );
+@include icon( skype, $colorSkype, 'square-plus' );
+@include icon( viber, $colorViber, 'square-plus' );
 
 // ----------------------------------------------------------------------------
 // -- Theme > items hover
@@ -111,6 +119,9 @@
 @include items-hover( whatsapp, $colorWhatsapp );
 @include items-hover( youtube, $colorYouTube );
 @include items-hover( instagram, $colorInstagram );
+@include items-hover( telegram, $colorTelegram );
+@include items-hover( skype, $colorSkype );
+@include items-hover( viber, $colorViber );
 
 .#{$prefixClass}-square .#{$prefixClass}-whatsapp i {
     background: $colorWhatsapp;
@@ -145,4 +156,15 @@
 
 .#{$prefixClass}-square .#{$prefixClass}-printer i {
     border-radius: 4px;
+}
+
+.#{$prefixClass} .#{$prefixClass}-viber .#{$prefixClass}-icon-viber-rounded {
+    background: $colorViber;
+    border-radius: 16px;
+    color: #fff;
+    font-size: 22px;
+    line-height: 34px;
+}
+.#{$prefixClass} .#{$prefixClass}-viber a:hover .#{$prefixClass}-icon-viber-rounded {
+    color: #fff;
 }

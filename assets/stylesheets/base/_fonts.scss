@@ -3,11 +3,11 @@
 // ----------------------------------------------------------------------------
 @font-face {
     font-family: 'wpusb';
-    src: url('../fonts/wpusb.eot?x3nxkp');
-    src: url('../fonts/wpusb.eot?x3nxkp#iefix') format('embedded-opentype'),
-         url('../fonts/wpusb.ttf?x3nxkp') format('truetype'),
-         url('../fonts/wpusb.woff?x3nxkp') format('woff'),
-         url('../fonts/wpusb.svg?x3nxkp#wpusb') format('svg');
+    src: url('../fonts/wpusb.eot?yp7qay');
+    src: url('../fonts/wpusb.eot?yp7qay#iefix') format('embedded-opentype'),
+         url('../fonts/wpusb.ttf?yp7qay') format('truetype'),
+         url('../fonts/wpusb.woff?yp7qay') format('woff'),
+         url('../fonts/wpusb.svg?yp7qay#wpusb') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -19,98 +19,11 @@
 .wpusb-icon-like:before {
     content: "\f088";
 }
-.wpusb-icon-youtube-square:before {
-    content: "\f166";
-}
-.wpusb-icon-youtube:before {
-    content: "\f167";
-}
-.wpusb-icon-share-square:before {
-    content: "\f1e1";
-}
-.wpusb-icon-skype-rounded:before {
-    content: "\e907";
-}
-.wpusb-icon-instagram-rounded:before {
-    content: "\e909";
-}
-.wpusb-icon-linkedin-rounded:before {
-    content: "\e90a";
-}
-.wpusb-icon-youtube-rounded:before {
-    content: "\e90b";
-}
-.wpusb-icon-whatsapp-rounded:before {
-    content: "\e908";
-}
 .wpusb-icon-angle-double-left:before {
     content: "\f100";
 }
 .wpusb-icon-angle-double-right:before {
     content: "\f101";
-}
-.wpusb-icon-email:before {
-    content: "\e605";
-}
-.wpusb-icon-facebook:before {
-    content: "\ea8c";
-}
-.wpusb-icon-pinterest:before {
-    content: "\e600";
-}
-.wpusb-icon-flickr:before {
-    content: "\eaa1";
-}
-.wpusb-icon-twitter:before {
-    content: "\ea91";
-}
-.wpusb-icon-linkedin:before {
-    content: "\eac9";
-}
-.wpusb-icon-tumblr:before {
-    content: "\e60d";
-}
-.wpusb-icon-printer:before {
-    content: "\e607";
-}
-.wpusb-icon-whatsapp:before {
-    content: "\e610";
-}
-.wpusb-icon-email-rounded:before {
-    content: "\ea86";
-}
-.wpusb-icon-facebook-rounded:before {
-    content: "\e609";
-}
-.wpusb-icon-pinterest-rounded:before {
-    content: "\ead0";
-}
-.wpusb-icon-flickr-rounded:before {
-    content: "\eaa3";
-}
-.wpusb-icon-twitter-rounded:before {
-    content: "\e60c";
-}
-.wpusb-icon-tumblr-rounded:before {
-    content: "\e611";
-}
-.wpusb-icon-email-square:before {
-    content: "\e60e";
-}
-.wpusb-icon-facebook-square:before {
-    content: "\e602";
-}
-.wpusb-icon-pinterest-square:before {
-    content: "\e608";
-}
-.wpusb-icon-flickr-square:before {
-    content: "\e60a";
-}
-.wpusb-icon-twitter-square:before {
-    content: "\e604";
-}
-.wpusb-icon-linkedin-square:before {
-    content: "\e606";
 }
 .wpusb-icon-remove:before {
     content: "\e900";
@@ -118,11 +31,35 @@
 .wpusb-icon-checked:before {
     content: "\e901";
 }
-.wpusb-icon-tumblr-square:before {
-    content: "\e902";
+.wpusb-icon-toggle-off:before {
+    content: "\f204";
+}
+.wpusb-icon-toggle-on:before {
+    content: "\f205";
+}
+.wpusb-icon-share-square:before {
+    content: "\f1e1";
 }
 .wpusb-icon-share:before {
     content: "\e903";
+}
+.wpusb-icon-facebook:before {
+    content: "\ea8c";
+}
+.wpusb-icon-facebook-square:before {
+    content: "\e602";
+}
+.wpusb-icon-facebook-rounded:before {
+    content: "\e609";
+}
+.wpusb-icon-twitter:before {
+    content: "\ea91";
+}
+.wpusb-icon-twitter-square:before {
+    content: "\e604";
+}
+.wpusb-icon-twitter-rounded:before {
+    content: "\e60c";
 }
 .wpusb-icon-google-plus:before {
     content: "\e904";
@@ -133,11 +70,110 @@
 .wpusb-icon-google-plus-rounded:before {
     content: "\e91f";
 }
+.wpusb-icon-linkedin:before {
+    content: "\eac9";
+}
+.wpusb-icon-linkedin-square:before {
+    content: "\e606";
+}
+.wpusb-icon-linkedin-rounded:before {
+    content: "\e90a";
+}
+.wpusb-icon-pinterest:before {
+    content: "\e600";
+}
+.wpusb-icon-pinterest-square:before {
+    content: "\e608";
+}
+.wpusb-icon-pinterest-rounded:before {
+    content: "\ead0";
+}
+.wpusb-icon-whatsapp:before {
+    content: "\e610";
+}
+.wpusb-icon-whatsapp-square:before {
+    content: "\e610";
+}
+.wpusb-icon-whatsapp-square-2:before {
+    content: "\e90b";
+}
+.wpusb-icon-whatsapp-rounded:before {
+    content: "\e908";
+}
+.wpusb-icon-tumblr:before {
+    content: "\e60d";
+}
+.wpusb-icon-tumblr-square:before {
+    content: "\e902";
+}
+.wpusb-icon-tumblr-rounded:before {
+    content: "\e611";
+}
 .wpusb-icon-instagram-square:before {
     content: "\e905";
 }
+.wpusb-icon-instagram-rounded:before {
+    content: "\e909";
+}
+.wpusb-icon-email:before {
+    content: "\e605";
+}
+.wpusb-icon-email-square:before {
+    content: "\e60e";
+}
+.wpusb-icon-email-rounded:before {
+    content: "\ea86";
+}
+.wpusb-icon-flickr:before {
+    content: "\eaa1";
+}
+.wpusb-icon-flickr-square:before {
+    content: "\e60a";
+}
+.wpusb-icon-flickr-rounded:before {
+    content: "\eaa3";
+}
+.wpusb-icon-youtube:before {
+    content: "\f167";
+}
+.wpusb-icon-youtube-square:before {
+    content: "\f166";
+}
+.wpusb-icon-youtube-rounded:before {
+    content: "\e90d";
+}
 .wpusb-icon-telegram:before {
+    content: "\f1d8";
+}
+.wpusb-icon-telegram-square:before {
+    content: "\e90c";
+}
+.wpusb-icon-telegram-rounded:before {
     content: "\e906";
+}
+.wpusb-icon-skype:before {
+    content: "\e912";
+}
+.wpusb-icon-skype-square:before {
+    content: "\e913";
+}
+.wpusb-icon-skype-rounded:before {
+    content: "\e907";
+}
+.wpusb-icon-viber:before {
+    content: "\e914";
+}
+.wpusb-icon-viber-rounded:before {
+    content: "\e914";
+}
+.wpusb-icon-viber-square:before {
+    content: "\e915";
+}
+.wpusb-icon-viber-rounded-2:before {
+    content: "\e916";
+}
+.wpusb-icon-printer:before {
+    content: "\e607";
 }
 .wpusb-icon-vine:before {
     content: "\e90e";
@@ -151,9 +187,15 @@
 .wpusb-icon-rss-square:before {
     content: "\e911";
 }
-.wpusb-icon-toggle-off:before {
-    content: "\f204";
+.wpusb-icon-plus-square:before {
+    content: "\f0fe";
 }
-.wpusb-icon-toggle-on:before {
-    content: "\f205";
+.wpusb-icon-snapchat:before {
+    content: "\f2ac";
+}
+.wpusb-icon-snapchat-square:before {
+    content: "\f2ad";
+}
+.wpusb-icon-snapchat-rounded:before {
+    content: "\f2ab";
 }
