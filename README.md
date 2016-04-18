@@ -1,15 +1,15 @@
 # WPUpper Share Buttons
-Author URL:  
+Author URL: WPUpper 
 Contributors: victorfreitas  
 Donate link: [Donate Now](https://www.redcross.org/donate/donation)  
 Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email form, social media buttons, click to tweet, pinterest, linkedin.  
 Requires at least: 3.0  
-Tested up to: 4.4.2  
-Stable tag: 2.3.0  
+Tested up to: 4.5.0  
+Stable tag: 2.7.0  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
-Add the share buttons of the main social networks.
+Implement the Share Buttons of the major social networks, including the Whats App on your website or blog.
 
 ## Description
 
@@ -62,5 +62,200 @@ Layout options: default, buttons, rounded, square
 
 ## Changelog
 
+#### 2.7.0
+
+* Improvements layout fixed left
+* Responsive layout fixed left
+* New screenshots
+
+#### 2.6.1
+
+* Bug fixes
+
+#### 2.6.0
+
+* Tested in version 4.5
+* Add icons sharing for Telegram, Skype and Viber
+* Bug fixes
+* Improvements performance
+* Update langs pt_BR and es_ES
+
+#### 2.5.3
+
+* Fixed bug links social networks share unsafe script when https
+
+#### 2.5.2
+
+* Fixed bug
+
+#### 2.5.1
+
+* Update languages
+
+#### 2.5.0
+
+* Bug fixes
+* Improvements
+* new icons for filter
+
+#### 2.4.1
+
+* Bug fixes
+
+#### 2.3.1
+
+* Improvements internal
+
+#### 2.3.0
+
+* Bug fixed in buttons text
+* Bug fixed in sortable share report page
+* Improvements
+* Updating the translations
+* Implements search in share report page
+
+#### 2.2.4
+
+* Bug fix UTM Tracking option
+* Change slug filters and page
+* Improvements button style printfriendly
+* Effect hide buttons fixed left
+
+#### 2.2.3
+
+* Bug fixes counter sharing, before and after buttons on content. [Related by athalas]
+
+#### 2.2.2
+
+* Bug fix whatsapp UTM Tracking params
+
+#### 2.2.1
+
+* Bug fix
+* Update languages, Improvements short url, change namespace js
+
+#### 2.2.0
+
+* Bug fix
+* adds shortener url with bitly
+
+#### 2.1.1
+
+* Bug fix whatsapp icon
+* Bug fix counter markup style in theme Square Plus
+* Improvements perfomance preview share buttons in settings page
+* Add spinner before preview share buttons
+
+#### 2.1.0
+
+* Bug fix and improvements performance
+* Adding possibility to order the buttons of social networks
+* Style of buttons
+* Update Google Plus icon
+* Preview share buttons in settings page
+
+#### 2.0.4
+
+* Bug fix pagination sharing report page [Related by nagal #post-7832935]
+
+#### 2.0.3
+
+* Bug fix icon email, whatsapp. [Related by theadarshmehta]
+* Bug fix translate title icon email, printfriendly. [Related by theadarshmehta]
+* Bug fix sharing report admin page in WordPress 4.4
+* Tested in WordPress 4.4
+* Releasing some filters for customization dev
+* Logo
+* Performance improvements
+
+#### 2.0.2
+
+* Remove twitter counter, API discontinued
+
+#### 2.0.1
+
+* Bug fix
+
+#### 2.0.0
+
+* new layouts
+* Improvements in settings
+* new features
+* new customizations
+* Removing old layouts that were broken
+* Performance improvements
+* Bug fix
+
+#### 1.4.2
+
+* Bug fix
+* Improving performance
+
+#### 1.4.1
+
+* Bug fix
+
+#### 1.4.0
+
+* Preparing for internationalization
+* Adding English translation
+* Adding Spanish translation
+* Change button style theme 3
+
+#### 1.3.0
+
+* Adding WP List Table in the sharing report page
+* Small internal improvements
+
+#### 1.2.1
+
+* Tested WordPress version 4.3
+* Validations in the use of PHP method to call buttons
+* Option remove scripts in front
+* Option to time set cache reports of the page sharing of posts
+* Bug fix
+
+#### 1.2.0
+
+* Improving performance in SQL queries
+
+#### 1.1.1
+
+* Bug fix
+
+#### 1.1.0
+
+* Theme
+* Optimize icons mobile
+* Icons style
+* Bug fix
+
+#### 1.0.5
+
+* Bug fix
+
+#### 1.0.3
+
+* Adds submenu page
+* Page report share counter
+* Counter for google plus
+* Submenus
+* Code patterns fix
+
+#### 1.0.2
+
+* Adds option UTM tracking for analytics
+* Patterners fix style admin page
+* Change screenshots
+* Code patterns fix
+
+#### 1.0.1
+
+* Layout admin page configurations
+* Change layout buttons secondary
+* Fix style layout buttons primary
+* Code patterns fix
+
 #### 1.0.0
+
 * Initial release
