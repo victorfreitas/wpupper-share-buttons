@@ -290,7 +290,7 @@ class WPUSB_Shares_View extends WPUSB_Core
 		$square_plus   = ( $layout_fixed ) ? false : $square_plus;
 		$class         = ( $square_plus ) ? "{$prefix}-counter" : "{$prefix}-total-share" ;
 		$class_count   = ( $square_plus ) ? "class=\"{$prefix}-counter\"" : '';
-		$before        = ( $square_plus ) ? '' : "<div class=\"{$prefix}-button\">";
+		$before        = ( $square_plus ) ? '' : "<div class=\"{$prefix}-counts\">";
 		$after         = ( $square_plus ) ? '' : '</div>';
 		$square_count  = "<span class=\"{$prefix}-text\" data-title=\"" . __( 'Shares', WPUSB_App::TEXTDOMAIN ) . "\"></span>";
 		$square_count .= "<div class=\"{$prefix}-slash\" data-slash=\"&#8260;\"></div>";

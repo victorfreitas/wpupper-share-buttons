@@ -83,3 +83,11 @@
 	-webkit-transition: all 0.3s;
 			transition: all 0.3s;
 }
+
+%brightness {
+    -webkit-filter: brightness( 1.05 );
+       -moz-filter: brightness( 1.05 );
+        -ms-filter: brightness( 1.05 );
+         -o-filter: brightness( 1.05 );
+            filter: brightness( 1.05 );
+}

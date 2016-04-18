@@ -33,6 +33,14 @@ div[data-component="share-preview"] {
 
 .#{$prefixClass}-fixed-left {
     z-index: 99999;
+
+    .#{$prefixClass}-item a {
+        border-radius: initial;
+        height: 48px;
+        line-height: 48px;
+        text-align: center;
+        width: 48px;
+    }
 }
 
 .#{$prefixClass}-square-plus {

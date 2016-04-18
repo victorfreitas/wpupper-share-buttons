@@ -73,22 +73,27 @@
         margin-bottom: 0;
         margin-left: 0;
 
-        a,
-        .#{$prefixClass}-total-share .#{$prefixClass}-button {
-            border-radius: initial;
-            height: 48px;
+        .#{$prefixClass}-button {
+            @extend %brightness;
+            @extend %transitionAll;
             line-height: 48px;
+            height: 48px;
+        }
+
+        .#{$prefixClass}-button,
+        .#{$prefixClass}-counts {
+            border-radius: initial;
             text-align: center;
             width: 48px;
         }
 
-        a span { display: none; }
+        .#{$prefixClass}-button span { display: none; }
 
         .#{$prefixClass}-count {
             display: none;
         }
 
-        a i {
+        .#{$prefixClass}-button i {
             display: inline;
         }
     }
@@ -105,7 +110,7 @@
         margin: 0;
         padding: 0;
         text-align: center;
-        width: 100%;
+        width: 48px;
 
         &:before {
             @extend .#{$prefixClass}-icon-angle-double-left:before;
@@ -133,16 +138,23 @@
     .#{$prefixClass}-buttons {
         transform: translateX( -100% );
     }
+
+    @media ( min-width: $tablet ) {
+        .#{$prefixClass}-button:hover {
+            width: 100%;
+            padding: 0 20px;
+        }
+    }
+}
+
+.#{$prefixClass}-counts {
+    background: #E3E3E3;
+    color: #165118;
+    font-weight: bold;
+    text-align: center;
 }
 
 .#{$prefixClass}-total-share {
-    .#{$prefixClass}-button {
-        background: #E3E3E3;
-        color: #165118;
-        font-weight: bold;
-        text-align: center;
-    }
-
     span {
         font-family: Arial;
         font-size: 15px;

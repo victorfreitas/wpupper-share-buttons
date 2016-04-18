@@ -122,7 +122,7 @@ templates['square-plus'] = template({"1":function(container,depth0,helpers,parti
     + alias3(((helper = (helper = helpers.counter || (depth0 != null ? depth0.counter : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"counter","hash":{},"data":data}) : helper)))
     + "</span>\n				<span class=\""
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
-    + "-text\"></span>\n				<div class=\""
+    + "-text\" data-title=\"shares\"></span>\n				<div class=\""
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
     + "-slash\" data-slash=\""
     + ((stack1 = ((helper = (helper = helpers.slash || (depth0 != null ? depth0.slash : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"slash","hash":{},"data":data}) : helper))) != null ? stack1 : "")
