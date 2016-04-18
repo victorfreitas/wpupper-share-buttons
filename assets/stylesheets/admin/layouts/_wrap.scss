@@ -54,6 +54,7 @@ $_itemsAvailable : 'items-available';
 @include input-remove( printer );
 @include input-remove( youtube );
 @include input-remove( instagram );
+@include input-remove( like );
 
 // ----------------------------------------------------------------------------
 // -- Advanced selector > Settings > Layout options
@@ -139,6 +140,7 @@ $_itemsAvailable : 'items-available';
 @include social-item( $colorPrint, printer, "\e607" );
 @include social-item( $colorYouTube, youtube, "\f167" );
 @include social-item( $colorInstagram, instagram, "\e905" );
+@include social-item( $colorfacebookLike, like, "\f088" );
 
 .#{$prefixClass}-social-networks {
     input + label:after {

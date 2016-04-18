@@ -68,6 +68,7 @@
 @include icon( telegram, $colorTelegram );
 @include icon( skype, $colorSkype );
 @include icon( viber, $colorViber );
+@include icon( like, $colorfacebookLike );
 
 // ----------------------------------------------------------------------------
 // -- Theme > Buttons
@@ -86,6 +87,7 @@
 @include icon( telegram, $colorTelegram, buttons );
 @include icon( skype, $colorSkype, buttons );
 @include icon( viber, $colorViber, buttons );
+@include icon( like, $colorfacebookLike, buttons );
 
 // ----------------------------------------------------------------------------
 // -- Theme > Square Plus
@@ -104,6 +106,7 @@
 @include icon( telegram, $colorTelegram, 'square-plus' );
 @include icon( skype, $colorSkype, 'square-plus' );
 @include icon( viber, $colorViber, 'square-plus' );
+@include icon( like, $colorfacebookLike, 'square-plus' );
 
 // ----------------------------------------------------------------------------
 // -- Theme > items hover
@@ -122,6 +125,7 @@
 @include items-hover( telegram, $colorTelegram );
 @include items-hover( skype, $colorSkype );
 @include items-hover( viber, $colorViber );
+@include items-hover( like, $colorfacebookLike );
 
 .#{$prefixClass}-square .#{$prefixClass}-whatsapp i {
     background: $colorWhatsapp;
@@ -167,4 +171,21 @@
 }
 .#{$prefixClass} .#{$prefixClass}-viber a:hover .#{$prefixClass}-icon-viber-rounded {
     color: #fff;
+}
+.#{$prefixClass}-rounded .#{$prefixClass}-like i,
+.#{$prefixClass}-square .#{$prefixClass}-like i {
+    background: $colorfacebookLike;
+    color: #fff;
+}
+
+.#{$prefixClass}-rounded .#{$prefixClass}-like i {
+    border-radius: 15px;
+    font-size: 27px;
+    line-height: 33px;
+}
+
+.#{$prefixClass}-square .#{$prefixClass}-like i {
+    border-radius: 5px;
+    font-size: 28px;
+    line-height: 34px;
 }

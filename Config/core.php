@@ -88,6 +88,7 @@ class WPUSB_Core
 	private static function _set_elements( $title, $url, $tracking, $thumbnail, $body_mail, $twitter_username )
 	{
 		$action         = 'data-action="open-popup"';
+		$url_like       = rawurldecode( $url );
 		$url            = ( is_admin() ) ? '' : static::_generate_short_url( $url, $tracking );
 		$prefix         = WPUSB_Setting::PREFIX;
 		$item           = "{$prefix}-item";
@@ -261,6 +262,19 @@ class WPUSB_Core
 				'class_icon'  => "{$prefix}-icon-viber",
 				'popup'       => $action,
 				'inside'      => __( 'Share', WPUSB_App::TEXTDOMAIN ),
+				'has_counter' => false,
+			),
+			'like'  => array(
+				'name'        => 'Like',
+				'element'     => 'like',
+				'link'        => "http://victorfreitas.github.io/wpupper-share-buttons/?href={$url_like}",
+				'title'       => __( 'Like on Facebook', WPUSB_App::TEXTDOMAIN ),
+				'class'       => "{$prefix}-like",
+				'class_item'  => $item,
+				'class_link'  => $class_button,
+				'class_icon'  => "{$prefix}-icon-like",
+				'popup'       => $action,
+				'inside'      => __( 'Like', WPUSB_App::TEXTDOMAIN ),
 				'has_counter' => false,
 			),
 		);

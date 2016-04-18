@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: WPUpper Share Buttons 2.6.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2016-04-15 04:56-0300\n"
-"PO-Revision-Date: 2016-04-15 04:56-0300\n"
+"POT-Creation-Date: 2016-04-18 05:31-0300\n"
+"PO-Revision-Date: 2016-04-18 05:31-0300\n"
 "Last-Translator: \n"
 "Language-Team: WPUpper\n"
 "Language: en\n"
@@ -22,70 +22,78 @@ msgstr ""
 "X-Poedit-SearchPath-4: View\n"
 "X-Poedit-SearchPath-5: wpupper-share-buttons.php\n"
 
-#: Config/core.php:97
+#: Config/core.php:98
 msgid "I just saw"
 msgstr ""
 
-#: Config/core.php:101
+#: Config/core.php:102
 msgid "Click to see also"
 msgstr ""
 
-#: Config/core.php:114
+#: Config/core.php:115
 msgid "Share on Facebook"
 msgstr ""
 
-#: Config/core.php:120 Config/core.php:146 Config/core.php:159
-#: Config/core.php:172 Config/core.php:185 Config/core.php:198
-#: Config/core.php:237 Config/core.php:250 Config/core.php:263
+#: Config/core.php:121 Config/core.php:147 Config/core.php:160
+#: Config/core.php:173 Config/core.php:186 Config/core.php:199
+#: Config/core.php:238 Config/core.php:251 Config/core.php:264
 msgid "Share"
 msgstr ""
 
-#: Config/core.php:127 Config/core.php:133
+#: Config/core.php:128 Config/core.php:134
 msgid "Tweet"
 msgstr ""
 
-#: Config/core.php:140
+#: Config/core.php:141
 msgid "Share on Google+"
 msgstr ""
 
-#: Config/core.php:153
+#: Config/core.php:154
 msgid "Share on WhatsApp"
 msgstr ""
 
-#: Config/core.php:166
+#: Config/core.php:167
 msgid "Share on Pinterest"
 msgstr ""
 
-#: Config/core.php:179
+#: Config/core.php:180
 msgid "Share on Linkedin"
 msgstr ""
 
-#: Config/core.php:192
+#: Config/core.php:193
 msgid "Share on Tumblr"
 msgstr ""
 
-#: Config/core.php:205
+#: Config/core.php:206
 msgid "Send by email"
 msgstr ""
 
-#: Config/core.php:218
+#: Config/core.php:219
 msgid "Print via PrintFriendly"
 msgstr ""
 
-#: Config/core.php:224
+#: Config/core.php:225
 msgid "Print"
 msgstr ""
 
-#: Config/core.php:231
+#: Config/core.php:232
 msgid "Share on Telegram"
 msgstr ""
 
-#: Config/core.php:244
+#: Config/core.php:245
 msgid "Share on Skype"
 msgstr ""
 
-#: Config/core.php:257
+#: Config/core.php:258
 msgid "Share on Viber"
+msgstr ""
+
+#: Config/core.php:271
+msgid "Like on Facebook"
+msgstr ""
+
+#: Config/core.php:277
+msgid "Like"
 msgstr ""
 
 #: Controller/settings.controller.php:46 View/settings.view.php:38

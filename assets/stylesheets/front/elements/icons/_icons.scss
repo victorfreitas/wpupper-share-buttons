@@ -61,6 +61,11 @@
 .#{$prefixClass}-icon-viber-default:before {
 	@extend .#{$prefixClass}-icon-viber:before;
 }
+.#{$prefixClass}-icon-like-default:before,
+.#{$prefixClass}-icon-like-rounded:before,
+.#{$prefixClass}-icon-like-square:before {
+	@extend .#{$prefixClass}-icon-like:before;
+}
 // ----------------------------------------------------------------------------
 // -- Buttons
 // ----------------------------------------------------------------------------
@@ -108,6 +113,9 @@
 }
 .#{$prefixClass}-icon-viber-buttons:before {
 	@extend .#{$prefixClass}-icon-viber:before;
+}
+.#{$prefixClass}-icon-like-buttons:before {
+	@extend .#{$prefixClass}-icon-like:before;
 }
 
 // ----------------------------------------------------------------------------
@@ -183,4 +191,7 @@
 }
 .#{$prefixClass}-icon-viber-square-plus:before {
 	@extend .#{$prefixClass}-icon-viber:before;
+}
+.#{$prefixClass}-icon-like-square-plus:before {
+	@extend .#{$prefixClass}-icon-like:before;
 }
