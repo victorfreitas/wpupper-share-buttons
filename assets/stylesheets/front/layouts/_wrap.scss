@@ -16,9 +16,9 @@
     }
 }
 
-// ----------------------------------------------------------------------------
-// -- share item
-// ----------------------------------------------------------------------------
+// ===================================================
+// --               hare item
+// ===================================================
 .#{$prefixClass}-default .#{$prefixClass}-item,
 .#{$prefixClass}-square .#{$prefixClass}-item,
 .#{$prefixClass}-rounded .#{$prefixClass}-item {
@@ -59,13 +59,13 @@
     display: none;
 }
 
-// ----------------------------------------------------------------------------
-// -- Items position fixed left
-// ----------------------------------------------------------------------------
+// ===================================================
+// --          Items position fixed left
+// ===================================================
 .#{$prefixClass}-fixed-left {
     position: fixed;
     left: 0;
-    top: 30%;
+    top: 23%;
     z-index: 999;
 
     .#{$prefixClass}-item {
@@ -76,10 +76,10 @@
         a,
         .#{$prefixClass}-total-share .#{$prefixClass}-button {
             border-radius: initial;
-            height: 40px;
-            line-height: 40px;
+            height: 48px;
+            line-height: 48px;
             text-align: center;
-            width: 40px;
+            width: 48px;
         }
 
         a span { display: none; }
@@ -149,9 +149,9 @@
     }
 }
 
-// ----------------------------------------------------------------------------
-// -- Mobile
-// ----------------------------------------------------------------------------
+// ===================================================
+// --                  MOBILE
+// ===================================================
 @media ( min-width: $tablet ) {
     .#{$prefixClass} {
         .#{$prefixClass}-whatsapp,
@@ -219,5 +219,40 @@
                 content: attr(data-slash);
             }
         }
+    }
+}
+
+
+//===================================================
+// --          Layout Fixed left Mobile
+//===================================================
+@media ( max-width: $tablet ) {
+    .#{$prefixClass}-fixed-left {
+        bottom: 0;
+        display: block;
+        left: initial;
+        margin: 0;
+        padding: 0;
+        top: initial;
+
+        .fixed-left-container {
+            display: table;
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        .#{$prefixClass}-item {
+            display: table-cell;
+            height: auto;
+            width: auto;
+
+            .#{$prefixClass}-button {
+                display: block;
+                width: auto;
+            }
+        }
+
+        .#{$prefixClass}-toggle,
+        .#{$prefixClass}-total-share { display: none; }
     }
 }

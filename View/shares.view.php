@@ -154,7 +154,7 @@ class WPUSB_Shares_View extends WPUSB_Core
 		$content  .= " data-token=\"{$token}\" class=\"{$args->prefix}";
 		$content  .= " {$args->prefix}-{$args->layout} {$args->position_fixed}";
 		$content  .= " {$args->class_first} {$args->custom_class}\" data-attr-nonce=\"{$nonce}\">\n";
-		$content  .= ( WPUSB_Utils::option( 'position_fixed' ) ) ? '<div data-element="buttons">' : '';
+		$content  .= ( WPUSB_Utils::option( 'position_fixed' ) ) ? '<div data-element="buttons" class="fixed-left-container">' : '';
 
 		if ( ! empty( $args->position_fixed ) || 'square-plus' == $args->layout )
 			$content .= static::_total_count( $args->prefix, $args->layout, $args->position_fixed );
