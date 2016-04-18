@@ -267,4 +267,8 @@
         .#{$prefixClass}-toggle,
         .#{$prefixClass}-total-share { display: none; }
     }
+
+    .#{$prefixClass} .#{$prefixClass}-printer {
+        display: none;
+    }
 }

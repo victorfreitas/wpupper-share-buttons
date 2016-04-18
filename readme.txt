@@ -6,7 +6,7 @@ Donate link: https://www.redcross.org/donate/donation
 Tags: share, social, buttons, share buttons, compartir, botones compartir, free share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, sharing, social bookmarking, email form, social media buttons, click to tweet, pinterest, linkedin
 Requires at least: 3.0
 Tested up to: 4.5.0
-Stable tag: 2.6.1
+Stable tag: 2.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,24 +55,31 @@ and for validating the ["Poedit Editor"](http://www.poedit.net/).
 3. Admin - Extra settings page
 4. Admin - Use options page
 5. Admin - Sharing report page
-6. Layout: Square Plus
-7. Layout: Square Plus - No counter
-8. Layout: Square Plus - No title and counter
-9. Layout: Default
-10. Layout: Default - No title
-11. Layout: Default - No title and counter
-12. Layout: Buttons
-13. Layout: Buttons - No counter
-14. Layout: Buttons - No tile and counter
-15. Layout: Rounded
-16. Layout: Rounded - No counter
-17. Layout: Rounded - No title and counter
-18. Layout: Square
-19. Layout: Square - No title
-20. Layout: Square - No title and counter
-21. Layout: Buttons - Fixed left
-22. Layout: Buttons - Fixed left - No counter
-23. Layout: Buttons - Fixed left - Hide
+6. After button click share
+7. Layout: Square Plus with counter
+8. Layout: Square Plus - No counter
+9. Layout: Square Plus - Mobile landscape
+10. Layout: Square Plus - Mobile portrait
+11. Layout: Default
+12. Layout: Default - No counter
+13. Layout: Default - No title and counter
+14. Layout: Buttons
+15. Layout: Buttons - No counter
+16. Layout: Buttons - No tile and counter
+17. Layout: Rounded
+18. Layout: Rounded - No counter
+19. Layout: Rounded - No title and counter
+20. Layout: Rounded - Mobile portrait
+21. Layout: Square
+22. Layout: Square - No counter
+23. Layout: Square - No title and counter
+24. Layout: Square - Mobile portrait
+25. Layout: Buttons - Fixed left with counter
+26. Layout: Buttons - Fixed left toggle
+27. Layout: Buttons - Fixed left no counter
+28. Layout: Buttons - Fixed left mobile portrait
+29. Layout: Buttons - Fixed left mobile landscape
+30. Layout: Buttons - Fixed left tablet portrait
 
 * Share buttons
 * Settings panel
@@ -85,6 +92,12 @@ The following plugins are recommended
 * ["Remove WP Version"](https://wordpress.org/plugins/jogar-mais-wp-security/) by victorfreitas - Remove version WordPress in WP Generator, Feeds, css and js.
 
 == Changelog ==
+
+= 2.7.0 =
+
+* Improvements layout fixed left
+* Responsive layout fixed left
+* New screenshots
 
 = 2.6.1 =
 
@@ -280,6 +293,8 @@ The following plugins are recommended
 
 == Upgrade Notice ==
 
-= 2.6.1 =
+= 2.7.0 =
 
-* Bug fixes
+* Improvements layout fixed left
+* Responsive layout fixed left
+* New screenshots
