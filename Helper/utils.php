@@ -627,4 +627,21 @@ class WPUSB_Utils
 
 		return array( 'name' => $option_name, 'group' => $option_group );
 	}
+
+	/**
+	 * Twitter text share
+	 *
+	 * @since 1.0
+	 * @param String $title
+	 * @param String $twitter_text_a
+	 * @param String $twitter_text_b
+	 * @param String $caracter
+	 * @return String
+	 */
+	public static function get_twitter_text( $title, $twitter_text_a, $twitter_text_b, $caracter )
+	{
+		$text = "{$twitter_text_a}%20{$title}%20-%20{$twitter_text_b}%20{$caracter}%20";
+
+		return apply_filters( WPUSB_App::SLUG . '-twitter-text', $text, $title );
+	}
 }

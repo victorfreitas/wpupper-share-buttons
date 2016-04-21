@@ -107,7 +107,10 @@ class WPUSB_Core
 				html_entity_decode( '&#x261B;' )
 			)
 		);
-		$share_items = array(
+		$twitter_text  = WPUSB_Utils::get_twitter_text( $title, $twitter_text_a, $twitter_text_b, $caracter );
+		$viber_text    = apply_filters( WPUSB_App::SLUG . '-viber-text', "{$title}%20{$caracter}%20", $title );
+		$whatsapp_text = apply_filters( WPUSB_App::SLUG . '-whatsapp-text', "{$title}%20{$caracter}%20", $title );
+		$share_items   = array(
 			'facebook'  => array(
 				'name'        => 'Facebook',
 				'element'     => 'facebook',
@@ -124,7 +127,7 @@ class WPUSB_Core
 			'twitter'   => array(
 				'name'        => 'Twitter',
 				'element'     => 'twitter',
-				'link'        => "https://twitter.com/share?url={$url}&text={$twitter_text_a}%20{$title}%20-%20{$twitter_text_b}%20{$caracter}%20&via={$twitter_username}",
+				'link'        => "https://twitter.com/share?url={$url}&text={$twitter_text}&via={$twitter_username}",
 				'title'       => __( 'Tweet', WPUSB_App::TEXTDOMAIN ),
 				'class'       => "{$prefix}-twitter",
 				'class_item'  => $item,
@@ -150,7 +153,7 @@ class WPUSB_Core
 			'whatsapp'  => array(
 				'name'        => 'WhatsApp',
 				'element'     => 'whatsapp',
-				'link'        => "whatsapp://send?text={$title}%20{$caracter}%20{$url}",
+				'link'        => "whatsapp://send?text={$whatsapp_text}{$url}",
 				'title'       => __( 'Share on WhatsApp', WPUSB_App::TEXTDOMAIN ),
 				'class'       => "{$prefix}-whatsapp",
 				'class_item'  => $item,
@@ -215,7 +218,7 @@ class WPUSB_Core
 			'printer'   => array(
 				'name'        => 'PrintFriendly',
 				'element'     => 'printer',
-				'link'        => "http://www.printfriendly.com/print?url={$url}&partner=whatsapp",
+				'link'        => "http://www.printfriendly.com/print?url={$url}",
 				'title'       => __( 'Print via PrintFriendly', WPUSB_App::TEXTDOMAIN ),
 				'class'       => "{$prefix}-printer",
 				'class_item'  => $item,
@@ -254,7 +257,7 @@ class WPUSB_Core
 			'viber'  => array(
 				'name'        => 'Viber',
 				'element'     => 'viber',
-				'link'        => "viber://forward?text={$title}%20{$caracter}%20{$url}",
+				'link'        => "viber://forward?text={$viber_text}{$url}",
 				'title'       => __( 'Share on Viber', WPUSB_App::TEXTDOMAIN ),
 				'class'       => "{$prefix}-viber",
 				'class_item'  => $item,
@@ -281,9 +284,16 @@ class WPUSB_Core
 
 		$elements = new ArrayIterator( $share_items );
 
-		return apply_filters( WPUSB_App::SLUG . '-elements-share', $elements );
+		return apply_filters( WPUSB_App::SLUG . '-elements-share', $elements, $title, $url );
 	}
 
+	/**
+	 * Transform elements array in objects and sortable
+	 *
+	 * @since 1.2
+	 * @param Array $elements
+	 * @return Object
+	 */
 	private static function _elements_transform( $elements )
 	{
 		$elements = static::_ksort( $elements );
@@ -292,6 +302,13 @@ class WPUSB_Core
 		return $elements;
 	}
 
+	/**
+	 * Sortable elements share
+	 *
+	 * @since 1.2
+	 * @param Array $elements
+	 * @return Object
+	 */
 	private static function _ksort( $elements )
 	{
 		$order    = WPUSB_Utils::option( 'order', false );
@@ -347,7 +364,7 @@ class WPUSB_Core
 		$title     = WPUSB_Utils::get_title();
 		$body_mail = WPUSB_Utils::body_mail();
 		$arguments = array(
-			'title'     => "\"{$title} \"",
+			'title'     => $title,
 			'link'      => WPUSB_Utils::get_permalink(),
 			'thumbnail' => WPUSB_Utils::get_image(),
 			'body_mail' => "\n\n{$title}\n\n{$body_mail}\n",
