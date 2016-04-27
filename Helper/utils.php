@@ -21,10 +21,11 @@ class WPUSB_Utils
 	 */
 	public static function esc_class( $class )
 	{
-		$class = (string) $class;
-
-		if ( ! strlen( $class ) )
+		if ( empty( $class ) )
 			return '';
+
+		if ( is_array( $class ) )
+			return $class;
 
         $class = self::rip_tags( $class );
         $class = str_replace( '_', '-', $class );
@@ -407,13 +408,16 @@ class WPUSB_Utils
 	 *
 	 * @since 1.0
 	 * @param Array $args
-	 * @param String/int $index
+	 * @param String|int $index
 	 * @return String
 	 */
-	public static function isset_set( $args = array(), $index )
+	public static function isset_get( $args = array(), $index )
 	{
 		if ( isset( $args[$index] ) )
 			return $args[$index];
+
+		if ( isset( $args['elements'] ) )
+			return $args['elements'][$index];
 
 		return '';
 	}

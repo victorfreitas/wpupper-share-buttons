@@ -67,7 +67,7 @@ class WPUSB_Shares_View extends WPUSB_Core
 		$elements = WPUSB_Core::social_media_objects();
 		$args     = apply_filters( WPUSB_App::SLUG . 'buttons-args', $args );
 		$layout   = ( $args['layout'] ? $args['layout'] : $model->layout );
-		$buttons  = static::_get_buttons_start( $args['class_first'], $model, $layout );
+		$buttons  = static::_get_buttons_start( $args, $model, $layout );
 
 		foreach ( $elements as $key => $social ) :
 			if ( ! in_array( $key, (array) $model->social_media ) )
@@ -93,16 +93,17 @@ class WPUSB_Shares_View extends WPUSB_Core
 	 * @return String HTML
 	 *
 	 */
-	private static function _get_buttons_start( $class_first, $model, $layout )
+	private static function _get_buttons_start( $args, $model, $layout )
 	{
 		$prefix  = WPUSB_Setting::PREFIX;
 		$buttons = static::_start_buttons_html(
 			(object) array(
-				'class_first'    => $class_first,
+				'class_first'    => $args['class_first'],
 				'custom_class'   => $model->class,
 				'layout'         => $layout ? $layout : 'default',
 				'prefix'         => $prefix,
-				'position_fixed' => ( $model->position_fixed ) ? "{$prefix}-{$model->position_fixed}" : ''
+				'position_fixed' => ( $model->position_fixed ) ? "{$prefix}-{$model->position_fixed}" : '',
+				'remove_counter' => $args['elements']['remove_counter'],
 			)
 		);
 
@@ -156,7 +157,7 @@ class WPUSB_Shares_View extends WPUSB_Core
 		$content  .= " {$args->class_first} {$args->custom_class}\" data-attr-nonce=\"{$nonce}\">\n";
 		$content  .= ( WPUSB_Utils::option( 'position_fixed' ) ) ? '<div data-element="buttons" class="fixed-left-container">' : '';
 
-		if ( ! empty( $args->position_fixed ) || 'square-plus' == $args->layout )
+		if ( ( ! empty( $args->position_fixed ) || 'square-plus' == $args->layout ) && ! $args->remove_counter )
 			$content .= static::_total_count( $args->prefix, $args->layout, $args->position_fixed );
 
 		return apply_filters( WPUSB_App::SLUG . 'start-buttons-html', $content );
@@ -375,14 +376,14 @@ class WPUSB_Shares_View extends WPUSB_Core
 	{
 		$atts = array_map( array( 'WPUSB_Utils', 'esc_class' ), $atts );
 		$args = array(
-			'class_first'  => WPUSB_Utils::isset_set( $atts, 'class_first' ),
-			'class_second' => WPUSB_Utils::isset_set( $atts, 'class_second' ),
-			'class_link'   => WPUSB_Utils::isset_set( $atts, 'class_link' ),
-			'class_icon'   => WPUSB_Utils::isset_set( $atts, 'class_icon' ),
-			'layout'       => WPUSB_Utils::isset_set( $atts, 'layout' ),
+			'class_first'  => WPUSB_Utils::isset_get( $atts, 'class_first' ),
+			'class_second' => WPUSB_Utils::isset_get( $atts, 'class_second' ),
+			'class_link'   => WPUSB_Utils::isset_get( $atts, 'class_link' ),
+			'class_icon'   => WPUSB_Utils::isset_get( $atts, 'class_icon' ),
+			'layout'       => WPUSB_Utils::isset_get( $atts, 'layout' ),
 			'elements'     => array(
-				'remove_inside'  => WPUSB_Utils::isset_set( $atts, 'remove_inside' ),
-				'remove_counter' => WPUSB_Utils::isset_set( $atts, 'remove_counter' ),
+				'remove_inside'  => WPUSB_Utils::isset_get( $atts, 'remove_inside' ),
+				'remove_counter' => WPUSB_Utils::isset_get( $atts, 'remove_counter' ),
 			),
 		);
 
