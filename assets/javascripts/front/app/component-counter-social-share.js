@@ -138,10 +138,11 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 
 	CounterSocialShare.prototype.getNumberByData = function(data) {
 		var fbTotal = parseFloat( data['shares'] ) + parseFloat( data['comments'] )
-		  , fbShare = data['shares']
+		  , fbShare = parseFloat( data['shares'] )
+		  , count   = parseFloat( data['count'] )
 		;
 
-		return ( fbTotal || fbShare || data['count'] || 0 );
+		return ( fbTotal || fbShare || count || 0 );
 	};
 
 	CounterSocialShare.prototype.getParamsGoogle = function() {

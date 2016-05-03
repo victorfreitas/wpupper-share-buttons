@@ -1,0 +1,50 @@
+.#{$prefixClass}-menu {
+    border-bottom: 1px solid #E1E1E1;
+    position: relative;
+    top: 6px;
+    width: 100%;
+
+	ul {
+		font-size: 0;
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		background: #f6f6f6;
+		border-color: #d6d6d6;
+		border-style: solid;
+		border-width: 1px 0 1px 1px;
+		display: inline-block;
+		font-size: 12px;
+		line-height: 1em;
+		margin: 0 0 -1px 0;
+		position: relative;
+
+		&:last-child {
+			border-right: 1px solid #d6d6d6;
+		}
+
+		&.active,
+		&:hover {
+		    background: $bgAdmin;
+		    border-bottom-color: $bgAdmin;
+		}
+	}
+
+	a {
+		box-shadow: none;
+		color: #555;
+		display: block;
+		font-weight: bold;
+		padding: 12px 25px;
+		text-decoration: none;
+	}
+}
+
+.#{$prefixClass}-settings-wrap .#{$prefixClass}-menu {
+	border-bottom: none;
+	display: inline-block;
+	top: 40px;
+	width: initial;
+}

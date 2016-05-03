@@ -1,6 +1,6 @@
-// ----------------------------------------------------------------------------
-// -- Default
-// ----------------------------------------------------------------------------
+// ===================================================
+// --               Default
+// ===================================================
 .#{$prefixClass}-icon-facebook-default:before {
 	@extend .#{$prefixClass}-icon-facebook:before;
 }
@@ -66,9 +66,9 @@
 .#{$prefixClass}-icon-like-square:before {
 	@extend .#{$prefixClass}-icon-like:before;
 }
-// ----------------------------------------------------------------------------
-// -- Buttons
-// ----------------------------------------------------------------------------
+// ===================================================
+// --               Buttons
+// ===================================================
 .#{$prefixClass}-icon-facebook-buttons:before {
 	@extend .#{$prefixClass}-icon-facebook:before;
 }
@@ -117,10 +117,12 @@
 .#{$prefixClass}-icon-like-buttons:before {
 	@extend .#{$prefixClass}-icon-like:before;
 }
-
-// ----------------------------------------------------------------------------
-// -- Rounded, Square
-// ----------------------------------------------------------------------------
+.#{$prefixClass}-icon-share-buttons:before {
+	@extend .#{$prefixClass}-icon-plus-square:before;
+}
+// ===================================================
+// --               Rounded, Square
+// ===================================================
 .#{$prefixClass}-icon-printer-square:before,
 .#{$prefixClass}-icon-printer-rounded:before {
 	@extend .#{$prefixClass}-icon-printer:before;
@@ -128,10 +130,13 @@
 .#{$prefixClass}-icon-whatsapp-square:before {
 	@extend .#{$prefixClass}-icon-whatsapp:before;
 }
-
-// ----------------------------------------------------------------------------
-// -- Square Plus
-// ----------------------------------------------------------------------------
+.#{$prefixClass}-icon-share-square:before,
+.#{$prefixClass}-icon-share-rounded:before {
+	@extend .#{$prefixClass}-icon-plus-square:before;
+}
+// ===================================================
+// --               Square Plus
+// ===================================================
 .#{$prefixClass}-icon-facebook-square-plus:before {
 	@extend .#{$prefixClass}-icon-facebook:before;
 }
@@ -172,7 +177,7 @@
 	@extend .#{$prefixClass}-icon-flickr:before;
 }
 .#{$prefixClass}-icon-share-square-plus:before {
-	@extend .#{$prefixClass}-icon-share:before;
+	@extend .#{$prefixClass}-icon-plus-square:before;
 }
 .#{$prefixClass}-icon-vine-square-plus:before {
 	@extend .#{$prefixClass}-icon-vine:before;

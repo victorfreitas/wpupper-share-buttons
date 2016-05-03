@@ -51,10 +51,9 @@
         }
     }
 }
-
-// ----------------------------------------------------------------------------
-// -- Theme > Other
-// ----------------------------------------------------------------------------
+// ===================================================
+// --              Theme > Other
+// ===================================================
 @include icon( facebook, $colorfacebook );
 @include icon( google-plus, $colorGooglePlus );
 @include icon( twitter, $colorTwitter );
@@ -69,10 +68,10 @@
 @include icon( skype, $colorSkype );
 @include icon( viber, $colorViber );
 @include icon( like, $colorfacebookLike );
-
-// ----------------------------------------------------------------------------
-// -- Theme > Buttons
-// ----------------------------------------------------------------------------
+@include icon( share, $btnColor );
+// ===================================================
+// --             Theme > Buttons
+// ===================================================
 @include icon( facebook, $colorfacebook, buttons );
 @include icon( google-plus, $colorGooglePlus, buttons );
 @include icon( twitter, $colorTwitter, buttons );
@@ -88,10 +87,10 @@
 @include icon( skype, $colorSkype, buttons );
 @include icon( viber, $colorViber, buttons );
 @include icon( like, $colorfacebookLike, buttons );
-
-// ----------------------------------------------------------------------------
-// -- Theme > Square Plus
-// ----------------------------------------------------------------------------
+@include icon( share, $btnColor, buttons );
+// ===================================================
+// --            Theme > Square Plus
+// ===================================================
 @include icon( facebook, $colorfacebook, 'square-plus' );
 @include icon( google-plus, $colorGooglePlus, 'square-plus' );
 @include icon( twitter, $colorTwitter, 'square-plus' );
@@ -107,10 +106,10 @@
 @include icon( skype, $colorSkype, 'square-plus' );
 @include icon( viber, $colorViber, 'square-plus' );
 @include icon( like, $colorfacebookLike, 'square-plus' );
-
-// ----------------------------------------------------------------------------
-// -- Theme > items hover
-// ----------------------------------------------------------------------------
+@include icon( share, $btnColor, 'square-plus' );
+// ===================================================
+// --            Theme > items hover
+// ===================================================
 @include items-hover( facebook, $colorfacebook );
 @include items-hover( google-plus, $colorGooglePlus );
 @include items-hover( twitter, $colorTwitter );
@@ -126,6 +125,7 @@
 @include items-hover( skype, $colorSkype );
 @include items-hover( viber, $colorViber );
 @include items-hover( like, $colorfacebookLike );
+@include items-hover( share, $btnColor );
 
 .#{$prefixClass}-square .#{$prefixClass}-whatsapp i {
     background: $colorWhatsapp;
@@ -188,4 +188,9 @@
     border-radius: 5px;
     font-size: 28px;
     line-height: 34px;
+}
+.#{$prefixClass} .#{$prefixClass}-icon-share-square {
+    font-size: 41px;
+    position: relative;
+    top: -3px;
 }

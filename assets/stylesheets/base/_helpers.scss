@@ -27,7 +27,6 @@
 	max-width: 100%;
 }
 
-// -- icon
 %icon {
 	font-family: $prefixClass !important;
 	speak: none;
@@ -40,7 +39,6 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-// -- align center
 %alignCenterV {
 	top: 50%;
 	-webkit-transform: translateY(-50%);

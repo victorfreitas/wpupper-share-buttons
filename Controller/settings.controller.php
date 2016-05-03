@@ -146,7 +146,7 @@ class WPUSB_Settings_Controller
 			__( 'WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ),
 			__( 'WPUpper Share', WPUSB_App::TEXTDOMAIN ),
 			'manage_options',
-			WPUSB_App::SLUG,
+			WPUSB_Setting::HOME_SETTINGS,
 			array( 'WPUSB_Settings_View', 'render_settings_page' ),
 			'dashicons-share'
 	  	);
@@ -156,7 +156,7 @@ class WPUSB_Settings_Controller
 	  		__( 'Extra Settings | WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ),
 	  		__( 'Extra Settings', WPUSB_App::TEXTDOMAIN ),
 	  		'manage_options',
-	  		WPUSB_App::SLUG . '-extra-settings',
+	  		WPUSB_Setting::EXTRA_SETTINGS,
 	  		array( 'WPUSB_Settings_Extra_View', 'render_settings_extra' )
 	  	);
 
@@ -165,7 +165,7 @@ class WPUSB_Settings_Controller
 	  		__( 'Use options | WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ),
 	  		__( 'Use options', WPUSB_App::TEXTDOMAIN ),
 	  		'manage_options',
-	  		WPUSB_App::SLUG . '-faq',
+	  		WPUSB_Setting::USE_OPTIONS,
 	  		array( 'WPUSB_Settings_Faq_View', 'render_page_faq' )
 	  	);
 	}

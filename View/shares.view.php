@@ -149,9 +149,11 @@ class WPUSB_Shares_View extends WPUSB_Core
 		$permalink = WPUSB_Utils::get_permalink();
 		$tracking  = WPUSB_Utils::option( 'tracking' );
 		$token     = WPUSB_Utils::option( 'bitly_token' );
+		$fixed_top = WPUSB_Utils::option( 'fixed_top' );
 		$post_id   = WPUSB_Utils::get_id();
 		$content   = "<div data-element-url=\"{$permalink}\" data-tracking=\"{$tracking}\"";
 		$content  .= " data-attr-reference=\"{$post_id}\" data-component=\"counter-social-share\"";
+		$content  .= ( ! empty( $fixed_top ) ) ? "data-element=\"{$args->prefix}-fixed-top\"" : '';
 		$content  .= " data-token=\"{$token}\" class=\"{$args->prefix}";
 		$content  .= " {$args->prefix}-{$args->layout} {$args->position_fixed}";
 		$content  .= " {$args->class_first} {$args->custom_class}\" data-attr-nonce=\"{$nonce}\">\n";

@@ -297,7 +297,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	  		__( 'Sharing Report | WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ),
 	  		__( 'Sharing Report', WPUSB_App::TEXTDOMAIN ),
 	  		'manage_options',
-	  		WPUSB_App::SLUG . '-sharing-report',
+	  		WPUSB_Setting::SHARING_REPORT,
 	  		array( &$this, 'report' )
 	  	);
 	}

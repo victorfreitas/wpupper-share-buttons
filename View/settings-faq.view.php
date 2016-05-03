@@ -30,6 +30,9 @@ class WPUSB_Settings_Faq_View
 			<span class="<?php echo "{$prefix}-title-wrap"; ?>">
 				<?php _e( 'Use options', WPUSB_App::TEXTDOMAIN ); ?>
 			</span>
+
+			<?php WPUSB_Settings_View::menu_top(); ?>
+
 			<div class="<?php echo "{$prefix}-wrap-faq"; ?>">
 				<code>
 					<span style="color: #000000">

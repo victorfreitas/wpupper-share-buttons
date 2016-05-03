@@ -15,7 +15,6 @@
         vertical-align: middle;
     }
 }
-
 // ===================================================
 // --               hare item
 // ===================================================
@@ -58,7 +57,6 @@
 .#{$prefixClass}-square-plus .#{$prefixClass}-counter {
     display: none;
 }
-
 // ===================================================
 // --          Items position fixed left
 // ===================================================
@@ -141,8 +139,9 @@
 
     @media ( min-width: $tablet ) {
         .#{$prefixClass}-button:hover {
-            width: 100%;
             padding: 0 20px;
+            text-decoration: none;
+            width: 100%;
         }
     }
 }
@@ -160,7 +159,6 @@
         font-size: 15px;
     }
 }
-
 // ===================================================
 // --                  MOBILE
 // ===================================================
@@ -233,8 +231,6 @@
         }
     }
 }
-
-
 //===================================================
 // --          Layout Fixed left Mobile
 //===================================================
@@ -270,5 +266,18 @@
 
     .#{$prefixClass} .#{$prefixClass}-printer {
         display: none;
+    }
+}
+
+.#{$prefixClass}-rounded,
+.#{$prefixClass}-square {
+    .#{$prefixClass}-item .#{$prefixClass}-button {
+        color: #555;
+    }
+}
+#post-entry .#{$prefixClass} {
+    .#{$prefixClass}-link,
+    .#{$prefixClass}-button {
+        color: #fff;
     }
 }

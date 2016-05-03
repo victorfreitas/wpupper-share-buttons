@@ -17,8 +17,8 @@ WPUSB_App::uses( 'utils', 'Helper' );
 WPUSB_App::uses( 'ajax', 'Controller' );
 WPUSB_App::uses( 'shares', 'Controller' );
 WPUSB_App::uses( 'options', 'Controller' );
-WPUSB_App::uses( 'share-reports', 'Controller' );
 WPUSB_App::uses( 'settings', 'Controller' );
+WPUSB_App::uses( 'share-reports', 'Controller' );
 
 class WPUSB_Core
 {
@@ -93,24 +93,17 @@ class WPUSB_Core
 		$prefix         = WPUSB_Setting::PREFIX;
 		$item           = "{$prefix}-item";
 		$class_button   = "{$prefix}-button";
-		$twitter_text_a = apply_filters(
-			WPUSB_App::SLUG . '-twitter-after',
-			__( 'I just saw', WPUSB_App::TEXTDOMAIN )
-		);
-		$twitter_text_b = apply_filters(
-			WPUSB_App::SLUG . '-twitter-before',
-			__( 'Click to see also', WPUSB_App::TEXTDOMAIN )
-		);
-		$caracter       = rawurlencode(
-			apply_filters(
-				WPUSB_App::SLUG . '-caracter',
-				html_entity_decode( '&#x261B;' )
-			)
-		);
-		$twitter_text  = WPUSB_Utils::get_twitter_text( $title, $twitter_text_a, $twitter_text_b, $caracter );
-		$viber_text    = apply_filters( WPUSB_App::SLUG . '-viber-text', "{$title}%20{$caracter}%20", $title );
-		$whatsapp_text = apply_filters( WPUSB_App::SLUG . '-whatsapp-text', "{$title}%20{$caracter}%20", $title );
-		$share_items   = array(
+		$twitter_text_a = apply_filters( WPUSB_App::SLUG . '-twitter-after', __( 'I just saw', WPUSB_App::TEXTDOMAIN ) );
+		$twitter_text_b = apply_filters( WPUSB_App::SLUG . '-twitter-before', __( 'Click to see also', WPUSB_App::TEXTDOMAIN ) );
+		$caracter       = apply_filters( WPUSB_App::SLUG . '-caracter', html_entity_decode( '&#x261B;' ) );
+		$twitter_text   = WPUSB_Utils::get_twitter_text( $title, $twitter_text_a, $twitter_text_b, $caracter );
+		$option_tt_text = WPUSB_Utils::option( 'twitter_text' );
+		$twitter_text   = ( ! empty( $option_tt_text ) ) ? str_replace( '{title}', $title, $option_tt_text ) : $twitter_text;
+		$twitter_text   = WPUSB_Utils::rip_tags( $twitter_text );
+		$viber_text     = apply_filters( WPUSB_App::SLUG . '-viber-text', "{$title}%20{$caracter}%20", $title );
+		$whatsapp_text  = apply_filters( WPUSB_App::SLUG . '-whatsapp-text', "{$title}%20{$caracter}%20", $title );
+		$twitter_via    = ( ! empty( $twitter_username ) ) ? "&via={$twitter_username}" : '';
+		$share_items    = array(
 			'facebook'  => array(
 				'name'        => 'Facebook',
 				'element'     => 'facebook',
@@ -127,7 +120,7 @@ class WPUSB_Core
 			'twitter'   => array(
 				'name'        => 'Twitter',
 				'element'     => 'twitter',
-				'link'        => "https://twitter.com/share?url={$url}&text={$twitter_text}&via={$twitter_username}",
+				'link'        => "https://twitter.com/share?url={$url}&text={$twitter_text}{$twitter_via}",
 				'title'       => __( 'Tweet', WPUSB_App::TEXTDOMAIN ),
 				'class'       => "{$prefix}-twitter",
 				'class_item'  => $item,

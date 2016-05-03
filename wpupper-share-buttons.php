@@ -5,7 +5,7 @@
 /*
 	Plugin Name: WPUpper Share Buttons
 	Plugin URI:  https://github.com/victorfreitas
-	Version:     2.8.2
+	Version:     2.9.0
 	Author:      WPUpper
 	Author URI:  https://github.com/victorfreitas
 	License:     GPL2
@@ -13,7 +13,6 @@
 	Domain Path: /languages
 	Description: Insert share buttons of social networks. The buttons are inserted automatically or can be called via shortcode or php method.
 */
-
 /*
 	Copyright 2016 WPUpper Share Buttons
 
@@ -26,7 +25,6 @@
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU General Public License for more details.
  */
-
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
 
@@ -58,7 +56,7 @@ class WPUSB_App
      *
      * @var String
      */
-	const VERSION = '2.8.2';
+	const VERSION = '2.9.0';
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.

@@ -35,6 +35,9 @@ class WPUSB_Settings_Extra_View
 
 			<p class="description"><?php _e( 'Add the Share Buttons automatically.', WPUSB_App::TEXTDOMAIN ); ?></p>
 			<span class="<?php echo "{$prefix}-title-wrap"; ?>"><?php _e( 'Extra Settings', WPUSB_App::TEXTDOMAIN ); ?></span>
+
+			<?php WPUSB_Settings_View::menu_top(); ?>
+
 			<div class="<?php echo "{$prefix}-wrap extra-settings-wrap"; ?>">
 				<form action="options.php" method="post">
 					<table class="form-table table-extras" data-table="extras">
@@ -72,6 +75,28 @@ class WPUSB_Settings_Extra_View
 							</tr>
 							<tr>
 								<th scope="row">
+									<label for="<?php echo $prefix; ?>-twitter-text">
+										<?php _e( 'Twitter text', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<td>
+									<input id="<?php echo $prefix; ?>-twitter-text"
+									       class="large-text"
+										   placeholder="<?php _e( 'Twitter text', WPUSB_App::TEXTDOMAIN ); ?>"
+									       name="<?php echo "{$extra_setting}[twitter_text]"; ?>"
+										   value="<?php echo $model->twitter_text; ?>">
+
+										<div class="<?php echo $prefix; ?>-blockquote">
+											<?php _e( 'Use {title} to add the post title', WPUSB_App::TEXTDOMAIN ); ?>
+											<p class="description">
+											<strong><?php _e( 'Example: ', WPUSB_App::TEXTDOMAIN ); ?></strong>
+												<?php _e( 'I just saw', WPUSB_App::TEXTDOMAIN ); ?> {title}
+											</p>
+										</div>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">
 									<label for="<?php echo $prefix; ?>-tracking-analytics">
 										<?php _e( 'UTM tracking', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>
@@ -82,14 +107,16 @@ class WPUSB_Settings_Extra_View
 										   placeholder="<?php _e( 'Add UTM tracking (Analytics)', WPUSB_App::TEXTDOMAIN ); ?>"
 									       name="<?php echo "{$extra_setting}[tracking]"; ?>"
 										   value="<?php echo $model->tracking; ?>">
-									<p class="description">
-										<strong><?php _e( 'Example: ', WPUSB_App::TEXTDOMAIN ); ?></strong>
-										<code>?utm_source=share_buttons&utm_medium=social_media&utm_campaign=social_share</code>
-									</p>
-									<p class="description">
-										<?php _e( 'Use <code>?</code> and', WPUSB_App::TEXTDOMAIN ); ?>
-										<?php _e( 'adding parameters to use <code>&</code> in the tracking.', WPUSB_App::TEXTDOMAIN ); ?>
-									</p>
+
+									<div class="<?php echo $prefix; ?>-blockquote">
+										<p class="description">
+											<strong><?php _e( 'Example: ', WPUSB_App::TEXTDOMAIN ); ?></strong>
+											?utm_source=share_buttons&utm_medium=social_media&utm_campaign=social_share
+											<br>
+											<?php _e( 'Use <code>?</code> and', WPUSB_App::TEXTDOMAIN ); ?>
+											<?php _e( 'adding parameters to use <code>&</code> in the tracking.', WPUSB_App::TEXTDOMAIN ); ?>
+										</p>
+									</div>
 								</td>
 							</tr>
 							<tr>

@@ -1,4 +1,6 @@
-//-- mixin > icon
+// =====================================================================
+// --                              ICON
+// =====================================================================
 @mixin icon($icon, $iconColor, $theme : other, $amount : 12) {
     @if $theme == buttons or $theme == 'square-plus' {
         .#{$prefixClass}-#{$theme} .#{$prefixClass}-#{$icon} a {
@@ -29,7 +31,9 @@
         }
     }
 }
-
+// ===================================================
+// --                 ITEMS REMOVE
+// ===================================================
 @mixin items-hover($element, $color) {
     .#{$prefixClass}-buttons,
     .#{$prefixClass}-square-plus,
@@ -48,8 +52,9 @@
         }
     }
 }
-
-//-- mixin > input-remove
+// ===================================================
+// --               INPUT REMOVE
+// ===================================================
 @mixin input-remove($selector) {
     ##{$prefixClass}-#{$selector} {
         cursor: pointer;
@@ -59,8 +64,9 @@
         top: -100%;
     }
 }
-
-//-- mixin > social-item
+// ===================================================
+// --                SOCIAL ITEM
+// ===================================================
 @mixin social-item($color, $element, $content) {
     .#{$prefixClass}-social-networks {
 

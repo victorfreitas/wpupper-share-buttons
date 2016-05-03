@@ -4,7 +4,7 @@
 
 	.#{$prefixClass}-item .#{$prefixClass}-link {
 		border-radius: 3px;
-		color: white;
+		color: #fff;
 		height: $size - 5;
 		position: relative;
 		padding: 2px 0 0 2px;
@@ -38,7 +38,6 @@
 	    	}
 	    }
 	}
-
 
 	.#{$prefixClass}-inside .#{$prefixClass}-link {
 

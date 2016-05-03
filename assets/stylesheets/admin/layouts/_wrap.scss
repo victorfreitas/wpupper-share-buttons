@@ -2,9 +2,11 @@ $_itemsAvailable : 'items-available';
 
 .#{$prefixClass}-wrap {
     @extend %noSelect;
-	background: $bgAdmin;
-	border: 1px solid #e1e1e1;
-	padding: 0 10px;
+    background: $bgAdmin;
+    padding: 0 10px;
+    border-color: #e1e1e1;
+    border-style: solid;
+    border-width: 0 1px 1px 1px;
     position: relative;
 
     label { cursor: auto; }
@@ -55,6 +57,7 @@ $_itemsAvailable : 'items-available';
 @include input-remove( youtube );
 @include input-remove( instagram );
 @include input-remove( like );
+@include input-remove( share );
 
 // ----------------------------------------------------------------------------
 // -- Advanced selector > Settings > Layout options
@@ -69,7 +72,7 @@ $_itemsAvailable : 'items-available';
 // -- Advanced selector > Settings > Position fixed
 // ----------------------------------------------------------------------------
 @include input-remove( 'fixed-left' );
-
+@include input-remove( 'fixed-top' );
 // ----------------------------------------------------------------------------
 // -- Advanced selector > Extra settings > Remove elements
 // ----------------------------------------------------------------------------
@@ -82,7 +85,8 @@ $_itemsAvailable : 'items-available';
 .#{$prefixClass}-social-networks,
 .#{$prefixClass}-layout-options,
 .#{$prefixClass}-remove-elements,
-.#{$prefixClass}-position-fixed {
+.#{$prefixClass}-position-fixed,
+.#{$prefixClass}-position-fixed-top {
     input + label {
         background: #F6FBFD;
         border-radius: 5px;
@@ -100,9 +104,10 @@ $_itemsAvailable : 'items-available';
 
 .#{$prefixClass}-#{$_itemsAvailable},
 .#{$prefixClass}-layout-options,
-.#{$prefixClass}-position-fixed {
+.#{$prefixClass}-position-fixed,
+.#{$prefixClass}-position-fixed-top {
     input + label:before {
-        background: #27AE61;
+        background: $btnColor;
     }
 }
 
@@ -110,7 +115,8 @@ $_itemsAvailable : 'items-available';
 .#{$prefixClass}-social-networks,
 .#{$prefixClass}-layout-options,
 .#{$prefixClass}-remove-elements,
-.#{$prefixClass}-position-fixed {
+.#{$prefixClass}-position-fixed,
+.#{$prefixClass}-position-fixed-top {
     input + label:before {
         border-radius: 5px;
         bottom: 0;
@@ -141,6 +147,7 @@ $_itemsAvailable : 'items-available';
 @include social-item( $colorYouTube, youtube, "\f167" );
 @include social-item( $colorInstagram, instagram, "\e905" );
 @include social-item( $colorfacebookLike, like, "\f088" );
+@include social-item( $btnColor, share, "\f0fe" );
 
 .#{$prefixClass}-social-networks {
     input + label:after {
@@ -159,7 +166,8 @@ $_itemsAvailable : 'items-available';
 .#{$prefixClass}-social-networks,
 .#{$prefixClass}-layout-options,
 .#{$prefixClass}-remove-elements,
-.#{$prefixClass}-position-fixed {
+.#{$prefixClass}-position-fixed,
+.#{$prefixClass}-position-fixed-top {
     input:checked + label:before {
         width: 100%;
     }
@@ -200,7 +208,7 @@ $_itemsAvailable : 'items-available';
 .#{$prefixClass}-remove-elements input:checked + label:after {
     position: relative;
     @extend .#{$prefixClass}-icon-toggle-on:before;
-    color: #27AE61;
+    color: $btnColor;
 }
 
 .#{$prefixClass}-highlight {

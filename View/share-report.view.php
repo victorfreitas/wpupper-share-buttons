@@ -51,6 +51,8 @@ class WPUSB_Sharing_Report_View
 					<?php $list_table->search_box( $text_button, $prefix ); ?>
 				</form>
 
+				<?php WPUSB_Settings_View::menu_top(); ?>
+
 				<?php $list_table->display(); ?>
 
 			</div>

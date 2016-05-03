@@ -1,0 +1,17 @@
+.#{$prefixClass}-fixed-top {
+    background: #FFFFFF;
+    box-shadow: 0 0 6px #B1B1B1;
+    left: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 5px 0px;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    z-index: 1100;
+
+    .#{$prefixClass}-item {
+        margin-bottom: 0;
+    }
+}

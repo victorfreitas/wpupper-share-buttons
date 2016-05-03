@@ -229,6 +229,22 @@ class WPUSB_Setting
 	private $fixed;
 
 	/**
+	 * Layout scroll fixed top
+	 *
+	 * @since 1.0
+	 * @var String
+	 */
+	private $fixed_top;
+
+	/**
+	 * Twitter text in share
+	 *
+	 * @since 1.0
+	 * @var String
+	 */
+	private $twitter_text;
+
+	/**
 	 * ID of post
 	 *
 	 * @since 1.0
@@ -285,6 +301,17 @@ class WPUSB_Setting
 	const TRANSIENT = 'transient-wpusb-report';
 	const TRANSIENT_SELECT_COUNT = 'transient-wpusb-report-count';
 	const TRANSIENT_GOOGLE_PLUS = 'transient-wpusb-google-plus';
+
+	/**
+	 *	Define name menus
+	 *
+	 * @since 2.8.2
+	 * @var string
+	*/
+	const HOME_SETTINGS  = 'wpusb';
+	const EXTRA_SETTINGS = 'wpusb-extra-settings';
+	const USE_OPTIONS    = 'wpusb-faq';
+	const SHARING_REPORT = 'wpusb-sharing-report';
 
 	public function __construct( $ID = false )
 	{

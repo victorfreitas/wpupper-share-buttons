@@ -37,6 +37,8 @@ class WPUSB_Settings_View extends WPUSB_Shares_View
 			<p class="description"><?php _e( 'Add the Share Buttons automatically.', WPUSB_App::TEXTDOMAIN ); ?></p>
 			<span class="<?php echo "{$prefix}-title-wrap"; ?>"><?php _e( 'Settings', WPUSB_App::TEXTDOMAIN ); ?></span>
 
+			<?php self::menu_top(); ?>
+
 			<div class="<?php echo "{$prefix}-wrap"; ?>" data-component="share-settings">
 
 			<div data-component="share-preview">
@@ -218,6 +220,27 @@ class WPUSB_Settings_View extends WPUSB_Shares_View
 									</label>
 								</td>
 							</tr>
+							<tr class="<?php echo $prefix; ?>-position-fixed-top">
+								<th scope="row">
+									<?php _e( 'Fixed Items in top', WPUSB_App::TEXTDOMAIN ); ?>
+								</th>
+								<td>
+									<input id="<?php echo $prefix; ?>-fixed-top"
+									       type="checkbox"
+										   name="<?php echo "{$option_name}[fixed_top]"; ?>"
+										   value="fixed-top"
+										   <?php checked( 'fixed-top', $model->fixed_top ); ?>>
+									<label for="<?php echo $prefix; ?>-fixed-top">
+										<span><?php _e( 'Fixed top', WPUSB_App::TEXTDOMAIN ); ?></span>
+									</label>
+
+									<p class="<?php echo $prefix; ?>-description">
+										<?php _e( 'It is activated when scrolling the page on the buttons position.', WPUSB_App::TEXTDOMAIN ); ?>
+										<strong><?php _e( 'Notice: ', WPUSB_App::TEXTDOMAIN ); ?></strong>
+										<?php _e( 'Do not use with fixed left checked.', WPUSB_App::TEXTDOMAIN ); ?>
+									</p>
+								</td>
+							</tr>
 
 							<tr class="<?php echo $prefix; ?>-info-twitter">
 								<th scope="row">
@@ -256,11 +279,45 @@ class WPUSB_Settings_View extends WPUSB_Shares_View
 	 */
 	public static function update_notice_message()
 	{
-?>
+	?>
 		<div class="updated notice is-dismissible">
 			<p><strong><?php _e( 'Settings saved.', WPUSB_App::TEXTDOMAIN ); ?></strong></p>
 			<button class="notice-dismiss"></button>
 		</div>
-<?php
+	<?php
+	}
+
+	public static function menu_top()
+	{
+		$general    = WPUSB_Setting::HOME_SETTINGS;
+		$extra      = WPUSB_Setting::EXTRA_SETTINGS;
+		$use_option = WPUSB_Setting::USE_OPTIONS;
+		$report     = WPUSB_Setting::SHARING_REPORT;
+	?>
+		<div class="<?php echo WPUSB_Setting::PREFIX; ?>-menu">
+			<ul>
+				<li<?php echo WPUSB_Utils::selected_menu( $general ); ?>>
+					<a href="<?php menu_page_url( $general ); ?>">
+						<?php _e( 'General', WPUSB_App::TEXTDOMAIN ); ?>
+					</a>
+				</li>
+				<li<?php echo WPUSB_Utils::selected_menu( $extra ); ?>>
+					<a href="<?php menu_page_url( $extra ); ?>">
+						<?php _e( 'Extra Settings', WPUSB_App::TEXTDOMAIN ); ?>
+					</a>
+				</li>
+				<li<?php echo WPUSB_Utils::selected_menu( $use_option ); ?>>
+					<a href="<?php menu_page_url( $use_option ); ?>">
+						<?php _e( 'Use options', WPUSB_App::TEXTDOMAIN ); ?>
+					</a>
+				</li>
+				<li<?php echo WPUSB_Utils::selected_menu( $report ); ?>>
+					<a href="<?php menu_page_url( $report ); ?>">
+						<?php _e( 'Sharing Report', WPUSB_App::TEXTDOMAIN ); ?>
+					</a>
+				</li>
+			</ul>
+		</div>
+	<?php
 	}
 }

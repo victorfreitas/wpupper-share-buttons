@@ -4,7 +4,7 @@
  * @package WPUpper Share Buttons
  * @author  WPUpper
  * @subpackage Utils Helper
- * @version 2.1.0
+ * @version 2.2.0
  */
 
 if ( ! function_exists( 'add_action' ) )
@@ -27,13 +27,11 @@ class WPUSB_Utils
 		if ( is_array( $class ) )
 			return $class;
 
-        $class = self::rip_tags( $class );
         $class = str_replace( '_', '-', $class );
         $class = preg_replace( '/[^a-zA-Z0-9\s-]/', '', $class );
         $class = preg_replace( '/[\s-]+/', '-', $class );
-        $class = strtolower( $class );
 
-        return $class;
+        return strtolower( $class );
 	}
 
 	/**
@@ -470,7 +468,7 @@ class WPUSB_Utils
 		if ( false !== $cache_url )
 			return $cache_url;
 
-		return static::bitly_short_url( $token, $url );
+		return self::bitly_short_url( $token, $url );
 	}
 
 	/**
@@ -547,13 +545,14 @@ class WPUSB_Utils
 	{
 		$option = self::get_option_group_name( 'settings' );
 		$value  = array(
-			'single'  => 'on',
-			'before'  => 'on',
-			'after'   => 'off',
-			'pages'   => 'off',
-			'home'    => 'off',
-			'class'   => '',
-			'layout'  => 'default',
+			'single'    => 'on',
+			'before'    => 'on',
+			'after'     => 'off',
+			'pages'     => 'off',
+			'home'      => 'off',
+			'class'     => '',
+			'layout'    => 'default',
+			'fixed_top' => '',
 		);
 		$value  = apply_filters( WPUSB_App::SLUG . '-options-settings', $value );
 
@@ -603,6 +602,7 @@ class WPUSB_Utils
 			'disable_css'       => 'off',
 			'disable_js'        => 'off',
 			'twitter_username'  => '',
+			'twitter_text'      => '',
 			'bitly_token'       => '',
 			'remove_count'      => 0,
 			'remove_inside'     => 0,
@@ -647,5 +647,22 @@ class WPUSB_Utils
 		$text = "{$twitter_text_a}%20{$title}%20-%20{$twitter_text_b}%20{$caracter}%20";
 
 		return apply_filters( WPUSB_App::SLUG . '-twitter-text', $text, $title );
+	}
+
+	/**
+	 * Add class active current page in top menu
+	 *
+	 * @since 1.0
+	 * @param String $current
+	 * @return String|NULL
+	 */
+	public static function selected_menu( $current )
+	{
+		$page = self::get( 'page' );
+
+		if ( $page === $current )
+			return ' class="active"';
+
+		return null;
 	}
 }
