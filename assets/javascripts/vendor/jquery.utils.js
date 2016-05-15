@@ -62,3 +62,5 @@
 	};
 
 })( jQuery );
+
+var wpupperCallback = function(response) {};

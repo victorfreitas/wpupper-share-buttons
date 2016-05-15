@@ -30,11 +30,8 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 	};
 
 	CounterSocialShare.prototype.addEventListeners = function() {
-		this.$el
-		    .byAction( 'open-popup' )
-		    .on( 'click', this.sendRequest.bind( this ) );
-		this.closeButtons
-		    .on( 'click', this._onCloseButtons.bind( this ) );
+		this.$el.byAction( 'open-popup' ).on( 'click', this.sendRequest.bind( this ) );
+		this.closeButtons.on( 'click', this._onCloseButtons.bind( this ) );
 	};
 
 	CounterSocialShare.prototype._onCloseButtons = function(event) {
@@ -67,7 +64,7 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 			{
 				reference : 'linkedinCounter',
 				element   : 'linkedin',
-				url       : 'https://www.linkedin.com/countserv/count/share?url=' + this.data.elementUrl
+				url       : 'https://www.linkedin.com/countserv/count/share?format=json&url=' + this.data.elementUrl
 			},
 			{
 				reference : 'pinterestCounter',
@@ -108,7 +105,7 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 		var args = $.extend({
 			data     : {},
 			dataType : 'jsonp',
-  			cache    : false
+  			cache    : false,
 		}, request )
 		 , ajax = $.ajax( args )
 	    ;
@@ -125,7 +122,7 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 		this[request.element].text( number );
 		this._setItem( request.element, number );
 
-		if ( !this.max ) {
+		if ( !this.max || this.max === 1 ) {
 			this._setItem( 'cache', this._timerCache( 3600 ) );
 			this.totalShare.text( this.totalCounter );
 		}
@@ -185,7 +182,9 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 	};
 
 	CounterSocialShare.prototype._getItem = function(element) {
-		return localStorage.getItem( $.prototype.hashStr( this.data.elementUrl + element ) );
+		var storage = localStorage.getItem( $.prototype.hashStr( this.data.elementUrl + element ) );
+
+		return ( null === storage ) ? 0 : storage;
 	};
 
 	CounterSocialShare.prototype._setItem = function(element, value) {
