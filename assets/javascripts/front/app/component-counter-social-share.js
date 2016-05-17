@@ -64,7 +64,7 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 			{
 				reference : 'linkedinCounter',
 				element   : 'linkedin',
-				url       : 'https://www.linkedin.com/countserv/count/share?format=json&url=' + this.data.elementUrl
+				url       : 'https://www.linkedin.com/countserv/count/share?url=' + this.data.elementUrl
 			},
 			{
 				reference : 'pinterestCounter',
@@ -103,12 +103,10 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 
 	CounterSocialShare.prototype._getJSON = function(request) {
 		var args = $.extend({
-			data     : {},
-			dataType : 'jsonp',
-  			cache    : false,
-		}, request )
-		 , ajax = $.ajax( args )
-	    ;
+				dataType : 'jsonp'
+			}, request )
+		  , ajax = $.ajax( args )
+		;
 
 		ajax.done( $.proxy( this, '_done', request ) );
 		ajax.fail( $.proxy( this, '_fail', request ) );
@@ -122,8 +120,8 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 		this[request.element].text( number );
 		this._setItem( request.element, number );
 
-		if ( !this.max || this.max === 1 ) {
-			this._setItem( 'cache', this._timerCache( 3600 ) );
+		if ( !this.max ) {
+			this._setItem( 'cache', this._timerCache( 900 ) );
 			this.totalShare.text( this.totalCounter );
 		}
 	};
