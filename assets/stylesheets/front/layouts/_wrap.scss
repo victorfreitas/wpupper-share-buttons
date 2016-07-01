@@ -99,16 +99,16 @@
     .#{$prefixClass}-toggle {
         @extend %transitionAll;
         @extend %icon;
-        background: #BFBFBF;
-        color: #fff;
+        color: #3e5da0;
         cursor: pointer;
         display: inline-block;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: bold;
         margin: 0;
-        padding: 0;
+        padding: 4px;
+        position: relative;
         text-align: center;
-        width: 48px;
+        top: 4px;
 
         &:before {
             @extend .#{$prefixClass}-icon-angle-double-left:before;

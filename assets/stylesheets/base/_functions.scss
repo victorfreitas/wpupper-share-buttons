@@ -28,3 +28,14 @@
 @function em( $target, $context:$fontSizeDefault ) {
 	@return flex($target, $context, "em");
 }
+
+@function get-social-colour($colour) {
+
+	@if map-has-key( $mediaColours, $colour ) {
+		@return map-get( $mediaColours, $colour );
+	}
+
+	@if type-of( $colour ) != colour {
+		@error "Invalid colour name: `#{$colour}`.";
+	}
+}
