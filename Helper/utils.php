@@ -562,13 +562,13 @@ class WPUSB_Utils
 	/**
 	 * Add options social media default
 	 *
-	 * @since 1.0
+	 * @since 2.9.3
 	 * @param Null
 	 * @return Void
 	 */
 	private static function _add_options_social_media()
 	{
-		$option = self::get_option_group_name( 'extra_settings', 'social_media' );
+		$option = self::get_option_group_name( 'social_media' );
 		$value  = array(
 			'facebook'  => 'facebook',
 			'twitter'   => 'twitter',
@@ -582,6 +582,7 @@ class WPUSB_Utils
 			'tumblr'    => 'tumblr',
 			'email'     => 'email',
 			'printer'   => 'printer',
+			'like'      => 'like',
 		);
 		$value  = apply_filters( WPUSB_App::SLUG . '-options-social-media', $value );
 

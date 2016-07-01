@@ -60,7 +60,7 @@ class WPUSB_Options_Controller
 	 */
 	private function _register_options_social_media()
 	{
-		$option = WPUSB_Utils::get_option_group_name(  'social_media', 'settings_group' );
+		$option = WPUSB_Utils::get_option_group_name( 'social_media', 'settings_group' );
 
 		register_setting( $option['group'], $option['name'] );
 	}
