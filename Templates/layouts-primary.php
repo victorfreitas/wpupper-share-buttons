@@ -87,7 +87,7 @@ EOD;
 		$classes .= " {$atts->reference->class}";
 		$classes .= " {$atts->class_second}";
 
-		return $classes;
+		return apply_filters( App::SLUG . '-classes-second-layouts-primary', $classes );
 	}
 
 	/**

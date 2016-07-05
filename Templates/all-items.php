@@ -84,5 +84,3 @@ EOD;
 		echo "</div></div>";
 	}
 }
-
-add_action( 'wp_footer', array( 'WPUSB_All_Items', 'init' ) );

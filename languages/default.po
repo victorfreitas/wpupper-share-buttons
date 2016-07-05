@@ -1,17 +1,17 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WPUpper Share Buttons 2.9.0\n"
+"Project-Id-Version: WPUpper Share Buttons 3.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2016-05-03 03:34-0300\n"
-"PO-Revision-Date: 2016-05-03 03:34-0300\n"
+"POT-Creation-Date: 2016-07-05 17:23-0300\n"
+"PO-Revision-Date: 2016-07-05 17:23-0300\n"
 "Last-Translator: \n"
 "Language-Team: WPUpper\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: _e;__\n"
@@ -21,79 +21,88 @@ msgstr ""
 "X-Poedit-SearchPath-3: Model\n"
 "X-Poedit-SearchPath-4: View\n"
 "X-Poedit-SearchPath-5: wpupper-share-buttons.php\n"
+"X-Poedit-SearchPath-6: Templates\n"
 
-#: Config/core.php:98 View/settings-extra.view.php:93
+#: Config/core.php:92 View/settings-extra.view.php:93
 msgid "I just saw"
 msgstr ""
 
-#: Config/core.php:102
+#: Config/core.php:93
 msgid "Click to see also"
 msgstr ""
 
-#: Config/core.php:118
+#: Config/core.php:107
 msgid "Share on Facebook"
 msgstr ""
 
-#: Config/core.php:124 Config/core.php:150 Config/core.php:163
-#: Config/core.php:176 Config/core.php:189 Config/core.php:202
-#: Config/core.php:241 Config/core.php:254 Config/core.php:267
+#: Config/core.php:113 Config/core.php:139 Config/core.php:152
+#: Config/core.php:165 Config/core.php:178 Config/core.php:191
+#: Config/core.php:230 Config/core.php:243 Config/core.php:256
 msgid "Share"
 msgstr ""
 
-#: Config/core.php:131 Config/core.php:137
+#: Config/core.php:120 Config/core.php:126
 msgid "Tweet"
 msgstr ""
 
-#: Config/core.php:144
+#: Config/core.php:133
 msgid "Share on Google+"
 msgstr ""
 
-#: Config/core.php:157
+#: Config/core.php:146
 msgid "Share on WhatsApp"
 msgstr ""
 
-#: Config/core.php:170
+#: Config/core.php:159
 msgid "Share on Pinterest"
 msgstr ""
 
-#: Config/core.php:183
+#: Config/core.php:172
 msgid "Share on Linkedin"
 msgstr ""
 
-#: Config/core.php:196
+#: Config/core.php:185
 msgid "Share on Tumblr"
 msgstr ""
 
-#: Config/core.php:209
+#: Config/core.php:198
 msgid "Send by email"
 msgstr ""
 
-#: Config/core.php:222
+#: Config/core.php:211
 msgid "Print via PrintFriendly"
 msgstr ""
 
-#: Config/core.php:228
+#: Config/core.php:217
 msgid "Print"
 msgstr ""
 
-#: Config/core.php:235
+#: Config/core.php:224
 msgid "Share on Telegram"
 msgstr ""
 
-#: Config/core.php:248
+#: Config/core.php:237
 msgid "Share on Skype"
 msgstr ""
 
-#: Config/core.php:261
+#: Config/core.php:250
 msgid "Share on Viber"
 msgstr ""
 
-#: Config/core.php:274
+#: Config/core.php:263
 msgid "Like on Facebook"
 msgstr ""
 
-#: Config/core.php:280
+#: Config/core.php:269
 msgid "Like"
+msgstr ""
+
+#: Config/core.php:276 Templates/layouts-primary.php:153
+msgid "Open modal social networks"
+msgstr ""
+
+#: Config/core.php:282
+msgid "More"
 msgstr ""
 
 #: Controller/settings.controller.php:46 View/settings.view.php:38
@@ -115,7 +124,7 @@ msgid "Extra Settings | WPUpper Share Buttons"
 msgstr ""
 
 #: Controller/settings.controller.php:157 View/settings-extra.view.php:37
-#: View/settings.view.php:306
+#: View/settings.view.php:325
 msgid "Extra Settings"
 msgstr ""
 
@@ -124,7 +133,7 @@ msgid "Use options | WPUpper Share Buttons"
 msgstr ""
 
 #: Controller/settings.controller.php:166 View/settings-faq.view.php:31
-#: View/settings.view.php:311
+#: View/settings.view.php:330
 msgid "Use options"
 msgstr ""
 
@@ -164,8 +173,12 @@ msgstr ""
 msgid "Sharing Report | WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/share-reports.controller.php:298 View/settings.view.php:316
+#: Controller/share-reports.controller.php:298 View/settings.view.php:335
 msgid "Sharing Report"
+msgstr ""
+
+#: Templates/square-plus.php:107
+msgid "Shares"
 msgstr ""
 
 #: View/settings-extra.view.php:36 View/settings-faq.view.php:29
@@ -249,7 +262,7 @@ msgstr ""
 msgid "Disable JS"
 msgstr ""
 
-#: View/settings-extra.view.php:204 View/settings.view.php:265
+#: View/settings-extra.view.php:204 View/settings.view.php:284
 msgid "Save Changes"
 msgstr ""
 
@@ -277,79 +290,83 @@ msgstr ""
 msgid "After content"
 msgstr ""
 
-#: View/settings.view.php:108
+#: View/settings.view.php:109
 msgid "Fixed"
 msgstr ""
 
-#: View/settings.view.php:114
+#: View/settings.view.php:115
 msgid "Social networks available"
 msgstr ""
 
-#: View/settings.view.php:134
+#: View/settings.view.php:135
 msgid "Custom class"
 msgstr ""
 
-#: View/settings.view.php:139
+#: View/settings.view.php:140
 msgid "Custom class for primary div"
 msgstr ""
 
-#: View/settings.view.php:146
+#: View/settings.view.php:147
 msgid "Layout options"
 msgstr ""
 
-#: View/settings.view.php:148
+#: View/settings.view.php:149
 msgid "All layout supports responsive"
 msgstr ""
 
-#: View/settings.view.php:159
+#: View/settings.view.php:160
 msgid "Default"
 msgstr ""
 
-#: View/settings.view.php:170
+#: View/settings.view.php:171
 msgid "Button"
 msgstr ""
 
-#: View/settings.view.php:181
+#: View/settings.view.php:182
 msgid "Rounded"
 msgstr ""
 
-#: View/settings.view.php:192
+#: View/settings.view.php:193
 msgid "Square"
 msgstr ""
 
-#: View/settings.view.php:203
+#: View/settings.view.php:204
 msgid "Square plus"
 msgstr ""
 
-#: View/settings.view.php:209
+#: View/settings.view.php:210
 msgid "Position fixed"
 msgstr ""
 
-#: View/settings.view.php:219
+#: View/settings.view.php:221
 msgid "Fixed left"
 msgstr ""
 
-#: View/settings.view.php:225
+#: View/settings.view.php:227
 msgid "Fixed Items in top"
 msgstr ""
 
-#: View/settings.view.php:234
+#: View/settings.view.php:236
 msgid "Fixed top"
 msgstr ""
 
-#: View/settings.view.php:238
+#: View/settings.view.php:240
 msgid "It is activated when scrolling the page on the buttons position."
 msgstr ""
 
-#: View/settings.view.php:239
-msgid "Notice: "
+#: View/settings.view.php:246
+msgid "Enable highlighted by reference?"
 msgstr ""
 
-#: View/settings.view.php:240
-msgid "Do not use with fixed left checked."
+#: View/settings.view.php:255
+msgid "Referrer"
 msgstr ""
 
-#: View/settings.view.php:252
+#: View/settings.view.php:259
+msgid "This allows highlight the social network where the user Came from."
+msgstr ""
+
+#: View/settings.view.php:271
 msgid ""
 "The share count Twitter is powered by <a href=\"http://newsharecounts.com\" "
 "target=\"_blank\">newsharecounts.com</a>, you have to sign up with your "
@@ -358,11 +375,11 @@ msgid ""
 "That, and nothing else!"
 msgstr ""
 
-#: View/settings.view.php:284
+#: View/settings.view.php:303
 msgid "Settings saved."
 msgstr ""
 
-#: View/settings.view.php:301
+#: View/settings.view.php:320
 msgid "General"
 msgstr ""
 
@@ -376,8 +393,4 @@ msgstr ""
 
 #: View/share-report.view.php:29
 msgid "minutes"
-msgstr ""
-
-#: View/shares.view.php:298
-msgid "Shares"
 msgstr ""

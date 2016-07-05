@@ -256,7 +256,7 @@ class WPUSB_Settings_View
 									</label>
 
 									<p class="<?php echo $prefix; ?>-description">
-										<?php _e( 'This allows highlight the social network where the user Camé from.', WPUSB_App::TEXTDOMAIN ); ?>
+										<?php _e( 'This allows highlight the social network where the user Came from.', WPUSB_App::TEXTDOMAIN ); ?>
 									</p>
 								</td>
 							</tr>

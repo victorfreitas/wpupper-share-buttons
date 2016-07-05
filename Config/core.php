@@ -279,7 +279,7 @@ class WPUSB_Core
 				'class_link'  => $class_button,
 				'class_icon'  => "{$prefix}-icon-share",
 				'popup'       => 'data-action="open-modal-networks"',
-				'inside'      => 'More',
+				'inside'      => __( 'More', WPUSB_App::TEXTDOMAIN ),
 				'has_counter' => false,
 			),
 		);

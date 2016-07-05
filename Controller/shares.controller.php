@@ -64,9 +64,8 @@ class WPUSB_Shares_Controller
 	{
 		$position = $this->_check_position();
 
-		if ( $position && ( $this->_is_single() || $this->_is_page() || $this->_is_home() ) ) :
+		if ( $position && $this->_is_active() ) :
 			$buttons = apply_filters( $this->_filter, $this->buttons_share() );
-
 			switch ( $position ) :
 				case 'full' :
 		      		$new_content  = $buttons;
@@ -118,7 +117,7 @@ class WPUSB_Shares_Controller
 	 */
 	protected function _is_page()
 	{
-		if ( ( is_page() || is_page_template() )  && Utils::option( 'pages' ) === 'on' )
+		if ( ( is_page() || is_page_template() ) && Utils::option( 'pages' ) === 'on' )
 			return true;
 
 		return false;
@@ -148,10 +147,12 @@ class WPUSB_Shares_Controller
 	 */
 	public function buttons_fixed()
 	{
+		$this->_modal();
+
 		if ( ! Utils::is_position_fixed() )
 			return;
 
-		if ( $this->_is_single() || $this->_is_page() || $this->_is_home() ) {
+		if ( $this->_is_active() ) {
 			$buttons = $this->buttons_share( array(), true );
 
 			echo apply_filters( "{$this->_filter}-fixed", $buttons );
@@ -221,5 +222,30 @@ class WPUSB_Shares_Controller
 		);
 
 		return Utils::get_buttons( $args, $fixed );
+	}
+
+	/**
+	 * Verify is active page option
+	 *
+	 * @since 1.0
+	 * @param Null
+	 * @return Boolean
+	 */
+	protected function _is_active()
+	{
+		return ( $this->_is_single() || $this->_is_page() || $this->_is_home() );
+	}
+
+	/**
+	 * Adding in footer html modal social networks
+	 *
+	 * @since 1.0
+	 * @param Null
+	 * @return Void
+	 */
+	protected function _modal()
+	{
+		if ( $this->_is_active() )
+			WPUSB_All_Items::init();
 	}
 }

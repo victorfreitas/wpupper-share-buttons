@@ -86,7 +86,7 @@ EOD;
 		$classes .= " {$atts->reference->class}";
 		$classes .= " {$atts->class_second}";
 
-		return $classes;
+		return apply_filters( App::SLUG . '-classes-second-fixed-left', $classes );
 	}
 
 	/**
@@ -131,7 +131,7 @@ EOD;
 		$classes .= " {$atts->position_fixed}";
 		$classes .= " {$atts->class_first} {$atts->custom_class}";
 
-		return $classes;
+		return apply_filters( App::SLUG . '-classes-first-fixed-left', $classes );
 	}
 
 	/**

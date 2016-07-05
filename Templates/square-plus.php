@@ -91,7 +91,7 @@ EOD;
 		if ( Utils::is_first() && Utils::is_active_inside( $atts->elements ) )
 			$classes .= " {$atts->prefix}-inside {$atts->prefix}-full";
 
-		return $classes;
+		return apply_filters( App::SLUG . '-classes-second-square-plus', $classes );
 	}
 
 	/**

@@ -105,6 +105,7 @@ The following plugins are recommended
 * Improving animation on hover of fixed buttons left.
 * Enabling highlight of buttons by reference.
 * internal improvements.
+* Updating translations.
 * Update fonts.
 * Bug fixes.
 
@@ -352,5 +353,6 @@ The following plugins are recommended
 * Improving animation on hover of fixed buttons left.
 * Enabling highlight of buttons by reference.
 * internal improvements.
+* Updating translations.
 * Update fonts.
 * Bug fixes.

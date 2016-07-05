@@ -72,6 +72,7 @@ Layout options: default, buttons, rounded, square
 * Improving animation on hover of fixed buttons left.
 * Enabling highlight of buttons by reference.
 * internal improvements.
+* Updating translations.
 * Update fonts.
 * Bug fixes.
 
