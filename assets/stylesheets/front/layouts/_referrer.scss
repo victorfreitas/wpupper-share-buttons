@@ -1,0 +1,21 @@
+.#{$prefixClass} .#{$prefixClass}-referrer {
+    float: left;
+    margin-left: 0;
+    width: 100%;
+
+    .#{$prefixClass}-button {
+	    padding: 6px;
+	    text-align: center;
+	    width: 100%;
+    }
+}
+
+.#{$prefixClass}-square-plus .#{$prefixClass}-referrer {
+	display: table;
+	height: 36px;
+}
+
+@include featured-referrer( facebook, $colorfacebook );
+@include featured-referrer( google-plus, $colorGooglePlus );
+@include featured-referrer( twitter, $colorTwitter );
+@include featured-referrer( linkedin, $colorLinkedin );

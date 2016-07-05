@@ -1,0 +1,157 @@
+.#{$prefixClass}-popup-content {
+	opacity: 0;
+
+	&:after {
+		background-color: rgba( 0, 0, 0, .6 );
+		content: '';
+		display: block;
+		height: 100%;
+		left: 0;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: 9999;
+	}
+
+	.#{$prefixClass}-networks {
+		background: #fff;
+		border-radius: 5px;
+		padding: 5px 0;
+		position: fixed;
+		max-width: 600px;
+		max-height: 280px;
+		overflow: auto;
+		z-index: 99999;
+	}
+
+	.#{$prefixClass}-btn-close {
+		background: #e74c3c;
+		border-radius: 5px;
+		bottom: 5px;
+		color: #fff;
+		cursor: pointer;
+		font-family: Arial, Sans-serif;
+		font-size: 12px;
+		line-height: 0.5;
+		padding: 6px;
+		position: absolute;
+		right: 5px;
+
+		&:hover {
+			background: darken( #e74c3c, 10% );
+		}
+	}
+
+	.#{$prefixClass}-element-popup {
+		display: inline-block;
+		max-width: 192px;
+		width: 100%;
+	}
+
+	.#{$prefixClass}-name-popup {
+		font-family: Arial, Sans-serif;
+		font-size: 14px;
+		font-weight: bold;
+		left: 6px;
+		position: relative;
+		top: -3px;
+
+		&:before {
+			content: attr( data-name );
+		}
+	}
+
+	.#{$prefixClass}-button-popup {
+		border-radius: 4px;
+		color: #fff;
+		display: inline-block;
+		margin: 3% 0 0 4%;
+		padding: 8px 4px;
+		text-align: left;
+		text-indent: 10px;
+		width: 100%;
+	}
+
+	.#{$prefixClass}-icon-popup {
+	    font-size: 22px;
+	}
+
+	@media ( max-width: $tablet ) {
+		.#{$prefixClass}-btn-close {
+			display: none;
+		}
+
+		.#{$prefixClass}-networks {
+			max-width: 415px;
+		}
+	}
+
+	@media ( max-width: $mobile ) {
+		.#{$prefixClass}-networks {
+			max-width: 205px;
+		}
+	}
+}
+
+@each $key, $color in $colors {
+	.#{$prefixClass}-#{$key}-popup {
+		background-color: $color;
+
+		&:hover {
+			background-color: darken( $color, 10% );
+		}
+	}
+}
+
+.#{$prefixClass}-popup-open-networks {
+	display: inline-block;
+	text-align: center;
+
+	.#{$prefixClass}-btn-open {
+		background: #444141;
+		color: #eaeaea;
+		display: inline-block;
+		font-size: 25px;
+		height: 48px;
+		line-height: 48px;
+		text-align: center;
+		width: 48px;
+
+		&:focus {
+			outline: none;
+		}
+
+		i {
+		    margin-right: 5px;
+		}
+	}
+
+	@media ( max-width: $tablet ) {
+	    display: table-cell;
+
+		.#{$prefixClass}-btn-open {
+			display: block;
+			font-size: 32px;
+			line-height: 52px;
+			width: auto;
+		}
+	}
+}
+
+.#{$prefixClass}-primary-item {
+		font-family: Arial;
+		margin-bottom: 10px;
+		margin-left: 10px;
+		vertical-align: middle;
+
+	.#{$prefixClass}-btn-open {
+		background: transparent;
+		border-bottom: none;
+		color: #0080b0;
+		height: initial;
+		line-height: 1;
+		position: relative;
+		top: 3px;
+		width: initial;
+	}
+}

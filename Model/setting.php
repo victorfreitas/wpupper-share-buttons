@@ -2,7 +2,7 @@
 /**
  *
  * @package WPUpper Share Buttons
- * @author  WPUpper
+ * @author  Victor Freitas
  * @subpackage Settings Model
  * @version 1.3.0
  */
@@ -259,6 +259,14 @@ class WPUSB_Setting
 	 * @var String
 	 */
 	private $bitly_token;
+
+	/**
+	 * Featured by referrence
+	 *
+	 * @since 1.0
+	 * @var String
+	 */
+	private $referrer;
 
 	/**
 	 * Plugin general prefix

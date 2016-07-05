@@ -85,3 +85,26 @@
         }
     }
 }
+
+@mixin featured-referrer($element, $color) {
+    .#{$prefixClass} .#{$prefixClass}-referrer-#{$element} {
+        .#{$prefixClass}-button {
+            background: $color;
+            border-radius: 3px;
+            color: $colorWhite;
+
+            i {
+                color: $colorWhite;
+            }
+
+            &:hover i {
+                color: $colorWhite;
+            }
+
+            &:hover {
+                color: $colorWhite;
+                background: darken( $color, 10% );
+            }
+        }
+    }
+}

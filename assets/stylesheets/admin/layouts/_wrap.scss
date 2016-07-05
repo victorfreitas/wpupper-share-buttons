@@ -73,6 +73,7 @@ $_itemsAvailable : 'items-available';
 // ----------------------------------------------------------------------------
 @include input-remove( 'fixed-left' );
 @include input-remove( 'fixed-top' );
+@include input-remove( 'referrer' );
 // ----------------------------------------------------------------------------
 // -- Advanced selector > Extra settings > Remove elements
 // ----------------------------------------------------------------------------
@@ -86,7 +87,8 @@ $_itemsAvailable : 'items-available';
 .#{$prefixClass}-layout-options,
 .#{$prefixClass}-remove-elements,
 .#{$prefixClass}-position-fixed,
-.#{$prefixClass}-position-fixed-top {
+.#{$prefixClass}-position-fixed-top,
+.#{$prefixClass}-referrer {
     input + label {
         background: #F6FBFD;
         border-radius: 5px;
@@ -105,7 +107,8 @@ $_itemsAvailable : 'items-available';
 .#{$prefixClass}-#{$_itemsAvailable},
 .#{$prefixClass}-layout-options,
 .#{$prefixClass}-position-fixed,
-.#{$prefixClass}-position-fixed-top {
+.#{$prefixClass}-position-fixed-top,
+.#{$prefixClass}-referrer {
     input + label:before {
         background: $btnColor;
     }
@@ -116,7 +119,8 @@ $_itemsAvailable : 'items-available';
 .#{$prefixClass}-layout-options,
 .#{$prefixClass}-remove-elements,
 .#{$prefixClass}-position-fixed,
-.#{$prefixClass}-position-fixed-top {
+.#{$prefixClass}-position-fixed-top,
+.#{$prefixClass}-referrer {
     input + label:before {
         border-radius: 5px;
         bottom: 0;
@@ -142,12 +146,12 @@ $_itemsAvailable : 'items-available';
 @include social-item( $colorViber, viber, "\e914" );
 @include social-item( $colorLinkedin, linkedin, "\eac9" );
 @include social-item( $colorTumblr, tumblr, "\e60d" );
-@include social-item( $colorEmail, email, "\e605" );
+@include social-item( $colorEmail, email, "\f003" );
 @include social-item( $colorPrint, printer, "\e607" );
 @include social-item( $colorYouTube, youtube, "\f167" );
 @include social-item( $colorInstagram, instagram, "\e905" );
 @include social-item( $colorfacebookLike, like, "\f088" );
-@include social-item( $btnColor, share, "\f0fe" );
+@include social-item( $btnColor, share, "\f1e0" );
 
 .#{$prefixClass}-social-networks {
     input + label:after {
@@ -167,7 +171,8 @@ $_itemsAvailable : 'items-available';
 .#{$prefixClass}-layout-options,
 .#{$prefixClass}-remove-elements,
 .#{$prefixClass}-position-fixed,
-.#{$prefixClass}-position-fixed-top {
+.#{$prefixClass}-position-fixed-top,
+.#{$prefixClass}-referrer {
     input:checked + label:before {
         width: 100%;
     }

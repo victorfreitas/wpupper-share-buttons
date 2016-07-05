@@ -9,8 +9,6 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 		this.inputOrder    = this.container.byElement( 'order' );
 		this.layoutOptions = $( '.layout-preview' );
 		this.elements      = $( '.wpusb-select-item input' );
-		this.contentBefore = $( '#' + this.prefix + '-before:checked' );
-		this.contentAfter  = $( '#' + this.prefix + '-after:checked' );
 		this.init();
 	};
 
@@ -25,22 +23,15 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 	};
 
 	SharePreview.prototype._onClickLayout = function(event) {
-		if ( 'fixed-left' !== event.currentTarget.value ) {
-			$( '.layout-fixed, .wpusb-fixed' ).prop( 'checked', false );
-
-			if ( this.contentAfter.length ) {
-				this.contentAfter.prop( 'checked', true );
-			}
-
-			if ( this.contentBefore.length ) {
-				this.contentBefore.prop( 'checked', true );
-			}
-		}
-
+		this.layout = event.currentTarget.value;
 		this._onClick();
 	};
 
 	SharePreview.prototype._onClick = function(event) {
+		if ( event ) {
+			this.layout = $( '.layout-preview:checked' ).val();
+		}
+
 		this._update();
 		this._stop();
 	};
@@ -60,7 +51,6 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 
 	SharePreview.prototype._update = function(event, ui) {
 		this.layoutPreview = $( '.layout-preview:checked' );
-		this.layout        = this.layoutName();
 		this.itemsOrder    = this.sort.sortable( 'toArray' );
 		this.inputOrder.val( JSON.stringify( this.itemsOrder ) );
 	};
@@ -112,16 +102,6 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 	SharePreview.prototype.render = function(response) {
 		return WPUPPER.Templates[this.templateName()]
 		                .call( null, response );
-	};
-
-	SharePreview.prototype.layoutName = function() {
-		var layout = this.layoutPreview;
-
-		if ( layout[1] ) {
-			return $( layout[1] ).val();
-		}
-
-		return layout.val();
 	};
 
 	SharePreview.prototype.templateName = function() {

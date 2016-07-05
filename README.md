@@ -5,7 +5,7 @@ Donate link: [Donate Now](https://www.redcross.org/donate/donation)
 Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email form, social media buttons, click to tweet, pinterest, linkedin.  
 Requires at least: 3.0.0  
 Tested up to: 4.5.3  
-Stable tag: 2.9.3  
+Stable tag: 3.0.0  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -61,6 +61,19 @@ Layout options: default, buttons, rounded, square
 4. Using the content editor -> [wpusb class_first="" class_second="" class_link="" class_icon="" layout="default" remove_inside="0" remove_counter="0"]  
 
 ## Changelog
+
+### 3.0.0
+
+* Enabling modal to show all buttons.
+* Adding one more button to open modal social networks.
+* Exchanging email color and icon.
+* Improvements buttons.
+* Enabling the possibility of having fixed buttons on the left and content.
+* Improving animation on hover of fixed buttons left.
+* Enabling highlight of buttons by reference.
+* internal improvements.
+* Update fonts.
+* Bug fixes.
 
 ### 2.9.3
 * Bug fixed checked persistent items in admin settings

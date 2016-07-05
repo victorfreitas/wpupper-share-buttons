@@ -10,8 +10,6 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 		this.pinterest        = this.$el.byElement( 'pinterest' );
 		this.linkedin         = this.$el.byElement( 'linkedin' );
 		this.totalShare       = this.$el.byElement( 'total-share' );
-		this.buttons          = this.$el.byElement( 'buttons' );
-		this.closeButtons     = SB.vars.body.byAction( 'close-buttons' );
 		this.totalCounter     = 0;
 		this.facebookCounter  = 0;
 		this.twitterCounter   = 0;
@@ -24,6 +22,7 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 	};
 
 	CounterSocialShare.prototype.init = function() {
+		SB.FeaturedReferrer.create( this.$el );
 		SB.OpenPopup.create( this.$el );
 		this.addEventListeners();
 		this.request();
@@ -31,16 +30,7 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 
 	CounterSocialShare.prototype.addEventListeners = function() {
 		this.$el.byAction( 'open-popup' ).on( 'click', this.sendRequest.bind( this ) );
-		this.closeButtons.on( 'click', this._onCloseButtons.bind( this ) );
-	};
-
-	CounterSocialShare.prototype._onCloseButtons = function(event) {
-		var iconRight = this.prefix + 'icon-right'
-		  , active    = this.prefix + 'toggle-active';
-		event.preventDefault();
-
-		this.buttons.toggleClass( this.prefix + 'buttons' );
-		this.closeButtons.toggleClass( iconRight + ' ' + active );
+		SB.ToggleButtons.create( this.$el.data( 'element' ), this.$el );
 	};
 
 	CounterSocialShare.prototype.request = function() {

@@ -2,7 +2,7 @@
 /**
  *
  * @package WPUpper Share Buttons
- * @author  WPUpper
+ * @author  Victor Freitas
  * @subpackage Controller Sharing Report
  * @version 2.3.0
  */

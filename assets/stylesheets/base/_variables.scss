@@ -5,7 +5,7 @@ $size               : 35px;
 $tablet             : 769px;
 $mobile             : 521px;
 // ===================================================
-// --         Variables Social Media > Color
+// --       Variables Social Media > Colors
 // ===================================================
 $colorfacebook      : #3b5998;
 $colorfacebookLike  : #4C63A5;
@@ -26,8 +26,34 @@ $colorViber         : #8f5db7;
 $colorVine			: #00bf8f;
 $colorVK			: #45668e;
 $colorRss			: #f26522;
+$colorShare         : #014e6b;
 $bgAdmin            : #f6fbfd;
 $btnColor           : #0085BA;
+$colorWhite         : #ffffff;
+$colors             : (
+	facebook    : $colorfacebook,
+	like        : $colorfacebookLike,
+	twitter     : $colorTwitter,
+	google-plus : $colorGooglePlus,
+	email       : $colorEmail,
+	printer     : $colorPrint,
+	pinterest   : $colorPinterest,
+	linkedin    : $colorLinkedin,
+	tumblr      : $colorTumblr ,
+	whatsapp    : $colorWhatsapp,
+	youTube     : $colorYouTube,
+	instagram   : $colorInstagram,
+	flickr      : $colorFlickr,
+	telegram    : $colorTelegram,
+	skype       : $colorSkype,
+	viber       : $colorViber,
+	vine		: $colorVine,
+	vK			: $colorVK,
+	rss			: $colorRss,
+	bgAdmin     : $bgAdmin,
+	btnColor    : $btnColor,
+	share       : $colorShare
+);
 // ===================================================
 // --              Variables > Prefix
 // ===================================================

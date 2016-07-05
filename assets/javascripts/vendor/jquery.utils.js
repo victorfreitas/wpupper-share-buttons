@@ -8,6 +8,10 @@
 		return this.find( '[data-action="' + name + '"]' );
 	};
 
+	$.prototype.byReferrer = function(name) {
+		return this.find( '[data-referrer="' + name + '"]' );
+	};
+
 	$.prototype.byComponent = function(name) {
 		return this.find( '[data-component="' + name + '"]' );
 	};

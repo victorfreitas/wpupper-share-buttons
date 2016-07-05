@@ -5,7 +5,7 @@
 /*
 	Plugin Name: WPUpper Share Buttons
 	Plugin URI:  https://github.com/victorfreitas
-	Version:     2.9.3
+	Version:     3.0.0
 	Author:      WPUpper
 	Author URI:  https://github.com/victorfreitas
 	License:     GPL2
@@ -14,7 +14,7 @@
 	Description: Insert share buttons of social networks. The buttons are inserted automatically or can be called via shortcode or php method.
 */
 /*
-	Copyright 2016 WPUpper Share Buttons
+	Copyright 2016 WPUpper Share Buttons by Victor Freitas (victorfreitas1@gmail.com)
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License, version 2, as
@@ -56,7 +56,7 @@ class WPUSB_App
      *
      * @var String
      */
-	const VERSION = '2.9.3';
+	const VERSION = '3.0.0';
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -75,8 +75,38 @@ class WPUSB_App
 
 		require_once( "{$dirname}{$sep}{$location}{$sep}{$class}.{$extension}" );
 	}
+
+	/**
+	 * Automatic list files in
+	 * Helpers, Controllers and Templates.
+	 *
+	 * @since 3.0.0
+	 * @return Array
+	 */
+	public static function get_files()
+	{
+		$root    = dirname( self::FILE );
+		$pattern = "{$root}{/Helper/,/Controller/,/Templates/}*.php";
+		$files   = glob( $pattern, GLOB_BRACE );
+
+		return ( is_null( $files ) ) ? array() : $files;
+	}
+
+	/**
+	 * Automatic include files in
+	 * Helpers, Controllers and Templates.
+	 *
+	 * @since 3.0.0
+	 * @return Void
+	 */
+	public static function require_files()
+	{
+		$files = WPUSB_App::get_files();
+
+		foreach( $files as $key => $file )
+			require_once( $file );
+	}
 }
 
 WPUSB_App::uses( 'core', 'Config' );
-
-$core = new WPUSB_Core();
+new WPUSB_Core();

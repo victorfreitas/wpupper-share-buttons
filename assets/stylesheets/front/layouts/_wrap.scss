@@ -141,7 +141,7 @@
         .#{$prefixClass}-button:hover {
             padding: 0 20px;
             text-decoration: none;
-            width: 100%;
+            width: 100px;
         }
     }
 }
@@ -156,7 +156,7 @@
 .#{$prefixClass}-total-share {
     span {
         font-family: Arial;
-        font-size: 15px;
+        font-size: 13px;
     }
 }
 // ===================================================

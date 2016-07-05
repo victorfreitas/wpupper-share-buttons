@@ -2,7 +2,7 @@
 /**
  *
  * @package WPUpper Share Buttons
- * @author  WPUpper
+ * @author  Victor Freitas
  * @subpackage Settings Controller
  * @version 2.0.0
  */

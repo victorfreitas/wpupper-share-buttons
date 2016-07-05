@@ -2,7 +2,7 @@
 /**
  *
  * @package WPUpper Share Buttons
- * @author  WPUpper
+ * @author  Victor Freitas
  * @subpackage View Admin Page
  * @version 1.4.0
  */

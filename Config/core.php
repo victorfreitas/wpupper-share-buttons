@@ -3,22 +3,18 @@
  *
  * @package WPUpper Share Buttons
  * @subpackage Functions
- * @author  WPUpper
- * @version 3.0.0
+ * @author  Victor Freitas
+ * @since 3.0.0
+ * @version 1.0
  */
-
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
 
-//Utils
-WPUSB_App::uses( 'utils', 'Helper' );
-
-//Controller
-WPUSB_App::uses( 'ajax', 'Controller' );
-WPUSB_App::uses( 'shares', 'Controller' );
-WPUSB_App::uses( 'options', 'Controller' );
-WPUSB_App::uses( 'settings', 'Controller' );
-WPUSB_App::uses( 'share-reports', 'Controller' );
+/*
+* Automatic include files
+* in Helper, Controller and Templates
+*/
+WPUSB_App::require_files();
 
 class WPUSB_Core
 {
@@ -271,6 +267,19 @@ class WPUSB_Core
 				'class_icon'  => "{$prefix}-icon-like",
 				'popup'       => $action,
 				'inside'      => __( 'Like', WPUSB_App::TEXTDOMAIN ),
+				'has_counter' => false,
+			),
+			'share'  => array(
+				'name'        => 'Modal Share',
+				'element'     => 'share',
+				'link'        => "#",
+				'title'       => __( 'Open modal social networks', WPUSB_App::TEXTDOMAIN ),
+				'class'       => "{$prefix}-share",
+				'class_item'  => $item,
+				'class_link'  => $class_button,
+				'class_icon'  => "{$prefix}-icon-share",
+				'popup'       => 'data-action="open-modal-networks"',
+				'inside'      => 'More',
 				'has_counter' => false,
 			),
 		);

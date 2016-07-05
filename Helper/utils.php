@@ -2,7 +2,7 @@
 /**
  *
  * @package WPUpper Share Buttons
- * @author  WPUpper
+ * @author  Victor Freitas
  * @subpackage Utils Helper
  * @version 2.2.0
  */
@@ -10,7 +10,7 @@
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
 
-class WPUSB_Utils
+class WPUSB_Utils extends WPUSB_Utils_Share
 {
 	/**
 	 * Escape string for atribute class
@@ -28,8 +28,7 @@ class WPUSB_Utils
 			return $class;
 
         $class = str_replace( '_', '-', $class );
-        $class = preg_replace( '/[^a-zA-Z0-9\s-]/', '', $class );
-        $class = preg_replace( '/[\s-]+/', '-', $class );
+        $class = preg_replace( '/[^a-zA-Z0-9\s-]|[\s-]+/', '', $class );
 
         return strtolower( $class );
 	}
@@ -45,15 +44,15 @@ class WPUSB_Utils
 	*/
 	public static function post( $key, $default = '', $sanitize = 'rip_tags' )
 	{
-		if ( ! isset( $_POST[$key] ) || empty( $_POST[$key] ) )
+		$post = filter_input_array( INPUT_POST, FILTER_SANITIZE_STRING );
+
+		if ( ! isset( $post[$key] ) || empty( $post[$key] ) )
 			return $default;
 
-		$value = $_POST[$key];
+		if ( is_array( $post[$key] ) )
+			return self::rip_tags( $post[$key] );
 
-		if ( is_array( $value ) )
-			return self::rip_tags( $value );
-
-		return self::sanitize( $value, $sanitize );
+		return self::sanitize( $post[$key], $sanitize );
 	}
 
 	/**
@@ -67,15 +66,15 @@ class WPUSB_Utils
 	*/
 	public static function get( $key, $default = '', $sanitize = 'rip_tags' )
 	{
-		if ( ! isset( $_GET[$key] ) || empty( $_GET[$key] ) )
+		$get = filter_input_array( INPUT_GET, FILTER_SANITIZE_STRING );
+
+		if ( ! isset( $get[$key] ) || empty( $get[$key] ) )
 			return $default;
 
-		$value = $_GET[$key];
+		if ( is_array( $get[$key] ) )
+			return self::rip_tags( $get[$key] );
 
-		if ( is_array( $value ) )
-			return self::rip_tags( $value );
-
-		return self::sanitize( $value, $sanitize );
+		return self::sanitize( $get[$key], $sanitize );
 	}
 
 	/**
@@ -665,5 +664,17 @@ class WPUSB_Utils
 			return ' class="active"';
 
 		return null;
+	}
+
+	/**
+	 * Ferify is button fixed in top
+	 *
+	 * @since 1.0
+	 * @param Null
+	 * @return String
+	 */
+	public static function is_fixed_top()
+	{
+		return self::option( 'fixed_top', false );
 	}
 }

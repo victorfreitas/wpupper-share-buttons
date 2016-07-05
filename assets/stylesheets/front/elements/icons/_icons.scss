@@ -118,7 +118,7 @@
 	@extend .#{$prefixClass}-icon-like:before;
 }
 .#{$prefixClass}-icon-share-buttons:before {
-	@extend .#{$prefixClass}-icon-plus-square:before;
+	@extend .#{$prefixClass}-icon-share:before;
 }
 // ===================================================
 // --               Rounded, Square
@@ -129,10 +129,6 @@
 }
 .#{$prefixClass}-icon-whatsapp-square:before {
 	@extend .#{$prefixClass}-icon-whatsapp:before;
-}
-.#{$prefixClass}-icon-share-square:before,
-.#{$prefixClass}-icon-share-rounded:before {
-	@extend .#{$prefixClass}-icon-plus-square:before;
 }
 // ===================================================
 // --               Square Plus
@@ -176,9 +172,6 @@
 .#{$prefixClass}-icon-flickr-square-plus:before {
 	@extend .#{$prefixClass}-icon-flickr:before;
 }
-.#{$prefixClass}-icon-share-square-plus:before {
-	@extend .#{$prefixClass}-icon-plus-square:before;
-}
 .#{$prefixClass}-icon-vine-square-plus:before {
 	@extend .#{$prefixClass}-icon-vine:before;
 }
@@ -199,4 +192,13 @@
 }
 .#{$prefixClass}-icon-like-square-plus:before {
 	@extend .#{$prefixClass}-icon-like:before;
+}
+.#{$prefixClass}-icon-share-square-plus:before {
+	@extend .#{$prefixClass}-icon-share:before;
+}
+// ===================================================
+// --               Networks Popup
+// ===================================================
+.#{$prefixClass}-icon-close:before {
+	@extend .#{$prefixClass}-icon-remove:before;
 }

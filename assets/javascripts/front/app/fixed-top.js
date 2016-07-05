@@ -8,6 +8,7 @@ WPUPPER( 'SB.FixedTop', function(FixedTop, $) {
 			return;
 		}
 
+		this.$el = $( this.$el.get(0) );
         this.init();
 	};
 

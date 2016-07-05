@@ -2,7 +2,7 @@
 /**
  *
  * @package WPUpper Share Buttons
- * @author  WPUpper
+ * @author  Victor Freitas
  * @subpackage Ajax Controller
  * @version 2.0.0
  */
@@ -310,7 +310,6 @@ class WPUSB_Ajax_Controller
 
 		$items   = static::_json_decode_quoted( $items );
 		$checked = static::_json_decode_quoted( $checked );
-
 		static::_share_preview_list( $layout, $items, $checked );
 	}
 
@@ -328,6 +327,9 @@ class WPUSB_Ajax_Controller
 		$list       = array();
 		$share_args = WPUSB_Core::get_all_elements();
 		$count      = 0;
+
+		if ( ! is_array( $items ) )
+			exit(0);
 
 		foreach ( $items as $key => $element ) :
 			if ( ! in_array( $element, $checked ) )
@@ -377,8 +379,8 @@ class WPUSB_Ajax_Controller
 	 */
 	private static function _json_decode_quoted( $txt )
 	{
-		$text = str_replace( '\&quot;', '"', $txt );
-		$text = str_replace( '\\', '', $text );
+		$text = htmlspecialchars_decode( $txt );
+		$text = WPUSB_Utils::rip_tags( $text );
 
 		return json_decode( $text, true );
 	}

@@ -2,7 +2,7 @@
 /**
  *
  * @package WPUpper Share Buttons
- * @author  WPUpper
+ * @author  Victor Freitas
  * @subpackage View Admin Page
  * @version 1.4.0
  */
@@ -10,7 +10,7 @@
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
 
-class WPUSB_Settings_View extends WPUSB_Shares_View
+class WPUSB_Settings_View
 {
 	/**
 	 * Display page setting
@@ -100,6 +100,7 @@ class WPUSB_Settings_View extends WPUSB_Shares_View
 				                </td>
 								<td>
 				                	<input id="<?php echo $prefix; ?>-fixed"
+				                		   data-element="fixed"
 				                	       type="checkbox"
 				                	       class="wpusb-fixed"
 				                	       value="on" name="<?php echo "{$option_name}[fixed]"; ?>"
@@ -210,6 +211,7 @@ class WPUSB_Settings_View extends WPUSB_Shares_View
 								</th>
 								<td>
 									<input id="<?php echo $prefix; ?>-fixed-left"
+										   data-element="fixed-left"
 									       type="checkbox"
 									       class="layout-preview layout-fixed"
 										   name="<?php echo "{$option_name}[position_fixed]"; ?>"
@@ -236,8 +238,25 @@ class WPUSB_Settings_View extends WPUSB_Shares_View
 
 									<p class="<?php echo $prefix; ?>-description">
 										<?php _e( 'It is activated when scrolling the page on the buttons position.', WPUSB_App::TEXTDOMAIN ); ?>
-										<strong><?php _e( 'Notice: ', WPUSB_App::TEXTDOMAIN ); ?></strong>
-										<?php _e( 'Do not use with fixed left checked.', WPUSB_App::TEXTDOMAIN ); ?>
+									</p>
+								</td>
+							</tr>
+							<tr class="<?php echo $prefix; ?>-referrer">
+								<th scope="row">
+									<?php _e( 'Enable highlighted by reference?', WPUSB_App::TEXTDOMAIN ); ?>
+								</th>
+								<td>
+									<input id="<?php echo $prefix; ?>-referrer"
+									       type="checkbox"
+										   name="<?php echo "{$option_name}[referrer]"; ?>"
+										   value="yes"
+										   <?php checked( 'yes', $model->referrer ); ?>>
+									<label for="<?php echo $prefix; ?>-referrer">
+										<span><?php _e( 'Referrer', WPUSB_App::TEXTDOMAIN ); ?></span>
+									</label>
+
+									<p class="<?php echo $prefix; ?>-description">
+										<?php _e( 'This allows highlight the social network where the user Camé from.', WPUSB_App::TEXTDOMAIN ); ?>
 									</p>
 								</td>
 							</tr>

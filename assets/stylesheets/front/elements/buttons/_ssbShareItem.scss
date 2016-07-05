@@ -68,7 +68,7 @@
 @include icon( skype, $colorSkype );
 @include icon( viber, $colorViber );
 @include icon( like, $colorfacebookLike );
-@include icon( share, $btnColor );
+@include icon( share, $colorShare );
 // ===================================================
 // --             Theme > Buttons
 // ===================================================
@@ -87,7 +87,7 @@
 @include icon( skype, $colorSkype, buttons );
 @include icon( viber, $colorViber, buttons );
 @include icon( like, $colorfacebookLike, buttons );
-@include icon( share, $btnColor, buttons );
+@include icon( share, $colorShare, buttons );
 // ===================================================
 // --            Theme > Square Plus
 // ===================================================
@@ -106,7 +106,7 @@
 @include icon( skype, $colorSkype, 'square-plus' );
 @include icon( viber, $colorViber, 'square-plus' );
 @include icon( like, $colorfacebookLike, 'square-plus' );
-@include icon( share, $btnColor, 'square-plus' );
+@include icon( share, $colorShare, 'square-plus' );
 // ===================================================
 // --            Theme > items hover
 // ===================================================
@@ -125,7 +125,7 @@
 @include items-hover( skype, $colorSkype );
 @include items-hover( viber, $colorViber );
 @include items-hover( like, $colorfacebookLike );
-@include items-hover( share, $btnColor );
+@include items-hover( share, $colorShare );
 
 .#{$prefixClass}-square .#{$prefixClass}-whatsapp i {
     background: $colorWhatsapp;
@@ -193,4 +193,16 @@
     font-size: 41px;
     position: relative;
     top: -3px;
+}
+
+.#{$prefixClass} .#{$prefixClass}-icon-email-square {
+    font-size: 42px;
+    position: relative;
+    top: -3px;
+}
+
+.fixed-left-container .#{$prefixClass}-icon-share-buttons {
+    left: -3px;
+    position: relative;
+    top: 1px;
 }
