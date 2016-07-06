@@ -7,25 +7,27 @@ WPUPPER( 'SB.FeaturedReferrer', function(FeaturedReferrer, $) {
 	};
 
 	FeaturedReferrer.init = function() {
-		this.setReferrer( document.referrer );
+		if ( this.$el.attr('class').match( '-fixed' ) ) {
+			return;
+		}
+
+		this.setReferrer();
 	};
 
-	FeaturedReferrer.setReferrer = function( referrer ) {
-		var ref = referrer.replace( /(http(s)?):\/\/((www\.)?)/, '' );
-
-		if ( ~ref.indexOf( 't.co' ) ) {
+	FeaturedReferrer.setReferrer = function() {
+		if ( this.isMatch( 'twitter' ) || this.isMatch( 't' ) ) {
 			this.showReferrer( 'twitter' );
 		}
 
-		if ( ~ref.indexOf( 'google' ) ) {
+		if ( this.isMatch( 'google' ) ) {
 			this.showReferrer( 'google-plus' );
 		}
 
-		if ( ~ref.indexOf( 'facebook' ) ) {
+		if ( this.isMatch( 'facebook' ) ) {
 			this.showReferrer( 'facebook' );
 		}
 
-		if ( ~ref.indexOf( 'linkedin' ) ) {
+		if ( this.isMatch( 'linkedin' ) ) {
 			this.showReferrer( 'linkedin' );
 		}
 	};
@@ -36,6 +38,14 @@ WPUPPER( 'SB.FeaturedReferrer', function(FeaturedReferrer, $) {
 		this.$el.find( '.' + this.prefix + 'count' ).hide();
 		this.$el.byReferrer( element ).addClass( className );
 		this.$el.byReferrer( element ).addClass( className + '-' + element );
+	};
+
+	FeaturedReferrer.isMatch = function(name) {
+		var ref     = document.referrer
+		  , pattern = new RegExp( '^https?:\/\/([^\/]+\\.)?' + name + '\\.com?(\/|$)', 'i' )
+		;
+
+		return ref.match( pattern );
 	};
 
 }, {} );
