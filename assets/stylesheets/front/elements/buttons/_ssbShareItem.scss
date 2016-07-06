@@ -4,6 +4,12 @@
     display: inline-block;
     text-decoration: none;
 
+    &:hover {
+        border-bottom: none;
+        box-shadow: none;
+        text-decoration: none;
+    }
+
     i,
     span {
         display: inline-block;
@@ -51,81 +57,19 @@
         }
     }
 }
-// ===================================================
-// --              Theme > Other
-// ===================================================
-@include icon( facebook, $colorfacebook );
-@include icon( google-plus, $colorGooglePlus );
-@include icon( twitter, $colorTwitter );
-@include icon( email, $colorEmail );
-@include icon( printer, $colorPrint );
-@include icon( pinterest, $colorPinterest );
-@include icon( linkedin, $colorLinkedin );
-@include icon( tumblr, $colorTumblr );
-@include icon( whatsapp, $colorWhatsapp );
-@include icon( youtube, $colorYouTube );
-@include icon( telegram, $colorTelegram );
-@include icon( skype, $colorSkype );
-@include icon( viber, $colorViber );
-@include icon( like, $colorfacebookLike );
-@include icon( share, $colorShare );
-// ===================================================
-// --             Theme > Buttons
-// ===================================================
-@include icon( facebook, $colorfacebook, buttons );
-@include icon( google-plus, $colorGooglePlus, buttons );
-@include icon( twitter, $colorTwitter, buttons );
-@include icon( email, $colorEmail, buttons );
-@include icon( printer, $colorPrint, buttons );
-@include icon( pinterest, $colorPinterest, buttons );
-@include icon( linkedin, $colorLinkedin, buttons );
-@include icon( tumblr, $colorTumblr, buttons );
-@include icon( whatsapp, $colorWhatsapp, buttons );
-@include icon( youtube, $colorYouTube, buttons );
-@include icon( instagram, $colorInstagram, buttons );
-@include icon( telegram, $colorTelegram, buttons );
-@include icon( skype, $colorSkype, buttons );
-@include icon( viber, $colorViber, buttons );
-@include icon( like, $colorfacebookLike, buttons );
-@include icon( share, $colorShare, buttons );
-// ===================================================
-// --            Theme > Square Plus
-// ===================================================
-@include icon( facebook, $colorfacebook, 'square-plus' );
-@include icon( google-plus, $colorGooglePlus, 'square-plus' );
-@include icon( twitter, $colorTwitter, 'square-plus' );
-@include icon( email, $colorEmail, 'square-plus' );
-@include icon( printer, $colorPrint, 'square-plus' );
-@include icon( pinterest, $colorPinterest, 'square-plus' );
-@include icon( linkedin, $colorLinkedin, 'square-plus' );
-@include icon( tumblr, $colorTumblr, 'square-plus' );
-@include icon( whatsapp, $colorWhatsapp, 'square-plus' );
-@include icon( youtube, $colorYouTube, 'square-plus' );
-@include icon( instagram, $colorInstagram, 'square-plus' );
-@include icon( telegram, $colorTelegram, 'square-plus' );
-@include icon( skype, $colorSkype, 'square-plus' );
-@include icon( viber, $colorViber, 'square-plus' );
-@include icon( like, $colorfacebookLike, 'square-plus' );
-@include icon( share, $colorShare, 'square-plus' );
-// ===================================================
-// --            Theme > items hover
-// ===================================================
-@include items-hover( facebook, $colorfacebook );
-@include items-hover( google-plus, $colorGooglePlus );
-@include items-hover( twitter, $colorTwitter );
-@include items-hover( email, $colorEmail );
-@include items-hover( printer, $colorPrint );
-@include items-hover( pinterest, $colorPinterest );
-@include items-hover( linkedin, $colorLinkedin );
-@include items-hover( tumblr, $colorTumblr );
-@include items-hover( whatsapp, $colorWhatsapp );
-@include items-hover( youtube, $colorYouTube );
-@include items-hover( instagram, $colorInstagram );
-@include items-hover( telegram, $colorTelegram );
-@include items-hover( skype, $colorSkype );
-@include items-hover( viber, $colorViber );
-@include items-hover( like, $colorfacebookLike );
-@include items-hover( share, $colorShare );
+@each $key, $color in $colors {
+    // Theme > Other
+    @include icon( $key, $color );
+
+    // Theme > Buttons
+    @include icon( $key, $color, buttons );
+
+    // Theme > Square Plus
+    @include icon( $key, $color, 'square-plus' );
+
+    // Theme > items hover
+    @include items-hover( $key, $color );
+}
 
 .#{$prefixClass}-square .#{$prefixClass}-whatsapp i {
     background: $colorWhatsapp;

@@ -1,124 +1,26 @@
 // ===================================================
-// --               Default
+// --             Extend buttons dinamic
 // ===================================================
-.#{$prefixClass}-icon-facebook-default:before {
-	@extend .#{$prefixClass}-icon-facebook:before;
-}
-.#{$prefixClass}-icon-twitter-default:before {
-	@extend .#{$prefixClass}-icon-twitter:before;
-}
-.#{$prefixClass}-icon-google-plus-default:before {
-	@extend .#{$prefixClass}-icon-google-plus:before;
-}
-.#{$prefixClass}-icon-whatsapp-default:before {
-	@extend .#{$prefixClass}-icon-whatsapp:before;
-}
-.#{$prefixClass}-icon-pinterest-default:before {
-	@extend .#{$prefixClass}-icon-pinterest:before;
-}
-.#{$prefixClass}-icon-linkedin-default:before {
-	@extend .#{$prefixClass}-icon-linkedin:before;
-}
-.#{$prefixClass}-icon-tumblr-default:before {
-	@extend .#{$prefixClass}-icon-tumblr:before;
-}
-.#{$prefixClass}-icon-email-default:before {
-	@extend .#{$prefixClass}-icon-email:before;
-}
-.#{$prefixClass}-icon-printer-default:before {
-	@extend .#{$prefixClass}-icon-printer:before;
-}
-.#{$prefixClass}-icon-flickr-default:before {
-	@extend .#{$prefixClass}-icon-flickr:before;
-}
-.#{$prefixClass}-icon-youtube-default:before {
-	@extend .#{$prefixClass}-icon-youtube:before;
-}
-.#{$prefixClass}-icon-like-default:before {
-	@extend .#{$prefixClass}-icon-like:before;
-}
-.#{$prefixClass}-icon-flickr-default:before {
-	@extend .#{$prefixClass}-icon-flickr:before;
-}
-.#{$prefixClass}-icon-share-default:before {
-	@extend .#{$prefixClass}-icon-share:before;
-}
-.#{$prefixClass}-icon-vine-default:before {
-	@extend .#{$prefixClass}-icon-vine:before;
-}
-.#{$prefixClass}-icon-rss-default:before {
-	@extend .#{$prefixClass}-icon-rss:before;
-}
-.#{$prefixClass}-icon-instagram-default:before {
-	@extend .#{$prefixClass}-icon-instagram-square:before;
-}
-.#{$prefixClass}-icon-telegram-default:before {
-	@extend .#{$prefixClass}-icon-telegram:before;
-}
-.#{$prefixClass}-icon-skype-default:before {
-	@extend .#{$prefixClass}-icon-skype:before;
-}
-.#{$prefixClass}-icon-viber-default:before {
-	@extend .#{$prefixClass}-icon-viber:before;
+@each $key, $color in $colors {
+	// Buttons Default
+	.#{$prefixClass}-icon-#{$key}-default:before {
+		@extend .#{$prefixClass}-icon-#{$key}:before;
+	}
+
+	// Buttons theme
+	.#{$prefixClass}-icon-#{$key}-buttons:before {
+		@extend .#{$prefixClass}-icon-#{$key}:before;
+	}
+
+	// Buttons Square Plus
+	.#{$prefixClass}-icon-#{$key}-square-plus:before {
+		@extend .#{$prefixClass}-icon-#{$key}:before;
+	}
 }
 .#{$prefixClass}-icon-like-default:before,
 .#{$prefixClass}-icon-like-rounded:before,
 .#{$prefixClass}-icon-like-square:before {
 	@extend .#{$prefixClass}-icon-like:before;
-}
-// ===================================================
-// --               Buttons
-// ===================================================
-.#{$prefixClass}-icon-facebook-buttons:before {
-	@extend .#{$prefixClass}-icon-facebook:before;
-}
-.#{$prefixClass}-icon-twitter-buttons:before {
-	@extend .#{$prefixClass}-icon-twitter:before;
-}
-.#{$prefixClass}-icon-google-plus-buttons:before {
-	@extend .#{$prefixClass}-icon-google-plus:before;
-}
-.#{$prefixClass}-icon-whatsapp-buttons:before {
-	@extend .#{$prefixClass}-icon-whatsapp:before;
-}
-.#{$prefixClass}-icon-pinterest-buttons:before {
-	@extend .#{$prefixClass}-icon-pinterest:before;
-}
-.#{$prefixClass}-icon-linkedin-buttons:before {
-	@extend .#{$prefixClass}-icon-linkedin:before;
-}
-.#{$prefixClass}-icon-tumblr-buttons:before {
-	@extend .#{$prefixClass}-icon-tumblr:before;
-}
-.#{$prefixClass}-icon-email-buttons:before {
-	@extend .#{$prefixClass}-icon-email:before;
-}
-.#{$prefixClass}-icon-printer-buttons:before {
-	@extend .#{$prefixClass}-icon-printer:before;
-}
-.#{$prefixClass}-icon-flickr-buttons:before {
-	@extend .#{$prefixClass}-icon-flickr:before;
-}
-.#{$prefixClass}-icon-youtube-buttons:before {
-	@extend .#{$prefixClass}-icon-youtube:before;
-}
-.#{$prefixClass}-icon-instagram-buttons:before {
-	@extend .#{$prefixClass}-icon-instagram-square:before;
-}
-.#{$prefixClass}-icon-telegram-buttons:before {
-	@extend .#{$prefixClass}-icon-telegram:before;
-}
-.#{$prefixClass}-icon-skype-buttons:before {
-	@extend .#{$prefixClass}-icon-skype:before;
-}
-.#{$prefixClass}-icon-viber-buttons:before {
-	@extend .#{$prefixClass}-icon-viber:before;
-}
-.#{$prefixClass}-icon-like-buttons:before {
-	@extend .#{$prefixClass}-icon-like:before;
-}
-.#{$prefixClass}-icon-share-buttons:before {
-	@extend .#{$prefixClass}-icon-share:before;
 }
 // ===================================================
 // --               Rounded, Square
@@ -129,72 +31,6 @@
 }
 .#{$prefixClass}-icon-whatsapp-square:before {
 	@extend .#{$prefixClass}-icon-whatsapp:before;
-}
-// ===================================================
-// --               Square Plus
-// ===================================================
-.#{$prefixClass}-icon-facebook-square-plus:before {
-	@extend .#{$prefixClass}-icon-facebook:before;
-}
-.#{$prefixClass}-icon-twitter-square-plus:before {
-	@extend .#{$prefixClass}-icon-twitter:before;
-}
-.#{$prefixClass}-icon-google-plus-square-plus:before {
-	@extend .#{$prefixClass}-icon-google-plus:before;
-}
-.#{$prefixClass}-icon-whatsapp-square-plus:before {
-	@extend .#{$prefixClass}-icon-whatsapp:before;
-}
-.#{$prefixClass}-icon-pinterest-square-plus:before {
-	@extend .#{$prefixClass}-icon-pinterest:before;
-}
-.#{$prefixClass}-icon-linkedin-square-plus:before {
-	@extend .#{$prefixClass}-icon-linkedin:before;
-}
-.#{$prefixClass}-icon-tumblr-square-plus:before {
-	@extend .#{$prefixClass}-icon-tumblr:before;
-}
-.#{$prefixClass}-icon-email-square-plus:before {
-	@extend .#{$prefixClass}-icon-email:before;
-}
-.#{$prefixClass}-icon-printer-square-plus:before {
-	@extend .#{$prefixClass}-icon-printer:before;
-}
-.#{$prefixClass}-icon-flickr-square-plus:before {
-	@extend .#{$prefixClass}-icon-flickr:before;
-}
-.#{$prefixClass}-icon-youtube-square-plus:before {
-	@extend .#{$prefixClass}-icon-youtube:before;
-}
-.#{$prefixClass}-icon-like-square-plus:before {
-	@extend .#{$prefixClass}-icon-like:before;
-}
-.#{$prefixClass}-icon-flickr-square-plus:before {
-	@extend .#{$prefixClass}-icon-flickr:before;
-}
-.#{$prefixClass}-icon-vine-square-plus:before {
-	@extend .#{$prefixClass}-icon-vine:before;
-}
-.#{$prefixClass}-icon-rss-square-plus:before {
-	@extend .#{$prefixClass}-icon-rss:before;
-}
-.#{$prefixClass}-icon-instagram-square-plus:before {
-	@extend .#{$prefixClass}-icon-instagram-square:before;
-}
-.#{$prefixClass}-icon-telegram-square-plus:before {
-	@extend .#{$prefixClass}-icon-telegram:before;
-}
-.#{$prefixClass}-icon-skype-square-plus:before {
-	@extend .#{$prefixClass}-icon-skype:before;
-}
-.#{$prefixClass}-icon-viber-square-plus:before {
-	@extend .#{$prefixClass}-icon-viber:before;
-}
-.#{$prefixClass}-icon-like-square-plus:before {
-	@extend .#{$prefixClass}-icon-like:before;
-}
-.#{$prefixClass}-icon-share-square-plus:before {
-	@extend .#{$prefixClass}-icon-share:before;
 }
 // ===================================================
 // --               Networks Popup

@@ -74,6 +74,12 @@
 		text-align: left;
 		text-indent: 10px;
 		width: 100%;
+
+	    &:hover {
+	        border-bottom: none;
+	        box-shadow: none;
+	        text-decoration: none;
+	    }
 	}
 
 	.#{$prefixClass}-icon-popup {

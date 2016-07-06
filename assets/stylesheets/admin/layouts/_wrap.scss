@@ -72,22 +72,9 @@ $_itemsAvailable : 'items-available';
 // ----------------------------------------------------------------------------
 // -- Advanced selector > Settings > Social networks available
 // ----------------------------------------------------------------------------
-@include input-remove( facebook );
-@include input-remove( twitter );
-@include input-remove( 'google-plus' );
-@include input-remove( whatsapp );
-@include input-remove( telegram );
-@include input-remove( skype );
-@include input-remove( viber );
-@include input-remove( pinterest );
-@include input-remove( linkedin );
-@include input-remove( tumblr );
-@include input-remove( email );
-@include input-remove( printer );
-@include input-remove( youtube );
-@include input-remove( instagram );
-@include input-remove( like );
-@include input-remove( share );
+@each $key, $color in $colors {
+    @include input-remove( $key );
+}
 
 // ----------------------------------------------------------------------------
 // -- Advanced selector > Settings > Layout options
@@ -167,22 +154,9 @@ $_itemsAvailable : 'items-available';
 // ----------------------------------------------------------------------------
 // -- Social item > Settings > Social networks available
 // ----------------------------------------------------------------------------
-@include social-item( $colorfacebook, facebook, "\ea8c" );
-@include social-item( $colorTwitter, twitter, "\ea91" );
-@include social-item( $colorGooglePlus, 'google-plus', "\e904" );
-@include social-item( $colorWhatsapp, whatsapp, "\e610" );
-@include social-item( $colorPinterest, pinterest, "\e600" );
-@include social-item( $colorTelegram, telegram, "\f1d8" );
-@include social-item( $colorSkype, skype, "\e912" );
-@include social-item( $colorViber, viber, "\e914" );
-@include social-item( $colorLinkedin, linkedin, "\eac9" );
-@include social-item( $colorTumblr, tumblr, "\e60d" );
-@include social-item( $colorEmail, email, "\f003" );
-@include social-item( $colorPrint, printer, "\e607" );
-@include social-item( $colorYouTube, youtube, "\f167" );
-@include social-item( $colorInstagram, instagram, "\e905" );
-@include social-item( $colorfacebookLike, like, "\f088" );
-@include social-item( $btnColor, share, "\f1e0" );
+@each $key, $color in $colors {
+    @include social-item( $color, $key );
+}
 
 .#{$prefixClass}-social-networks {
     input + label:after {

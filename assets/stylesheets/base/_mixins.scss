@@ -67,7 +67,7 @@
 // ===================================================
 // --                SOCIAL ITEM
 // ===================================================
-@mixin social-item($color, $element, $content) {
+@mixin social-item($color, $element) {
     .#{$prefixClass}-social-networks {
 
         @if pinterest == $element {
@@ -81,7 +81,7 @@
         }
 
         input + .#{$prefixClass}-#{$element}-icon:after {
-            content: "#{$content}";
+            @extend .#{$prefixClass}-icon-#{$element}:before;
         }
     }
 }
