@@ -26,7 +26,6 @@ WPUPPER( 'SB.Components.SocialPopup', function(SocialPopup, $) {
 	};
 
 	SocialPopup.prototype._onClickBody = function(event) {
-		event.preventDefault();
 		var target = $( event.target ).is( this.prefix + 'popup-content' );
 
 		if ( target ) {
