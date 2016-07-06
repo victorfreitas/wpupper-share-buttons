@@ -4,13 +4,16 @@
  * @package WPUpper Share Buttons
  * @author  Victor Freitas
  * @subpackage Social Icons Display
- * @version 2.0.0
+ * @version 2.2.0
  */
 
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
 
 use WPUSB_Utils as Utils;
+
+//View
+WPUSB_App::uses( 'shares', 'View' );
 
 class WPUSB_Shares_Controller
 {
@@ -158,25 +161,13 @@ class WPUSB_Shares_Controller
 	 * Create custom class from icons
 	 *
 	 * @since 1.0
-	 * @param Array $args
-	 * @return HTML
+	 * @param Array $atts
+	 * @param Boolean $fixed
+	 * @return String
 	 */
 	public function buttons_share( $atts = array(), $fixed = false )
 	{
-		$atts = array_map( array( 'WPUSB_Utils', 'esc_class' ), $atts );
-		$args = array(
-			'class_first'  => Utils::isset_get( $atts, 'class_first' ),
-			'class_second' => Utils::isset_get( $atts, 'class_second' ),
-			'class_link'   => Utils::isset_get( $atts, 'class_link' ),
-			'class_icon'   => Utils::isset_get( $atts, 'class_icon' ),
-			'layout'       => Utils::isset_get( $atts, 'layout' ),
-			'elements'     => array(
-				'remove_inside'  => Utils::isset_get( $atts, 'remove_inside' ),
-				'remove_counter' => Utils::isset_get( $atts, 'remove_counter' ),
-			),
-		);
-
-		return Utils::get_buttons( $args, $fixed );
+		return Utils::buttons_share( $atts, $fixed );
 	}
 
 	/**

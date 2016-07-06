@@ -373,4 +373,30 @@ abstract class WPUSB_Utils_Share
 		if ( $opt_referrer === 'yes' )
 			return "data-referrer=\"{$element}\"";
 	}
+
+	/**
+	 * Create custom class from icons
+	 *
+	 * @since 1.0
+	 * @param Array $atts
+	 * @param Boolean $fixed
+	 * @return String
+	 */
+	public static function buttons_share( $atts = array(), $fixed = false )
+	{
+		$atts = array_map( array( 'WPUSB_Utils', 'esc_class' ), $atts );
+		$args = array(
+			'class_first'  => Utils::isset_get( $atts, 'class_first' ),
+			'class_second' => Utils::isset_get( $atts, 'class_second' ),
+			'class_link'   => Utils::isset_get( $atts, 'class_link' ),
+			'class_icon'   => Utils::isset_get( $atts, 'class_icon' ),
+			'layout'       => Utils::isset_get( $atts, 'layout' ),
+			'elements'     => array(
+				'remove_inside'  => Utils::isset_get( $atts, 'remove_inside' ),
+				'remove_counter' => Utils::isset_get( $atts, 'remove_counter' ),
+			),
+		);
+
+		return self::get_buttons( $args, $fixed );
+	}
 }
