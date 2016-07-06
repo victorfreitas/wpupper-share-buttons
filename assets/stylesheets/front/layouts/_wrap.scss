@@ -60,9 +60,9 @@
 // ===================================================
 // --          Items position fixed left
 // ===================================================
-.#{$prefixClass}-fixed-left {
+.#{$prefixClass}-fixed-left,
+.#{$prefixClass}-fixed-right {
     position: fixed;
-    left: 0;
     top: 23%;
     z-index: 999;
 
@@ -109,16 +109,34 @@
         position: relative;
         text-align: center;
         top: 4px;
-
-        &:before {
-            @extend .#{$prefixClass}-icon-angle-double-left:before;
-        }
     }
 
     .#{$prefixClass}-toggle-active {
         position: absolute;
         top: 20%;
         width: 20px;
+    }
+
+    div[data-element="buttons"] {
+        @extend %transitionAll;
+    }
+
+    @media ( min-width: $tablet ) {
+        .#{$prefixClass}-button:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.#{$prefixClass}-fixed-left {
+    left: 0;
+
+    .#{$prefixClass}-buttons {
+        transform: translateX( -100% );
+    }
+
+    .#{$prefixClass}-toggle:not(.#{$prefixClass}-icon-right):before {
+        @extend .#{$prefixClass}-icon-angle-double-left:before;
     }
 
     .#{$prefixClass}-icon-right {
@@ -129,19 +147,35 @@
         }
     }
 
-    div[data-element="buttons"] {
-        @extend %transitionAll;
-    }
-
-    .#{$prefixClass}-buttons {
-        transform: translateX( -100% );
-    }
-
     @media ( min-width: $tablet ) {
         .#{$prefixClass}-button:hover {
             padding: 0 20px;
-            text-decoration: none;
             width: 100px;
+        }
+    }
+}
+
+.#{$prefixClass}-fixed-right {
+    right: 0;
+
+    .#{$prefixClass}-buttons {
+        transform: translateX( 100% );
+    }
+
+    .#{$prefixClass}-toggle {
+        right: -15px;
+    }
+
+    .#{$prefixClass}-toggle:not(.#{$prefixClass}-icon-right):before {
+        @extend .#{$prefixClass}-icon-angle-double-right:before;
+    }
+
+    .#{$prefixClass}-icon-right {
+        right: 0;
+        padding: 0 5px;
+
+        &:before {
+            @extend .#{$prefixClass}-icon-angle-double-left:before;
         }
     }
 }
@@ -235,7 +269,8 @@
 // --          Layout Fixed left Mobile
 //===================================================
 @media ( max-width: $tablet ) {
-    .#{$prefixClass}-fixed-left {
+    .#{$prefixClass}-fixed-left,
+    .#{$prefixClass}-fixed-right {
         bottom: 0;
         display: block;
         left: initial;
@@ -243,7 +278,8 @@
         padding: 0;
         top: initial;
 
-        .fixed-left-container {
+        .#{$prefixClass}-fixed-left-container,
+        .#{$prefixClass}-fixed-right-container {
             display: table;
             table-layout: fixed;
             width: 100%;

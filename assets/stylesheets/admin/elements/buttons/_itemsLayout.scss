@@ -31,7 +31,8 @@ div[data-component="share-preview"] {
     }
 }
 
-.#{$prefixClass}-fixed-left {
+.#{$prefixClass}-fixed-left,
+.#{$prefixClass}-fixed-right {
     z-index: 99999;
 
     .#{$prefixClass}-item a {

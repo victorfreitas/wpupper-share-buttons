@@ -5,7 +5,7 @@
 /*
 	Plugin Name: WPUpper Share Buttons
 	Plugin URI:  https://github.com/victorfreitas
-	Version:     3.0.2
+	Version:     3.1.0
 	Author:      WPUpper
 	Author URI:  https://github.com/victorfreitas
 	License:     GPL2
@@ -56,7 +56,7 @@ class WPUSB_App
      *
      * @var String
      */
-	const VERSION = '3.0.2';
+	const VERSION = '3.1.0';
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -85,7 +85,7 @@ class WPUSB_App
 	 */
 	public static function get_files()
 	{
-		$root    = dirname( self::FILE );
+		$root    = dirname( __FILE__ );
 		$pattern = "{$root}{/Helper/,/Controller/,/Templates/}*.php";
 		$files   = glob( $pattern, GLOB_BRACE );
 
@@ -101,7 +101,7 @@ class WPUSB_App
 	 */
 	public static function require_files()
 	{
-		$files = WPUSB_App::get_files();
+		$files = self::get_files();
 
 		foreach( $files as $key => $file )
 			require_once( $file );

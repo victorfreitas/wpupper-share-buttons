@@ -2,165 +2,180 @@
 # This file is distributed under the same license as the Development (trunk) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-04-03 12:14-0300\n"
+"Project-Id-Version: Development (trunk)\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
+"buttons\n"
+"POT-Creation-Date: 2016-07-06 12:01-0300\n"
+"PO-Revision-Date: 2016-07-06 12:01-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 1.8.7.1\n"
-"Project-Id-Version: Development (trunk)\n"
-"POT-Creation-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: sk\n"
+"X-Generator: Poedit 1.8.8\n"
 
-#: View/settings.view.php:262
-msgid "WPUpper Share Buttons has been discontinued, upgrade to the new one with the same features and more, automatically install by clicking on this link <a href=\"%s\" class=\"install-now\" data-slug=\"wpupper-share-buttons\">WPUpper Share Buttons</a>."
+#: Config/core.php:92 View/settings-extra.view.php:93
+msgid "I just saw"
 msgstr ""
 
-#: View/sharing-report.view.php:31
-msgid "This report has a cache of "
+#: Config/core.php:93
+msgid "Click to see also"
 msgstr ""
 
-#: View/sharing-report.view.php:32
-msgid "minutes"
-msgstr "minúty"
+#: Config/core.php:107
+msgid "Share on Facebook"
+msgstr "Zdieľať na Facebook"
 
-#: Controller/settings.controller.php:160
-msgid "Share Buttons"
+#: Config/core.php:113 Config/core.php:139 Config/core.php:152
+#: Config/core.php:165 Config/core.php:178 Config/core.php:191
+#: Config/core.php:230 Config/core.php:243 Config/core.php:256
+msgid "Share"
+msgstr "Zdieľať"
+
+#: Config/core.php:120 Config/core.php:126
+msgid "Tweet"
+msgstr "Tweet"
+
+#: Config/core.php:133
+msgid "Share on Google+"
+msgstr "Zdieľať na Google"
+
+#: Config/core.php:146
+msgid "Share on WhatsApp"
 msgstr ""
 
-#: View/sharing-report.view.php:30
-msgid "Search"
-msgstr "Vyhľadať"
+#: Config/core.php:159
+msgid "Share on Pinterest"
+msgstr "Podiel na Pinterest"
 
-#: View/settings-extra.view.php:89
-msgid "Example: "
+#: Config/core.php:172
+msgid "Share on Linkedin"
 msgstr ""
 
-#: View/settings-extra.view.php:93
-msgid "Use <code>?</code> and"
+#: Config/core.php:185
+msgid "Share on Tumblr"
 msgstr ""
 
-#: View/settings-extra.view.php:94
-msgid "adding parameters to use <code>&</code> in the tracking."
+#: Config/core.php:198
+msgid "Send by email"
 msgstr ""
 
-#: View/settings-extra.view.php:111
-msgid "Shorten urls using bitly, generate token in "
+#: Config/core.php:211
+msgid "Print via PrintFriendly"
 msgstr ""
 
-#. #-#-#-#-#  wpupper-share-buttons.pot (WPUpper Share Buttons
-#. 2.5.1)  #-#-#-#-#
-#. Plugin URI of the plugin/theme
-#. #-#-#-#-#  wpupper-share-buttons.pot (WPUpper Share Buttons
-#. 2.5.1)  #-#-#-#-#
-#. Author URI of the plugin/theme
-msgid "https://github.com/victorfreitas"
+#: Config/core.php:217
+msgid "Print"
+msgstr "Tlačiť"
+
+#: Config/core.php:224
+msgid "Share on Telegram"
 msgstr ""
 
-#. Description of the plugin/theme
-msgid "Insert share buttons of social networks. The buttons are inserted automatically or can be called via shortcode or php method."
+#: Config/core.php:237
+msgid "Share on Skype"
 msgstr ""
 
-#. Author of the plugin/theme
-msgid "Victor Freitas"
+#: Config/core.php:250
+msgid "Share on Viber"
 msgstr ""
 
-#: View/settings.view.php:180
-msgid "Rounded"
+#: Config/core.php:263
+msgid "Like on Facebook"
 msgstr ""
 
-#: View/settings.view.php:191
-msgid "Square"
-msgstr "Štvorec"
-
-#: View/settings.view.php:202
-msgid "Square plus"
+#: Config/core.php:269
+msgid "Like"
 msgstr ""
 
-#: View/settings.view.php:208
-msgid "Position fixed"
+#: Config/core.php:276 Templates/layouts-primary.php:153
+msgid "Open modal social networks"
 msgstr ""
 
-#: View/settings.view.php:218
-msgid "Fixed left"
+#: Config/core.php:282
+msgid "More"
 msgstr ""
 
-#: View/settings.view.php:248
-msgid "Settings saved."
-msgstr "Settings saved."
+#: Controller/settings.controller.php:50 View/settings.view.php:43
+msgid "Settings"
+msgstr "nastaveniach"
 
-#: View/settings.view.php:169
-msgid "Button"
-msgstr "Tlačidlo"
-
-#: View/settings.view.php:113
-msgid "Social networks available"
+#: Controller/settings.controller.php:178 View/settings-extra.view.php:29
+#: View/settings-faq.view.php:28 View/settings.view.php:35
+#: View/share-report.view.php:34
+msgid "WPUpper Share Buttons"
 msgstr ""
 
-#: View/settings.view.php:133
-msgid "Custom class"
+#: Controller/settings.controller.php:179
+msgid "WPUpper Share"
 msgstr ""
 
-#: View/settings.view.php:138
-msgid "Custom class for primary div"
+#: Controller/settings.controller.php:188
+msgid "Extra Settings | WPUpper Share Buttons"
 msgstr ""
 
-#: View/settings.view.php:145
-msgid "Layout options"
-msgstr "Nastavenie rozloženia"
-
-#: View/settings.view.php:147
-msgid "All layout supports responsive"
+#: Controller/settings.controller.php:189 View/settings-extra.view.php:37
+#: View/settings.view.php:342
+msgid "Extra Settings"
 msgstr ""
 
-#: View/settings.view.php:158
-msgid "Default"
-msgstr "Prednastavené"
-
-#: View/settings.view.php:79
-msgid "Page home"
+#: Controller/settings.controller.php:197
+msgid "Use options | WPUpper Share Buttons"
 msgstr ""
 
-#: View/settings.view.php:88
-msgid "Before content"
-msgstr "Pred obsahom"
-
-#: View/settings.view.php:97
-msgid "After content"
-msgstr "Za obsahom"
-
-#: View/settings.view.php:107
-msgid "Fixed"
-msgstr "Pevná"
-
-#: View/settings.view.php:53
-msgid "Places available"
+#: Controller/settings.controller.php:198 View/settings-faq.view.php:31
+#: View/settings.view.php:347
+msgid "Use options"
 msgstr ""
 
-#: View/settings.view.php:61
-msgid "Single"
-msgstr ""
+#: Controller/share-reports.controller.php:211
+msgid "Title"
+msgstr "Názov"
 
-#: View/settings.view.php:70
-msgid "Pages"
-msgstr "Strany"
+#: Controller/share-reports.controller.php:212
+msgid "Facebook"
+msgstr "Facebook"
 
-#: Controller/sharing-reports.controller.php:286
+#: Controller/share-reports.controller.php:213
+msgid "Google+"
+msgstr "Google+"
+
+#: Controller/share-reports.controller.php:214
+msgid "Twitter"
+msgstr "Twitter"
+
+#: Controller/share-reports.controller.php:215
+msgid "Linkedin"
+msgstr "LinkedIn"
+
+#: Controller/share-reports.controller.php:216
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#: Controller/share-reports.controller.php:217
+msgid "Total"
+msgstr "Celkom"
+
+#: Controller/share-reports.controller.php:283
 msgid "There is no record available at the moment!"
 msgstr ""
 
-#: Controller/sharing-reports.controller.php:300
+#: Controller/share-reports.controller.php:297
 msgid "Sharing Report | WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/sharing-reports.controller.php:301
+#: Controller/share-reports.controller.php:298 View/settings.view.php:352
 msgid "Sharing Report"
 msgstr ""
 
-#: View/settings-extra.view.php:39 View/settings-faq.view.php:31
-#: View/settings.view.php:41 View/sharing-report.view.php:38
+#: Templates/square-plus.php:107
+msgid "Shares"
+msgstr ""
+
+#: View/settings-extra.view.php:36 View/settings-faq.view.php:29
+#: View/settings.view.php:42 View/share-report.view.php:35
 msgid "Add the Share Buttons automatically."
 msgstr ""
 
@@ -184,148 +199,207 @@ msgstr "Twitter, užívateľské meno"
 msgid "Your twitter username"
 msgstr ""
 
-#: View/settings-extra.view.php:79
-msgid "UTM tracking"
+#: View/settings-extra.view.php:79 View/settings-extra.view.php:85
+msgid "Twitter text"
 msgstr ""
 
-#: View/settings-extra.view.php:85
-msgid "Add UTM tracking (Analytics)"
+#: View/settings-extra.view.php:90
+msgid "Use {title} to add the post title"
+msgstr ""
+
+#: View/settings-extra.view.php:92 View/settings-extra.view.php:113
+msgid "Example: "
 msgstr ""
 
 #: View/settings-extra.view.php:101
-msgid "Bitly access token"
+msgid "UTM tracking"
 msgstr ""
 
 #: View/settings-extra.view.php:107
+msgid "Add UTM tracking (Analytics)"
+msgstr ""
+
+#: View/settings-extra.view.php:116
+msgid "Use <code>?</code> and"
+msgstr ""
+
+#: View/settings-extra.view.php:117
+msgid "adding parameters to use <code>&</code> in the tracking."
+msgstr ""
+
+#: View/settings-extra.view.php:125
+msgid "Bitly access token"
+msgstr ""
+
+#: View/settings-extra.view.php:131
 msgid "Insert your access token Bitly"
 msgstr ""
 
-#: View/settings-extra.view.php:119
+#: View/settings-extra.view.php:135
+msgid "Shorten urls using bitly, generate token in "
+msgstr ""
+
+#: View/settings-extra.view.php:143
 msgid "Remove counter"
 msgstr ""
 
-#: View/settings-extra.view.php:134
+#: View/settings-extra.view.php:158
 msgid "Remove button title"
 msgstr ""
 
-#: View/settings-extra.view.php:149
+#: View/settings-extra.view.php:173
 msgid "Disable CSS"
 msgstr ""
 
-#: View/settings-extra.view.php:164
+#: View/settings-extra.view.php:188
 msgid "Disable JS"
 msgstr ""
 
-#: View/settings-extra.view.php:180 View/settings.view.php:227
+#: View/settings-extra.view.php:204 View/settings.view.php:301
 msgid "Save Changes"
 msgstr "Save Changes"
 
-#: Controller/sharing-reports.controller.php:219
-msgid "Pinterest"
-msgstr "Pinterest"
-
-#: Controller/sharing-reports.controller.php:220
-msgid "Total"
-msgstr "Celkom"
-
-#: Controller/sharing-reports.controller.php:218
-msgid "Linkedin"
-msgstr "LinkedIn"
-
-#: Controller/sharing-reports.controller.php:216
-msgid "Google+"
-msgstr "Google+"
-
-#: Controller/sharing-reports.controller.php:217
-msgid "Twitter"
-msgstr "Twitter"
-
-#: Controller/sharing-reports.controller.php:215
-msgid "Facebook"
-msgstr "Facebook"
-
-#: Controller/settings.controller.php:169
-msgid "Extra Settings | WPUpper Share Buttons"
+#: View/settings.view.php:59
+msgid "Places available"
 msgstr ""
 
-#: Controller/settings.controller.php:170 View/settings-extra.view.php:40
-msgid "Extra Settings"
+#: View/settings.view.php:67
+msgid "Single"
 msgstr ""
 
-#: Controller/settings.controller.php:178
-msgid "Use options | WPUpper Share Buttons"
+#: View/settings.view.php:76
+msgid "Pages"
+msgstr "Strany"
+
+#: View/settings.view.php:85
+msgid "Page home"
 msgstr ""
 
-#: Controller/settings.controller.php:179 View/settings-faq.view.php:33
-msgid "Use options"
+#: View/settings.view.php:94
+msgid "Before content"
+msgstr "Pred obsahom"
+
+#: View/settings.view.php:103
+msgid "After content"
+msgstr "Za obsahom"
+
+#: View/settings.view.php:109
+msgid "Social networks available"
 msgstr ""
 
-#: Controller/sharing-reports.controller.php:214
-msgid "Title"
-msgstr "Názov"
-
-#. #-#-#-#-#  wpupper-share-buttons.pot (WPUpper Share Buttons
-#. 2.5.1)  #-#-#-#-#
-#. Plugin Name of the plugin/theme
-#: Controller/settings.controller.php:159 View/settings-extra.view.php:32
-#: View/settings-faq.view.php:30 View/settings.view.php:34
-#: View/sharing-report.view.php:37
-msgid "WPUpper Share Buttons"
+#: View/settings.view.php:129
+msgid "Custom class"
 msgstr ""
 
-#: Controller/settings.controller.php:59 View/settings.view.php:43
-msgid "Settings"
-msgstr "nastaveniach"
-
-#: Config/core.php:148
-msgid "Share on Google+"
-msgstr "Zdieľať na Google"
-
-#: Config/core.php:161
-msgid "Share on WhatsApp"
+#: View/settings.view.php:134
+msgid "Custom class for primary div"
 msgstr ""
 
-#: Config/core.php:174
-msgid "Share on Pinterest"
-msgstr "Podiel na Pinterest"
+#: View/settings.view.php:141
+msgid "Layout options"
+msgstr "Nastavenie rozloženia"
 
-#: Config/core.php:187
-msgid "Share on Linkedin"
+#: View/settings.view.php:143
+msgid "All layout supports responsive"
 msgstr ""
 
-#: Config/core.php:200
-msgid "Share on Tumblr"
+#: View/settings.view.php:154
+msgid "Default"
+msgstr "Prednastavené"
+
+#: View/settings.view.php:165
+msgid "Button"
+msgstr "Tlačidlo"
+
+#: View/settings.view.php:176
+msgid "Rounded"
 msgstr ""
 
-#: Config/core.php:213
-msgid "Send by email"
+#: View/settings.view.php:187
+msgid "Square"
+msgstr "Štvorec"
+
+#: View/settings.view.php:198
+msgid "Square plus"
 msgstr ""
 
-#: Config/core.php:226
-msgid "Print via PrintFriendly"
+#: View/settings.view.php:204
+msgid "Position fixed"
 msgstr ""
 
-#: Config/core.php:232
-msgid "Print"
-msgstr "Tlačiť"
-
-#: Config/core.php:114
-msgid "I just saw"
+#: View/settings.view.php:215
+msgid "Fixed left"
 msgstr ""
 
-#: Config/core.php:115
-msgid "Click to see also"
+#: View/settings.view.php:227
+msgid "Fixed right"
 msgstr ""
 
-#: Config/core.php:122
-msgid "Share on Facebook"
-msgstr "Zdieľať na Facebook"
+#: View/settings.view.php:233
+msgid "Clear"
+msgstr ""
 
-#: Config/core.php:128 Config/core.php:154 Config/core.php:167
-#: Config/core.php:180 Config/core.php:193 Config/core.php:206
-msgid "Share"
-msgstr "Zdieľať"
+#: View/settings.view.php:234
+msgid "Click to clear the positions."
+msgstr ""
 
-#: Config/core.php:135 Config/core.php:141
-msgid "Tweet"
-msgstr "Tweet"
+#: View/settings.view.php:239
+msgid "Fixed Items in top"
+msgstr ""
+
+#: View/settings.view.php:248
+msgid "Fixed top"
+msgstr ""
+
+#: View/settings.view.php:252
+msgid "It is activated when scrolling the page on the buttons position."
+msgstr ""
+
+#: View/settings.view.php:258
+msgid "Enable highlighted by reference?"
+msgstr ""
+
+#: View/settings.view.php:267
+msgid "Referrer"
+msgstr ""
+
+#: View/settings.view.php:271
+msgid "This allows highlight the social network where the user Came from."
+msgstr ""
+
+#: View/settings.view.php:283
+msgid ""
+"The share count Twitter is powered by <a href=\"http://newsharecounts.com\" "
+"target=\"_blank\">newsharecounts.com</a>, you have to sign up with your "
+"Twitter account to get free service and twitter count. Just visit the "
+"website, fill in the domain of your site and click Sign in with Twitter. "
+"That, and nothing else!"
+msgstr ""
+
+#: View/settings.view.php:320
+msgid "Settings saved."
+msgstr "Settings saved."
+
+#: View/settings.view.php:337
+msgid "General"
+msgstr ""
+
+#: View/share-report.view.php:27
+msgid "Search"
+msgstr "Vyhľadať"
+
+#: View/share-report.view.php:28
+msgid "This report has a cache of "
+msgstr ""
+
+#: View/share-report.view.php:29
+msgid "minutes"
+msgstr "minúty"
+
+#: View/share-report.view.php:30
+#, php-format
+msgid "%d minute"
+msgstr ""
+
+#~ msgid "Fixed"
+#~ msgstr "Pevná"

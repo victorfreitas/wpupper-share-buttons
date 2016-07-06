@@ -33,6 +33,7 @@ class WPUSB_All_Items
 		echo <<< EOD
 			<div class="{$prefix}-popup-content"
 			     data-element-url="{$permalink}"
+			     data-display="{$prefix}-none"
 			     data-component="social-popup">
 				<div class="{$prefix}-networks">
 					<a class="{$prefix}-btn-close" data-action="close-popup">

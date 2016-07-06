@@ -5,7 +5,7 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 		this.spinner       = $( '.ajax-spinner' );
 		this.prefix        = SB.vars.prefix;
 		this.container     = container.closest( '.wpusb-wrap' );
-		this.sort          = this.container.byElement( 'sortable' );
+		this.order         = this.container.byElement( 'sortable' );
 		this.inputOrder    = this.container.byElement( 'order' );
 		this.layoutOptions = $( '.layout-preview' );
 		this.elements      = $( '.wpusb-select-item input' );
@@ -19,7 +19,7 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 	SharePreview.prototype.addEventListener = function() {
 		this.layoutOptions.on( 'click', this._onClickLayout.bind( this ) );
 		this.elements.on( 'click', this._onClick.bind( this ) );
-		this.sort.sortable( this.sortOptions() );
+		this.order.sortable( this.sortOptions() );
 	};
 
 	SharePreview.prototype._onClickLayout = function(event) {
@@ -50,14 +50,13 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 	};
 
 	SharePreview.prototype._update = function(event, ui) {
-		this.layoutPreview = $( '.layout-preview:checked' );
-		this.itemsOrder    = this.sort.sortable( 'toArray' );
+		this.itemsOrder = this.order.sortable( 'toArray' );
 		this.inputOrder.val( JSON.stringify( this.itemsOrder ) );
 	};
 
 	SharePreview.prototype._stop = function(event, ui) {
 		this.itemsChecked = [];
-		this.sort.find( 'input:checked' )
+		this.order.find( 'input:checked' )
 		    .each(function(index, value) {
 		    	this.itemsChecked.push( $( value ).val() );
 		    }.bind( this ) );
@@ -111,8 +110,10 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 			case 'square-plus' :
 				layout = 'square-plus';
 				break;
-			case 'fixed-left' :
-				layout = 'fixed-left';
+
+			case 'fixed-left'  :
+			case 'fixed-right' :
+				layout = 'fixed';
 				break;
 
 			default:

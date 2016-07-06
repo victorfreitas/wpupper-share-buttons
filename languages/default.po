@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WPUpper Share Buttons 3.0.0\n"
+"Project-Id-Version: WPUpper Share Buttons 3.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2016-07-05 17:23-0300\n"
-"PO-Revision-Date: 2016-07-05 17:23-0300\n"
+"POT-Creation-Date: 2016-07-06 11:59-0300\n"
+"PO-Revision-Date: 2016-07-06 11:59-0300\n"
 "Last-Translator: \n"
 "Language-Team: WPUpper\n"
 "Language: en\n"
@@ -14,14 +14,9 @@ msgstr ""
 "X-Generator: Poedit 1.8.8\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-KeywordsList: _e;__\n"
-"X-Poedit-SearchPath-0: Config\n"
-"X-Poedit-SearchPath-1: Controller\n"
-"X-Poedit-SearchPath-2: Helper\n"
-"X-Poedit-SearchPath-3: Model\n"
-"X-Poedit-SearchPath-4: View\n"
-"X-Poedit-SearchPath-5: wpupper-share-buttons.php\n"
-"X-Poedit-SearchPath-6: Templates\n"
+"X-Poedit-KeywordsList: _e;__;_n\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: assets\n"
 
 #: Config/core.php:92 View/settings-extra.view.php:93
 msgid "I just saw"
@@ -105,35 +100,35 @@ msgstr ""
 msgid "More"
 msgstr ""
 
-#: Controller/settings.controller.php:46 View/settings.view.php:38
+#: Controller/settings.controller.php:50 View/settings.view.php:43
 msgid "Settings"
 msgstr ""
 
-#: Controller/settings.controller.php:146 View/settings-extra.view.php:29
-#: View/settings-faq.view.php:28 View/settings.view.php:30
+#: Controller/settings.controller.php:178 View/settings-extra.view.php:29
+#: View/settings-faq.view.php:28 View/settings.view.php:35
 #: View/share-report.view.php:34
 msgid "WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/settings.controller.php:147
+#: Controller/settings.controller.php:179
 msgid "WPUpper Share"
 msgstr ""
 
-#: Controller/settings.controller.php:156
+#: Controller/settings.controller.php:188
 msgid "Extra Settings | WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/settings.controller.php:157 View/settings-extra.view.php:37
-#: View/settings.view.php:325
+#: Controller/settings.controller.php:189 View/settings-extra.view.php:37
+#: View/settings.view.php:342
 msgid "Extra Settings"
 msgstr ""
 
-#: Controller/settings.controller.php:165
+#: Controller/settings.controller.php:197
 msgid "Use options | WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/settings.controller.php:166 View/settings-faq.view.php:31
-#: View/settings.view.php:330
+#: Controller/settings.controller.php:198 View/settings-faq.view.php:31
+#: View/settings.view.php:347
 msgid "Use options"
 msgstr ""
 
@@ -173,7 +168,7 @@ msgstr ""
 msgid "Sharing Report | WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/share-reports.controller.php:298 View/settings.view.php:335
+#: Controller/share-reports.controller.php:298 View/settings.view.php:352
 msgid "Sharing Report"
 msgstr ""
 
@@ -182,7 +177,7 @@ msgid "Shares"
 msgstr ""
 
 #: View/settings-extra.view.php:36 View/settings-faq.view.php:29
-#: View/settings.view.php:37 View/share-report.view.php:35
+#: View/settings.view.php:42 View/share-report.view.php:35
 msgid "Add the Share Buttons automatically."
 msgstr ""
 
@@ -262,111 +257,119 @@ msgstr ""
 msgid "Disable JS"
 msgstr ""
 
-#: View/settings-extra.view.php:204 View/settings.view.php:284
+#: View/settings-extra.view.php:204 View/settings.view.php:301
 msgid "Save Changes"
 msgstr ""
 
-#: View/settings.view.php:54
+#: View/settings.view.php:59
 msgid "Places available"
 msgstr ""
 
-#: View/settings.view.php:62
+#: View/settings.view.php:67
 msgid "Single"
 msgstr ""
 
-#: View/settings.view.php:71
+#: View/settings.view.php:76
 msgid "Pages"
 msgstr ""
 
-#: View/settings.view.php:80
+#: View/settings.view.php:85
 msgid "Page home"
 msgstr ""
 
-#: View/settings.view.php:89
+#: View/settings.view.php:94
 msgid "Before content"
 msgstr ""
 
-#: View/settings.view.php:98
+#: View/settings.view.php:103
 msgid "After content"
 msgstr ""
 
 #: View/settings.view.php:109
-msgid "Fixed"
-msgstr ""
-
-#: View/settings.view.php:115
 msgid "Social networks available"
 msgstr ""
 
-#: View/settings.view.php:135
+#: View/settings.view.php:129
 msgid "Custom class"
 msgstr ""
 
-#: View/settings.view.php:140
+#: View/settings.view.php:134
 msgid "Custom class for primary div"
 msgstr ""
 
-#: View/settings.view.php:147
+#: View/settings.view.php:141
 msgid "Layout options"
 msgstr ""
 
-#: View/settings.view.php:149
+#: View/settings.view.php:143
 msgid "All layout supports responsive"
 msgstr ""
 
-#: View/settings.view.php:160
+#: View/settings.view.php:154
 msgid "Default"
 msgstr ""
 
-#: View/settings.view.php:171
+#: View/settings.view.php:165
 msgid "Button"
 msgstr ""
 
-#: View/settings.view.php:182
+#: View/settings.view.php:176
 msgid "Rounded"
 msgstr ""
 
-#: View/settings.view.php:193
+#: View/settings.view.php:187
 msgid "Square"
 msgstr ""
 
-#: View/settings.view.php:204
+#: View/settings.view.php:198
 msgid "Square plus"
 msgstr ""
 
-#: View/settings.view.php:210
+#: View/settings.view.php:204
 msgid "Position fixed"
 msgstr ""
 
-#: View/settings.view.php:221
+#: View/settings.view.php:215
 msgid "Fixed left"
 msgstr ""
 
 #: View/settings.view.php:227
+msgid "Fixed right"
+msgstr ""
+
+#: View/settings.view.php:233
+msgid "Clear"
+msgstr ""
+
+#: View/settings.view.php:234
+msgid "Click to clear the positions."
+msgstr ""
+
+#: View/settings.view.php:239
 msgid "Fixed Items in top"
 msgstr ""
 
-#: View/settings.view.php:236
+#: View/settings.view.php:248
 msgid "Fixed top"
 msgstr ""
 
-#: View/settings.view.php:240
+#: View/settings.view.php:252
 msgid "It is activated when scrolling the page on the buttons position."
 msgstr ""
 
-#: View/settings.view.php:246
+#: View/settings.view.php:258
 msgid "Enable highlighted by reference?"
 msgstr ""
 
-#: View/settings.view.php:255
+#: View/settings.view.php:267
 msgid "Referrer"
 msgstr ""
 
-#: View/settings.view.php:259
+#: View/settings.view.php:271
 msgid "This allows highlight the social network where the user Came from."
 msgstr ""
 
-#: View/settings.view.php:271
+#: View/settings.view.php:283
 msgid ""
 "The share count Twitter is powered by <a href=\"http://newsharecounts.com\" "
 "target=\"_blank\">newsharecounts.com</a>, you have to sign up with your "
@@ -375,11 +378,11 @@ msgid ""
 "That, and nothing else!"
 msgstr ""
 
-#: View/settings.view.php:303
+#: View/settings.view.php:320
 msgid "Settings saved."
 msgstr ""
 
-#: View/settings.view.php:320
+#: View/settings.view.php:337
 msgid "General"
 msgstr ""
 
@@ -393,4 +396,9 @@ msgstr ""
 
 #: View/share-report.view.php:29
 msgid "minutes"
+msgstr ""
+
+#: View/share-report.view.php:30
+#, php-format
+msgid "%d minute"
 msgstr ""

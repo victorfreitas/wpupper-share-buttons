@@ -4,38 +4,43 @@
  * @package WPUpper Share Buttons
  * @author  Victor Freitas
  * @subpackage View Admin Page
- * @version 1.4.0
+ * @version 2.0.0
  */
 
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
+
+use WPUSB_Setting as Setting;
+use WPUSB_App as App;
+use WPUSB_Utils as Utils;
 
 class WPUSB_Settings_View
 {
 	/**
 	 * Display page setting
 	 *
-	 * @since 1.2
+	 * @since 3.1.0
+	 * @version 2.0.0
 	 * @param Null
 	 * @return Void Display page
 	 */
 	public static function render_settings_page()
 	{
-		$model               = new WPUSB_Setting();
-		$prefix              = WPUSB_Setting::PREFIX;
+		$model               = new Setting();
+		$prefix              = Setting::PREFIX;
 		$option_name         = "{$prefix}_settings";
 		$option_social_media = "{$prefix}_social_media";
 ?>
 		<div class="wrap">
-			<h2><?php _e( 'WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ); ?></h2>
+			<h2><?php _e( 'WPUpper Share Buttons', App::TEXTDOMAIN ); ?></h2>
 
 			<?php
-				if ( WPUSB_Utils::get_update( 'settings-updated' ) )
+				if ( Utils::get_update( 'settings-updated' ) )
 					self::update_notice_message();
 			?>
 
-			<p class="description"><?php _e( 'Add the Share Buttons automatically.', WPUSB_App::TEXTDOMAIN ); ?></p>
-			<span class="<?php echo "{$prefix}-title-wrap"; ?>"><?php _e( 'Settings', WPUSB_App::TEXTDOMAIN ); ?></span>
+			<p class="description"><?php _e( 'Add the Share Buttons automatically.', App::TEXTDOMAIN ); ?></p>
+			<span class="<?php echo "{$prefix}-title-wrap"; ?>"><?php _e( 'Settings', App::TEXTDOMAIN ); ?></span>
 
 			<?php self::menu_top(); ?>
 
@@ -51,7 +56,7 @@ class WPUSB_Settings_View
 						<tbody>
 							<tr class="<?php echo $prefix; ?>-items-available">
 								<th scope="row">
-									<label><?php _e( 'Places available', WPUSB_App::TEXTDOMAIN ); ?></label>
+									<label><?php _e( 'Places available', App::TEXTDOMAIN ); ?></label>
 								</th>
 								<td>
 					                <input id="<?php echo $prefix; ?>-single"
@@ -59,7 +64,7 @@ class WPUSB_Settings_View
 					                	   value="on" name="<?php echo "{$option_name}[single]"; ?>"
 					                	   <?php checked( 'on', $model->single ); ?>>
 					                <label for="<?php echo $prefix; ?>-single">
-					                	<span><?php _e( 'Single', WPUSB_App::TEXTDOMAIN ); ?></span>
+					                	<span><?php _e( 'Single', App::TEXTDOMAIN ); ?></span>
 					                </label>
 					            </td>
 								<td>
@@ -68,7 +73,7 @@ class WPUSB_Settings_View
 				                	       value="on" name="<?php echo "{$option_name}[pages]"; ?>"
 				                		   <?php checked( 'on', $model->pages ); ?>>
 					                <label for="<?php echo $prefix; ?>-pages">
-					                	<span><?php _e( 'Pages', WPUSB_App::TEXTDOMAIN ); ?></span>
+					                	<span><?php _e( 'Pages', App::TEXTDOMAIN ); ?></span>
 					                </label>
 					            </td>
 								<td>
@@ -77,7 +82,7 @@ class WPUSB_Settings_View
 				                	       value="on" name="<?php echo "{$option_name}[home]"; ?>"
 				                		   <?php checked( 'on', $model->home ); ?>>
 					                <label for="<?php echo $prefix; ?>-home">
-					                	<span><?php _e( 'Page home', WPUSB_App::TEXTDOMAIN ); ?></span>
+					                	<span><?php _e( 'Page home', App::TEXTDOMAIN ); ?></span>
 					                </label>
 				                </td>
 								<td>
@@ -86,7 +91,7 @@ class WPUSB_Settings_View
 				                	       value="on" name="<?php echo "{$option_name}[before]"; ?>"
 				                	       <?php checked( 'on', $model->before ); ?>>
 					                <label for="<?php echo $prefix; ?>-before">
-					                	<span><?php _e( 'Before content', WPUSB_App::TEXTDOMAIN ); ?></span>
+					                	<span><?php _e( 'Before content', App::TEXTDOMAIN ); ?></span>
 					                </label>
 				                </td>
 								<td>
@@ -95,24 +100,13 @@ class WPUSB_Settings_View
 				                	       value="on" name="<?php echo "{$option_name}[after]"; ?>"
 				                	       <?php checked( 'on', $model->after ); ?>>
 					                <label for="<?php echo $prefix; ?>-after">
-					                	<span><?php _e( 'After content', WPUSB_App::TEXTDOMAIN ); ?></span>
-					                </label>
-				                </td>
-								<td>
-				                	<input id="<?php echo $prefix; ?>-fixed"
-				                		   data-element="fixed"
-				                	       type="checkbox"
-				                	       class="wpusb-fixed"
-				                	       value="on" name="<?php echo "{$option_name}[fixed]"; ?>"
-				                	       <?php checked( 'on', $model->fixed ); ?>>
-					                <label for="<?php echo $prefix; ?>-fixed">
-					                	<span><?php _e( 'Fixed', WPUSB_App::TEXTDOMAIN ); ?></span>
+					                	<span><?php _e( 'After content', App::TEXTDOMAIN ); ?></span>
 					                </label>
 				                </td>
 							</tr>
 							<tr class="<?php echo $prefix; ?>-social-networks" data-element="sortable">
 								<th scope="row">
-									<label for="social-media"><?php _e( 'Social networks available', WPUSB_App::TEXTDOMAIN ); ?></label>
+									<label for="social-media"><?php _e( 'Social networks available', App::TEXTDOMAIN ); ?></label>
 								</th>
 									<?php
 									foreach ( WPUSB_Core::get_all_elements() as $key => $social ) :
@@ -120,7 +114,7 @@ class WPUSB_Settings_View
 										$content .= sprintf( "<input id=\"%s\" type=\"checkbox\" name=\"{$option_social_media}[%s]\" value=\"%2\$s\" %s>",
 											$social->class,
 											$key,
-											checked( $key, WPUSB_Utils::option( $key ), false )
+											checked( $key, Utils::option( $key ), false )
 										);
 										$content .= sprintf( '<label for="%s" class="%s"></label>', $social->class, "{$prefix}-icon {$social->class}-icon" );
 										$content .= '</td>';
@@ -132,21 +126,21 @@ class WPUSB_Settings_View
 							<tr>
 								<th scope="row">
 									<label for="<?php echo $prefix; ?>-class">
-										<?php _e( 'Custom class', WPUSB_App::TEXTDOMAIN ); ?>
+										<?php _e( 'Custom class', App::TEXTDOMAIN ); ?>
 									</label>
 								</th>
 								<td>
 									<input id="<?php echo $prefix; ?>-class" class="large-text" type="text"
-										   placeholder="<?php _e( 'Custom class for primary div', WPUSB_App::TEXTDOMAIN ); ?>"
+										   placeholder="<?php _e( 'Custom class for primary div', App::TEXTDOMAIN ); ?>"
 									       name="<?php echo "{$option_name}[class]"; ?>"
 										   value="<?php echo $model->class; ?>">
 								</td>
 							</tr>
 							<tr class="<?php echo $prefix; ?>-layout-options">
 								<th scope="row">
-									<?php _e( 'Layout options', WPUSB_App::TEXTDOMAIN ); ?>
+									<?php _e( 'Layout options', App::TEXTDOMAIN ); ?>
 									<p class="description">
-										<?php _e( 'All layout supports responsive', WPUSB_App::TEXTDOMAIN ); ?>
+										<?php _e( 'All layout supports responsive', App::TEXTDOMAIN ); ?>
 									</p>
 								</th>
 								<td>
@@ -157,7 +151,7 @@ class WPUSB_Settings_View
 										   value="default"
 										   <?php checked( 'default', $model->layout ); ?>>
 									<label for="<?php echo $prefix; ?>-default">
-										<span><?php _e( 'Default', WPUSB_App::TEXTDOMAIN ); ?></span>
+										<span><?php _e( 'Default', App::TEXTDOMAIN ); ?></span>
 									</label>
 								</td>
 								<td>
@@ -168,7 +162,7 @@ class WPUSB_Settings_View
 										   value="buttons"
 										   <?php checked( 'buttons', $model->layout ); ?>>
 									<label for="<?php echo $prefix; ?>-buttons">
-										<span><?php _e( 'Button', WPUSB_App::TEXTDOMAIN ); ?></span>
+										<span><?php _e( 'Button', App::TEXTDOMAIN ); ?></span>
 									</label>
 								</td>
 								<td>
@@ -179,7 +173,7 @@ class WPUSB_Settings_View
 										   value="rounded"
 										   <?php checked( 'rounded', $model->layout ); ?>>
 									<label for="<?php echo $prefix; ?>-rounded">
-										<span><?php _e( 'Rounded', WPUSB_App::TEXTDOMAIN ); ?></span>
+										<span><?php _e( 'Rounded', App::TEXTDOMAIN ); ?></span>
 									</label>
 								</td>
 								<td>
@@ -190,7 +184,7 @@ class WPUSB_Settings_View
 										   value="square"
 										   <?php checked( 'square', $model->layout ); ?>>
 									<label for="<?php echo $prefix; ?>-square">
-										<span><?php _e( 'Square', WPUSB_App::TEXTDOMAIN ); ?></span>
+										<span><?php _e( 'Square', App::TEXTDOMAIN ); ?></span>
 									</label>
 								</td>
 								<td>
@@ -201,30 +195,48 @@ class WPUSB_Settings_View
 									       value="square-plus"
 									       <?php checked( 'square-plus', $model->layout ); ?>>
 									<label for="<?php echo $prefix; ?>-square-plus">
-										<span><?php _e( 'Square plus', WPUSB_App::TEXTDOMAIN ); ?></span>
+										<span><?php _e( 'Square plus', App::TEXTDOMAIN ); ?></span>
 									</label>
 								</td>
 							</tr>
 							<tr class="<?php echo $prefix; ?>-position-fixed">
 								<th scope="row">
-									<?php _e( 'Position fixed', WPUSB_App::TEXTDOMAIN ); ?>
+									<?php _e( 'Position fixed', App::TEXTDOMAIN ); ?>
 								</th>
 								<td>
 									<input id="<?php echo $prefix; ?>-fixed-left"
-										   data-element="fixed-left"
-									       type="checkbox"
+										   data-element="position-fixed"
+									       type="radio"
 									       class="layout-preview layout-fixed"
 										   name="<?php echo "{$option_name}[position_fixed]"; ?>"
 										   value="fixed-left"
 										   <?php checked( 'fixed-left', $model->position_fixed ); ?>>
 									<label for="<?php echo $prefix; ?>-fixed-left">
-										<span><?php _e( 'Fixed left', WPUSB_App::TEXTDOMAIN ); ?></span>
+										<span><?php _e( 'Fixed left', App::TEXTDOMAIN ); ?></span>
 									</label>
+								</td>
+								<td>
+									<input id="<?php echo $prefix; ?>-fixed-right"
+										   data-element="position-fixed"
+									       type="radio"
+									       class="layout-preview layout-fixed"
+										   name="<?php echo "{$option_name}[position_fixed]"; ?>"
+										   value="fixed-right"
+										   <?php checked( 'fixed-right', $model->position_fixed ); ?>>
+									<label for="<?php echo $prefix; ?>-fixed-right">
+										<span><?php _e( 'Fixed right', App::TEXTDOMAIN ); ?></span>
+									</label>
+								</td>
+								<td class="<?php echo $prefix; ?>-fixed-clear">
+									<input type="button"
+									       data-action="fixed-disabled"
+									       value="<?php _e( 'Clear', App::TEXTDOMAIN ); ?>">
+									<span><?php _e( 'Click to clear the positions.', App::TEXTDOMAIN ); ?></span>
 								</td>
 							</tr>
 							<tr class="<?php echo $prefix; ?>-position-fixed-top">
 								<th scope="row">
-									<?php _e( 'Fixed Items in top', WPUSB_App::TEXTDOMAIN ); ?>
+									<?php _e( 'Fixed Items in top', App::TEXTDOMAIN ); ?>
 								</th>
 								<td>
 									<input id="<?php echo $prefix; ?>-fixed-top"
@@ -233,17 +245,17 @@ class WPUSB_Settings_View
 										   value="fixed-top"
 										   <?php checked( 'fixed-top', $model->fixed_top ); ?>>
 									<label for="<?php echo $prefix; ?>-fixed-top">
-										<span><?php _e( 'Fixed top', WPUSB_App::TEXTDOMAIN ); ?></span>
+										<span><?php _e( 'Fixed top', App::TEXTDOMAIN ); ?></span>
 									</label>
 
 									<p class="<?php echo $prefix; ?>-description">
-										<?php _e( 'It is activated when scrolling the page on the buttons position.', WPUSB_App::TEXTDOMAIN ); ?>
+										<?php _e( 'It is activated when scrolling the page on the buttons position.', App::TEXTDOMAIN ); ?>
 									</p>
 								</td>
 							</tr>
 							<tr class="<?php echo $prefix; ?>-referrer">
 								<th scope="row">
-									<?php _e( 'Enable highlighted by reference?', WPUSB_App::TEXTDOMAIN ); ?>
+									<?php _e( 'Enable highlighted by reference?', App::TEXTDOMAIN ); ?>
 								</th>
 								<td>
 									<input id="<?php echo $prefix; ?>-referrer"
@@ -252,11 +264,11 @@ class WPUSB_Settings_View
 										   value="yes"
 										   <?php checked( 'yes', $model->referrer ); ?>>
 									<label for="<?php echo $prefix; ?>-referrer">
-										<span><?php _e( 'Referrer', WPUSB_App::TEXTDOMAIN ); ?></span>
+										<span><?php _e( 'Referrer', App::TEXTDOMAIN ); ?></span>
 									</label>
 
 									<p class="<?php echo $prefix; ?>-description">
-										<?php _e( 'This allows highlight the social network where the user Came from.', WPUSB_App::TEXTDOMAIN ); ?>
+										<?php _e( 'This allows highlight the social network where the user Came from.', App::TEXTDOMAIN ); ?>
 									</p>
 								</td>
 							</tr>
@@ -268,7 +280,7 @@ class WPUSB_Settings_View
 								<td>
 									<p class="description">
 									<?php
-										_e( 'The share count Twitter is powered by <a href="http://newsharecounts.com" target="_blank">newsharecounts.com</a>, you have to sign up with your Twitter account to get free service and twitter count. Just visit the website, fill in the domain of your site and click Sign in with Twitter. That, and nothing else!', WPUSB_App::TEXTDOMAIN );
+										_e( 'The share count Twitter is powered by <a href="http://newsharecounts.com" target="_blank">newsharecounts.com</a>, you have to sign up with your Twitter account to get free service and twitter count. Just visit the website, fill in the domain of your site and click Sign in with Twitter. That, and nothing else!', App::TEXTDOMAIN );
 									?>
 									</p>
 								</td>
@@ -278,10 +290,15 @@ class WPUSB_Settings_View
 					<input type="hidden"
 					       name="<?php echo $option_social_media; ?>[order]"
 					       data-element="order"
-					       value='<?php echo WPUSB_Utils::option( 'order' ); ?>'>
+					       value='<?php echo Utils::option( 'order' ); ?>'>
+
+                	<input type="hidden"
+		                   data-element="fixed"
+		                   name="<?php echo "{$option_name}[fixed]"; ?>"
+		                   value="<?php echo Utils::option( 'fixed' ); ?>">
 					<?php
 						settings_fields( "{$option_name}_group" );
-						submit_button( __( 'Save Changes', WPUSB_App::TEXTDOMAIN ) );
+						submit_button( __( 'Save Changes', App::TEXTDOMAIN ) );
 					?>
 				</form>
 			</div>
@@ -300,7 +317,7 @@ class WPUSB_Settings_View
 	{
 	?>
 		<div class="updated notice is-dismissible">
-			<p><strong><?php _e( 'Settings saved.', WPUSB_App::TEXTDOMAIN ); ?></strong></p>
+			<p><strong><?php _e( 'Settings saved.', App::TEXTDOMAIN ); ?></strong></p>
 			<button class="notice-dismiss"></button>
 		</div>
 	<?php
@@ -308,31 +325,31 @@ class WPUSB_Settings_View
 
 	public static function menu_top()
 	{
-		$general    = WPUSB_Setting::HOME_SETTINGS;
-		$extra      = WPUSB_Setting::EXTRA_SETTINGS;
-		$use_option = WPUSB_Setting::USE_OPTIONS;
-		$report     = WPUSB_Setting::SHARING_REPORT;
+		$general    = Setting::HOME_SETTINGS;
+		$extra      = Setting::EXTRA_SETTINGS;
+		$use_option = Setting::USE_OPTIONS;
+		$report     = Setting::SHARING_REPORT;
 	?>
-		<div class="<?php echo WPUSB_Setting::PREFIX; ?>-menu">
+		<div class="<?php echo Setting::PREFIX; ?>-menu">
 			<ul>
-				<li<?php echo WPUSB_Utils::selected_menu( $general ); ?>>
+				<li<?php echo Utils::selected_menu( $general ); ?>>
 					<a href="<?php menu_page_url( $general ); ?>">
-						<?php _e( 'General', WPUSB_App::TEXTDOMAIN ); ?>
+						<?php _e( 'General', App::TEXTDOMAIN ); ?>
 					</a>
 				</li>
-				<li<?php echo WPUSB_Utils::selected_menu( $extra ); ?>>
+				<li<?php echo Utils::selected_menu( $extra ); ?>>
 					<a href="<?php menu_page_url( $extra ); ?>">
-						<?php _e( 'Extra Settings', WPUSB_App::TEXTDOMAIN ); ?>
+						<?php _e( 'Extra Settings', App::TEXTDOMAIN ); ?>
 					</a>
 				</li>
-				<li<?php echo WPUSB_Utils::selected_menu( $use_option ); ?>>
+				<li<?php echo Utils::selected_menu( $use_option ); ?>>
 					<a href="<?php menu_page_url( $use_option ); ?>">
-						<?php _e( 'Use options', WPUSB_App::TEXTDOMAIN ); ?>
+						<?php _e( 'Use options', App::TEXTDOMAIN ); ?>
 					</a>
 				</li>
-				<li<?php echo WPUSB_Utils::selected_menu( $report ); ?>>
+				<li<?php echo Utils::selected_menu( $report ); ?>>
 					<a href="<?php menu_page_url( $report ); ?>">
-						<?php _e( 'Sharing Report', WPUSB_App::TEXTDOMAIN ); ?>
+						<?php _e( 'Sharing Report', App::TEXTDOMAIN ); ?>
 					</a>
 				</li>
 			</ul>

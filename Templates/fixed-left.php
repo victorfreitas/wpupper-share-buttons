@@ -39,7 +39,7 @@ class WPUSB_Fixed_Left
 		     data-component="counter-social-share"
 		     {$data_token}>
 
-			<div data-element="buttons" class="fixed-left-container">
+			<div data-element="buttons" class="{$atts->position_fixed}-container">
 			{$counter}
 EOD;
 		return apply_filters( App::SLUG . 'init-buttons-fixed', $content );

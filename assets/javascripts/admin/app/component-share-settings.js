@@ -1,9 +1,10 @@
 WPUPPER( 'SB.Components.ShareSettings', function(ShareSettings, $) {
 
 	ShareSettings.prototype.start = function(container) {
-		this.prefix    = SB.vars.prefix;
-		this.pos_fixed = container.byElement( 'fixed-left' );
-		this.fixed     = container.byElement( 'fixed' );
+		this.prefix   = SB.vars.prefix;
+		this.posFixed = container.byElement( 'position-fixed' );
+		this.fixed    = container.byElement( 'fixed' );
+		this.clear    = container.byAction( 'fixed-disabled' );
 		this.init();
 	};
 
@@ -12,26 +13,22 @@ WPUPPER( 'SB.Components.ShareSettings', function(ShareSettings, $) {
 	};
 
 	ShareSettings.prototype.addEventListener = function() {
-		this.fixed.on( 'change', this._onChangeFixed.bind( this ) );
-		this.pos_fixed.on( 'change', this._onChangeFixedLeft.bind( this ) );
-	};
-
-	ShareSettings.prototype._onChangeFixed = function(event) {
-		if ( event.currentTarget.checked ) {
-			this.pos_fixed.prop( 'checked', true );
-			return;
-		}
-
-		this.pos_fixed.prop( 'checked', false );
+		this.posFixed.on( 'change', this._onChangeFixedLeft.bind( this ) );
+		this.clear.on( 'click', this._onclickClear.bind( this ) );
 	};
 
 	ShareSettings.prototype._onChangeFixedLeft = function(event) {
-		if ( event.currentTarget.checked ) {
-			this.fixed.prop( 'checked', true );
+		if ( this.posFixed.is( ':checked' ) ) {
+			this.fixed.val( 'on' );
 			return;
 		}
 
-		this.fixed.prop( 'checked', false );
+		this.fixed.val( '' );
+	};
+
+	ShareSettings.prototype._onclickClear = function(event) {
+		this.posFixed.prop( 'checked', false );
+		this.fixed.val( '' );
 	};
 
 });

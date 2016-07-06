@@ -2,11 +2,11 @@
 # This file is distributed under the same license as the Development (trunk) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Development (trunk)\n"
+"Project-Id-Version: WPUpper Share Buttons 3.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2016-07-05 17:27-0300\n"
-"PO-Revision-Date: 2016-07-05 17:31-0300\n"
+"POT-Creation-Date: 2016-07-06 12:07-0300\n"
+"PO-Revision-Date: 2016-07-06 12:07-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 1.8.8\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-KeywordsList: __;_e;_n\n"
 "X-Poedit-SearchPath-0: Config\n"
 "X-Poedit-SearchPath-1: Controller\n"
 "X-Poedit-SearchPath-2: Helper\n"
@@ -107,35 +107,35 @@ msgstr "Abre modal com todas redes sociais"
 msgid "More"
 msgstr "Ver mais"
 
-#: Controller/settings.controller.php:46 View/settings.view.php:38
+#: Controller/settings.controller.php:50 View/settings.view.php:43
 msgid "Settings"
 msgstr "Configurações"
 
-#: Controller/settings.controller.php:146 View/settings-extra.view.php:29
-#: View/settings-faq.view.php:28 View/settings.view.php:30
+#: Controller/settings.controller.php:178 View/settings-extra.view.php:29
+#: View/settings-faq.view.php:28 View/settings.view.php:35
 #: View/share-report.view.php:34
 msgid "WPUpper Share Buttons"
 msgstr "Botões de Compartilhamento Social"
 
-#: Controller/settings.controller.php:147
+#: Controller/settings.controller.php:179
 msgid "WPUpper Share"
 msgstr "WPUpper Share"
 
-#: Controller/settings.controller.php:156
+#: Controller/settings.controller.php:188
 msgid "Extra Settings | WPUpper Share Buttons"
 msgstr "Configurações Extra | Botões de Compartilhamento Social"
 
-#: Controller/settings.controller.php:157 View/settings-extra.view.php:37
-#: View/settings.view.php:325
+#: Controller/settings.controller.php:189 View/settings-extra.view.php:37
+#: View/settings.view.php:342
 msgid "Extra Settings"
 msgstr "Configurações extra"
 
-#: Controller/settings.controller.php:165
+#: Controller/settings.controller.php:197
 msgid "Use options | WPUpper Share Buttons"
 msgstr "Opções de uso | Botões de Compartilhamento Social"
 
-#: Controller/settings.controller.php:166 View/settings-faq.view.php:31
-#: View/settings.view.php:330
+#: Controller/settings.controller.php:198 View/settings-faq.view.php:31
+#: View/settings.view.php:347
 msgid "Use options"
 msgstr "Opções de uso"
 
@@ -175,7 +175,7 @@ msgstr "Não existe relatório disponível no momento!"
 msgid "Sharing Report | WPUpper Share Buttons"
 msgstr "Relatório de Compartilhamento | Botões de Compartilhamento Social"
 
-#: Controller/share-reports.controller.php:298 View/settings.view.php:335
+#: Controller/share-reports.controller.php:298 View/settings.view.php:352
 msgid "Sharing Report"
 msgstr "Relatório de compartilhamento"
 
@@ -184,7 +184,7 @@ msgid "Shares"
 msgstr ""
 
 #: View/settings-extra.view.php:36 View/settings-faq.view.php:29
-#: View/settings.view.php:37 View/share-report.view.php:35
+#: View/settings.view.php:42 View/share-report.view.php:35
 msgid "Add the Share Buttons automatically."
 msgstr "Adiciona os botões de compartilhamento automaticamente."
 
@@ -266,111 +266,119 @@ msgstr "Desabilitar CSS"
 msgid "Disable JS"
 msgstr "Desabilitar JS"
 
-#: View/settings-extra.view.php:204 View/settings.view.php:284
+#: View/settings-extra.view.php:204 View/settings.view.php:301
 msgid "Save Changes"
 msgstr "Salvar Alterações"
 
-#: View/settings.view.php:54
+#: View/settings.view.php:59
 msgid "Places available"
 msgstr "Locais disponíveis"
 
-#: View/settings.view.php:62
+#: View/settings.view.php:67
 msgid "Single"
 msgstr "Single"
 
-#: View/settings.view.php:71
+#: View/settings.view.php:76
 msgid "Pages"
 msgstr "Páginas"
 
-#: View/settings.view.php:80
+#: View/settings.view.php:85
 msgid "Page home"
 msgstr "Página home"
 
-#: View/settings.view.php:89
+#: View/settings.view.php:94
 msgid "Before content"
 msgstr "Antes do conteúdo"
 
-#: View/settings.view.php:98
+#: View/settings.view.php:103
 msgid "After content"
 msgstr "Depois do conteúdo"
 
 #: View/settings.view.php:109
-msgid "Fixed"
-msgstr "Fixo"
-
-#: View/settings.view.php:115
 msgid "Social networks available"
 msgstr "Redes sociais disponíveis"
 
-#: View/settings.view.php:135
+#: View/settings.view.php:129
 msgid "Custom class"
 msgstr "Classe personalizada"
 
-#: View/settings.view.php:140
+#: View/settings.view.php:134
 msgid "Custom class for primary div"
 msgstr "Classe personalizada para div princípal"
 
-#: View/settings.view.php:147
+#: View/settings.view.php:141
 msgid "Layout options"
 msgstr "Opções de aparência"
 
-#: View/settings.view.php:149
+#: View/settings.view.php:143
 msgid "All layout supports responsive"
 msgstr "Todos os botões tem suporte responsivo"
 
-#: View/settings.view.php:160
+#: View/settings.view.php:154
 msgid "Default"
 msgstr "Padrão"
 
-#: View/settings.view.php:171
+#: View/settings.view.php:165
 msgid "Button"
 msgstr "Botão"
 
-#: View/settings.view.php:182
+#: View/settings.view.php:176
 msgid "Rounded"
 msgstr "Arredondado"
 
-#: View/settings.view.php:193
+#: View/settings.view.php:187
 msgid "Square"
 msgstr "Quadrado"
 
-#: View/settings.view.php:204
+#: View/settings.view.php:198
 msgid "Square plus"
 msgstr "Quadrado plus"
 
-#: View/settings.view.php:210
+#: View/settings.view.php:204
 msgid "Position fixed"
 msgstr "Posição fixa"
 
-#: View/settings.view.php:221
+#: View/settings.view.php:215
 msgid "Fixed left"
 msgstr "Fixo à esquerda"
 
 #: View/settings.view.php:227
+msgid "Fixed right"
+msgstr "Fixo à direita"
+
+#: View/settings.view.php:233
+msgid "Clear"
+msgstr "Limpar"
+
+#: View/settings.view.php:234
+msgid "Click to clear the positions."
+msgstr "Clique para desmarcar a posição fixa."
+
+#: View/settings.view.php:239
 msgid "Fixed Items in top"
 msgstr "Fixar itens no topo"
 
-#: View/settings.view.php:236
+#: View/settings.view.php:248
 msgid "Fixed top"
 msgstr "Fixo no topo"
 
-#: View/settings.view.php:240
+#: View/settings.view.php:252
 msgid "It is activated when scrolling the page on the buttons position."
 msgstr "Ele é ativado quando rolar a página na posição dos botões."
 
-#: View/settings.view.php:246
+#: View/settings.view.php:258
 msgid "Enable highlighted by reference?"
 msgstr "Habilitar destaque por referência?"
 
-#: View/settings.view.php:255
+#: View/settings.view.php:267
 msgid "Referrer"
 msgstr "Referência"
 
-#: View/settings.view.php:259
+#: View/settings.view.php:271
 msgid "This allows highlight the social network where the user Came from."
 msgstr "Isto permite destacar a rede social de onde o usuário veio."
 
-#: View/settings.view.php:271
+#: View/settings.view.php:283
 msgid ""
 "The share count Twitter is powered by <a href=\"http://newsharecounts.com\" "
 "target=\"_blank\">newsharecounts.com</a>, you have to sign up with your "
@@ -384,11 +392,11 @@ msgstr ""
 "contagem do twitter. Basta visitar o site, preencher o domínio do seu site e "
 "clique em Sign in with Twitter. É isso, e nada mais!"
 
-#: View/settings.view.php:303
+#: View/settings.view.php:320
 msgid "Settings saved."
 msgstr "Configurações salvas."
 
-#: View/settings.view.php:320
+#: View/settings.view.php:337
 msgid "General"
 msgstr "Geral"
 
@@ -404,14 +412,19 @@ msgstr "Este relatório tem um cache de "
 msgid "minutes"
 msgstr "minutos"
 
+#: View/share-report.view.php:30
+#, php-format
+msgid "%d minute"
+msgstr "%d minutos"
+
+#~ msgid "Fixed"
+#~ msgstr "Fixo"
+
 #~ msgid "Notice: "
 #~ msgstr "Aviso: "
 
 #~ msgid "Do not use with fixed left checked."
 #~ msgstr "Não use com fixo à esquerda marcado."
-
-#~ msgid "%d minute"
-#~ msgstr "%d minutos"
 
 #~ msgid "Activate"
 #~ msgstr "Ativar"

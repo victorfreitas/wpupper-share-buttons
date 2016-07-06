@@ -10,6 +10,10 @@
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
 
+use WPUSB_Setting as Setting;
+use WPUSB_Utils as Utils;
+use WPUSB_Core as Core;
+
 class WPUSB_Ajax_Controller
 {
 	/**
@@ -45,15 +49,15 @@ class WPUSB_Ajax_Controller
 		header( 'Content-Type: application/javascript; charset=utf-8' );
 
 		//Cache 10 minutes
-		$cache = get_transient( WPUSB_Setting::TRANSIENT_GOOGLE_PLUS );
-		$url   = WPUSB_Utils::get( 'url', false, 'esc_url' );
+		$cache = get_transient( Setting::TRANSIENT_GOOGLE_PLUS );
+		$url   = Utils::get( 'url', false, 'esc_url' );
 
 		if ( isset( $cache[$url] ) ) :
-			echo WPUSB_Utils::get( 'callback' ) . '(' . $cache[$url] . ')';
+			echo Utils::get( 'callback' ) . '(' . $cache[$url] . ')';
 			exit(1);
 		endif;
 
-		WPUSB_Utils::ajax_verify_request( $url, 500, 'url_is_empty' );
+		Utils::ajax_verify_request( $url, 500, 'url_is_empty' );
 		static::_send_request_google( static::_get_google_args( $url ), $url );
 	}
 
@@ -110,7 +114,7 @@ class WPUSB_Ajax_Controller
 		$count_google = static::_get_global_counts_google( $plusones, $response, $url );
 		$results      = json_encode( $count_google );
 
-		echo WPUSB_Utils::get( 'callback' ) . "({$results})";
+		echo Utils::get( 'callback' ) . "({$results})";
 		exit(1);
 	}
 
@@ -133,9 +137,9 @@ class WPUSB_Ajax_Controller
 		$cache[$url] = json_encode( $global_count );
 
 		set_transient(
-			WPUSB_Setting::TRANSIENT_GOOGLE_PLUS,
+			Setting::TRANSIENT_GOOGLE_PLUS,
 			$cache,
-			apply_filters( WPUSB_Setting::TRANSIENT_GOOGLE_PLUS, 10 * MINUTE_IN_SECONDS )
+			apply_filters( Setting::TRANSIENT_GOOGLE_PLUS, 10 * MINUTE_IN_SECONDS )
 		);
 
 		return $global_count;
@@ -151,7 +155,7 @@ class WPUSB_Ajax_Controller
 	private static function _error_request_google()
 	{
 		$results = json_encode( array( 'count' => 0 ) );
-		echo WPUSB_Utils::get( 'callback' ) . "({$results})";
+		echo Utils::get( 'callback' ) . "({$results})";
 		exit(0);
 	}
 
@@ -167,16 +171,16 @@ class WPUSB_Ajax_Controller
 	{
 		global $wpdb;
 
-		$post_id         = WPUSB_Utils::post( 'reference', false, 'intval' );
-		$post_title      = WPUSB_Utils::rip_tags( get_the_title( $post_id ) );
-		$count_facebook  = WPUSB_Utils::post( 'count_facebook', 0, 'intval' );
-		$count_twitter   = WPUSB_Utils::post( 'count_twitter', 0, 'intval' );
-		$count_google    = WPUSB_Utils::post( 'count_google', 0, 'intval' );
-		$count_linkedin  = WPUSB_Utils::post( 'count_linkedin', 0, 'intval' );
-		$count_pinterest = WPUSB_Utils::post( 'count_pinterest', 0, 'intval' );
+		$post_id         = Utils::post( 'reference', false, 'intval' );
+		$post_title      = Utils::rip_tags( get_the_title( $post_id ) );
+		$count_facebook  = Utils::post( 'count_facebook', 0, 'intval' );
+		$count_twitter   = Utils::post( 'count_twitter', 0, 'intval' );
+		$count_google    = Utils::post( 'count_google', 0, 'intval' );
+		$count_linkedin  = Utils::post( 'count_linkedin', 0, 'intval' );
+		$count_pinterest = Utils::post( 'count_pinterest', 0, 'intval' );
 		$total           = ( $count_facebook + $count_twitter + $count_google + $count_linkedin + $count_pinterest );
-		$nonce           = WPUSB_Utils::post( 'nonce', false );
-		$table           = $wpdb->prefix . WPUSB_Setting::TABLE_NAME;
+		$nonce           = Utils::post( 'nonce', false );
+		$table           = $wpdb->prefix . Setting::TABLE_NAME;
 
 		if ( ! $post_id )
 			static::_error_request( 'reference_is_empty' );
@@ -298,12 +302,12 @@ class WPUSB_Ajax_Controller
 	 */
 	public static function share_preview()
 	{
-		if ( ! WPUSB_Utils::is_request_ajax() )
+		if ( ! Utils::is_request_ajax() )
 			exit(0);
 
-		$layout  = WPUSB_Utils::post( 'layout', false );
-		$items   = WPUSB_Utils::post( 'items', false );
-		$checked = WPUSB_Utils::post( 'checked', false );
+		$layout  = Utils::post( 'layout', false );
+		$items   = Utils::post( 'items', false );
+		$checked = Utils::post( 'checked', false );
 
 		if ( ! ( $layout || $items || $checked ) )
 			exit(0);
@@ -325,7 +329,7 @@ class WPUSB_Ajax_Controller
 		global $wp_version;
 
 		$list       = array();
-		$share_args = WPUSB_Core::get_all_elements();
+		$share_args = Core::get_all_elements();
 		$count      = 0;
 
 		if ( ! is_array( $items ) )
@@ -337,7 +341,7 @@ class WPUSB_Ajax_Controller
 
 			$item   = $share_args->$element;
 			$list[] = array(
-				'prefix'      => WPUSB_Setting::PREFIX,
+				'prefix'      => Setting::PREFIX,
 				'slash'       => '&#8260;',
 				'counter'     => str_replace( '.', '', $wp_version ),
 				'item_class'  => $item->element,
@@ -366,7 +370,7 @@ class WPUSB_Ajax_Controller
 	private static function _error_request( $message = '' )
 	{
 		http_response_code( 500 );
-		WPUSB_Utils::error_server_json( $message );
+		Utils::error_server_json( $message );
 		exit(0);
 	}
 
@@ -380,7 +384,7 @@ class WPUSB_Ajax_Controller
 	private static function _json_decode_quoted( $txt )
 	{
 		$text = htmlspecialchars_decode( $txt );
-		$text = WPUSB_Utils::rip_tags( $text );
+		$text = Utils::rip_tags( $text );
 
 		return json_decode( $text, true );
 	}

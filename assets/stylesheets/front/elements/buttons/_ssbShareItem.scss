@@ -201,7 +201,8 @@
     top: -3px;
 }
 
-.fixed-left-container .#{$prefixClass}-icon-share-buttons {
+.fixed-left-container .#{$prefixClass}-icon-share-buttons,
+.fixed-right-container .#{$prefixClass}-icon-share-buttons {
     left: -3px;
     position: relative;
     top: 1px;

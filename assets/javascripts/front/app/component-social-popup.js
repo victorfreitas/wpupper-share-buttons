@@ -12,12 +12,17 @@ WPUPPER( 'SB.Components.SocialPopup', function(SocialPopup, $) {
 
 	SocialPopup.prototype.init = function() {
 		SB.OpenPopup.create( this.$el );
-		this.close.on( 'click', this._onClickClose.bind( this ) );
-		SB.vars.body.on( 'click', this._onClickBody.bind( this ) );
-		this.open.on( 'click', this._onClickOpen.bind( this ) );
+		this.addEventListener();
+		this.container.show();
 		this.setSizes();
 		this.setPosition();
 		this.container.hide();
+	};
+
+	SocialPopup.prototype.addEventListener = function() {
+		this.close.on( 'click', this._onClickClose.bind( this ) );
+		SB.vars.body.on( 'click', this._onClickBody.bind( this ) );
+		this.open.on( 'click', this._onClickOpen.bind( this ) );
 	};
 
 	SocialPopup.prototype._onClickClose = function(event) {

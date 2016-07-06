@@ -221,6 +221,14 @@ class WPUSB_Setting
 	private $position_fixed;
 
 	/**
+	 * Elements position fixed right
+	 *
+	 * @since 3.1.0
+	 * @var String
+	 */
+	private $fixed_right;
+
+	/**
 	 * Layout posisition
 	 *
 	 * @since 1.0

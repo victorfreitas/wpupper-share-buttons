@@ -4,7 +4,7 @@
  * @package WPUpper Share Buttons
  * @author  Victor Freitas
  * @subpackage Utils Helper
- * @version 2.2.0
+ * @version 2.3.0
  */
 
 if ( ! function_exists( 'add_action' ) )
@@ -25,7 +25,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 			return '';
 
 		if ( is_array( $class ) )
-			return $class;
+			return array_map( array( 'WPUSB_Utils', 'esc_class' ), $class );
 
         $class = str_replace( '_', '-', $class );
         $class = preg_replace( '/[^a-zA-Z0-9\s-]|[\s-]+/', '', $class );
@@ -423,7 +423,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * Check WP version and include file screen correctly
 	 *
 	 * @since 1.0
-	 * @param Empty
+	 * @param Null
 	 * @return Void
 	 */
 	public static function include_file_screen()
@@ -609,7 +609,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 			'tracking'          => '',
 			'report_cache_time' => 10,
 		);
-		$value  = apply_filters( WPUSB_App::SLUG . '-options-extra-settings', $value );
+		$value = apply_filters( WPUSB_App::SLUG . '-options-extra-settings', $value );
 
 		add_option( $option['name'], $value );
 	}
@@ -676,5 +676,62 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	public static function is_fixed_top()
 	{
 		return self::option( 'fixed_top', false );
+	}
+
+	/**
+	 * Make sure is activated the Share Buttons in singles
+	 *
+	 * @since 3.1.0
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function is_single()
+	{
+		if ( is_single() && self::option( 'single' ) === 'on' )
+			return true;
+
+		return false;
+	}
+
+	/**
+	 * Make sure is activated the Share Buttons in pages
+	 *
+	 * @since 3.1.0
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function is_page()
+	{
+		if ( ( is_page() || is_page_template() ) && self::option( 'pages' ) === 'on' )
+			return true;
+
+		return false;
+	}
+
+	/**
+	 * make sure is activated the Share Buttons in home
+	 *
+	 * @since 3.1.0
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function is_home()
+	{
+		if ( ( is_home() || is_front_page() ) && self::option( 'home' ) === 'on' )
+			return true;
+
+		return false;
+	}
+
+	/**
+	 * Verify is active page option
+	 *
+	 * @since 3.1.0
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function is_active()
+	{
+		return ( self::is_single() || self::is_page() || self::is_home() );
 	}
 }
