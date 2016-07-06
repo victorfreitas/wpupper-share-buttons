@@ -50,6 +50,10 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 	};
 
 	SharePreview.prototype._update = function(event, ui) {
+		if ( ui ) {
+			this.layout = $( '.layout-preview:checked' ).val();
+		}
+
 		this.itemsOrder = this.order.sortable( 'toArray' );
 		this.inputOrder.val( JSON.stringify( this.itemsOrder ) );
 	};

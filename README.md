@@ -65,6 +65,7 @@ Layout options: default, buttons, rounded, square
 ### 3.1.0
 
 * New position fixed right
+* New send by Gmail
 * Improvements performance
 * Update translations
 * Bug fixes
