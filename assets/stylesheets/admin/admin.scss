@@ -12,9 +12,6 @@
 // ELEMENTS
 // ----------------------------------------------------------------------------
 
-// -- Buttons
-@import "elements/buttons/itemsLayout";
-
 // -- Icons
 @import "elements/icons/spinner";
 
@@ -37,3 +34,7 @@
 
 // -- Share report
 @import "layouts/share-report/wrap";
+
+// -- Buttons
+@import "elements/buttons/itemsLayout";
+@import "elements/buttons/checkbox";

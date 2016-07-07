@@ -58,51 +58,48 @@ class WPUSB_Settings_View
 								<th scope="row">
 									<label><?php _e( 'Places available', App::TEXTDOMAIN ); ?></label>
 								</th>
-								<td>
-					                <input id="<?php echo $prefix; ?>-single"
-					                       type="checkbox"
-					                	   value="on" name="<?php echo "{$option_name}[single]"; ?>"
-					                	   <?php checked( 'on', $model->single ); ?>>
-					                <label for="<?php echo $prefix; ?>-single">
-					                	<span><?php _e( 'Single', App::TEXTDOMAIN ); ?></span>
-					                </label>
-					            </td>
-								<td>
-				                	<input id="<?php echo $prefix; ?>-pages"
-				                	       type="checkbox"
-				                	       value="on" name="<?php echo "{$option_name}[pages]"; ?>"
-				                		   <?php checked( 'on', $model->pages ); ?>>
-					                <label for="<?php echo $prefix; ?>-pages">
-					                	<span><?php _e( 'Pages', App::TEXTDOMAIN ); ?></span>
-					                </label>
-					            </td>
-								<td>
-				                	<input id="<?php echo $prefix; ?>-home"
-				                	       type="checkbox"
-				                	       value="on" name="<?php echo "{$option_name}[home]"; ?>"
-				                		   <?php checked( 'on', $model->home ); ?>>
-					                <label for="<?php echo $prefix; ?>-home">
-					                	<span><?php _e( 'Page home', App::TEXTDOMAIN ); ?></span>
-					                </label>
-				                </td>
-								<td>
-				                	<input id="<?php echo $prefix; ?>-before"
-				                	       type="checkbox"
-				                	       value="on" name="<?php echo "{$option_name}[before]"; ?>"
-				                	       <?php checked( 'on', $model->before ); ?>>
-					                <label for="<?php echo $prefix; ?>-before">
-					                	<span><?php _e( 'Before content', App::TEXTDOMAIN ); ?></span>
-					                </label>
-				                </td>
-								<td>
-				                	<input id="<?php echo $prefix; ?>-after"
-				                	       type="checkbox"
-				                	       value="on" name="<?php echo "{$option_name}[after]"; ?>"
-				                	       <?php checked( 'on', $model->after ); ?>>
-					                <label for="<?php echo $prefix; ?>-after">
-					                	<span><?php _e( 'After content', App::TEXTDOMAIN ); ?></span>
-					                </label>
-				                </td>
+								<?php
+									self::td(array(
+										'type'       => 'checkbox',
+										'id'         => 'single',
+										'name'       => "{$option_name}[single]",
+										'value'      => 'on',
+										'is_checked' => checked( 'on', $model->single, false ),
+										'title'      => __( 'Single', App::TEXTDOMAIN ),
+									));
+									self::td(array(
+										'type'       => 'checkbox',
+										'id'         => 'pages',
+										'name'       => "{$option_name}[pages]",
+										'value'      => 'on',
+										'is_checked' => checked( 'on', $model->pages, false ),
+										'title'      => __( 'Pages', App::TEXTDOMAIN ),
+									));
+									self::td(array(
+										'type'       => 'checkbox',
+										'id'         => 'home',
+										'name'       => "{$option_name}[home]",
+										'value'      => 'on',
+										'is_checked' => checked( 'on', $model->home, false ),
+										'title'      => __( 'Page home', App::TEXTDOMAIN ),
+									));
+									self::td(array(
+										'type'       => 'checkbox',
+										'id'         => 'before',
+										'name'       => "{$option_name}[before]",
+										'value'      => 'on',
+										'is_checked' => checked( 'on', $model->before, false ),
+										'title'      => __( 'Before content', App::TEXTDOMAIN ),
+									));
+									self::td(array(
+										'type'       => 'checkbox',
+										'id'         => 'after',
+										'name'       => "{$option_name}[after]",
+										'value'      => 'on',
+										'is_checked' => checked( 'on', $model->after, false ),
+										'title'      => __( 'After content', App::TEXTDOMAIN ),
+									));
+								?>
 							</tr>
 							<tr class="<?php echo $prefix; ?>-social-networks" data-element="sortable">
 								<th scope="row">
@@ -110,16 +107,20 @@ class WPUSB_Settings_View
 								</th>
 									<?php
 									foreach ( WPUSB_Core::get_all_elements() as $key => $social ) :
-										$content  = "<td id=\"{$key}\" class=\"{$prefix}-select-item\" title=\"{$social->name}\">";
-										$content .= sprintf( "<input id=\"%s\" type=\"checkbox\" name=\"{$option_social_media}[%s]\" value=\"%2\$s\" %s>",
-											$social->class,
-											$key,
-											checked( $key, Utils::option( $key ), false )
-										);
-										$content .= sprintf( '<label for="%s" class="%s"></label>', $social->class, "{$prefix}-icon {$social->class}-icon" );
-										$content .= '</td>';
-
-										echo $content;
+										$option_value = Utils::option( $key );
+										$id           = ( 'google' == $key ) ? "{$key}-plus" : $key;
+										self::td(array(
+											'type'        => 'checkbox',
+											'id'          => $id,
+											'name'        => "{$option_social_media}[{$key}]",
+											'value'       => $key,
+											'is_checked'  => checked( $key, $option_value, false ),
+											'label-class' => "{$prefix}-icon {$social->class}-icon",
+											'td-class'    => "{$prefix}-select-item",
+											'td-id'       => $key,
+											'td-title'    => $social->name,
+											'span'        => false,
+										));
 									endforeach;
 									?>
 							</tr>
@@ -129,12 +130,17 @@ class WPUSB_Settings_View
 										<?php _e( 'Custom class', App::TEXTDOMAIN ); ?>
 									</label>
 								</th>
-								<td>
-									<input id="<?php echo $prefix; ?>-class" class="large-text" type="text"
-										   placeholder="<?php _e( 'Custom class for primary div', App::TEXTDOMAIN ); ?>"
-									       name="<?php echo "{$option_name}[class]"; ?>"
-										   value="<?php echo $model->class; ?>">
-								</td>
+								<?php
+									self::td(array(
+										'id'          => 'class',
+										'class'       => 'large-text',
+										'name'        => "{$option_name}[after]",
+										'value'       => $model->class,
+										'is_checked'  => checked( 'on', $model->after, false ),
+										'placeholder' => __( 'Custom class for primary div', App::TEXTDOMAIN ),
+										'span'        => false,
+									));
+								?>
 							</tr>
 							<tr class="<?php echo $prefix; ?>-layout-options">
 								<th scope="row">
@@ -143,131 +149,119 @@ class WPUSB_Settings_View
 										<?php _e( 'All layout supports responsive', App::TEXTDOMAIN ); ?>
 									</p>
 								</th>
-								<td>
-									<input id="<?php echo $prefix; ?>-default"
-										   type="radio"
-										   class="layout-preview"
-										   name="<?php echo "{$option_name}[layout]"; ?>"
-										   value="default"
-										   <?php checked( 'default', $model->layout ); ?>>
-									<label for="<?php echo $prefix; ?>-default">
-										<span><?php _e( 'Default', App::TEXTDOMAIN ); ?></span>
-									</label>
-								</td>
-								<td>
-									<input id="<?php echo $prefix; ?>-buttons"
-										   type="radio"
-										   class="layout-preview"
-										   name="<?php echo "{$option_name}[layout]"; ?>"
-										   value="buttons"
-										   <?php checked( 'buttons', $model->layout ); ?>>
-									<label for="<?php echo $prefix; ?>-buttons">
-										<span><?php _e( 'Button', App::TEXTDOMAIN ); ?></span>
-									</label>
-								</td>
-								<td>
-									<input id="<?php echo $prefix; ?>-rounded"
-										   type="radio"
-										   class="layout-preview"
-										   name="<?php echo "{$option_name}[layout]"; ?>"
-										   value="rounded"
-										   <?php checked( 'rounded', $model->layout ); ?>>
-									<label for="<?php echo $prefix; ?>-rounded">
-										<span><?php _e( 'Rounded', App::TEXTDOMAIN ); ?></span>
-									</label>
-								</td>
-								<td>
-									<input id="<?php echo $prefix; ?>-square"
-										   type="radio"
-										   class="layout-preview"
-										   name="<?php echo "{$option_name}[layout]"; ?>"
-										   value="square"
-										   <?php checked( 'square', $model->layout ); ?>>
-									<label for="<?php echo $prefix; ?>-square">
-										<span><?php _e( 'Square', App::TEXTDOMAIN ); ?></span>
-									</label>
-								</td>
-								<td>
-									<input id="<?php echo $prefix; ?>-square-plus"
-										   type="radio"
-									       class="layout-preview"
-									       name="<?php echo "{$option_name}[layout]"; ?>"
-									       value="square-plus"
-									       <?php checked( 'square-plus', $model->layout ); ?>>
-									<label for="<?php echo $prefix; ?>-square-plus">
-										<span><?php _e( 'Square plus', App::TEXTDOMAIN ); ?></span>
-									</label>
-								</td>
+								<?php
+									self::td(array(
+										'type'       => 'radio',
+										'id'         => 'default',
+										'class'      => 'layout-preview',
+										'name'       => "{$option_name}[layout]",
+										'value'      => 'default',
+										'is_checked' => checked( 'default', $model->layout, false ),
+										'title'      => __( 'Default', App::TEXTDOMAIN ),
+									));
+									self::td(array(
+										'type'       => 'radio',
+										'id'         => 'buttons',
+										'class'      => 'layout-preview',
+										'name'       => "{$option_name}[layout]",
+										'value'      => 'buttons',
+										'is_checked' => checked( 'buttons', $model->layout, false ),
+										'title'      => __( 'Button', App::TEXTDOMAIN ),
+									));
+									self::td(array(
+										'type'       => 'radio',
+										'id'         => 'rounded',
+										'class'      => 'layout-preview',
+										'name'       => "{$option_name}[layout]",
+										'value'      => 'rounded',
+										'is_checked' => checked( 'rounded', $model->layout, false ),
+										'title'      => __( 'Rounded', App::TEXTDOMAIN ),
+									));
+									self::td(array(
+										'type'       => 'radio',
+										'id'         => 'square',
+										'class'      => 'layout-preview',
+										'name'       => "{$option_name}[layout]",
+										'value'      => 'square',
+										'is_checked' => checked( 'square', $model->layout, false ),
+										'title'      => __( 'Square', App::TEXTDOMAIN ),
+									));
+									self::td(array(
+										'type'       => 'radio',
+										'id'         => 'square-plus',
+										'class'      => 'layout-preview',
+										'name'       => "{$option_name}[layout]",
+										'value'      => 'square-plus',
+										'is_checked' => checked( 'square-plus', $model->layout, false ),
+										'title'      => __( 'Square plus', App::TEXTDOMAIN ),
+									));
+								?>
 							</tr>
 							<tr class="<?php echo $prefix; ?>-position-fixed">
 								<th scope="row">
 									<?php _e( 'Position fixed', App::TEXTDOMAIN ); ?>
 								</th>
-								<td>
-									<input id="<?php echo $prefix; ?>-fixed-left"
-										   data-element="position-fixed"
-									       type="radio"
-									       class="layout-preview layout-fixed"
-										   name="<?php echo "{$option_name}[position_fixed]"; ?>"
-										   value="fixed-left"
-										   <?php checked( 'fixed-left', $model->position_fixed ); ?>>
-									<label for="<?php echo $prefix; ?>-fixed-left">
-										<span><?php _e( 'Fixed left', App::TEXTDOMAIN ); ?></span>
-									</label>
-								</td>
-								<td>
-									<input id="<?php echo $prefix; ?>-fixed-right"
-										   data-element="position-fixed"
-									       type="radio"
-									       class="layout-preview layout-fixed"
-										   name="<?php echo "{$option_name}[position_fixed]"; ?>"
-										   value="fixed-right"
-										   <?php checked( 'fixed-right', $model->position_fixed ); ?>>
-									<label for="<?php echo $prefix; ?>-fixed-right">
-										<span><?php _e( 'Fixed right', App::TEXTDOMAIN ); ?></span>
-									</label>
-								</td>
-								<td class="<?php echo $prefix; ?>-fixed-clear">
+								<?php
+									self::td(array(
+										'type'       => 'radio',
+										'id'         => 'fixed-left',
+										'class'      => 'layout-preview layout-fixed',
+										'name'       => "{$option_name}[position_fixed]",
+										'value'      => 'fixed-left',
+										'is_checked' => checked( 'fixed-left', $model->position_fixed, false ),
+										'title'      => __( 'Fixed left', App::TEXTDOMAIN ),
+										'data-attr'  => 'data-element="position-fixed"',
+									));
+									self::td(array(
+										'type'       => 'radio',
+										'id'         => 'fixed-right',
+										'class'      => 'layout-preview layout-fixed',
+										'name'       => "{$option_name}[position_fixed]",
+										'value'      => 'fixed-right',
+										'is_checked' => checked( 'fixed-right', $model->position_fixed, false ),
+										'title'      => __( 'Fixed right', App::TEXTDOMAIN ),
+										'data-attr'  => 'data-element="position-fixed"',
+									));
+								?>
+								<td class="<?php echo "{$prefix}-fixed-clear"; ?>">
 									<input type="button"
 									       data-action="fixed-disabled"
 									       value="<?php _e( 'Clear', App::TEXTDOMAIN ); ?>">
 									<span><?php _e( 'Click to clear the positions.', App::TEXTDOMAIN ); ?></span>
 								</td>
 							</tr>
-							<tr class="<?php echo $prefix; ?>-position-fixed-top">
+							<tr>
 								<th scope="row">
 									<?php _e( 'Fixed Items in top', App::TEXTDOMAIN ); ?>
 								</th>
 								<td>
-									<input id="<?php echo $prefix; ?>-fixed-top"
-									       type="checkbox"
-										   name="<?php echo "{$option_name}[fixed_top]"; ?>"
-										   value="fixed-top"
-										   <?php checked( 'fixed-top', $model->fixed_top ); ?>>
-									<label for="<?php echo $prefix; ?>-fixed-top">
-										<span><?php _e( 'Fixed top', App::TEXTDOMAIN ); ?></span>
-									</label>
-
-									<p class="<?php echo $prefix; ?>-description">
+								<?php
+									self::add_checkbox(array(
+										'name'    => "{$option_name}[fixed_top]",
+										'id'      => 'fixed-top',
+										'checked' => checked( 'fixed-top', $model->fixed_top, false ),
+										'value'   => 'fixed-top',
+									));
+								?>
+									<p class="description">
 										<?php _e( 'It is activated when scrolling the page on the buttons position.', App::TEXTDOMAIN ); ?>
 									</p>
 								</td>
 							</tr>
-							<tr class="<?php echo $prefix; ?>-referrer">
+							<tr>
 								<th scope="row">
-									<?php _e( 'Enable highlighted by reference?', App::TEXTDOMAIN ); ?>
+									<?php _e( 'Highlighted by reference', App::TEXTDOMAIN ); ?>
 								</th>
 								<td>
-									<input id="<?php echo $prefix; ?>-referrer"
-									       type="checkbox"
-										   name="<?php echo "{$option_name}[referrer]"; ?>"
-										   value="yes"
-										   <?php checked( 'yes', $model->referrer ); ?>>
-									<label for="<?php echo $prefix; ?>-referrer">
-										<span><?php _e( 'Referrer', App::TEXTDOMAIN ); ?></span>
-									</label>
-
-									<p class="<?php echo $prefix; ?>-description">
+								<?php
+									self::add_checkbox(array(
+										'name'    => "{$option_name}[referrer]",
+										'id'      => 'referrer',
+										'checked' => checked( 'yes', $model->referrer, false ),
+										'value'   => 'yes',
+									));
+								?>
+									<p class="description">
 										<?php _e( 'This allows highlight the social network where the user Came from.', App::TEXTDOMAIN ); ?>
 									</p>
 								</td>
@@ -355,5 +349,80 @@ class WPUSB_Settings_View
 			</ul>
 		</div>
 	<?php
+	}
+
+	public static function td( $args = array() )
+	{
+		$prefix   = Setting::PREFIX;
+		$span     = '';
+		$args     = static::_get_td_args( $args );
+
+		if ( $args['span'] )
+			$span = "<span>{$args['title']}</span>";
+
+		echo <<<EOD
+			<td id="{$args['td-id']}"
+			    class="{$args['td-class']}"
+			    title="{$args['td-title']}">
+
+	            <input type="{$args['type']}" {$args['data-attr']}
+	                   id="{$prefix}-{$args['id']}"
+	                   class="{$args['class']}"
+	            	   name="{$args['name']}"
+	            	   value="{$args['value']}"
+	            	   placeholder="{$args['placeholder']}"
+	            	   {$args['is_checked']}>
+
+	            <label for="{$prefix}-{$args['id']}"
+	                   class="{$args['label-class']}">
+	            	{$span}
+	            </label>
+	        </td>
+EOD;
+	}
+
+	public static function add_checkbox( $args = array() )
+	{
+		$prefix = Setting::PREFIX;
+
+		echo <<<EOD
+			<div class="{$prefix}-custom-switch">
+
+			    <input type="checkbox"
+			    	   id="{$prefix}-{$args['id']}"
+			    	   class="{$prefix}-check"
+			    	   name="{$args['name']}"
+			    	   value="{$args['value']}"
+			    	   {$args['checked']}>
+
+			    <label for="{$prefix}-{$args['id']}">
+			        <span class="{$prefix}-inner"></span>
+			        <span class="{$prefix}-switch"></span>
+			    </label>
+
+			</div>
+EOD;
+	}
+
+	private static function _get_td_args( $args )
+	{
+		$defaults = array(
+			'type'        => 'text',
+			'placeholder' => '',
+			'id'          => '',
+			'class'       => '',
+			'name'        => '',
+			'value'       => '',
+			'is_checked'  => '',
+			'title'       => '',
+			'td-id'       => '',
+			'td-class'    => '',
+			'label-class' => '',
+			'td-title'    => '',
+			'data-attr'   => '',
+			'span'        => true,
+		);
+
+		return array_merge( $defaults, $args );
 	}
 }

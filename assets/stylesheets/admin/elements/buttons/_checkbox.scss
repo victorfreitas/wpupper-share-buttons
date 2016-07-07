@@ -1,0 +1,79 @@
+.#{$prefixClass}-custom-switch {
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    position: relative;
+    width: 69px;
+
+    .#{$prefixClass}-check {
+    	display: none;
+    }
+
+	label {
+	    border-radius: 5px;
+	    border: 2px solid $colorWhite;
+	    cursor: pointer;
+	    display: block;
+	    overflow: hidden;
+	}
+
+	.#{$prefixClass}-inner {
+	    display: block;
+	    margin-left: -100%;
+	    transition: margin 0.3s ease-in 0s;
+	    width: 200%;
+	}
+
+	.#{$prefixClass}-inner:before,
+	.#{$prefixClass}-inner:after {
+	    box-sizing: border-box;
+	    color: white;
+	    display: block;
+	    float: left;
+	    font-family: Trebuchet, Arial, sans-serif;
+	    font-size: 14px;
+	    font-weight: bold;
+	    height: 24px;
+	    line-height: 28px;
+	    padding: 0;
+	    width: 50%;
+	}
+
+	.#{$prefixClass}-inner:before {
+	    background-color: $colorCheckboxOn;
+	    color: $colorWhite;
+	    content: "ON";
+	    padding-left: 11px;
+	}
+
+	.#{$prefixClass}-inner:after {
+	    background-color: $colorCheckboxOff;
+	    color: $colorDarken;
+	    content: "OFF";
+	    padding-right: 8px;
+	    text-align: right;
+	}
+
+	.#{$prefixClass}-switch {
+	    background: $colorWhite;
+	    border-radius: 3px;
+	    border: 2px solid transparent;
+	    bottom: 2px;
+	    display: block;
+	    margin: 3.5px;
+	    position: absolute;
+	    right: 43px;
+	    top: 1px;
+	    transition: all 0.3s ease-in 0s;
+	    width: 15px;
+	}
+
+	.#{$prefixClass}-check:checked + label .#{$prefixClass}-inner {
+	    margin-left: 0;
+	    left: 2px;
+	}
+
+	.#{$prefixClass}-check:checked + label .#{$prefixClass}-switch {
+	    right: 2px;
+	}
+}

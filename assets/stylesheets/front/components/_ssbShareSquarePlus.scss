@@ -27,14 +27,16 @@
 
 	    	&.#{$prefixClass}-icon-whatsapp-square-plus,
 	    	&.#{$prefixClass}-icon-google-plus-square-plus {
-				position: relative;
 	    		font-size: 28px;
-	    	    top: -1px;
 	    	}
 
 	    	&.#{$prefixClass}-icon-email-square-plus {
 				position: relative;
 				right: 1px;
+	    	}
+
+	    	&.#{$prefixClass}-icon-gmail-square-plus {
+				margin-right: 2px;
 	    	}
 	    }
 	}

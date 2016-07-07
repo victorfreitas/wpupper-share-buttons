@@ -1,12 +1,23 @@
+#wrapper .#{$prefixClass},
+#content .#{$prefixClass} {
+    .#{$prefixClass}-item a,
+    .#{$prefixClass}-item a:hover {
+        font-family: $fontFamily;
+        text-decoration: none;
+    }
+}
+
 .#{$prefixClass}-item a {
     border-bottom: none;
     cursor: pointer;
     display: inline-block;
+    font-family: $fontFamily;
     text-decoration: none;
 
     &:hover {
         border-bottom: none;
         box-shadow: none;
+        font-family: $fontFamily;
         text-decoration: none;
     }
 
@@ -57,6 +68,7 @@
         }
     }
 }
+
 @each $key, $color in $colors {
     // Theme > Other
     @include icon( $key, $color );
@@ -72,16 +84,15 @@
 }
 
 .#{$prefixClass}-square .#{$prefixClass}-whatsapp i {
-    background: $colorWhatsapp;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 30px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 0px 5px $colorWhatsapp inset;
+    font-size: 31px;
     line-height: 35px;
+    width: 36px;
 }
 
 .#{$prefixClass}-square .#{$prefixClass}-whatsapp a:hover i {
-    background: darken( $colorWhatsapp, 5% );
-    color: #fff;
+    box-shadow: 0px 0px 0px 5px darken( $colorWhatsapp, 5% ) inset;
 }
 
 .#{$prefixClass}-rounded .#{$prefixClass}-printer i,
@@ -150,4 +161,12 @@
     left: -3px;
     position: relative;
     top: 1px;
+}
+
+.#{$prefixClass}-rounded,
+.#{$prefixClass}-square {
+    .#{$prefixClass}-like a:hover i {
+        background: darken( $colorfacebookLike, 10% );
+        color: #fff;
+    }
 }

@@ -10,6 +10,8 @@
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
 
+use WPUSB_Settings_View as View;
+
 class WPUSB_Settings_Extra_View
 {
 	/**
@@ -137,64 +139,72 @@ class WPUSB_Settings_Extra_View
 									</p>
 								</td>
 							</tr>
-							<tr class="<?php echo $prefix; ?>-remove-elements">
+							<tr>
 								<th scope="row">
 									<label for="<?php echo $prefix; ?>-remove-count">
 										<?php _e( 'Remove counter', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>
 								</th>
 								<td>
-									<input id="<?php echo $prefix; ?>-remove-count"
-									       type="checkbox"
-									       value="1"
-										   name="<?php echo "{$extra_setting}[remove_count]"; ?>"
-										   <?php checked( 1, $model->remove_count ); ?>>
-									<label for="<?php echo $prefix; ?>-remove-count" class="<?php echo $prefix; ?>-icon"></label>
+								<?php
+									View::add_checkbox(array(
+										'name'    => "{$extra_setting}[remove_count]",
+										'id'      => 'remove-count',
+										'checked' => checked( 1, $model->remove_count, false ),
+										'value'   => 1,
+									));
+								?>
 								</td>
 							</tr>
-							<tr class="<?php echo $prefix; ?>-remove-elements">
+							<tr>
 								<th scope="row">
 									<label for="<?php echo $prefix; ?>-remove-inside">
 										<?php _e( 'Remove button title', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>
 								</th>
 								<td>
-									<input id="<?php echo $prefix; ?>-remove-inside"
-									       type="checkbox"
-									       value="1"
-										   name="<?php echo "{$extra_setting}[remove_inside]"; ?>"
-										   <?php checked( 1, $model->remove_inside ); ?>>
-									<label for="<?php echo $prefix; ?>-remove-inside" class="<?php echo $prefix; ?>-icon"></label>
+								<?php
+									View::add_checkbox(array(
+										'name'    => "{$extra_setting}[remove_inside]",
+										'id'      => 'remove-inside',
+										'checked' => checked( 1, $model->remove_inside, false ),
+										'value'   => 1,
+									));
+								?>
 								</td>
 							</tr>
-							<tr class="<?php echo $prefix; ?>-remove-elements">
+							<tr>
 								<th scope="row">
 									<label for="<?php echo $prefix; ?>-disable-css">
 										<?php _e( 'Disable CSS', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>
 								</th>
 								<td>
-									<input id="<?php echo $prefix; ?>-disable-css"
-									       type="checkbox"
-									       value="on"
-										   name="<?php echo "{$extra_setting}[disable_css]"; ?>"
-										   <?php checked( 'on', $model->disable_css ); ?>>
-									<label for="<?php echo $prefix; ?>-disable-css" class="<?php echo $prefix; ?>-icon"></label>
+								<?php
+									View::add_checkbox(array(
+										'name'    => "{$extra_setting}[disable_css]",
+										'id'      => 'disable-css',
+										'checked' => checked( 'on', $model->disable_css, false ),
+										'value'   => 'on',
+									));
+								?>
 								</td>
 							</tr>
-							<tr class="<?php echo $prefix; ?>-remove-elements">
+							<tr>
 								<th scope="row">
 									<label for="<?php echo $prefix; ?>-disable-script">
 										<?php _e( 'Disable JS', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>
 								</th>
 								<td>
-									<input id="<?php echo $prefix; ?>-disable-script"
-									       type="checkbox"
-									       value="on"
-										   name="<?php echo "{$extra_setting}[disable_js]"; ?>"
-										   <?php checked( 'on', $model->disable_js ); ?>>
-									<label for="<?php echo $prefix; ?>-disable-script" class="<?php echo $prefix; ?>-icon"></label>
+								<?php
+									View::add_checkbox(array(
+										'name'    => "{$extra_setting}[disable_js]",
+										'id'      => 'disable-script',
+										'checked' => checked( 'on', $model->disable_js, false ),
+										'value'   => 'on',
+									));
+								?>
 								</td>
 							</tr>
 						</tbody>

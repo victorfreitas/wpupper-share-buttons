@@ -2,10 +2,10 @@ $_itemsAvailable : 'items-available';
 
 .#{$prefixClass}-fixed-clear {
     input {
-        background: $btnColor;
+        background: #bfbfbf;
         border-radius: 4px;
         border: 0;
-        box-shadow: 0 2px 0 0 darken( $btnColor, 15% );
+        box-shadow: 0 2px 0 0 darken( #bfbfbf, 15% );
         color: #fff;
         cursor: pointer;
         font-size: 12px;
@@ -14,7 +14,7 @@ $_itemsAvailable : 'items-available';
     }
 
     input:hover {
-        background: darken( $btnColor, 5% );
+        background: darken( #bfbfbf, 5% );
     }
 
     input:active {
@@ -128,7 +128,7 @@ $_itemsAvailable : 'items-available';
 .#{$prefixClass}-position-fixed-top,
 .#{$prefixClass}-referrer {
     input + label:before {
-        background: $btnColor;
+        background: $colorCheckboxOn;
     }
 }
 
@@ -218,7 +218,7 @@ $_itemsAvailable : 'items-available';
 .#{$prefixClass}-remove-elements input:checked + label:after {
     position: relative;
     @extend .#{$prefixClass}-icon-toggle-on:before;
-    color: $btnColor;
+    color: $colorCheckboxOn;
 }
 
 .#{$prefixClass}-highlight {
