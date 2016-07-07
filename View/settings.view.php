@@ -134,9 +134,9 @@ class WPUSB_Settings_View
 									self::td(array(
 										'id'          => 'class',
 										'class'       => 'large-text',
-										'name'        => "{$option_name}[after]",
+										'name'        => "{$option_name}[class]",
 										'value'       => $model->class,
-										'is_checked'  => checked( 'on', $model->after, false ),
+										'is_checked'  => checked( 'on', $model->class, false ),
 										'placeholder' => __( 'Custom class for primary div', App::TEXTDOMAIN ),
 										'span'        => false,
 									));
