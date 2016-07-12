@@ -13,6 +13,7 @@ if ( ! function_exists( 'add_action' ) )
 use WPUSB_Setting as Setting;
 use WPUSB_Utils as Utils;
 use WPUSB_Core as Core;
+use WPUSB_Social_Elements as Elements;
 
 class WPUSB_Ajax_Controller
 {
@@ -29,6 +30,7 @@ class WPUSB_Ajax_Controller
 		add_action( 'wp_ajax_counts_social_share', array( __CLASS__, 'counts_social_share' ) );
 		add_action( 'wp_ajax_share_preview', array( __CLASS__, 'share_preview' ) );
 	}
+
 	/**
 	* Nonce
 	*
@@ -329,7 +331,7 @@ class WPUSB_Ajax_Controller
 		global $wp_version;
 
 		$list       = array();
-		$share_args = Core::get_all_elements();
+		$share_args = Elements::social_media();
 		$count      = 0;
 
 		if ( ! is_array( $items ) )

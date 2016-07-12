@@ -14,7 +14,7 @@ if ( ! function_exists( 'add_action' ) )
 use WPUSB_Utils as Utils;
 use WPUSB_App as App;
 use WPUSB_Setting as Setting;
-use WPUSB_Core as Core;
+use WPUSB_Social_Elements as Elements;
 
 class WPUSB_All_Items
 {
@@ -53,7 +53,7 @@ EOD;
 	 */
 	public static function items( $prefix )
 	{
-		$elements = Core::social_media_objects();
+		$elements = Elements::social_media();
 
 		foreach ( $elements as $key => $social ) :
 			if ( $key === 'share' )

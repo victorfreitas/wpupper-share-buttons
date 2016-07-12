@@ -14,7 +14,7 @@ if ( ! function_exists( 'add_action' ) )
 use WPUSB_Ajax_Controller as Ajax;
 use WPUSB_Utils as Utils;
 use WPUSB_Setting as Setting;
-use WPUSB_Core as Core;
+use WPUSB_Social_Elements as Elements;
 use WPUSB_App as App;
 
 abstract class WPUSB_Utils_Share
@@ -86,7 +86,7 @@ abstract class WPUSB_Utils_Share
 	public static function get_buttons( $args = array(), $fixed = false )
 	{
 		$model          = new Setting();
-		$elements       = Core::social_media_objects();
+		$elements       = Elements::social_media();
 		$args           = apply_filters( App::SLUG . 'buttons-args', $args );
 		$args['layout'] = self::get_layout( $args, $model->layout, $fixed );
 		$buttons        = self::get_buttons_open( $args, $model );

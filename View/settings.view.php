@@ -13,6 +13,7 @@ if ( ! function_exists( 'add_action' ) )
 use WPUSB_Setting as Setting;
 use WPUSB_App as App;
 use WPUSB_Utils as Utils;
+use WPUSB_Social_Elements as Elements;
 
 class WPUSB_Settings_View
 {
@@ -106,7 +107,7 @@ class WPUSB_Settings_View
 									<label for="social-media"><?php _e( 'Social networks available', App::TEXTDOMAIN ); ?></label>
 								</th>
 									<?php
-									foreach ( WPUSB_Core::get_all_elements() as $key => $social ) :
+									foreach ( Elements::social_media() as $key => $social ) :
 										$option_value = Utils::option( $key );
 										$id           = ( 'google' == $key ) ? "{$key}-plus" : $key;
 										self::td(array(

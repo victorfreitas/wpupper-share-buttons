@@ -481,16 +481,16 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	public static function bitly_short_url( $token, $url )
 	{
 		$api_url = 'https://api-ssl.bitly.com/v3/shorten/';
-		$params  = "?access_token={$token}&longUrl={$url}";
 		$args    =  array(
-			'method'    => 'GET',
-			'sslverify' => false,
-			'headers'   => array(
-		        'Content-Type' => 'application/json',
+			'httpversion' => '1.1',
+			'headers'     => array( 'Content-Type' => 'application/json' ),
+	    	'body'        => array(
+				'access_token' => $token,
+				'longUrl'      => $url,
 	    	),
 	    );
 
-	    $response = wp_remote_get( "{$api_url}{$params}", $args );
+	    $response = wp_remote_get( $api_url, $args );
 
 	    if ( is_wp_error( $response ) )
 	    	return $url;
