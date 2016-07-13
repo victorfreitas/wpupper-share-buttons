@@ -46,6 +46,18 @@ WPUPPER( 'SB.FixedContext', function(FixedContext, $) {
 		this.$el.css({
 			left : this.left
 		});
+
+		this.setLeftMobile();
+	};
+
+	FixedContext.setLeftMobile = function() {
+		if ( window.innerWidth > 769 ) {
+			return;
+		}
+
+		this.$el.css({
+			left : 'initial'
+		});
 	};
 
 	FixedContext.changeClass = function() {
