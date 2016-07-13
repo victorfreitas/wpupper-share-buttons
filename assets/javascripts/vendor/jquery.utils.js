@@ -20,6 +20,10 @@
 		return ( window.WPUpperVars || {} ).ajaxUrl;
 	};
 
+	$.prototype.getContext = function() {
+		return ( window.WPUpperVars || {} ).context;
+	};
+
 	$.prototype.getLocale = function() {
 		return ( window.WPUpperVars || {} ).WPLANG;
 	};

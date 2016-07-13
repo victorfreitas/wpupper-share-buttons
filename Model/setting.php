@@ -13,6 +13,36 @@ if ( ! function_exists( 'add_action' ) )
 class WPUSB_Setting
 {
 	/**
+	 * Set all themes property
+	 *
+	 * @since 3.1.4
+	 * @version 1.0.0
+	 * @var Array
+	 */
+	public static $themes = array(
+		'Default'     => 'default',
+		'Button'      => 'buttons',
+		'Rounded'     => 'rounded',
+		'Square'      => 'square',
+		'Square plus' => 'square-plus',
+	);
+
+	/**
+	 * Set locations available property
+	 *
+	 * @since 3.1.4
+	 * @version 1.0.0
+	 * @var Array
+	 */
+	public static $locations = array(
+		'Single'         => 'home',
+		'Pages'          => 'pages',
+		'Page home'      => 'single',
+		'Before content' => 'before',
+		'After content'  => 'after',
+	);
+
+	/**
 	 * Full Options
 	 *
 	 * @since 1.0
@@ -277,6 +307,14 @@ class WPUSB_Setting
 	private $referrer;
 
 	/**
+	 * The context to search
+	 *
+	 * @since 1.0
+	 * @var String
+	 */
+	private $fixed_context;
+
+	/**
 	 * Plugin general prefix
 	 *
 	 * @since 1.0
@@ -373,8 +411,9 @@ class WPUSB_Setting
 				break;
 
 			default :
-				if ( ! isset( $this->$prop_name ) )
+				if ( ! isset( $this->$prop_name ) ) {
 					$this->$prop_name = WPUSB_Utils::option( $prop_name );
+				}
 
 		endswitch;
 

@@ -82,6 +82,8 @@ class WPUSB_Settings_Controller
 		if ( 'on' === Utils::option( 'disable_js' ) )
 			return;
 
+		$context = Utils::option( 'fixed_context' );
+
 		wp_enqueue_script(
 			Setting::PREFIX . '-scripts',
 			Utils::plugin_url( 'javascripts/built.js' ),
@@ -95,6 +97,7 @@ class WPUSB_Settings_Controller
 			'WPUpperVars',
 			array(
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+				'context' => str_replace( '{id}', Utils::get_id(), $context ),
 			)
 		);
 	}

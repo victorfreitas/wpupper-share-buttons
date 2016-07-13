@@ -24,6 +24,7 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 	CounterSocialShare.prototype.init = function() {
 		SB.FeaturedReferrer.create( this.$el );
 		SB.OpenPopup.create( this.$el );
+		SB.FixedContext.create( this.$el );
 		this.addEventListeners();
 		this.request();
 	};
