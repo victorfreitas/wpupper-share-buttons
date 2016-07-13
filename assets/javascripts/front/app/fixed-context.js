@@ -44,7 +44,6 @@ WPUPPER( 'SB.FixedContext', function(FixedContext, $) {
 		this.$el.byAction( 'close-buttons' ).remove();
 		this.changeClass();
 		this.$el.css({
-			top  : this.top,
 			left : this.left
 		});
 	};
