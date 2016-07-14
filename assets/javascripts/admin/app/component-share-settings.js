@@ -1,6 +1,6 @@
 WPUPPER( 'SB.Components.ShareSettings', function(ShareSettings, $) {
 
-	ShareSettings.prototype.start = function(container) {
+	ShareSettings.fn.start = function(container) {
 		this.prefix   = SB.vars.prefix;
 		this.posFixed = container.byElement( 'position-fixed' );
 		this.fixed    = container.byElement( 'fixed' );
@@ -8,16 +8,16 @@ WPUPPER( 'SB.Components.ShareSettings', function(ShareSettings, $) {
 		this.init();
 	};
 
-	ShareSettings.prototype.init = function() {
+	ShareSettings.fn.init = function() {
 		this.addEventListener();
 	};
 
-	ShareSettings.prototype.addEventListener = function() {
+	ShareSettings.fn.addEventListener = function() {
 		this.posFixed.on( 'change', this._onChangeFixedLeft.bind( this ) );
 		this.clear.on( 'click', this._onclickClear.bind( this ) );
 	};
 
-	ShareSettings.prototype._onChangeFixedLeft = function(event) {
+	ShareSettings.fn._onChangeFixedLeft = function(event) {
 		if ( this.posFixed.is( ':checked' ) ) {
 			this.fixed.val( 'on' );
 			return;
@@ -26,7 +26,7 @@ WPUPPER( 'SB.Components.ShareSettings', function(ShareSettings, $) {
 		this.fixed.val( '' );
 	};
 
-	ShareSettings.prototype._onclickClear = function(event) {
+	ShareSettings.fn._onclickClear = function(event) {
 		this.posFixed.prop( 'checked', false );
 		this.fixed.val( '' );
 	};

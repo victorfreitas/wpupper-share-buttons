@@ -1,34 +1,34 @@
 ;(function($) {
 
-	$.prototype.byElement = function(name) {
+	$.fn.byElement = function(name) {
 		return this.find( '[data-element="' + name + '"]' );
 	};
 
-	$.prototype.byAction = function(name) {
+	$.fn.byAction = function(name) {
 		return this.find( '[data-action="' + name + '"]' );
 	};
 
-	$.prototype.byReferrer = function(name) {
+	$.fn.byReferrer = function(name) {
 		return this.find( '[data-referrer="' + name + '"]' );
 	};
 
-	$.prototype.byComponent = function(name) {
+	$.fn.byComponent = function(name) {
 		return this.find( '[data-component="' + name + '"]' );
 	};
 
-	$.prototype.getAjaxUrl = function() {
+	$.fn.getAjaxUrl = function() {
 		return ( window.WPUpperVars || {} ).ajaxUrl;
 	};
 
-	$.prototype.getContext = function() {
+	$.fn.getContext = function() {
 		return ( window.WPUpperVars || {} ).context;
 	};
 
-	$.prototype.getLocale = function() {
+	$.fn.getLocale = function() {
 		return ( window.WPUpperVars || {} ).WPLANG;
 	};
 
-	$.prototype.findComponent = function(selector, callback) {
+	$.fn.findComponent = function(selector, callback) {
 		var elements = $(this).find( selector );
 
 		if ( elements.length && typeof callback == 'function' ) {
@@ -38,7 +38,7 @@
 		return elements.length;
 	};
 
-	$.prototype.ucfirst = function(text) {
+	$.fn.ucfirst = function(text) {
 	    text = text.replace(/(?:^|-)\w/g, function(match) {
 	        return match.toUpperCase();
 	    });
@@ -46,11 +46,17 @@
 	    return text.replace(/-/g, '');
     };
 
-	$.prototype.getTime = function() {
+	$.fn.addEvent = function(event, action, context) {
+        var handle = $.fn.ucfirst( [ '_on', event, action ].join( '-' ) );
+        this.byAction( action )
+        	.on( event, $.proxy( context, handle ) );
+	};
+
+	$.fn.getTime = function() {
 		return ( new Date() ).getTime();
 	};
 
-	$.prototype.hashStr = function(str) {
+	$.fn.hashStr = function(str) {
 		var hash = 0
 		  , i    = 0
 		  , char

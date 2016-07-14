@@ -1,7 +1,7 @@
 WPUPPER( 'SB.Preview', function(Preview, $) {
 
 	Preview.create = function(container) {
-		this.locale  = $.prototype.getLocale();
+		this.locale  = $.fn.getLocale();
 		this.title   = $( '[data-action="no-title"]' );
 		this.counter = $( '[data-action="no-counter"]' );
 		this.init();

@@ -1,7 +1,6 @@
 WPUPPER( 'SB.Components.SocialPopup', function(SocialPopup, $) {
 
-
-	SocialPopup.prototype.start = function(container) {
+	SocialPopup.fn.start = function(container) {
 		this.prefix    = '.' + SB.vars.prefix + '-';
 		this.container = container;
 		this.$el       = container.find( this.prefix + 'networks' );
@@ -10,7 +9,7 @@ WPUPPER( 'SB.Components.SocialPopup', function(SocialPopup, $) {
 		this.init();
 	};
 
-	SocialPopup.prototype.init = function() {
+	SocialPopup.fn.init = function() {
 		SB.OpenPopup.create( this.$el );
 		this.addEventListener();
 		this.container.show();
@@ -19,18 +18,18 @@ WPUPPER( 'SB.Components.SocialPopup', function(SocialPopup, $) {
 		this.container.hide();
 	};
 
-	SocialPopup.prototype.addEventListener = function() {
+	SocialPopup.fn.addEventListener = function() {
 		this.close.on( 'click', this._onClickClose.bind( this ) );
 		SB.vars.body.on( 'click', this._onClickBody.bind( this ) );
 		this.open.on( 'click', this._onClickOpen.bind( this ) );
 	};
 
-	SocialPopup.prototype._onClickClose = function(event) {
+	SocialPopup.fn._onClickClose = function(event) {
 		event.preventDefault();
 		this.closeModal();
 	};
 
-	SocialPopup.prototype._onClickBody = function(event) {
+	SocialPopup.fn._onClickBody = function(event) {
 		var target = $( event.target ).is( this.prefix + 'popup-content' );
 
 		if ( target ) {
@@ -38,21 +37,21 @@ WPUPPER( 'SB.Components.SocialPopup', function(SocialPopup, $) {
 		}
 	};
 
-	SocialPopup.prototype._onClickOpen = function(event) {
+	SocialPopup.fn._onClickOpen = function(event) {
 		event.preventDefault();
 		this.container.fadeTo( 'slow', 1 );
 	};
 
-	SocialPopup.prototype.setSizes = function() {
+	SocialPopup.fn.setSizes = function() {
 		this.setTop();
 		this.setLeft();
 	};
 
-	SocialPopup.prototype.closeModal = function() {
+	SocialPopup.fn.closeModal = function() {
 		this.container.fadeOut( 'slow' );
 	};
 
-	SocialPopup.prototype.setTop = function() {
+	SocialPopup.fn.setTop = function() {
 		var height   = ( window.innerHeight * 0.5 )
 		  ,	elHeight = ( this.$el.height() * 0.5 )
 		;
@@ -60,7 +59,7 @@ WPUPPER( 'SB.Components.SocialPopup', function(SocialPopup, $) {
 		this.top = ( height - elHeight ) + 'px';
 	};
 
-	SocialPopup.prototype.setLeft = function() {
+	SocialPopup.fn.setLeft = function() {
 		var width   = ( window.innerWidth * 0.5 )
 		  ,	elWidth = ( this.$el.width() * 0.5 )
 		;
@@ -68,7 +67,7 @@ WPUPPER( 'SB.Components.SocialPopup', function(SocialPopup, $) {
 		this.left = ( width - elWidth ) + 'px';
 	};
 
-	SocialPopup.prototype.setPosition = function() {
+	SocialPopup.fn.setPosition = function() {
 		this.$el.css({
 			top  : this.top,
 			left : this.left

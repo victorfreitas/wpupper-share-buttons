@@ -1,6 +1,6 @@
 WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 
-	SharePreview.prototype.start = function(container) {
+	SharePreview.fn.start = function(container) {
 		this.$el           = container;
 		this.spinner       = $( '.ajax-spinner' );
 		this.prefix        = SB.vars.prefix;
@@ -12,22 +12,22 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 		this.init();
 	};
 
-	SharePreview.prototype.init = function() {
+	SharePreview.fn.init = function() {
 		this.addEventListener();
 	};
 
-	SharePreview.prototype.addEventListener = function() {
+	SharePreview.fn.addEventListener = function() {
 		this.layoutOptions.on( 'click', this._onClickLayout.bind( this ) );
 		this.elements.on( 'click', this._onClick.bind( this ) );
 		this.order.sortable( this.sortOptions() );
 	};
 
-	SharePreview.prototype._onClickLayout = function(event) {
+	SharePreview.fn._onClickLayout = function(event) {
 		this.layout = event.currentTarget.value;
 		this._onClick();
 	};
 
-	SharePreview.prototype._onClick = function(event) {
+	SharePreview.fn._onClick = function(event) {
 		if ( event ) {
 			this.layout = $( '.layout-preview:checked' ).val();
 		}
@@ -36,7 +36,7 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 		this._stop();
 	};
 
-	SharePreview.prototype.sortOptions = function() {
+	SharePreview.fn.sortOptions = function() {
 		return {
 			opacity     : 0.5,
 			cursor      : 'move',
@@ -49,7 +49,7 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 		};
 	};
 
-	SharePreview.prototype._update = function(event, ui) {
+	SharePreview.fn._update = function(event, ui) {
 		if ( ui ) {
 			this.layout = $( '.layout-preview:checked' ).val();
 		}
@@ -58,7 +58,7 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 		this.inputOrder.val( JSON.stringify( this.itemsOrder ) );
 	};
 
-	SharePreview.prototype._stop = function(event, ui) {
+	SharePreview.fn._stop = function(event, ui) {
 		this.itemsChecked = [];
 		this.order.find( 'input:checked' )
 		    .each(function(index, value) {
@@ -68,7 +68,7 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 		this.request();
 	};
 
-	SharePreview.prototype.request = function() {
+	SharePreview.fn.request = function() {
 		this.spinner.css( 'visibility', 'visible' );
 		var params = {
 				action  : 'share_preview',
@@ -80,7 +80,7 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 
 		var ajax = $.ajax({
 			type     : 'POST',
-			url      : $.prototype.getAjaxUrl(),
+			url      : $.fn.getAjaxUrl(),
 			data     : params,
 			dataType : 'json'
 		});
@@ -88,7 +88,7 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 		ajax.then( $.proxy( this, '_done' ), $.proxy( this, '_fail' ) );
 	};
 
-	SharePreview.prototype._done = function(response) {
+	SharePreview.fn._done = function(response) {
 		this.spinner.css( 'visibility', 'hidden' );
 		this.$el
 		     .byElement( this.prefix )
@@ -97,17 +97,17 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 		SB.Preview.create( this.$el );
 	};
 
-	SharePreview.prototype._fail = function(throwError, status) {
+	SharePreview.fn._fail = function(throwError, status) {
 		this.spinner.css( 'visibility', 'hidden' );
 		console.warn( throwError );
 	};
 
-	SharePreview.prototype.render = function(response) {
+	SharePreview.fn.render = function(response) {
 		return WPUPPER.Templates[this.templateName()]
 		                .call( null, response );
 	};
 
-	SharePreview.prototype.templateName = function() {
+	SharePreview.fn.templateName = function() {
 		var layout;
 
 		switch ( this.layout ) {

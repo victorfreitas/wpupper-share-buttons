@@ -1,4 +1,4 @@
-;(function(context) {
+;(function(context, $) {
 
     'use strict';
 
@@ -9,37 +9,37 @@
           , count  = parts.length
           , index  = 0
         ;
-
         for ( index; index < count; index++ ) {
-          parent[parts[index]] = ( count - 1 === index ) ? loader : parent[parts[index]] || {};
-          parent               = parent[parts[index]];
+            parent[parts[index]] = ( count - 1 === index ) ? loader : parent[parts[index]] || {};
+            parent               = parent[parts[index]];
         }
 
         if ( 'function' === typeof callback ) {
-          callback.call( null, parent, jQuery );
+            callback.call( null, parent, $ );
         }
 
         return parent;
-  };
+    };
 
-  WPUPPER.instantiate = function() {
-    var Instantiate       = function() {}
-      , ObjectConstructor = function() {
-          var instance;
+    WPUPPER.instantiate = function() {
+        var Instantiate = function() {}
+          , Constructor = function() {
+                var instance;
 
-          instance = new Instantiate();
-          instance.start.apply( instance, arguments );
+                instance = new Instantiate();
+                instance.start.apply( instance, arguments );
 
-          return instance;
-      }
-    ;
+                return instance;
+            }
+        ;
 
-    Instantiate.prototype             = ObjectConstructor.prototype;
-    ObjectConstructor.prototype.start = function() {};
+        Constructor.fn        = Constructor.prototype;
+        Instantiate.prototype = Constructor.fn;
+        Constructor.fn.start  = function() {};
 
-    return ObjectConstructor;
-  };
+        return Constructor;
+    };
 
- context.WPUPPER = WPUPPER;
+    context.WPUPPER = WPUPPER;
 
-})( window );
+})( window, jQuery );

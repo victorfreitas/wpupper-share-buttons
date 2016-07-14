@@ -40,7 +40,7 @@ templates['fixed'] = template({"1":function(container,depth0,helpers,partials,da
     var stack1;
 
   return ((stack1 = helpers.each.call(depth0,depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "	<span class=\"wpusb-toggle\"></span>\n</div>\n\n<button class=\"button\" data-action=\"no-counter\"></button>";
+    + "	<span class=\"wpusb-toggle\"></span>\n</div>";
 },"useData":true});
 
 templates['share-preview'] = template({"1":function(container,depth0,helpers,partials,data) {

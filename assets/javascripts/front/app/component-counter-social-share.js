@@ -1,6 +1,6 @@
 WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 
-	CounterSocialShare.prototype.start = function(container) {
+	CounterSocialShare.fn.start = function(container) {
 		this.$el              = container;
 		this.prefix           = SB.vars.prefix + '-';
 		this.data             = container.data();
@@ -21,7 +21,7 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 		this.init();
 	};
 
-	CounterSocialShare.prototype.init = function() {
+	CounterSocialShare.fn.init = function() {
 		SB.FeaturedReferrer.create( this.$el );
 		SB.OpenPopup.create( this.$el );
 		SB.FixedContext.create( this.$el );
@@ -29,12 +29,12 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 		this.request();
 	};
 
-	CounterSocialShare.prototype.addEventListeners = function() {
-		this.$el.byAction( 'open-popup' ).on( 'click', this.sendRequest.bind( this ) );
+	CounterSocialShare.fn.addEventListeners = function() {
+		this.$el.addEvent( 'click', 'open-popup', this );
 		SB.ToggleButtons.create( this.$el.data( 'element' ), this.$el );
 	};
 
-	CounterSocialShare.prototype.request = function() {
+	CounterSocialShare.fn.request = function() {
 		this.items = [
 			{
 				reference : 'facebookCounter',
@@ -49,7 +49,7 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 			{
 				reference : 'googleCounter',
 				element   : 'google',
-				url       : $.prototype.getAjaxUrl(),
+				url       : $.fn.getAjaxUrl(),
 				data      : this.getParamsGoogle()
 			},
 			{
@@ -67,11 +67,11 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 		this._eachAjaxSocial();
 	};
 
-	CounterSocialShare.prototype._eachAjaxSocial = function() {
+	CounterSocialShare.fn._eachAjaxSocial = function() {
 		this.items.forEach( this._iterateItems.bind( this ) );
 	};
 
-	CounterSocialShare.prototype._iterateItems = function(item, index) {
+	CounterSocialShare.fn._iterateItems = function(item, index) {
 		var counter = 0;
 		this.totalShare.text( counter );
 		this[item.element].text( counter );
@@ -84,7 +84,7 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 		this._getJSON( item );
 	};
 
-	CounterSocialShare.prototype.setCounterCache = function(counter, item) {
+	CounterSocialShare.fn.setCounterCache = function(counter, item) {
 		counter = parseFloat( this._getItem( item.element ) );
 		this.totalCounter   += counter;
 		this[item.reference] = counter;
@@ -92,7 +92,7 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 		this.totalShare.text( this.totalCounter );
 	};
 
-	CounterSocialShare.prototype._getJSON = function(request) {
+	CounterSocialShare.fn._getJSON = function(request) {
 		var args = $.extend({
 				dataType : 'jsonp'
 			}, request )
@@ -103,7 +103,7 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 		ajax.fail( $.proxy( this, '_fail', request ) );
 	};
 
-	CounterSocialShare.prototype._done = function(request, response) {
+	CounterSocialShare.fn._done = function(request, response) {
 		var number              = this.getNumberByData( response );
 		this[request.reference] = number;
 		this.max               -= 1;
@@ -117,12 +117,12 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 		}
 	};
 
-	CounterSocialShare.prototype._fail = function(request, throwError, status) {
+	CounterSocialShare.fn._fail = function(request, throwError, status) {
 		this[request.reference] = 0;
 		this[request.element].text( 0 );
 	};
 
-	CounterSocialShare.prototype.getNumberByData = function(data) {
+	CounterSocialShare.fn.getNumberByData = function(data) {
 		var fbTotal = parseFloat( data['shares'] ) + parseFloat( data['comments'] )
 		  , fbShare = parseFloat( data['shares'] )
 		  , count   = parseFloat( data['count'] )
@@ -131,14 +131,14 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 		return ( fbTotal || fbShare || count || 0 );
 	};
 
-	CounterSocialShare.prototype.getParamsGoogle = function() {
+	CounterSocialShare.fn.getParamsGoogle = function() {
 		return {
 			action : 'share_google_plus',
 			url    : this.data.elementUrl
 		};
 	};
 
-	CounterSocialShare.prototype.sendRequest = function() {
+	CounterSocialShare.fn._onClickOpenPopup = function(event) {
 		this.items.forEach( this.clearStorage.bind( this ) );
 		var params = {
 	       	action          : 'counts_social_share',
@@ -153,12 +153,12 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 
 		$.ajax({
 	       method : 'POST',
-	       url    : $.prototype.getAjaxUrl(),
+	       url    : $.fn.getAjaxUrl(),
 	       data   : params
 	   });
 	};
 
-	CounterSocialShare.prototype.clearStorage = function(item, index, array) {
+	CounterSocialShare.fn.clearStorage = function(item, index, array) {
 		this._removeItem( item.element );
 
 		if ( ( index + 1 ) == array.length ) {
@@ -166,26 +166,26 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 		}
 	};
 
-	CounterSocialShare.prototype._removeItem = function(element) {
-		localStorage.removeItem( $.prototype.hashStr( this.data.elementUrl + element ) );
+	CounterSocialShare.fn._removeItem = function(element) {
+		localStorage.removeItem( $.fn.hashStr( this.data.elementUrl + element ) );
 	};
 
-	CounterSocialShare.prototype._getItem = function(element) {
-		var storage = localStorage.getItem( $.prototype.hashStr( this.data.elementUrl + element ) );
+	CounterSocialShare.fn._getItem = function(element) {
+		var storage = localStorage.getItem( $.fn.hashStr( this.data.elementUrl + element ) );
 
 		return ( null === storage ) ? 0 : storage;
 	};
 
-	CounterSocialShare.prototype._setItem = function(element, value) {
-		localStorage.setItem( $.prototype.hashStr( this.data.elementUrl + element ), value );
+	CounterSocialShare.fn._setItem = function(element, value) {
+		localStorage.setItem( $.fn.hashStr( this.data.elementUrl + element ), value );
 	};
 
-	CounterSocialShare.prototype._timerCache = function(time) {
-		return $.prototype.getTime() + 1000 * time;
+	CounterSocialShare.fn._timerCache = function(time) {
+		return $.fn.getTime() + 1000 * time;
 	};
 
-	CounterSocialShare.prototype._verifyTimeCache = function() {
-		return ( this._getItem( 'cache' ) < $.prototype.getTime() );
+	CounterSocialShare.fn._verifyTimeCache = function() {
+		return ( this._getItem( 'cache' ) < $.fn.getTime() );
 	};
 
 });
