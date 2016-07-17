@@ -35,11 +35,12 @@ class WPUSB_Setting
 	 * @var Array
 	 */
 	public static $locations = array(
-		'Single'         => 'home',
-		'Pages'          => 'pages',
-		'Page home'      => 'single',
-		'Before content' => 'before',
-		'After content'  => 'after',
+		'Single'           => 'home',
+		'Pages'            => 'pages',
+		'Page home'        => 'single',
+		'Category/Archive' => 'archive_category',
+		'Before content'   => 'before',
+		'After content'    => 'after',
 	);
 
 	/**
@@ -401,19 +402,15 @@ class WPUSB_Setting
 		switch ( $prop_name ) :
 
 			case 'full_options' :
-				if ( ! isset( $this->full_options ) )
-					$this->full_options = $this->get_options();
+				$this->$prop_name = $this->get_options();
 				break;
 
 			case 'social_media' :
-				if ( ! isset( $this->social_media ) )
-					$this->social_media = get_option( self::PREFIX . '_social_media' );
+				$this->$prop_name = get_option( self::PREFIX . '_social_media' );
 				break;
 
 			default :
-				if ( ! isset( $this->$prop_name ) ) {
-					$this->$prop_name = WPUSB_Utils::option( $prop_name );
-				}
+				$this->$prop_name = WPUSB_Utils::option( $prop_name );
 
 		endswitch;
 

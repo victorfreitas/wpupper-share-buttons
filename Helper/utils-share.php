@@ -21,6 +21,7 @@ abstract class WPUSB_Utils_Share
 {
 	public static $count_elements = 0;
 	public static $layout_fixed = 'position_fixed';
+	public static $social_media = array();
 
 	/**
 	 * Set buttons args
@@ -81,7 +82,6 @@ abstract class WPUSB_Utils_Share
 	 * @since 3.0.0
 	 * @param array $args
 	 * @return String
-	 *
 	 */
 	public static function get_buttons( $args = array(), $fixed = false )
 	{
@@ -91,8 +91,10 @@ abstract class WPUSB_Utils_Share
 		$args['layout'] = self::get_layout( $args, $model->layout, $fixed );
 		$buttons        = self::get_buttons_open( $args, $model );
 
+		static::_set_social_media( $model->social_media );
+
 		foreach ( $elements as $key => $social ) :
-			if ( ! in_array( $key, (array) $model->social_media ) )
+			if ( ! in_array( $key, self::$social_media ) )
 				continue;
 
 			self::$count_elements++;
@@ -103,6 +105,22 @@ abstract class WPUSB_Utils_Share
 		$buttons .= self::get_content_by_layout( (object) $args, 'end' );
 
 		return $buttons;
+	}
+
+	/**
+	 * Set social media items active
+	 *
+	 * @since 3.2.2
+	 * @version 1.0.0
+	 * @param array $social_media
+	 * @return Void
+	 */
+	private static function _set_social_media( $social_media )
+	{
+		if ( isset( $social_media['order'] ) )
+			unset( $social_media['order'] );
+
+		self::$social_media = (array) $social_media;
 	}
 
 	public static function get_layout( $args, $layout, $fixed )

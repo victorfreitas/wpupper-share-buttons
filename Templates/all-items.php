@@ -27,8 +27,11 @@ class WPUSB_All_Items
 	 */
 	public static function init()
 	{
-		$prefix    = Setting::PREFIX;
+		if ( ! in_array( 'share', Utils::$social_media ) )
+			return;
+
 		$permalink = Utils::get_permalink();
+		$prefix    = Setting::PREFIX;
 
 		echo <<< EOD
 			<div class="{$prefix}-popup-content"

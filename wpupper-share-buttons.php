@@ -86,7 +86,7 @@ class WPUSB_App
 	public static function get_files()
 	{
 		$root    = dirname( __FILE__ );
-		$pattern = "{$root}{/Helper/,/Controller/,/Templates/}*.php";
+		$pattern = "{$root}{/Config/,/Helper/,/Controller/,/Templates/}*.php";
 		$files   = glob( $pattern, GLOB_BRACE );
 
 		return ( is_null( $files ) ) ? array() : $files;
@@ -103,10 +103,12 @@ class WPUSB_App
 	{
 		$files = self::get_files();
 
-		foreach( $files as $key => $file )
+		foreach( $files as $key => $file ) {
 			require_once( $file );
+		}
+
+		new WPUSB_Core();
 	}
 }
 
-WPUSB_App::uses( 'core', 'Config' );
-new WPUSB_Core();
+add_action( 'plugins_loaded', array( 'WPUSB_App', 'require_files' ) );

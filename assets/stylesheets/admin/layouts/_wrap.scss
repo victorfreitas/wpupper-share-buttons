@@ -65,6 +65,7 @@ $_itemsAvailable : 'items-available';
 @include input-remove( single );
 @include input-remove( pages );
 @include input-remove( home );
+@include input-remove( archive_category );
 @include input-remove( before );
 @include input-remove( after );
 @include input-remove( fixed );

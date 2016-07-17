@@ -14,13 +14,6 @@ use WPUSB_App as App;
 use WPUSB_Setting as Setting;
 use WPUSB_Utils as Utils;
 
-/*
-* Automatic include files
-* in Helper, Controller and Templates
-*/
-App::require_files();
-App::uses( 'social-elements', 'Config' );
-
 class WPUSB_Core
 {
 	/**
@@ -38,10 +31,11 @@ class WPUSB_Core
 	 */
 	public function __construct()
 	{
-		add_action( 'plugins_loaded', array( __CLASS__, 'share_report_update_db_check' ) );
-		add_action( 'plugins_loaded', array( __CLASS__, 'load_text_domain' ) );
+		static::_share_report_update_db();
+		static::_load_text_domain();
 		static::_register_actions();
 		static::_instantiate_controllers();
+
 	}
 
 	/**
@@ -180,7 +174,7 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	public static function share_report_update_db_check()
+	public static function _share_report_update_db()
 	{
 		$db_version = get_site_option( Setting::TABLE_NAME . '_db_version' );
 
@@ -195,7 +189,7 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	public static function load_text_domain()
+	public static function _load_text_domain()
 	{
 		$plugin_dir = basename( dirname( App::FILE ) );
 		load_plugin_textdomain( App::TEXTDOMAIN, false, "{$plugin_dir}/languages/" );

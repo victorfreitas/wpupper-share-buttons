@@ -724,6 +724,21 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	}
 
 	/**
+	 * make sure is activated the Share Buttons in archive and category page
+	 *
+	 * @since 3.2.2
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function is_archive_category()
+	{
+		if ( ( is_archive() || is_category() ) && self::option( 'archive_category' ) === 'on' )
+			return true;
+
+		return false;
+	}
+
+	/**
 	 * Verify is active page option
 	 *
 	 * @since 3.1.0
@@ -732,6 +747,12 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function is_active()
 	{
-		return ( self::is_single() || self::is_page() || self::is_home() );
+		if ( self::is_home() || self::is_archive_category() )
+			return true;
+
+		if ( self::is_page() || self::is_single() )
+			return true;
+
+		return false;
 	}
 }
