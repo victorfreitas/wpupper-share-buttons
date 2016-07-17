@@ -10,6 +10,9 @@
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
 
+use WPUSB_App as App;
+use WPUSB_Setting as Setting;
+
 class WPUSB_Utils extends WPUSB_Utils_Share
 {
 	/**
@@ -194,7 +197,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	}
 
 	/**
-	 * Permalinks posts
+	 * Permalinks post
 	 *
 	 * @since 1.0
 	 * @param null
@@ -213,6 +216,120 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 			$permalink = esc_url( get_site_url( null, '/' ) );
 
 		return $permalink;
+	}
+
+	/**
+	 * Permalinks post | archive | category
+	 *
+	 * @since 1.0
+	 * @param null
+	 * @return String
+	 */
+	public static function get_real_permalink( $is_fixed = false )
+	{
+		if ( ! ( is_category() || is_archive() ) )
+			return self::generate_short_url();
+
+		if ( ! $is_fixed )
+			return self::generate_short_url();
+
+		$term      = get_queried_object();
+		$term_link = get_term_link( $term );
+
+		if ( is_wp_error( $term_link ) )
+			return self::get_permalink();
+
+		return self::generate_short_url( $term_link );
+	}
+
+	/**
+	 * Generate short url by bitly
+	 *
+	 * @since 3.1.4
+	 * @version 1.0.0
+	 * @param Null
+	 * @return String
+	 */
+	public static function generate_short_url( $url = false )
+	{
+		$bitly_token = self::option( 'bitly_token', false );
+		$permalink   = ( $url ) ? $url : self::get_permalink();
+		$tracking    = self::get_tracking();
+		$permalink   = rawurlencode( "{$permalink}{$tracking}" );
+
+		if ( ! $bitly_token )
+			return self::url_clean( $permalink );
+
+		return self::bitly_short_url_cache( $bitly_token, $permalink );
+	}
+
+	/**
+	 * Return clean url and add implements filter
+	 *
+	 * @since 3.1.4
+	 * @version 1.0.0
+	 * @param string $url
+	 * @return String
+	 */
+	public static function url_clean( $url )
+	{
+		$name = App::SLUG . '-url-share';
+		return apply_filters( $name, $url );
+	}
+
+	/**
+	 * Return tracking UTM
+	 *
+	 * @since 3.1.4
+	 * @version 1.0.0
+	 * @param Null
+	 * @return String
+	 */
+	public static function get_tracking()
+	{
+		$tracking = self::option( 'tracking' );
+
+		return self::html_decode( $tracking );
+	}
+
+	/**
+	 * Title for post | archive | category
+	 *
+	 * @since 1.0
+	 * @param null
+	 * @return String
+	 */
+	public static function get_real_title( $is_fixed = false )
+	{
+		if ( ! ( is_category() || is_archive() ) )
+			return rawurlencode( self::get_title() );
+
+		if ( ! $is_fixed )
+			return rawurlencode( self::get_title() );
+
+		$term = self::get_queried_object();
+
+		if ( ! $term )
+			return self::get_title();
+
+		return rawurlencode( $term->name );
+	}
+
+	/**
+	 * Queried object
+	 *
+	 * @since 1.0
+	 * @param Null
+	 * @return Boolean | Object
+	 */
+	public static function get_queried_object()
+	{
+		$term = get_queried_object();
+
+		if ( isset( $term->term_id ) )
+			return $term;
+
+		return false;
 	}
 
 	/**

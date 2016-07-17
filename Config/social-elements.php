@@ -298,13 +298,12 @@ class WPUSB_Social_Elements
 	public static function get_elements()
 	{
 		$arguments = self::_get_arguments();
-		$tracking  = Utils::option( 'tracking' );
-		$tracking  = Utils::html_decode( $tracking );
+		$tracking  = Utils::get_tracking();
 
 		static::_set_properts(
-			rawurlencode( $arguments['title'] ),
-			rawurlencode( $arguments['link'] ),
-			rawurlencode( $tracking ),
+			$arguments['title'],
+			$arguments['link'],
+			$tracking,
 			rawurlencode( $arguments['thumbnail'] ),
 			rawurlencode( $arguments['body_mail'] )
 		);
@@ -326,46 +325,13 @@ class WPUSB_Social_Elements
 		$title     = Utils::get_title();
 		$body_mail = Utils::body_mail();
 		$arguments = array(
-			'title'     => $title,
-			'link'      => Utils::get_permalink(),
+			'title'     => '_title_',
+			'link'      => '_permalink_',
 			'thumbnail' => Utils::get_image(),
 			'body_mail' => "\n\n{$title}\n\n{$body_mail}\n",
 		);
 
 		return apply_filters( App::SLUG . 'arguments', $arguments );
-	}
-
-	/**
-	 * Generate short url by bitly
-	 *
-	 * @since 3.1.4
-	 * @version 1.0.0
-	 * @param string $url
-	 * @param string $tracking
-	 * @return String
-	 */
-	private static function _generate_short_url( $url, $tracking )
-	{
-		$bitly_token = Utils::option( 'bitly_token', false );
-
-		if ( ! $bitly_token )
-			return static::_url_clean( "{$url}{$tracking}" );
-
-		return Utils::bitly_short_url_cache( $bitly_token, "{$url}{$tracking}" );
-	}
-
-	/**
-	 * Return clean url and add implements filter
-	 *
-	 * @since 3.1.4
-	 * @version 1.0.0
-	 * @param string $url
-	 * @return String
-	 */
-	private static function _url_clean( $url )
-	{
-		$name = App::SLUG . '-url-share';
-		return apply_filters( $name, $url );
 	}
 
 	/**
@@ -424,7 +390,7 @@ class WPUSB_Social_Elements
 		$caracter            = apply_filters( App::SLUG . '-caracter', html_entity_decode( '&#x261B;' ) );
 		self::$caracter      = $caracter;
 		self::$url_like      = rawurldecode( $url );
-		self::$url           = ( is_admin() ) ? '' : static::_generate_short_url( $url, $tracking );
+		self::$url           = $url;
 		self::$item          = $prefix . '-item';
 		self::$class_button  = $prefix . '-button';
 		self::$viber_text    = apply_filters( App::SLUG . '-viber-text', "{$title}%20{$caracter}%20", $title );

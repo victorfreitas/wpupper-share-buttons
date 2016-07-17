@@ -26,12 +26,13 @@ class WPUSB_Fixed_Left
 	public static function init( \stdClass $atts )
 	{
 		$args       = Utils::content_args();
+		$permalink  = Utils::get_real_permalink( true );
 		$classes    = self::get_classes_first( $atts );
 		$data_token = Utils::get_data_token( $args['token'] );
 		$counter    = self::add_count( $atts );
 		$content    = <<<EOD
 		<div class="{$classes}"
-		     data-element-url="{$args['permalink']}"
+		     data-element-url="{$permalink}"
 		     data-tracking="{$args['tracking']}"
 		     data-attr-reference="{$args['post_id']}"
 		     data-element="fixed"
