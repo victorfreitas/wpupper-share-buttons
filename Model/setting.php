@@ -13,6 +13,19 @@ if ( ! function_exists( 'add_action' ) )
 class WPUSB_Setting
 {
 	/**
+	 * Options
+	 *
+	 * @since 1.0
+	 * @var Array
+	 */
+	public static $db_options = array(
+		'wpusb_report_db_version',
+		'wpusb_settings',
+		'wpusb_social_media',
+		'wpusb_extra_settings',
+	);
+
+	/**
 	 * Full Options
 	 *
 	 * @since 1.0

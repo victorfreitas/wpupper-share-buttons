@@ -14,6 +14,13 @@ use WPUSB_App as App;
 use WPUSB_Setting as Setting;
 use WPUSB_Utils as Utils;
 
+/*
+* Automatic include files
+* in Helper, Controller and Templates
+*/
+App::require_files();
+App::uses( 'social-elements', 'Config' );
+
 class WPUSB_Core
 {
 	/**
@@ -31,11 +38,22 @@ class WPUSB_Core
 	 */
 	public function __construct()
 	{
-		static::_share_report_update_db();
-		static::_load_text_domain();
-		static::_register_actions();
+		add_action( 'plugins_loaded', array( __CLASS__, 'plugins_loaded' ) );
 		static::_instantiate_controllers();
+		static::_register_actions();
+	}
 
+	/**
+	 * Action plugins loaded
+	 *
+	 * @since 1.0
+	 * @param Null
+	 * @return Void
+	 */
+	public static function plugins_loaded()
+	{
+		self::share_report_update_db();
+		self::load_text_domain();
 	}
 
 	/**
@@ -49,7 +67,6 @@ class WPUSB_Core
 	{
 		register_activation_hook( App::FILE, array( __CLASS__, 'activate' ) );
 		register_deactivation_hook( App::FILE, array( __CLASS__, 'deactivate' ) );
-		register_uninstall_hook( App::FILE, array( __CLASS__, 'uninstall' ) );
 	}
 
 	/**
@@ -79,6 +96,8 @@ class WPUSB_Core
 	{
 		self::$report->create_table();
 		Utils::add_options_defaults();
+
+		register_uninstall_hook( App::FILE, array( __CLASS__, 'uninstall' ) );
 	}
 
 	/**
@@ -102,36 +121,18 @@ class WPUSB_Core
 	 */
 	public static function uninstall()
 	{
-		$prefix = Setting::PREFIX;
-		static::_delete_options( $prefix );
-		static::_delete_site_options( $prefix );
+		static::_delete_options();
 		static::_delete_transients();
 		static::_delete_table();
 	}
 
-	private static function _delete_options( $prefix )
+	private static function _delete_options()
 	{
 		// Options
-		delete_option( $prefix );
-		delete_option( "{$prefix}_settings" );
-		delete_option( "{$prefix}_style_settings" );
-	}
-
-	/**
-	 * Delete site option on plugin uninstallation
-	 *
-	 * @since 1.0
-	 * @param Null
-	 * @return Void
-	 */
-	private static function _delete_site_options( $prefix )
-	{
-		//Options multisite
-		if ( is_multisite() ) :
-			delete_site_option( $prefix );
-			delete_site_option( "{$prefix}_settings" );
-			delete_site_option( "{$prefix}_style_settings" );
-		endif;
+		foreach ( Setting::$db_options as $key => $option ) {
+			delete_option( $option );
+			delete_site_option( $option );
+		}
 	}
 
 	/**
@@ -174,7 +175,7 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	public static function _share_report_update_db()
+	public static function share_report_update_db()
 	{
 		$db_version = get_site_option( Setting::TABLE_NAME . '_db_version' );
 
@@ -189,7 +190,7 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	public static function _load_text_domain()
+	public static function load_text_domain()
 	{
 		$plugin_dir = basename( dirname( App::FILE ) );
 		load_plugin_textdomain( App::TEXTDOMAIN, false, "{$plugin_dir}/languages/" );

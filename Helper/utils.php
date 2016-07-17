@@ -579,14 +579,15 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	{
 		$option = self::get_option_group_name( 'settings' );
 		$value  = array(
-			'single'    => 'on',
-			'before'    => 'on',
-			'after'     => 'off',
-			'pages'     => 'off',
-			'home'      => 'off',
-			'class'     => '',
-			'layout'    => 'default',
-			'fixed_top' => '',
+			'home'             => 'off',
+			'pages'            => 'off',
+			'archive_category' => 'on',
+			'single'           => 'on',
+			'before'           => 'on',
+			'after'            => 'off',
+			'class'            => '',
+			'layout'           => 'default',
+			'fixed_top'        => '',
 		);
 		$value  = apply_filters( WPUSB_App::SLUG . '-options-settings', $value );
 
@@ -608,15 +609,16 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 			'twitter'   => 'twitter',
 			'google'    => 'google',
 			'whatsapp'  => 'whatsapp',
-			'telegram'  => 'telegram',
-			'skype'     => 'skype',
-			'viber'     => 'viber',
-			'pinterest' => 'pinterest',
-			'linkedin'  => 'linkedin',
-			'tumblr'    => 'tumblr',
-			'email'     => 'email',
-			'printer'   => 'printer',
-			'like'      => 'like',
+			'telegram'  => '',
+			'skype'     => '',
+			'viber'     => '',
+			'pinterest' => '',
+			'linkedin'  => '',
+			'tumblr'    => '',
+			'email'     => '',
+			'printer'   => '',
+			'like'      => '',
+			'share'     => 'share',
 		);
 		$value  = apply_filters( WPUSB_App::SLUG . '-options-social-media', $value );
 
