@@ -32,9 +32,9 @@ abstract class WPUSB_Utils_Share
 	 * @return String HTML
 	 *
 	 */
-	public static function set_buttons_args( $social, $args )
+	public static function set_buttons_args( $social, $args, $permalink, $title )
 	{
-		self::replace_link( $social, $args['is_fixed'] );
+		self::replace_link( $social, $permalink, $title );
 
 		$buttons = static::_set_buttons(array(
 			'social'       => $social,
@@ -48,10 +48,8 @@ abstract class WPUSB_Utils_Share
 		return $buttons;
 	}
 
-	public static function replace_link( &$social, $fixed )
+	public static function replace_link( &$social, $permalink, $title )
 	{
-		$permalink    = Utils::get_real_permalink( $fixed );
-		$title        = Utils::get_real_title( $fixed );
 		$search       = array( '_permalink_', '_title_' );
 		$replace      = array( $permalink, $title );
 		$social->link = str_replace( $search, $replace, $social->link );
@@ -100,6 +98,8 @@ abstract class WPUSB_Utils_Share
 		$args['layout']   = self::get_layout( $args, $model->layout, $fixed );
 		$args['is_fixed'] = $fixed;
 		$buttons          = self::get_buttons_open( $args, $model );
+		$permalink        = Utils::get_real_permalink( $fixed );
+		$title            = Utils::get_real_title( $fixed );
 
 		static::_set_social_media( $model->social_media );
 
@@ -109,7 +109,7 @@ abstract class WPUSB_Utils_Share
 
 			self::$count_elements++;
 
-			$buttons .= self::set_buttons_args( $social, $args );
+			$buttons .= self::set_buttons_args( $social, $args, $permalink, $title );
 		endforeach;
 
 		$buttons .= self::get_content_by_layout( (object) $args, 'end' );
