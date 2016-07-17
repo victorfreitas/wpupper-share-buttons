@@ -27,7 +27,7 @@ class WPUSB_All_Items
 	 */
 	public static function init()
 	{
-		if ( ! in_array( 'share', Utils::$social_media ) )
+		if ( ! in_array( 'share', Utils::get_social_media() ) )
 			return;
 
 		$permalink = Utils::get_permalink();

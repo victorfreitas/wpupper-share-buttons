@@ -101,10 +101,8 @@ abstract class WPUSB_Utils_Share
 		$permalink        = Utils::get_real_permalink( $fixed );
 		$title            = Utils::get_real_title( $fixed );
 
-		static::_set_social_media( $model->social_media );
-
 		foreach ( $elements as $key => $social ) :
-			if ( ! in_array( $key, self::$social_media ) )
+			if ( ! in_array( $key, self::get_social_media( $model ) ) )
 				continue;
 
 			self::$count_elements++;
@@ -115,6 +113,27 @@ abstract class WPUSB_Utils_Share
 		$buttons .= self::get_content_by_layout( (object) $args, 'end' );
 
 		return $buttons;
+	}
+
+	/**
+	 * Get social media items active
+	 *
+	 * @since 3.2.2
+	 * @version 1.0.0
+	 * @param Null
+	 * @return Array
+	 */
+	public static function get_social_media( $model = false )
+	{
+		if ( ! $model )
+			$model = new Setting();
+
+		$social_media = $model->social_media;
+
+		if ( isset( $social_media['order'] ) )
+			unset( $social_media['order'] );
+
+		return (array) $social_media;
 	}
 
 	/**
