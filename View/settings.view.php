@@ -60,16 +60,54 @@ class WPUSB_Settings_View
 									<label><?php _e( 'Places available', App::TEXTDOMAIN ); ?></label>
 								</th>
 								<?php
-									foreach( Setting::$locations as $title => $location ) :
-										self::td(array(
-											'type'       => 'checkbox',
-											'id'         => $location,
-											'name'       => "{$option_name}[{$location}]",
-											'value'      => 'on',
-											'is_checked' => checked( 'on', $model->$location, false ),
-											'title'      => __( $title, App::TEXTDOMAIN ),
-										));
-									endforeach;
+									self::td(array(
+										'type'       => 'checkbox',
+										'id'         => 'home',
+										'name'       => "{$option_name}[home]",
+										'value'      => 'on',
+										'is_checked' => checked( 'on', $model->home, false ),
+										'title'      => __( 'Page home', App::TEXTDOMAIN ),
+									));
+									self::td(array(
+										'type'       => 'checkbox',
+										'id'         => 'archive_category',
+										'name'       => "{$option_name}[archive_category]",
+										'value'      => 'on',
+										'is_checked' => checked( 'on', $model->archive_category, false ),
+										'title'      => __( 'Archive/Category', App::TEXTDOMAIN ),
+									));
+									self::td(array(
+										'type'       => 'checkbox',
+										'id'         => 'pages',
+										'name'       => "{$option_name}[pages]",
+										'value'      => 'on',
+										'is_checked' => checked( 'on', $model->pages, false ),
+										'title'      => __( 'Pages', App::TEXTDOMAIN ),
+									));
+									self::td(array(
+										'type'       => 'checkbox',
+										'id'         => 'single',
+										'name'       => "{$option_name}[single]",
+										'value'      => 'on',
+										'is_checked' => checked( 'on', $model->single, false ),
+										'title'      => __( 'Single', App::TEXTDOMAIN ),
+									));
+									self::td(array(
+										'type'       => 'checkbox',
+										'id'         => 'before',
+										'name'       => "{$option_name}[before]",
+										'value'      => 'on',
+										'is_checked' => checked( 'on', $model->before, false ),
+										'title'      => __( 'Before content', App::TEXTDOMAIN ),
+									));
+									self::td(array(
+										'type'       => 'checkbox',
+										'id'         => 'after',
+										'name'       => "{$option_name}[after]",
+										'value'      => 'on',
+										'is_checked' => checked( 'on', $model->after, false ),
+										'title'      => __( 'After content', App::TEXTDOMAIN ),
+									));
 								?>
 							</tr>
 							<tr class="<?php echo $prefix; ?>-social-networks" data-element="sortable">
@@ -138,17 +176,51 @@ class WPUSB_Settings_View
 									</p>
 								</th>
 								<?php
-									foreach( Setting::$themes as $title => $theme ) :
-										self::td(array(
-											'type'       => 'radio',
-											'id'         => $theme,
-											'class'      => 'layout-preview',
-											'name'       => "{$option_name}[layout]",
-											'value'      => $theme,
-											'is_checked' => checked( $theme, $model->layout, false ),
-											'title'      => __( $title, App::TEXTDOMAIN ),
-										));
-									endforeach;
+									self::td(array(
+										'type'       => 'radio',
+										'id'         => 'default',
+										'class'      => 'layout-preview',
+										'name'       => "{$option_name}[layout]",
+										'value'      => 'default',
+										'is_checked' => checked( 'default', $model->layout, false ),
+										'title'      => __( 'Default', App::TEXTDOMAIN ),
+									));
+									self::td(array(
+										'type'       => 'radio',
+										'id'         => 'buttons',
+										'class'      => 'layout-preview',
+										'name'       => "{$option_name}[layout]",
+										'value'      => 'buttons',
+										'is_checked' => checked( 'buttons', $model->layout, false ),
+										'title'      => __( 'Button', App::TEXTDOMAIN ),
+									));
+									self::td(array(
+										'type'       => 'radio',
+										'id'         => 'rounded',
+										'class'      => 'layout-preview',
+										'name'       => "{$option_name}[layout]",
+										'value'      => 'rounded',
+										'is_checked' => checked( 'rounded', $model->layout, false ),
+										'title'      => __( 'Rounded', App::TEXTDOMAIN ),
+									));
+									self::td(array(
+										'type'       => 'radio',
+										'id'         => 'square',
+										'class'      => 'layout-preview',
+										'name'       => "{$option_name}[layout]",
+										'value'      => 'square',
+										'is_checked' => checked( 'square', $model->layout, false ),
+										'title'      => __( 'Square', App::TEXTDOMAIN ),
+									));
+									self::td(array(
+										'type'       => 'radio',
+										'id'         => 'square-plus',
+										'class'      => 'layout-preview',
+										'name'       => "{$option_name}[layout]",
+										'value'      => 'square-plus',
+										'is_checked' => checked( 'square-plus', $model->layout, false ),
+										'title'      => __( 'Square plus', App::TEXTDOMAIN ),
+									));
 								?>
 							</tr>
 							<tr class="<?php echo $prefix; ?>-position-fixed">

@@ -2,11 +2,11 @@
 # This file is distributed under the same license as the Development (trunk) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPUpper Share Buttons 3.1.0\n"
+"Project-Id-Version: WPUpper Share Buttons 3.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2016-07-13 13:59-0300\n"
-"PO-Revision-Date: 2016-07-13 14:02-0300\n"
+"POT-Creation-Date: 2016-07-16 22:38-0300\n"
+"PO-Revision-Date: 2016-07-16 22:38-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -132,7 +132,7 @@ msgid "Extra Settings | WPUpper Share Buttons"
 msgstr "Configurações Extra | Botões de Compartilhamento Social"
 
 #: Controller/settings.controller.php:192 View/settings-extra.view.php:39
-#: View/settings.view.php:290
+#: View/settings.view.php:362
 msgid "Extra Settings"
 msgstr "Configurações extra"
 
@@ -141,7 +141,7 @@ msgid "Use options | WPUpper Share Buttons"
 msgstr "Opções de uso | Botões de Compartilhamento Social"
 
 #: Controller/settings.controller.php:201 View/settings-faq.view.php:31
-#: View/settings.view.php:295
+#: View/settings.view.php:367
 msgid "Use options"
 msgstr "Opções de uso"
 
@@ -181,7 +181,7 @@ msgstr "Não existe relatório disponível no momento!"
 msgid "Sharing Report | WPUpper Share Buttons"
 msgstr "Relatório de Compartilhamento | Botões de Compartilhamento Social"
 
-#: Controller/share-reports.controller.php:298 View/settings.view.php:300
+#: Controller/share-reports.controller.php:298 View/settings.view.php:372
 msgid "Sharing Report"
 msgstr "Relatório de compartilhamento"
 
@@ -272,7 +272,7 @@ msgstr "Desabilitar CSS"
 msgid "Disable JS"
 msgstr "Desabilitar JS"
 
-#: View/settings-extra.view.php:214 View/settings.view.php:249
+#: View/settings-extra.view.php:214 View/settings.view.php:321
 msgid "Save Changes"
 msgstr "Salvar Alterações"
 
@@ -280,27 +280,51 @@ msgstr "Salvar Alterações"
 msgid "Places available"
 msgstr "Locais disponíveis"
 
+#: View/settings.view.php:69
+msgid "Page home"
+msgstr "Página home"
+
 #: View/settings.view.php:77
+msgid "Archive/Category"
+msgstr "Arquivo/Categoria"
+
+#: View/settings.view.php:85
+msgid "Pages"
+msgstr "Páginas"
+
+#: View/settings.view.php:93
+msgid "Single"
+msgstr "Single"
+
+#: View/settings.view.php:101
+msgid "Before content"
+msgstr "Antes do conteúdo"
+
+#: View/settings.view.php:109
+msgid "After content"
+msgstr "Depois do conteúdo"
+
+#: View/settings.view.php:115
 msgid "Social networks available"
 msgstr "Redes sociais disponíveis"
 
-#: View/settings.view.php:101
+#: View/settings.view.php:139
 msgid "Custom class"
 msgstr "Classe personalizada"
 
-#: View/settings.view.php:110
+#: View/settings.view.php:148
 msgid "Custom class for primary div"
 msgstr "Classe personalizada para div princípal"
 
-#: View/settings.view.php:118
+#: View/settings.view.php:156
 msgid "Context ID"
 msgstr "Contexto ID"
 
-#: View/settings.view.php:127
+#: View/settings.view.php:165
 msgid "Enter name to context of search. ID of content tag"
 msgstr "Insira o nome do contexto para procurar. ( ID da tag do conteúdo )"
 
-#: View/settings.view.php:128
+#: View/settings.view.php:166
 msgid ""
 "This is to set the fixed layout to the left of the post content. "
 "<strong>Example:</strong> <code>wrap</code> use {id} for post id."
@@ -309,51 +333,71 @@ msgstr ""
 "<strong>Exemplo:</strong> <code>wrap</code> usar {id} para adicionar o post "
 "id."
 
-#: View/settings.view.php:135
+#: View/settings.view.php:173
 msgid "Layout options"
 msgstr "Opções de aparência"
 
-#: View/settings.view.php:137
+#: View/settings.view.php:175
 msgid "All layout supports responsive"
 msgstr "Todos os botões tem suporte responsivo"
 
-#: View/settings.view.php:156
+#: View/settings.view.php:186
+msgid "Default"
+msgstr "Padrão"
+
+#: View/settings.view.php:195
+msgid "Button"
+msgstr "Botão"
+
+#: View/settings.view.php:204
+msgid "Rounded"
+msgstr "Arredondado"
+
+#: View/settings.view.php:213
+msgid "Square"
+msgstr "Quadrado"
+
+#: View/settings.view.php:222
+msgid "Square plus"
+msgstr "Quadrado plus"
+
+#: View/settings.view.php:228
 msgid "Position fixed"
 msgstr "Posição fixa"
 
-#: View/settings.view.php:166
+#: View/settings.view.php:238
 msgid "Fixed left"
 msgstr "Fixo à esquerda"
 
-#: View/settings.view.php:176
+#: View/settings.view.php:248
 msgid "Fixed right"
 msgstr "Fixo à direita"
 
-#: View/settings.view.php:183
+#: View/settings.view.php:255
 msgid "Clear"
 msgstr "Limpar"
 
-#: View/settings.view.php:184
+#: View/settings.view.php:256
 msgid "Click to clear the positions."
 msgstr "Clique para desmarcar a posição fixa."
 
-#: View/settings.view.php:189
+#: View/settings.view.php:261
 msgid "Fixed Items in top"
 msgstr "Fixar itens no topo"
 
-#: View/settings.view.php:201
+#: View/settings.view.php:273
 msgid "It is activated when scrolling the page on the buttons position."
 msgstr "Ele é ativado quando rolar a página na posição dos botões."
 
-#: View/settings.view.php:207
+#: View/settings.view.php:279
 msgid "Highlighted by reference"
 msgstr "Destaque por referência"
 
-#: View/settings.view.php:219
+#: View/settings.view.php:291
 msgid "This allows highlight the social network where the user Came from."
 msgstr "Isto permite destacar a rede social de onde o usuário veio."
 
-#: View/settings.view.php:231
+#: View/settings.view.php:303
 msgid ""
 "The share count Twitter is powered by <a href=\"http://newsharecounts.com\" "
 "target=\"_blank\">newsharecounts.com</a>, you have to sign up with your "
@@ -367,11 +411,11 @@ msgstr ""
 "contagem do twitter. Basta visitar o site, preencher o domínio do seu site e "
 "clique em Sign in with Twitter. É isso, e nada mais!"
 
-#: View/settings.view.php:268
+#: View/settings.view.php:340
 msgid "Settings saved."
 msgstr "Configurações salvas."
 
-#: View/settings.view.php:285
+#: View/settings.view.php:357
 msgid "General"
 msgstr "Geral"
 
@@ -391,36 +435,6 @@ msgstr "minutos"
 #, php-format
 msgid "%d minute"
 msgstr "%d minutos"
-
-#~ msgid "Single"
-#~ msgstr "Single"
-
-#~ msgid "Pages"
-#~ msgstr "Páginas"
-
-#~ msgid "Page home"
-#~ msgstr "Página home"
-
-#~ msgid "Before content"
-#~ msgstr "Antes do conteúdo"
-
-#~ msgid "After content"
-#~ msgstr "Depois do conteúdo"
-
-#~ msgid "Default"
-#~ msgstr "Padrão"
-
-#~ msgid "Button"
-#~ msgstr "Botão"
-
-#~ msgid "Rounded"
-#~ msgstr "Arredondado"
-
-#~ msgid "Square"
-#~ msgstr "Quadrado"
-
-#~ msgid "Square plus"
-#~ msgstr "Quadrado plus"
 
 #~ msgid "Fixed top"
 #~ msgstr "Fixo no topo"

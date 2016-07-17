@@ -13,37 +13,6 @@ if ( ! function_exists( 'add_action' ) )
 class WPUSB_Setting
 {
 	/**
-	 * Set all themes property
-	 *
-	 * @since 3.1.4
-	 * @version 1.0.0
-	 * @var Array
-	 */
-	public static $themes = array(
-		'Default'     => 'default',
-		'Button'      => 'buttons',
-		'Rounded'     => 'rounded',
-		'Square'      => 'square',
-		'Square plus' => 'square-plus',
-	);
-
-	/**
-	 * Set locations available property
-	 *
-	 * @since 3.1.4
-	 * @version 1.0.0
-	 * @var Array
-	 */
-	public static $locations = array(
-		'Single'           => 'home',
-		'Pages'            => 'pages',
-		'Page home'        => 'single',
-		'Category/Archive' => 'archive_category',
-		'Before content'   => 'before',
-		'After content'    => 'after',
-	);
-
-	/**
 	 * Full Options
 	 *
 	 * @since 1.0
@@ -58,6 +27,14 @@ class WPUSB_Setting
 	 * @var string
 	 */
 	private $single;
+
+	/**
+	 * Archive and categories value verify option
+	 *
+	 * @since 1.0
+	 * @var string
+	 */
+	private $archive_category;
 
 	/**
 	 * Before value verify option

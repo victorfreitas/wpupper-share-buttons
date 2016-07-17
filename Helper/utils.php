@@ -21,60 +21,95 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function esc_class( $class )
 	{
-		if ( empty( $class ) )
+		if ( empty( $class ) || is_array( $class ) )
 			return '';
 
-		if ( is_array( $class ) )
-			return array_map( array( 'WPUSB_Utils', 'esc_class' ), $class );
+		$class = self::rip_tags( $class );
 
-        $class = str_replace( '_', '-', $class );
-        $class = preg_replace( '/[^a-zA-Z0-9\s-]|[\s-]+/', '', $class );
-
-        return strtolower( $class );
+        return preg_replace( '/[^a-zA-Z0-9-_]+/', '', $class );
 	}
 
 	/**
-	 * Sanitize value from methods post
+	 * Sanitize type
 	 *
-	 * @since 1.0
-	 * @param String $key Relative as request method
-	 * @param Mixed Int/String/Array $default return this function
-	 * @param String $sanitize Relative function
-	 * @return String
+	 * @since 3.3.0
+	 * @param String $type
+	 * @return Integer
 	*/
-	public static function post( $key, $default = '', $sanitize = 'rip_tags' )
+	public static function get_type( $type )
 	{
-		$post = filter_input_array( INPUT_POST, FILTER_SANITIZE_STRING );
+		$types = array(
+			'post'   => INPUT_POST,
+			'get'    => INPUT_GET,
+			'cookie' => INPUT_COOKIE,
+		);
 
-		if ( ! isset( $post[$key] ) || empty( $post[$key] ) )
-			return $default;
-
-		if ( is_array( $post[$key] ) )
-			return self::rip_tags( $post[$key] );
-
-		return self::sanitize( $post[$key], $sanitize );
+		return $types[$type];
 	}
 
 	/**
 	 * Sanitize value from methods get
 	 *
 	 * @since 1.0
-	 * @param String $key Relative as request method
-	 * @param Mixed Int/String/Array $default return this function
+	 * @param String $key
+	 * @param Mixed String|Array|Integer $default
 	 * @param String $sanitize Relative function
 	 * @return String
 	*/
-	public static function get( $key, $default = '', $sanitize = 'rip_tags' )
+	public static function request( $type, $key, $default = '', $sanitize = 'rip_tags' )
 	{
-		$get = filter_input_array( INPUT_GET, FILTER_SANITIZE_STRING );
+		$type    = self::get_type( $type );
+		$request = filter_input_array( $type, FILTER_SANITIZE_STRING );
 
-		if ( ! isset( $get[$key] ) || empty( $get[$key] ) )
+		if ( ! isset( $request[$key] ) || empty( $request[$key] ) )
 			return $default;
 
-		if ( is_array( $get[$key] ) )
-			return self::rip_tags( $get[$key] );
+		if ( is_array( $request[$key] ) )
+			return self::rip_tags( $request[$key] );
 
-		return self::sanitize( $get[$key], $sanitize );
+		return self::sanitize( $request[$key], $sanitize );
+	}
+
+	/**
+	 * Sanitize value from methods post
+	 *
+	 * @since 1.0
+	 * @param String $key
+	 * @param Mixed String|Array|Integer $default
+	 * @param String $sanitize Relative function
+	 * @return Mixed String|Array|Integer
+	*/
+	public static function post( $key, $default = '', $sanitize = 'rip_tags' )
+	{
+		return self::request( 'post', $key, $default, $sanitize );
+	}
+
+	/**
+	 * Sanitize value from methods get
+	 *
+	 * @since 1.0
+	 * @param String $key
+	 * @param Mixed String|Array|Integer $default
+	 * @param String $sanitize Relative function
+	 * @return Mixed String|Array|Integer
+	*/
+	public static function get( $key, $default = '', $sanitize = 'rip_tags' )
+	{
+		return self::request( 'get', $key, $default, $sanitize );
+	}
+
+	/**
+	 * Sanitize value from cookie
+	 *
+	 * @since 1.0
+	 * @param String $key
+	 * @param Mixed String|Array|Integer $default
+	 * @param String $sanitize Relative function
+	 * @return Mixed String|Array|Integer
+	*/
+	public static function cookie( $key, $default = '', $sanitize = 'rip_tags' )
+	{
+		return self::request( 'cookie', $key, $default, $sanitize );
 	}
 
 	/**
@@ -408,15 +443,15 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String|int $index
 	 * @return String
 	 */
-	public static function isset_get( $args = array(), $index )
+	public static function isset_get( $args = array(), $index = '', $default = '' )
 	{
 		if ( isset( $args[$index] ) )
 			return $args[$index];
 
 		if ( isset( $args['elements'] ) )
-			return $args['elements'][$index];
+			return self::isset_get( $args['elements'], $index );
 
-		return '';
+		return $default;
 	}
 
 	/**
