@@ -65,6 +65,7 @@ Layout options: default, buttons, rounded, square
 ### 3.4.0
 
 * New: Add share on Reddit
+* Updating translations
 
 ### 3.3.0
 

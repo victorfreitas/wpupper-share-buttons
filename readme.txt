@@ -98,6 +98,7 @@ The following plugins are recommended
 = 3.4.0 =
 
 * New: Add share on Reddit
+* Updating translations
 
 = 3.3.0 =
 
@@ -399,3 +400,4 @@ The following plugins are recommended
 = 3.4.0 =
 
 * New: Add share on Reddit
+* Updating translations
