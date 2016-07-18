@@ -145,7 +145,8 @@
     font-size: 28px;
     line-height: 34px;
 }
-.#{$prefixClass} .#{$prefixClass}-icon-share-square {
+.#{$prefixClass} .#{$prefixClass}-icon-share-square,
+.#{$prefixClass} .#{$prefixClass}-icon-reddit-square {
     font-size: 41px;
     position: relative;
     top: -3px;

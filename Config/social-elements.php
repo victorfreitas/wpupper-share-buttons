@@ -238,6 +238,19 @@ class WPUSB_Social_Elements
 				'inside'      => __( 'More', App::TEXTDOMAIN ),
 				'has_counter' => false,
 			),
+			'reddit'  => array(
+				'name'        => 'Reddit',
+				'element'     => 'reddit',
+				'link'        => 'https://www.reddit.com/submit?url=' . self::$url . '&title=' . self::$title,
+				'title'       => __( 'Share on Reddit', App::TEXTDOMAIN ),
+				'class'       => $prefix . '-reddit',
+				'class_item'  => self::$item,
+				'class_link'  => self::$class_button,
+				'class_icon'  => $prefix . '-icon-reddit',
+				'popup'       => self::$action,
+				'inside'      => __( 'Share', App::TEXTDOMAIN ),
+				'has_counter' => false,
+			),
 		);
 
 		$elements = new ArrayIterator( $share_items );

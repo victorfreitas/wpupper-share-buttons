@@ -3,11 +3,11 @@
 // ===================================================
 @font-face {
     font-family: 'wpusb';
-    src: url('../fonts/wpusb.eot?wphqq8');
-    src: url('../fonts/wpusb.eot?wphqq8#iefix') format('embedded-opentype'),
-         url('../fonts/wpusb.ttf?wphqq8') format('truetype'),
-         url('../fonts/wpusb.woff?wphqq8') format('woff'),
-         url('../fonts/wpusb.svg?wphqq8#wpusb') format('svg');
+    src: url('../fonts/wpusb.eot?f6l2bi');
+    src: url('../fonts/wpusb.eot?f6l2bi#iefix') format('embedded-opentype'),
+         url('../fonts/wpusb.ttf?f6l2bi') format('truetype'),
+         url('../fonts/wpusb.woff?f6l2bi') format('woff'),
+         url('../fonts/wpusb.svg?f6l2bi#wpusb') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -204,4 +204,13 @@
 }
 .wpusb-icon-snapchat-rounded:before {
     content: "\f2ab";
+}
+.wpusb-icon-reddit-rounded:before {
+    content: "\f1a1";
+}
+.wpusb-icon-reddit-square:before {
+    content: "\f1a2";
+}
+.wpusb-icon-reddit:before {
+    content: "\f281";
 }
