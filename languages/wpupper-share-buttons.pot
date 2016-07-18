@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPUpper Share Buttons 3.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-buttons\n"
-"POT-Creation-Date: 2016-07-16 22:37-0300\n"
+"POT-Creation-Date: 2016-07-17 21:03-0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,7 +31,7 @@ msgstr ""
 #: Config/social-elements.php:95 Config/social-elements.php:108
 #: Config/social-elements.php:121 Config/social-elements.php:134
 #: Config/social-elements.php:186 Config/social-elements.php:199
-#: Config/social-elements.php:212
+#: Config/social-elements.php:212 Config/social-elements.php:251
 msgid "Share"
 msgstr ""
 
@@ -103,11 +103,15 @@ msgstr ""
 msgid "More"
 msgstr ""
 
-#: Config/social-elements.php:447 View/settings-extra.view.php:95
+#: Config/social-elements.php:245
+msgid "Share on Reddit"
+msgstr ""
+
+#: Config/social-elements.php:426 View/settings-extra.view.php:95
 msgid "I just saw"
 msgstr ""
 
-#: Config/social-elements.php:448
+#: Config/social-elements.php:427
 msgid "Click to see also"
 msgstr ""
 
