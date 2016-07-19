@@ -11,7 +11,6 @@
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
 
-use WPUSB_Ajax_Controller as Ajax;
 use WPUSB_Utils as Utils;
 use WPUSB_Setting as Setting;
 use WPUSB_Social_Elements as Elements;
@@ -197,9 +196,7 @@ abstract class WPUSB_Utils_Share
 	 */
 	public static function nonce()
 	{
-		return wp_create_nonce(
-			Ajax::AJAX_VERIFY_NONCE_COUNTER
-		);
+		return wp_create_nonce( Setting::AJAX_VERIFY_NONCE_COUNTER );
 	}
 
 	/**

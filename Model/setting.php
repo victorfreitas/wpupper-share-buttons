@@ -13,6 +13,14 @@ if ( ! function_exists( 'add_action' ) )
 class WPUSB_Setting
 {
 	/**
+	* Nonce
+	*
+	* @since 1.0
+	* @var string
+	*/
+	const AJAX_VERIFY_NONCE_COUNTER = 'wpusb-counter-social-share';
+
+	/**
 	 * Options
 	 *
 	 * @since 1.0

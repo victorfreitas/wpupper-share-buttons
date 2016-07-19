@@ -58,6 +58,13 @@ class WPUSB_App
      */
 	const VERSION = '3.4.0';
 
+    /**
+     * Verify is admin
+     *
+     * @var Boolean
+     */
+	public static $is_admin = false;
+
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
@@ -81,12 +88,13 @@ class WPUSB_App
 	 * Helpers, Controllers and Templates.
 	 *
 	 * @since 3.0.0
+	 * @param Null
 	 * @return Array
 	 */
 	public static function get_files()
 	{
 		$root    = dirname( __FILE__ );
-		$pattern = "{$root}{/Helper/,/Controller/,/Templates/}*.php";
+		$pattern = "{$root}{/Helper/,/Templates/}*.php";
 		$files   = glob( $pattern, GLOB_BRACE );
 
 		return ( is_null( $files ) ) ? array() : $files;
@@ -97,6 +105,7 @@ class WPUSB_App
 	 * Helpers, Controllers and Templates.
 	 *
 	 * @since 3.0.0
+	 * @param Null
 	 * @return Void
 	 */
 	public static function require_files()
@@ -107,6 +116,23 @@ class WPUSB_App
 			require_once( $file );
 		}
 	}
+
+	/**
+	 * Set is admin property true
+	 *
+	 * @since 3.0.0
+	 * @param Null
+	 * @return Void
+	 */
+	public static function set_is_admin()
+	{
+		self::$is_admin = true;
+	}
+}
+
+// Set property is admin
+if ( is_admin() ) {
+	WPUSB_App::set_is_admin();
 }
 
 WPUSB_App::uses( 'core', 'Config' );

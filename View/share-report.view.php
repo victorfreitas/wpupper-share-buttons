@@ -10,6 +10,11 @@
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
 
+use WPUSB_Utils as Utils;
+use WPUSB_App as App;
+use WPUSB_Setting as Setting;
+use WPUSB_Settings_View as View;
+
 class WPUSB_Sharing_Report_View
 {
 	/**
@@ -21,13 +26,14 @@ class WPUSB_Sharing_Report_View
 	 */
 	public static function render_sharing_report( $list_table )
 	{
-		$time_cache  = WPUSB_Utils::option( 'report_cache_time', 10, 'intval' );
-		$text_domain = WPUSB_App::TEXTDOMAIN;
-		$prefix      = WPUSB_Setting::PREFIX;
+		$time_cache  = Utils::option( 'report_cache_time', 10, 'intval' );
+		$text_domain = App::TEXTDOMAIN;
+		$prefix      = Setting::PREFIX;
 		$text_button = __( 'Search', $text_domain );
 		$description = __( 'This report has a cache of ', $text_domain );
 		$minutes     = __( 'minutes', $text_domain );
 		$time        = sprintf( _n( '%d minute', "%d {$minutes}", $time_cache, $text_domain ), $time_cache );
+
 		$list_table->prepare_items();
 	?>
 		<div class="wrap">
@@ -46,12 +52,12 @@ class WPUSB_Sharing_Report_View
 				      class="share-report-form">
 					<input type="hidden"
 					       name="page"
-					       value="<?php echo WPUSB_App::SLUG . '-sharing-report'; ?>">
+					       value="<?php echo App::SLUG . '-sharing-report'; ?>">
 
 					<?php $list_table->search_box( $text_button, $prefix ); ?>
 				</form>
 
-				<?php WPUSB_Settings_View::menu_top(); ?>
+				<?php View::menu_top(); ?>
 
 				<?php $list_table->display(); ?>
 

@@ -24,20 +24,12 @@ class WPUSB_Ajax_Controller
 	*/
 	public function __construct()
 	{
-		add_action( 'wp_ajax_nopriv_share_google_plus', array( __CLASS__, 'google_plus' ) );
-		add_action( 'wp_ajax_share_google_plus', array( __CLASS__, 'google_plus' ) );
-		add_action( 'wp_ajax_nopriv_counts_social_share', array( __CLASS__, 'counts_social_share' ) );
-		add_action( 'wp_ajax_counts_social_share', array( __CLASS__, 'counts_social_share' ) );
-		add_action( 'wp_ajax_share_preview', array( __CLASS__, 'share_preview' ) );
+		add_action( 'wp_ajax_nopriv_share_google_plus', array( &$this, 'google_plus' ) );
+		add_action( 'wp_ajax_share_google_plus', array( &$this, 'google_plus' ) );
+		add_action( 'wp_ajax_nopriv_counts_social_share', array( &$this, 'counts_social_share' ) );
+		add_action( 'wp_ajax_counts_social_share', array( &$this, 'counts_social_share' ) );
+		add_action( 'wp_ajax_share_preview', array( &$this, 'share_preview' ) );
 	}
-
-	/**
-	* Nonce
-	*
-	* @since 1.0
-	* @var string
-	*/
-	const AJAX_VERIFY_NONCE_COUNTER = 'wpusb-counter-social-share';
 
 	/**
 	 * Quantity shares google plus
@@ -46,7 +38,7 @@ class WPUSB_Ajax_Controller
 	 * @param null
 	 * @return void
 	 */
-	public static function google_plus()
+	public function google_plus()
 	{
 		header( 'Content-Type: application/javascript; charset=utf-8' );
 
@@ -60,7 +52,7 @@ class WPUSB_Ajax_Controller
 		endif;
 
 		Utils::ajax_verify_request( $url, 500, 'url_is_empty' );
-		static::_send_request_google( static::_get_google_args( $url ), $url );
+		$this->_send_request_google( $this->_get_google_args( $url ), $url );
 	}
 
 	/**
@@ -70,7 +62,7 @@ class WPUSB_Ajax_Controller
 	 * @param string $url
 	 * @return array
 	 */
-	private static function _get_google_args( $url = '' )
+	private function _get_google_args( $url = '' )
 	{
 	    return array(
 			'method'  => 'POST',
@@ -105,15 +97,15 @@ class WPUSB_Ajax_Controller
 	 * @param Array $args
 	 * @return void
 	 */
-	private static function _send_request_google( $args = array(), $url )
+	private function _send_request_google( $args = array(), $url )
 	{
 	    $response = wp_remote_post( 'https://clients6.google.com/rpc', $args );
 
 	    if ( is_wp_error( $response ) )
-	    	static::_error_request_google();
+	    	$this->_error_request_google();
 
 	    $plusones     = json_decode( $response['body'], true );
-		$count_google = static::_get_global_counts_google( $plusones, $response, $url );
+		$count_google = $this->_get_global_counts_google( $plusones, $response, $url );
 		$results      = json_encode( $count_google );
 
 		echo Utils::get( 'callback' ) . "({$results})";
@@ -127,7 +119,7 @@ class WPUSB_Ajax_Controller
 	 * @param Array $results
 	 * @return Array
 	 */
-	private static function _get_global_counts_google( $results, $response, $url )
+	private function _get_global_counts_google( $results, $response, $url )
 	{
 		$results      = ( isset( $results['result'] ) ? $results['result'] : false );
 		$global_count = ( $results ) ? $results['metadata']['globalCounts'] : '';
@@ -154,7 +146,7 @@ class WPUSB_Ajax_Controller
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _error_request_google()
+	private function _error_request_google()
 	{
 		$results = json_encode( array( 'count' => 0 ) );
 		echo Utils::get( 'callback' ) . "({$results})";
@@ -169,7 +161,7 @@ class WPUSB_Ajax_Controller
 	 * @param Null
 	 * @return Void
 	 */
-	public static function counts_social_share()
+	public function counts_social_share()
 	{
 		global $wpdb;
 
@@ -185,13 +177,13 @@ class WPUSB_Ajax_Controller
 		$table           = $wpdb->prefix . Setting::TABLE_NAME;
 
 		if ( ! $post_id )
-			static::_error_request( 'reference_is_empty' );
+			$this->_error_request( 'reference_is_empty' );
 
-		if ( ! wp_verify_nonce( $nonce, self::AJAX_VERIFY_NONCE_COUNTER ) )
-			static::_error_request( 'nonce_is_invalid' );
+		if ( ! wp_verify_nonce( $nonce, Setting::AJAX_VERIFY_NONCE_COUNTER ) )
+			$this->_error_request( 'nonce_is_invalid' );
 
 		if ( $total > 0 )
-			static::_select(
+			$this->_select(
 				$table,
 				array(
 					'post_id'         => $post_id,
@@ -216,7 +208,7 @@ class WPUSB_Ajax_Controller
 	 * @param Array $data
 	 * @return Void
 	 */
-	private static function _select( $table, $data = array() )
+	private function _select( $table, $data = array() )
 	{
 		global $wpdb;
 
@@ -225,10 +217,10 @@ class WPUSB_Ajax_Controller
 		$row_count = intval( $row_count );
 
 		if ( 1 === $row_count )
-			static::_update( $table, $data );
+			$this->_update( $table, $data );
 
 		if ( 0 === $row_count )
-			static::_insert( $table, $data );
+			$this->_insert( $table, $data );
 
 		exit(1);
 	}
@@ -242,7 +234,7 @@ class WPUSB_Ajax_Controller
 	 * @param Array $data
 	 * @return Void
 	 */
-	private static function _update( $table, $data = array() )
+	private function _update( $table, $data = array() )
 	{
 		global $wpdb;
 
@@ -274,7 +266,7 @@ class WPUSB_Ajax_Controller
 	 * @param Array $data
 	 * @return Void
 	 */
-	private static function _insert( $table, $data = array() )
+	private function _insert( $table, $data = array() )
 	{
 		global $wpdb;
 
@@ -302,7 +294,7 @@ class WPUSB_Ajax_Controller
 	 * @param null
 	 * @return Void
 	 */
-	public static function share_preview()
+	public function share_preview()
 	{
 		if ( ! Utils::is_request_ajax() )
 			exit(0);
@@ -314,9 +306,9 @@ class WPUSB_Ajax_Controller
 		if ( ! ( $layout || $items || $checked ) )
 			exit(0);
 
-		$items   = static::_json_decode_quoted( $items );
-		$checked = static::_json_decode_quoted( $checked );
-		static::_share_preview_list( $layout, $items, $checked );
+		$items   = $this->_json_decode_quoted( $items );
+		$checked = $this->_json_decode_quoted( $checked );
+		$this->_share_preview_list( $layout, $items, $checked );
 	}
 
 	/**
@@ -326,7 +318,7 @@ class WPUSB_Ajax_Controller
 	 * @param null
 	 * @return Void
 	 */
-	private static function _share_preview_list( $layout, $items, $checked )
+	private function _share_preview_list( $layout, $items, $checked )
 	{
 		global $wp_version;
 
@@ -369,7 +361,7 @@ class WPUSB_Ajax_Controller
 	 * @param String $message
 	 * @return Void
 	 */
-	private static function _error_request( $message = '' )
+	private function _error_request( $message = '' )
 	{
 		http_response_code( 500 );
 		Utils::error_server_json( $message );
@@ -383,10 +375,10 @@ class WPUSB_Ajax_Controller
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _json_decode_quoted( $txt )
+	private function _json_decode_quoted( $txt )
 	{
 		$text = htmlspecialchars_decode( $txt );
-		$text = Utils::rip_tags( $text );
+		$text = Utils::rip_tags( $text, true );
 
 		return json_decode( $text, true );
 	}

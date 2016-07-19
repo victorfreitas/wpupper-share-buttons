@@ -6,7 +6,6 @@
  * @subpackage Utils Helper
  * @version 2.3.0
  */
-
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
 
@@ -27,48 +26,30 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 		if ( empty( $class ) || is_array( $class ) )
 			return '';
 
-		$class = self::rip_tags( $class );
+		$class = self::rip_tags( $class, true );
 
         return preg_replace( '/[^a-zA-Z0-9-_]+/', '', $class );
 	}
 
 	/**
-	 * Sanitize type
+	 * Sanitize value from custom method
 	 *
-	 * @since 3.3.0
-	 * @param String $type
-	 * @return Integer
-	*/
-	public static function get_type( $type )
-	{
-		$types = array(
-			'post'   => INPUT_POST,
-			'get'    => INPUT_GET,
-			'cookie' => INPUT_COOKIE,
-		);
-
-		return $types[$type];
-	}
-
-	/**
-	 * Sanitize value from methods get
-	 *
-	 * @since 1.0
+	 * @since 3.4.1
+	 * @version 1.0.0
 	 * @param String $key
 	 * @param Mixed String|Array|Integer $default
 	 * @param String $sanitize Relative function
-	 * @return String
+	 * @return Mixed String|Array|Integer
 	*/
-	public static function request( $type, $key, $default = '', $sanitize = 'rip_tags' )
+	public static function request_by_type( $type, $key, $default, $sanitize = 'rip_tags' )
 	{
-		$type    = self::get_type( $type );
-		$request = filter_input_array( $type, FILTER_SANITIZE_STRING );
+		$request = filter_input_array( $type, FILTER_SANITIZE_SPECIAL_CHARS );
 
 		if ( ! isset( $request[$key] ) || empty( $request[$key] ) )
 			return $default;
 
 		if ( is_array( $request[$key] ) )
-			return self::rip_tags( $request[$key] );
+			return self::filter_array( $request[$key], $sanitize );
 
 		return self::sanitize( $request[$key], $sanitize );
 	}
@@ -76,7 +57,8 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	/**
 	 * Sanitize value from methods post
 	 *
-	 * @since 1.0
+	 * @since 3.4.1
+	 * @version 1.0.0
 	 * @param String $key
 	 * @param Mixed String|Array|Integer $default
 	 * @param String $sanitize Relative function
@@ -84,13 +66,14 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	*/
 	public static function post( $key, $default = '', $sanitize = 'rip_tags' )
 	{
-		return self::request( 'post', $key, $default, $sanitize );
+		return self::request_by_type( INPUT_POST, $key, $default, $sanitize );
 	}
 
 	/**
 	 * Sanitize value from methods get
 	 *
-	 * @since 1.0
+	 * @since 3.4.1
+	 * @version 1.0.0
 	 * @param String $key
 	 * @param Mixed String|Array|Integer $default
 	 * @param String $sanitize Relative function
@@ -98,13 +81,14 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	*/
 	public static function get( $key, $default = '', $sanitize = 'rip_tags' )
 	{
-		return self::request( 'get', $key, $default, $sanitize );
+		return self::request_by_type( INPUT_GET, $key, $default, $sanitize );
 	}
 
 	/**
 	 * Sanitize value from cookie
 	 *
-	 * @since 1.0
+	 * @since 3.4.1
+	 * @version 1.0.0
 	 * @param String $key
 	 * @param Mixed String|Array|Integer $default
 	 * @param String $sanitize Relative function
@@ -112,37 +96,58 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	*/
 	public static function cookie( $key, $default = '', $sanitize = 'rip_tags' )
 	{
-		return self::request( 'cookie', $key, $default, $sanitize );
+		return self::request_by_type( INPUT_COOKIE, $key, $default, $sanitize );
 	}
 
 	/**
 	 * Sanitize requests
 	 *
-	 * @since 1.0
+	 * @since 3.4.1
+	 * @version 1.0.0
 	 * @param String $value Relative sanitize
 	 * @param String $function_name Relative function to use
 	 * @return String
 	*/
-	public static function sanitize( $value, $function )
+	public static function sanitize( $value, $function_name )
 	{
-		if ( ! is_callable( $function ) )
+		if ( ! is_callable( $function_name ) )
 			return self::rip_tags( $value );
 
-		return call_user_func( $function, $value );
+		return call_user_func( $function_name, $value );
+	}
+
+	/**
+	 * Properly sanitize array values
+	 *
+	 * @since 3.4.1
+	 * @version 1.0.0
+	 * @param Array $value
+	 * @param String $sanitize
+	 * @return Array
+	 */
+	public static function filter_array( $value, $sanitize )
+	{
+		if ( ! is_callable( $sanitize )  )
+	    	return self::rip_tags( $value );
+
+	    return array_map( $sanitize, $value );
 	}
 
 	/**
 	 * Properly strip all HTML tags including script and style
 	 *
-	 * @param string $string | String containing HTML tags
-	 * @return string The processed string.
+	 * @since 3.4.1
+	 * @version 1.0.0
+	 * @param Mixed String|Array $value
+	 * @param Boolean $remove_breaks
+	 * @return Mixed String|Array
 	 */
-	public static function rip_tags( $string )
+	public static function rip_tags( $value, $remove_breaks = false )
 	{
-		if ( is_array( $string ) )
-			return array_map( array( __CLASS__, 'rip_tags' ), $string );
+		if ( is_array( $value ) )
+			return array_map( array( __CLASS__, 'rip_tags' ), $value );
 
-	    return wp_strip_all_tags( $string, true );
+	    return wp_strip_all_tags( $value, $remove_breaks );
 	}
 
 	/**
@@ -343,15 +348,16 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	{
 		global $post;
 
-		$thumbnail = '';
+		$thumbnail   = '';
+		$filter_name = App::SLUG . 'thumbnail-url';
 
 		if ( isset( $post->ID ) && has_post_thumbnail() )
 			$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
 
 		if ( ! $thumbnail )
-			return apply_filters( WPUSB_App::SLUG . 'thumbnail-url', '' );
+			return apply_filters( $filter_name, '' );
 
-		return apply_filters( WPUSB_App::SLUG . 'thumbnail-url', $thumbnail[0] );
+		return apply_filters( $filter_name, $thumbnail[0] );
 	}
 
 	/**
@@ -373,7 +379,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 		$content = self::rip_tags( $content );
 		$content = preg_replace( '/\[.*\]/', null, $content );
 
-		return apply_filters( WPUSB_App::SLUG . 'body-email', $content );
+		return apply_filters( App::SLUG . 'body-email', $content );
 	}
 
 	/**
@@ -385,7 +391,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function base_name()
 	{
-		return plugin_basename( plugin_dir_path( __DIR__ ) . basename( WPUSB_App::FILE ) );
+		return plugin_basename( plugin_dir_path( __DIR__ ) . basename( App::FILE ) );
 	}
 
 	/**
@@ -447,7 +453,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function option( $name, $default = '', $sanitize = 'rip_tags' )
 	{
-		$model   = new WPUSB_Setting();
+		$model   = new Setting();
 		$options = $model->get_options();
 
 		if ( ! isset( $options[$name] ) || empty( $options[$name] ) )
@@ -455,7 +461,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 
 		$option = self::sanitize( $options[$name], $sanitize );
 
-		return apply_filters( WPUSB_App::SLUG . "-option-{$name}-value", $option );
+		return apply_filters( App::SLUG . "-option-{$name}-value", $option );
 	}
 
 	/**
@@ -469,13 +475,11 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function error_server_json( $code, $message = 'Message Error', $echo = true )
 	{
-		$response = json_encode(
-			array(
-				'status' 	=> 'error',
-				'code'   	=> $code,
-				'message'	=> $message,
-			)
-		);
+		$response = json_encode(array(
+			'status'  => 'error',
+			'code'    => $code,
+			'message' => $message,
+		));
 
 		if ( $echo ) :
 			echo $response;
@@ -512,8 +516,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function parse( $arguments )
 	{
-        foreach( $arguments as $key => $value )
+        foreach( $arguments as $key => $value ) {
         	$object[$key] = (object) $value;
+        }
 
 		return (object) $object;
 	}
@@ -530,9 +535,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 		$option = get_site_option( $option_name );
 
 		if ( $option )
-			return update_option( $option_name, WPUSB_Setting::DB_VERSION );
+			return update_option( $option_name, Setting::DB_VERSION );
 
-		return add_option( $option_name, WPUSB_Setting::DB_VERSION );
+		return add_option( $option_name, Setting::DB_VERSION );
 	}
 
 	/**
@@ -659,7 +664,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	private static function _bitly_response( $response, $url )
 	{
 		$response   = json_decode( $response['body'] );
-		$transient  = WPUSB_App::SLUG . '-shorturl-cache-expire';
+		$transient  = App::SLUG . '-shorturl-cache-expire';
 		$cache_time = apply_filters( $transient, ( WEEK_IN_SECONDS * 1 ) );
 
 		if ( 200 !== $response->status_code )
@@ -705,7 +710,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 			'layout'           => 'default',
 			'fixed_top'        => '',
 		);
-		$value  = apply_filters( WPUSB_App::SLUG . '-options-settings', $value );
+		$value  = apply_filters( App::SLUG . '-options-settings', $value );
 
 		add_option( $option['name'], $value );
 	}
@@ -735,8 +740,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 			'printer'   => '',
 			'like'      => '',
 			'share'     => 'share',
+			'reddit'    => '',
 		);
-		$value  = apply_filters( WPUSB_App::SLUG . '-options-social-media', $value );
+		$value  = apply_filters( App::SLUG . '-options-social-media', $value );
 
 		add_option( $option['name'], $value );
 	}
@@ -762,7 +768,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 			'tracking'          => '',
 			'report_cache_time' => 10,
 		);
-		$value = apply_filters( WPUSB_App::SLUG . '-options-extra-settings', $value );
+		$value = apply_filters( App::SLUG . '-options-extra-settings', $value );
 
 		add_option( $option['name'], $value );
 	}
@@ -777,7 +783,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function get_option_group_name( $name, $group = 'group' )
 	{
-		$prefix       = WPUSB_Setting::PREFIX;
+		$prefix       = Setting::PREFIX;
 		$option_name  = "{$prefix}_{$name}";
 		$group_name   = ( 'group' !== $group ) ? $prefix : $option_name;
 		$option_group = "{$group_name}_{$group}";
@@ -799,7 +805,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	{
 		$text = "{$twitter_text_a}%20{$title}%20-%20{$twitter_text_b}%20{$caracter}%20";
 
-		return apply_filters( WPUSB_App::SLUG . '-twitter-text', $text, $title );
+		return apply_filters( App::SLUG . '-twitter-text', $text, $title );
 	}
 
 	/**

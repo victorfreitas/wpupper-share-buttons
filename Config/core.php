@@ -21,6 +21,17 @@ use WPUSB_Utils as Utils;
 App::require_files();
 App::uses( 'social-elements', 'Config' );
 
+// Controllers on front
+App::uses( 'settings', 'Controller' );
+App::uses( 'shares', 'Controller' );
+
+// Controllers on admin
+if ( App::$is_admin ) {
+	App::uses( 'ajax', 'Controller' );
+	App::uses( 'options', 'Controller' );
+	App::uses( 'share-reports', 'Controller' );
+}
+
 class WPUSB_Core
 {
 	/**
@@ -39,8 +50,77 @@ class WPUSB_Core
 	public function __construct()
 	{
 		add_action( 'plugins_loaded', array( __CLASS__, 'plugins_loaded' ) );
+		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'add_front_scripts' ) );
 		static::_instantiate_controllers();
 		static::_register_actions();
+	}
+
+	/**
+	 * Enqueue scripts and styles
+	 *
+	 * @since 1.0
+	 * @param Null
+	 * @return Void
+	 */
+	public static function add_front_scripts()
+	{
+		if ( ! Utils::is_active() )
+			return;
+
+		self::_front_scripts();
+		self::_front_styles();
+	}
+
+	/**
+	 * Enqueue front scripts
+	 *
+	 * @since 3.1.0
+	 * @param Null
+	 * @return Void
+	 */
+	private static function _front_scripts()
+	{
+		if ( 'on' === Utils::option( 'disable_js' ) )
+			return;
+
+		$context = Utils::option( 'fixed_context' );
+
+		wp_enqueue_script(
+			Setting::PREFIX . '-scripts',
+			Utils::plugin_url( 'javascripts/built.js' ),
+			array( 'jquery' ),
+			App::VERSION,
+			true
+		);
+
+		wp_localize_script(
+			Setting::PREFIX . '-scripts',
+			'WPUSBVars',
+			array(
+				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+				'context' => str_replace( '{id}', Utils::get_id(), $context ),
+			)
+		);
+	}
+
+	/**
+	 * Enqueue front styles
+	 *
+	 * @since 3.1.0
+	 * @param Null
+	 * @return Void
+	 */
+	private static function _front_styles()
+	{
+		if ( 'on' === Utils::option( 'disable_css' ) )
+			return;
+
+		wp_enqueue_style(
+			Setting::PREFIX . '-style',
+			Utils::plugin_url( 'stylesheets/style.css' ),
+			array(),
+			App::VERSION
+		);
 	}
 
 	/**
@@ -78,10 +158,27 @@ class WPUSB_Core
 	 */
 	private static function _instantiate_controllers()
 	{
-		$settings       = new WPUSB_Settings_Controller();
-		$share          = new WPUSB_Shares_Controller();
-		$option         = new WPUSB_Options_Controller();
+		$share    = new WPUSB_Shares_Controller();
+		$settings = new WPUSB_Settings_Controller();
+
+		static::_instantiate_controllers_admin();
+	}
+
+	/**
+	 * Instantiate controller used in admin
+	 * Set propert static $report
+	 *
+	 * @since 1.0
+	 * @param Null
+	 * @return Void
+	 */
+	private static function _instantiate_controllers_admin()
+	{
+		if ( ! App::$is_admin )
+			return;
+
 		$ajax           = new WPUSB_Ajax_Controller();
+		$option         = new WPUSB_Options_Controller();
 		static::$report = new WPUSB_Share_Reports_Controller();
 	}
 

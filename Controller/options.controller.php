@@ -6,7 +6,6 @@
  * @subpackage Options Admin Page
  * @since 2.0
  */
-
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
 

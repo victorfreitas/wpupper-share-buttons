@@ -6,7 +6,6 @@
  * @subpackage Settings Controller
  * @version 2.1.0
  */
-
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
 
@@ -14,13 +13,15 @@ use WPUSB_Utils as Utils;
 use WPUSB_Setting as Setting;
 use WPUSB_App as App;
 
-//View
-App::uses( 'settings', 'View' );
-App::uses( 'settings-extra', 'View' );
-App::uses( 'settings-faq', 'View' );
-
 //Model
 App::uses( 'setting', 'Model' );
+
+//View
+if ( App::$is_admin ) {
+	App::uses( 'settings', 'View' );
+	App::uses( 'settings-extra', 'View' );
+	App::uses( 'settings-faq', 'View' );
+}
 
 class WPUSB_Settings_Controller
 {
@@ -31,7 +32,6 @@ class WPUSB_Settings_Controller
 	*/
 	public function __construct()
 	{
-		add_action( 'wp_enqueue_scripts', array( &$this, 'add_scripts' ) );
 		add_filter( 'plugin_action_links_' . Utils::base_name(), array( &$this, 'plugin_link' ) );
 		add_action( 'admin_enqueue_scripts', array( &$this, 'admin_scripts' ) );
 		add_action( 'admin_menu', array( &$this, 'menu_page' ) );
@@ -52,74 +52,6 @@ class WPUSB_Settings_Controller
 		array_unshift( $links, $settings_link );
 
 		return $links;
-	}
-
-	/**
-	 * Enqueue scripts and styles
-	 *
-	 * @since 1.0
-	 * @param Null
-	 * @return Void
-	 */
-	public function add_scripts()
-	{
-		if ( ! Utils::is_active() )
-			return;
-
-		$this->_front_scripts();
-		$this->_front_styles();
-	}
-
-	/**
-	 * Enqueue front scripts
-	 *
-	 * @since 3.1.0
-	 * @param Null
-	 * @return Void
-	 */
-	private function _front_scripts()
-	{
-		if ( 'on' === Utils::option( 'disable_js' ) )
-			return;
-
-		$context = Utils::option( 'fixed_context' );
-
-		wp_enqueue_script(
-			Setting::PREFIX . '-scripts',
-			Utils::plugin_url( 'javascripts/built.js' ),
-			array( 'jquery' ),
-			App::VERSION,
-			true
-		);
-
-		wp_localize_script(
-			Setting::PREFIX . '-scripts',
-			'WPUpperVars',
-			array(
-				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-				'context' => str_replace( '{id}', Utils::get_id(), $context ),
-			)
-		);
-	}
-
-	/**
-	 * Enqueue front styles
-	 *
-	 * @since 3.1.0
-	 * @param Null
-	 * @return Void
-	 */
-	private function _front_styles()
-	{
-		if ( 'on' === Utils::option( 'disable_css' ) )
-			return;
-
-		wp_enqueue_style(
-			Setting::PREFIX . '-style',
-			Utils::plugin_url( 'stylesheets/style.css' ),
-			array(),
-			App::VERSION
-		);
 	}
 
 	/**

@@ -76,7 +76,7 @@ module.exports = function(grunt) {
 		watch: {
 		    site : {
 		    	files : ['<%= concat.admin.src %>', '<%= concat.front.src %>'],
-		    	tasks : ['jshint', 'concat', 'uglify']
+		    	tasks : ['jshint', 'concat']
 		    },
 			css : {
 				files : ['<%= package.cssroot %>/**/*.scss'],

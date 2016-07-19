@@ -15,7 +15,7 @@
 		"console"    : true,
 		"jQuery"     : true,
 		"Toastr"     : true,
-		"SB"         : true,
+		"WPUSB"      : true,
 		"$"          : true
 	}
 }
