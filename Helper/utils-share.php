@@ -103,9 +103,10 @@ abstract class WPUSB_Utils_Share
 
 		foreach ( $social_items as $key => $item ) :
 			self::$count_elements++;
-
 			$buttons .= self::set_buttons_args( $elements->$item, $args, $permalink, $title );
 		endforeach;
+
+		self::$count_elements = 0;
 
 		$buttons .= self::get_content_by_layout( (object) $args, 'end' );
 
@@ -330,6 +331,7 @@ abstract class WPUSB_Utils_Share
 	public static function get_content_by_layout( $args, $method )
 	{
 		$layouts = self::get_layouts();
+		$content = '';
 
 		switch( $args->layout ) :
 			case $layouts['plus'] :
@@ -426,7 +428,6 @@ abstract class WPUSB_Utils_Share
 	 */
 	public static function buttons_share( $atts = array(), $fixed = false )
 	{
-		$atts = array_map( array( 'WPUSB_Utils', 'esc_class' ), $atts );
 		$args = array(
 			'class_first'  => Utils::isset_get( $atts, 'class_first' ),
 			'class_second' => Utils::isset_get( $atts, 'class_second' ),
@@ -439,6 +440,46 @@ abstract class WPUSB_Utils_Share
 			),
 		);
 
+		$args = self::sanitize_atts( $args );
+
 		return self::get_buttons( $args, $fixed );
+	}
+
+	/**
+	 * Sanitize values atts
+	 *
+	 * @since 1.0
+	 * @param Array $atts
+	 * @return Array
+	 */
+	public static function sanitize_atts( $atts = array() )
+	{
+		return array(
+			'class_first'  => Utils::esc_class( $atts['class_first'] ),
+			'class_second' => Utils::esc_class( $atts['class_second'] ),
+			'class_link'   => Utils::esc_class( $atts['class_link'] ),
+			'class_icon'   => Utils::esc_class( $atts['class_icon'] ),
+			'layout'       => Utils::rip_tags( $atts['layout'] ),
+			'elements'     => array(
+				'remove_inside'  => self::get_remove_type( $atts, 'remove_inside' ),
+				'remove_counter' => self::get_remove_type( $atts, 'remove_counter' ),
+			),
+		);
+	}
+
+	/**
+	 * Verify index elements remove inside and counter
+	 *
+	 * @since 1.0
+	 * @param Array $atts
+	 * @param String $type
+	 * @return String
+	 */
+	public static function get_remove_type( $atts, $type )
+	{
+		if ( isset( $atts['elements'] ) )
+			return (bool) $atts['elements'][$type];
+
+		return (bool) $atts[$type];
 	}
 }

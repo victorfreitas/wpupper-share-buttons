@@ -31,15 +31,13 @@
 	.#{$prefixClass}-btn-close {
 		background: #e74c3c;
 		border-radius: 5px;
-		bottom: 5px;
 		color: #fff;
 		cursor: pointer;
 		font-family: Arial, Sans-serif;
 		font-size: 12px;
 		line-height: 0.5;
 		padding: 6px;
-		position: absolute;
-		right: 5px;
+		position: fixed;
 
 		&:hover {
 			background: darken( #e74c3c, 10% );

@@ -147,25 +147,14 @@ class WPUSB_Shares_Controller
 				'class_link'     => '',
 				'class_icon'     => '',
 				'layout'         => '',
-				'remove_inside'  => 0,
-				'remove_counter' => 0,
+				'remove_inside'  => false,
+				'remove_counter' => false,
 			),
 			$atts,
 			App::SLUG
 		);
 
-		$atts = array_map( array( 'WPUSB_Utils', 'esc_class' ), $atts );
-		$args = array(
-			'class_first'  => $atts['class_first'],
-			'class_second' => $atts['class_second'],
-			'class_link'   => $atts['class_link'],
-			'class_icon'   => $atts['class_icon'],
-			'layout'       => $atts['layout'],
-			'elements'     => array(
-				'remove_inside'  => $atts['remove_inside'],
-				'remove_counter' => $atts['remove_counter']
-			),
-		);
+		$args = Utils::sanitize_atts( $atts );
 
 		return Utils::get_buttons( $args );
 	}

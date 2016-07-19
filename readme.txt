@@ -98,6 +98,7 @@ The following plugins are recommended
 = 3.4.1 =
 
 * General internal improvements
+* Performance improvements
 * Bug fixes
 
 = 3.4.0 =
@@ -405,4 +406,5 @@ The following plugins are recommended
 = 3.4.1 =
 
 * General internal improvements
+* Performance improvements
 * Bug fixes
