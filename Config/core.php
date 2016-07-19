@@ -25,7 +25,7 @@ App::uses( 'social-elements', 'Config' );
 App::uses( 'settings', 'Controller' );
 App::uses( 'shares', 'Controller' );
 
-// Controllers on admin
+// Controllers include on admin
 if ( App::$is_admin ) {
 	App::uses( 'ajax', 'Controller' );
 	App::uses( 'options', 'Controller' );

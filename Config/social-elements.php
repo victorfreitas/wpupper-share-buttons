@@ -291,8 +291,9 @@ class WPUSB_Social_Elements
 		if ( $order ) :
 			$order = json_decode( $order );
 
-			foreach ( $order as $key => $item )
+			foreach ( $order as $key => $item ) {
 				$sort[$item] = apply_filters( App::SLUG . "-{$item}-items", $elements[$item] );
+			}
 
 			$elements = array_merge( $sort, $elements->getArrayCopy() );
 		endif;

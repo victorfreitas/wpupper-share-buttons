@@ -51,6 +51,11 @@
 
         getLocale: function() {
             return ( window.WPUSBVars || {} ).WPLANG;
+        },
+
+        getPathUrl: function(url) {
+            var uri = decodeURIComponent( url );
+            return uri.split(/[?#]/)[0];
         }
     };
 

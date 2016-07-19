@@ -76,7 +76,7 @@ class WPUSB_Settings_Controller
 
 		wp_localize_script(
 			Setting::PREFIX . '-admin-scripts',
-			'WPUpperVars',
+			'WPUSBVars',
 			array(
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 				'WPLANG'  => get_locale(),
