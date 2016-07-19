@@ -107,7 +107,7 @@ EOD;
 		$shares_text = __( 'Shares', App::TEXTDOMAIN );
 		$content     = '';
 
-		if ( Utils::is_first() && Utils::is_active_couter( $args ) ) :
+		if ( Utils::is_active_couter( $args ) ) :
 			$content = <<<EOD
 				<div class="{$prefix}-item {$prefix}-counter">
 					<span class="{$prefix}-counter"

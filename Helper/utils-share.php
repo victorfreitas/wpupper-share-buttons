@@ -92,21 +92,19 @@ abstract class WPUSB_Utils_Share
 	public static function get_buttons( $args = array(), $fixed = false )
 	{
 		$model            = new Setting();
-		$elements         = Elements::social_media();
 		$args             = apply_filters( App::SLUG . 'buttons-args', $args );
 		$args['layout']   = self::get_layout( $args, $model->layout, $fixed );
 		$args['is_fixed'] = $fixed;
 		$buttons          = self::get_buttons_open( $args, $model );
 		$permalink        = Utils::get_real_permalink( $fixed );
 		$title            = Utils::get_real_title( $fixed );
+		$elements         = Elements::social_media();
+		$social_items     = self::get_social_media( $model );
 
-		foreach ( $elements as $key => $social ) :
-			if ( ! in_array( $key, self::get_social_media( $model ) ) )
-				continue;
-
+		foreach ( $social_items as $key => $item ) :
 			self::$count_elements++;
 
-			$buttons .= self::set_buttons_args( $social, $args, $permalink, $title );
+			$buttons .= self::set_buttons_args( $elements->$item, $args, $permalink, $title );
 		endforeach;
 
 		$buttons .= self::get_content_by_layout( (object) $args, 'end' );
