@@ -56,11 +56,15 @@ EOD;
 	 */
 	public static function items( $prefix )
 	{
-		$elements = Elements::social_media();
+		$elements  = Elements::social_media();
+		$permalink = Utils::get_real_permalink();
+		$title     = Utils::get_real_title();
 
 		foreach ( $elements as $key => $social ) :
 			if ( $key === 'share' )
 				continue;
+
+			Utils::replace_link( $social, $permalink, $title );
 
 			echo <<< EOD
 				<div class="{$prefix}-element-popup">
