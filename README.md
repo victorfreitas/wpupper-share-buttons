@@ -64,7 +64,7 @@ Layout options: default, buttons, rounded, square
 
 ### 3.4.1
 
-* General improvements internal
+* General internal improvements
 * Bug fixes
 
 ### 3.4.0
