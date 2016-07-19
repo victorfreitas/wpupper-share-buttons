@@ -1,4 +1,4 @@
-WPUPPER( 'SB.ShortUrl', function(ShortUrl, $) {
+WPUSB( 'WPUSB.ShortUrl', function(ShortUrl, $) {
 
 	ShortUrl.create = function(container) {
 		this.$el        = container;

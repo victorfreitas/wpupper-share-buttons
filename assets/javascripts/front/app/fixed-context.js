@@ -1,4 +1,4 @@
-WPUPPER( 'SB.FixedContext', function(FixedContext, $) {
+WPUSB( 'WPUSB.FixedContext', function(FixedContext, $, utils) {
 
 	FixedContext.create = function(container) {
 		this.$el = container;
@@ -15,7 +15,7 @@ WPUPPER( 'SB.FixedContext', function(FixedContext, $) {
 	};
 
 	FixedContext.issetContext = function() {
-		this.id = this.$el.getContext();
+		this.id = utils.getContext();
 		return this.getContext( true );
 	};
 
@@ -61,7 +61,7 @@ WPUPPER( 'SB.FixedContext', function(FixedContext, $) {
 	};
 
 	FixedContext.changeClass = function() {
-		var prefix  = SB.vars.prefix
+		var prefix  = WPUSB.vars.prefix
 		  , classes = this.$el.attr('class');
 
 		if ( classes.match( '-fixed-left' ) ) {
@@ -83,7 +83,7 @@ WPUPPER( 'SB.FixedContext', function(FixedContext, $) {
 
 	FixedContext.sendNotice = function(id, el) {
 		if ( id && ! el ) {
-			console.warn( 'WPUPPER: Context not found.' );
+			console.warn( 'WPUSB: Context not found.' );
 		}
 	};
 

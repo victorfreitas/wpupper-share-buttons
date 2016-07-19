@@ -1,4 +1,4 @@
-WPUPPER( 'SB.OpenPopup', function(OpenPopup, $) {
+WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $) {
 
 	OpenPopup.create = function(container) {
         this.$el = container;
@@ -6,11 +6,10 @@ WPUPPER( 'SB.OpenPopup', function(OpenPopup, $) {
 	};
 
 	OpenPopup.addEventListener = function() {
-		var action = this.$el.byAction( 'open-popup' );
-		action.on( 'click', this._onClick.bind( this ) );
+		this.$el.addEvent( 'click', 'open-popup', this );
 	};
 
-	OpenPopup._onClick = function(event) {
+	OpenPopup._onClickOpenPopup = function(event) {
 		event.preventDefault();
 
 		var target = jQuery( event.currentTarget )

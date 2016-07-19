@@ -2,9 +2,9 @@
 
     'use strict';
 
-    var WPUPPER = function(namespace, callback) {
+    var WPUSB = function(namespace, callback) {
         var parts  = namespace.split( '\.' )
-          , loader = WPUPPER.instantiate()
+          , loader = WPUSB.instantiate()
           , parent = context
           , count  = parts.length
           , index  = 0
@@ -15,13 +15,13 @@
         }
 
         if ( 'function' === typeof callback ) {
-            callback.call( null, parent, $ );
+            callback.call( null, parent, $, WPUSB.utils );
         }
 
         return parent;
     };
 
-    WPUPPER.instantiate = function() {
+    WPUSB.instantiate = function() {
         var Instantiate = function() {}
           , Constructor = function() {
                 var instance;
@@ -40,6 +40,20 @@
         return Constructor;
     };
 
-    context.WPUPPER = WPUPPER;
+    WPUSB.utils = {
+        getAjaxUrl: function() {
+            return ( window.WPUSBVars || {} ).ajaxUrl;
+        },
+
+        getContext: function() {
+            return ( window.WPUSBVars || {} ).context;
+        },
+
+        getLocale: function() {
+            return ( window.WPUSBVars || {} ).WPLANG;
+        }
+    };
+
+    context.WPUSB = WPUSB;
 
 })( window, jQuery );

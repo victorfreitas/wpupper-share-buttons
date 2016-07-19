@@ -1,9 +1,9 @@
-WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
+WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $, utils) {
 
 	SharePreview.fn.start = function(container) {
 		this.$el           = container;
 		this.spinner       = $( '.ajax-spinner' );
-		this.prefix        = SB.vars.prefix;
+		this.prefix        = WPUSB.vars.prefix;
 		this.container     = container.closest( '.wpusb-wrap' );
 		this.order         = this.container.byElement( 'sortable' );
 		this.inputOrder    = this.container.byElement( 'order' );
@@ -80,7 +80,7 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 
 		var ajax = $.ajax({
 			type     : 'POST',
-			url      : $.fn.getAjaxUrl(),
+			url      : utils.getAjaxUrl(),
 			data     : params,
 			dataType : 'json'
 		});
@@ -94,7 +94,7 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 		     .byElement( this.prefix )
 		      .addClass( this.prefix + '-preview-container' )
 		      .html( this.render( response ) );
-		SB.Preview.create( this.$el );
+		WPUSB.Preview.create( this.$el );
 	};
 
 	SharePreview.fn._fail = function(throwError, status) {
@@ -103,7 +103,7 @@ WPUPPER( 'SB.Components.SharePreview', function(SharePreview, $) {
 	};
 
 	SharePreview.fn.render = function(response) {
-		return WPUPPER.Templates[this.templateName()]
+		return WPUSB.Templates[this.templateName()]
 		                .call( null, response );
 	};
 

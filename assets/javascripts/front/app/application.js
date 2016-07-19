@@ -1,8 +1,8 @@
-WPUPPER( 'SB.Application', function(Application, $) {
+WPUSB( 'WPUSB.Application', function(Application, $) {
 
 	Application.init = function(container) {
-		SB.BuildComponents.create( container );
-		SB.FixedTop.create( container );
+		WPUSB.BuildComponents.create( container );
+		WPUSB.FixedTop.create( container );
 	};
 
 });

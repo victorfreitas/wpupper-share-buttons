@@ -6,7 +6,6 @@
  * @subpackage Ajax Controller
  * @version 2.0.0
  */
-
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
 
@@ -182,7 +181,7 @@ class WPUSB_Ajax_Controller
 		if ( ! wp_verify_nonce( $nonce, Setting::AJAX_VERIFY_NONCE_COUNTER ) )
 			$this->_error_request( 'nonce_is_invalid' );
 
-		if ( $total > 0 )
+		if ( $total > 0 ) {
 			$this->_select(
 				$table,
 				array(
@@ -196,6 +195,7 @@ class WPUSB_Ajax_Controller
 					'total'           => $total,
 				)
 			);
+		}
 		exit(1);
 	}
 
@@ -212,14 +212,14 @@ class WPUSB_Ajax_Controller
 	{
 		global $wpdb;
 
-		$query     = $wpdb->prepare( "SELECT COUNT(*) FROM {$table} WHERE `post_id` = %d", $data['post_id'] );
-		$row_count = $wpdb->get_var( $query );
-		$row_count = intval( $row_count );
+		$sql       = $wpdb->prepare( "SELECT COUNT(*) FROM {$table} WHERE `post_id` = %d", $data['post_id'] );
+		$row_count = $wpdb->get_var( $sql );
+		$count     = intval( $row_count );
 
-		if ( 1 === $row_count )
+		if ( 1 === $count )
 			$this->_update( $table, $data );
 
-		if ( 0 === $row_count )
+		if ( 0 === $count )
 			$this->_insert( $table, $data );
 
 		exit(1);

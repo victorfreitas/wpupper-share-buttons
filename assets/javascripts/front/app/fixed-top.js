@@ -1,7 +1,7 @@
-WPUPPER( 'SB.FixedTop', function(FixedTop, $) {
+WPUSB( 'WPUSB.FixedTop', function(FixedTop, $) {
 
 	FixedTop.create = function(container) {
-		this.class = SB.vars.prefix + '-fixed-top';
+		this.class = WPUSB.vars.prefix + '-fixed-top';
 		this.$el   = container.byElement( this.class );
 
 		if ( !this.$el.length ) {

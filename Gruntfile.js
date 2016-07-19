@@ -47,7 +47,7 @@ module.exports = function(grunt) {
 
 		handlebars: {
 		    options: {
-		    	namespace   : 'WPUPPER.Templates',
+		    	namespace   : 'WPUSB.Templates',
 				processName : removeExtension
 		    },
 			all: {
@@ -76,7 +76,7 @@ module.exports = function(grunt) {
 		watch: {
 		    site : {
 		    	files : ['<%= concat.admin.src %>', '<%= concat.front.src %>'],
-		    	tasks : ['jshint', 'concat']
+		    	tasks : ['jshint', 'concat', 'uglify']
 		    },
 			css : {
 				files : ['<%= package.cssroot %>/**/*.scss'],

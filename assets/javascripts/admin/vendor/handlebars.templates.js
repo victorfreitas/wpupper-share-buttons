@@ -1,5 +1,5 @@
 (function() {
-var template = Handlebars.template, templates = WPUPPER.Templates = WPUPPER.Templates || {};
+var template = Handlebars.template, templates = WPUSB.Templates = WPUSB.Templates || {};
 templates['fixed'] = template({"1":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=container.escapeExpression;
 

@@ -16,18 +16,6 @@
 		return this.find( '[data-component="' + name + '"]' );
 	};
 
-	$.fn.getAjaxUrl = function() {
-		return ( window.WPUpperVars || {} ).ajaxUrl;
-	};
-
-	$.fn.getContext = function() {
-		return ( window.WPUpperVars || {} ).context;
-	};
-
-	$.fn.getLocale = function() {
-		return ( window.WPUpperVars || {} ).WPLANG;
-	};
-
 	$.fn.findComponent = function(selector, callback) {
 		var elements = $(this).find( selector );
 
@@ -76,5 +64,3 @@
 	};
 
 })( jQuery );
-
-var wpupperCallback = function(response) {};

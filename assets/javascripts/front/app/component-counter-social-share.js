@@ -1,8 +1,8 @@
-WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
+WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, utils) {
 
 	CounterSocialShare.fn.start = function(container) {
 		this.$el              = container;
-		this.prefix           = SB.vars.prefix + '-';
+		this.prefix           = WPUSB.vars.prefix + '-';
 		this.data             = container.data();
 		this.facebook         = this.$el.byElement( 'facebook' );
 		this.twitter          = this.$el.byElement( 'twitter' );
@@ -22,16 +22,16 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 	};
 
 	CounterSocialShare.fn.init = function() {
-		SB.FeaturedReferrer.create( this.$el );
-		SB.OpenPopup.create( this.$el );
-		SB.FixedContext.create( this.$el );
+		WPUSB.FeaturedReferrer.create( this.$el );
+		WPUSB.OpenPopup.create( this.$el );
+		WPUSB.FixedContext.create( this.$el );
 		this.addEventListeners();
 		this.request();
 	};
 
 	CounterSocialShare.fn.addEventListeners = function() {
 		this.$el.addEvent( 'click', 'open-popup', this );
-		SB.ToggleButtons.create( this.$el.data( 'element' ), this.$el );
+		WPUSB.ToggleButtons.create( this.$el.data( 'element' ), this.$el );
 	};
 
 	CounterSocialShare.fn.request = function() {
@@ -49,7 +49,7 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 			{
 				reference : 'googleCounter',
 				element   : 'google',
-				url       : $.fn.getAjaxUrl(),
+				url       : utils.getAjaxUrl(),
 				data      : this.getParamsGoogle()
 			},
 			{
@@ -153,7 +153,7 @@ WPUPPER( 'SB.Components.CounterSocialShare', function(CounterSocialShare, $) {
 
 		$.ajax({
 	       method : 'POST',
-	       url    : $.fn.getAjaxUrl(),
+	       url    : utils.getAjaxUrl(),
 	       data   : params
 	   });
 	};

@@ -1,16 +1,16 @@
-WPUPPER( 'SB.Components.SocialPopup', function(SocialPopup, $) {
+WPUSB( 'WPUSB.Components.SocialPopup', function(SocialPopup, $) {
 
 	SocialPopup.fn.start = function(container) {
-		this.prefix    = '.' + SB.vars.prefix + '-';
+		this.prefix    = '.' + WPUSB.vars.prefix + '-';
 		this.container = container;
 		this.$el       = container.find( this.prefix + 'networks' );
 		this.close     = this.$el.byAction( 'close-popup' );
-		this.open      = SB.vars.body.byAction( 'open-modal-networks' );
+		this.open      = WPUSB.vars.body.byAction( 'open-modal-networks' );
 		this.init();
 	};
 
 	SocialPopup.fn.init = function() {
-		SB.OpenPopup.create( this.$el );
+		WPUSB.OpenPopup.create( this.$el );
 		this.addEventListener();
 		this.container.show();
 		this.setSizes();
@@ -20,7 +20,7 @@ WPUPPER( 'SB.Components.SocialPopup', function(SocialPopup, $) {
 
 	SocialPopup.fn.addEventListener = function() {
 		this.close.on( 'click', this._onClickClose.bind( this ) );
-		SB.vars.body.on( 'click', this._onClickBody.bind( this ) );
+		WPUSB.vars.body.on( 'click', this._onClickBody.bind( this ) );
 		this.open.on( 'click', this._onClickOpen.bind( this ) );
 	};
 

@@ -1,7 +1,7 @@
-WPUPPER( 'SB.Preview', function(Preview, $) {
+WPUSB( 'WPUSB.Preview', function(Preview, $, utils) {
 
 	Preview.create = function(container) {
-		this.locale  = $.fn.getLocale();
+		this.locale  = utils.getLocale();
 		this.title   = $( '[data-action="no-title"]' );
 		this.counter = $( '[data-action="no-counter"]' );
 		this.init();

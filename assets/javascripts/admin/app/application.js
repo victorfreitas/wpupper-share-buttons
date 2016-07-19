@@ -1,7 +1,7 @@
-WPUPPER( 'SB.Application', function(Application) {
+WPUSB( 'WPUSB.Application', function(Application) {
 
 	Application.init = function(container) {
-		SB.BuildComponents.create( container );
+		WPUSB.BuildComponents.create( container );
 	};
 
 }, {} );

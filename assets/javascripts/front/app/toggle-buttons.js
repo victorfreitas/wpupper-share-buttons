@@ -1,4 +1,4 @@
-WPUPPER( 'SB.ToggleButtons', function(ToggleButtons, $) {
+WPUSB( 'WPUSB.ToggleButtons', function(ToggleButtons, $) {
 
 	ToggleButtons.create = function(context, container) {
 		if ( context !== 'fixed' ) {
@@ -6,8 +6,8 @@ WPUPPER( 'SB.ToggleButtons', function(ToggleButtons, $) {
 		}
 
 		this.$el          = container;
-		this.prefix       = SB.vars.prefix + '-';
-		this.closeButtons = SB.vars.body.byAction( 'close-buttons' );
+		this.prefix       = WPUSB.vars.prefix + '-';
+		this.closeButtons = WPUSB.vars.body.byAction( 'close-buttons' );
 		this.buttons      = container.byElement( 'buttons' );
 		this.init();
 	};

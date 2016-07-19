@@ -1,7 +1,7 @@
-WPUPPER( 'SB.Components.ShareSettings', function(ShareSettings, $) {
+WPUSB( 'WPUSB.Components.ShareSettings', function(ShareSettings, $) {
 
 	ShareSettings.fn.start = function(container) {
-		this.prefix   = SB.vars.prefix;
+		this.prefix   = WPUSB.vars.prefix;
 		this.posFixed = container.byElement( 'position-fixed' );
 		this.fixed    = container.byElement( 'fixed' );
 		this.clear    = container.byAction( 'fixed-disabled' );

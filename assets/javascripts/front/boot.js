@@ -1,10 +1,10 @@
 jQuery(function($) {
 	var context = $( 'body' );
 
-	SB.vars = {
+	WPUSB.vars = {
 		  body   : context
 		, prefix : 'wpusb'
 	};
 
-	SB.Application.init.apply( null, [context] );
+	WPUSB.Application.init.apply( null, [context] );
 });

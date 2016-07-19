@@ -1,11 +1,11 @@
-WPUPPER( 'SB.BuildComponents', function(BuildComponents, $) {
+WPUSB( 'WPUSB.BuildComponents', function(BuildComponents, $) {
 
 	BuildComponents.create = function(container) {
 		container.findComponent( '[data-component]', $.proxy( this, '_start' ) );
 	};
 
 	BuildComponents._start = function(elements) {
-		if ( typeof SB.Components == 'undefined' ) {
+		if ( typeof WPUSB.Components == 'undefined' ) {
 			console.warn( 'Component not defined in its structure.' );
 			return;
 		}
@@ -24,7 +24,7 @@ WPUPPER( 'SB.BuildComponents', function(BuildComponents, $) {
 	};
 
 	BuildComponents._callback = function(name, element) {
-		var callback = SB.Components[name];
+		var callback = WPUSB.Components[name];
 
 		if ( typeof callback == 'function' ) {
 			callback.call( null, element );
