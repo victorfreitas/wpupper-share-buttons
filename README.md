@@ -49,7 +49,7 @@ $args = array(
     ),
 );
 if ( class_exists( 'WPUSB_Shares_View' ) ) :
-    echo WPUSB_Shares_View::share( $args );
+    echo WPUSB_Shares_View::buttons_share( $args );
 endif;
 
 /*
