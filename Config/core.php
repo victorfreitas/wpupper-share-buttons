@@ -51,8 +51,8 @@ class WPUSB_Core
 	{
 		add_action( 'plugins_loaded', array( __CLASS__, 'plugins_loaded' ) );
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'add_front_scripts' ) );
-		static::_instantiate_controllers();
-		static::_register_actions();
+		self::_instantiate_controllers();
+		self::_register_actions();
 	}
 
 	/**
@@ -161,7 +161,7 @@ class WPUSB_Core
 		$share    = new WPUSB_Shares_Controller();
 		$settings = new WPUSB_Settings_Controller();
 
-		static::_instantiate_controllers_admin();
+		self::_instantiate_controllers_admin();
 	}
 
 	/**
@@ -177,9 +177,9 @@ class WPUSB_Core
 		if ( ! App::$is_admin )
 			return;
 
-		$ajax           = new WPUSB_Ajax_Controller();
-		$option         = new WPUSB_Options_Controller();
-		static::$report = new WPUSB_Share_Reports_Controller();
+		$ajax         = new WPUSB_Ajax_Controller();
+		$option       = new WPUSB_Options_Controller();
+		self::$report = new WPUSB_Share_Reports_Controller();
 	}
 
 	/**
@@ -191,6 +191,9 @@ class WPUSB_Core
 	 */
 	public static function activate()
 	{
+		if ( ! App::$is_admin )
+			return;
+
 		self::$report->create_table();
 		Utils::add_options_defaults();
 
@@ -218,9 +221,9 @@ class WPUSB_Core
 	 */
 	public static function uninstall()
 	{
-		static::_delete_options();
-		static::_delete_transients();
-		static::_delete_table();
+		self::_delete_options();
+		self::_delete_transients();
+		self::_delete_table();
 	}
 
 	private static function _delete_options()

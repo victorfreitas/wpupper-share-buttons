@@ -268,7 +268,7 @@ class WPUSB_Social_Elements
 	 */
 	private static function _elements_sort( $elements )
 	{
-		$elements = static::_ksort( $elements );
+		$elements = self::_ksort( $elements );
 		$elements = Utils::parse( $elements );
 
 		return $elements;
@@ -314,7 +314,7 @@ class WPUSB_Social_Elements
 		$arguments = self::_get_arguments();
 		$tracking  = Utils::get_tracking();
 
-		static::_set_properts(
+		self::_set_properts(
 			$arguments['title'],
 			$arguments['link'],
 			$tracking,
@@ -373,7 +373,7 @@ class WPUSB_Social_Elements
 	public static function social_media()
 	{
 		$elements          = self::get_elements();
-		$elements_sortable = static::_elements_sort( $elements );
+		$elements_sortable = self::_elements_sort( $elements );
 
 		return apply_filters( App::SLUG . '-elements-share-sortable', $elements_sortable );
 	}
@@ -410,7 +410,7 @@ class WPUSB_Social_Elements
 		self::$viber_text    = apply_filters( App::SLUG . '-viber-text', "{$title}%20{$caracter}%20", $title );
 		self::$whatsapp_text = apply_filters( App::SLUG . '-whatsapp-text', "{$title}%20{$caracter}%20", $title );
 
-		static::_set_properts_twitter();
+		self::_set_properts_twitter();
 	}
 
 	/**

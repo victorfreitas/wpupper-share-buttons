@@ -381,8 +381,8 @@ class WPUSB_Settings_View
 	{
 		$prefix = Setting::PREFIX;
 		$span   = '';
-		$args   = static::_get_td_args( $args );
-		$label  = static::_get_label( $prefix, $args );
+		$args   = self::_get_td_args( $args );
+		$label  = self::_get_label( $prefix, $args );
 
 		echo <<<EOD
 			<td id="{$args['td-id']}"

@@ -54,7 +54,7 @@ EOD;
 		$link_type = Utils::link_type( $args->reference->link );
 		$inside    = self::inside( $args );
 		$counter   = self::add_count( $args );
-		$referrer  = Utils::get_data_referrer( $args->reference->element );
+		$referrer  = Utils::get_data_referrer( $args );
 		$content   = <<<EOD
 			<div class="{$classes}" {$referrer}>
 

@@ -32,12 +32,22 @@ WPUSB( 'WPUSB.FeaturedReferrer', function(FeaturedReferrer, $) {
 		}
 	};
 
-	FeaturedReferrer.showReferrer = function(element) {
-		var className = this.prefix + 'referrer';
+	FeaturedReferrer.showReferrer = function(referrer) {
+		var className = this.prefix + 'referrer'
+		  , element   = this.$el.byReferrer( referrer );
 
 		this.$el.find( '.' + this.prefix + 'count' ).hide();
-		this.$el.byReferrer( element ).addClass( className );
-		this.$el.byReferrer( element ).addClass( className + '-' + element );
+		element.addClass( className );
+		element.addClass( className + '-' + referrer );
+
+		this.refTitle( element );
+	};
+
+	FeaturedReferrer.refTitle = function(element) {
+		if ( !element.find( 'span[data-title]' ).length ) {
+			var title = '<span data-title="' + element.data( 'ref-title' ) + '"></span>';
+			element.find( 'a' ).append( title );
+		}
 	};
 
 	FeaturedReferrer.isMatch = function(name) {

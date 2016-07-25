@@ -651,7 +651,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	    if ( is_wp_error( $response ) )
 	    	return $url;
 
-	    return static::_bitly_response( $response, $url );
+	    return self::_bitly_response( $response, $url );
 	}
 
 	/**
@@ -684,9 +684,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function add_options_defaults()
 	{
-		static::_add_options_settings();
-		static::_add_options_social_media();
-		static::_add_options_extra_settings();
+		self::_add_options_settings();
+		self::_add_options_social_media();
+		self::_add_options_extra_settings();
 	}
 
 	/**

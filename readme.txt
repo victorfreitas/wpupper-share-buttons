@@ -95,6 +95,10 @@ The following plugins are recommended
 
 == Changelog ==
 
+= 3.4.2 =
+
+* Bug fixes
+
 = 3.4.1 =
 
 * General internal improvements
@@ -403,8 +407,6 @@ The following plugins are recommended
 
 == Upgrade Notice ==
 
-= 3.4.1 =
+= 3.4.2 =
 
-* General internal improvements
-* Performance improvements
 * Bug fixes

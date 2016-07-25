@@ -35,7 +35,7 @@ abstract class WPUSB_Utils_Share
 	{
 		self::replace_link( $social, $permalink, $title );
 
-		$buttons = static::_set_buttons(array(
+		$buttons = self::_set_buttons(array(
 			'social'       => $social,
 			'class_second' => $args['class_second'],
 			'class_icon'   => $args['class_icon'],
@@ -103,7 +103,7 @@ abstract class WPUSB_Utils_Share
 
 		foreach ( $social_items as $key => $item ) :
 			self::$count_elements++;
-			$buttons .= self::set_buttons_args( $elements->$item, $args, $permalink, $title );
+			$buttons .= self::set_buttons_args( $elements->{$item}, $args, $permalink, $title );
 		endforeach;
 
 		self::$count_elements = 0;
@@ -406,16 +406,20 @@ abstract class WPUSB_Utils_Share
 	 * Add data featured by referrer
 	 *
 	 * @since 3.0.0
-	 * @param String $element
+	 * @param Object $atts
 	 * @return String
 	 *
 	 */
-	public static function get_data_referrer( $element )
+	public static function get_data_referrer( $atts )
 	{
 		$opt_referrer = Utils::option( 'referrer', false );
 
-		if ( $opt_referrer === 'yes' )
-			return "data-referrer=\"{$element}\"";
+		if ( $opt_referrer === 'yes' ) {
+			$attr  = "data-referrer=\"{$atts->reference->element}\"";
+			$attr .= " data-ref-title=\"{$atts->reference->inside}\"";
+
+			return $attr;
+		}
 	}
 
 	/**
