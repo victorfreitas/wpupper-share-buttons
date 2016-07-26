@@ -8,8 +8,9 @@
  * @version 1.0
  */
 
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
+}
 
 use WPUSB_Utils as Utils;
 use WPUSB_App as App;
@@ -88,8 +89,9 @@ EOD;
 		$classes .= " {$atts->reference->class}";
 		$classes .= " {$atts->class_second}";
 
-		if ( Utils::is_first() && Utils::is_active_inside( $atts->elements ) )
+		if ( Utils::is_first() && Utils::is_active_inside( $atts->elements ) ) {
 			$classes .= " {$atts->prefix}-inside {$atts->prefix}-full";
+		}
 
 		return apply_filters( App::SLUG . '-classes-second-square-plus', $classes );
 	}
@@ -107,7 +109,7 @@ EOD;
 		$shares_text = __( 'Shares', App::TEXTDOMAIN );
 		$content     = '';
 
-		if ( Utils::is_active_couter( $args ) ) :
+		if ( Utils::is_active_couter( $args ) ) {
 			$content = <<<EOD
 				<div class="{$prefix}-item {$prefix}-counter">
 					<span class="{$prefix}-counter"
@@ -118,7 +120,7 @@ EOD;
 					<div class="{$prefix}-slash" data-slash="&#8260;"></div>
 				</div>
 EOD;
-		endif;
+		}
 
 		return apply_filters( App::SLUG . 'total-counter', $content );
 	}
@@ -135,8 +137,9 @@ EOD;
 	{
 		$content = '';
 
-		if ( Utils::is_first() && Utils::is_active_inside( $args->elements ) )
+		if ( Utils::is_first() && Utils::is_active_inside( $args->elements ) ) {
 			$content = "<span data-title=\"{$args->reference->name}\"></span>";
+		}
 
 		return apply_filters( App::SLUG . 'inside-html', $content );
 	}

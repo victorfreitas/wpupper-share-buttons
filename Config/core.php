@@ -7,8 +7,9 @@
  * @since 3.1.0
  * @version 1.0
  */
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
+}
 
 use WPUSB_App as App;
 use WPUSB_Setting as Setting;
@@ -64,8 +65,9 @@ class WPUSB_Core
 	 */
 	public static function add_front_scripts()
 	{
-		if ( ! Utils::is_active() )
+		if ( ! Utils::is_active() ) {
 			return;
+		}
 
 		self::_front_scripts();
 		self::_front_styles();
@@ -80,8 +82,9 @@ class WPUSB_Core
 	 */
 	private static function _front_scripts()
 	{
-		if ( 'on' === Utils::option( 'disable_js' ) )
+		if ( 'on' === Utils::option( 'disable_js' ) ) {
 			return;
+		}
 
 		$context = Utils::option( 'fixed_context' );
 
@@ -112,8 +115,9 @@ class WPUSB_Core
 	 */
 	private static function _front_styles()
 	{
-		if ( 'on' === Utils::option( 'disable_css' ) )
+		if ( 'on' === Utils::option( 'disable_css' ) ) {
 			return;
+		}
 
 		wp_enqueue_style(
 			Setting::PREFIX . '-style',
@@ -174,8 +178,9 @@ class WPUSB_Core
 	 */
 	private static function _instantiate_controllers_admin()
 	{
-		if ( ! App::$is_admin )
+		if ( ! App::$is_admin ) {
 			return;
+		}
 
 		$ajax         = new WPUSB_Ajax_Controller();
 		$option       = new WPUSB_Options_Controller();
@@ -191,8 +196,9 @@ class WPUSB_Core
 	 */
 	public static function activate()
 	{
-		if ( ! App::$is_admin )
+		if ( ! App::$is_admin ) {
 			return;
+		}
 
 		self::$report->create_table();
 		Utils::add_options_defaults();
@@ -279,8 +285,9 @@ class WPUSB_Core
 	{
 		$db_version = get_site_option( Setting::TABLE_NAME . '_db_version' );
 
-	    if ( $db_version !== Setting::DB_VERSION )
+	    if ( $db_version !== Setting::DB_VERSION ) {
 	        self::activate();
+	    }
 	}
 
 	/**

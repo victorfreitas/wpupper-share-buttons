@@ -96,7 +96,41 @@
         .#{$prefixClass}-button i {
             display: inline;
         }
+
+        .#{$prefixClass}-default {
+            background-color: $colorWhite;
+            background: $colorWhite;
+            border-radius: 100%;
+            border: 1px solid #ccc;
+            margin: 3px 0 0 2px;
+
+
+            i {
+                font-size: 25px;
+                line-height: 40px;
+                height: 40px;
+                width: 40px;
+            }
+
+            &:hover i {
+                color: $colorWhite;
+            }
+        }
     }
+
+    &.#{$prefixClass}-default .#{$prefixClass}-counts {
+        background: transparent;
+
+        span {
+            display: block;
+            font-size: 10px;
+            text-transform: uppercase;
+
+            &:last-child {
+                font-size: 8px;
+            }
+        }
+    };
 
     .#{$prefixClass}-toggle {
         @extend %transitionAll;
@@ -293,7 +327,7 @@
     }
 }
 //===================================================
-// --          Layout Fixed left Mobile
+// --        Layout Fixed left Mobile
 //===================================================
 @media ( max-width: $tablet ) {
     .#{$prefixClass}-fixed-left,
@@ -320,6 +354,17 @@
             .#{$prefixClass}-button {
                 display: block;
                 width: auto;
+            }
+
+            .#{$prefixClass}-default {
+                border-radius: initial;
+                margin: 0;
+                text-align: center;
+                width: 100%;
+            }
+
+            &:first-child {
+                float: none;
             }
         }
 

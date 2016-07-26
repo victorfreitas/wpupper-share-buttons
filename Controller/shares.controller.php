@@ -6,9 +6,9 @@
  * @subpackage Social Icons Display
  * @version 2.2.0
  */
-
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
+}
 
 use WPUSB_Utils as Utils;
 use WPUSB_App as App;
@@ -77,8 +77,9 @@ class WPUSB_Shares_Controller
 	{
 		$this->_set_position();
 
-		if ( $this->position && Utils::is_active() )
+		if ( $this->position && Utils::is_active() ) {
 	    	return $this->_get_new_content( $content );
+		}
 
 		return $content;
 	}
@@ -87,7 +88,7 @@ class WPUSB_Shares_Controller
 	{
 		$buttons = apply_filters( $this->_filter, $this->buttons_share() );
 
-		switch ( $this->position ) :
+		switch ( $this->position ) {
 			case 'full' :
 	      		$new_content  = $buttons;
 	      		$new_content .= $content;
@@ -103,7 +104,7 @@ class WPUSB_Shares_Controller
 				$new_content  = $content;
 				$new_content .= $buttons;
 				break;
-		endswitch;
+		}
 
 		return $new_content;
 	}
@@ -120,8 +121,9 @@ class WPUSB_Shares_Controller
 		$is_position_fixed = Utils::is_position_fixed();
 		$this->_add_modal( $is_position_fixed );
 
-		if ( ! $is_position_fixed )
+		if ( ! $is_position_fixed ) {
 			return;
+		}
 
 		if ( Utils::is_active() ) {
 			$buttons = $this->buttons_share( array(), true );
@@ -181,10 +183,12 @@ class WPUSB_Shares_Controller
 	 */
 	protected function _add_modal( $is_fixed )
 	{
-		if ( ! ( $is_fixed || $this->position ) )
+		if ( ! ( $is_fixed || $this->position ) ) {
 			return;
+		}
 
-		if ( Utils::is_active() )
+		if ( Utils::is_active() ) {
 			WPUSB_All_Items::init();
+		}
 	}
 }

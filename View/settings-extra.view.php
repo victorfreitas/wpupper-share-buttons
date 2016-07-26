@@ -6,9 +6,9 @@
  * @subpackage View Admin Page
  * @version 1.4.0
  */
-
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
+}
 
 use WPUSB_Settings_View as View;
 
@@ -31,8 +31,9 @@ class WPUSB_Settings_Extra_View
 			<h2><?php _e( 'WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ); ?></h2>
 
 			<?php
-				if ( WPUSB_Utils::get_update( 'settings-updated' ) )
+				if ( WPUSB_Utils::get_update( 'settings-updated' ) ) {
 					WPUSB_Settings_View::update_notice_message();
+				}
 			?>
 
 			<p class="description"><?php _e( 'Add the Share Buttons automatically.', WPUSB_App::TEXTDOMAIN ); ?></p>

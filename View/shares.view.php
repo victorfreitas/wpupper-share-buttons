@@ -7,9 +7,9 @@
  * @subpackage Social Icons Display
  * @version 1.0
  */
-
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
+}
 
 class WPUSB_Shares_View
 {

@@ -7,15 +7,16 @@
  * @subpackage Social Icons Display
  * @version 1.0
  */
-
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
+}
 
 use WPUSB_Utils as Utils;
 use WPUSB_App as App;
 
 class WPUSB_Fixed_Left
 {
+	protected static $layout;
 	/**
 	 * Open buttons container
 	 *
@@ -25,6 +26,8 @@ class WPUSB_Fixed_Left
 	 */
 	public static function init( \stdClass $atts )
 	{
+		self::_set_layout();
+
 		$args       = Utils::content_args();
 		$classes    = self::get_classes_first( $atts );
 		$data_token = Utils::get_data_token( $args['token'] );
@@ -56,16 +59,18 @@ EOD;
 	{
 		$classes   = self::get_classes_second( $args );
 		$link_type = Utils::link_type( $args->reference->link );
+		$layout    = self::$layout;
+		$btn_class = ( 'buttons' == $layout ) ? 'button' : $layout;
 		$content   = <<<EOD
 			<div class="{$classes}">
 
 				<a {$link_type}
 				   {$args->reference->popup}
-				   class="{$args->prefix}-button {$args->class_link}"
+				   class="{$args->prefix}-{$btn_class} {$args->class_link}"
 				   title="{$args->reference->title}"
 				   rel="nofollow">
 
-				   <i class="{$args->reference->class_icon}-buttons {$args->class_icon}"></i>
+				   <i class="{$args->reference->class_icon}-{$layout} {$args->class_icon}"></i>
 				</a>
 			</div>
 EOD;
@@ -101,19 +106,35 @@ EOD;
 		$prefix  = $args->prefix;
 		$content = '';
 
-		if ( Utils::is_active_couter( $args ) ) :
+		if ( Utils::is_active_couter( $args ) ) {
+			$inside  = self::_get_inside_count();
 			$content = <<<EOD
 				<div class="{$prefix}-item {$prefix}-total-share">
 
 					<div class="{$prefix}-counts">
 						<span data-element="total-share"></span>
+						{$inside}
 					</div>
 
 				</div>
 EOD;
-		endif;
+		}
 
 		return apply_filters( App::SLUG . '-total-counter-fixed', $content );
+	}
+
+	/**
+	 * Add inside for layout rounded
+	 *
+	 * @since 3.0.0
+	 * @param Null
+	 * @return String
+	 */
+	private static function _get_inside_count()
+	{
+		$inside = '<span>' . __( 'Shares', App::TEXTDOMAIN ) . '</span>';
+
+		return ( 'default' == self::$layout ) ? $inside : '';
 	}
 
 	/**
@@ -127,7 +148,8 @@ EOD;
 	public static function get_classes_first( $atts )
 	{
 		$classes  = $atts->prefix;
-		$classes .= " {$atts->prefix}-buttons";
+		$layout   = self::$layout;
+		$classes .= " {$atts->prefix}-{$layout}";
 		$classes .= " {$atts->position_fixed}";
 		$classes .= " {$atts->class_first} {$atts->custom_class}";
 
@@ -152,5 +174,18 @@ EOD;
 			</div>
 EOD;
 		return apply_filters( App::SLUG . '-close-buttons-fixed', $content );
+	}
+
+	/**
+	 * Set property layout
+	 *
+	 * @since 3.5.0
+	 * @param Null
+	 * @return Void
+	 *
+	 */
+	public static function _set_layout()
+	{
+		self::$layout = Utils::option( 'fixed_layout', 'buttons' );
 	}
 }

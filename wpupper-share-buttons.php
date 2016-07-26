@@ -5,7 +5,7 @@
 /*
 	Plugin Name: WPUpper Share Buttons
 	Plugin URI:  https://github.com/victorfreitas
-	Version:     3.4.2
+	Version:     3.5.0
 	Author:      WPUpper
 	Author URI:  https://github.com/victorfreitas
 	License:     GPL2
@@ -56,7 +56,7 @@ class WPUSB_App
      *
      * @var String
      */
-	const VERSION = '3.4.2';
+	const VERSION = '3.5.0';
 
     /**
      * Verify is admin
@@ -77,8 +77,9 @@ class WPUSB_App
 		$sep       = DIRECTORY_SEPARATOR;
 		$dirname   = dirname( __FILE__ );
 
-		if ( in_array( $location, array( 'View', 'Controller', ) ) )
+		if ( $location == 'View' ||  $location == 'Controller' ) {
 			$extension = strtolower( $location ) . ".{$extension}";
+		}
 
 		require_once( "{$dirname}{$sep}{$location}{$sep}{$class}.{$extension}" );
 	}

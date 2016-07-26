@@ -6,9 +6,9 @@
  * @subpackage View Admin Page
  * @version 1.4.0
  */
-
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
+}
 
 class WPUSB_Settings_Faq_View
 {

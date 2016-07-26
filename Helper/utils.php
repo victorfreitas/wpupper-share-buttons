@@ -6,8 +6,9 @@
  * @subpackage Utils Helper
  * @version 2.3.0
  */
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
+}
 
 use WPUSB_App as App;
 use WPUSB_Setting as Setting;
@@ -23,8 +24,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function esc_class( $class )
 	{
-		if ( empty( $class ) || is_array( $class ) )
+		if ( empty( $class ) || is_array( $class ) ) {
 			return '';
+		}
 
 		$class = self::rip_tags( $class, true );
 
@@ -45,11 +47,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	{
 		$request = filter_input_array( $type, FILTER_SANITIZE_SPECIAL_CHARS );
 
-		if ( ! isset( $request[$key] ) || empty( $request[$key] ) )
+		if ( ! isset( $request[$key] ) || empty( $request[$key] ) ) {
 			return $default;
+		}
 
-		if ( is_array( $request[$key] ) )
+		if ( is_array( $request[$key] ) ) {
 			return self::filter_array( $request[$key], $sanitize );
+		}
 
 		return self::sanitize( $request[$key], $sanitize );
 	}
@@ -110,8 +114,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	*/
 	public static function sanitize( $value, $function_name )
 	{
-		if ( ! is_callable( $function_name ) )
+		if ( ! is_callable( $function_name ) ) {
 			return self::rip_tags( $value );
+		}
 
 		return call_user_func( $function_name, $value );
 	}
@@ -127,8 +132,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function filter_array( $value, $sanitize )
 	{
-		if ( ! is_callable( $sanitize )  )
+		if ( ! is_callable( $sanitize )  ) {
 	    	return self::rip_tags( $value );
+		}
 
 	    return array_map( $sanitize, $value );
 	}
@@ -144,8 +150,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function rip_tags( $value, $remove_breaks = false )
 	{
-		if ( is_array( $value ) )
-			return array_map( array( __CLASS__, 'rip_tags' ), $value );
+		if ( is_array( $value ) ) {
+			return array_map( __METHOD__, $value );
+		}
 
 	    return wp_strip_all_tags( $value, $remove_breaks );
 	}
@@ -159,8 +166,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	*/
 	public static function is_request_ajax()
 	{
-		if ( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) )
+		if ( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) ) {
 			$request_ajax = $_SERVER['HTTP_X_REQUESTED_WITH'];
+		}
 
 		return ( ! empty( $request_ajax ) && strtolower( $request_ajax ) == 'xmlhttprequest' );
 	}
@@ -178,8 +186,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 
 		$post_title = '';
 
-		if ( isset( $post->ID ) )
+		if ( isset( $post->ID ) ) {
 			$post_title = get_the_title( $post->ID );
+		}
 
 		return self::html_decode( $post_title );
 	}
@@ -195,8 +204,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	{
 		global $post;
 
-		if ( isset( $post->ID ) )
+		if ( isset( $post->ID ) ) {
 			return intval( $post->ID );
+		}
 
 		return 0;
 	}
@@ -214,11 +224,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 
 		$permalink = '';
 
-		if ( isset( $post->ID ) )
+		if ( isset( $post->ID ) ) {
 			$permalink = esc_url( get_permalink( $post->ID ) );
+		}
 
-		if ( is_home() || is_front_page() )
+		if ( is_home() || is_front_page() ) {
 			$permalink = esc_url( get_site_url( null, '/' ) );
+		}
 
 		return $permalink;
 	}
@@ -232,17 +244,20 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function get_real_permalink( $is_fixed = false )
 	{
-		if ( ! ( is_category() || is_archive() ) )
+		if ( ! ( is_category() || is_archive() ) ) {
 			return self::generate_short_url();
+		}
 
-		if ( ! $is_fixed )
+		if ( ! $is_fixed ) {
 			return self::generate_short_url();
+		}
 
 		$term      = get_queried_object();
 		$term_link = get_term_link( $term );
 
-		if ( is_wp_error( $term_link ) )
+		if ( is_wp_error( $term_link ) ) {
 			return self::get_permalink();
+		}
 
 		return self::generate_short_url( $term_link );
 	}
@@ -262,8 +277,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 		$tracking    = self::get_tracking();
 		$permalink   = rawurlencode( "{$permalink}{$tracking}" );
 
-		if ( ! $bitly_token )
+		if ( ! $bitly_token ) {
 			return self::url_clean( $permalink );
+		}
 
 		return self::bitly_short_url_cache( $bitly_token, $permalink );
 	}
@@ -306,16 +322,19 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function get_real_title( $is_fixed = false )
 	{
-		if ( ! ( is_category() || is_archive() ) )
+		if ( ! ( is_category() || is_archive() ) ) {
 			return rawurlencode( self::get_title() );
+		}
 
-		if ( ! $is_fixed )
+		if ( ! $is_fixed ) {
 			return rawurlencode( self::get_title() );
+		}
 
 		$term = self::get_queried_object();
 
-		if ( ! $term )
+		if ( ! $term ) {
 			return self::get_title();
+		}
 
 		return rawurlencode( $term->name );
 	}
@@ -331,8 +350,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	{
 		$term = get_queried_object();
 
-		if ( isset( $term->term_id ) )
+		if ( isset( $term->term_id ) ) {
 			return $term;
+		}
 
 		return false;
 	}
@@ -351,11 +371,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 		$thumbnail   = '';
 		$filter_name = App::SLUG . 'thumbnail-url';
 
-		if ( isset( $post->ID ) && has_post_thumbnail() )
+		if ( isset( $post->ID ) && has_post_thumbnail() ) {
 			$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
+		}
 
-		if ( ! $thumbnail )
+		if ( ! $thumbnail ) {
 			return apply_filters( $filter_name, '' );
+		}
 
 		return apply_filters( $filter_name, $thumbnail[0] );
 	}
@@ -373,8 +395,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 
 		$content = '';
 
-		if ( isset( $post->post_content ) )
+		if ( isset( $post->post_content ) ) {
 			$content = $post->post_content;
+		}
 
 		$content = self::rip_tags( $content );
 		$content = preg_replace( '/\[.*\]/', null, $content );
@@ -456,8 +479,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 		$model   = new Setting();
 		$options = $model->get_options();
 
-		if ( ! isset( $options[$name] ) || empty( $options[$name] ) )
+		if ( ! isset( $options[$name] ) || empty( $options[$name] ) ) {
 			return $default;
+		}
 
 		$option = self::sanitize( $options[$name], $sanitize );
 
@@ -481,10 +505,10 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 			'message' => $message,
 		));
 
-		if ( $echo ) :
+		if ( $echo ) {
 			echo $response;
 			exit(0);
-		endif;
+		}
 
 		return $response;
 	}
@@ -500,27 +524,11 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function ajax_verify_request( $request, $code = 500, $message = 'server_error' )
 	{
-		if ( ! $request ) :
+		if ( ! $request ) {
 			http_response_code( $code );
 			self::error_server_json( $code, $message );
 			exit(0);
-		endif;
-	}
-
-	/**
-	 * Convert array in objects
-	 *
-	 * @since 1.0
-	 * @param Array $arguments
-	 * @return Object
-	 */
-	public static function parse( $arguments )
-	{
-        foreach( $arguments as $key => $value ) {
-        	$object[$key] = (object) $value;
-        }
-
-		return (object) $object;
+		}
 	}
 
 	/**
@@ -534,8 +542,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	{
 		$option = get_site_option( $option_name );
 
-		if ( $option )
+		if ( $option ) {
 			return update_option( $option_name, Setting::DB_VERSION );
+		}
 
 		return add_option( $option_name, Setting::DB_VERSION );
 	}
@@ -551,8 +560,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	{
 		$number = (double) $number;
 
-		if ( ! $number )
+		if ( ! $number ) {
 			return $number;
+		}
 
 		return number_format( $number, 0, '.', '.' );
 	}
@@ -567,11 +577,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function isset_get( $args = array(), $index = '', $default = '' )
 	{
-		if ( isset( $args[$index] ) )
+		if ( isset( $args[$index] ) ) {
 			return $args[$index];
+		}
 
-		if ( isset( $args['elements'] ) )
+		if ( isset( $args['elements'] ) ) {
 			return self::isset_get( $args['elements'], $index );
+		}
 
 		return $default;
 	}
@@ -589,8 +601,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 
 		require_once( ABSPATH . 'wp-admin/includes/screen.php' );
 
-		if ( version_compare( $wp_version, '4.4', '>=' ) )
+		if ( version_compare( $wp_version, '4.4', '>=' ) ) {
 			require_once( ABSPATH . 'wp-admin/includes/class-wp-screen.php' );
+		}
 	}
 
 	/**
@@ -602,11 +615,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function get_update( $key )
 	{
-		if ( ! isset( $_GET[$key] ) )
+		if ( ! isset( $_GET[$key] ) ) {
 			return false;
+		}
 
-		if ( 'true' == $_GET[$key] )
+		if ( 'true' == $_GET[$key] ) {
 			return true;
+		}
 	}
 
 	/**
@@ -621,8 +636,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	{
 		$cache_url = get_transient( $url );
 
-		if ( false !== $cache_url )
+		if ( false !== $cache_url ) {
 			return $cache_url;
+		}
 
 		return self::bitly_short_url( $token, $url );
 	}
@@ -648,8 +664,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 
 	    $response = wp_remote_get( $api_url, $args );
 
-	    if ( is_wp_error( $response ) )
+	    if ( is_wp_error( $response ) ) {
 	    	return $url;
+	    }
 
 	    return self::_bitly_response( $response, $url );
 	}
@@ -667,8 +684,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 		$transient  = App::SLUG . '-shorturl-cache-expire';
 		$cache_time = apply_filters( $transient, ( WEEK_IN_SECONDS * 1 ) );
 
-		if ( 200 !== $response->status_code )
+		if ( 200 !== $response->status_code ) {
 			return $url;
+		}
 
 		set_transient( $url, $response->data->url, $cache_time );
 
@@ -819,8 +837,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	{
 		$page = self::get( 'page' );
 
-		if ( $page === $current )
+		if ( $page === $current ) {
 			return ' class="active"';
+		}
 
 		return null;
 	}
@@ -846,8 +865,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function is_single()
 	{
-		if ( is_single() && self::option( 'single' ) === 'on' )
+		if ( is_single() && self::option( 'single' ) === 'on' ) {
 			return true;
+		}
 
 		return false;
 	}
@@ -861,8 +881,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function is_page()
 	{
-		if ( ( is_page() || is_page_template() ) && self::option( 'pages' ) === 'on' )
+		if ( ( is_page() || is_page_template() ) && self::option( 'pages' ) === 'on' ) {
 			return true;
+		}
 
 		return false;
 	}
@@ -876,8 +897,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function is_home()
 	{
-		if ( ( is_home() || is_front_page() ) && self::option( 'home' ) === 'on' )
+		if ( ( is_home() || is_front_page() ) && self::option( 'home' ) === 'on' ) {
 			return true;
+		}
 
 		return false;
 	}
@@ -891,8 +913,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function is_archive_category()
 	{
-		if ( ( is_archive() || is_category() ) && self::option( 'archive_category' ) === 'on' )
+		if ( ( is_archive() || is_category() ) && self::option( 'archive_category' ) === 'on' ) {
 			return true;
+		}
 
 		return false;
 	}
@@ -906,11 +929,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function is_active()
 	{
-		if ( self::is_home() || self::is_archive_category() )
+		if ( self::is_home() || self::is_archive_category() ) {
 			return true;
+		}
 
-		if ( self::is_page() || self::is_single() )
+		if ( self::is_page() || self::is_single() ) {
 			return true;
+		}
 
 		return false;
 	}

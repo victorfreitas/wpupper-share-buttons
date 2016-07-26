@@ -8,8 +8,9 @@
  * @version 1.0
  */
 
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
+}
 
 use WPUSB_Utils as Utils;
 use WPUSB_Setting as Setting;
@@ -101,10 +102,10 @@ abstract class WPUSB_Utils_Share
 		$elements         = Elements::social_media();
 		$social_items     = self::get_social_media( $model );
 
-		foreach ( $social_items as $key => $item ) :
+		foreach ( $social_items as $key => $item ) {
 			self::$count_elements++;
 			$buttons .= self::set_buttons_args( $elements->{$item}, $args, $permalink, $title );
-		endforeach;
+		}
 
 		self::$count_elements = 0;
 
@@ -123,13 +124,15 @@ abstract class WPUSB_Utils_Share
 	 */
 	public static function get_social_media( $model = false )
 	{
-		if ( ! $model )
+		if ( ! $model ) {
 			$model = new Setting();
+		}
 
 		$social_media = $model->social_media;
 
-		if ( isset( $social_media['order'] ) )
+		if ( isset( $social_media['order'] ) ) {
 			unset( $social_media['order'] );
+		}
 
 		return (array) $social_media;
 	}
@@ -144,16 +147,18 @@ abstract class WPUSB_Utils_Share
 	 */
 	private static function _set_social_media( $social_media )
 	{
-		if ( isset( $social_media['order'] ) )
+		if ( isset( $social_media['order'] ) ) {
 			unset( $social_media['order'] );
+		}
 
 		self::$social_media = (array) $social_media;
 	}
 
 	public static function get_layout( $args, $layout, $fixed )
 	{
-		if ( $fixed )
+		if ( $fixed ) {
 			return self::$layout_fixed;
+		}
 
 		return ( ! empty( $args['layout'] ) ) ? $args['layout'] : $layout;
 	}
@@ -233,8 +238,9 @@ abstract class WPUSB_Utils_Share
 	{
 		$element = '';
 
-		if ( Utils::is_fixed_top() )
+		if ( Utils::is_fixed_top() ) {
 			$element = "data-element=\"{$prefix}-fixed-top\"";
+		}
 
 		return $element;
 	}
@@ -249,8 +255,9 @@ abstract class WPUSB_Utils_Share
 	 */
 	public static function get_data_token( $token )
 	{
-		if ( empty( $token ) )
+		if ( empty( $token ) ) {
 			return '';
+		}
 
 		return "data-token=\"{$token}\"";
 	}
@@ -333,7 +340,7 @@ abstract class WPUSB_Utils_Share
 		$layouts = self::get_layouts();
 		$content = '';
 
-		switch( $args->layout ) :
+		switch( $args->layout ) {
 			case $layouts['plus'] :
 				$content = WPUSB_Square_Plus::$method( $args );
 				break;
@@ -348,7 +355,7 @@ abstract class WPUSB_Utils_Share
 			case $layouts['fixed'] :
 				$content = WPUSB_Fixed_Left::$method( $args );
 				break;
-		endswitch;
+		}
 
 		return $content;
 	}
@@ -383,8 +390,9 @@ abstract class WPUSB_Utils_Share
 	 */
 	public static function is_first()
 	{
-		if ( self::$count_elements > 1 )
+		if ( self::$count_elements > 1 ) {
 			return false;
+		}
 
 		return true;
 	}
@@ -481,8 +489,9 @@ abstract class WPUSB_Utils_Share
 	 */
 	public static function get_remove_type( $atts, $type )
 	{
-		if ( isset( $atts['elements'] ) )
+		if ( isset( $atts['elements'] ) ) {
 			return (bool) $atts['elements'][$type];
+		}
 
 		return (bool) $atts[$type];
 	}

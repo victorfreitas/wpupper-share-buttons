@@ -6,9 +6,9 @@
  * @subpackage Settings Model
  * @version 1.3.0
  */
-
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
+}
 
 class WPUSB_Setting
 {
@@ -42,7 +42,7 @@ class WPUSB_Setting
 	private $full_options;
 
 	/**
-	 * Single value verify option
+	 * Single value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -50,7 +50,7 @@ class WPUSB_Setting
 	private $single;
 
 	/**
-	 * Archive and categories value verify option
+	 * Archive and categories value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -58,7 +58,7 @@ class WPUSB_Setting
 	private $archive_category;
 
 	/**
-	 * Before value verify option
+	 * Before value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -66,7 +66,7 @@ class WPUSB_Setting
 	private $before;
 
 	/**
-	 * After value verify option
+	 * After value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -74,7 +74,7 @@ class WPUSB_Setting
 	private $after;
 
 	/**
-	 * Pages value verify option
+	 * Pages value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -82,7 +82,7 @@ class WPUSB_Setting
 	private $pages;
 
 	/**
-	 * Home value verify option
+	 * Home value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -90,7 +90,7 @@ class WPUSB_Setting
 	private $home;
 
 	/**
-	 * Class value verify option
+	 * Class value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -98,7 +98,7 @@ class WPUSB_Setting
 	private $class;
 
 	/**
-	 * Print friendly value verify option
+	 * Print friendly value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -106,7 +106,7 @@ class WPUSB_Setting
 	private $printer;
 
 	/**
-	 * Google value verify option
+	 * Google value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -114,7 +114,7 @@ class WPUSB_Setting
 	private $google;
 
 	/**
-	 * Pinterest value verify option
+	 * Pinterest value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -122,7 +122,7 @@ class WPUSB_Setting
 	private $pinterest;
 
 	/**
-	 * Linkedin value verify option
+	 * Linkedin value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -130,7 +130,7 @@ class WPUSB_Setting
 	private $linkedin;
 
 	/**
-	 * Facebook value verify option
+	 * Facebook value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -138,7 +138,7 @@ class WPUSB_Setting
 	private $facebook;
 
 	/**
-	 * Whatsapp value verify option
+	 * Whatsapp value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -146,7 +146,7 @@ class WPUSB_Setting
 	private $whatsapp;
 
 	/**
-	 * Twitter value verify option
+	 * Twitter value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -154,7 +154,7 @@ class WPUSB_Setting
 	private $twitter;
 
 	/**
-	 * Tumblr value verify option
+	 * Tumblr value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -162,7 +162,7 @@ class WPUSB_Setting
 	private $tumblr;
 
 	/**
-	 * Email value verify option
+	 * Email value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -170,7 +170,7 @@ class WPUSB_Setting
 	private $email;
 
 	/**
-	 * Disabled css value verify option
+	 * Disabled css value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -178,7 +178,7 @@ class WPUSB_Setting
 	private $disable_css;
 
 	/**
-	 * Disabled scripts value verify option
+	 * Disabled scripts value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -186,7 +186,7 @@ class WPUSB_Setting
 	private $disable_js;
 
 	/**
-	 * Layout value verify option
+	 * Layout value
 	 *
 	 * @since 1.0
 	 * @var String
@@ -194,7 +194,15 @@ class WPUSB_Setting
 	private $layout;
 
 	/**
-	 * Twitter username value verify option
+	 * Layout position fixed value
+	 *
+	 * @since 1.0
+	 * @var String
+	 */
+	private $fixed_layout;
+
+	/**
+	 * Twitter username value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -202,7 +210,7 @@ class WPUSB_Setting
 	private $twitter_username;
 
 	/**
-	 * UTM Tracking value verify option
+	 * UTM Tracking value
 	 *
 	 * @since 1.0
 	 * @var string
@@ -210,7 +218,7 @@ class WPUSB_Setting
 	private $tracking;
 
 	/**
-	 * Report cache time value verify option
+	 * Report cache time value
 	 *
 	 * @since 1.0
 	 * @var Integer
@@ -368,8 +376,9 @@ class WPUSB_Setting
 
 	public function __construct( $ID = false )
 	{
-		if ( false !== $ID )
+		if ( false !== $ID ) {
 			$this->ID = abs( intval( $ID ) );
+		}
 	}
 
 	/**
@@ -381,8 +390,9 @@ class WPUSB_Setting
 	 */
 	public function __get( $prop_name )
 	{
-		if ( isset( $this->$prop_name ) )
+		if ( isset( $this->$prop_name ) ) {
 			return $this->$prop_name;
+		}
 
 		return $this->_get_property( $prop_name );
 	}
@@ -397,7 +407,7 @@ class WPUSB_Setting
 	 */
 	private function _get_property( $prop_name )
 	{
-		switch ( $prop_name ) :
+		switch ( $prop_name ) {
 
 			case 'full_options' :
 				$this->$prop_name = $this->get_options();
@@ -410,7 +420,7 @@ class WPUSB_Setting
 			default :
 				$this->$prop_name = WPUSB_Utils::option( $prop_name );
 
-		endswitch;
+		}
 
 		return $this->$prop_name;
 	}
@@ -437,9 +447,9 @@ class WPUSB_Setting
  	 * Merge array all options
  	 *
 	 * @since 1.0
-	 * @param String $settings - Settings page
-	 * @param String $social - Social media items
-	 * @param String $extra - Settings extra page
+	 * @param String $settings
+	 * @param String $social
+	 * @param String $extra
 	 * @return Array
 	 */
 	private function _merge_options( $settings, $social, $extra )

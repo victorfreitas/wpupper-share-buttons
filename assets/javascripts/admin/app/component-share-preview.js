@@ -24,6 +24,11 @@ WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $, utils) {
 
 	SharePreview.fn._onClickLayout = function(event) {
 		this.layout = event.currentTarget.value;
+
+		if ( event.currentTarget.className.match( 'fixed-layout' ) ) {
+			this.layout = $( '[data-element="position-fixed"]:checked' ).val();
+		}
+
 		this._onClick();
 	};
 
@@ -70,11 +75,13 @@ WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $, utils) {
 
 	SharePreview.fn.request = function() {
 		this.spinner.css( 'visibility', 'visible' );
-		var params = {
-				action  : 'share_preview',
-				layout  : this.layout,
-				items   : JSON.stringify( this.itemsOrder ),
-				checked : JSON.stringify( this.itemsChecked )
+		var fixed_layout = $( '.fixed-layout:checked' )
+		  , params       = {
+				action       : 'share_preview',
+				layout       : this.layout,
+			    fixed_layout : fixed_layout.val(),
+				items        : JSON.stringify( this.itemsOrder ),
+				checked      : JSON.stringify( this.itemsChecked )
 			}
 		;
 

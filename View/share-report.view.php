@@ -6,9 +6,9 @@
  * @subpackage Views Sharing Report
  * @version 2.3.0
  */
-
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
+}
 
 use WPUSB_Utils as Utils;
 use WPUSB_App as App;

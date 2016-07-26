@@ -37,7 +37,8 @@
 @mixin items-hover($element, $color) {
     .#{$prefixClass}-buttons,
     .#{$prefixClass}-square-plus,
-    .#{$prefixClass}-fixed-left {
+    .#{$prefixClass}-fixed-left,
+    .#{$prefixClass}-fixed-right {
         .#{$prefixClass}-#{$element} a:hover {
             background: darken( $color, 6 );
         }

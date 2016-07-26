@@ -7,14 +7,15 @@
  * @subpackage Social Icons Display
  * @version 1.0
  */
-
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
+}
 
 use WPUSB_Utils as Utils;
 use WPUSB_App as App;
 use WPUSB_Setting as Setting;
 use WPUSB_Social_Elements as Elements;
+use WPUSB_Core as Core;
 
 class WPUSB_All_Items
 {
@@ -27,8 +28,11 @@ class WPUSB_All_Items
 	 */
 	public static function init()
 	{
-		if ( ! in_array( 'share', Utils::get_social_media() ) )
+		$social = Utils::get_social_media();
+
+		if ( ! isset( $social['share'] ) ) {
 			return;
+		}
 
 		$permalink = Utils::get_permalink();
 		$prefix    = Setting::PREFIX;
@@ -60,9 +64,10 @@ EOD;
 		$permalink = Utils::get_real_permalink();
 		$title     = Utils::get_real_title();
 
-		foreach ( $elements as $key => $social ) :
-			if ( $key === 'share' )
+		foreach ( $elements as $key => $social ) {
+			if ( $key === 'share' ) {
 				continue;
+			}
 
 			Utils::replace_link( $social, $permalink, $title );
 
@@ -77,7 +82,7 @@ EOD;
 					</a>
 				</div>
 EOD;
-		endforeach;
+		}
 	}
 
 	/**

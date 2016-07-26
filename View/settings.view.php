@@ -6,9 +6,9 @@
  * @subpackage View Admin Page
  * @version 2.0.0
  */
-
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
+}
 
 use WPUSB_Setting as Setting;
 use WPUSB_App as App;
@@ -36,8 +36,9 @@ class WPUSB_Settings_View
 			<h2><?php _e( 'WPUpper Share Buttons', App::TEXTDOMAIN ); ?></h2>
 
 			<?php
-				if ( Utils::get_update( 'settings-updated' ) )
+				if ( Utils::get_update( 'settings-updated' ) ) {
 					self::update_notice_message();
+				}
 			?>
 
 			<p class="description"><?php _e( 'Add the Share Buttons automatically.', App::TEXTDOMAIN ); ?></p>
@@ -115,22 +116,22 @@ class WPUSB_Settings_View
 									<label for="social-media"><?php _e( 'Social networks available', App::TEXTDOMAIN ); ?></label>
 								</th>
 									<?php
-									foreach ( Elements::social_media() as $key => $social ) :
-										$option_value = Utils::option( $key );
-										$id           = ( 'google' == $key ) ? "{$key}-plus" : $key;
-										self::td(array(
-											'type'        => 'checkbox',
-											'id'          => $id,
-											'name'        => "{$option_social_media}[{$key}]",
-											'value'       => $key,
-											'is_checked'  => checked( $key, $option_value, false ),
-											'label-class' => "{$prefix}-icon {$social->class}-icon",
-											'td-class'    => "{$prefix}-select-item",
-											'td-id'       => $key,
-											'td-title'    => $social->name,
-											'span'        => false,
-										));
-									endforeach;
+										foreach ( Elements::social_media() as $key => $social ) {
+											$option_value = Utils::option( $key );
+											$id           = ( 'google' == $key ) ? "{$key}-plus" : $key;
+											self::td(array(
+												'type'        => 'checkbox',
+												'id'          => $id,
+												'name'        => "{$option_social_media}[{$key}]",
+												'value'       => $key,
+												'is_checked'  => checked( $key, $option_value, false ),
+												'label-class' => "{$prefix}-icon {$social->class}-icon",
+												'td-class'    => "{$prefix}-select-item",
+												'td-id'       => $key,
+												'td-title'    => $social->name,
+												'span'        => false,
+											));
+										}
 									?>
 							</tr>
 							<tr>
@@ -255,6 +256,34 @@ class WPUSB_Settings_View
 									       value="<?php _e( 'Clear', App::TEXTDOMAIN ); ?>">
 									<span><?php _e( 'Click to clear the positions.', App::TEXTDOMAIN ); ?></span>
 								</td>
+							</tr>
+							<tr class="<?php echo $prefix; ?>-position-fixed">
+								<th scope="row">
+									<?php _e( 'Position fixed layout', App::TEXTDOMAIN ); ?>
+								</th>
+									<?php
+										$fixed_layout   = Utils::option( 'fixed_layout', false );
+										$checked_layout = checked( 'buttons', $model->fixed_layout, false );
+
+										self::td(array(
+											'type'       => 'radio',
+											'id'         => 'fixed-square',
+											'class'      => 'layout-preview fixed-layout',
+											'name'       => "{$option_name}[fixed_layout]",
+											'value'      => 'buttons',
+											'is_checked' => ( $fixed_layout ) ? $checked_layout : 'checked="checked"',
+											'title'      => __( 'Button', App::TEXTDOMAIN ),
+										));
+										self::td(array(
+											'type'       => 'radio',
+											'id'         => 'fixed-rounded',
+											'class'      => 'layout-preview fixed-layout',
+											'name'       => "{$option_name}[fixed_layout]",
+											'value'      => 'default',
+											'is_checked' => checked( 'default', $model->fixed_layout, false ),
+											'title'      => __( 'Rounded', App::TEXTDOMAIN ),
+										));
+									?>
 							</tr>
 							<tr>
 								<th scope="row">
@@ -406,8 +435,9 @@ EOD;
 	{
 		$span = '';
 
-		if ( $args['span'] )
+		if ( $args['span'] ) {
 			$span = "<span>{$args['title']}</span>";
+		}
 
        $label = <<<EOD
 	       	<label for="{$prefix}-{$args['id']}"

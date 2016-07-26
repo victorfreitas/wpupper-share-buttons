@@ -6,8 +6,9 @@
  * @subpackage Ajax Controller
  * @version 2.0.0
  */
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
+}
 
 use WPUSB_Setting as Setting;
 use WPUSB_Utils as Utils;
@@ -45,10 +46,10 @@ class WPUSB_Ajax_Controller
 		$cache = get_transient( Setting::TRANSIENT_GOOGLE_PLUS );
 		$url   = Utils::get( 'url', false, 'esc_url' );
 
-		if ( isset( $cache[$url] ) ) :
+		if ( isset( $cache[$url] ) ) {
 			echo Utils::get( 'callback' ) . '(' . $cache[$url] . ')';
 			exit(1);
-		endif;
+		}
 
 		Utils::ajax_verify_request( $url, 500, 'url_is_empty' );
 		$this->_send_request_google( $this->_get_google_args( $url ), $url );
@@ -100,8 +101,9 @@ class WPUSB_Ajax_Controller
 	{
 	    $response = wp_remote_post( 'https://clients6.google.com/rpc', $args );
 
-	    if ( is_wp_error( $response ) )
+	    if ( is_wp_error( $response ) ) {
 	    	$this->_error_request_google();
+	    }
 
 	    $plusones     = json_decode( $response['body'], true );
 		$count_google = $this->_get_global_counts_google( $plusones, $response, $url );
@@ -124,8 +126,9 @@ class WPUSB_Ajax_Controller
 		$global_count = ( $results ) ? $results['metadata']['globalCounts'] : '';
 		$cache        = array();
 
-		if ( empty( $global_count ) || is_null( $global_count ) )
+		if ( empty( $global_count ) || is_null( $global_count ) ) {
 			$global_count = array( 'count' => 0 );
+		}
 
 		$cache[$url] = json_encode( $global_count );
 
@@ -175,11 +178,13 @@ class WPUSB_Ajax_Controller
 		$nonce           = Utils::post( 'nonce', false );
 		$table           = $wpdb->prefix . Setting::TABLE_NAME;
 
-		if ( ! $post_id )
+		if ( ! $post_id ) {
 			$this->_error_request( 'reference_is_empty' );
+		}
 
-		if ( ! wp_verify_nonce( $nonce, Setting::AJAX_VERIFY_NONCE_COUNTER ) )
+		if ( ! wp_verify_nonce( $nonce, Setting::AJAX_VERIFY_NONCE_COUNTER ) ) {
 			$this->_error_request( 'nonce_is_invalid' );
+		}
 
 		if ( $total > 0 ) {
 			$this->_select(
@@ -216,11 +221,13 @@ class WPUSB_Ajax_Controller
 		$row_count = $wpdb->get_var( $sql );
 		$count     = intval( $row_count );
 
-		if ( 1 === $count )
+		if ( 1 === $count ) {
 			$this->_update( $table, $data );
+		}
 
-		if ( 0 === $count )
+		if ( 0 === $count ) {
 			$this->_insert( $table, $data );
+		}
 
 		exit(1);
 	}
@@ -296,15 +303,17 @@ class WPUSB_Ajax_Controller
 	 */
 	public function share_preview()
 	{
-		if ( ! Utils::is_request_ajax() )
+		if ( ! Utils::is_request_ajax() ) {
 			exit(0);
+		}
 
 		$layout  = Utils::post( 'layout', false );
 		$items   = Utils::post( 'items', false );
 		$checked = Utils::post( 'checked', false );
 
-		if ( ! ( $layout || $items || $checked ) )
+		if ( ! ( $layout || $items || $checked ) ) {
 			exit(0);
+		}
 
 		$items   = $this->_json_decode_quoted( $items );
 		$checked = $this->_json_decode_quoted( $checked );
@@ -322,33 +331,39 @@ class WPUSB_Ajax_Controller
 	{
 		global $wp_version;
 
-		$list       = array();
-		$share_args = Elements::social_media();
-		$count      = 0;
+		$list         = array();
+		$social       = Elements::social_media();
+		$count        = 0;
+		$fixed_layout = Utils::post( 'fixed_layout', 'buttons' );
 
-		if ( ! is_array( $items ) )
+		if ( ! is_array( $items ) ) {
 			exit(0);
+		}
 
-		foreach ( $items as $key => $element ) :
-			if ( ! in_array( $element, $checked ) )
+		foreach ( $items as $key => $element ) {
+			if ( ! in_array( $element, $checked ) ) {
 				continue;
+			}
 
-			$item   = $share_args->$element;
+			$item   = $social->{$element};
 			$list[] = array(
-				'prefix'      => Setting::PREFIX,
-				'slash'       => '&#8260;',
-				'counter'     => str_replace( '.', '', $wp_version ),
-				'item_class'  => $item->element,
-				'item_name'   => $item->name,
-				'inside'      => true,
-				'first'       => ( 0 === $count ) ? true : false,
-				'layout'      => $layout,
-				'item_title'  => $item->title,
-				'has_counter' => $item->has_counter,
-				'item_inside' => $item->inside,
+				'prefix'       => Setting::PREFIX,
+				'slash'        => '&#8260;',
+				'counter'      => str_replace( '.', '', $wp_version ),
+				'item_class'   => $item->element,
+				'item_name'    => $item->name,
+				'inside'       => true,
+				'first'        => ( 0 === $count ) ? true : false,
+				'layout'       => $layout,
+				'item_title'   => $item->title,
+				'has_counter'  => $item->has_counter,
+				'item_inside'  => $item->inside,
+				'fixed_layout' => $fixed_layout,
+				'btn_class'    => ( $fixed_layout == 'buttons' ) ? 'button' : $fixed_layout,
+				'is_fixed_2'   => ( $fixed_layout == 'buttons' ) ? false : true,
 			);
 			$count++;
-		endforeach;
+		}
 
 		echo wp_send_json( $list );
 		exit(1);

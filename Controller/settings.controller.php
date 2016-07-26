@@ -6,8 +6,9 @@
  * @subpackage Settings Controller
  * @version 2.1.0
  */
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
+}
 
 use WPUSB_Utils as Utils;
 use WPUSB_Setting as Setting;
@@ -90,14 +91,14 @@ class WPUSB_Settings_Controller
 			App::VERSION
 		);
 
-		if ( $page_settings ) :
+		if ( $page_settings ) {
 			wp_enqueue_style(
 				Setting::PREFIX . '-style',
 				Utils::plugin_url( 'stylesheets/style.css' ),
 				array(),
 				App::VERSION
 			);
-		endif;
+		}
 	}
 
 	/**

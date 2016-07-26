@@ -8,8 +8,9 @@
  * @version 1.0
  */
 
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
+}
 
 use WPUSB_Utils as Utils;
 use WPUSB_App as App;
@@ -102,8 +103,9 @@ EOD;
 	{
 		$content = '';
 
-		if ( Utils::is_active_inside( $atts->elements ) )
+		if ( Utils::is_active_inside( $atts->elements ) ) {
 			$content = "<span data-title=\"{$atts->reference->inside}\"></span>";
+		}
 
 		return apply_filters( App::SLUG . 'inside-html', $content );
 	}
@@ -120,8 +122,9 @@ EOD;
 		$active_counter = Utils::is_active_couter( $args->elements );
 		$content        = '';
 
-		if ( $args->reference->has_counter && $active_counter )
+		if ( $args->reference->has_counter && $active_counter ) {
 			$content = "<span data-element=\"{$args->reference->element}\" class=\"{$args->prefix}-count\"></span>";
+		}
 
 		return apply_filters( App::SLUG . 'total-counter', $content );
 	}
