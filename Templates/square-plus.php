@@ -57,7 +57,7 @@ EOD;
 		$classes   = self::get_classes_second( $args );
 		$link_type = Utils::link_type( $args->reference->link );
 		$inside    = self::inside( $args );
-		$referrer  = Utils::get_data_referrer( $args->reference->element );
+		$referrer  = Utils::get_data_referrer( $args );
 		$content   = <<<EOD
 			<div class="{$classes}" {$referrer}>
 
