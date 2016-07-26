@@ -20,11 +20,12 @@
 	.#{$prefixClass}-networks {
 		background: #fff;
 		border-radius: 5px;
-		padding: 5px 0;
-		position: fixed;
-		max-width: 600px;
+		font-size: 0;
 		max-height: 280px;
+		max-width: 600px;
 		overflow: auto;
+		padding: 3px;
+		position: fixed;
 		z-index: 99999;
 	}
 
@@ -46,6 +47,7 @@
 
 	.#{$prefixClass}-element-popup {
 		display: inline-block;
+		margin: 3px;
 		max-width: 192px;
 		width: 100%;
 	}
@@ -67,7 +69,6 @@
 		border-radius: 4px;
 		color: #fff;
 		display: inline-block;
-		margin: 3% 0 0 4%;
 		padding: 8px 4px;
 		text-align: left;
 		text-indent: 10px;
