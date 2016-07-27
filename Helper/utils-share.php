@@ -33,8 +33,7 @@ abstract class WPUSB_Utils_Share
 	 */
 	public static function set_buttons_args( $social, $args, $permalink, $title )
 	{
-		self::replace_link( $social, $permalink, $title );
-
+		$social  = self::replace_link( $social, $permalink, $title );
 		$buttons = self::_set_buttons(array(
 			'social'       => $social,
 			'class_second' => $args['class_second'],
@@ -47,11 +46,14 @@ abstract class WPUSB_Utils_Share
 		return $buttons;
 	}
 
-	public static function replace_link( &$social, $permalink, $title )
+	public static function replace_link( $social, $permalink, $title )
 	{
+		$item         = (array) $social;
 		$search       = array( '_permalink_', '_title_' );
 		$replace      = array( $permalink, $title );
-		$social->link = str_replace( $search, $replace, $social->link );
+		$item['link'] = str_replace( $search, $replace, $social->link );
+
+		return (object) $item;
 	}
 
 	/**

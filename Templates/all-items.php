@@ -69,7 +69,7 @@ EOD;
 				continue;
 			}
 
-			Utils::replace_link( $social, $permalink, $title );
+			$social = Utils::replace_link( $social, $permalink, $title );
 
 			echo <<< EOD
 				<div class="{$prefix}-element-popup">
