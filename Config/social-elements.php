@@ -330,18 +330,19 @@ class WPUSB_Social_Elements
 	 */
 	private static function _ksort( $elements )
 	{
-		$order = Utils::option( 'order', false );
+		$order  = Utils::option( 'order', false );
+		$social = $elements;
 
 		if ( $order ) {
-			$sort  = new stdClass();
-			$order = json_decode( $order );
+			$social = new stdClass();
+			$order  = json_decode( $order );
 
 			foreach ( $order as $items ) {
-				$sort->{$items} = apply_filters( App::SLUG . "-{$items}-items", $elements->{$items} );
+				$social->{$items} = apply_filters( App::SLUG . "-{$items}-items", $elements->{$items} );
 			}
 		}
 
-		return apply_filters( App::SLUG . '-elements-args', $sort );
+		return apply_filters( App::SLUG . '-elements-args', $social );
 	}
 
 	/**
