@@ -91,6 +91,11 @@
 
         .#{$prefix}-button i {
             display: inline;
+            line-height: 48px;
+
+            &:hover {
+                line-height: 48px;
+            }
         }
 
         .#{$prefix}-default {
