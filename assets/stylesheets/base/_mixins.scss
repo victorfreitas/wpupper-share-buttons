@@ -3,7 +3,7 @@
 // =====================================================================
 @mixin icon($icon, $iconColor, $theme : other, $amount : 12) {
     @if $theme == buttons or $theme == 'square-plus' {
-        .#{$prefixClass}-#{$theme} .#{$prefixClass}-#{$icon} a {
+        .#{$prefix}-#{$theme} .#{$prefix}-#{$icon} a {
             background-color: $iconColor;
             -moz-box-shadow:  0 2px darken( $iconColor, $amount );
             -webkit-box-shadow:  0 2px darken( $iconColor, $amount );
@@ -25,8 +25,8 @@
            }
         }
     } @else {
-        .#{$prefixClass} .#{$prefixClass}-#{$icon} i,
-        .#{$prefixClass} .#{$prefixClass}-#{$icon} i:hover {
+        .#{$prefix} .#{$prefix}-#{$icon} i,
+        .#{$prefix} .#{$prefix}-#{$icon} i:hover {
             color: $iconColor;
         }
     }
@@ -35,20 +35,20 @@
 // --                 ITEMS REMOVE
 // ===================================================
 @mixin items-hover($element, $color) {
-    .#{$prefixClass}-buttons,
-    .#{$prefixClass}-square-plus,
-    .#{$prefixClass}-fixed-left,
-    .#{$prefixClass}-fixed-right {
-        .#{$prefixClass}-#{$element} a:hover {
+    .#{$prefix}-buttons,
+    .#{$prefix}-square-plus,
+    .#{$prefix}-fixed-left,
+    .#{$prefix}-fixed-right {
+        .#{$prefix}-#{$element} a:hover {
             background: darken( $color, 6 );
         }
     }
 
-    .#{$prefixClass}-default,
-    .#{$prefixClass}-rounded,
-    .#{$prefixClass}-square {
-        .#{$prefixClass}-#{$element} a:hover,
-        .#{$prefixClass}-#{$element} a:hover i {
+    .#{$prefix}-default,
+    .#{$prefix}-rounded,
+    .#{$prefix}-square {
+        .#{$prefix}-#{$element} a:hover,
+        .#{$prefix}-#{$element} a:hover i {
             color: darken( $color, 6 );
         }
     }
@@ -57,7 +57,7 @@
 // --               INPUT REMOVE
 // ===================================================
 @mixin input-remove($selector) {
-    ##{$prefixClass}-#{$selector} {
+    ##{$prefix}-#{$selector} {
         cursor: pointer;
         display: none;
         left: -100%;
@@ -69,27 +69,27 @@
 // --                SOCIAL ITEM
 // ===================================================
 @mixin social-item($color, $element) {
-    .#{$prefixClass}-social-networks {
+    .#{$prefix}-social-networks {
 
         @if pinterest == $element {
-            input + label[for="#{$prefixClass}-#{$element}"] {
+            input + label[for="#{$prefix}-#{$element}"] {
                 padding: 5px 11px;
             }
         }
 
-        input + label[for="#{$prefixClass}-#{$element}"]:before {
+        input + label[for="#{$prefix}-#{$element}"]:before {
             background: $color;
         }
 
-        input + .#{$prefixClass}-#{$element}-icon:after {
-            @extend .#{$prefixClass}-icon-#{$element}:before;
+        input + .#{$prefix}-#{$element}-icon:after {
+            @extend .#{$prefix}-icon-#{$element}:before;
         }
     }
 }
 
 @mixin featured-referrer($element, $color) {
-    .#{$prefixClass} .#{$prefixClass}-referrer-#{$element} {
-        .#{$prefixClass}-button {
+    .#{$prefix} .#{$prefix}-referrer-#{$element} {
+        .#{$prefix}-button {
             background: $color;
             border-radius: 3px;
             color: $colorWhite;

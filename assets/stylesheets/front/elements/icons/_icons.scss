@@ -3,35 +3,35 @@
 // ===================================================
 @each $key, $color in $colors {
 	// Buttons Default
-	.#{$prefixClass}-icon-#{$key}-default:before {
-		@extend .#{$prefixClass}-icon-#{$key}:before;
+	.#{$prefix}-icon-#{$key}-default:before {
+		@extend .#{$prefix}-icon-#{$key}:before;
 	}
 
 	// Buttons theme
-	.#{$prefixClass}-icon-#{$key}-buttons:before {
-		@extend .#{$prefixClass}-icon-#{$key}:before;
+	.#{$prefix}-icon-#{$key}-buttons:before {
+		@extend .#{$prefix}-icon-#{$key}:before;
 	}
 
 	// Buttons Square Plus
-	.#{$prefixClass}-icon-#{$key}-square-plus:before {
-		@extend .#{$prefixClass}-icon-#{$key}:before;
+	.#{$prefix}-icon-#{$key}-square-plus:before {
+		@extend .#{$prefix}-icon-#{$key}:before;
 	}
 }
-.#{$prefixClass}-icon-like-default:before,
-.#{$prefixClass}-icon-like-rounded:before,
-.#{$prefixClass}-icon-like-square:before {
-	@extend .#{$prefixClass}-icon-like:before;
+.#{$prefix}-icon-like-default:before,
+.#{$prefix}-icon-like-rounded:before,
+.#{$prefix}-icon-like-square:before {
+	@extend .#{$prefix}-icon-like:before;
 }
 // ===================================================
 // --               Rounded, Square
 // ===================================================
-.#{$prefixClass}-icon-printer-square:before,
-.#{$prefixClass}-icon-printer-rounded:before {
-	@extend .#{$prefixClass}-icon-printer:before;
+.#{$prefix}-icon-printer-square:before,
+.#{$prefix}-icon-printer-rounded:before {
+	@extend .#{$prefix}-icon-printer:before;
 }
 // ===================================================
 // --               Networks Popup
 // ===================================================
-.#{$prefixClass}-icon-close:before {
-	@extend .#{$prefixClass}-icon-remove:before;
+.#{$prefix}-icon-close:before {
+	@extend .#{$prefix}-icon-remove:before;
 }

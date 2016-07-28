@@ -1,16 +1,16 @@
-.#{$prefixClass} {
+.#{$prefix} {
     @extend %noSelect;
     font-size: 0;
     margin-bottom: 20px;
     margin-top: 20px;
 
-    .#{$prefixClass}-count {
+    .#{$prefix}-count {
         display: none;
         margin-left: 10px;
     }
 
-    .#{$prefixClass}-item,
-    .#{$prefixClass}-count {
+    .#{$prefix}-item,
+    .#{$prefix}-count {
         font-size: $fontSizeDefault;
         vertical-align: middle;
     }
@@ -18,21 +18,17 @@
 // ===================================================
 // --               hare item
 // ===================================================
-.#{$prefixClass}-default .#{$prefixClass}-item,
-.#{$prefixClass}-square .#{$prefixClass}-item,
-.#{$prefixClass}-rounded .#{$prefixClass}-item {
+.#{$prefix}-default .#{$prefix}-item,
+.#{$prefix}-square .#{$prefix}-item,
+.#{$prefix}-rounded .#{$prefix}-item {
     a { box-shadow: none; }
 }
 
-.#{$prefixClass} .#{$prefixClass}-item {
+.#{$prefix} .#{$prefix}-item {
     display: inline-block;
     font-family: Arial;
     margin-bottom: 10px;
     margin-left: 10px;
-
-    &:first-child {
-        margin-left: 0;
-    }
 
     a {
         -moz-transition: background 0.3s ease;
@@ -44,60 +40,60 @@
 
 }
 
-.#{$prefixClass}-square-plus {
-    .#{$prefixClass}-item {
+.#{$prefix}-square-plus {
+    .#{$prefix}-item {
         margin-left: 5px;
     }
 
-    .#{$prefixClass}-full {
+    .#{$prefix}-full {
         margin-left: 0;
     }
 }
 
-.#{$prefixClass}-square-plus .#{$prefixClass}-counter {
+.#{$prefix}-square-plus .#{$prefix}-counter {
     display: none;
 }
 // ===================================================
 // --          Items position fixed left
 // ===================================================
-.#{$prefixClass}-fixed-left,
-.#{$prefixClass}-fixed-right {
+.#{$prefix}-fixed-left,
+.#{$prefix}-fixed-right {
     position: fixed;
     top: 23%;
     z-index: 999;
 
-    .#{$prefixClass}-item {
+    .#{$prefix}-item {
         display: block;
         margin-bottom: 0;
         margin-left: 0;
 
-        .#{$prefixClass}-button {
+        .#{$prefix}-button {
             @extend %brightness;
             @extend %transitionAll;
             line-height: 48px;
             height: 48px;
         }
 
-        .#{$prefixClass}-button,
-        .#{$prefixClass}-counts {
+        .#{$prefix}-button,
+        .#{$prefix}-counts {
             border-radius: initial;
             text-align: center;
             width: 48px;
         }
 
-        .#{$prefixClass}-button span {
+        .#{$prefix}-button span {
             display: none;
         }
 
-        .#{$prefixClass}-count {
+        .#{$prefix}-count {
             display: none;
         }
 
-        .#{$prefixClass}-button i {
+        .#{$prefix}-button i {
             display: inline;
         }
 
-        .#{$prefixClass}-default {
+        .#{$prefix}-default {
             background-color: $colorWhite;
             background: $colorWhite;
             border-radius: 100%;
@@ -118,7 +114,7 @@
         }
     }
 
-    &.#{$prefixClass}-default .#{$prefixClass}-counts {
+    &.#{$prefix}-default .#{$prefix}-counts {
         background: transparent;
 
         span {
@@ -132,7 +128,7 @@
         }
     };
 
-    .#{$prefixClass}-toggle {
+    .#{$prefix}-toggle {
         @extend %transitionAll;
         @extend %icon;
         color: #3e5da0;
@@ -149,7 +145,7 @@
         top: 4px;
     }
 
-    .#{$prefixClass}-toggle-active {
+    .#{$prefix}-toggle-active {
         left: 2px;
         position: absolute;
         top: 20%;
@@ -161,94 +157,89 @@
     }
 
     @media ( min-width: $tablet ) {
-        .#{$prefixClass}-button:hover {
+        .#{$prefix}-button:hover {
             text-decoration: none;
         }
     }
 }
 
-.#{$prefixClass}-fixed-left {
+.#{$prefix}-fixed-left {
     left: 0;
 
-    .#{$prefixClass}-buttons {
+    .#{$prefix}-buttons {
         transform: translateX( -100% );
     }
 
-    .#{$prefixClass}-toggle:not(.#{$prefixClass}-icon-right):before {
-        @extend .#{$prefixClass}-icon-angle-double-left:before;
+    .#{$prefix}-toggle:not(.#{$prefix}-icon-right):before {
+        @extend .#{$prefix}-icon-angle-double-left:before;
     }
 
-    .#{$prefixClass}-icon-right {
+    .#{$prefix}-icon-right {
         padding: 0 5px;
 
         &:before {
-            @extend .#{$prefixClass}-icon-angle-double-right:before;
+            @extend .#{$prefix}-icon-angle-double-right:before;
         }
     }
 
-    .#{$prefixClass}-item {
+    .#{$prefix}-item {
         text-align: left;
-
-        &:first-child {
-            float: left;
-        }
     }
 }
 
-.#{$prefixClass}-fixed-right {
+.#{$prefix}-fixed-right {
     right: 0;
 
-    .#{$prefixClass}-buttons {
+    .#{$prefix}-buttons {
         transform: translateX( 100% );
     }
 
-    .#{$prefixClass}-toggle {
+    .#{$prefix}-toggle {
         float: right;
         left: initial;
         right: 10px;
     }
 
-    .#{$prefixClass}-toggle:not(.#{$prefixClass}-icon-right):before {
-        @extend .#{$prefixClass}-icon-angle-double-right:before;
+    .#{$prefix}-toggle:not(.#{$prefix}-icon-right):before {
+        @extend .#{$prefix}-icon-angle-double-right:before;
     }
 
-    .#{$prefixClass}-icon-right {
+    .#{$prefix}-icon-right {
         right: 0;
         padding: 0 5px;
 
         &:before {
-            @extend .#{$prefixClass}-icon-angle-double-left:before;
+            @extend .#{$prefix}-icon-angle-double-left:before;
         }
     }
 
-    .#{$prefixClass}-item {
+    .#{$prefix}-item {
         text-align: right;
+    }
 
-        &:first-child {
-            float: right;
-        }
+    .#{$prefix}-total-share {
+        margin-left: 60px;
     }
 }
 
-.#{$prefixClass}-fixed-right,
-.#{$prefixClass}-fixed-left {
+.#{$prefix}-fixed-right,
+.#{$prefix}-fixed-left {
     @media ( min-width: $tablet ) {
-        .#{$prefixClass}-button:hover {
+        .#{$prefix}-button:hover {
             box-shadow: none;
-            padding: 0 20px;
             width: 70px;
         }
     }
 }
 
-.#{$prefixClass}-counts {
+.#{$prefix}-counts {
     background: #E3E3E3;
     color: #165118;
     font-weight: bold;
     text-align: center;
 }
 
-.#{$prefixClass}-total-share {
+.#{$prefix}-total-share {
     span {
         font-family: Arial;
         font-size: 13px;
@@ -258,27 +249,27 @@
 // --                  MOBILE
 // ===================================================
 @media ( min-width: $tablet ) {
-    .#{$prefixClass} {
-        .#{$prefixClass}-whatsapp,
-        .#{$prefixClass}-telegram,
-        .#{$prefixClass}-viber {
+    .#{$prefix} {
+        .#{$prefix}-whatsapp,
+        .#{$prefix}-telegram,
+        .#{$prefix}-viber {
             display: none;
         }
 
-        .#{$prefixClass}-count {
+        .#{$prefix}-count {
             display: inline-block;
         }
     }
 }
 
 @media ( max-width: $mobile ) {
-    .#{$prefixClass}-item a span {
+    .#{$prefix}-item a span {
         display: none;
     }
 }
 
  @media ( min-width: $mobile ) {
-    .#{$prefixClass}-square-plus .#{$prefixClass}-counter {
+    .#{$prefix}-square-plus .#{$prefix}-counter {
         color: #005329;
         display: inline-block;
         margin-right: 6px;
@@ -299,7 +290,7 @@
             text-align: center;
         }
 
-        .#{$prefixClass}-text {
+        .#{$prefix}-text {
             bottom: -4px;
             font-size: 10px;
             line-height: 20px;
@@ -312,7 +303,7 @@
             }
         }
 
-        .#{$prefixClass}-slash {
+        .#{$prefix}-slash {
             color: #005329;
             font-size: 35px;
             left: 82px;
@@ -330,8 +321,8 @@
 // --        Layout Fixed left Mobile
 //===================================================
 @media ( max-width: $tablet ) {
-    .#{$prefixClass}-fixed-left,
-    .#{$prefixClass}-fixed-right {
+    .#{$prefix}-fixed-left,
+    .#{$prefix}-fixed-right {
         bottom: 0;
         display: block;
         left: initial;
@@ -339,24 +330,24 @@
         padding: 0;
         top: initial;
 
-        .#{$prefixClass}-fixed-left-container,
-        .#{$prefixClass}-fixed-right-container {
+        .#{$prefix}-fixed-left-container,
+        .#{$prefix}-fixed-right-container {
             display: table;
             table-layout: fixed;
             width: 100%;
         }
 
-        .#{$prefixClass}-item {
+        .#{$prefix}-item {
             display: table-cell;
             height: auto;
             width: auto;
 
-            .#{$prefixClass}-button {
+            .#{$prefix}-button {
                 display: block;
                 width: auto;
             }
 
-            .#{$prefixClass}-default {
+            .#{$prefix}-default {
                 border-radius: initial;
                 margin: 0;
                 text-align: center;
@@ -368,24 +359,24 @@
             }
         }
 
-        .#{$prefixClass}-toggle,
-        .#{$prefixClass}-total-share { display: none; }
+        .#{$prefix}-toggle,
+        .#{$prefix}-total-share { display: none; }
     }
 
-    .#{$prefixClass} .#{$prefixClass}-printer {
+    .#{$prefix} .#{$prefix}-printer {
         display: none;
     }
 }
 
-.#{$prefixClass}-rounded,
-.#{$prefixClass}-square {
-    .#{$prefixClass}-item .#{$prefixClass}-button {
+.#{$prefix}-rounded,
+.#{$prefix}-square {
+    .#{$prefix}-item .#{$prefix}-button {
         color: #555;
     }
 }
-#post-entry .#{$prefixClass} {
-    .#{$prefixClass}-link,
-    .#{$prefixClass}-button {
+#post-entry .#{$prefix} {
+    .#{$prefix}-link,
+    .#{$prefix}-button {
         color: #fff;
     }
 }

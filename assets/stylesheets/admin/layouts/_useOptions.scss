@@ -1,4 +1,4 @@
-.#{$prefixClass}-wrap-faq {
+.#{$prefix}-wrap-faq {
     background-color: $bgAdmin;
     color: #333;
     padding: 5px;
@@ -8,13 +8,13 @@
     }
 }
 
-.#{$prefixClass}-pre {
+.#{$prefix}-pre {
     display: inline;
     font-family: monospace;
     white-space: pre-line;
 }
 
-.#{$prefixClass}-code {
+.#{$prefix}-code {
     color: #F4F4F4;
     height: 275px;
     padding: 10px;
@@ -22,7 +22,7 @@
     top: 5px;
     width: 100%;
 
-    .#{$prefixClass}-code-align {
+    .#{$prefix}-code-align {
         left: 15px;
         position: absolute;
         top: 0;
@@ -61,17 +61,17 @@
     }
 }
 
-.#{$prefixClass}-code-shortcode {
+.#{$prefix}-code-shortcode {
     height: 10px;
     line-height: 16px;
 
-    .#{$prefixClass}-code-align {
+    .#{$prefix}-code-align {
         position: absolute;
         top: 8px;
     }
 }
 
-.#{$prefixClass}-faq-footer {
+.#{$prefix}-faq-footer {
     margin-bottom: 1em;
     margin-left: 1em;
     margin-right: 1em;

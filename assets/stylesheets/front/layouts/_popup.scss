@@ -1,8 +1,8 @@
-[data-display="#{$prefixClass}-none"] {
+[data-display="#{$prefix}-none"] {
 	display: none;
 }
 
-.#{$prefixClass}-popup-content {
+.#{$prefix}-popup-content {
 	opacity: 0;
 
 	&:after {
@@ -17,7 +17,7 @@
 		z-index: 9999;
 	}
 
-	.#{$prefixClass}-networks {
+	.#{$prefix}-networks {
 		background: #fff;
 		border-radius: 5px;
 		font-size: 0;
@@ -29,7 +29,7 @@
 		z-index: 99999;
 	}
 
-	.#{$prefixClass}-btn-close {
+	.#{$prefix}-btn-close {
 		background: #e74c3c;
 		border-radius: 5px;
 		color: #fff;
@@ -45,14 +45,14 @@
 		}
 	}
 
-	.#{$prefixClass}-element-popup {
+	.#{$prefix}-element-popup {
 		display: inline-block;
 		margin: 3px;
 		max-width: 192px;
 		width: 100%;
 	}
 
-	.#{$prefixClass}-name-popup {
+	.#{$prefix}-name-popup {
 		font-family: Arial, Sans-serif;
 		font-size: 14px;
 		font-weight: bold;
@@ -65,7 +65,7 @@
 		}
 	}
 
-	.#{$prefixClass}-button-popup {
+	.#{$prefix}-button-popup {
 		border-radius: 4px;
 		color: #fff;
 		display: inline-block;
@@ -81,29 +81,25 @@
 	    }
 	}
 
-	.#{$prefixClass}-icon-popup {
+	.#{$prefix}-icon-popup {
 	    font-size: 22px;
 	}
 
 	@media ( max-width: $tablet ) {
-		.#{$prefixClass}-btn-close {
-			display: none;
-		}
-
-		.#{$prefixClass}-networks {
+		.#{$prefix}-networks {
 			max-width: 415px;
 		}
 	}
 
 	@media ( max-width: $mobile ) {
-		.#{$prefixClass}-networks {
+		.#{$prefix}-networks {
 			max-width: 205px;
 		}
 	}
 }
 
 @each $key, $color in $colors {
-	.#{$prefixClass}-#{$key}-popup {
+	.#{$prefix}-#{$key}-popup {
 		background-color: $color;
 
 		&:hover {
@@ -112,11 +108,11 @@
 	}
 }
 
-.#{$prefixClass}-popup-open-networks {
+.#{$prefix}-popup-open-networks {
 	display: inline-block;
 	text-align: center;
 
-	.#{$prefixClass}-btn-open {
+	.#{$prefix}-btn-open {
 		background: #444141;
 		color: #eaeaea;
 		display: inline-block;
@@ -138,7 +134,7 @@
 	@media ( max-width: $tablet ) {
 	    display: table-cell;
 
-		.#{$prefixClass}-btn-open {
+		.#{$prefix}-btn-open {
 			display: block;
 			font-size: 32px;
 			line-height: 52px;
@@ -147,13 +143,13 @@
 	}
 }
 
-.#{$prefixClass}-primary-item {
+.#{$prefix}-primary-item {
 		font-family: Arial;
 		margin-bottom: 10px;
 		margin-left: 10px;
 		vertical-align: middle;
 
-	.#{$prefixClass}-btn-open {
+	.#{$prefix}-btn-open {
 		background: transparent;
 		border-bottom: none;
 		color: #0080b0;

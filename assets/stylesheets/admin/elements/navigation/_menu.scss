@@ -1,4 +1,4 @@
-.#{$prefixClass}-menu {
+.#{$prefix}-menu {
     border-bottom: 1px solid #E1E1E1;
     position: relative;
     top: 6px;
@@ -42,7 +42,7 @@
 	}
 }
 
-.#{$prefixClass}-settings-wrap .#{$prefixClass}-menu {
+.#{$prefix}-settings-wrap .#{$prefix}-menu {
 	border-bottom: none;
 	display: inline-block;
 	top: 40px;

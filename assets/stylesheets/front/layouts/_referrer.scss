@@ -1,16 +1,16 @@
-.#{$prefixClass} .#{$prefixClass}-referrer {
+.#{$prefix} .#{$prefix}-referrer {
     float: left;
     margin-left: 0;
     width: 100%;
 
-    .#{$prefixClass}-button {
+    .#{$prefix}-button {
 	    padding: 6px;
 	    text-align: center;
 	    width: 100%;
     }
 }
 
-.#{$prefixClass}-square-plus .#{$prefixClass}-referrer {
+.#{$prefix}-square-plus .#{$prefix}-referrer {
 	display: table;
 	height: 36px;
 }

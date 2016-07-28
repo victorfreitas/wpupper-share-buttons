@@ -1,11 +1,11 @@
-.#{$prefixClass}-custom-switch {
+.#{$prefix}-custom-switch {
     -ms-user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
     position: relative;
     width: 69px;
 
-    .#{$prefixClass}-check {
+    .#{$prefix}-check {
     	display: none;
     }
 
@@ -17,15 +17,15 @@
 	    overflow: hidden;
 	}
 
-	.#{$prefixClass}-inner {
+	.#{$prefix}-inner {
 	    display: block;
 	    margin-left: -100%;
 	    transition: margin 0.3s ease-in 0s;
 	    width: 200%;
 	}
 
-	.#{$prefixClass}-inner:before,
-	.#{$prefixClass}-inner:after {
+	.#{$prefix}-inner:before,
+	.#{$prefix}-inner:after {
 	    box-sizing: border-box;
 	    color: white;
 	    display: block;
@@ -39,14 +39,14 @@
 	    width: 50%;
 	}
 
-	.#{$prefixClass}-inner:before {
+	.#{$prefix}-inner:before {
 	    background-color: $colorCheckboxOn;
 	    color: $colorWhite;
 	    content: "ON";
 	    padding-left: 11px;
 	}
 
-	.#{$prefixClass}-inner:after {
+	.#{$prefix}-inner:after {
 	    background-color: $colorCheckboxOff;
 	    color: $colorDarken;
 	    content: "OFF";
@@ -54,7 +54,7 @@
 	    text-align: right;
 	}
 
-	.#{$prefixClass}-switch {
+	.#{$prefix}-switch {
 	    background: $colorWhite;
 	    border-radius: 3px;
 	    border: 2px solid transparent;
@@ -68,12 +68,12 @@
 	    width: 15px;
 	}
 
-	.#{$prefixClass}-check:checked + label .#{$prefixClass}-inner {
+	.#{$prefix}-check:checked + label .#{$prefix}-inner {
 	    margin-left: 0;
 	    left: 2px;
 	}
 
-	.#{$prefixClass}-check:checked + label .#{$prefixClass}-switch {
+	.#{$prefix}-check:checked + label .#{$prefix}-switch {
 	    right: 2px;
 	}
 }

@@ -1,7 +1,16 @@
-.#{$prefixClass} .#{$prefixClass}-whatsapp,
-.#{$prefixClass} .#{$prefixClass}-telegram,
-.#{$prefixClass} .#{$prefixClass}-viber {
-    display: inline-block;
+$_items_mobile : ( whatsapp, telegram, viber );
+
+@each $item in $_items_mobile {
+    .#{$prefix} .#{$prefix}-#{$item} {
+        display: inline-block;
+    }
+
+    .#{$prefix}-fixed-left,
+    .#{$prefix}-fixed-right {
+        .#{$prefix}-#{$item} {
+             display: block;
+         }
+    }
 }
 
 div[data-component="share-preview"] {
@@ -13,7 +22,7 @@ div[data-component="share-preview"] {
     }
 }
 
-.#{$prefixClass}-preview-container {
+.#{$prefix}-preview-container {
     background: #fff;
     border-radius: 5px;
     border: 1px solid #ECECEC;
@@ -21,21 +30,21 @@ div[data-component="share-preview"] {
     margin-top: 10px;
     padding: 8px 6px 0 6px;
 
-    .#{$prefixClass} {
+    .#{$prefix} {
         margin: 0;
         padding: 0;
     }
 
-    .#{$prefixClass}-count {
+    .#{$prefix}-count {
         padding: 5px 8px;
     }
 }
 
-.#{$prefixClass}-fixed-left,
-.#{$prefixClass}-fixed-right {
+.#{$prefix}-fixed-left,
+.#{$prefix}-fixed-right {
     z-index: 99999;
 
-    .#{$prefixClass}-item a {
+    .#{$prefix}-item a {
         border-radius: initial;
         height: 48px;
         line-height: 48px;
@@ -44,15 +53,15 @@ div[data-component="share-preview"] {
     }
 }
 
-.#{$prefixClass}-square-plus {
-    .#{$prefixClass}-counter {
+.#{$prefix}-square-plus {
+    .#{$prefix}-counter {
         top: 2px;
 
-        .#{$prefixClass}-text {
+        .#{$prefix}-text {
             bottom: 4px;
         }
 
-        .#{$prefixClass}-slash {
+        .#{$prefix}-slash {
             font-size: 30px;
             font-weight: normal;
             left: 83px;

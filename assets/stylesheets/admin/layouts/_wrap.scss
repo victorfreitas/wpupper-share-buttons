@@ -1,6 +1,6 @@
 $_itemsAvailable : 'items-available';
 
-.#{$prefixClass}-fixed-clear {
+.#{$prefix}-fixed-clear {
     input {
         background: #bfbfbf;
         border-radius: 4px;
@@ -29,7 +29,7 @@ $_itemsAvailable : 'items-available';
     }
 }
 
-.#{$prefixClass}-wrap {
+.#{$prefix}-wrap {
     @extend %noSelect;
     background: $bgAdmin;
     padding: 0 10px;
@@ -41,16 +41,16 @@ $_itemsAvailable : 'items-available';
     label { cursor: auto; }
 }
 
-.#{$prefixClass}-#{$_itemsAvailable} td,
-.#{$prefixClass}-social-networks td,
-.#{$prefixClass}-layout-options td,
-.#{$prefixClass}-remove-elements td,
-.#{$prefixClass}-position-fixed td {
+.#{$prefix}-#{$_itemsAvailable} td,
+.#{$prefix}-social-networks td,
+.#{$prefix}-layout-options td,
+.#{$prefix}-remove-elements td,
+.#{$prefix}-position-fixed td {
     float: left;
     padding-right: 0;
 }
 
-.#{$prefixClass}-title-wrap {
+.#{$prefix}-title-wrap {
     color: #5B5959;
     display: inline-block;
     font-size: 18px;
@@ -103,15 +103,15 @@ $_itemsAvailable : 'items-available';
 @include input-remove( 'disable-css' );
 @include input-remove( 'disable-script' );
 
-.#{$prefixClass}-#{$_itemsAvailable},
-.#{$prefixClass}-social-networks,
-.#{$prefixClass}-layout-options,
-.#{$prefixClass}-remove-elements,
-.#{$prefixClass}-position-fixed,
-.#{$prefixClass}-position-fixed-top,
-.#{$prefixClass}-referrer,
-.#{$prefixClass}-fixed-square,
-.#{$prefixClass}-fixed-rounded {
+.#{$prefix}-#{$_itemsAvailable},
+.#{$prefix}-social-networks,
+.#{$prefix}-layout-options,
+.#{$prefix}-remove-elements,
+.#{$prefix}-position-fixed,
+.#{$prefix}-position-fixed-top,
+.#{$prefix}-referrer,
+.#{$prefix}-fixed-square,
+.#{$prefix}-fixed-rounded {
     input + label {
         background: #F6FBFD;
         border-radius: 5px;
@@ -127,27 +127,27 @@ $_itemsAvailable : 'items-available';
     }
 }
 
-.#{$prefixClass}-#{$_itemsAvailable},
-.#{$prefixClass}-layout-options,
-.#{$prefixClass}-position-fixed,
-.#{$prefixClass}-position-fixed-top,
-.#{$prefixClass}-referrer,
-.#{$prefixClass}-fixed-square,
-.#{$prefixClass}-fixed-rounded {
+.#{$prefix}-#{$_itemsAvailable},
+.#{$prefix}-layout-options,
+.#{$prefix}-position-fixed,
+.#{$prefix}-position-fixed-top,
+.#{$prefix}-referrer,
+.#{$prefix}-fixed-square,
+.#{$prefix}-fixed-rounded {
     input + label:before {
         background: $colorCheckboxOn;
     }
 }
 
-.#{$prefixClass}-#{$_itemsAvailable},
-.#{$prefixClass}-social-networks,
-.#{$prefixClass}-layout-options,
-.#{$prefixClass}-remove-elements,
-.#{$prefixClass}-position-fixed,
-.#{$prefixClass}-position-fixed-top,
-.#{$prefixClass}-referrer,
-.#{$prefixClass}-fixed-square,
-.#{$prefixClass}-fixed-rounded {
+.#{$prefix}-#{$_itemsAvailable},
+.#{$prefix}-social-networks,
+.#{$prefix}-layout-options,
+.#{$prefix}-remove-elements,
+.#{$prefix}-position-fixed,
+.#{$prefix}-position-fixed-top,
+.#{$prefix}-referrer,
+.#{$prefix}-fixed-square,
+.#{$prefix}-fixed-rounded {
     input + label:before {
         border-radius: 5px;
         bottom: 0;
@@ -167,7 +167,7 @@ $_itemsAvailable : 'items-available';
     @include social-item( $color, $key );
 }
 
-.#{$prefixClass}-social-networks {
+.#{$prefix}-social-networks {
     input + label:after {
         color: #807E7E;
         font-size: 20px;
@@ -180,15 +180,15 @@ $_itemsAvailable : 'items-available';
     }
 }
 
-.#{$prefixClass}-#{$_itemsAvailable},
-.#{$prefixClass}-social-networks,
-.#{$prefixClass}-layout-options,
-.#{$prefixClass}-remove-elements,
-.#{$prefixClass}-position-fixed,
-.#{$prefixClass}-position-fixed-top,
-.#{$prefixClass}-referrer,
-.#{$prefixClass}-fixed-square,
-.#{$prefixClass}-fixed-rounded {
+.#{$prefix}-#{$_itemsAvailable},
+.#{$prefix}-social-networks,
+.#{$prefix}-layout-options,
+.#{$prefix}-remove-elements,
+.#{$prefix}-position-fixed,
+.#{$prefix}-position-fixed-top,
+.#{$prefix}-referrer,
+.#{$prefix}-fixed-square,
+.#{$prefix}-fixed-rounded {
     input:checked + label:before {
         width: 100%;
     }
@@ -201,22 +201,22 @@ $_itemsAvailable : 'items-available';
     }
 }
 
-.#{$prefixClass}-remove-elements label {
+.#{$prefix}-remove-elements label {
     cursor: pointer;
 }
 
-.#{$prefixClass}-remove-elements input:checked + label {
+.#{$prefix}-remove-elements input:checked + label {
     font-weight: bold;
     line-height: normal;
     text-shadow: none;
     z-index: 2;
 }
 
-.#{$prefixClass}-remove-elements input + label:after {
-    @extend .#{$prefixClass}-icon-toggle-off:before;
+.#{$prefix}-remove-elements input + label:after {
+    @extend .#{$prefix}-icon-toggle-off:before;
 }
 
-.#{$prefixClass}-remove-elements input + label {
+.#{$prefix}-remove-elements input + label {
     background: transparent;
     border-radius: initial;
     box-shadow: none;
@@ -226,13 +226,13 @@ $_itemsAvailable : 'items-available';
     text-shadow: initial;
 }
 
-.#{$prefixClass}-remove-elements input:checked + label:after {
+.#{$prefix}-remove-elements input:checked + label:after {
     position: relative;
-    @extend .#{$prefixClass}-icon-toggle-on:before;
+    @extend .#{$prefix}-icon-toggle-on:before;
     color: $colorCheckboxOn;
 }
 
-.#{$prefixClass}-highlight {
+.#{$prefix}-highlight {
     background-color: #fff;
     border-radius: 5px;
     border: 1px dotted #a0a5aa;
@@ -243,9 +243,9 @@ $_itemsAvailable : 'items-available';
 }
 
 @media ( min-width: 520px ) {
-    .#{$prefixClass}-square-plus
-    .#{$prefixClass}-inside
-    .#{$prefixClass}-link span {
+    .#{$prefix}-square-plus
+    .#{$prefix}-inside
+    .#{$prefix}-link span {
         top: 5px;
     }
 }

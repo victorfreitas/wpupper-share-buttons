@@ -1,13 +1,13 @@
-#wrapper .#{$prefixClass},
-#content .#{$prefixClass} {
-    .#{$prefixClass}-item a,
-    .#{$prefixClass}-item a:hover {
+#wrapper .#{$prefix},
+#content .#{$prefix} {
+    .#{$prefix}-item a,
+    .#{$prefix}-item a:hover {
         font-family: $fontFamily;
         text-decoration: none;
     }
 }
 
-.#{$prefixClass}-item a {
+.#{$prefix}-item a {
     color: #424242;
     border-bottom: none;
     cursor: pointer;
@@ -44,7 +44,7 @@
         }
     }
 
-    .#{$prefixClass}-buttons & {
+    .#{$prefix}-buttons & {
         border-radius: 3px;
         color: #fff;
 
@@ -63,7 +63,7 @@
             right: 2px;
         }
 
-        .#{$prefixClass}-icon-facebook:before {
+        .#{$prefix}-icon-facebook:before {
             bottom: 1px;
             position: relative;
         }
@@ -84,7 +84,7 @@
     @include items-hover( $key, $color );
 }
 
-.#{$prefixClass}-square .#{$prefixClass}-whatsapp i {
+.#{$prefix}-square .#{$prefix}-whatsapp i {
     border-radius: 4px;
     box-shadow: 0px 0px 0px 5px $colorWhatsapp inset;
     font-size: 31px;
@@ -92,82 +92,82 @@
     width: 36px;
 }
 
-.#{$prefixClass}-square .#{$prefixClass}-whatsapp a:hover i {
+.#{$prefix}-square .#{$prefix}-whatsapp a:hover i {
     box-shadow: 0px 0px 0px 5px darken( $colorWhatsapp, 5% ) inset;
 }
 
-.#{$prefixClass}-rounded .#{$prefixClass}-printer i,
- .#{$prefixClass}-square .#{$prefixClass}-printer i {
+.#{$prefix}-rounded .#{$prefix}-printer i,
+ .#{$prefix}-square .#{$prefix}-printer i {
     background: $colorPrint;
     color: #fff;
     font-size: 25px;
     line-height: 38px;
 }
 
-.#{$prefixClass}-rounded .#{$prefixClass}-printer a:hover i,
-.#{$prefixClass}-square .#{$prefixClass}-printer a:hover i {
+.#{$prefix}-rounded .#{$prefix}-printer a:hover i,
+.#{$prefix}-square .#{$prefix}-printer a:hover i {
     background: darken( $colorPrint, 10 );
     color: #fff;
 }
 
-.#{$prefixClass}-rounded .#{$prefixClass}-printer i {
+.#{$prefix}-rounded .#{$prefix}-printer i {
     border-radius: 16px;
 }
 
-.#{$prefixClass}-square .#{$prefixClass}-printer i {
+.#{$prefix}-square .#{$prefix}-printer i {
     border-radius: 4px;
 }
 
-.#{$prefixClass} .#{$prefixClass}-viber .#{$prefixClass}-icon-viber-rounded {
+.#{$prefix} .#{$prefix}-viber .#{$prefix}-icon-viber-rounded {
     background: $colorViber;
     border-radius: 16px;
     color: #fff;
     font-size: 22px;
     line-height: 34px;
 }
-.#{$prefixClass} .#{$prefixClass}-viber a:hover .#{$prefixClass}-icon-viber-rounded {
+.#{$prefix} .#{$prefix}-viber a:hover .#{$prefix}-icon-viber-rounded {
     color: #fff;
 }
-.#{$prefixClass}-rounded .#{$prefixClass}-like i,
-.#{$prefixClass}-square .#{$prefixClass}-like i {
+.#{$prefix}-rounded .#{$prefix}-like i,
+.#{$prefix}-square .#{$prefix}-like i {
     background: $colorfacebookLike;
     color: #fff;
 }
 
-.#{$prefixClass}-rounded .#{$prefixClass}-like i {
+.#{$prefix}-rounded .#{$prefix}-like i {
     border-radius: 15px;
     font-size: 27px;
     line-height: 33px;
 }
 
-.#{$prefixClass}-square .#{$prefixClass}-like i {
+.#{$prefix}-square .#{$prefix}-like i {
     border-radius: 5px;
     font-size: 28px;
     line-height: 34px;
 }
-.#{$prefixClass} .#{$prefixClass}-icon-share-square,
-.#{$prefixClass} .#{$prefixClass}-icon-reddit-square {
+.#{$prefix} .#{$prefix}-icon-share-square,
+.#{$prefix} .#{$prefix}-icon-reddit-square {
     font-size: 41px;
     position: relative;
     top: -3px;
 }
 
-.#{$prefixClass} .#{$prefixClass}-icon-email-square {
+.#{$prefix} .#{$prefix}-icon-email-square {
     font-size: 42px;
     position: relative;
     top: -3px;
 }
 
-.fixed-left-container .#{$prefixClass}-icon-share-buttons,
-.fixed-right-container .#{$prefixClass}-icon-share-buttons {
+.fixed-left-container .#{$prefix}-icon-share-buttons,
+.fixed-right-container .#{$prefix}-icon-share-buttons {
     left: -3px;
     position: relative;
     top: 1px;
 }
 
-.#{$prefixClass}-rounded,
-.#{$prefixClass}-square {
-    .#{$prefixClass}-like a:hover i {
+.#{$prefix}-rounded,
+.#{$prefix}-square {
+    .#{$prefix}-like a:hover i {
         background: darken( $colorfacebookLike, 10% );
         color: #fff;
     }

@@ -1,4 +1,4 @@
-.#{$prefixClass}-fixed-top {
+.#{$prefix}-fixed-top {
     background: #FFFFFF;
     box-shadow: 0 0 6px #B1B1B1;
     left: 0;
@@ -11,7 +11,7 @@
     width: 100%;
     z-index: 1100;
 
-    .#{$prefixClass}-item {
+    .#{$prefix}-item {
         margin-bottom: 0;
     }
 }

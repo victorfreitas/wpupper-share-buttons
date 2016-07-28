@@ -1,8 +1,8 @@
-.#{$prefixClass}-square-plus {
+.#{$prefix}-square-plus {
 	margin-bottom: 10px;
 	margin-top: 10px;
 
-	.#{$prefixClass}-item .#{$prefixClass}-link {
+	.#{$prefix}-item .#{$prefix}-link {
 		border-radius: 3px;
 		color: #fff;
 		height: $size - 5;
@@ -25,23 +25,23 @@
 	    		color: inherit;
 	    	}
 
-	    	&.#{$prefixClass}-icon-whatsapp-square-plus,
-	    	&.#{$prefixClass}-icon-google-plus-square-plus {
+	    	&.#{$prefix}-icon-whatsapp-square-plus,
+	    	&.#{$prefix}-icon-google-plus-square-plus {
 	    		font-size: 28px;
 	    	}
 
-	    	&.#{$prefixClass}-icon-email-square-plus {
+	    	&.#{$prefix}-icon-email-square-plus {
 				position: relative;
 				right: 1px;
 	    	}
 
-	    	&.#{$prefixClass}-icon-gmail-square-plus {
+	    	&.#{$prefix}-icon-gmail-square-plus {
 				margin-right: 2px;
 	    	}
 	    }
 	}
 
-	.#{$prefixClass}-inside .#{$prefixClass}-link {
+	.#{$prefix}-inside .#{$prefix}-link {
 
 	    i {
             vertical-align: -moz-middle-with-baseline;
@@ -67,7 +67,7 @@
 	    }
 	}
 
-	i.#{$prefixClass}-icon-facebook-square-plus {
+	i.#{$prefix}-icon-facebook-square-plus {
 		vertical-align: middle;
 	}
 }
