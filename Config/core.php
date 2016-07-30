@@ -29,6 +29,7 @@ App::uses( 'shares', 'Controller' );
 // Controllers include on admin
 if ( App::$is_admin ) {
 	App::uses( 'ajax', 'Controller' );
+	App::uses( 'ajax-gplus', 'Controller' );
 	App::uses( 'options', 'Controller' );
 	App::uses( 'share-reports', 'Controller' );
 }
@@ -183,6 +184,7 @@ class WPUSB_Core
 		}
 
 		$ajax         = new WPUSB_Ajax_Controller();
+		$ajax_gplus   = new WPUSB_Ajax_Gplus_Controller();
 		$option       = new WPUSB_Options_Controller();
 		self::$report = new WPUSB_Share_Reports_Controller();
 	}

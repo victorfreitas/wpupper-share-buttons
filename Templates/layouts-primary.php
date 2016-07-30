@@ -34,6 +34,7 @@ class WPUSB_Layouts_Primary
 			     data-tracking="{$args['tracking']}"
 			     data-attr-reference="{$args['post_id']}"
 			     data-attr-nonce="{$args['nonce']}"
+		     	 data-attr-nonce-gplus="{$args['nonce-gplus']}"
 			     data-component="counter-social-share"
 			     class="{$classes}"
 			     {$data_token}

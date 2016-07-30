@@ -18,7 +18,15 @@ class WPUSB_Setting
 	* @since 1.0
 	* @var string
 	*/
-	const AJAX_VERIFY_NONCE_COUNTER = 'wpusb-counter-social-share';
+	const AJAX_VERIFY_NONCE_COUNTER = 'wpusb-social-share-counts';
+
+	/**
+	* Nonce google plus counts
+	*
+	* @since 1.0
+	* @var string
+	*/
+	const AJAX_VERIFY_GPLUS_COUNTS = 'wpusb-google-plus-counts';
 
 	/**
 	 * Options

@@ -39,6 +39,7 @@ class WPUSB_Fixed_Left
 		     data-attr-reference="{$args['post_id']}"
 		     data-element="fixed"
 		     data-attr-nonce="{$args['nonce']}"
+		     data-attr-nonce-gplus="{$args['nonce-gplus']}"
 		     data-component="counter-social-share"
 		     {$data_token}>
 

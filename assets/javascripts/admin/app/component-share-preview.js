@@ -77,7 +77,7 @@ WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $, utils) {
 		this.spinner.css( 'visibility', 'visible' );
 		var fixed_layout = $( '.fixed-layout:checked' )
 		  , params       = {
-				action       : 'share_preview',
+				action       : 'wpusb_share_preview',
 				layout       : this.layout,
 			    fixed_layout : fixed_layout.val(),
 				items        : JSON.stringify( this.itemsOrder ),

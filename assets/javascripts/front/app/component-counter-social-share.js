@@ -17,7 +17,6 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		this.linkedinCounter  = 0;
 		this.pinterestCounter = 0;
 		this.max              = 5;
-		this.items            = [];
 		this.init();
 	};
 
@@ -133,15 +132,16 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 
 	CounterSocialShare.fn.getParamsGoogle = function() {
 		return {
-			action : 'share_google_plus',
-			url    : this.data.elementUrl
+			action : 'wpusb_gplus_counts',
+			url    : this.data.elementUrl,
+		    nonce  : this.data.attrNonceGplus
 		};
 	};
 
 	CounterSocialShare.fn._onClickOpenPopup = function(event) {
 		this.items.forEach( this.clearStorage.bind( this ) );
 		var params = {
-	       	action          : 'counts_social_share',
+	       	action          : 'wpusb_share_count_reports',
 		    reference       : this.data.attrReference,
 		    count_facebook  : this.facebookCounter,
 		    count_twitter   : this.twitterCounter,

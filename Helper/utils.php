@@ -522,7 +522,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $message
 	 * @return Void
 	 */
-	public static function ajax_verify_request( $request, $code = 500, $message = 'server_error' )
+	public static function ajax_verify_request( $request, $message = 'server_error', $code = 500 )
 	{
 		if ( ! $request ) {
 			http_response_code( $code );
@@ -938,5 +938,35 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 		}
 
 		return false;
+	}
+
+	/**
+	 * Send a JSON response back to an Ajax request.
+	 *
+	 * @since 3.6.0
+	 * @param mixed $response
+	 * @return Void
+	 */
+	public static function send_json( $response )
+	{
+		$charset = self::rip_tags( get_option( 'blog_charset' ) );
+
+		@header( 'Content-Type: application/json; charset=' . $charset );
+		echo wp_json_encode( $response );
+		exit(1);
+	}
+
+	/**
+	 * Retrieve only the body from the raw response and decode json.
+	 *
+	 * @since 3.6.0
+	 * @param mixed $response
+	 * @return Array
+	 */
+	public static function retrieve_body_json( $response )
+	{
+		$results = wp_remote_retrieve_body( $response );
+
+		return json_decode( $results );
 	}
 }

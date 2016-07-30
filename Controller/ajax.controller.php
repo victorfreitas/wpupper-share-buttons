@@ -4,7 +4,7 @@
  * @package WPUpper Share Buttons
  * @author  Victor Freitas
  * @subpackage Ajax Controller
- * @version 2.0.0
+ * @version 3.0.0
  */
 if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
@@ -24,135 +24,61 @@ class WPUSB_Ajax_Controller
 	*/
 	public function __construct()
 	{
-		add_action( 'wp_ajax_nopriv_share_google_plus', array( &$this, 'google_plus' ) );
-		add_action( 'wp_ajax_share_google_plus', array( &$this, 'google_plus' ) );
-		add_action( 'wp_ajax_nopriv_counts_social_share', array( &$this, 'counts_social_share' ) );
-		add_action( 'wp_ajax_counts_social_share', array( &$this, 'counts_social_share' ) );
-		add_action( 'wp_ajax_share_preview', array( &$this, 'share_preview' ) );
+		add_action( 'wp_ajax_wpusb_share_count_reports', array( &$this, 'share_count_reports_verify_request' ) );
+		add_action( 'wp_ajax_nopriv_wpusb_share_count_reports', array( &$this, 'share_count_reports_verify_request' ) );
+		add_action( 'wp_ajax_wpusb_share_preview', array( &$this, 'share_preview_verify_request' ) );
 	}
 
 	/**
-	 * Quantity shares google plus
+	 * Verify is valid request share count reports
 	 *
-	 * @since 1.1
+	 * @since 3.6.0
 	 * @param null
 	 * @return void
 	 */
-	public function google_plus()
+	public function share_count_reports_verify_request()
 	{
-		header( 'Content-Type: application/javascript; charset=utf-8' );
-
-		//Cache 10 minutes
-		$cache = get_transient( Setting::TRANSIENT_GOOGLE_PLUS );
-		$url   = Utils::get( 'url', false, 'esc_url' );
-
-		if ( isset( $cache[$url] ) ) {
-			echo Utils::get( 'callback' ) . '(' . $cache[$url] . ')';
-			exit(1);
+		if ( ! Utils::is_request_ajax() ) {
+			exit(0);
 		}
 
-		Utils::ajax_verify_request( $url, 500, 'url_is_empty' );
-		$this->_send_request_google( $this->_get_google_args( $url ), $url );
+		$nonce = Utils::post( 'nonce', false );
+
+		if ( ! wp_verify_nonce( $nonce, Setting::AJAX_VERIFY_NONCE_COUNTER ) ) {
+			$this->_error_request( 'nonce_is_invalid' );
+		}
+
+		$post_id = Utils::post( 'reference', false, 'intval' );
+
+		if ( ! $post_id ) {
+			$this->_error_request( 'reference_is_empty' );
+		}
+
+		$this->_insert_counts_social_share( $post_id );
 	}
 
 	/**
-	 * Get google arguments post
+	 * Verify is valid request share preview
 	 *
-	 * @since 1.0
-	 * @param string $url
-	 * @return array
-	 */
-	private function _get_google_args( $url = '' )
-	{
-	    return array(
-			'method'  => 'POST',
-			'headers' => array(
-		        'Content-Type' => 'application/json'
-		    ),
-		    'body' => json_encode(
-		    	array(
-					'method'     => 'pos.plusones.get',
-					'id'         => 'p',
-					'method'     => 'pos.plusones.get',
-					'jsonrpc'    => '2.0',
-					'key'        => 'p',
-					'apiVersion' => 'v1',
-			        'params' => array(
-						'nolog'   => true,
-						'id'      =>  $url,
-						'source'  => 'widget',
-						'userId'  => '@viewer',
-						'groupId' => '@self',
-		        	)
-		     	)
-		    ),
-		    'sslverify' => false
-		);
-	}
-
-	/**
-	 * Send request google plus counter
-	 *
-	 * @since 1.0
-	 * @param Array $args
+	 * @since 3.6.0
+	 * @param null
 	 * @return void
 	 */
-	private function _send_request_google( $args = array(), $url )
+	public function share_preview_verify_request()
 	{
-	    $response = wp_remote_post( 'https://clients6.google.com/rpc', $args );
-
-	    if ( is_wp_error( $response ) ) {
-	    	$this->_error_request_google();
-	    }
-
-	    $plusones     = json_decode( $response['body'], true );
-		$count_google = $this->_get_global_counts_google( $plusones, $response, $url );
-		$results      = json_encode( $count_google );
-
-		echo Utils::get( 'callback' ) . "({$results})";
-		exit(1);
-	}
-
-	/**
-	 * Quantity shares google plus
-	 *
-	 * @since 1.0
-	 * @param Array $results
-	 * @return Array
-	 */
-	private function _get_global_counts_google( $results, $response, $url )
-	{
-		$results      = ( isset( $results['result'] ) ? $results['result'] : false );
-		$global_count = ( $results ) ? $results['metadata']['globalCounts'] : '';
-		$cache        = array();
-
-		if ( empty( $global_count ) || is_null( $global_count ) ) {
-			$global_count = array( 'count' => 0 );
+		if ( ! Utils::is_request_ajax() ) {
+			exit(0);
 		}
 
-		$cache[$url] = json_encode( $global_count );
+		$layout  = Utils::post( 'layout', false );
+		$items   = Utils::post( 'items', false );
+		$checked = Utils::post( 'checked', false );
 
-		set_transient(
-			Setting::TRANSIENT_GOOGLE_PLUS,
-			$cache,
-			apply_filters( Setting::TRANSIENT_GOOGLE_PLUS, 10 * MINUTE_IN_SECONDS )
-		);
+		if ( ! ( $layout || $items || $checked ) ) {
+			exit(0);
+		}
 
-		return $global_count;
-	}
-
-	/**
-	 * Return count 0 if exist error
-	 *
-	 * @since 1.0
-	 * @param Null
-	 * @return Void
-	 */
-	private function _error_request_google()
-	{
-		$results = json_encode( array( 'count' => 0 ) );
-		echo Utils::get( 'callback' ) . "({$results})";
-		exit(0);
+		$this->_share_preview( $layout, $items, $checked );
 	}
 
 	/**
@@ -160,14 +86,13 @@ class WPUSB_Ajax_Controller
 	 *
 	 * @since 1.2
 	 * @global $wpdb
-	 * @param Null
+	 * @param Integer $post_id
 	 * @return Void
 	 */
-	public function counts_social_share()
+	private function _insert_counts_social_share( $post_id )
 	{
 		global $wpdb;
 
-		$post_id         = Utils::post( 'reference', false, 'intval' );
 		$post_title      = Utils::rip_tags( get_the_title( $post_id ) );
 		$count_facebook  = Utils::post( 'count_facebook', 0, 'intval' );
 		$count_twitter   = Utils::post( 'count_twitter', 0, 'intval' );
@@ -175,16 +100,7 @@ class WPUSB_Ajax_Controller
 		$count_linkedin  = Utils::post( 'count_linkedin', 0, 'intval' );
 		$count_pinterest = Utils::post( 'count_pinterest', 0, 'intval' );
 		$total           = ( $count_facebook + $count_twitter + $count_google + $count_linkedin + $count_pinterest );
-		$nonce           = Utils::post( 'nonce', false );
 		$table           = $wpdb->prefix . Setting::TABLE_NAME;
-
-		if ( ! $post_id ) {
-			$this->_error_request( 'reference_is_empty' );
-		}
-
-		if ( ! wp_verify_nonce( $nonce, Setting::AJAX_VERIFY_NONCE_COUNTER ) ) {
-			$this->_error_request( 'nonce_is_invalid' );
-		}
 
 		if ( $total > 0 ) {
 			$this->_select(
@@ -213,11 +129,11 @@ class WPUSB_Ajax_Controller
 	 * @param Array $data
 	 * @return Void
 	 */
-	private function _select( $table, $data = array() )
+	private function _select( $table, $data )
 	{
 		global $wpdb;
 
-		$sql       = $wpdb->prepare( "SELECT COUNT(*) FROM {$table} WHERE `post_id` = %d", $data['post_id'] );
+		$sql       = $wpdb->prepare( "SELECT COUNT(*) FROM `{$table}` WHERE `post_id` = %d", $data['post_id'] );
 		$row_count = $wpdb->get_var( $sql );
 		$count     = intval( $row_count );
 
@@ -241,7 +157,7 @@ class WPUSB_Ajax_Controller
 	 * @param Array $data
 	 * @return Void
 	 */
-	private function _update( $table, $data = array() )
+	private function _update( $table, $data )
 	{
 		global $wpdb;
 
@@ -298,23 +214,13 @@ class WPUSB_Ajax_Controller
 	 * Share preview in settings page
 	 *
 	 * @since 1.0
-	 * @param null
+	 * @param String $layout
+	 * @param String $items
+	 * @param String $checked
 	 * @return Void
 	 */
-	public function share_preview()
+	private function _share_preview( $layout, $items, $checked )
 	{
-		if ( ! Utils::is_request_ajax() ) {
-			exit(0);
-		}
-
-		$layout  = Utils::post( 'layout', false );
-		$items   = Utils::post( 'items', false );
-		$checked = Utils::post( 'checked', false );
-
-		if ( ! ( $layout || $items || $checked ) ) {
-			exit(0);
-		}
-
 		$items   = $this->_json_decode_quoted( $items );
 		$checked = $this->_json_decode_quoted( $checked );
 		$this->_share_preview_list( $layout, $items, $checked );
@@ -365,8 +271,7 @@ class WPUSB_Ajax_Controller
 			$count++;
 		}
 
-		echo wp_send_json( $list );
-		exit(1);
+		Utils::send_json( $list );
 	}
 
 	/**

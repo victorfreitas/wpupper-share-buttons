@@ -191,13 +191,15 @@ abstract class WPUSB_Utils_Share
 	 * Create nonce from ajax counter share
 	 *
 	 * @since 3.0.0
-	 * @param empty
+	 * @param String $action
 	 * @return String
 	 *
 	 */
-	public static function nonce()
+	public static function nonce( $action )
 	{
-		return wp_create_nonce( Setting::AJAX_VERIFY_NONCE_COUNTER );
+		$nonce = wp_create_nonce( $action );
+
+		return Utils::rip_tags( $nonce );
 	}
 
 	/**
@@ -213,13 +215,14 @@ abstract class WPUSB_Utils_Share
 		$prefix = Setting::PREFIX;
 
 		return array(
-			'nonce'     => self::nonce(),
-			'token'     => Utils::option( 'bitly_token' ),
-			'prefix'    => $prefix,
-			'post_id'   => Utils::get_id(),
-			'tracking'  => Utils::option( 'tracking' ),
-			'permalink' => Utils::get_permalink(),
-			'fixed_top' => self::data_fixed_top( $prefix ),
+			'nonce'       => self::nonce( Setting::AJAX_VERIFY_NONCE_COUNTER ),
+			'nonce-gplus' => self::nonce( Setting::AJAX_VERIFY_GPLUS_COUNTS ),
+			'token'       => Utils::option( 'bitly_token' ),
+			'prefix'      => $prefix,
+			'post_id'     => Utils::get_id(),
+			'tracking'    => Utils::option( 'tracking' ),
+			'permalink'   => Utils::get_permalink(),
+			'fixed_top'   => self::data_fixed_top( $prefix ),
 		);
 	}
 
