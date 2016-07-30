@@ -2,3 +2,23 @@
     display: inline-block;
     margin-left: 10px;
 }
+
+.#{$prefix}-admin-notice {
+
+	.notice-dismiss {
+		top: 9px;
+
+		&:before {
+			color: #c00;
+		}
+
+		&:hover:before {
+			color: #b4b9be;
+		}
+	}
+
+	p strong {
+	    color: #555;
+	    text-decoration: underline;
+	}
+}

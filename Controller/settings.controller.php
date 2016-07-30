@@ -12,7 +12,9 @@ if ( ! function_exists( 'add_action' ) ) {
 
 use WPUSB_Utils as Utils;
 use WPUSB_Setting as Setting;
+use WPUSB_Settings_View as View;
 use WPUSB_App as App;
+use WPUSB_Core as Core;
 
 //Model
 App::uses( 'setting', 'Model' );
@@ -36,6 +38,8 @@ class WPUSB_Settings_Controller
 		add_filter( 'plugin_action_links_' . Utils::base_name(), array( &$this, 'plugin_link' ) );
 		add_action( 'admin_enqueue_scripts', array( &$this, 'admin_scripts' ) );
 		add_action( 'admin_menu', array( &$this, 'menu_page' ) );
+		add_action( 'admin_init', array( &$this, 'plugin_updates' ) );
+		add_action( 'admin_notices', array( &$this, 'admin_notices' ) );
 	}
 
 	/**
@@ -47,9 +51,9 @@ class WPUSB_Settings_Controller
 	 */
 	public function plugin_link( $links )
 	{
-		$page_link     = get_admin_url( null,  'admin.php?page=' . App::SLUG );
+		$page_url      = Utils::get_page_url();
 		$settings      = __( 'Settings', App::TEXTDOMAIN );
-		$settings_link = "<a href=\"{$page_link}\">{$settings}</a>";
+		$settings_link = "<a href=\"{$page_url}\">{$settings}</a>";
 		array_unshift( $links, $settings_link );
 
 		return $links;
@@ -79,8 +83,14 @@ class WPUSB_Settings_Controller
 			Setting::PREFIX . '-admin-scripts',
 			'WPUSBVars',
 			array(
-				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-				'WPLANG'  => get_locale(),
+				'ajaxUrl'       => admin_url( 'admin-ajax.php' ),
+				'WPLANG'        => get_locale(),
+				'previewTitles' => array(
+					'titleRemove'   => __( 'View Untitled', App::TEXTDOMAIN ),
+					'counterRemove' => __( 'View without count', App::TEXTDOMAIN ),
+					'titleInsert'   => __( 'See with title', App::TEXTDOMAIN ),
+					'counterInsert' => __( 'See with count', App::TEXTDOMAIN ),
+				),
 			)
 		);
 
@@ -136,5 +146,60 @@ class WPUSB_Settings_Controller
 	  		Setting::USE_OPTIONS,
 	  		array( 'WPUSB_Settings_Faq_View', 'render_page_faq' )
 	  	);
+	}
+
+	/**
+	 * Register plugin updates
+	 *
+	 * @since 3.6.0
+	 * @param Null
+	 * @return void
+	 */
+	public function plugin_updates()
+	{
+		$db_version = get_site_option( Setting::TABLE_NAME . '_db_version' );
+
+	    if ( $db_version !== Setting::DB_VERSION ) {
+	    	Utils::add_update_option( Setting::TABLE_NAME . '_db_version' );
+	    	add_site_option( App::SLUG . '-admin-notices', "true" );
+	        $this->redirect_plugin_page();
+	    }
+	}
+
+	/**
+	 * Notice admin
+	 *
+	 * @since 3.6.0
+	 * @param Null
+	 * @return void
+	 */
+	public function admin_notices()
+	{
+		$option = get_site_option( App::SLUG . '-admin-notices' );
+
+		if ( ! $option ) {
+			return;
+		}
+
+		$prefix = Setting::PREFIX;
+		$nonce  = Utils::nonce( Setting::AJAX_ADMIN_NONCE );
+
+		View::admin_notice( $prefix, $nonce );
+	}
+
+	/**
+	 * redirect from plugin page settings
+	 *
+	 * @since 3.6.0
+	 * @param Null
+	 * @return Void
+	 */
+	public function redirect_plugin_page()
+	{
+		if ( ! Utils::get( 'activate-multi', false ) ) {
+			$plugin_url = Utils::get_page_url();
+			wp_redirect( $plugin_url );
+			exit(1);
+		}
 	}
 }

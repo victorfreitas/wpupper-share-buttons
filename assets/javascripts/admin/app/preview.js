@@ -1,20 +1,19 @@
 WPUSB( 'WPUSB.Preview', function(Preview, $, utils) {
 
 	Preview.create = function(container) {
-		this.locale  = utils.getLocale();
 		this.title   = $( '[data-action="no-title"]' );
 		this.counter = $( '[data-action="no-counter"]' );
+		this.preview = utils.getPreviewTitles();
 		this.init();
 	};
 
 	Preview.init = function() {
-		this.defineTextByLocale();
 		this.addEventListener();
 	};
 
 	Preview.addEventListener = function() {
-		this.title.text( this.titleRemove );
-		this.counter.text( this.counterRemove );
+		this.title.text( this.preview.titleRemove );
+		this.counter.text( this.preview.counterRemove );
 		this.title.on( 'click', this._onClickTitle.bind( this ) );
 		this.counter.on( 'click', this._onClickCounter.bind( this ) );
 	};
@@ -34,43 +33,19 @@ WPUSB( 'WPUSB.Preview', function(Preview, $, utils) {
 	};
 
 	Preview.counterChangeText = function(text) {
-		if ( text == this.counterRemove ) {
-			return this.counterInsert;
+		if ( text == this.preview.counterRemove ) {
+			return this.preview.counterInsert;
 		}
 
-		return this.counterRemove;
+		return this.preview.counterRemove;
 	};
 
 	Preview.titleChangeText = function(text) {
-		if ( text == this.titleRemove ) {
-			return this.titleInsert;
+		if ( text == this.preview.titleRemove ) {
+			return this.preview.titleInsert;
 		}
 
-		return this.titleRemove;
-	};
-
-	Preview.defineTextByLocale = function() {
-		switch( this.locale ) {
-			case 'pt_BR' :
-				this.titleRemove   = 'Sem titúlo';
-				this.counterRemove = 'Sem contador';
-				this.titleInsert   = 'Com titúlo';
-				this.counterInsert = 'Com contador';
-				break;
-
-			case 'es_ES' :
-				this.titleRemove   = 'Con el título';
-				this.counterRemove = 'Con el recuento';
-				this.titleInsert   = 'Sin título';
-				this.counterInsert = 'Sin recuento';
-				break;
-
-			default:
-				this.titleRemove   = 'Untitled';
-				this.counterRemove = 'No count';
-				this.titleInsert   = 'With title';
-				this.counterInsert = 'With count';
-		}
+		return this.preview.titleRemove;
 	};
 
 }, {} );

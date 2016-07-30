@@ -303,7 +303,7 @@ abstract class WPUSB_Utils_Share
 	{
 		$atts         = (object) $atts;
 		$atts_counter = (bool) $atts->remove_counter;
-		$opt_counter  = Utils::option( 'remove_count', false, 'intval' );
+		$opt_counter  = Utils::option( 'disabled_count', false, 'intval' );
 
 		return ! ( $atts_counter ? $atts_counter : $opt_counter );
 	}
@@ -319,7 +319,7 @@ abstract class WPUSB_Utils_Share
 	public static function is_active_inside( $atts )
 	{
 		$atts_inside = (bool) $atts['remove_inside'];
-		$opt_inside  = Utils::option( 'remove_inside', false, 'intval' );
+		$opt_inside  = Utils::option( 'disabled_inside', false, 'intval' );
 
 		return ! ( $atts_inside ? $atts_inside : $opt_inside );
 	}

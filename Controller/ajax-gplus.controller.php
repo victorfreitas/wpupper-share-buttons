@@ -17,6 +17,10 @@ use WPUSB_Social_Elements as Elements;
 
 class WPUSB_Ajax_Gplus_Controller
 {
+	private $transient;
+	private $index;
+	private $cache;
+
 	/**
 	* Initialize the plugin by ajax requests
 	*
@@ -24,8 +28,46 @@ class WPUSB_Ajax_Gplus_Controller
 	*/
 	public function __construct()
 	{
+		$this->_set_transient_name();
+
 		add_action( 'wp_ajax_wpusb_gplus_counts', array( &$this, 'gplus_counts_verify_request' ) );
 		add_action( 'wp_ajax_nopriv_wpusb_gplus_counts', array( &$this, 'gplus_counts_verify_request' ) );
+	}
+
+	/**
+	 * Set transient name for counts
+	 *
+	 * @since 3.6.0
+	 * @param null
+	 * @return void
+	 */
+	private function _set_transient_name()
+	{
+		$this->transient = Setting::TRANSIENT_GOOGLE_PLUS;
+	}
+
+	/**
+	 * Set hash name from url
+	 *
+	 * @since 3.6.0
+	 * @param null
+	 * @return void
+	 */
+	private function _set_index_url( $url )
+	{
+		$this->index = preg_replace( '/[^A-Za-z0-9]+/', '', $url );
+	}
+
+	/**
+	 * Set cache value
+	 *
+	 * @since 3.6.0
+	 * @param Mixed Object|Bool $cache
+	 * @return void
+	 */
+	private function _set_cache_value( $cache )
+	{
+		$this->cache = $cache;
 	}
 
 	/**
@@ -50,6 +92,7 @@ class WPUSB_Ajax_Gplus_Controller
 			$this->_error_request( 'nonce_is_invalid' );
 		}
 
+		$this->_set_index_url( $url );
 		$this->_init_request( $url );
 	}
 
@@ -63,13 +106,14 @@ class WPUSB_Ajax_Gplus_Controller
 	private function _init_request( $url )
 	{
 		//Cache 10 minutes
-		$cache = get_transient( Setting::TRANSIENT_GOOGLE_PLUS );
+		$cache = get_transient( $this->transient );
 
-		if ( false !== $cache && isset( $cache[$url] ) ) {
-			$this->_send_total_counts( $cache[$url] );
+		if ( isset( $cache[$this->index] ) ) {
+			$this->_send_total_counts( $cache[$this->index] );
 		}
 
 		$args = $this->_get_gplus_args( $url );
+		$this->_set_cache_value( $cache );
 		$this->_send_request( $args, $url );
 	}
 
@@ -119,43 +163,47 @@ class WPUSB_Ajax_Gplus_Controller
 	{
 		$response      = wp_remote_post( 'https://clients6.google.com/rpc', $args );
 		$plusones      = Utils::retrieve_body_json( $response );
-		$global_counts = $this->_get_global_counts( $plusones );
-		$counts        = $this->_get_global_counts_google( $global_counts, $url );
+		$global_counts = $this->_get_global_counts( $plusones, $url );
 
-		$this->_send_total_counts( $counts );
+		$this->_send_total_counts( $global_counts );
 	}
 
 	/**
 	 * Check result
 	 *
 	 * @since 3.6.0
-	 * @param Array $response
+	 * @param Object $plusones
+	 * @param String $url
 	 * @return Mixed Array|Void
 	 */
-	private function _get_global_counts( $response )
+	private function _get_global_counts( $plusones, $url )
 	{
-		if ( ! isset( $response->result->metadata->globalCounts ) ) {
-			$this->_send_default_count();
+		if ( ! isset( $plusones->result->metadata->globalCounts ) ) {
+			$this->_send_default_counts();
 		}
 
-		return $response->result->metadata->globalCounts;
+		$global_counts = $plusones->result->metadata->globalCounts;
+		$this->_set_cache_counts( $global_counts, $url );
+
+		return $global_counts;
 	}
 
 	/**
 	 * Quantity shares google plus
 	 *
 	 * @since 3.6.0
-	 * @param Array $results
-	 * @return Array
+	 * @param Object $global_counts
+	 * @param String $url
+	 * @return Void
 	 */
-	private function _get_global_counts_google( $global_counts, $url )
+	private function _set_cache_counts( $global_counts, $url )
 	{
-		$cache       = array();
-		$cache[$url] = $global_counts;
+		$counts               = $this->cache;
+		$counts[$this->index] = $global_counts;
+		$time                 = ( 10 * MINUTE_IN_SECONDS );
+		$expiration           = apply_filters( $this->transient, $time );
 
-		$this->_set_transient( $cache );
-
-		return $global_counts;
+		set_transient( $this->transient, $counts, $expiration );
 	}
 
 	/**
@@ -174,22 +222,6 @@ class WPUSB_Ajax_Gplus_Controller
 	}
 
 	/**
-	 * Set transient Google Plus counts
-	 *
-	 * @since 3.6.0
-	 * @param Mixed $value
-	 * @return Void
-	 */
-	private function _set_transient( $value )
-	{
-		set_transient(
-			Setting::TRANSIENT_GOOGLE_PLUS,
-			$value,
-			apply_filters( Setting::TRANSIENT_GOOGLE_PLUS, 10 * MINUTE_IN_SECONDS )
-		);
-	}
-
-	/**
 	 * Error json requests
 	 *
 	 * @since 3.6.0
@@ -199,7 +231,7 @@ class WPUSB_Ajax_Gplus_Controller
 	private function _error_request( $message = '' )
 	{
 		http_response_code( 500 );
-		Utils::error_server_json( $message );
+		Utils::error_server_json( 500, $message );
 		exit(0);
 	}
 
@@ -210,7 +242,7 @@ class WPUSB_Ajax_Gplus_Controller
 	 * @param Null
 	 * @return Void
 	 */
-	private function _send_default_count()
+	private function _send_default_counts()
 	{
 		$counts = (object) array( 'count' => 0 );
 

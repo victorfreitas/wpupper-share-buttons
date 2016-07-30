@@ -14,6 +14,7 @@ use WPUSB_Setting as Setting;
 use WPUSB_Utils as Utils;
 use WPUSB_Core as Core;
 use WPUSB_Social_Elements as Elements;
+use WPUSB_App as App;
 
 class WPUSB_Ajax_Controller
 {
@@ -27,6 +28,7 @@ class WPUSB_Ajax_Controller
 		add_action( 'wp_ajax_wpusb_share_count_reports', array( &$this, 'share_count_reports_verify_request' ) );
 		add_action( 'wp_ajax_nopriv_wpusb_share_count_reports', array( &$this, 'share_count_reports_verify_request' ) );
 		add_action( 'wp_ajax_wpusb_share_preview', array( &$this, 'share_preview_verify_request' ) );
+		add_action( 'wp_ajax_wpusb_admin_notices', array( &$this, 'admin_notice_verify_request' ) );
 	}
 
 	/**
@@ -79,6 +81,28 @@ class WPUSB_Ajax_Controller
 		}
 
 		$this->_share_preview( $layout, $items, $checked );
+	}
+
+	/**
+	 * Ajax request delete option admin notice
+	 *
+	 * @since 3.6.0
+	 * @param null
+	 * @return void
+	 */
+	public function admin_notice_verify_request()
+	{
+		if ( ! Utils::is_request_ajax() ) {
+			exit(0);
+		}
+
+		$nonce = Utils::post( 'nonce', false );
+
+		if ( ! wp_verify_nonce( $nonce, Setting::AJAX_ADMIN_NONCE ) ) {
+			exit(0);
+		}
+
+		delete_option( App::SLUG . '-admin-notices' );
 	}
 
 	/**
@@ -284,7 +308,7 @@ class WPUSB_Ajax_Controller
 	private function _error_request( $message = '' )
 	{
 		http_response_code( 500 );
-		Utils::error_server_json( $message );
+		Utils::error_server_json( 500, $message );
 		exit(0);
 	}
 

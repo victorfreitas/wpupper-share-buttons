@@ -724,9 +724,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 			'single'           => 'on',
 			'before'           => 'on',
 			'after'            => 'off',
-			'class'            => '',
 			'layout'           => 'default',
-			'fixed_top'        => '',
 		);
 		$value  = apply_filters( App::SLUG . '-options-settings', $value );
 
@@ -748,17 +746,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 			'twitter'   => 'twitter',
 			'google'    => 'google',
 			'whatsapp'  => 'whatsapp',
-			'telegram'  => '',
-			'skype'     => '',
-			'viber'     => '',
-			'pinterest' => '',
-			'linkedin'  => '',
-			'tumblr'    => '',
-			'email'     => '',
-			'printer'   => '',
-			'like'      => '',
 			'share'     => 'share',
-			'reddit'    => '',
 		);
 		$value  = apply_filters( App::SLUG . '-options-social-media', $value );
 
@@ -778,12 +766,6 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 		$value  = array(
 			'disable_css'       => 'off',
 			'disable_js'        => 'off',
-			'twitter_username'  => '',
-			'twitter_text'      => '',
-			'bitly_token'       => '',
-			'remove_count'      => 0,
-			'remove_inside'     => 0,
-			'tracking'          => '',
 			'report_cache_time' => 10,
 		);
 		$value = apply_filters( App::SLUG . '-options-extra-settings', $value );
@@ -968,5 +950,19 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 		$results = wp_remote_retrieve_body( $response );
 
 		return json_decode( $results );
+	}
+
+	/**
+	 * Plugin page url
+	 *
+	 * @since 3.6.0
+	 * @param Null
+	 * @return String
+	 */
+	public static function get_page_url()
+	{
+		$page_url = get_admin_url( null,  'admin.php?page=' . App::SLUG );
+
+		return esc_url( $page_url );
 	}
 }

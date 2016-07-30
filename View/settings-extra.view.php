@@ -142,40 +142,6 @@ class WPUSB_Settings_Extra_View
 							</tr>
 							<tr>
 								<th scope="row">
-									<label for="<?php echo $prefix; ?>-remove-count">
-										<?php _e( 'Remove counter', WPUSB_App::TEXTDOMAIN ); ?>
-									</label>
-								</th>
-								<td>
-								<?php
-									View::add_checkbox(array(
-										'name'    => "{$extra_setting}[remove_count]",
-										'id'      => 'remove-count',
-										'checked' => checked( 1, $model->remove_count, false ),
-										'value'   => 1,
-									));
-								?>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="<?php echo $prefix; ?>-remove-inside">
-										<?php _e( 'Remove button title', WPUSB_App::TEXTDOMAIN ); ?>
-									</label>
-								</th>
-								<td>
-								<?php
-									View::add_checkbox(array(
-										'name'    => "{$extra_setting}[remove_inside]",
-										'id'      => 'remove-inside',
-										'checked' => checked( 1, $model->remove_inside, false ),
-										'value'   => 1,
-									));
-								?>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">
 									<label for="<?php echo $prefix; ?>-disable-css">
 										<?php _e( 'Disable CSS', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>

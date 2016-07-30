@@ -53,6 +53,10 @@
             return ( window.WPUSBVars || {} ).WPLANG;
         },
 
+        getPreviewTitles: function() {
+            return ( window.WPUSBVars || {} ).previewTitles;
+        },
+
         getPathUrl: function(url) {
             var uri = decodeURIComponent( url );
             return uri.split(/[?#]/)[0];

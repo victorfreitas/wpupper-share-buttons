@@ -13,22 +13,6 @@ if ( ! function_exists( 'add_action' ) ) {
 class WPUSB_Setting
 {
 	/**
-	* Nonce
-	*
-	* @since 1.0
-	* @var string
-	*/
-	const AJAX_VERIFY_NONCE_COUNTER = 'wpusb-social-share-counts';
-
-	/**
-	* Nonce google plus counts
-	*
-	* @since 1.0
-	* @var string
-	*/
-	const AJAX_VERIFY_GPLUS_COUNTS = 'wpusb-google-plus-counts';
-
-	/**
 	 * Options
 	 *
 	 * @since 1.0
@@ -247,7 +231,7 @@ class WPUSB_Setting
 	 * @since 1.0
 	 * @var Integer
 	 */
-	private $remove_count;
+	private $disabled_count;
 
 	/**
 	 * Remove inside buttons name
@@ -255,7 +239,7 @@ class WPUSB_Setting
 	 * @since 1.0
 	 * @var Integer
 	 */
-	private $remove_inside;
+	private $disabled_inside;
 
 	/**
 	 * Elements position fixed
@@ -343,7 +327,7 @@ class WPUSB_Setting
 	 * @since 1.0
 	 * @var string
 	 */
-	const DB_VERSION = '1.0';
+	const DB_VERSION = '1.1.0';
 
 	/**
 	 * Sharing report table name
@@ -381,6 +365,30 @@ class WPUSB_Setting
 	const EXTRA_SETTINGS = 'wpusb-extra-settings';
 	const USE_OPTIONS    = 'wpusb-faq';
 	const SHARING_REPORT = 'wpusb-sharing-report';
+
+	/**
+	* Nonce inset social share counts
+	*
+	* @since 1.0
+	* @var string
+	*/
+	const AJAX_VERIFY_NONCE_COUNTER = 'wpusb-social-share-counts';
+
+	/**
+	* Nonce google plus counts
+	*
+	* @since 1.0
+	* @var string
+	*/
+	const AJAX_VERIFY_GPLUS_COUNTS = 'wpusb-google-plus-counts';
+
+	/**
+	* Nonce admin notice
+	*
+	* @since 1.0
+	* @var string
+	*/
+	const AJAX_ADMIN_NONCE = 'wpusb-admin-notice';
 
 	public function __construct( $ID = false )
 	{

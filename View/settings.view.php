@@ -321,6 +321,36 @@ class WPUSB_Settings_View
 									</p>
 								</td>
 							</tr>
+							<tr>
+								<th scope="row">
+									<?php _e( 'Remove button title', App::TEXTDOMAIN ); ?>
+								</th>
+								<td>
+								<?php
+									self::add_checkbox(array(
+										'name'    => "{$option_name}[disabled_inside]",
+										'id'      => 'remove-inside',
+										'checked' => checked( 1, $model->disabled_inside, false ),
+										'value'   => 1,
+									));
+								?>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">
+									<?php _e( 'Remove counter', App::TEXTDOMAIN ); ?>
+								</th>
+								<td>
+								<?php
+									self::add_checkbox(array(
+										'name'    => "{$option_name}[disabled_count]",
+										'id'      => 'remove-count',
+										'checked' => checked( 1, $model->disabled_count, false ),
+										'value'   => 1,
+									));
+								?>
+								</td>
+							</tr>
 
 							<tr class="<?php echo $prefix; ?>-info-twitter">
 								<th scope="row">
@@ -492,5 +522,13 @@ EOD;
 		);
 
 		return array_merge( $defaults, $args );
+	}
+
+	public static function admin_notice( $prefix, $nonce )
+	{
+		$class   = "update-nag notice is-dismissible {$prefix}-admin-notice";
+		$message = __( '<strong>Warning! WPUpper Share Buttons:</strong> Is important clean the caches of CSS and JavaScript files. This is necessary for the plugin to work properly to get the number of social networking actions.', App::TEXTDOMAIN );
+
+		printf( '<div data-nonce="%1$s" class="%2$s"><p>%3$s</p></div>', $nonce, $class, $message );
 	}
 }

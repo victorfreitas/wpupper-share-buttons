@@ -412,6 +412,5 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 		";
 
 		dbDelta( $sql );
-		Utils::add_update_option( Setting::TABLE_NAME . '_db_version' );
 	}
 }

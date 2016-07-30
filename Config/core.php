@@ -137,7 +137,6 @@ class WPUSB_Core
 	 */
 	public static function plugins_loaded()
 	{
-		self::share_report_update_db();
 		self::load_text_domain();
 	}
 
@@ -204,7 +203,6 @@ class WPUSB_Core
 
 		self::$report->create_table();
 		Utils::add_options_defaults();
-
 		register_uninstall_hook( App::FILE, array( __CLASS__, 'uninstall' ) );
 	}
 
@@ -274,22 +272,6 @@ class WPUSB_Core
 		$sql   = "DROP TABLE IF EXISTS `{$table}`";
 
 		$wpdb->query( $sql );
-	}
-
-	/**
-	 * Verify database version and update database
-	 *
-	 * @since 1.0
-	 * @param Null
-	 * @return Void
-	 */
-	public static function share_report_update_db()
-	{
-		$db_version = get_site_option( Setting::TABLE_NAME . '_db_version' );
-
-	    if ( $db_version !== Setting::DB_VERSION ) {
-	        self::activate();
-	    }
 	}
 
 	/**

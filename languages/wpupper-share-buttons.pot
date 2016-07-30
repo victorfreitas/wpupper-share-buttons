@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPUpper Share Buttons 3.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-buttons\n"
-"POT-Creation-Date: 2016-07-26 04:12-0300\n"
+"POT-Creation-Date: 2016-07-30 17:57-0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -95,7 +95,7 @@ msgstr ""
 msgid "Like"
 msgstr ""
 
-#: Config/social-elements.php:294 Templates/layouts-primary.php:156
+#: Config/social-elements.php:294 Templates/layouts-primary.php:157
 msgid "Open modal social networks"
 msgstr ""
 
@@ -107,43 +107,59 @@ msgstr ""
 msgid "Share on Reddit"
 msgstr ""
 
-#: Config/social-elements.php:470 View/settings-extra.view.php:96
+#: Config/social-elements.php:471 View/settings-extra.view.php:96
 msgid "I just saw"
 msgstr ""
 
-#: Config/social-elements.php:471
+#: Config/social-elements.php:472
 msgid "Click to see also"
 msgstr ""
 
-#: Controller/settings.controller.php:51 View/settings.view.php:45
+#: Controller/settings.controller.php:55 View/settings.view.php:45
 msgid "Settings"
 msgstr ""
 
-#: Controller/settings.controller.php:114 View/settings-extra.view.php:31
+#: Controller/settings.controller.php:89
+msgid "View Untitled"
+msgstr ""
+
+#: Controller/settings.controller.php:90
+msgid "View without count"
+msgstr ""
+
+#: Controller/settings.controller.php:91
+msgid "See with title"
+msgstr ""
+
+#: Controller/settings.controller.php:92
+msgid "See with count"
+msgstr ""
+
+#: Controller/settings.controller.php:124 View/settings-extra.view.php:31
 #: View/settings-faq.view.php:28 View/settings.view.php:36
 #: View/share-report.view.php:40
 msgid "WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/settings.controller.php:115
+#: Controller/settings.controller.php:125
 msgid "WPUpper Share"
 msgstr ""
 
-#: Controller/settings.controller.php:124
+#: Controller/settings.controller.php:134
 msgid "Extra Settings | WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/settings.controller.php:125 View/settings-extra.view.php:40
-#: View/settings.view.php:391
+#: Controller/settings.controller.php:135 View/settings-extra.view.php:40
+#: View/settings.view.php:421
 msgid "Extra Settings"
 msgstr ""
 
-#: Controller/settings.controller.php:133
+#: Controller/settings.controller.php:143
 msgid "Use options | WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/settings.controller.php:134 View/settings-faq.view.php:31
-#: View/settings.view.php:396
+#: Controller/settings.controller.php:144 View/settings-faq.view.php:31
+#: View/settings.view.php:426
 msgid "Use options"
 msgstr ""
 
@@ -183,11 +199,11 @@ msgstr ""
 msgid "Sharing Report | WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/share-reports.controller.php:319 View/settings.view.php:401
+#: Controller/share-reports.controller.php:319 View/settings.view.php:431
 msgid "Sharing Report"
 msgstr ""
 
-#: Templates/fixed-left.php:135 Templates/square-plus.php:109
+#: Templates/fixed-left.php:136 Templates/square-plus.php:110
 msgid "Shares"
 msgstr ""
 
@@ -257,22 +273,14 @@ msgid "Shorten urls using bitly, generate token in "
 msgstr ""
 
 #: View/settings-extra.view.php:146
-msgid "Remove counter"
-msgstr ""
-
-#: View/settings-extra.view.php:163
-msgid "Remove button title"
-msgstr ""
-
-#: View/settings-extra.view.php:180
 msgid "Disable CSS"
 msgstr ""
 
-#: View/settings-extra.view.php:197
+#: View/settings-extra.view.php:163
 msgid "Disable JS"
 msgstr ""
 
-#: View/settings-extra.view.php:215 View/settings.view.php:350
+#: View/settings-extra.view.php:181 View/settings.view.php:380
 msgid "Save Changes"
 msgstr ""
 
@@ -396,16 +404,28 @@ msgstr ""
 msgid "This allows highlight the social network where the user Came from."
 msgstr ""
 
-#: View/settings.view.php:332
+#: View/settings.view.php:326
+msgid "Remove button title"
+msgstr ""
+
+#: View/settings.view.php:341
+msgid "Remove counter"
+msgstr ""
+
+#: View/settings.view.php:362
 msgid "The share count Twitter is powered by <a href=\"http://newsharecounts.com\" target=\"_blank\">newsharecounts.com</a>, you have to sign up with your Twitter account to get free service and twitter count. Just visit the website, fill in the domain of your site and click Sign in with Twitter. That, and nothing else!"
 msgstr ""
 
-#: View/settings.view.php:369
+#: View/settings.view.php:399
 msgid "Settings saved."
 msgstr ""
 
-#: View/settings.view.php:386
+#: View/settings.view.php:416
 msgid "General"
+msgstr ""
+
+#: View/settings.view.php:530
+msgid "<strong>Warning! WPUpper Share Buttons:</strong> Is important clean the caches of CSS and JavaScript files. This is necessary for the plugin to work properly to get the number of social networking actions."
 msgstr ""
 
 #: View/share-report.view.php:32
