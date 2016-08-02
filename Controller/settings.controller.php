@@ -156,11 +156,11 @@ class WPUSB_Settings_Controller
 	 */
 	public function plugin_updates()
 	{
-		$db_version = get_site_option( Setting::TABLE_NAME . '_db_version' );
+		$option_name  = Setting::TABLE_NAME . '_db_version';
+		$option_value = get_site_option( $option_name );
 
-	    if ( $db_version !== Setting::DB_VERSION ) {
-	    	Utils::add_update_option( Setting::TABLE_NAME . '_db_version' );
-	        $this->redirect_plugin_page();
+	    if ( $option_value !== Setting::DB_VERSION ) {
+	    	Utils::add_update_option( $option_name, $option_value );
 	    }
 	}
 

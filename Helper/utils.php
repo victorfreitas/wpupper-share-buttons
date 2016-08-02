@@ -534,19 +534,20 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	/**
 	 * Verify option exists and update option
 	 *
-	 * @since 1.0
+	 * @since 1.0.0
+	 * @since 3.6.2 Modified
 	 * @param String $option_name
+	 * @param String $option_value
 	 * @return String
 	 */
-	public static function add_update_option( $option_name )
+	public static function add_update_option( $option_name, $option_value )
 	{
-		$option = get_site_option( $option_name );
-
-		if ( $option ) {
-			return update_option( $option_name, Setting::DB_VERSION );
+		if ( $option_value ) {
+			update_site_option( $option_name, Setting::DB_VERSION );
+			return;
 		}
 
-		return add_option( $option_name, Setting::DB_VERSION );
+		add_site_option( $option_name, Setting::DB_VERSION );
 	}
 
 	/**
