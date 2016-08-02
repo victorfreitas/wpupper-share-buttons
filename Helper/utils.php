@@ -742,11 +742,11 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	{
 		$option = self::get_option_group_name( 'social_media' );
 		$value  = array(
-			'facebook'  => 'facebook',
-			'twitter'   => 'twitter',
-			'google'    => 'google',
-			'whatsapp'  => 'whatsapp',
-			'share'     => 'share',
+			'facebook' => 'facebook',
+			'twitter'  => 'twitter',
+			'google'   => 'google',
+			'whatsapp' => 'whatsapp',
+			'share'    => 'share',
 		);
 		$value  = apply_filters( App::SLUG . '-options-social-media', $value );
 

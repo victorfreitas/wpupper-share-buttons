@@ -39,7 +39,6 @@ class WPUSB_Settings_Controller
 		add_action( 'admin_enqueue_scripts', array( &$this, 'admin_scripts' ) );
 		add_action( 'admin_menu', array( &$this, 'menu_page' ) );
 		add_action( 'admin_init', array( &$this, 'plugin_updates' ) );
-		add_action( 'admin_notices', array( &$this, 'admin_notices' ) );
 	}
 
 	/**
@@ -161,7 +160,6 @@ class WPUSB_Settings_Controller
 
 	    if ( $db_version !== Setting::DB_VERSION ) {
 	    	Utils::add_update_option( Setting::TABLE_NAME . '_db_version' );
-	    	add_site_option( App::SLUG . '-admin-notices', "true" );
 	        $this->redirect_plugin_page();
 	    }
 	}

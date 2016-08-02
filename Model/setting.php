@@ -327,7 +327,7 @@ class WPUSB_Setting
 	 * @since 1.0
 	 * @var string
 	 */
-	const DB_VERSION = '1.1.0';
+	const DB_VERSION = '1.1.1';
 
 	/**
 	 * Sharing report table name

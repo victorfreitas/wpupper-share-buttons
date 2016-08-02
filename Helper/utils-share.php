@@ -103,7 +103,11 @@ abstract class WPUSB_Utils_Share
 		$elements         = Elements::social_media();
 		$social_items     = self::get_social_media( $model );
 
-		foreach ( $social_items as $key => $item ) :
+		foreach ( $social_items as $item ) :
+			if ( empty( $item ) ) {
+				continue;
+			}
+
 			self::$count_elements++;
 			$buttons .= self::set_buttons_args( $elements->{$item}, $args, $permalink, $title );
 		endforeach;
