@@ -94,9 +94,9 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 			return;
 		}
 
-		// if ( ! $this->search && false !== $cache && isset( $cache[$current_page][$orderby][$order] ) ) {
-		// 	return $cache[$current_page][$orderby][$order];
-		// }
+		if ( ! $this->search && false !== $cache && isset( $cache[$current_page][$orderby][$order] ) ) {
+			return $cache[$current_page][$orderby][$order];
+		}
 
 		$query = $wpdb->prepare(
 			"SELECT * FROM `{$table}`
