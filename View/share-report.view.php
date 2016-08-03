@@ -74,7 +74,7 @@ class WPUSB_Sharing_Report_View
 	 * @param String $post_title
 	 * @return String
 	 */
-	public static function add_permalink_title( $id, $post_title )
+	public static function get_permalink_title( $id, $post_title )
 	{
 		$permalink = get_permalink( $id );
 		$html      = "<a class=\"row-title\" href=\"{$permalink}\">{$post_title}</a>";

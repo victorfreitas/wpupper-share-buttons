@@ -45,7 +45,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	*/
 	public static function request_by_type( $type, $key, $default, $sanitize = 'rip_tags' )
 	{
-		$request = filter_input_array( $type, FILTER_SANITIZE_SPECIAL_CHARS );
+		$request = filter_input_array( $type, FILTER_SANITIZE_STRING );
 
 		if ( ! isset( $request[$key] ) || empty( $request[$key] ) ) {
 			return $default;

@@ -94,17 +94,18 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 			return;
 		}
 
-		if ( ! $this->search && false !== $cache && isset( $cache[$current_page][$orderby][$order] ) ) {
-			return $cache[$current_page][$orderby][$order];
-		}
+		// if ( ! $this->search && false !== $cache && isset( $cache[$current_page][$orderby][$order] ) ) {
+		// 	return $cache[$current_page][$orderby][$order];
+		// }
 
 		$query = $wpdb->prepare(
 			"SELECT * FROM `{$table}`
 			 {$where}
-			 ORDER BY {$orderby} {$order}
-			 LIMIT %d OFFSET {$offset}
+			 ORDER BY `{$orderby}` {$order}
+			 LIMIT %d OFFSET %d
 			",
-			$posts_per_page
+			$posts_per_page,
+			$offset
 		);
 
 		$cache[$current_page][$orderby][$order] = $wpdb->get_results( $query );
@@ -158,7 +159,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	 */
 	private function _where( $space = '' )
 	{
-		return ( $this->search ) ? "{$space}WHERE `post_title` LIKE '%%{$this->search}%%'" : null;
+		return ( $this->search ) ? "{$space}WHERE `post_title` LIKE '%%{$this->search}%%'" : '';
 	}
 
 	/**
@@ -204,9 +205,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 		$column = strtolower( $column );
 
 		switch ( $column ) {
-
 			case 'title' :
-				return View::add_permalink_title( $items->post_id, $items->post_title );
+				return View::get_permalink_title( $items->post_id, $items->post_title );
 				break;
 
 			case 'facebook'  :
@@ -215,9 +215,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 			case 'linkedin'  :
 			case 'pinterest' :
 			case 'total'     :
-				return Utils::number_format( $items->$column );
+				return Utils::number_format( $items->{$column} );
 				break;
-
 		}
 	}
 
@@ -346,13 +345,13 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	private function _verify_sql_orderby( $orderby, $default = '' )
 	{
 		$permissions = array(
-			'post_title',
-			'facebook',
-			'twitter',
-			'google',
-			'linkedin',
-			'pinterest',
-			'total',
+			'post_title' => '',
+			'facebook'   => '',
+			'twitter'    => '',
+			'google'     => '',
+			'linkedin'   => '',
+			'pinterest'  => '',
+			'total'      => '',
 		);
 
 		if ( isset( $permissions[$orderby] ) ) {
