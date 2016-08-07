@@ -178,19 +178,32 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 *
 	 * @since 1.0
 	 * @param null
-	 * @return String title posts
+	 * @return String
 	 */
 	public static function get_title()
 	{
-		global $post;
+		$post_id = self::get_id();
 
-		$post_title = '';
-
-		if ( isset( $post->ID ) ) {
-			$post_title = get_the_title( $post->ID );
+		if ( $post_id ) {
+			$post_title = get_the_title( $post_id );
+			return self::html_decode( $post_title );
 		}
 
-		return self::html_decode( $post_title );
+		return self::site_name();
+	}
+
+	/**
+	 * Site name
+	 *
+	 * @since 3.6.4
+	 * @param null
+	 * @return String
+	 */
+	public static function site_name()
+	{
+		$site_name = get_option( 'blogname' );
+
+		return self::rip_tags( $site_name );
 	}
 
 	/**
@@ -212,6 +225,20 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	}
 
 	/**
+	 * Site home url
+	 *
+	 * @since 3.6.4
+	 * @param null
+	 * @return String
+	 */
+	public static function site_url( $path = '' )
+	{
+		$site_url = get_site_url( null, "/{$path}" );
+
+		return esc_url( $site_url );
+	}
+
+	/**
 	 * Permalinks post
 	 *
 	 * @since 1.0
@@ -220,19 +247,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function get_permalink()
 	{
-		global $post;
+		$post_id = self::get_id();
 
-		$permalink = '';
-
-		if ( isset( $post->ID ) ) {
-			$permalink = esc_url( get_permalink( $post->ID ) );
+		if ( $post_id ) {
+			return esc_url( get_permalink( $post_id ) );
 		}
 
-		if ( is_home() || is_front_page() ) {
-			$permalink = esc_url( get_site_url( null, '/' ) );
-		}
-
-		return $permalink;
+		return self::site_url();
 	}
 
 	/**
@@ -244,19 +265,33 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function get_real_permalink( $is_fixed = false )
 	{
-		if ( ! ( is_category() || is_archive() ) ) {
+		if ( $is_fixed && self::is_home() ) {
+			$pagename = self::rip_tags( get_query_var( 'pagename' ) );
+			return self::site_url( "{$pagename}/" );
+		}
+
+		if ( ! ( $is_fixed && self::is_archive_category() ) ) {
 			return self::generate_short_url();
 		}
 
-		if ( ! $is_fixed ) {
-			return self::generate_short_url();
-		}
+		return self::get_term_link();
+	}
 
-		$term      = get_queried_object();
+
+	/**
+	 * Get term link
+	 *
+	 * @since 3.6.4
+	 * @param null
+	 * @return String
+	 */
+	public static function get_term_link()
+	{
+		$term      = self::get_queried_object();
 		$term_link = get_term_link( $term );
 
 		if ( is_wp_error( $term_link ) ) {
-			return self::get_permalink();
+			return self::site_url();
 		}
 
 		return self::generate_short_url( $term_link );
@@ -322,8 +357,8 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 */
 	public static function get_real_title( $is_fixed = false )
 	{
-		if ( ! ( is_category() || is_archive() ) ) {
-			return rawurlencode( self::get_title() );
+		if ( $is_fixed && self::is_home() ) {
+			return rawurlencode( self::site_name() );
 		}
 
 		if ( ! $is_fixed ) {
@@ -333,7 +368,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 		$term = self::get_queried_object();
 
 		if ( ! $term ) {
-			return self::get_title();
+			return rawurlencode( self::get_title() );
 		}
 
 		return rawurlencode( $term->name );

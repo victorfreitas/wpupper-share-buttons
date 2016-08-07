@@ -1,29 +1,35 @@
 <?php
 /**
  * @package WPUpper Share Buttons
- */
-/*
-	Plugin Name: WPUpper Share Buttons
-	Plugin URI:  https://github.com/victorfreitas
-	Version:     3.6.3
-	Author:      WPUpper
-	Author URI:  https://github.com/victorfreitas
-	License:     GPL2
-	Text Domain: wpupper-share-buttons
-	Domain Path: /languages
-	Description: Insert share buttons of social networks. The buttons are inserted automatically or can be called via shortcode or php method.
-*/
-/*
-	Copyright 2016 WPUpper Share Buttons by Victor Freitas (victorfreitas1@gmail.com)
-
-	This program is free software; you can redistribute it and/or modify
-	it under the terms of the GNU General Public License, version 2, as
-	published by the Free Software Foundation.
-
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
+ * @author Victor Freitas
+ *
+ * Plugin Name: WPUpper Share Buttons
+ * Plugin URI:  https://github.com/victorfreitas/wpupper-share-buttons
+ * Version:     3.6.4
+ * Author:      WPUpper
+ * Author URI:  https://github.com/victorfreitas
+ * License:     GPL2
+ * Text Domain: wpupper-share-buttons
+ * Domain Path: /languages
+ * Description: Insert share buttons of social networks. The buttons are inserted automatically or can be called via shortcode or php method.
+ *
+ #═════════════════════════════════════════════════════════════════════════════════════#
+ ║ This program is free software; you can redistribute it and/or                       ║
+ ║ modify it under the terms of the GNU General Public License                         ║
+ ║ as published by the Free Software Foundation; either version 2                      ║
+ ║ of the License, or (at your option) any later version.                              ║
+ ║                                                                                     ║
+ ║ This program is distributed in the hope that it will be useful,                     ║
+ ║ but WITHOUT ANY WARRANTY; without even the implied warranty of                      ║
+ ║ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                       ║
+ ║ GNU General Public License for more details.                                        ║
+ ║                                                                                     ║
+ ║ You should have received a copy of the GNU General Public License                   ║
+ ║ along with this program; if not, write to the Free Software                         ║
+ ║ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.     ║
+ ║                                                                                     ║
+ ║ Copyright 2015-2016 WPUpper Share Buttons by Victor Freitas (victorfreitas1@gmail.com)   ║
+ #═════════════════════════════════════════════════════════════════════════════════════#
  */
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
@@ -56,7 +62,7 @@ class WPUSB_App
      *
      * @var String
      */
-	const VERSION = '3.6.3';
+	const VERSION = '3.6.4';
 
     /**
      * Verify is admin

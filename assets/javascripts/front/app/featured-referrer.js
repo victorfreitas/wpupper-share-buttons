@@ -1,4 +1,4 @@
-WPUSB( 'WPUSB.FeaturedReferrer', function(FeaturedReferrer, $) {
+WPUSB( 'WPUSB.FeaturedReferrer', function(FeaturedReferrer, $, utils) {
 
 	FeaturedReferrer.create = function(container) {
 		this.prefix = WPUSB.vars.prefix + '-';
@@ -17,14 +17,17 @@ WPUSB( 'WPUSB.FeaturedReferrer', function(FeaturedReferrer, $) {
 	FeaturedReferrer.setReferrer = function() {
 		if ( this.isMatch( 'twitter' ) || this.isMatch( 't' ) ) {
 			this.showReferrer( 'twitter' );
+			return;
 		}
 
 		if ( this.isMatch( 'google' ) ) {
 			this.showReferrer( 'google-plus' );
+			return;
 		}
 
 		if ( this.isMatch( 'facebook' ) ) {
 			this.showReferrer( 'facebook' );
+			return;
 		}
 
 		if ( this.isMatch( 'linkedin' ) ) {
