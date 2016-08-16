@@ -37,14 +37,6 @@ if ( App::$is_admin ) {
 class WPUSB_Core
 {
 	/**
-	 * Intance class share report controller
-	 *
-	 * @since 1.0
-	 * @var Object
-	 */
-	private static $report;
-
-	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
 	 * @since 1.2
@@ -53,6 +45,7 @@ class WPUSB_Core
 	{
 		add_action( 'plugins_loaded', array( __CLASS__, 'plugins_loaded' ) );
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'add_front_scripts' ) );
+
 		self::_instantiate_controllers();
 		self::_register_actions();
 	}
@@ -170,7 +163,6 @@ class WPUSB_Core
 
 	/**
 	 * Instantiate controller used in admin
-	 * Set propert static $report
 	 *
 	 * @since 1.0
 	 * @param Null
@@ -182,10 +174,10 @@ class WPUSB_Core
 			return;
 		}
 
-		$ajax         = new WPUSB_Ajax_Controller();
-		$ajax_gplus   = new WPUSB_Ajax_Gplus_Controller();
-		$option       = new WPUSB_Options_Controller();
-		self::$report = new WPUSB_Share_Reports_Controller();
+		$ajax       = new WPUSB_Ajax_Controller();
+		$ajax_gplus = new WPUSB_Ajax_Gplus_Controller();
+		$option     = new WPUSB_Options_Controller();
+		$report     = new WPUSB_Share_Reports_Controller();
 	}
 
 	/**
@@ -201,7 +193,7 @@ class WPUSB_Core
 			return;
 		}
 
-		self::$report->create_table();
+		self::create_table();
 		Utils::add_options_defaults();
 		register_uninstall_hook( App::FILE, array( __CLASS__, 'uninstall' ) );
 	}
@@ -285,5 +277,40 @@ class WPUSB_Core
 	{
 		$plugin_dir = basename( dirname( App::FILE ) );
 		load_plugin_textdomain( App::TEXTDOMAIN, false, "{$plugin_dir}/languages/" );
+	}
+
+	/**
+	 * Create table sharing reports.
+	 *
+	 * @since 1.1
+	 * @global $wpdb
+	 * @param Null
+	 * @global $wpdb
+	 * @return Void
+	 */
+	public static function create_table()
+	{
+		global $wpdb;
+
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+
+		$charset    = $wpdb->get_charset_collate();
+		$table_name = $wpdb->prefix . Setting::TABLE_NAME;
+		$sql        = "CREATE TABLE IF NOT EXISTS {$table_name} (
+			id         BIGINT(20) NOT NULL AUTO_INCREMENT,
+			post_id    BIGINT(20) UNSIGNED NOT NULL,
+			post_title TEXT       NOT NULL,
+			facebook   BIGINT(20) UNSIGNED NOT NULL,
+			twitter    BIGINT(20) UNSIGNED NOT NULL,
+			google     BIGINT(20) UNSIGNED NOT NULL,
+			linkedin   BIGINT(20) UNSIGNED NOT NULL,
+			pinterest  BIGINT(20) UNSIGNED NOT NULL,
+			total      BIGINT(20) UNSIGNED NOT NULL,
+			PRIMARY KEY id ( id ),
+			UNIQUE( post_id )
+		) {$charset};
+		";
+
+		dbDelta( $sql );
 	}
 }

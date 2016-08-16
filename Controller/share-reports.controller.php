@@ -377,39 +377,4 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 
 		return $default;
 	}
-
-	/**
-	 * Create table sharing reports.
-	 *
-	 * @since 1.1
-	 * @global $wpdb
-	 * @param Null
-	 * @global $wpdb
-	 * @return Void
-	 */
-	public function create_table()
-	{
-		global $wpdb;
-
-		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-
-		$charset    = $wpdb->get_charset_collate();
-		$table_name = $wpdb->prefix . Setting::TABLE_NAME;
-		$sql        = "CREATE TABLE IF NOT EXISTS {$table_name} (
-			id         BIGINT(20) NOT NULL AUTO_INCREMENT,
-			post_id    BIGINT(20) UNSIGNED NOT NULL,
-			post_title TEXT       NOT NULL,
-			facebook   BIGINT(20) UNSIGNED NOT NULL,
-			twitter    BIGINT(20) UNSIGNED NOT NULL,
-			google     BIGINT(20) UNSIGNED NOT NULL,
-			linkedin   BIGINT(20) UNSIGNED NOT NULL,
-			pinterest  BIGINT(20) UNSIGNED NOT NULL,
-			total      BIGINT(20) UNSIGNED NOT NULL,
-			PRIMARY KEY id ( id ),
-			UNIQUE( post_id )
-		) {$charset};
-		";
-
-		dbDelta( $sql );
-	}
 }
