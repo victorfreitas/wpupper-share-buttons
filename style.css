@@ -8,11 +8,12 @@ body {
 }
 
 .fb-like-container {
-	margin: 0 auto;
-	max-width: 770px;
-	min-height: 249px;
-	position: relative;
-	width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 685px;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
 }
 
 .fb-like-container:after {
@@ -34,5 +35,5 @@ body {
     box-shadow: 1px 1px 10px 10px #9E9E9E;
     left: 35%;
     padding: 35px 30px 30px 22px;
-    top: 80px;
+    top: 200px;
 }
