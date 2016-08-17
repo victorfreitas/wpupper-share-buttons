@@ -1,0 +1,38 @@
+* {
+	margin:  0;
+	padding: 0;
+}
+
+body {
+	background: #333;
+}
+
+.fb-like-container {
+	margin: 0 auto;
+	max-width: 770px;
+	min-height: 249px;
+	position: relative;
+	width: 100%;
+}
+
+.fb-like-container:after {
+    background: url( 'wpupper-share-buttons-banner.png' );
+    border-radius: 20px;
+    bottom: 0;
+    content: "";
+    left: 0;
+    opacity: 0.3;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.fb-like {
+    background: transparent;
+    border-radius: 8px;
+    box-shadow: 1px 1px 10px 10px #9E9E9E;
+    left: 35%;
+    padding: 35px 30px 30px 22px;
+    top: 80px;
+}
