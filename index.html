@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>WPUpper Share Buttons - Facebook Like</title>
-    <meta property="og:url" id="og-url" content="https://github.com/victorfreitas/wpupper-share-buttons" />
+    <meta property="og:url" content="https://github.com/victorfreitas/wpupper-share-buttons" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="WPUpper Share Buttons - FB Like" />
     <meta property="og:description" content="WPUpper Share buttons custom Facebook like for plugin WordPress" />
@@ -35,13 +35,11 @@
         </div>
 
         <script>
-            var urlLike = decodeURIComponent( window.location.href.replace( /(.+(\?href=))/, '' ) )
+            var urlLike = window.location.href.replace( /(.+(\?href=))/, '' )
               , element = document.getElementById( 'fb-like' )
-              , ogUrl   = document.getElementById( 'og-url' )
             ;
 
-            element.dataset.href = urlLike;
-            ogUrl.setAttribute( 'content', urlLike );
+            element.dataset.href = decodeURIComponent( urlLike );
 
             window.onload = function() {
                 FB.Event.subscribe( 'edge.create', function(href, widget) {
