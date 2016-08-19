@@ -75,20 +75,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		this.totalShare.text( counter );
 		this[item.element].text( counter );
 
-		if ( !this._verifyTimeCache() ) {
-			this.setCounterCache( counter, item );
-			return;
-		}
-
 		this._getJSON( item );
-	};
-
-	CounterSocialShare.fn.setCounterCache = function(counter, item) {
-		counter = parseFloat( this._getItem( item.element ) );
-		this.totalCounter   += counter;
-		this[item.reference] = counter;
-		this[item.element].text( counter );
-		this.totalShare.text( this.totalCounter );
 	};
 
 	CounterSocialShare.fn._getJSON = function(request) {
@@ -103,15 +90,13 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 	};
 
 	CounterSocialShare.fn._done = function(request, response) {
-		var number              = this.getNumberByData( response );
+		var number              = this.getNumberByData( request.element, response );
 		this[request.reference] = number;
 		this.max               -= 1;
-		this.totalCounter      += parseFloat( number );
+		this.totalCounter      += number;
 		this[request.element].text( number );
-		this._setItem( request.element, number );
 
 		if ( !this.max ) {
-			this._setItem( 'cache', this._timerCache( 900 ) );
 			this.totalShare.text( this.totalCounter );
 		}
 	};
@@ -121,13 +106,20 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		this[request.element].text( 0 );
 	};
 
-	CounterSocialShare.fn.getNumberByData = function(data) {
-		var fbTotal = parseFloat( data['shares'] ) + parseFloat( data['comments'] )
-		  , fbShare = parseFloat( data['shares'] )
+	CounterSocialShare.fn.getNumberByData = function(element, data) {
+		var fbShare = this.getTotalShareFacebook( element, data.share )
 		  , count   = parseFloat( data['count'] )
 		;
 
-		return ( fbTotal || fbShare || count || 0 );
+		return ( fbShare || count || 0 );
+	};
+
+	CounterSocialShare.fn.getTotalShareFacebook = function(element, data) {
+		if ( element === 'facebook' && typeof data === 'object' ) {
+			return parseFloat( data.share_count );
+		}
+
+		return 0;
 	};
 
 	CounterSocialShare.fn.getParamsGoogle = function() {
@@ -139,7 +131,6 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 	};
 
 	CounterSocialShare.fn._onClickOpenPopup = function(event) {
-		this.items.forEach( this.clearStorage.bind( this ) );
 		var params = {
 	       	action          : 'wpusb_share_count_reports',
 		    reference       : this.data.attrReference,
@@ -156,36 +147,6 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 	       url    : utils.getAjaxUrl(),
 	       data   : params
 	   });
-	};
-
-	CounterSocialShare.fn.clearStorage = function(item, index, array) {
-		this._removeItem( item.element );
-
-		if ( ( index + 1 ) == array.length ) {
-			this._removeItem( 'cache' );
-		}
-	};
-
-	CounterSocialShare.fn._removeItem = function(element) {
-		localStorage.removeItem( $.fn.hashStr( this.data.elementUrl + element ) );
-	};
-
-	CounterSocialShare.fn._getItem = function(element) {
-		var storage = localStorage.getItem( $.fn.hashStr( this.data.elementUrl + element ) );
-
-		return ( null === storage ) ? 0 : storage;
-	};
-
-	CounterSocialShare.fn._setItem = function(element, value) {
-		localStorage.setItem( $.fn.hashStr( this.data.elementUrl + element ), value );
-	};
-
-	CounterSocialShare.fn._timerCache = function(time) {
-		return $.fn.getTime() + 1000 * time;
-	};
-
-	CounterSocialShare.fn._verifyTimeCache = function() {
-		return ( this._getItem( 'cache' ) < $.fn.getTime() );
 	};
 
 });
