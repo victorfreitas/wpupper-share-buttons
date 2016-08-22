@@ -28,9 +28,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 			return '';
 		}
 
-		$class = self::rip_tags( $class, true );
-
-        return preg_replace( '/[^a-zA-Z0-9-_]+/', '', $class );
+        return preg_replace( '/[^a-zA-Z0-9-_\s]+/', '', $class );
 	}
 
 	/**

@@ -10,6 +10,8 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
+use WPUSB_Social_Elements as Elements;
+
 class WPUSB_Settings_Faq_View
 {
 	/**
@@ -34,49 +36,67 @@ class WPUSB_Settings_Faq_View
 			<?php WPUSB_Settings_View::menu_top(); ?>
 
 			<div class="<?php echo "{$prefix}-wrap-faq"; ?>">
-				<code>
-					<span style="color: #000000">
-						<span style="color: #FF8000">Via&nbsp;shortcode:<br>&nbsp;<span style="color: #333333">[wpusb]</span><br><br>Via&nbsp;PHP&nbsp;Using&nbsp;function&nbsp;WordPress<br>&nbsp;</span>
-						<span style="color: #007700">echo</span>
-						<span style="color: #0000BB">do_shortcode(</span>
-						<span style="color: #DD0000">'[wpusb]'</span>
-						<span style="color: #007700">);<br><br></span>
-						<span style="color: #FF8000">Returns&nbsp;all&nbsp;the&nbsp;buttons&nbsp;and&nbsp;the&nbsp;use&nbsp;of&nbsp;classes&nbsp;is&nbsp;optional<br><br>Via&nbsp;method&nbsp;PHP:<br></span>
-						<span style="color: #007700"><br></span>
-						<span style="color: #0000BB">$args</span>
-						<span style="color: #007700">=&nbsp;array(<br>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<span style="color: #DD0000">'class_first'&nbsp;</span>
-						<span style="color: #007700">=&gt;</span>
-						<span style="color: #DD0000">''</span><span style="color: #007700">,</span>
-						<span style="color: #007700"><br>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<span style="color: #DD0000">'class_second'</span>
-						<span style="color: #007700">=&gt;</span>
-						<span style="color: #DD0000">''</span><span style="color: #007700">,<br>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<span style="color: #DD0000">'class_link'&nbsp;&nbsp;</span>
-						<span style="color: #007700">=&gt;</span>
-						<span style="color: #DD0000">''</span><span style="color: #007700">,<br>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<span style="color: #DD0000">'class_icon'&nbsp;&nbsp;</span>
-						<span style="color: #007700">=&gt;</span>
-						<span style="color: #DD0000">''</span><span style="color: #007700">,<br>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<span style="color: #DD0000">'layout'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">'default'</span><span style="color: #007700">,<br>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<span style="color: #DD0000">'elements'&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<span style="color: #007700">=&gt;&nbsp;array(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<span style="color: #DD0000">'remove_inside'&nbsp;</span>
-						<span style="color: #007700">=&gt;&nbsp;</span>
-						<span style="color: #0000BB">false</span><span style="color: #007700">,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-						<span style="color: #DD0000">'remove_counter'</span>
-						<span style="color: #007700">=&gt;&nbsp;</span>
-						<span style="color: #0000BB">false</span><span style="color: #007700">,<br>&nbsp;&nbsp;&nbsp;&nbsp;),<br>);<br><br>if&nbsp;(&nbsp;</span>
-						<span style="color: #0000BB">class_exists</span><span style="color: #007700">(</span>
-						<span style="color: #DD0000">'WPUSB_Shares_View'</span>
-						<span style="color: #007700">)&nbsp;)&nbsp;:<br>&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span>
-						<span style="color: #0000BB">WPUSB_Shares_View</span><span style="color: #007700">::</span><span style="color: #0000BB">buttons_share</span><span style="color: #007700">(</span>
-						<span style="color: #0000BB">$args</span>
-						<span style="color: #007700">);<br>endif;<br><br></span>
-						<span style="color: #FF8000">$args&nbsp;&nbsp;&nbsp;(Array)&nbsp;(optional)<br>Layout&nbsp;options:&nbsp;default,&nbsp;buttons,&nbsp;rounded,&nbsp;square<br></span>
-					</span>
-				</code>
+<pre data-element="highlight">
+	<code class="php">
+/*
+ * Via method PHP
+ *
+ * Items Available:
+<?php
+foreach ( Elements::$items_available as $item ) :
+echo " * {$item}\n";
+endforeach;
+?>
+ *
+ * Layout options: default, buttons, rounded, square, square-plus
+ *
+ * Default Arguments
+ */
+$args = array(
+     'class_first'  => '', // String
+     'class_second' => '', // String
+     'class_link'   => '', // String
+     'class_icon'   => '', // String
+     'layout'       => 'default', //String
+     'items'        => '', // Mixed String|Array -- Example: 'facebook, google' | array( 'facebook', 'google' )
+     'elements'     => array( // Array
+         'remove_inside'  =>  false, // Boolean
+         'remove_counter' =>  false, // Boolean
+    ),
+);
+
+/*
+ * Example usage
+ */
+$args = array(
+    'layout' => 'square-plus',
+    'items'  => array( 'facebook', 'twitter', 'google', 'whatsapp' ),
+);
+
+if ( class_exists( 'WPUSB_Shares_View' ) ) :
+    // $args is optional
+    echo WPUSB_Shares_View::buttons_share( $args );
+endif;
+
+/*
+ * Via shortcode in content
+ *
+ * Open mode text in content and add shortcode
+ *
+ * Use the parameters described above in ( Via method PHP )
+ * Example: [wpusb layout="rounded" items="facebook, twitter"]
+ */
+[wpusb]
+
+/*
+ * Via PHP Using function WordPress]
+ *
+ * Use the parameters described above in ( Via method PHP )
+ * Example: [wpusb layout="rounded" items="facebook, twitter"]
+ */
+echo do_shortcode( '[wpusb]' );
+	</code>
+</pre>
 			</div>
 		</div>
 	<?php

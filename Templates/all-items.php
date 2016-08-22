@@ -28,14 +28,10 @@ class WPUSB_All_Items
 	 */
 	public static function init()
 	{
-		$social = Utils::get_social_media();
-
-		if ( ! isset( $social['share'] ) ) {
-			return;
-		}
-
 		$permalink = Utils::get_permalink();
 		$prefix    = Setting::PREFIX;
+
+		do_action( App::SLUG . '-before-modal' );
 
 		echo <<< EOD
 			<div class="{$prefix}-popup-content"
@@ -49,6 +45,8 @@ class WPUSB_All_Items
 EOD;
 		self::items( $prefix );
 		self::end();
+
+		do_action( App::SLUG . '-after-modal' );
 	}
 
 	/**
@@ -94,6 +92,6 @@ EOD;
 	 */
 	public static function end()
 	{
-		echo "</div></div>";
+		echo '</div></div>';
 	}
 }

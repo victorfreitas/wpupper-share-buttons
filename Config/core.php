@@ -59,7 +59,9 @@ class WPUSB_Core
 	 */
 	public static function add_front_scripts()
 	{
-		if ( ! Utils::is_active() ) {
+		$is_active = Utils::is_active();
+
+		if ( ! apply_filters( App::SLUG , '-add-scripts', $is_active ) ) {
 			return;
 		}
 

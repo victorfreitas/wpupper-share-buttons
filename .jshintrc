@@ -15,6 +15,7 @@
 		"jQuery"     : true,
 		"Toastr"     : true,
 		"WPUSB"      : true,
+		"hljs"       : true,
 		"$"          : true
 	}
 }

@@ -118,10 +118,11 @@ class WPUSB_Shares_Controller
 	 */
 	public function buttons_fixed()
 	{
-		$is_position_fixed = Utils::is_position_fixed();
-		$this->_add_modal( $is_position_fixed );
+		if ( apply_filters( App::SLUG . '-modal-html', true ) ) {
+			$this->_add_modal();
+		}
 
-		if ( ! $is_position_fixed ) {
+		if ( ! Utils::is_position_fixed() ) {
 			return;
 		}
 
@@ -151,6 +152,7 @@ class WPUSB_Shares_Controller
 				'layout'         => '',
 				'remove_inside'  => false,
 				'remove_counter' => false,
+				'items'          => '',
 			),
 			$atts,
 			App::SLUG
@@ -181,12 +183,8 @@ class WPUSB_Shares_Controller
 	 * @param Null
 	 * @return Void
 	 */
-	protected function _add_modal( $is_fixed )
+	protected function _add_modal()
 	{
-		if ( ! ( $is_fixed || $this->position ) ) {
-			return;
-		}
-
 		if ( Utils::is_active() ) {
 			WPUSB_All_Items::init();
 		}

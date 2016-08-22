@@ -87,7 +87,8 @@ abstract class WPUSB_Utils_Share
 	/**
 	 * Get buttons
 	 *
-	 * @since 3.0.0
+	 * @since 3.7.0
+	 * @version 2.0.0
 	 * @param array $args
 	 * @return String
 	 */
@@ -101,10 +102,10 @@ abstract class WPUSB_Utils_Share
 		$permalink        = Utils::get_real_permalink( $fixed );
 		$title            = Utils::get_real_title( $fixed );
 		$elements         = Elements::social_media();
-		$social_items     = self::get_social_media( $model );
+		$social_items     = self::get_social_media( $model, $args['items'] );
 
 		foreach ( $social_items as $item ) :
-			if ( empty( $item ) ) {
+			if ( ! Elements::items_available( $item ) ) {
 				continue;
 			}
 
@@ -122,13 +123,17 @@ abstract class WPUSB_Utils_Share
 	/**
 	 * Get social media items active
 	 *
-	 * @since 3.2.2
-	 * @version 1.0.0
-	 * @param Null
+	 * @since 3.7.0
+	 * @version 1.1.0
+	 * @param Object Model | false $model
+	 * @param Mixed Array|String $items
 	 * @return Array
 	 */
-	public static function get_social_media( $model = false )
+	public static function get_social_media( $model = false, $items = '' )
 	{
+		if ( ! empty( $items ) )
+			return self::get_selected_items( $items );
+
 		if ( ! $model )
 			$model = new Setting();
 
@@ -138,6 +143,24 @@ abstract class WPUSB_Utils_Share
 			unset( $social_media['order'] );
 
 		return (array) $social_media;
+	}
+
+	/**
+	 * Get social media items active by the user
+	 *
+	 * @since 3.7.0
+	 * @version 1.0.0
+	 * @param Mixed Array|String $items
+	 * @return Array
+	 */
+	public static function get_selected_items( $items )
+	{
+		if ( is_array( $items ) )
+			return $items;
+
+		$items = preg_replace( '/[^a-z,]+/', '', strtolower( $items ) );
+
+		return explode( ',', $items );
 	}
 
 	/**
@@ -305,11 +328,11 @@ abstract class WPUSB_Utils_Share
 	 */
 	public static function is_active_couter( $atts )
 	{
-		$atts         = (object) $atts;
-		$atts_counter = (bool) $atts->remove_counter;
+		$args         = (object) $atts;
+		$atts_counter = $args->remove_counter;
 		$opt_counter  = Utils::option( 'disabled_count', false, 'intval' );
 
-		return ! ( $atts_counter ? $atts_counter : $opt_counter );
+		return ! ( ( '' !== $atts_counter ) ? $atts_counter : $opt_counter );
 	}
 
 	/**
@@ -322,10 +345,10 @@ abstract class WPUSB_Utils_Share
 	 */
 	public static function is_active_inside( $atts )
 	{
-		$atts_inside = (bool) $atts['remove_inside'];
+		$atts_inside = $atts['remove_inside'];
 		$opt_inside  = Utils::option( 'disabled_inside', false, 'intval' );
 
-		return ! ( $atts_inside ? $atts_inside : $opt_inside );
+		return ! ( ( '' !== $atts_inside ) ? $atts_inside : $opt_inside );
 	}
 
 	/**
@@ -447,6 +470,7 @@ abstract class WPUSB_Utils_Share
 			'class_link'   => Utils::isset_get( $atts, 'class_link' ),
 			'class_icon'   => Utils::isset_get( $atts, 'class_icon' ),
 			'layout'       => Utils::isset_get( $atts, 'layout' ),
+			'items'        => Utils::isset_get( $atts, 'items' ),
 			'elements'     => array(
 				'remove_inside'  => Utils::isset_get( $atts, 'remove_inside' ),
 				'remove_counter' => Utils::isset_get( $atts, 'remove_counter' ),
@@ -473,6 +497,7 @@ abstract class WPUSB_Utils_Share
 			'class_link'   => Utils::esc_class( $atts['class_link'] ),
 			'class_icon'   => Utils::esc_class( $atts['class_icon'] ),
 			'layout'       => Utils::rip_tags( $atts['layout'] ),
+			'items'        => Utils::rip_tags( $atts['items'] ),
 			'elements'     => array(
 				'remove_inside'  => self::get_remove_type( $atts, 'remove_inside' ),
 				'remove_counter' => self::get_remove_type( $atts, 'remove_counter' ),
@@ -491,8 +516,8 @@ abstract class WPUSB_Utils_Share
 	public static function get_remove_type( $atts, $type )
 	{
 		if ( isset( $atts['elements'] ) )
-			return (bool) $atts['elements'][$type];
+			return $atts['elements'][$type];
 
-		return (bool) $atts[$type];
+		return $atts[$type];
 	}
 }

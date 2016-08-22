@@ -155,6 +155,6 @@ EOD;
 	 */
 	public static function end( $args )
 	{
-		return '</div>';
+		return apply_filters( App::SLUG . 'end-buttons-html', '</div>' );
 	}
 }

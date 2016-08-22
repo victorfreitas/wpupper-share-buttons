@@ -4,8 +4,8 @@
  * @package WPUpper Share Buttons
  * @subpackage Functions
  * @author  Victor Freitas
- * @since 3.1.4
- * @version 1.0.0
+ * @since 3.7.0
+ * @version 2.1.0
  */
 if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
@@ -31,6 +31,41 @@ class WPUSB_Social_Elements
 	public static $title;
 	public static $tracking;
 	public static $body_mail;
+
+	public static $items_available = array(
+		'facebook'  => 'facebook',
+		'twitter'   => 'twitter',
+		'google'    => 'google',
+		'whatsapp'  => 'whatsapp',
+		'pinterest' => 'pinterest',
+		'linkedin'  => 'linkedin',
+		'tumblr'    => 'tumblr',
+		'email'     => 'email',
+		'gmail'     => 'gmail',
+		'printer'   => 'printer',
+		'telegram'  => 'telegram',
+		'skype'     => 'skype',
+		'viber'     => 'viber',
+		'like'      => 'like',
+		'share'     => 'share',
+		'reddit'    => 'reddit',
+	);
+
+	/**
+	 * Check social media available exists
+	 *
+	 * @since 3.7.0
+	 * @version 1.0.0
+	 * @param String $element
+	 * @return Boolean
+	 */
+	public static function items_available( $element )
+	{
+		if ( isset( self::$items_available[$element] ) )
+			return true;
+
+		return false;
+	}
 
 	/**
 	 * Generate object all social icons
@@ -467,7 +502,8 @@ class WPUSB_Social_Elements
 	 */
 	private static function _set_properts_twitter()
 	{
-		$via                = Utils::option( 'twitter_username' );
+		$tvia               = Utils::option( 'twitter_username' );
+		$via                = preg_replace( '/[^a-zA-Z0-9_]+/', '', $tvia );
 		$text_a             = apply_filters( App::SLUG . '-twitter-after', __( 'I just saw', App::TEXTDOMAIN ) );
 		$text_b             = apply_filters( App::SLUG . '-twitter-before', __( 'Click to see also', App::TEXTDOMAIN ) );
 		$text               = Utils::get_twitter_text( self::$title, $text_a, $text_b, self::$caracter );
