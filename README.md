@@ -65,6 +65,7 @@ Layout options: default, buttons, rounded, square
 ### 3.7.0
 
 * New: Option to choose which social networks show through shortcode, PHP method
+* You can see more details on using the shortcode and PHP method on the "Use Options" in the administration of the plugin.
 
 ### 3.6.6
 
