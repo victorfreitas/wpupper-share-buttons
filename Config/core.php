@@ -66,7 +66,13 @@ class WPUSB_Core
 		}
 
 		self::_front_scripts();
-		self::_front_styles();
+
+		if ( 'on' !== Utils::option( 'css_footer' ) ) {
+			self::front_styles();
+			return;
+		}
+
+		add_action( 'wp_footer', array( __CLASS__, 'front_styles' ) );
 	}
 
 	/**
@@ -109,7 +115,7 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _front_styles()
+	public static function front_styles()
 	{
 		if ( 'on' === Utils::option( 'disable_css' ) ) {
 			return;

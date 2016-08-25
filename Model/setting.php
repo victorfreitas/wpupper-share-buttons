@@ -314,6 +314,14 @@ class WPUSB_Setting
 	private $fixed_context;
 
 	/**
+	 * Style CSS in footer
+	 *
+	 * @since 1.0
+	 * @var String
+	 */
+	private $css_footer;
+
+	/**
 	 * Plugin general prefix
 	 *
 	 * @since 1.0

@@ -272,8 +272,9 @@ class WPUSB_Settings_View
 											'name'       => "{$option_name}[fixed_layout]",
 											'value'      => 'buttons',
 											'is_checked' => ( $fixed_layout ) ? $checked_layout : 'checked="checked"',
-											'title'      => __( 'Button', App::TEXTDOMAIN ),
+											'title'      => __( 'Square', App::TEXTDOMAIN ),
 										));
+
 										self::td(array(
 											'type'       => 'radio',
 											'id'         => 'fixed-rounded',
@@ -480,7 +481,15 @@ EOD;
 
 	public static function add_checkbox( $args = array() )
 	{
-		$prefix = Setting::PREFIX;
+		$prefix   = Setting::PREFIX;
+		$defaults = array(
+			'name'        => '',
+			'id'          => '',
+			'checked'     => '',
+			'value'       => '',
+			'description' => '',
+		);
+		$args = array_merge( $defaults, $args );
 
 		echo <<<EOD
 			<div class="{$prefix}-custom-switch">

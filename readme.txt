@@ -6,7 +6,7 @@ Donate link: https://www.redcross.org/donate/donation
 Tags: share, social, buttons, share buttons, compartir, botones compartir, free share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, sharing, social bookmarking, email form, social media buttons, click to tweet, reddit, viber, telegram, gmail, skype, like, pinterest, linkedin
 Requires at least: 3.0.0
 Tested up to: 4.6
-Stable tag: 3.7.0
+Stable tag: 3.8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -94,6 +94,12 @@ The following plugins are recommended
 * ["Remove WP Version"](https://wordpress.org/plugins/jogar-mais-wp-security/) by victorfreitas - Remove version WordPress in WP Generator, Feeds, css and js.
 
 == Changelog ==
+
+= 3.8.0 =
+
+* Improvements performance
+* Adding option on extra settings for to keep CSS in the footer, this is good for performance of your website.
+* Update translations
 
 = 3.7.0 =
 
@@ -469,7 +475,8 @@ The following plugins are recommended
 
 == Upgrade Notice ==
 
-= 3.7.0 =
+= 3.8.0 =
 
-* New: Option to choose which social networks show through shortcode, PHP method
-* You can see more details on using the shortcode and PHP method on the "Use Options" in the administration of the plugin.
+* Improvements performance
+* Adding option on extra settings for to keep CSS in the footer, this is good for performance of your website.
+* Update translations

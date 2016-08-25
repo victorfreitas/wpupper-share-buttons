@@ -174,6 +174,26 @@ class WPUSB_Settings_Extra_View
 								?>
 								</td>
 							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-css-footer">
+										<?php _e( 'CSS file in footer', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<td>
+								<?php
+									View::add_checkbox(array(
+										'name'    => "{$extra_setting}[css_footer]",
+										'id'      => 'css-footer',
+										'checked' => checked( 'on', $model->css_footer, false ),
+										'value'   => 'on',
+									));
+								?>
+								<p class="description">
+									<?php _e( 'Keep the CSS style in the footer is recommended to improve the performance of your website.', WPUSB_App::TEXTDOMAIN ); ?>
+								</p>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 					<?php
