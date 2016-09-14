@@ -71,14 +71,15 @@ class WPUSB_Social_Elements
 	 * Generate object all social icons
 	 *
 	 * @since 3.1.4
-	 * @version 1.0.0
+	 * @version 1.1.0
 	 * @param Null
 	 * @return Object
 	 */
 	private static function _get_elements()
 	{
-		$prefix = Setting::PREFIX;
-		$std    = new stdClass();
+		$prefix       = Setting::PREFIX;
+		$prefix_icons = apply_filters( "{$prefix}_prefix_class_icons", "{$prefix}-icon-" );
+		$std          = new stdClass();
 
 		/**
 		 * @var Object
@@ -92,7 +93,7 @@ class WPUSB_Social_Elements
 		$std->facebook->class       = $prefix . '-facebook';
 		$std->facebook->class_item  = self::$item;
 		$std->facebook->class_link  = self::$class_button;
-		$std->facebook->class_icon  = $prefix . '-icon-facebook';
+		$std->facebook->class_icon  = $prefix_icons . 'facebook';
 		$std->facebook->popup       = self::$action;
 		$std->facebook->inside      = __( 'Share', App::TEXTDOMAIN );
 		$std->facebook->has_counter = true;
@@ -109,7 +110,7 @@ class WPUSB_Social_Elements
 		$std->twitter->class       = $prefix . '-twitter';
 		$std->twitter->class_item  = self::$item;
 		$std->twitter->class_link  = self::$class_button;
-		$std->twitter->class_icon  = $prefix . '-icon-twitter';
+		$std->twitter->class_icon  = $prefix_icons . 'twitter';
 		$std->twitter->popup       = self::$action;
 		$std->twitter->inside      = __( 'Tweet', App::TEXTDOMAIN );
 		$std->twitter->has_counter = true;
@@ -126,7 +127,7 @@ class WPUSB_Social_Elements
 		$std->google->class       = $prefix . '-google-plus';
 		$std->google->class_item  = self::$item;
 		$std->google->class_link  = self::$class_button;
-		$std->google->class_icon  = $prefix . '-icon-google-plus';
+		$std->google->class_icon  = $prefix_icons . 'google-plus';
 		$std->google->popup       = self::$action;
 		$std->google->inside      = __( 'Share', App::TEXTDOMAIN );
 		$std->google->has_counter = true;
@@ -143,7 +144,7 @@ class WPUSB_Social_Elements
 		$std->whatsapp->class       = $prefix . '-whatsapp';
 		$std->whatsapp->class_item  = self::$item;
 		$std->whatsapp->class_link  = self::$class_button;
-		$std->whatsapp->class_icon  = $prefix . '-icon-whatsapp';
+		$std->whatsapp->class_icon  = $prefix_icons . 'whatsapp';
 		$std->whatsapp->popup       = self::$action;
 		$std->whatsapp->inside      = __( 'Share', App::TEXTDOMAIN );
 		$std->whatsapp->has_counter = false;
@@ -160,7 +161,7 @@ class WPUSB_Social_Elements
 		$std->pinterest->class       = $prefix . '-pinterest';
 		$std->pinterest->class_item  = self::$item;
 		$std->pinterest->class_link  = self::$class_button;
-		$std->pinterest->class_icon  = $prefix . '-icon-pinterest';
+		$std->pinterest->class_icon  = $prefix_icons . 'pinterest';
 		$std->pinterest->popup       = self::$action;
 		$std->pinterest->inside      = __( 'Share', App::TEXTDOMAIN );
 		$std->pinterest->has_counter = true;
@@ -177,7 +178,7 @@ class WPUSB_Social_Elements
 		$std->linkedin->class       = $prefix . '-linkedin';
 		$std->linkedin->class_item  = self::$item;
 		$std->linkedin->class_link  = self::$class_button;
-		$std->linkedin->class_icon  = $prefix . '-icon-linkedin';
+		$std->linkedin->class_icon  = $prefix_icons . 'linkedin';
 		$std->linkedin->popup       = self::$action;
 		$std->linkedin->inside      = __( 'Share', App::TEXTDOMAIN );
 		$std->linkedin->has_counter = true;
@@ -194,7 +195,7 @@ class WPUSB_Social_Elements
 		$std->tumblr->class       = $prefix . '-tumblr';
 		$std->tumblr->class_item  = self::$item;
 		$std->tumblr->class_link  = self::$class_button;
-		$std->tumblr->class_icon  = $prefix . '-icon-tumblr';
+		$std->tumblr->class_icon  = $prefix_icons . 'tumblr';
 		$std->tumblr->popup       = self::$action;
 		$std->tumblr->inside      = __( 'Share', App::TEXTDOMAIN );
 		$std->tumblr->has_counter = false;
@@ -211,7 +212,7 @@ class WPUSB_Social_Elements
 		$std->email->class       = $prefix . '-email';
 		$std->email->class_item  = self::$item;
 		$std->email->class_link  = self::$class_button;
-		$std->email->class_icon  = $prefix . '-icon-email';
+		$std->email->class_icon  = $prefix_icons . 'email';
 		$std->email->popup       = self::$action;
 		$std->email->inside      = 'Email';
 		$std->email->has_counter = false;
@@ -228,7 +229,7 @@ class WPUSB_Social_Elements
 		$std->gmail->class       = $prefix . '-gmail';
 		$std->gmail->class_item  = self::$item;
 		$std->gmail->class_link  = self::$class_button;
-		$std->gmail->class_icon  = $prefix . '-icon-gmail';
+		$std->gmail->class_icon  = $prefix_icons . 'gmail';
 		$std->gmail->popup       = self::$action;
 		$std->gmail->inside      = 'Gmail';
 		$std->gmail->has_counter = false;
@@ -245,7 +246,7 @@ class WPUSB_Social_Elements
 		$std->printer->class       = $prefix . '-printer';
 		$std->printer->class_item  = self::$item;
 		$std->printer->class_link  = self::$class_button;
-		$std->printer->class_icon  = $prefix . '-icon-printer';
+		$std->printer->class_icon  = $prefix_icons . 'printer';
 		$std->printer->popup       = self::$action;
 		$std->printer->inside      =  __( 'Print', App::TEXTDOMAIN );
 		$std->printer->has_counter = false;
@@ -262,7 +263,7 @@ class WPUSB_Social_Elements
 		$std->telegram->class       = $prefix . '-telegram';
 		$std->telegram->class_item  = self::$item;
 		$std->telegram->class_link  = self::$class_button;
-		$std->telegram->class_icon  = $prefix . '-icon-telegram';
+		$std->telegram->class_icon  = $prefix_icons . 'telegram';
 		$std->telegram->popup       = self::$action;
 		$std->telegram->inside      = __( 'Share', App::TEXTDOMAIN );
 		$std->telegram->has_counter = false;
@@ -279,7 +280,7 @@ class WPUSB_Social_Elements
 		$std->skype->class       = $prefix . '-skype';
 		$std->skype->class_item  = self::$item;
 		$std->skype->class_link  = self::$class_button;
-		$std->skype->class_icon  = $prefix . '-icon-skype';
+		$std->skype->class_icon  = $prefix_icons . 'skype';
 		$std->skype->popup       = self::$action;
 		$std->skype->inside      = __( 'Share', App::TEXTDOMAIN );
 		$std->skype->has_counter = false;
@@ -296,7 +297,7 @@ class WPUSB_Social_Elements
 		$std->viber->class       = $prefix . '-viber';
 		$std->viber->class_item  = self::$item;
 		$std->viber->class_link  = self::$class_button;
-		$std->viber->class_icon  = $prefix . '-icon-viber';
+		$std->viber->class_icon  = $prefix_icons . 'viber';
 		$std->viber->popup       = self::$action;
 		$std->viber->inside      = __( 'Share', App::TEXTDOMAIN );
 		$std->viber->has_counter = false;
@@ -313,7 +314,7 @@ class WPUSB_Social_Elements
 		$std->like->class       = $prefix . '-like';
 		$std->like->class_item  = self::$item;
 		$std->like->class_link  = self::$class_button;
-		$std->like->class_icon  = $prefix . '-icon-like';
+		$std->like->class_icon  = $prefix_icons . 'like';
 		$std->like->popup       = self::$action;
 		$std->like->inside      = __( 'Like', App::TEXTDOMAIN );
 		$std->like->has_counter = false;
@@ -330,7 +331,7 @@ class WPUSB_Social_Elements
 		$std->share->class       = $prefix . '-share';
 		$std->share->class_item  = self::$item;
 		$std->share->class_link  = self::$class_button;
-		$std->share->class_icon  = $prefix . '-icon-share';
+		$std->share->class_icon  = $prefix_icons . 'share';
 		$std->share->popup       = 'data-action="open-modal-networks"';
 		$std->share->inside      = __( 'More', App::TEXTDOMAIN );
 		$std->share->has_counter = false;
@@ -347,7 +348,7 @@ class WPUSB_Social_Elements
 		$std->reddit->class       = $prefix . '-reddit';
 		$std->reddit->class_item  = self::$item;
 		$std->reddit->class_link  = self::$class_button;
-		$std->reddit->class_icon  = $prefix . '-icon-reddit';
+		$std->reddit->class_icon  = $prefix_icons . 'reddit';
 		$std->reddit->popup       = self::$action;
 		$std->reddit->inside      = __( 'Share', App::TEXTDOMAIN );
 		$std->reddit->has_counter = false;

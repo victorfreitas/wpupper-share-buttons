@@ -28,7 +28,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 			return '';
 		}
 
-        return preg_replace( '/[^a-zA-Z0-9-_\s]+/', '', $class );
+        return sanitize_html_class( $class );
 	}
 
 	/**

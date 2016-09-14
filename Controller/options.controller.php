@@ -48,7 +48,7 @@ class WPUSB_Options_Controller
 	{
 		$option = WPUSB_Utils::get_option_group_name( 'settings' );
 
-		register_setting( $option['group'], $option['name'] );
+		register_setting( $option['group'], $option['name'], array( 'WPUSB_Utils', 'rip_tags' ) );
 	}
 
 	/**
@@ -62,7 +62,7 @@ class WPUSB_Options_Controller
 	{
 		$option = WPUSB_Utils::get_option_group_name( 'social_media', 'settings_group' );
 
-		register_setting( $option['group'], $option['name'] );
+		register_setting( $option['group'], $option['name'], array( 'WPUSB_Utils', 'rip_tags' ) );
 	}
 
 	/**
@@ -76,6 +76,6 @@ class WPUSB_Options_Controller
 	{
 		$option = WPUSB_Utils::get_option_group_name( 'extra_settings' );
 
-		register_setting( $option['group'], $option['name'] );
+		register_setting( $option['group'], $option['name'], array( 'WPUSB_Utils', 'rip_tags' ) );
 	}
 }
