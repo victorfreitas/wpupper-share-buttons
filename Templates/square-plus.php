@@ -68,7 +68,7 @@ EOD;
 				   title="{$args->reference->title}"
 				   rel="nofollow">
 
-				   <i class="{$args->reference->class_icon}-{$args->layout} {$args->class_icon}"></i>
+				   <i class="{$args->item_class_icon} {$args->class_icon}"></i>
 				   {$inside}
 				</a>
 			</div>

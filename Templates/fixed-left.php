@@ -62,6 +62,11 @@ EOD;
 		$link_type = Utils::link_type( $args->reference->link );
 		$layout    = self::$layout;
 		$btn_class = ( 'buttons' == $layout ) ? 'button' : $layout;
+		$class_icon = apply_filters(
+			"{$args->prefix}_item_class_icon",
+			"{$args->reference->class_icon}-{$layout}",
+			$args->reference
+		);
 		$content   = <<<EOD
 			<div class="{$classes}">
 
@@ -71,7 +76,7 @@ EOD;
 				   title="{$args->reference->title}"
 				   rel="nofollow">
 
-				   <i class="{$args->reference->class_icon}-{$layout} {$args->class_icon}"></i>
+				   <i class="{$class_icon} {$args->class_icon}"></i>
 				</a>
 			</div>
 EOD;

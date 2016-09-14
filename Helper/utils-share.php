@@ -67,16 +67,22 @@ abstract class WPUSB_Utils_Share
 	private static function _set_buttons( $args = array() )
 	{
 		$prefix  = Setting::PREFIX;
+		$social  = $args['social'];
 		$buttons = self::get_content_by_layout(
 			(object) array(
-				'reference'    => $args['social'],
-				'prefix'       => $prefix,
-				'class_second' => $args['class_second'],
-				'class_icon'   => $args['class_icon'],
-				'class_link'   => $args['class_link'],
-				'layout'       => $args['layout'],
-				'elements'     => $args['elements'],
-				'share_full'   => '',
+				'reference'       => $social,
+				'prefix'          => $prefix,
+				'class_second'    => $args['class_second'],
+				'class_icon'      => $args['class_icon'],
+				'class_link'      => $args['class_link'],
+				'layout'          => $args['layout'],
+				'elements'        => $args['elements'],
+				'share_full'      => '',
+				'item_class_icon' => apply_filters(
+					"{$prefix}_item_class_icon",
+					"{$social->class_icon}-{$args['layout']}",
+					$social
+				),
 			),
 			'items'
 		);
