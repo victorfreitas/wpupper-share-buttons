@@ -13,6 +13,7 @@ if ( ! function_exists( 'add_action' ) ) {
 use WPUSB_Setting as Setting;
 use WPUSB_Utils as Utils;
 use WPUSB_Core as Core;
+use WPUSB_App as App;
 use WPUSB_Social_Elements as Elements;
 
 class WPUSB_Ajax_Gplus_Controller {
