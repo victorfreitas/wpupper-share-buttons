@@ -10,16 +10,15 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-class WPUSB_Options_Controller
-{
+class WPUSB_Options_Controller {
+
 	/**
 	 * Adds needed actions initialize class
 	 *
 	 * @since 1.0
 	 * @return void
 	 */
-	public function __construct()
-	{
+	public function __construct() {
 		add_action( 'admin_init', array( &$this, 'register_options_settings' ) );
 	}
 
@@ -30,8 +29,7 @@ class WPUSB_Options_Controller
 	 * @param Null
 	 * @return void
 	 */
-	public function register_options_settings()
-	{
+	public function register_options_settings() {
 		$this->_register_options_settings();
 		$this->_register_options_social_media();
 		$this->_register_options_extra_settings();
@@ -44,11 +42,10 @@ class WPUSB_Options_Controller
 	 * @param Null
 	 * @return void
 	 */
-	private function _register_options_settings()
-	{
+	private function _register_options_settings() {
 		$option = WPUSB_Utils::get_option_group_name( 'settings' );
 
-		register_setting( $option['group'], $option['name'], array( 'WPUSB_Utils', 'rip_tags' ) );
+		register_setting( $option['group'], $option['name'], array( 'WPUSB_Utils', 'rm_tags' ) );
 	}
 
 	/**
@@ -58,11 +55,10 @@ class WPUSB_Options_Controller
 	 * @param Null
 	 * @return void
 	 */
-	private function _register_options_social_media()
-	{
+	private function _register_options_social_media() {
 		$option = WPUSB_Utils::get_option_group_name( 'social_media', 'settings_group' );
 
-		register_setting( $option['group'], $option['name'], array( 'WPUSB_Utils', 'rip_tags' ) );
+		register_setting( $option['group'], $option['name'], array( 'WPUSB_Utils', 'rm_tags' ) );
 	}
 
 	/**
@@ -72,10 +68,9 @@ class WPUSB_Options_Controller
 	 * @param Null
 	 * @return void
 	 */
-	private function _register_options_extra_settings()
-	{
+	private function _register_options_extra_settings() {
 		$option = WPUSB_Utils::get_option_group_name( 'extra_settings' );
 
-		register_setting( $option['group'], $option['name'], array( 'WPUSB_Utils', 'rip_tags' ) );
+		register_setting( $option['group'], $option['name'], array( 'WPUSB_Utils', 'rm_tags' ) );
 	}
 }

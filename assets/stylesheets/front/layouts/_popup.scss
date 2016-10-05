@@ -1,8 +1,4 @@
-[data-display="#{$prefix}-none"] {
-	display: none;
-}
-
-.#{$prefix}-popup-content {
+.#{$prefix}-modal-mask {
 	opacity: 0;
 
 	&:after {
@@ -17,85 +13,97 @@
 		z-index: 9999;
 	}
 
-	.#{$prefix}-networks {
-		background: #fff;
-		border-radius: 5px;
-		font-size: 0;
-		max-height: 280px;
-		max-width: 600px;
-		overflow: auto;
-		padding: 3px;
-		position: fixed;
-		z-index: 99999;
-	}
-
 	.#{$prefix}-btn-close {
-		background: #e74c3c;
-		border-radius: 5px;
+		border-radius: 25px;
+		border: 1px solid #cccbcb;
 		color: #fff;
 		cursor: pointer;
 		font-family: Arial, Sans-serif;
-		font-size: 12px;
-		line-height: 0.5;
-		padding: 6px;
+		font-size: 30px;
+		line-height: 0;
+		padding: 8px;
 		position: fixed;
+		right: 15px;
+		top: 15px;
+		z-index: 99999;
 
 		&:hover {
-			background: darken( #e74c3c, 10% );
+	    	color: #fff;
+	    	border-color: #fff;
 		}
 	}
+}
 
-	.#{$prefix}-element-popup {
-		display: inline-block;
-		margin: 3px;
-		max-width: 192px;
-		width: 100%;
-	}
+@include add-animate( modal-networks, modal );
 
-	.#{$prefix}-name-popup {
-		font-family: Arial, Sans-serif;
-		font-size: 14px;
-		font-weight: bold;
-		left: 6px;
-		position: relative;
-		top: -3px;
-
-		&:before {
-			content: attr( data-name );
-		}
-	}
-
-	.#{$prefix}-button-popup {
-		border-radius: 4px;
-		color: #fff;
-		display: inline-block;
-		padding: 8px 4px;
-		text-align: left;
-		text-indent: 10px;
-		width: 100%;
-
-	    &:hover {
-	        border-bottom: none;
-	        box-shadow: none;
-	        text-decoration: none;
-	    }
-	}
-
-	.#{$prefix}-icon-popup {
-	    font-size: 22px;
-	}
+.#{$prefix}-modal-networks {
+	background: #fff;
+	border-radius: 5px;
+	display: none;
+	font-size: 0;
+	line-height: 0;
+	margin: 0;
+	max-height: 280px;
+	max-width: 600px;
+	overflow: auto;
+	padding: 3px;
+	position: fixed;
+	text-align: center;
+	z-index: 99999;
 
 	@media ( max-width: $tablet ) {
-		.#{$prefix}-networks {
-			max-width: 415px;
-		}
+		max-width: 415px;
 	}
 
 	@media ( max-width: $mobile ) {
-		.#{$prefix}-networks {
-			max-width: 205px;
-		}
+		max-width: 205px;
 	}
+}
+
+.#{$prefix}-element-popup {
+	display: inline-block;
+	margin: 3px;
+	max-width: 192px;
+	width: 100%;
+}
+
+.#{$prefix}-name-popup {
+	font-family: Arial, Sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	left: 6px;
+	position: relative;
+	top: -3px;
+
+	&:before {
+		content: attr( data-name );
+	}
+}
+
+.#{$prefix}-button-popup {
+	border-radius: 4px;
+	color: #fff;
+	display: inline-block;
+	line-height: 0;
+	padding: 8px 0;
+	text-align: left;
+	text-indent: 10px;
+	width: 100%;
+
+    &:hover,
+    &:active,
+    &:visited,
+    &:focus {
+    	color: #fff;
+        border-bottom: none;
+        box-shadow: none;
+        text-decoration: none;
+        outline: none;
+    }
+}
+
+.#{$prefix}-icon-popup {
+    font-size: 22px;
 }
 
 @each $key, $color in $colors {
@@ -105,58 +113,5 @@
 		&:hover {
 			background-color: darken( $color, 10% );
 		}
-	}
-}
-
-.#{$prefix}-popup-open-networks {
-	display: inline-block;
-	text-align: center;
-
-	.#{$prefix}-btn-open {
-		background: #444141;
-		color: #eaeaea;
-		display: inline-block;
-		font-size: 25px;
-		height: 48px;
-		line-height: 48px;
-		text-align: center;
-		width: 48px;
-
-		&:focus {
-			outline: none;
-		}
-
-		i {
-		    margin-right: 5px;
-		}
-	}
-
-	@media ( max-width: $tablet ) {
-	    display: table-cell;
-
-		.#{$prefix}-btn-open {
-			display: block;
-			font-size: 32px;
-			line-height: 52px;
-			width: auto;
-		}
-	}
-}
-
-.#{$prefix}-primary-item {
-		font-family: Arial;
-		margin-bottom: 10px;
-		margin-left: 10px;
-		vertical-align: middle;
-
-	.#{$prefix}-btn-open {
-		background: transparent;
-		border-bottom: none;
-		color: #0080b0;
-		height: initial;
-		line-height: 1;
-		position: relative;
-		top: 3px;
-		width: initial;
 	}
 }

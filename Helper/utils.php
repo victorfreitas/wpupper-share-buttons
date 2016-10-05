@@ -13,8 +13,7 @@ if ( ! function_exists( 'add_action' ) ) {
 use WPUSB_App as App;
 use WPUSB_Setting as Setting;
 
-class WPUSB_Utils extends WPUSB_Utils_Share
-{
+class WPUSB_Utils extends WPUSB_Utils_Share {
 	/**
 	 * Escape string for atribute class
 	 *
@@ -22,8 +21,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $string
 	 * @return String
 	 */
-	public static function esc_class( $class )
-	{
+	public static function esc_class( $class ) {
 		if ( empty( $class ) || is_array( $class ) ) {
 			return '';
 		}
@@ -41,19 +39,18 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $sanitize Relative function
 	 * @return Mixed String|Array|Integer
 	*/
-	public static function request_by_type( $type, $key, $default, $sanitize = 'rip_tags' )
-	{
+	public static function request_by_type( $type, $key, $default, $sanitize = 'rm_tags' ) {
 		$request = filter_input_array( $type, FILTER_SANITIZE_STRING );
 
-		if ( ! isset( $request[$key] ) || empty( $request[$key] ) ) {
+		if ( ! isset( $request[ $key ] ) || empty( $request[ $key ] ) ) {
 			return $default;
 		}
 
-		if ( is_array( $request[$key] ) ) {
-			return self::filter_array( $request[$key], $sanitize );
+		if ( is_array( $request[ $key ] ) ) {
+			return self::filter_array( $request[ $key ], $sanitize );
 		}
 
-		return self::sanitize( $request[$key], $sanitize );
+		return self::sanitize( $request[ $key ], $sanitize );
 	}
 
 	/**
@@ -66,8 +63,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $sanitize Relative function
 	 * @return Mixed String|Array|Integer
 	*/
-	public static function post( $key, $default = '', $sanitize = 'rip_tags' )
-	{
+	public static function post( $key, $default = '', $sanitize = 'rm_tags' ) {
 		return self::request_by_type( INPUT_POST, $key, $default, $sanitize );
 	}
 
@@ -81,8 +77,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $sanitize Relative function
 	 * @return Mixed String|Array|Integer
 	*/
-	public static function get( $key, $default = '', $sanitize = 'rip_tags' )
-	{
+	public static function get( $key, $default = '', $sanitize = 'rm_tags' ) {
 		return self::request_by_type( INPUT_GET, $key, $default, $sanitize );
 	}
 
@@ -96,8 +91,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $sanitize Relative function
 	 * @return Mixed String|Array|Integer
 	*/
-	public static function cookie( $key, $default = '', $sanitize = 'rip_tags' )
-	{
+	public static function cookie( $key, $default = '', $sanitize = 'rm_tags' ) {
 		return self::request_by_type( INPUT_COOKIE, $key, $default, $sanitize );
 	}
 
@@ -110,10 +104,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $function_name Relative function to use
 	 * @return String
 	*/
-	public static function sanitize( $value, $function_name )
-	{
+	public static function sanitize( $value, $function_name ) {
 		if ( ! is_callable( $function_name ) ) {
-			return self::rip_tags( $value );
+			return self::rm_tags( $value );
 		}
 
 		return call_user_func( $function_name, $value );
@@ -128,10 +121,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $sanitize
 	 * @return Array
 	 */
-	public static function filter_array( $value, $sanitize )
-	{
+	public static function filter_array( $value, $sanitize ) {
 		if ( ! is_callable( $sanitize )  ) {
-	    	return self::rip_tags( $value );
+	    	return self::rm_tags( $value );
 		}
 
 	    return array_map( $sanitize, $value );
@@ -146,8 +138,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Boolean $remove_breaks
 	 * @return Mixed String|Array
 	 */
-	public static function rip_tags( $value, $remove_breaks = false )
-	{
+	public static function rm_tags( $value, $remove_breaks = false ) {
 		if ( is_array( $value ) ) {
 			return array_map( __METHOD__, $value );
 		}
@@ -162,8 +153,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param null
 	 * @return Boolean
 	*/
-	public static function is_request_ajax()
-	{
+	public static function is_request_ajax() {
 		if ( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) ) {
 			$request_ajax = $_SERVER['HTTP_X_REQUESTED_WITH'];
 		}
@@ -178,8 +168,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param null
 	 * @return String
 	 */
-	public static function get_title()
-	{
+	public static function get_title() {
 		$post_id = self::get_id();
 
 		if ( $post_id ) {
@@ -197,11 +186,10 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param null
 	 * @return String
 	 */
-	public static function site_name()
-	{
+	public static function site_name() {
 		$site_name = get_option( 'blogname' );
 
-		return self::rip_tags( $site_name );
+		return self::rm_tags( $site_name );
 	}
 
 	/**
@@ -211,8 +199,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param null
 	 * @return Integer
 	 */
-	public static function get_id()
-	{
+	public static function get_id() {
 		global $post;
 
 		if ( isset( $post->ID ) ) {
@@ -229,8 +216,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param null
 	 * @return String
 	 */
-	public static function site_url( $path = '' )
-	{
+	public static function site_url( $path = '' ) {
 		$site_url = get_site_url( null, "/{$path}" );
 
 		return esc_url( $site_url );
@@ -243,8 +229,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param null
 	 * @return String
 	 */
-	public static function get_permalink()
-	{
+	public static function get_permalink() {
 		$post_id = self::get_id();
 
 		if ( $post_id ) {
@@ -261,10 +246,15 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param null
 	 * @return String
 	 */
-	public static function get_real_permalink( $is_fixed = false )
-	{
+	public static function get_real_permalink( $is_fixed = false ) {
+		$url = apply_filters( App::SLUG - '-real-permalink', false, $is_fixed );
+
+		if ( $url ) {
+			return esc_url( $url );
+		}
+
 		if ( $is_fixed && self::is_home() ) {
-			$pagename = self::rip_tags( get_query_var( 'pagename' ) );
+			$pagename = self::rm_tags( get_query_var( 'pagename' ) );
 			return self::site_url( "{$pagename}/" );
 		}
 
@@ -283,8 +273,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param null
 	 * @return String
 	 */
-	public static function get_term_link()
-	{
+	public static function get_term_link() {
 		$term      = self::get_queried_object();
 		$term_link = get_term_link( $term );
 
@@ -303,8 +292,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Null
 	 * @return String
 	 */
-	public static function generate_short_url( $url = false )
-	{
+	public static function generate_short_url( $url = false ) {
 		$bitly_token = self::option( 'bitly_token', false );
 		$permalink   = ( $url ) ? $url : self::get_permalink();
 		$tracking    = self::get_tracking();
@@ -325,8 +313,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param string $url
 	 * @return String
 	 */
-	public static function url_clean( $url )
-	{
+	public static function url_clean( $url ) {
 		$name = App::SLUG . '-url-share';
 		return apply_filters( $name, $url );
 	}
@@ -339,8 +326,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Null
 	 * @return String
 	 */
-	public static function get_tracking()
-	{
+	public static function get_tracking() {
 		$tracking = self::option( 'tracking' );
 
 		return self::html_decode( $tracking );
@@ -353,8 +339,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param null
 	 * @return String
 	 */
-	public static function get_real_title( $is_fixed = false )
-	{
+	public static function get_real_title( $is_fixed = false ) {
+		$title = apply_filters( App::SLUG - '-real-title', false, $is_fixed );
+
+		if ( $title ) {
+			return self::rm_tags( $title );
+		}
+
 		if ( $is_fixed && self::is_home() ) {
 			return rawurlencode( self::site_name() );
 		}
@@ -379,8 +370,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Null
 	 * @return Boolean | Object
 	 */
-	public static function get_queried_object()
-	{
+	public static function get_queried_object() {
 		$term = get_queried_object();
 
 		if ( isset( $term->term_id ) ) {
@@ -397,8 +387,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param null
 	 * @return String thumbnail
 	 */
-	public static function get_image()
-	{
+	public static function get_image() {
 		global $post;
 
 		$thumbnail   = '';
@@ -422,8 +411,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param null
 	 * @return String content post
 	 */
-	public static function body_mail()
-	{
+	public static function body_mail() {
 		global $post;
 
 		$content = '';
@@ -432,7 +420,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 			$content = $post->post_content;
 		}
 
-		$content = self::rip_tags( $content );
+		$content = self::rm_tags( $content );
 		$content = preg_replace( '/\[.*\]/', null, $content );
 
 		return apply_filters( App::SLUG . 'body-email', $content );
@@ -445,9 +433,8 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param null
 	 * @return String link base file
 	 */
-	public static function base_name()
-	{
-		return plugin_basename( plugin_dir_path( __DIR__ ) . basename( App::FILE ) );
+	public static function base_name( $filter = '' ) {
+		return $filter . plugin_basename( App::FILE );
 	}
 
 	/**
@@ -457,8 +444,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $string
 	 * @return String
 	 */
-	public static function html_decode( $string )
-	{
+	public static function html_decode( $string ) {
 		return html_entity_decode( $string, ENT_NOQUOTES, 'UTF-8' );
 	}
 
@@ -470,8 +456,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $path
 	 * @return String
 	 */
-	public static function plugin_url( $file, $path = 'assets/' )
-	{
+	public static function plugin_url( $file, $path = 'assets/' ) {
 		return plugins_url( "{$path}{$file}", __DIR__ );
 	}
 
@@ -482,8 +467,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $file
 	 * @return String
 	 */
-	public static function file_path( $file = '', $path = 'assets/' )
-	{
+	public static function file_path( $file = '', $path = 'assets/' ) {
 		return plugin_dir_path( dirname( __FILE__ ) ) . "{$path}{$file}";
 	}
 
@@ -494,8 +478,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Int $path
 	 * @return Integer
 	 */
-	public static function filetime( $path )
-	{
+	public static function filetime( $path ) {
 		return date( 'dmYHi', filemtime( $path ) );
 	}
 
@@ -507,16 +490,15 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $sanitize Relative function
 	 * @return String
 	 */
-	public static function option( $name, $default = '', $sanitize = 'rip_tags' )
-	{
-		$model   = new Setting();
-		$options = $model->get_options();
+	public static function option( $name, $default = '', $sanitize = 'rm_tags' ) {
+		$setting = new Setting();
+		$option  = self::isset_get( $setting->options, $name, false );
 
-		if ( ! isset( $options[$name] ) || empty( $options[$name] ) ) {
+		if ( empty( $option ) ) {
 			return $default;
 		}
 
-		$option = self::sanitize( $options[$name], $sanitize );
+		$option = self::sanitize( $option, $sanitize );
 
 		return apply_filters( App::SLUG . "-option-{$name}-value", $option );
 	}
@@ -530,8 +512,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Boolean $echo
 	 * @return json
 	 */
-	public static function error_server_json( $code, $message = 'Message Error', $echo = true )
-	{
+	public static function error_server_json( $code, $message = 'Message Error', $echo = true ) {
 		$response = json_encode(array(
 			'status'  => 'error',
 			'code'    => $code,
@@ -555,8 +536,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $message
 	 * @return Void
 	 */
-	public static function ajax_verify_request( $request, $message = 'server_error', $code = 500 )
-	{
+	public static function ajax_verify_request( $request, $message = 'server_error', $code = 500 ) {
 		if ( ! $request ) {
 			http_response_code( $code );
 			self::error_server_json( $code, $message );
@@ -569,18 +549,17 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 *
 	 * @since 1.0.0
 	 * @since 3.6.2 Modified
-	 * @param String $option_name
-	 * @param String $option_value
+	 * @param String $option
+	 * @param String $value
 	 * @return String
 	 */
-	public static function add_update_option( $option_name, $option_value )
-	{
-		if ( $option_value ) {
-			update_site_option( $option_name, Setting::DB_VERSION );
+	public static function add_update_option( $option, $value ) {
+		if ( $value ) {
+			update_site_option( $option, Setting::DB_VERSION );
 			return;
 		}
 
-		add_site_option( $option_name, Setting::DB_VERSION );
+		add_site_option( $option, Setting::DB_VERSION );
 	}
 
 	/**
@@ -590,8 +569,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Integer $number
 	 * @return String
 	 */
-	public static function number_format( $number )
-	{
+	public static function number_format( $number ) {
 		$number = (double) $number;
 
 		if ( ! $number ) {
@@ -609,10 +587,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String|int $index
 	 * @return String
 	 */
-	public static function isset_get( $args = array(), $index = '', $default = '' )
-	{
-		if ( isset( $args[$index] ) ) {
-			return $args[$index];
+	public static function isset_get( $args = array(), $index = '', $default = '' ) {
+		if ( isset( $args[ $index ] ) ) {
+			return $args[ $index ];
 		}
 
 		if ( isset( $args['elements'] ) ) {
@@ -629,8 +606,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Null
 	 * @return Void
 	 */
-	public static function include_file_screen()
-	{
+	public static function include_file_screen() {
 		global $wp_version;
 
 		require_once( ABSPATH . 'wp-admin/includes/screen.php' );
@@ -647,13 +623,12 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $key
 	 * @return Boolean
 	 */
-	public static function get_update( $key )
-	{
-		if ( ! isset( $_GET[$key] ) ) {
+	public static function get_update( $key ) {
+		if ( ! ( $page = self::get( $key, false ) ) ) {
 			return false;
 		}
 
-		if ( 'true' == $_GET[$key] ) {
+		if ( 'true' === $page ) {
 			return true;
 		}
 	}
@@ -666,8 +641,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $url
 	 * @return String
 	 */
-	public static function bitly_short_url_cache( $token, $url )
-	{
+	public static function bitly_short_url_cache( $token, $url ) {
 		$cache_url = get_transient( $url );
 
 		if ( false !== $cache_url ) {
@@ -685,8 +659,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $url
 	 * @return String
 	 */
-	public static function bitly_short_url( $token, $url )
-	{
+	public static function bitly_short_url( $token, $url ) {
 		$api_url  = 'https://api-ssl.bitly.com/v3/shorten/';
 		$api_url .= "?access_token={$token}&longUrl={$url}";
 		$args     = array(
@@ -712,11 +685,10 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Array $response
 	 * @return String
 	 */
-	private static function _bitly_response( $response, $url )
-	{
+	private static function _bitly_response( $response, $url ) {
 		$response   = json_decode( $response['body'] );
 		$transient  = App::SLUG . '-shorturl-cache-expire';
-		$cache_time = apply_filters( $transient, ( WEEK_IN_SECONDS * 1 ) );
+		$cache_time = apply_filters( $transient, ( 4 * WEEK_IN_SECONDS ) );
 
 		if ( 200 !== $response->status_code ) {
 			return $url;
@@ -734,8 +706,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Null
 	 * @return Void
 	 */
-	public static function add_options_defaults()
-	{
+	public static function add_options_defaults() {
 		self::_add_options_settings();
 		self::_add_options_social_media();
 		self::_add_options_extra_settings();
@@ -748,8 +719,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _add_options_settings()
-	{
+	private static function _add_options_settings() {
 		$option = self::get_option_group_name( 'settings' );
 		$value  = array(
 			'home'             => 'off',
@@ -772,8 +742,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _add_options_social_media()
-	{
+	private static function _add_options_social_media() {
 		$option = self::get_option_group_name( 'social_media' );
 		$value  = array(
 			'facebook' => 'facebook',
@@ -794,8 +763,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _add_options_extra_settings()
-	{
+	private static function _add_options_extra_settings() {
 		$option = self::get_option_group_name( 'extra_settings' );
 		$value  = array(
 			'disable_css'       => 'off',
@@ -815,9 +783,8 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $group
 	 * @return Array
 	 */
-	public static function get_option_group_name( $name, $group = 'group' )
-	{
-		$prefix       = Setting::PREFIX;
+	public static function get_option_group_name( $name, $group = 'group' ) {
+		$prefix       = App::SLUG;
 		$option_name  = "{$prefix}_{$name}";
 		$group_name   = ( 'group' !== $group ) ? $prefix : $option_name;
 		$option_group = "{$group_name}_{$group}";
@@ -835,8 +802,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $caracter
 	 * @return String
 	 */
-	public static function get_twitter_text( $title, $twitter_text_a, $twitter_text_b, $caracter )
-	{
+	public static function get_twitter_text( $title, $twitter_text_a, $twitter_text_b, $caracter ) {
 		$text = "{$twitter_text_a}%20{$title}%20-%20{$twitter_text_b}%20{$caracter}%20";
 
 		return apply_filters( App::SLUG . '-twitter-text', $text, $title );
@@ -849,8 +815,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param String $current
 	 * @return String|NULL
 	 */
-	public static function selected_menu( $current )
-	{
+	public static function selected_menu( $current ) {
 		$page = self::get( 'page' );
 
 		if ( $page === $current ) {
@@ -867,8 +832,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Null
 	 * @return String
 	 */
-	public static function is_fixed_top()
-	{
+	public static function is_fixed_top() {
 		return self::option( 'fixed_top', false );
 	}
 
@@ -879,8 +843,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Null
 	 * @return Boolean
 	 */
-	public static function is_single()
-	{
+	public static function is_single() {
 		if ( is_single() && self::option( 'single' ) === 'on' ) {
 			return true;
 		}
@@ -895,8 +858,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Null
 	 * @return Boolean
 	 */
-	public static function is_page()
-	{
+	public static function is_page() {
 		if ( ( is_page() || is_page_template() ) && self::option( 'pages' ) === 'on' ) {
 			return true;
 		}
@@ -911,8 +873,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Null
 	 * @return Boolean
 	 */
-	public static function is_home()
-	{
+	public static function is_home() {
 		if ( ( is_home() || is_front_page() ) && self::option( 'home' ) === 'on' ) {
 			return true;
 		}
@@ -927,8 +888,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Null
 	 * @return Boolean
 	 */
-	public static function is_archive_category()
-	{
+	public static function is_archive_category() {
 		if ( ( is_archive() || is_category() ) && self::option( 'archive_category' ) === 'on' ) {
 			return true;
 		}
@@ -943,8 +903,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Null
 	 * @return Boolean
 	 */
-	public static function is_active()
-	{
+	public static function is_active() {
 		if ( self::is_home() || self::is_archive_category() ) {
 			return true;
 		}
@@ -963,9 +922,8 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param mixed $response
 	 * @return Void
 	 */
-	public static function send_json( $response )
-	{
-		$charset = self::rip_tags( get_option( 'blog_charset' ) );
+	public static function send_json( $response ) {
+		$charset = self::rm_tags( get_option( 'blog_charset' ) );
 
 		@header( 'Content-Type: application/json; charset=' . $charset );
 		echo wp_json_encode( $response );
@@ -979,8 +937,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param mixed $response
 	 * @return Array
 	 */
-	public static function retrieve_body_json( $response )
-	{
+	public static function retrieve_body_json( $response ) {
 		$results = wp_remote_retrieve_body( $response );
 
 		return json_decode( $results );
@@ -993,10 +950,62 @@ class WPUSB_Utils extends WPUSB_Utils_Share
 	 * @param Null
 	 * @return String
 	 */
-	public static function get_page_url()
-	{
-		$page_url = get_admin_url( null,  'admin.php?page=' . App::SLUG );
+	public static function get_page_url() {
+		return self::get_admin_url( App::SLUG );
+	}
 
-		return esc_url( $page_url );
+	/**
+	 * Admin sanitize url
+	 *
+	 * @since 3.6.0
+	 * @param String $page_name
+	 * @return String
+	 */
+	public static function get_admin_url( $page_name = '' ) {
+		$path = ( empty( $page_name ) ) ? '' : "admin.php?page={$page_name}";
+
+		return esc_url( get_admin_url( null, $path ) );
+	}
+
+	/**
+	 * All options name
+	 *
+	 * @since 3.8.0
+	 * @param Null
+	 * @return Array
+	 */
+	public static function get_options_name() {
+		return array(
+			App::SLUG . '_report_db_version',
+			App::SLUG . '_settings',
+			App::SLUG . '_social_media',
+			App::SLUG . '_extra_settings',
+		);
+	}
+
+	/**
+	 * Get component by type
+	 *
+	 * @since 3.9.0
+	 * @param String $type
+	 * @return String
+	 */
+	public static function get_component_by_type( $type = 'counter' ) {
+		$component = 'data-' . App::SLUG . '-component=';
+		$attr_name = '';
+
+		switch ( $type ) :
+
+			case 'counter' :
+				$attr_name = $component . '"counter-social-share"';
+				break;
+
+			case 'modal' :
+				$attr_name = $component . '"social-modal"';
+				break;
+
+		endswitch;
+
+		return apply_filters( App::SLUG . '-component-name', $attr_name, App::SLUG );
 	}
 }

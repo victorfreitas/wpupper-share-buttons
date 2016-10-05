@@ -125,7 +125,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 	CounterSocialShare.fn.getParamsGoogle = function() {
 		return {
 			action : 'wpusb_gplus_counts',
-			url    : this.data.elementUrl,
+			url    : decodeURIComponent( this.data.elementUrl ),
 		    nonce  : this.data.attrNonceGplus
 		};
 	};

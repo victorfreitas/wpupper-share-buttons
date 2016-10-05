@@ -11,8 +11,8 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-class WPUSB_Shares_View
-{
+class WPUSB_Shares_View {
+
 	/**
 	 * Create custom buttons
 	 *
@@ -20,8 +20,7 @@ class WPUSB_Shares_View
 	 * @param Array $atts
 	 * @return String
 	 */
-	public static function buttons_share( $atts = array() )
-	{
+	public static function buttons_share( $atts = array() ) {
 		return WPUSB_Utils::buttons_share( $atts );
 	}
 }

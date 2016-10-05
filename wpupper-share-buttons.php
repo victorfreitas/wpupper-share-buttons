@@ -5,7 +5,7 @@
  *
  * Plugin Name: WPUpper Share Buttons
  * Plugin URI:  https://github.com/victorfreitas/wpupper-share-buttons
- * Version:     3.8.2
+ * Version:     3.9.0
  * Author:      WPUpper
  * Author URI:  https://github.com/victorfreitas
  * License:     GPL2
@@ -36,8 +36,8 @@
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
 
-class WPUSB_App
-{
+class WPUSB_App {
+
     /**
      * The short slug
      *
@@ -53,6 +53,13 @@ class WPUSB_App
 	const TEXTDOMAIN = 'wpupper-share-buttons';
 
     /**
+     * Plugin name
+     *
+     * @var String
+     */
+	const NAME = 'WPUpper Share Buttons';
+
+    /**
      * Initial file path
      *
      * @var String
@@ -64,14 +71,7 @@ class WPUSB_App
      *
      * @var String
      */
-	const VERSION = '3.8.2';
-
-    /**
-     * Verify is admin
-     *
-     * @var Boolean
-     */
-	public static $is_admin = false;
+	const VERSION = '3.9.0';
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -79,8 +79,7 @@ class WPUSB_App
 	 * @since 2.0
 	 * @return Void
 	 */
-	public static function uses( $class, $location )
-	{
+	public static function uses( $class, $location ) {
 		$extension = 'php';
 		$sep       = DIRECTORY_SEPARATOR;
 		$dirname   = dirname( __FILE__ );
@@ -100,8 +99,7 @@ class WPUSB_App
 	 * @param Null
 	 * @return Array
 	 */
-	public static function get_files()
-	{
+	public static function get_files() {
 		$root    = dirname( __FILE__ );
 		$pattern = "{$root}{/Helper/,/Templates/}*.php";
 		$files   = glob( $pattern, GLOB_BRACE );
@@ -117,8 +115,7 @@ class WPUSB_App
 	 * @param Null
 	 * @return Void
 	 */
-	public static function require_files()
-	{
+	public static function require_files() {
 		$files = self::get_files();
 
 		foreach( $files as $key => $file ) {
@@ -133,16 +130,11 @@ class WPUSB_App
 	 * @param Null
 	 * @return Void
 	 */
-	public static function set_is_admin()
-	{
-		self::$is_admin = true;
+	public static function is_admin() {
+		return is_admin();
 	}
 }
 
-// Set property is admin
-if ( is_admin() ) {
-	WPUSB_App::set_is_admin();
-}
-
 WPUSB_App::uses( 'core', 'Config' );
+
 new WPUSB_Core();

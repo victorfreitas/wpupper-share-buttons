@@ -11,11 +11,13 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-use WPUSB_Utils as Utils;
+use WPUSB_Settings_View as View;
+use WPUSB_Setting as Setting;
 use WPUSB_App as App;
+use WPUSB_Utils as Utils;
 
-class WPUSB_Fixed_Left
-{
+class WPUSB_Fixed_Left {
+
 	protected static $layout;
 	/**
 	 * Open buttons container
@@ -24,14 +26,14 @@ class WPUSB_Fixed_Left
 	 * @param Object $args
 	 * @return String
 	 */
-	public static function init( \stdClass $atts )
-	{
+	public static function init( \stdClass $atts ) {
 		self::_set_layout();
 
-		$args       = Utils::content_args();
+		$args       = Utils::content_args( $atts );
 		$classes    = self::get_classes_first( $atts );
 		$data_token = Utils::get_data_token( $args['token'] );
 		$counter    = self::add_count( $atts );
+		$component  = Utils::get_component_by_type();
 		$content    = <<<EOD
 		<div class="{$classes}"
 		     data-element-url="{$args['permalink']}"
@@ -40,7 +42,7 @@ class WPUSB_Fixed_Left
 		     data-element="fixed"
 		     data-attr-nonce="{$args['nonce']}"
 		     data-attr-nonce-gplus="{$args['nonce-gplus']}"
-		     data-component="counter-social-share"
+		     {$component}
 		     {$data_token}>
 
 			<div data-element="buttons" class="{$atts->position_fixed}-container">
@@ -56,12 +58,12 @@ EOD;
 	 * @param Object $args
 	 * @return String
 	 */
-	public static function items( $args = OBJECT )
-	{
-		$classes   = self::get_classes_second( $args );
-		$link_type = Utils::link_type( $args->reference->link );
-		$layout    = self::$layout;
-		$btn_class = ( 'buttons' == $layout ) ? 'button' : $layout;
+	public static function items( $args = OBJECT ) {
+		$classes    = self::get_classes_second( $args );
+		$link_type  = Utils::link_type( $args->reference->link );
+		$layout     = self::$layout;
+		$btn_class  = ( 'buttons' == $layout ) ? 'button' : $layout;
+		$ga_event   = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
 		$class_icon = apply_filters(
 			"{$args->prefix}_item_class_icon",
 			"{$args->reference->class_icon}-{$layout}",
@@ -74,6 +76,7 @@ EOD;
 				   {$args->reference->popup}
 				   class="{$args->prefix}-{$btn_class} {$args->class_link}"
 				   title="{$args->reference->title}"
+				   {$ga_event}
 				   rel="nofollow">
 
 				   <i class="{$class_icon} {$args->class_icon}"></i>
@@ -91,8 +94,7 @@ EOD;
 	 * @return String
 	 *
 	 */
-	public static function get_classes_second( $atts )
-	{
+	public static function get_classes_second( $atts ) {
 		$classes  = "{$atts->reference->class_item}";
 		$classes .= " {$atts->reference->class}";
 		$classes .= " {$atts->class_second}";
@@ -107,8 +109,7 @@ EOD;
 	 * @param Object $args
 	 * @return String
 	 */
-	public static function add_count( $args )
-	{
+	public static function add_count( $args ) {
 		$prefix  = $args->prefix;
 		$content = '';
 
@@ -136,8 +137,7 @@ EOD;
 	 * @param Null
 	 * @return String
 	 */
-	private static function _get_inside_count()
-	{
+	private static function _get_inside_count() {
 		$inside = '<span>' . __( 'Shares', App::TEXTDOMAIN ) . '</span>';
 
 		return ( 'default' == self::$layout ) ? $inside : '';
@@ -151,8 +151,7 @@ EOD;
 	 * @return String
 	 *
 	 */
-	public static function get_classes_first( $atts )
-	{
+	public static function get_classes_first( $atts ) {
 		$classes  = $atts->prefix;
 		$layout   = self::$layout;
 		$classes .= " {$atts->prefix}-{$layout}";
@@ -170,9 +169,8 @@ EOD;
 	 * @return String
 	 *
 	 */
-	public static function end( $args )
-	{
-		$prefix  = WPUSB_Setting::PREFIX;
+	public static function end( $args ) {
+		$prefix  = App::SLUG;
 		$content = <<<EOD
 				</div>
 				<span class="{$prefix}-toggle"
@@ -190,8 +188,7 @@ EOD;
 	 * @return Void
 	 *
 	 */
-	public static function _set_layout()
-	{
+	public static function _set_layout() {
 		self::$layout = Utils::option( 'fixed_layout', 'buttons' );
 	}
 }

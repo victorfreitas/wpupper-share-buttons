@@ -5,7 +5,7 @@ Donate link: [Donate Now](https://www.redcross.org/donate/donation)
 Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email form, social media buttons, click to tweet, pinterest, reddit, viber, telegram, gmail, skype, like, linkedin.  
 Requires at least: 3.0.0  
 Tested up to: 4.6  
-Stable tag: 3.8.2  
+Stable tag: 3.9.0  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -43,6 +43,8 @@ $args = array(
     'class_link'   => '',
     'class_icon'   => '',
     'layout'       => 'default',
+    'title'        => '',
+    'url'          => '',
     'elements'     => array(
         'remove_inside'  => false,
         'remove_counter' => false,
@@ -61,6 +63,15 @@ Layout options: default, buttons, rounded, square
 4. Using the content editor -> [wpusb class_first="" class_second="" class_link="" class_icon="" layout="default" remove_inside="0" remove_counter="0"]  
 
 ## Changelog
+
+### 3.9.0
+
+* General coding standards and improvements
+* Improvements modal social networks
+* New: Add buton share on Flipboard
+* New: Option set url via shortcode or method php
+* New: Option set title via shortcode or method php
+* Bug fixes
 
 ### 3.8.2
 

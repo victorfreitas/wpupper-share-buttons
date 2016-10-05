@@ -89,3 +89,23 @@
          -o-filter: brightness( 1.05 );
             filter: brightness( 1.05 );
 }
+
+@-webkit-keyframes modal {
+    from {
+    	opacity: 0;
+   	}
+
+    to {
+    	opacity: 1;
+   	}
+}
+
+@keyframes modal {
+    from {
+    	opacity: 0;
+   	}
+
+    to {
+    	opacity: 1;
+   }
+}

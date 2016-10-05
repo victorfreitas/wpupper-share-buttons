@@ -20,22 +20,21 @@ use WPUSB_Core as Core;
 App::uses( 'setting', 'Model' );
 
 //View
-if ( App::$is_admin ) {
+if ( App::is_admin() ) {
 	App::uses( 'settings', 'View' );
 	App::uses( 'settings-extra', 'View' );
 	App::uses( 'settings-faq', 'View' );
 }
 
-class WPUSB_Settings_Controller
-{
+class WPUSB_Settings_Controller {
+
 	/**
 	* Initialize the plugin by setting localization, filters, and administration functions.
 	*
 	* @since 1.2
 	*/
-	public function __construct()
-	{
-		add_filter( 'plugin_action_links_' . Utils::base_name(), array( &$this, 'plugin_link' ) );
+	public function __construct() {
+		add_filter( Utils::base_name( 'plugin_action_links_' ), array( &$this, 'plugin_link' ) );
 		add_action( 'admin_enqueue_scripts', array( &$this, 'admin_scripts' ) );
 		add_action( 'admin_menu', array( &$this, 'menu_page' ) );
 		add_action( 'admin_init', array( &$this, 'plugin_updates' ) );
@@ -48,12 +47,12 @@ class WPUSB_Settings_Controller
 	 * @param Array $links
 	 * @return Array links action plugins
 	 */
-	public function plugin_link( $links )
-	{
-		$page_url      = Utils::get_page_url();
-		$settings      = __( 'Settings', App::TEXTDOMAIN );
-		$settings_link = "<a href=\"{$page_url}\">{$settings}</a>";
-		array_unshift( $links, $settings_link );
+	public function plugin_link( $links ) {
+		$links[] = sprintf(
+			'<a href="%s">%s</a>',
+			Utils::get_page_url(),
+			__( 'Settings', App::TEXTDOMAIN )
+		);
 
 		return $links;
 	}
@@ -65,21 +64,20 @@ class WPUSB_Settings_Controller
 	 * @param Null
 	 * @return Void
 	 */
-	public function admin_scripts()
-	{
-		$page_settings = ( App::SLUG == Utils::get( 'page' ) );
-		$deps          = ( $page_settings ) ? array( Setting::PREFIX . '-style' ) : array();
+	public function admin_scripts() {
+		$page_settings = ( App::SLUG === Utils::get( 'page' ) );
+		$deps          = ( $page_settings ) ? array( App::SLUG . '-style' ) : array();
 
 		wp_enqueue_script(
-			Setting::PREFIX . '-admin-scripts',
-			Utils::plugin_url( 'javascripts/built.admin.js' ),
+			App::SLUG . '-admin-scripts',
+			Utils::plugin_url( 'javascripts/admin/built.js' ),
 			array( 'jquery', 'jquery-ui-sortable' ),
 			App::VERSION,
 			true
 		);
 
 		wp_localize_script(
-			Setting::PREFIX . '-admin-scripts',
+			App::SLUG . '-admin-scripts',
 			'WPUSBVars',
 			array(
 				'ajaxUrl'       => admin_url( 'admin-ajax.php' ),
@@ -93,21 +91,21 @@ class WPUSB_Settings_Controller
 			)
 		);
 
-		wp_enqueue_style(
-			Setting::PREFIX . '-admin-style',
-			Utils::plugin_url( 'stylesheets/admin.css' ),
-			$deps,
-			App::VERSION
-		);
-
 		if ( $page_settings ) {
 			wp_enqueue_style(
-				Setting::PREFIX . '-style',
+				App::SLUG . '-style',
 				Utils::plugin_url( 'stylesheets/style.css' ),
 				array(),
 				App::VERSION
 			);
 		}
+
+		wp_enqueue_style(
+			App::SLUG . '-admin-style',
+			Utils::plugin_url( 'stylesheets/admin.css' ),
+			$deps,
+			App::VERSION
+		);
 	}
 
 	/**
@@ -117,8 +115,7 @@ class WPUSB_Settings_Controller
 	 * @param Null
 	 * @return void
 	 */
-	public function menu_page()
-	{
+	public function menu_page() {
 		add_menu_page(
 			__( 'WPUpper Share Buttons', App::TEXTDOMAIN ),
 			__( 'WPUpper Share', App::TEXTDOMAIN ),
@@ -154,8 +151,7 @@ class WPUSB_Settings_Controller
 	 * @param Null
 	 * @return void
 	 */
-	public function plugin_updates()
-	{
+	public function plugin_updates() {
 		$option_name  = Setting::TABLE_NAME . '_db_version';
 		$option_value = get_site_option( $option_name );
 
@@ -171,15 +167,14 @@ class WPUSB_Settings_Controller
 	 * @param Null
 	 * @return void
 	 */
-	public function admin_notices()
-	{
+	public function admin_notices() {
 		$option = get_site_option( App::SLUG . '-admin-notices' );
 
 		if ( ! $option ) {
 			return;
 		}
 
-		$prefix = Setting::PREFIX;
+		$prefix = App::SLUG;
 		$nonce  = Utils::nonce( Setting::AJAX_ADMIN_NONCE );
 
 		View::admin_notice( $prefix, $nonce );
@@ -192,8 +187,7 @@ class WPUSB_Settings_Controller
 	 * @param Null
 	 * @return Void
 	 */
-	public function redirect_plugin_page()
-	{
+	public function redirect_plugin_page() {
 		if ( ! Utils::get( 'activate-multi', false ) ) {
 			$plugin_url = Utils::get_page_url();
 			wp_redirect( $plugin_url );

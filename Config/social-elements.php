@@ -15,8 +15,8 @@ use WPUSB_App as App;
 use WPUSB_Setting as Setting;
 use WPUSB_Utils as Utils;
 
-class WPUSB_Social_Elements
-{
+class WPUSB_Social_Elements {
+
 	public static $action;
 	public static $url_like;
 	public static $url;
@@ -49,6 +49,7 @@ class WPUSB_Social_Elements
 		'like'      => 'like',
 		'share'     => 'share',
 		'reddit'    => 'reddit',
+		'flipboard' => 'flipboard',
 	);
 
 	/**
@@ -56,12 +57,13 @@ class WPUSB_Social_Elements
 	 *
 	 * @since 3.7.0
 	 * @version 1.0.0
-	 * @param String $element
+	 * @param String $item
 	 * @return Boolean
 	 */
-	public static function items_available( $element )
-	{
-		if ( isset( self::$items_available[$element] ) )
+	public static function items_available( $item ) {
+		$items = apply_filters( App::SLUG . '-items-available', self::$items_available );
+
+		if ( isset( $items[ $item ] ) )
 			return true;
 
 		return false;
@@ -75,9 +77,8 @@ class WPUSB_Social_Elements
 	 * @param Null
 	 * @return Object
 	 */
-	private static function _get_elements()
-	{
-		$prefix       = Setting::PREFIX;
+	private static function _get_elements() {
+		$prefix       = App::SLUG;
 		$prefix_icons = apply_filters( "{$prefix}_prefix_class_icons", "{$prefix}-icon-" );
 		$std          = new stdClass();
 
@@ -326,7 +327,7 @@ class WPUSB_Social_Elements
 		$std->share              = new stdClass();
 		$std->share->name        = 'Modal Share';
 		$std->share->element     = 'share';
-		$std->share->link        = '#';
+		$std->share->link        = 'javascript:void(0);';
 		$std->share->title       = __( 'Open modal social networks', App::TEXTDOMAIN );
 		$std->share->class       = $prefix . '-share';
 		$std->share->class_item  = self::$item;
@@ -353,6 +354,23 @@ class WPUSB_Social_Elements
 		$std->reddit->inside      = __( 'Share', App::TEXTDOMAIN );
 		$std->reddit->has_counter = false;
 
+		/**
+		 * @var Object
+		 * @see Flipboard
+		 */
+		$std->flipboard              = new stdClass();
+		$std->flipboard->name        = 'Flipboard';
+		$std->flipboard->element     = 'flipboard';
+		$std->flipboard->link        = 'https://share.flipboard.com/bookmarklet/popout?v=2&ext=' . rawurlencode( App::NAME ) . '&title=' . self::$title . '&url=' . self::$url;
+		$std->flipboard->title       = __( 'Share on Flipboard', App::TEXTDOMAIN );
+		$std->flipboard->class       = $prefix . '-flipboard';
+		$std->flipboard->class_item  = self::$item;
+		$std->flipboard->class_link  = self::$class_button;
+		$std->flipboard->class_icon  = apply_filters( "{$prefix}_class_icon", $prefix_icons . 'flipboard' );
+		$std->flipboard->popup       = self::$action;
+		$std->flipboard->inside      = __( 'Share', App::TEXTDOMAIN );
+		$std->flipboard->has_counter = false;
+
 		return apply_filters( App::SLUG . '-elements-share', $std, self::$title, self::$url );
 	}
 
@@ -364,8 +382,7 @@ class WPUSB_Social_Elements
 	 * @param Array $elements
 	 * @return Object
 	 */
-	private static function _ksort( $elements )
-	{
+	private static function _ksort( $elements ) {
 		$order  = Utils::option( 'order', false );
 		$social = $elements;
 
@@ -375,6 +392,10 @@ class WPUSB_Social_Elements
 
 			foreach ( $order as $items ) {
 				$social->{$items} = apply_filters( App::SLUG . "-{$items}-items", $elements->{$items} );
+			}
+
+			if ( is_admin() && count( (array) $elements ) > count( (array) $order ) ) {
+				$social = (object) array_merge( (array) $social, (array) $elements );
 			}
 		}
 
@@ -389,8 +410,7 @@ class WPUSB_Social_Elements
 	 * @param Null
 	 * @return Object
 	 */
-	public static function get_elements()
-	{
+	public static function get_elements() {
 		$arguments = self::_get_arguments();
 		$tracking  = Utils::get_tracking();
 
@@ -414,8 +434,7 @@ class WPUSB_Social_Elements
 	 * @param Null
 	 * @return Array
 	 */
-	private static function _get_arguments()
-	{
+	private static function _get_arguments() {
 		$title     = Utils::get_title();
 		$body_mail = Utils::body_mail();
 		$arguments = array(
@@ -425,7 +444,7 @@ class WPUSB_Social_Elements
 			'body_mail' => "\n\n{$title}\n\n{$body_mail}\n",
 		);
 
-		return apply_filters( App::SLUG . 'arguments', $arguments );
+		return apply_filters( App::SLUG . '-arguments', $arguments );
 	}
 
 	/**
@@ -436,8 +455,7 @@ class WPUSB_Social_Elements
 	 * @param string $url
 	 * @return String
 	 */
-	private static function _url_facilitate_replace( $url )
-	{
+	private static function _url_facilitate_replace( $url ) {
 		$name = App::SLUG . '-url-share';
 		return apply_filters( $name, "[{$url}]" );
 	}
@@ -450,8 +468,7 @@ class WPUSB_Social_Elements
 	 * @param Null
 	 * @return Object
 	 */
-	public static function social_media()
-	{
+	public static function social_media() {
 		$elements          = self::get_elements();
 		$elements_sortable = self::_ksort( $elements );
 
@@ -470,10 +487,9 @@ class WPUSB_Social_Elements
 	 * @param String $body_mail
 	 * @return Void
 	 */
-	private static function _set_properts( $title, $url, $tracking, $thumbnail, $body_mail )
-	{
+	private static function _set_properts( $title, $url, $tracking, $thumbnail, $body_mail ) {
 		$post_id             = Utils::get_id();
-		$prefix              = Setting::PREFIX;
+		$prefix              = App::SLUG;
 		$title               = apply_filters( 'the_title', $title, Utils::get_id() );
 		$tracking            = apply_filters( App::SLUG . '-tracking', $tracking, $post_id );
 		self::$thumbnail     = apply_filters( App::SLUG . '-thumbnail', $thumbnail, $post_id );
@@ -501,8 +517,7 @@ class WPUSB_Social_Elements
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _set_properts_twitter()
-	{
+	private static function _set_properts_twitter() {
 		$tvia               = Utils::option( 'twitter_username' );
 		$via                = preg_replace( '/[^a-zA-Z0-9_]+/', '', $tvia );
 		$text_a             = apply_filters( App::SLUG . '-twitter-after', __( 'I just saw', App::TEXTDOMAIN ) );

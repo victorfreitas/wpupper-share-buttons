@@ -17,8 +17,8 @@ use WPUSB_Setting as Setting;
 use WPUSB_Social_Elements as Elements;
 use WPUSB_Core as Core;
 
-class WPUSB_All_Items
-{
+class WPUSB_All_Items {
+
 	/**
 	 * The buttons container popup
 	 *
@@ -26,22 +26,22 @@ class WPUSB_All_Items
 	 * @param Null
 	 * @return Void
 	 */
-	public static function init()
-	{
-		$permalink = Utils::get_permalink();
-		$prefix    = Setting::PREFIX;
+	public static function init() {
+		$prefix    = App::SLUG;
+		$component = Utils::get_component_by_type( 'modal' );
 
 		do_action( App::SLUG . '-before-modal' );
 
 		echo <<< EOD
-			<div class="{$prefix}-popup-content"
-			     data-element-url="{$permalink}"
-			     data-display="{$prefix}-none"
-			     data-component="social-popup">
-				<div class="{$prefix}-networks">
-					<a class="{$prefix}-btn-close" data-action="close-popup">
-						<i class="{$prefix}-icon-close"></i>
-					</a>
+			<div class="{$prefix}-modal-mask"
+			     {$component}
+			     style="display:none;">
+
+				<a class="{$prefix}-btn-close" data-action="close-popup">
+					<i class="{$prefix}-icon-close"></i>
+				</a>
+			</div>
+			<div class="{$prefix}-modal-networks">
 EOD;
 		self::items( $prefix );
 		self::end();
@@ -56,23 +56,25 @@ EOD;
 	 * @param String $prefix
 	 * @return Void
 	 */
-	public static function items( $prefix )
-	{
+	public static function items( $prefix ) {
 		$elements  = Elements::social_media();
-		$permalink = Utils::get_real_permalink();
-		$title     = Utils::get_real_title();
+		$permalink = apply_filters( App::SLUG . '-modal-permalink', Utils::get_real_permalink() );
+		$title     = apply_filters( App::SLUG . '-modal-title', Utils::get_real_title() );
 
 		foreach ( $elements as $key => $social ) {
 			if ( $key === 'share' ) {
 				continue;
 			}
 
-			$social = Utils::replace_link( $social, $permalink, $title );
+			$ga       = apply_filters( App::SLUG . '-ga-event', false, $social );
+			$ga_event = ( $ga ) ? 'onClick="' . $ga . ';"' : '';
+			$social   = Utils::replace_link( $social, $permalink, $title );
 
 			echo <<< EOD
 				<div class="{$prefix}-element-popup">
 					<a href="{$social->link}"
 					   class="{$social->class_link}-popup {$social->class}-popup"
+					   {$ga_event}
 					   rel="nofollow"
 					   data-action="open-popup">
 						<i class="{$social->class_icon} {$prefix}-icon-popup"></i>
@@ -90,8 +92,7 @@ EOD;
 	 * @param Null
 	 * @return Void
 	 */
-	public static function end()
-	{
-		echo '</div></div>';
+	public static function end() {
+		echo '</div>';
 	}
 }

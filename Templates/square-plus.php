@@ -15,8 +15,8 @@ if ( ! function_exists( 'add_action' ) ) {
 use WPUSB_Utils as Utils;
 use WPUSB_App as App;
 
-class WPUSB_Square_Plus
-{
+class WPUSB_Square_Plus {
+
 	/**
 	 * Open buttons container
 	 *
@@ -24,19 +24,19 @@ class WPUSB_Square_Plus
 	 * @param Object $args
 	 * @return String
 	 */
-	public static function init( \stdClass $atts )
-	{
-		$args       = Utils::content_args();
+	public static function init( \stdClass $atts ) {
+		$args       = Utils::content_args( $atts );
 		$classes    = Utils::get_classes_first( $atts );
 		$data_token = Utils::get_data_token( $args['token'] );
 		$counter    = self::add_count( $atts );
+		$component  = Utils::get_component_by_type();
 		$content    = <<<EOD
 		<div data-element-url="{$args['permalink']}"
 		     data-tracking="{$args['tracking']}"
 		     data-attr-reference="{$args['post_id']}"
 		     data-attr-nonce="{$args['nonce']}"
 		     data-attr-nonce-gplus="{$args['nonce-gplus']}"
-		     data-component="counter-social-share"
+		     {$component}
 		     class="{$classes}"
 		     {$data_token}
 		     {$args['fixed_top']}>
@@ -53,12 +53,12 @@ EOD;
 	 * @param Object $args
 	 * @return String
 	 */
-	public static function items( $args = OBJECT )
-	{
+	public static function items( $args = OBJECT ) {
 		$classes   = self::get_classes_second( $args );
 		$link_type = Utils::link_type( $args->reference->link );
 		$inside    = self::inside( $args );
 		$referrer  = Utils::get_data_referrer( $args );
+		$ga_event  = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
 		$content   = <<<EOD
 			<div class="{$classes}" {$referrer}>
 
@@ -66,6 +66,7 @@ EOD;
 				   {$args->reference->popup}
 				   class="{$args->prefix}-link {$args->class_link}"
 				   title="{$args->reference->title}"
+				   {$ga_event}
 				   rel="nofollow">
 
 				   <i class="{$args->item_class_icon} {$args->class_icon}"></i>
@@ -84,8 +85,7 @@ EOD;
 	 * @return String
 	 *
 	 */
-	public static function get_classes_second( $atts )
-	{
+	public static function get_classes_second( $atts ) {
 		$classes  = "{$atts->reference->class_item}";
 		$classes .= " {$atts->reference->class}";
 		$classes .= " {$atts->class_second}";
@@ -104,8 +104,7 @@ EOD;
 	 * @param Object $args
 	 * @return String
 	 */
-	public static function add_count( $args )
-	{
+	public static function add_count( $args ) {
 		$prefix      = $args->prefix;
 		$shares_text = __( 'Shares', App::TEXTDOMAIN );
 		$content     = '';
@@ -134,8 +133,7 @@ EOD;
 	 * @return String
 	 *
 	 */
-	public static function inside( $args )
-	{
+	public static function inside( $args ) {
 		$content = '';
 
 		if ( Utils::is_first() && Utils::is_active_inside( $args->elements ) ) {
@@ -153,8 +151,7 @@ EOD;
 	 * @return String
 	 *
 	 */
-	public static function end( $args )
-	{
+	public static function end( $args ) {
 		return apply_filters( App::SLUG . 'end-buttons-html', '</div>' );
 	}
 }

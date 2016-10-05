@@ -15,8 +15,8 @@ use WPUSB_App as App;
 use WPUSB_Setting as Setting;
 use WPUSB_Settings_View as View;
 
-class WPUSB_Sharing_Report_View
-{
+class WPUSB_Sharing_Report_View {
+
 	/**
 	 * Display page sharing report
 	 *
@@ -24,11 +24,10 @@ class WPUSB_Sharing_Report_View
 	 * @param Object $list_table
 	 * @return void
 	 */
-	public static function render_sharing_report( $list_table )
-	{
+	public static function render_sharing_report( $list_table ) {
 		$time_cache  = Utils::option( 'report_cache_time', 10, 'intval' );
 		$text_domain = App::TEXTDOMAIN;
-		$prefix      = Setting::PREFIX;
+		$prefix      = App::SLUG;
 		$text_button = __( 'Search', $text_domain );
 		$description = __( 'This report has a cache of ', $text_domain );
 		$minutes     = __( 'minutes', $text_domain );
@@ -74,8 +73,7 @@ class WPUSB_Sharing_Report_View
 	 * @param String $post_title
 	 * @return String
 	 */
-	public static function get_permalink_title( $id, $post_title )
-	{
+	public static function get_permalink_title( $id, $post_title ) {
 		$permalink = get_permalink( $id );
 		$html      = "<a class=\"row-title\" href=\"{$permalink}\">{$post_title}</a>";
 

@@ -16,19 +16,20 @@ use WPUSB_Core as Core;
 use WPUSB_Social_Elements as Elements;
 use WPUSB_App as App;
 
-class WPUSB_Ajax_Controller
-{
+class WPUSB_Ajax_Controller {
+
 	/**
 	* Initialize the plugin by ajax requests
 	*
 	* @since 1.2
 	*/
-	public function __construct()
-	{
-		add_action( 'wp_ajax_wpusb_share_count_reports', array( &$this, 'share_count_reports_verify_request' ) );
-		add_action( 'wp_ajax_nopriv_wpusb_share_count_reports', array( &$this, 'share_count_reports_verify_request' ) );
-		add_action( 'wp_ajax_wpusb_share_preview', array( &$this, 'share_preview_verify_request' ) );
-		add_action( 'wp_ajax_wpusb_admin_notices', array( &$this, 'admin_notice_verify_request' ) );
+	public function __construct() {
+		$prefix = App::SLUG;
+
+		add_action( "wp_ajax_{$prefix}_share_count_reports", array( &$this, 'share_count_reports_verify_request' ) );
+		add_action( "wp_ajax_nopriv_{$prefix}_share_count_reports", array( &$this, 'share_count_reports_verify_request' ) );
+		add_action( "wp_ajax_{$prefix}_share_preview", array( &$this, 'share_preview_verify_request' ) );
+		add_action( "wp_ajax_{$prefix}_admin_notices", array( &$this, 'admin_notice_verify_request' ) );
 	}
 
 	/**
@@ -38,8 +39,7 @@ class WPUSB_Ajax_Controller
 	 * @param null
 	 * @return void
 	 */
-	public function share_count_reports_verify_request()
-	{
+	public function share_count_reports_verify_request() {
 		if ( ! Utils::is_request_ajax() ) {
 			exit(0);
 		}
@@ -66,8 +66,7 @@ class WPUSB_Ajax_Controller
 	 * @param null
 	 * @return void
 	 */
-	public function share_preview_verify_request()
-	{
+	public function share_preview_verify_request() {
 		if ( ! Utils::is_request_ajax() ) {
 			exit(0);
 		}
@@ -90,8 +89,7 @@ class WPUSB_Ajax_Controller
 	 * @param null
 	 * @return void
 	 */
-	public function admin_notice_verify_request()
-	{
+	public function admin_notice_verify_request() {
 		if ( ! Utils::is_request_ajax() ) {
 			exit(0);
 		}
@@ -113,11 +111,10 @@ class WPUSB_Ajax_Controller
 	 * @param Integer $post_id
 	 * @return Void
 	 */
-	private function _insert_counts_social_share( $post_id )
-	{
+	private function _insert_counts_social_share( $post_id ) {
 		global $wpdb;
 
-		$post_title      = Utils::rip_tags( get_the_title( $post_id ) );
+		$post_title      = Utils::rm_tags( get_the_title( $post_id ) );
 		$count_facebook  = Utils::post( 'count_facebook', 0, 'intval' );
 		$count_twitter   = Utils::post( 'count_twitter', 0, 'intval' );
 		$count_google    = Utils::post( 'count_google', 0, 'intval' );
@@ -153,8 +150,7 @@ class WPUSB_Ajax_Controller
 	 * @param Array $data
 	 * @return Void
 	 */
-	private function _select( $table, $data )
-	{
+	private function _select( $table, $data ) {
 		global $wpdb;
 
 		$sql       = $wpdb->prepare( "SELECT COUNT(*) FROM `{$table}` WHERE `post_id` = %d", $data['post_id'] );
@@ -181,8 +177,7 @@ class WPUSB_Ajax_Controller
 	 * @param Array $data
 	 * @return Void
 	 */
-	private function _update( $table, $data )
-	{
+	private function _update( $table, $data ) {
 		global $wpdb;
 
 		$wpdb->update(
@@ -213,8 +208,7 @@ class WPUSB_Ajax_Controller
 	 * @param Array $data
 	 * @return Void
 	 */
-	private function _insert( $table, $data = array() )
-	{
+	private function _insert( $table, $data = array() ) {
 		global $wpdb;
 
 		$wpdb->insert(
@@ -243,8 +237,7 @@ class WPUSB_Ajax_Controller
 	 * @param String $checked
 	 * @return Void
 	 */
-	private function _share_preview( $layout, $items, $checked )
-	{
+	private function _share_preview( $layout, $items, $checked ) {
 		$items   = $this->_json_decode_quoted( $items );
 		$checked = $this->_json_decode_quoted( $checked );
 		$this->_share_preview_list( $layout, $items, $checked );
@@ -257,8 +250,7 @@ class WPUSB_Ajax_Controller
 	 * @param null
 	 * @return Void
 	 */
-	private function _share_preview_list( $layout, $items, $checked )
-	{
+	private function _share_preview_list( $layout, $items, $checked ) {
 		global $wp_version;
 
 		$list         = array();
@@ -277,7 +269,7 @@ class WPUSB_Ajax_Controller
 
 			$item   = $social->{$element};
 			$list[] = array(
-				'prefix'       => Setting::PREFIX,
+				'prefix'       => App::SLUG,
 				'slash'        => '&#8260;',
 				'counter'      => str_replace( '.', '', $wp_version ),
 				'item_class'   => $item->element,
@@ -305,8 +297,7 @@ class WPUSB_Ajax_Controller
 	 * @param String $message
 	 * @return Void
 	 */
-	private function _error_request( $message = '' )
-	{
+	private function _error_request( $message = '' ) {
 		http_response_code( 500 );
 		Utils::error_server_json( 500, $message );
 		exit(0);
@@ -319,10 +310,9 @@ class WPUSB_Ajax_Controller
 	 * @param Null
 	 * @return Void
 	 */
-	private function _json_decode_quoted( $txt )
-	{
+	private function _json_decode_quoted( $txt ) {
 		$text = htmlspecialchars_decode( $txt );
-		$text = Utils::rip_tags( $text, true );
+		$text = Utils::rm_tags( $text, true );
 
 		return json_decode( $text, true );
 	}

@@ -109,3 +109,12 @@
         }
     }
 }
+
+@mixin add-animate($class, $name) {
+    .#{$prefix}-#{$class} {
+        -webkit-animation-name: $name;
+        -webkit-animation-duration: 0.4s;
+        animation-name: $name;
+        animation-duration: 0.4s
+    }
+}

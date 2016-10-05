@@ -11,8 +11,8 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-use WPUSB_App as App;
 use WPUSB_Setting as Setting;
+use WPUSB_App as App;
 use WPUSB_Utils as Utils;
 
 /*
@@ -27,22 +27,21 @@ App::uses( 'settings', 'Controller' );
 App::uses( 'shares', 'Controller' );
 
 // Controllers include on admin
-if ( App::$is_admin ) {
+if ( App::is_admin() ) {
 	App::uses( 'ajax', 'Controller' );
 	App::uses( 'ajax-gplus', 'Controller' );
 	App::uses( 'options', 'Controller' );
 	App::uses( 'share-reports', 'Controller' );
 }
 
-class WPUSB_Core
-{
+class WPUSB_Core {
+
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
 	 * @since 1.2
 	 */
-	public function __construct()
-	{
+	public function __construct() {
 		add_action( 'plugins_loaded', array( __CLASS__, 'plugins_loaded' ) );
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'add_front_scripts' ) );
 
@@ -57,8 +56,7 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	public static function add_front_scripts()
-	{
+	public static function add_front_scripts() {
 		$is_active = Utils::is_active();
 
 		if ( ! apply_filters( App::SLUG , '-add-scripts', $is_active ) ) {
@@ -82,8 +80,7 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _front_scripts()
-	{
+	private static function _front_scripts() {
 		if ( 'on' === Utils::option( 'disable_js' ) ) {
 			return;
 		}
@@ -91,15 +88,15 @@ class WPUSB_Core
 		$context = Utils::option( 'fixed_context' );
 
 		wp_enqueue_script(
-			Setting::PREFIX . '-scripts',
-			Utils::plugin_url( 'javascripts/built.js' ),
+			App::SLUG . '-scripts',
+			Utils::plugin_url( 'javascripts/front/built.js' ),
 			array( 'jquery' ),
 			App::VERSION,
 			true
 		);
 
 		wp_localize_script(
-			Setting::PREFIX . '-scripts',
+			App::SLUG . '-scripts',
 			'WPUSBVars',
 			array(
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
@@ -115,14 +112,13 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	public static function front_styles()
-	{
+	public static function front_styles() {
 		if ( 'on' === Utils::option( 'disable_css' ) ) {
 			return;
 		}
 
 		wp_enqueue_style(
-			Setting::PREFIX . '-style',
+			App::SLUG . '-style',
 			Utils::plugin_url( 'stylesheets/style.css' ),
 			array(),
 			App::VERSION
@@ -136,8 +132,7 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	public static function plugins_loaded()
-	{
+	public static function plugins_loaded() {
 		self::load_text_domain();
 	}
 
@@ -148,8 +143,7 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _register_actions()
-	{
+	private static function _register_actions() {
 		register_activation_hook( App::FILE, array( __CLASS__, 'activate' ) );
 		register_deactivation_hook( App::FILE, array( __CLASS__, 'deactivate' ) );
 	}
@@ -161,8 +155,7 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _instantiate_controllers()
-	{
+	private static function _instantiate_controllers() {
 		$share    = new WPUSB_Shares_Controller();
 		$settings = new WPUSB_Settings_Controller();
 
@@ -176,16 +169,15 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _instantiate_controllers_admin()
-	{
-		if ( ! App::$is_admin ) {
+	private static function _instantiate_controllers_admin() {
+		if ( ! App::is_admin() ) {
 			return;
 		}
 
-		$ajax       = new WPUSB_Ajax_Controller();
-		$ajax_gplus = new WPUSB_Ajax_Gplus_Controller();
-		$option     = new WPUSB_Options_Controller();
-		$report     = new WPUSB_Share_Reports_Controller();
+		new WPUSB_Ajax_Controller();
+		new WPUSB_Ajax_Gplus_Controller();
+		new WPUSB_Options_Controller();
+		new WPUSB_Share_Reports_Controller();
 	}
 
 	/**
@@ -195,14 +187,11 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	public static function activate()
-	{
-		if ( ! App::$is_admin ) {
-			return;
-		}
-
+	public static function activate() {
 		self::create_table();
+
 		Utils::add_options_defaults();
+
 		register_uninstall_hook( App::FILE, array( __CLASS__, 'uninstall' ) );
 	}
 
@@ -213,8 +202,7 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	public static function deactivate()
-	{
+	public static function deactivate() {
 
 	}
 
@@ -225,17 +213,16 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	public static function uninstall()
-	{
+	public static function uninstall() {
 		self::_delete_options();
 		self::_delete_transients();
 		self::_delete_table();
 	}
 
-	private static function _delete_options()
-	{
-		// Options
-		foreach ( Setting::$db_options as $key => $option ) {
+	private static function _delete_options() {
+		$options_name = Utils::get_options_name();
+
+		foreach ( $options_name as $option ) {
 			delete_option( $option );
 			delete_site_option( $option );
 		}
@@ -248,8 +235,7 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _delete_transients()
-	{
+	private static function _delete_transients() {
 		// Transients
 		delete_transient( Setting::TRANSIENT );
 		delete_transient( Setting::TRANSIENT_SELECT_COUNT );
@@ -264,14 +250,11 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _delete_table()
-	{
+	private static function _delete_table() {
 		global $wpdb;
 
 		$table = $wpdb->prefix . Setting::TABLE_NAME;
-		$sql   = "DROP TABLE IF EXISTS `{$table}`";
-
-		$wpdb->query( $sql );
+		$wpdb->query( "DROP TABLE IF EXISTS `{$table}`" );
 	}
 
 	/**
@@ -281,8 +264,7 @@ class WPUSB_Core
 	 * @param Null
 	 * @return Void
 	 */
-	public static function load_text_domain()
-	{
+	public static function load_text_domain() {
 		$plugin_dir = basename( dirname( App::FILE ) );
 		load_plugin_textdomain( App::TEXTDOMAIN, false, "{$plugin_dir}/languages/" );
 	}
@@ -296,8 +278,7 @@ class WPUSB_Core
 	 * @global $wpdb
 	 * @return Void
 	 */
-	public static function create_table()
-	{
+	public static function create_table() {
 		global $wpdb;
 
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
@@ -316,8 +297,7 @@ class WPUSB_Core
 			total      BIGINT(20) UNSIGNED NOT NULL,
 			PRIMARY KEY id ( id ),
 			UNIQUE( post_id )
-		) {$charset};
-		";
+		) {$charset};";
 
 		dbDelta( $sql );
 	}

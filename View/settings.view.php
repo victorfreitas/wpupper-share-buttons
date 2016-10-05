@@ -15,8 +15,8 @@ use WPUSB_App as App;
 use WPUSB_Utils as Utils;
 use WPUSB_Social_Elements as Elements;
 
-class WPUSB_Settings_View
-{
+class WPUSB_Settings_View {
+
 	/**
 	 * Display page setting
 	 *
@@ -25,10 +25,9 @@ class WPUSB_Settings_View
 	 * @param Null
 	 * @return Void Display page
 	 */
-	public static function render_settings_page()
-	{
+	public static function render_settings_page() {
 		$model               = new Setting();
-		$prefix              = Setting::PREFIX;
+		$prefix              = App::SLUG;
 		$option_name         = "{$prefix}_settings";
 		$option_social_media = "{$prefix}_social_media";
 ?>
@@ -46,9 +45,9 @@ class WPUSB_Settings_View
 
 			<?php self::menu_top(); ?>
 
-			<div class="<?php echo "{$prefix}-wrap"; ?>" data-component="share-settings">
+			<div class="<?php echo "{$prefix}-wrap"; ?>" data-<?php echo $prefix; ?>-component="share-settings">
 
-			<div data-component="share-preview">
+			<div data-<?php echo $prefix; ?>-component="share-preview">
 				<span class="ajax-spinner">loading...</span>
 				<div data-element="<?php echo $prefix; ?>"></div>
 			</div>
@@ -393,8 +392,7 @@ class WPUSB_Settings_View
 	 * @param Null
 	 * @return Void
 	 */
-	public static function update_notice_message()
-	{
+	public static function update_notice_message() {
 	?>
 		<div class="updated notice is-dismissible">
 			<p><strong><?php _e( 'Settings saved.', App::TEXTDOMAIN ); ?></strong></p>
@@ -403,14 +401,13 @@ class WPUSB_Settings_View
 	<?php
 	}
 
-	public static function menu_top()
-	{
+	public static function menu_top() {
 		$general    = Setting::HOME_SETTINGS;
 		$extra      = Setting::EXTRA_SETTINGS;
 		$use_option = Setting::USE_OPTIONS;
 		$report     = Setting::SHARING_REPORT;
 	?>
-		<div class="<?php echo Setting::PREFIX; ?>-menu">
+		<div class="<?php echo App::SLUG; ?>-menu">
 			<ul>
 				<li<?php echo Utils::selected_menu( $general ); ?>>
 					<a href="<?php menu_page_url( $general ); ?>">
@@ -437,9 +434,8 @@ class WPUSB_Settings_View
 	<?php
 	}
 
-	public static function td( $args = array() )
-	{
-		$prefix = Setting::PREFIX;
+	public static function td( $args = array() ) {
+		$prefix = App::SLUG;
 		$span   = '';
 		$args   = self::_get_td_args( $args );
 		$label  = self::_get_label( $prefix, $args );
@@ -462,8 +458,7 @@ class WPUSB_Settings_View
 EOD;
 	}
 
-	private static function _get_label( $prefix, $args )
-	{
+	private static function _get_label( $prefix, $args ) {
 		$span = '';
 
 		if ( $args['span'] ) {
@@ -479,9 +474,8 @@ EOD;
 		return $label;
 	}
 
-	public static function add_checkbox( $args = array() )
-	{
-		$prefix   = Setting::PREFIX;
+	public static function add_checkbox( $args = array() ) {
+		$prefix   = App::SLUG;
 		$defaults = array(
 			'name'        => '',
 			'id'          => '',
@@ -510,8 +504,7 @@ EOD;
 EOD;
 	}
 
-	private static function _get_td_args( $args )
-	{
+	private static function _get_td_args( $args ) {
 		$defaults = array(
 			'type'        => 'text',
 			'description' => '',
@@ -533,8 +526,7 @@ EOD;
 		return array_merge( $defaults, $args );
 	}
 
-	public static function admin_notice( $prefix, $nonce )
-	{
+	public static function admin_notice( $prefix, $nonce ) {
 		$class   = "update-nag notice is-dismissible {$prefix}-admin-notice";
 		$message = __( '<strong>Warning! WPUpper Share Buttons:</strong> Is important clean the caches of CSS and JavaScript files. This is necessary for the plugin to work properly to get the number of social networking actions.', App::TEXTDOMAIN );
 

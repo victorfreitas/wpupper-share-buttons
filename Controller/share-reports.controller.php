@@ -30,8 +30,8 @@ if ( ! class_exists( 'Walker_Category_Checklist' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/template.php' );
 }
 
-class WPUSB_Share_Reports_Controller extends WP_List_Table
-{
+class WPUSB_Share_Reports_Controller extends WP_List_Table {
+
 	/**
 	 * Number for posts per page
 	 *
@@ -56,8 +56,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	 */
 	private $search;
 
-	public function __construct()
-	{
+	public function __construct() {
 		add_action( 'admin_menu', array( &$this, 'menu' ) );
 
 		$this->cache_time = Utils::option( 'report_cache_time', 10, 'intval' );
@@ -81,8 +80,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	 * @param String $order
 	 * @return Object
 	 */
-	private function _get_sharing_report( $posts_per_page, $current_page, $orderby, $order )
-	{
+	private function _get_sharing_report( $posts_per_page, $current_page, $orderby, $order ) {
 		global $wpdb;
 
 		$offset = ( ( $current_page - 1 ) * self::POSTS_PER_PAGE );
@@ -94,8 +92,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 			return;
 		}
 
-		if ( ! $this->search && false !== $cache && isset( $cache[$current_page][$orderby][$order] ) ) {
-			return $cache[$current_page][$orderby][$order];
+		if ( ! $this->search && false !== $cache && isset( $cache[ $current_page ][ $orderby ][ $order ] ) ) {
+			return $cache[ $current_page ][ $orderby ][ $order ];
 		}
 
 		$query = $wpdb->prepare(
@@ -108,13 +106,13 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 			$offset
 		);
 
-		$cache[$current_page][$orderby][$order] = $wpdb->get_results( $query );
+		$cache[ $current_page ][ $orderby ][ $order ] = $wpdb->get_results( $query );
 
 		if ( ! $this->search ) {
 			set_transient( Setting::TRANSIENT, $cache, $this->cache_time * MINUTE_IN_SECONDS );
 		}
 
-		return $cache[$current_page][$orderby][$order];
+		return $cache[ $current_page ][ $orderby ][ $order ];
 	}
 
 	/**
@@ -125,8 +123,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	 * @param Null
 	 * @return Integer
 	 */
-	private function _total_items()
-	{
+	private function _total_items() {
 		global $wpdb;
 
 		$cache = get_transient( Setting::TRANSIENT_SELECT_COUNT );
@@ -157,8 +154,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	 * @param String $space
 	 * @return Mixed Null|String
 	 */
-	private function _where( $space = '' )
-	{
+	private function _where( $space = '' ) {
 		return ( $this->search ) ? "{$space}WHERE `post_title` LIKE '%%{$this->search}%%'" : '';
 	}
 
@@ -170,8 +166,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	 * @param String $table
 	 * @return Boolean
 	 */
-	private function _table_exists( $wpdb, $table )
-	{
+	private function _table_exists( $wpdb, $table ) {
 		return $wpdb->query( "SHOW TABLES LIKE '{$table}'" );
 	}
 
@@ -182,8 +177,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	 * @param Integer $total_items
 	 * @return Void
 	 */
-	private function _set_cache_caunter( $total_items )
-	{
+	private function _set_cache_caunter( $total_items ) {
 		if ( ! $this->search ) {
 			set_transient(
 				Setting::TRANSIENT_SELECT_COUNT,
@@ -200,8 +194,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	 * @param Null
 	 * @return Mixed String/Integer
 	 */
-	public function column_default( $items, $column )
-	{
+	public function column_default( $items, $column ) {
 		$column = strtolower( $column );
 
 		switch ( $column ) {
@@ -227,8 +220,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	 * @param Null
 	 * @return Array
 	 */
-	public function get_columns()
-	{
+	public function get_columns() {
 		$columns = array(
 			'Title'     => __( 'Title', App::TEXTDOMAIN ),
 			'Facebook'  => __( 'Facebook', App::TEXTDOMAIN ),
@@ -249,8 +241,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	 * @param Null
 	 * @return Array
 	 */
-	public function get_sortable_columns()
-	{
+	public function get_sortable_columns() {
 		$sortable_columns = array(
 			'Title'     => array( 'post_title', true ),
 			'Facebook'  => array( 'facebook', true ),
@@ -271,8 +262,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	 * @param Null
 	 * @return Array
 	 */
-	public function prepare_items()
-	{
+	public function prepare_items() {
 		$orderby               = Utils::get( 'orderby', 'total', 'sanitize_sql_orderby' );
 		$order_type            = Utils::get( 'order', 'desc', 'sanitize_sql_orderby' );
 		$reference             = $this->_verify_sql_orderby( $orderby, 'total' );
@@ -298,8 +288,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	 * @param Null
 	 * @return String
 	 */
-	public function no_items()
-	{
+	public function no_items() {
 		_e( 'There is no record available at the moment!', App::TEXTDOMAIN );
 	}
 
@@ -310,8 +299,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	 * @param null
 	 * @return Void
 	 */
-	public function menu()
-	{
+	public function menu() {
 	  	add_submenu_page(
 	  		App::SLUG,
 	  		__( 'Sharing Report | WPUpper Share Buttons', App::TEXTDOMAIN ),
@@ -329,8 +317,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	 * @param null
 	 * @return Void
 	 */
-	public function report()
-	{
+	public function report() {
 		View::render_sharing_report( $this );
 	}
 
@@ -342,8 +329,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	 * @param String $default
 	 * @return String
 	 */
-	private function _verify_sql_orderby( $orderby, $default = '' )
-	{
+	private function _verify_sql_orderby( $orderby, $default = '' ) {
 		$permissions = array(
 			'post_title' => '',
 			'facebook'   => '',
@@ -354,7 +340,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 			'total'      => '',
 		);
 
-		if ( isset( $permissions[$orderby] ) ) {
+		if ( isset( $permissions[ $orderby ] ) ) {
 			return $orderby;
 		}
 
@@ -369,8 +355,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table
 	 * @param String $default
 	 * @return String
 	 */
-	private function _verify_sql_order( $order, $default = '' )
-	{
+	private function _verify_sql_order( $order, $default = '' ) {
 		if ( $order === 'desc' || $order === 'asc' ) {
 			return strtoupper( $order );
 		}

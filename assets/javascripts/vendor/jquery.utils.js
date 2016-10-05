@@ -12,8 +12,8 @@
 		return this.find( '[data-referrer="' + name + '"]' );
 	};
 
-	$.fn.byComponent = function(name) {
-		return this.find( '[data-component="' + name + '"]' );
+	$.fn.byComponent = function(name, prefix) {
+		return this.find( '[data-' + prefix + '-component="' + name + '"]' );
 	};
 
 	$.fn.findComponent = function(selector, callback) {
@@ -38,29 +38,6 @@
         var handle = $.fn.ucfirst( [ '_on', event, action ].join( '-' ) );
         this.byAction( action )
         	.on( event, $.proxy( context, handle ) );
-	};
-
-	$.fn.getTime = function() {
-		return ( new Date() ).getTime();
-	};
-
-	$.fn.hashStr = function(str) {
-		var hash = 0
-		  , i    = 0
-		  , char
-		;
-
-		if ( !str.length ) {
-			return hash;
-		}
-
-		for ( i; i < str.length; i++ ) {
-			char = str.charCodeAt( i );
-			hash = ( ( hash << 10 ) - hash ) + char;
-			hash = hash & hash;
-		}
-
-		return Math.abs( hash );
-	};
+	};;
 
 })( jQuery );

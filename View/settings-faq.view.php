@@ -11,9 +11,13 @@ if ( ! function_exists( 'add_action' ) ) {
 }
 
 use WPUSB_Social_Elements as Elements;
+use WPUSB_Settings_View as View;
+use WPUSB_Setting as Setting;
+use WPUSB_App as App;
+use WPUSB_Utils as Utils;
 
-class WPUSB_Settings_Faq_View
-{
+class WPUSB_Settings_Faq_View {
+
 	/**
 	 * Display page setting
 	 *
@@ -21,19 +25,18 @@ class WPUSB_Settings_Faq_View
 	 * @param Null
 	 * @return Void Display page
 	 */
-	public static function render_page_faq()
-	{
-		$prefix           = WPUSB_Setting::PREFIX;
+	public static function render_page_faq() {
+		$prefix           = App::SLUG;
 		$use_options_file = dirname( __FILE__ ) . '/use-options.php';
 	?>
 		<div class="wrap">
-			<h2><?php _e( 'WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ); ?></h2>
-			<p class="description"><?php _e( 'Add the Share Buttons automatically.', WPUSB_App::TEXTDOMAIN ); ?></p>
+			<h2><?php _e( 'WPUpper Share Buttons', App::TEXTDOMAIN ); ?></h2>
+			<p class="description"><?php _e( 'Add the Share Buttons automatically.', App::TEXTDOMAIN ); ?></p>
 			<span class="<?php echo "{$prefix}-title-wrap"; ?>">
-				<?php _e( 'Use options', WPUSB_App::TEXTDOMAIN ); ?>
+				<?php _e( 'Use options', App::TEXTDOMAIN ); ?>
 			</span>
 
-			<?php WPUSB_Settings_View::menu_top(); ?>
+			<?php View::menu_top(); ?>
 
 			<div class="<?php echo "{$prefix}-wrap-faq"; ?>">
 <pre data-element="highlight">
@@ -59,6 +62,8 @@ $args = array(
      'class_icon'   => '', // String
      'layout'       => 'default', //String
      'items'        => '', // Mixed String|Array -- Example: 'facebook, google' | array( 'facebook', 'google' )
+     'title'        => '', //String
+     'url'          => '', //string
      'elements'     => array( // Array
          'remove_inside'  =>  false, // Boolean
          'remove_counter' =>  false, // Boolean
@@ -95,6 +100,187 @@ endif;
  * Example: [wpusb layout="rounded" items="facebook, twitter"]
  */
 echo do_shortcode( '[wpusb]' );
+	</code>
+</pre>
+
+<hr>
+
+<h2><?php _e( 'Available filters', App::TEXTDOMAIN ); ?></h2>
+
+<hr>
+
+<pre data-element="highlight">
+	<code class="php">
+/*
+ * Parameter that the function receives
+ *
+ * String|Boolean $ga_js|false
+ * Object $social_network
+ */
+add_filter( 'wpusb-ga-event', 'your_function_name', 10, 2 );
+
+/*
+ * Parameter that the function receives
+ *
+ * Boolean $is_active
+ */
+add_filter( 'wpusb-add-scripts', 'your_function_name' );
+
+/*
+ * Parameter that the function receives
+ *
+ * String $prefix_icons
+ */
+add_filter( 'wpusb_prefix_class_icons', 'your_function_name' );
+
+/*
+ * Parameter that the function receives
+ *
+ * String $class_icon
+ */
+add_filter( 'wpusb_class_icon', 'your_function_name' );
+
+/*
+ * Parameter that the function receives
+ *
+ * Object $social_networks
+ * String $title
+ * String $url
+ */
+add_filter( 'wpusb-elements-share', 'your_function_name', 10, 3 );
+
+/*
+ * Parameter that the function receives
+ * Change SOCIAL_NAME by the name of the item available, all described at the top of this page in the (Items Available).
+ *
+ * Object $social_networks
+ */
+add_filter( 'wpusb-SOCIAL_NAME-items', 'your_function_name' );
+
+/*
+ * Parameter that the function receives
+ *
+ * Array $arguments
+ */
+add_filter( 'wpusb-arguments', 'your_function_name' );
+
+/*
+ * Parameter that the function receives
+ *
+ * String $url
+ */
+add_filter( 'wpusb-url-share', 'your_function_name' );
+
+/*
+ * Parameter that the function receives
+ *
+ * Object $elements_sortable
+ */
+add_filter( 'wpusb-elements-share-sortable', 'your_function_name' );
+
+/*
+ * Parameter that the function receives
+ *
+ * String $tracking
+ * Integer $post_id
+ */
+add_filter( 'wpusb-tracking', 'your_function_name', 10, 2 );
+
+/*
+ * Parameter that the function receives
+ *
+ * String $thumbnail
+ * Integer $post_id
+ */
+add_filter( 'wpusb-thumbnail', 'your_function_name', 10, 2 );
+
+/*
+ * Parameter that the function receives
+ *
+ * String $body_mail
+ * Integer $post_id
+ */
+add_filter( 'wpusb-body-mail', 'your_function_name', 10, 2 );
+
+/*
+ * Parameter that the function receives
+ *
+ * String $caracter
+ */
+add_filter( 'wpusb-caracter', 'your_function_name' );
+
+/*
+ * Parameter that the function receives
+ *
+ * String $text
+ */
+add_filter( 'wpusb-viber-text', 'your_function_name' );
+
+/*
+ * Parameter that the function receives
+ *
+ * String $text
+ */
+add_filter( 'wpusb-whatsapp-text', 'your_function_name' );
+
+/*
+ * Parameter that the function receives
+ *
+ * Boolean $active
+ */
+add_filter( 'wpusb-modal-html-active', 'your_function_name' );
+
+/*
+ * Parameter that the function receives
+ *
+ * Boolean $show_modal
+ */
+add_filter( 'wpusb-show-modal', 'your_function_name' );
+
+/*
+ * Parameter that the function receives
+ *
+ * Boolean $class_icon
+ */
+add_filter( 'wpusb_item_class_icon', 'your_function_name' );
+
+/*
+ * Parameter that the function receives
+ *
+ * String|Boolean $url|false
+ * Boolean $is_fixed
+ */
+add_filter( 'wpusb-real-permalink', 'your_function_name', 10, 2 );
+
+/*
+ * Parameter that the function receives
+ *
+ * String|Boolean $title|false
+ * Boolean $is_fixed
+ */
+add_filter( 'wpusb-real-title', 'your_function_name', 10, 2 );
+
+/*
+ * Parameter that the function receives
+ *
+ * String $component
+ * String $prefix
+ */
+add_filter( 'wpusb-component-name', 'your_function_name', 10, 2 );
+
+/*
+ * Parameter that the function receives
+ *
+ * String $permalink
+ */
+add_filter( 'wpusb-modal-permalink', 'your_function_name' );
+
+/*
+ * Parameter that the function receives
+ *
+ * String $title
+ */
+add_filter( 'wpusb-modal-title', 'your_function_name' );
 	</code>
 </pre>
 			</div>

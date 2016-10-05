@@ -1,59 +1,64 @@
-WPUSB( 'WPUSB.Components.SocialPopup', function(SocialPopup, $) {
+WPUSB( 'WPUSB.Components.SocialModal', function(SocialModal, $) {
 
-	SocialPopup.fn.start = function(container) {
+	SocialModal.fn.start = function(container) {
 		this.prefix    = '.' + WPUSB.vars.prefix + '-';
 		this.container = container;
 		this.body      = WPUSB.vars.body;
-		this.$el       = container.find( this.prefix + 'networks' );
+		this.$el       = this.body.find( this.prefix + 'modal-networks' );
 		this.close     = this.$el.find( this.prefix + 'btn-close' );
+
 		this.init();
 	};
 
-	SocialPopup.fn.init = function() {
+	SocialModal.fn.init = function() {
 		WPUSB.OpenPopup.create( this.$el );
+
+		this.$el.show();
 		this.addEventListener();
-		this.container.show();
 		this.setSizes();
 		this.setPosition();
-		this.container.hide();
+		this.$el.hide();
 	};
 
-	SocialPopup.fn.addEventListener = function() {
-		this.$el.addEvent( 'click', 'close-popup', this );
+	SocialModal.fn.addEventListener = function() {
+		this.container.addEvent( 'click', 'close-popup', this );
+		this.container.on( 'click', this._onClickMask.bind( this ) );
 		this.body.addEvent( 'click', 'open-modal-networks', this );
-		this.body.on( 'click', this._onClickBody.bind( this ) );
 	};
 
-	SocialPopup.fn._onClickClosePopup = function(event) {
+	SocialModal.fn._onClickClosePopup = function(event) {
 		event.preventDefault();
 		this.closeModal();
 	};
 
-	SocialPopup.fn._onClickBody = function(event) {
-		var target = $( event.target ).is( this.prefix + 'popup-content' );
-
-		if ( target ) {
-			this.closeModal();
-		}
-	};
-
-	SocialPopup.fn._onClickOpenModalNetworks = function(event) {
+	SocialModal.fn._onClickMask = function(event) {
 		event.preventDefault();
-		this.container.css( 'opacity', 1 );
-		this.container.show();
+		this.closeModal();
 	};
 
-	SocialPopup.fn.setSizes = function() {
+	SocialModal.fn._onClickOpenModalNetworks = function(event) {
+		event.preventDefault();
+		this.openModal();
+	};
+
+	SocialModal.fn.setSizes = function() {
 		this.setTop();
 		this.setLeft();
 	};
 
-	SocialPopup.fn.closeModal = function() {
+	SocialModal.fn.closeModal = function() {
 		this.container.css( 'opacity', 0 );
 		this.container.hide();
+		this.$el.hide();
 	};
 
-	SocialPopup.fn.setTop = function() {
+	SocialModal.fn.openModal = function() {
+		this.container.css( 'opacity', 1 );
+		this.container.show();
+		this.$el.show();
+	};
+
+	SocialModal.fn.setTop = function() {
 		var height   = ( window.innerHeight * 0.5 )
 		  ,	elHeight = ( this.$el.height() * 0.5 )
 		  , position = ( height - elHeight )
@@ -63,7 +68,7 @@ WPUSB( 'WPUSB.Components.SocialPopup', function(SocialPopup, $) {
 		this.top    = position + 'px';
 	};
 
-	SocialPopup.fn.setLeft = function() {
+	SocialModal.fn.setLeft = function() {
 		var width    = ( window.innerWidth * 0.5 )
 		  ,	elWidth  = ( this.$el.width() * 0.5 )
 		  , position = ( width - elWidth )
@@ -73,7 +78,7 @@ WPUSB( 'WPUSB.Components.SocialPopup', function(SocialPopup, $) {
 		this.left     =  position + 'px';
 	};
 
-	SocialPopup.fn.setPosition = function() {
+	SocialModal.fn.setPosition = function() {
 		this.$el.css({
 			top  : this.top,
 			left : this.left

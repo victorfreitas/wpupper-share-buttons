@@ -13,7 +13,7 @@ $_items_mobile : ( whatsapp, telegram, viber );
     }
 }
 
-div[data-component="share-preview"] {
+div[data-#{$prefix}-component="share-preview"] {
     position: relative;
 
     button[data-action="no-title"],

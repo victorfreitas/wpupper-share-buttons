@@ -41,6 +41,9 @@
     };
 
     WPUSB.utils = {
+
+        prefix: 'wpusb',
+
         getAjaxUrl: function() {
             return ( window.WPUSBVars || {} ).ajaxUrl;
         },
@@ -60,6 +63,29 @@
         getPathUrl: function(url) {
             var uri = decodeURIComponent( url );
             return uri.split(/[?#]/)[0];
+        },
+
+        getTime: function() {
+            return ( new Date() ).getTime();
+        },
+
+        hashStr: function(str) {
+            var hash = 0
+              , i    = 0
+              , char
+            ;
+
+            if ( !str.length ) {
+                return hash;
+            }
+
+            for ( i; i < str.length; i++ ) {
+                char = str.charCodeAt( i );
+                hash = ( ( hash << 10 ) - hash ) + char;
+                hash = hash & hash;
+            }
+
+            return Math.abs( hash );
         }
     };
 

@@ -15,8 +15,8 @@ use WPUSB_Utils as Utils;
 use WPUSB_Core as Core;
 use WPUSB_Social_Elements as Elements;
 
-class WPUSB_Ajax_Gplus_Controller
-{
+class WPUSB_Ajax_Gplus_Controller {
+
 	private $transient;
 	private $index;
 	private $cache;
@@ -26,12 +26,13 @@ class WPUSB_Ajax_Gplus_Controller
 	*
 	* @since 3.6.0
 	*/
-	public function __construct()
-	{
+	public function __construct() {
+		$prefix = App::SLUG;
+
 		$this->_set_transient_name();
 
-		add_action( 'wp_ajax_wpusb_gplus_counts', array( &$this, 'gplus_counts_verify_request' ) );
-		add_action( 'wp_ajax_nopriv_wpusb_gplus_counts', array( &$this, 'gplus_counts_verify_request' ) );
+		add_action( "wp_ajax_{$prefix}_gplus_counts", array( &$this, 'gplus_counts_verify_request' ) );
+		add_action( "wp_ajax_nopriv_{$prefix}_gplus_counts", array( &$this, 'gplus_counts_verify_request' ) );
 	}
 
 	/**
@@ -41,8 +42,7 @@ class WPUSB_Ajax_Gplus_Controller
 	 * @param null
 	 * @return void
 	 */
-	private function _set_transient_name()
-	{
+	private function _set_transient_name() {
 		$this->transient = Setting::TRANSIENT_GOOGLE_PLUS;
 	}
 
@@ -53,8 +53,7 @@ class WPUSB_Ajax_Gplus_Controller
 	 * @param null
 	 * @return void
 	 */
-	private function _set_index_url( $url )
-	{
+	private function _set_index_url( $url ) {
 		$this->index = preg_replace( '/[^A-Za-z0-9]+/', '', $url );
 	}
 
@@ -65,8 +64,7 @@ class WPUSB_Ajax_Gplus_Controller
 	 * @param Mixed Object|Bool $cache
 	 * @return void
 	 */
-	private function _set_cache_value( $cache )
-	{
+	private function _set_cache_value( $cache ) {
 		$this->cache = $cache;
 	}
 
@@ -77,8 +75,7 @@ class WPUSB_Ajax_Gplus_Controller
 	 * @param null
 	 * @return void
 	 */
-	public function gplus_counts_verify_request()
-	{
+	public function gplus_counts_verify_request() {
 		if ( ! Utils::is_request_ajax() ) {
 			exit(0);
 		}
@@ -103,13 +100,12 @@ class WPUSB_Ajax_Gplus_Controller
 	 * @param String $url
 	 * @return void
 	 */
-	private function _init_request( $url )
-	{
+	private function _init_request( $url ) {
 		//Cache 10 minutes
 		$cache = get_transient( $this->transient );
 
-		if ( isset( $cache[$this->index] ) ) {
-			$this->_send_total_counts( $cache[$this->index] );
+		if ( isset( $cache[ $this->index ] ) ) {
+			$this->_send_total_counts( $cache[ $this->index ] );
 		}
 
 		$args = $this->_get_gplus_args( $url );
@@ -124,8 +120,7 @@ class WPUSB_Ajax_Gplus_Controller
 	 * @param string $url
 	 * @return array
 	 */
-	private function _get_gplus_args( $url = '' )
-	{
+	private function _get_gplus_args( $url = '' ) {
 	    return array(
 			'sslverify' => false,
 			'headers'   => array(
@@ -159,8 +154,7 @@ class WPUSB_Ajax_Gplus_Controller
 	 * @param String $url
 	 * @return void
 	 */
-	private function _send_request( $args, $url )
-	{
+	private function _send_request( $args, $url ) {
 		$response      = wp_remote_post( 'https://clients6.google.com/rpc', $args );
 		$plusones      = Utils::retrieve_body_json( $response );
 		$global_counts = $this->_get_global_counts( $plusones, $url );
@@ -176,8 +170,7 @@ class WPUSB_Ajax_Gplus_Controller
 	 * @param String $url
 	 * @return Mixed Array|Void
 	 */
-	private function _get_global_counts( $plusones, $url )
-	{
+	private function _get_global_counts( $plusones, $url ) {
 		if ( ! isset( $plusones->result->metadata->globalCounts ) ) {
 			$this->_send_default_counts();
 		}
@@ -196,12 +189,11 @@ class WPUSB_Ajax_Gplus_Controller
 	 * @param String $url
 	 * @return Void
 	 */
-	private function _set_cache_counts( $global_counts, $url )
-	{
-		$counts               = $this->cache;
-		$counts[$this->index] = $global_counts;
-		$time                 = ( 10 * MINUTE_IN_SECONDS );
-		$expiration           = apply_filters( $this->transient, $time );
+	private function _set_cache_counts( $global_counts, $url ) {
+		$counts                 = $this->cache;
+		$counts[ $this->index ] = $global_counts;
+		$time                   = ( 10 * MINUTE_IN_SECONDS );
+		$expiration             = apply_filters( $this->transient, $time );
 
 		set_transient( $this->transient, $counts, $expiration );
 	}
@@ -213,8 +205,7 @@ class WPUSB_Ajax_Gplus_Controller
 	 * @param Object $total_counts
 	 * @return Void
 	 */
-	private function _send_total_counts( $total_counts )
-	{
+	private function _send_total_counts( $total_counts ) {
 		$counts = json_encode( $total_counts );
 
 		echo Utils::get( 'callback' ) . "({$counts})";
@@ -228,8 +219,7 @@ class WPUSB_Ajax_Gplus_Controller
 	 * @param String $message
 	 * @return Void
 	 */
-	private function _error_request( $message = '' )
-	{
+	private function _error_request( $message = '' ) {
 		http_response_code( 500 );
 		Utils::error_server_json( 500, $message );
 		exit(0);
@@ -242,8 +232,7 @@ class WPUSB_Ajax_Gplus_Controller
 	 * @param Null
 	 * @return Void
 	 */
-	private function _send_default_counts()
-	{
+	private function _send_default_counts() {
 		$counts = (object) array( 'count' => 0 );
 
 		$this->_send_total_counts( $counts );

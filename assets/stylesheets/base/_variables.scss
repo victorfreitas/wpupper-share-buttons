@@ -7,6 +7,12 @@ $mobile             : 521px;
 // ===================================================
 // --       Variables Social Media > Colors
 // ===================================================
+$bgAdmin            : #f6fbfd;
+$btnColor           : #0085BA;
+$colorWhite         : #ffffff;
+$colorCheckboxOn    : #34A7C1;
+$colorCheckboxOff   : #BFBFBF;
+$colorDarken        : #454545;
 $colorfacebook      : #3b5998;
 $colorfacebookLike  : #4C63A5;
 $colorTwitter       : #00aced;
@@ -29,12 +35,7 @@ $colorVK			: #45668e;
 $colorRss			: #f26522;
 $colorShare         : #014e6b;
 $colorReddit        : #ff4500;
-$bgAdmin            : #f6fbfd;
-$btnColor           : #0085BA;
-$colorWhite         : #ffffff;
-$colorCheckboxOn    : #34A7C1;
-$colorCheckboxOff   : #BFBFBF;
-$colorDarken        : #454545;
+$colorFlipboard     : #e12828;
 $colors             : (
 	facebook    : $colorfacebook,
 	like        : $colorfacebookLike,
@@ -55,6 +56,7 @@ $colors             : (
 	rss			: $colorRss,
 	share       : $colorShare,
 	reddit      : $colorReddit,
+	flipboard   : $colorFlipboard,
 );
 // ===================================================
 // --              Variables > Prefix

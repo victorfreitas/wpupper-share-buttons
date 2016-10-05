@@ -10,28 +10,15 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-class WPUSB_Setting
-{
-	/**
-	 * Options
-	 *
-	 * @since 1.0
-	 * @var Array
-	 */
-	public static $db_options = array(
-		'wpusb_report_db_version',
-		'wpusb_settings',
-		'wpusb_social_media',
-		'wpusb_extra_settings',
-	);
+class WPUSB_Setting {
 
 	/**
-	 * Full Options
+	 * All Options
 	 *
 	 * @since 1.0
 	 * @var Array
 	 */
-	private $full_options;
+	private $options = null;
 
 	/**
 	 * Single value
@@ -398,8 +385,7 @@ class WPUSB_Setting
 	*/
 	const AJAX_ADMIN_NONCE = 'wpusb-admin-notice';
 
-	public function __construct( $ID = false )
-	{
+	public function __construct( $ID = false ) {
 		if ( false !== $ID ) {
 			$this->ID = abs( intval( $ID ) );
 		}
@@ -412,10 +398,9 @@ class WPUSB_Setting
 	 * @param string $prop_name The attribute name
 	 * @return mixed The attribute value
 	 */
-	public function __get( $prop_name )
-	{
-		if ( isset( $this->$prop_name ) ) {
-			return $this->$prop_name;
+	public function __get( $prop_name ) {
+		if ( isset( $this->{$prop_name} ) ) {
+			return $this->{$prop_name};
 		}
 
 		return $this->_get_property( $prop_name );
@@ -429,24 +414,23 @@ class WPUSB_Setting
 	 * @param string $prop_name The attribute name
 	 * @return mixed String/Integer The value of the attribute
 	 */
-	private function _get_property( $prop_name )
-	{
+	private function _get_property( $prop_name ) {
 		switch ( $prop_name ) {
 
-			case 'full_options' :
-				$this->$prop_name = $this->get_options();
+			case 'options' :
+				$this->{$prop_name} = $this->get_options();
 				break;
 
 			case 'social_media' :
-				$this->$prop_name = get_option( self::PREFIX . '_social_media' );
+				$this->{$prop_name} = get_option( self::PREFIX . '_social_media' );
 				break;
 
 			default :
-				$this->$prop_name = WPUSB_Utils::option( $prop_name );
+				$this->{$prop_name} = WPUSB_Utils::option( $prop_name );
 
 		}
 
-		return $this->$prop_name;
+		return $this->{$prop_name};
 	}
 
 	/**
@@ -456,15 +440,14 @@ class WPUSB_Setting
 	 * @param Null
 	 * @return Array
 	 */
-	private function _set_options()
-	{
+	public function set_options() {
 		$prefix   = self::PREFIX;
 		$settings = "{$prefix}_settings";
 		$social   = "{$prefix}_social_media";
 		$extra    = "{$prefix}_extra_settings";
 		$options  = $this->_merge_options( $settings, $social, $extra );
 
-		return apply_filters( WPUSB_App::SLUG . 'options-args', $options );
+		$this->options = apply_filters( WPUSB_App::SLUG . 'options-args', $options );
 	}
 
 	/**
@@ -476,8 +459,7 @@ class WPUSB_Setting
 	 * @param String $extra
 	 * @return Array
 	 */
-	private function _merge_options( $settings, $social, $extra )
-	{
+	private function _merge_options( $settings, $social, $extra ) {
 		return array_merge(
 			(array) get_option( $settings ),
 			(array) get_option( $social ),
@@ -492,8 +474,11 @@ class WPUSB_Setting
 	 * @param Null
 	 * @return Array
 	 */
-	public function get_options()
-	{
-		return $this->_set_options();
+	public function get_options() {
+		if ( is_null( $this->options ) ) {
+			$this->set_options();
+		}
+
+		return $this->options;
 	}
 }

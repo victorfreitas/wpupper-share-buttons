@@ -1,8 +1,6 @@
 module.exports = function(grunt) {
 
 	function getObjectConcat(folder) {
-		var builtName = ( 'admin' === folder ) ? 'built.' + folder : 'built';
-
 		return {
 			src : [
 				'<%= package.jsroot %>/libs/*.js',
@@ -12,7 +10,7 @@ module.exports = function(grunt) {
 				'<%= package.jsroot %>/' + folder + '/app/*.js',
 				'<%= package.jsroot %>/' + folder + '/boot.js'
 			],
-			dest : '<%= package.jsroot %>/' + builtName + '.js',
+			dest : '<%= package.jsroot %>/' + folder + '/built.js',
 		};
 	}
 

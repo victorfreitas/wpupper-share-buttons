@@ -16,8 +16,8 @@ use WPUSB_App as App;
 //View
 App::uses( 'shares', 'View' );
 
-class WPUSB_Shares_Controller
-{
+class WPUSB_Shares_Controller {
+
 	private $_filter = 'wpusb-buttons';
 	protected $position;
 
@@ -26,8 +26,7 @@ class WPUSB_Shares_Controller
 	*
 	* @since 1.2
 	*/
-	public function __construct()
-	{
+	public function __construct() {
 		add_shortcode( App::SLUG, array( &$this, 'share' ) );
 		add_filter( 'the_content', array( &$this, 'content' ), 20 );
 		add_action( 'wp_footer', array( &$this, 'buttons_fixed' ), 20 );
@@ -41,8 +40,7 @@ class WPUSB_Shares_Controller
 	 * @param Null
 	 * @return Void
 	 */
-	protected function _set_position()
-	{
+	protected function _set_position() {
 		$before = Utils::option( 'before' );
 		$after  = Utils::option( 'after' );
 
@@ -73,8 +71,7 @@ class WPUSB_Shares_Controller
 	 * @param String $content
 	 * @return String
 	 */
-	public function content( $content )
-	{
+	public function content( $content ) {
 		$this->_set_position();
 
 		if ( $this->position && Utils::is_active() ) {
@@ -84,8 +81,7 @@ class WPUSB_Shares_Controller
 		return $content;
 	}
 
-	private function _get_new_content( $content )
-	{
+	private function _get_new_content( $content ) {
 		$buttons = apply_filters( $this->_filter, $this->buttons_share() );
 
 		switch ( $this->position ) {
@@ -116,9 +112,8 @@ class WPUSB_Shares_Controller
 	 * @param Null
 	 * @return void
 	 */
-	public function buttons_fixed()
-	{
-		if ( apply_filters( App::SLUG . '-modal-html', true ) ) {
+	public function buttons_fixed() {
+		if ( apply_filters( App::SLUG . '-modal-html-active', true ) ) {
 			$this->_add_modal();
 		}
 
@@ -141,8 +136,7 @@ class WPUSB_Shares_Controller
 	 * @return HTML
 	 *
 	 */
-	public function share( $atts = array() )
-	{
+	public function share( $atts = array() ) {
 		$atts =	shortcode_atts(
 			array(
 				'class_first'    => '',
@@ -153,6 +147,8 @@ class WPUSB_Shares_Controller
 				'remove_inside'  => false,
 				'remove_counter' => false,
 				'items'          => '',
+				'url'            => '',
+				'title'          => '',
 			),
 			$atts,
 			App::SLUG
@@ -171,8 +167,7 @@ class WPUSB_Shares_Controller
 	 * @param Boolean $fixed
 	 * @return String
 	 */
-	public function buttons_share( $atts = array(), $fixed = false )
-	{
+	public function buttons_share( $atts = array(), $fixed = false ) {
 		return Utils::buttons_share( $atts, $fixed );
 	}
 
@@ -183,9 +178,8 @@ class WPUSB_Shares_Controller
 	 * @param Null
 	 * @return Void
 	 */
-	protected function _add_modal()
-	{
-		if ( Utils::is_active() ) {
+	protected function _add_modal() {
+		if ( apply_filters( App::SLUG . '-show-modal', Utils::is_active() ) ) {
 			WPUSB_All_Items::init();
 		}
 	}

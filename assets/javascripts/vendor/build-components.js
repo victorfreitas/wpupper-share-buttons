@@ -1,12 +1,12 @@
-WPUSB( 'WPUSB.BuildComponents', function(BuildComponents, $) {
+WPUSB( 'WPUSB.BuildComponents', function(BuildComponents, $, utils) {
 
 	BuildComponents.create = function(container) {
-		container.findComponent( '[data-component]', $.proxy( this, '_start' ) );
+		var components = '[data-' + utils.prefix + '-component]';
+		container.findComponent( components, $.proxy( this, '_start' ) );
 	};
 
 	BuildComponents._start = function(elements) {
 		if ( typeof WPUSB.Components == 'undefined' ) {
-			console.warn( 'Component not defined in its structure.' );
 			return;
 		}
 
@@ -18,9 +18,19 @@ WPUSB( 'WPUSB.BuildComponents', function(BuildComponents, $) {
 
 		elements.each( function(index, element) {
 			element = $( element );
-			name    = elements.ucfirst( element.data( 'component' ) );
+			name    = elements.ucfirst( this.getComponent( element ) );
 			this._callback( name, element );
 		}.bind( this ) );
+	};
+
+	BuildComponents.getComponent = function(element) {
+		var component = element.data( utils.prefix + '-component' );
+
+		if ( !component ) {
+			return '';
+		}
+
+		return component;
 	};
 
 	BuildComponents._callback = function(name, element) {
@@ -28,7 +38,10 @@ WPUSB( 'WPUSB.BuildComponents', function(BuildComponents, $) {
 
 		if ( typeof callback == 'function' ) {
 			callback.call( null, element );
+			return;
 		}
+
+		console.warn( 'Component "' + name + '" is not a function.' );
 	};
 
 }, {} );
