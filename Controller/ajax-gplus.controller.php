@@ -81,17 +81,18 @@ class WPUSB_Ajax_Gplus_Controller {
 			exit(0);
 		}
 
-		$nonce = Utils::get( 'nonce', false );
-		$url   = Utils::get( 'url', false, 'esc_url' );
+		$nonce     = Utils::get( 'nonce', false );
+		$url       = Utils::get( 'url', false, 'esc_url' );
+		$permalink = html_entity_decode( $url );
 
-		Utils::ajax_verify_request( $url, 'url_is_empty' );
+		Utils::ajax_verify_request( $permalink, 'url_is_empty' );
 
 		if ( ! wp_verify_nonce( $nonce, Setting::AJAX_VERIFY_GPLUS_COUNTS ) ) {
 			$this->_error_request( 'nonce_is_invalid' );
 		}
 
-		$this->_set_index_url( $url );
-		$this->_init_request( $url );
+		$this->_set_index_url( $permalink );
+		$this->_init_request( $permalink );
 	}
 
 	/**
