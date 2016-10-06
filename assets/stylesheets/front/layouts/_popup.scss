@@ -1,5 +1,6 @@
 .#{$prefix}-modal-mask {
 	opacity: 0;
+	z-index: 9999;
 
 	&:after {
 		background-color: rgba( 0, 0, 0, .6 );

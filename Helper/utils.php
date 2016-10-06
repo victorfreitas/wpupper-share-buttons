@@ -494,6 +494,8 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$setting = new Setting();
 		$option  = self::isset_get( $setting->options, $name, false );
 
+		unset( $setting );
+
 		if ( empty( $option ) ) {
 			return $default;
 		}

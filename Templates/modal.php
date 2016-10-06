@@ -17,7 +17,7 @@ use WPUSB_Setting as Setting;
 use WPUSB_Social_Elements as Elements;
 use WPUSB_Core as Core;
 
-class WPUSB_All_Items {
+class WPUSB_Modal {
 
 	/**
 	 * The buttons container popup

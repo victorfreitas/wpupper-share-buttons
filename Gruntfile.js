@@ -74,7 +74,7 @@ module.exports = function(grunt) {
 		watch: {
 		    site : {
 		    	files : ['<%= concat.admin.src %>', '<%= concat.front.src %>'],
-		    	tasks : ['jshint', 'concat', 'uglify']
+		    	tasks : ['jshint', 'concat']
 		    },
 			css : {
 				files : ['<%= package.cssroot %>/**/*.scss'],
@@ -97,5 +97,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-sass' );
 	grunt.loadNpmTasks( 'grunt-handlebars-compiler' );
 
-	grunt.registerTask( 'js', ['jshint', 'concat'] );
+	grunt.registerTask( 'deploy', ['jshint', 'concat', 'uglify', 'sass:site', 'handlebars:all'] );
 };

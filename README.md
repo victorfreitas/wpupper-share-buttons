@@ -5,7 +5,7 @@ Donate link: [Donate Now](https://www.redcross.org/donate/donation)
 Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email form, social media buttons, click to tweet, pinterest, reddit, viber, telegram, gmail, skype, like, linkedin.  
 Requires at least: 3.0.0  
 Tested up to: 4.6  
-Stable tag: 3.9.0  
+Stable tag: 3.11  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -63,6 +63,16 @@ Layout options: default, buttons, rounded, square
 4. Using the content editor -> [wpusb class_first="" class_second="" class_link="" class_icon="" layout="default" remove_inside="0" remove_counter="0"]  
 
 ## Changelog
+
+### 3.11
+
+* Performance improvements
+* Bug fixes
+* Change class name WPUSB_All_Items to WPUSB_Modal
+
+### 3.10
+
+* Bug fixes GLOB_BRACE flag is not available on some non GNU systems
 
 ### 3.9.0
 

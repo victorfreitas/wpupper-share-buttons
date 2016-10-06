@@ -180,7 +180,7 @@ class WPUSB_Shares_Controller {
 	 */
 	protected function _add_modal() {
 		if ( apply_filters( App::SLUG . '-show-modal', Utils::is_active() ) ) {
-			WPUSB_All_Items::init();
+			WPUSB_Modal::init();
 		}
 	}
 }

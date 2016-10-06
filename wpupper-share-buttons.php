@@ -5,8 +5,8 @@
  *
  * Plugin Name: WPUpper Share Buttons
  * Plugin URI:  https://github.com/victorfreitas/wpupper-share-buttons
- * Version:     3.9.0
- * Author:      WPUpper
+ * Version:     3.11
+ * Author:      Victor Freitas
  * Author URI:  https://github.com/victorfreitas
  * License:     GPL2
  * Text Domain: wpupper-share-buttons
@@ -71,7 +71,7 @@ class WPUSB_App {
      *
      * @var String
      */
-	const VERSION = '3.9.0';
+	const VERSION = '3.11';
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -95,16 +95,23 @@ class WPUSB_App {
 	 * Automatic list files in
 	 * Helpers, Controllers and Templates.
 	 *
-	 * @since 3.0.0
+	 * @since 3.0
+	 * @version 2.0
 	 * @param Null
 	 * @return Array
 	 */
 	public static function get_files() {
-		$root    = dirname( __FILE__ );
-		$pattern = "{$root}{/Helper/,/Templates/}*.php";
-		$files   = glob( $pattern, GLOB_BRACE );
+		$root = dirname( __FILE__ );
 
-		return ( is_null( $files ) ) ? array() : $files;
+		if ( defined( 'GLOB_BRACE' ) ) {
+			$pattern = "{$root}{/Helper/,/Templates/}*.php";
+			return glob( $pattern, GLOB_BRACE );
+		}
+
+		$helpers   = glob( "{$root}/Helper/*.php" );
+		$templates = glob( "{$root}/Templates/*.php" );
+
+		return array_merge( $helpers, $templates );
 	}
 
 	/**

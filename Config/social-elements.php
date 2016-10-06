@@ -31,6 +31,7 @@ class WPUSB_Social_Elements {
 	public static $title;
 	public static $tracking;
 	public static $body_mail;
+	public static $social_networks = null;
 
 	public static $items_available = array(
 		'facebook'  => 'facebook',
@@ -371,35 +372,54 @@ class WPUSB_Social_Elements {
 		$std->flipboard->inside      = __( 'Share', App::TEXTDOMAIN );
 		$std->flipboard->has_counter = false;
 
-		return apply_filters( App::SLUG . '-elements-share', $std, self::$title, self::$url );
+		$args = array(
+			'title'        => self::$title,
+			'url'          => self::$url,
+			'prefix'       => $prefix,
+			'item'         => self::$item,
+			'class_button' => self::$class_button,
+			'attr_action'  => self::$action,
+			'prefix_icons' => $prefix_icons,
+		);
+
+		return apply_filters( App::SLUG . '-elements-share', $std, self::$title, self::$url, $args );
 	}
 
 	/**
 	 * Sortable elements share
 	 *
 	 * @since 3.1.4
-	 * @version 1.0.0
+	 * @version 1.1.0
 	 * @param Array $elements
 	 * @return Object
 	 */
 	private static function _ksort( $elements ) {
+		$tag = App::SLUG . '-elements-args';
+
+		if ( ! is_null( self::$social_networks ) )
+			return apply_filters( $tag, self::$social_networks );
+
 		$order  = Utils::option( 'order', false );
 		$social = $elements;
 
-		if ( $order ) {
+		if ( $order ) :
 			$social = new stdClass();
 			$order  = json_decode( $order );
 
-			foreach ( $order as $items ) {
+			foreach ( $elements as $key => $element ) :
+				if ( ! isset( $order[ $key ] ) ) {
+					$order[ $key ] = $key;
+				}
+			endforeach;
+
+			foreach ( $order as $items ) :
 				$social->{$items} = apply_filters( App::SLUG . "-{$items}-items", $elements->{$items} );
-			}
+			endforeach;
+		endif;
 
-			if ( is_admin() && count( (array) $elements ) > count( (array) $order ) ) {
-				$social = (object) array_merge( (array) $social, (array) $elements );
-			}
-		}
+		self::$social_networks = $social;
 
-		return apply_filters( App::SLUG . '-elements-args', $social );
+		return apply_filters( $tag, $social );
 	}
 
 	/**

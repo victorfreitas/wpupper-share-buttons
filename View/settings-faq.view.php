@@ -146,8 +146,9 @@ add_filter( 'wpusb_class_icon', 'your_function_name' );
  * Object $social_networks
  * String $title
  * String $url
+ * Array $args
  */
-add_filter( 'wpusb-elements-share', 'your_function_name', 10, 3 );
+add_filter( 'wpusb-elements-share', 'your_function_name', 10, 4 );
 
 /*
  * Parameter that the function receives

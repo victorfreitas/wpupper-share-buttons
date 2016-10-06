@@ -10,6 +10,9 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
+use WPUSB_Utils as Utils;
+use WPUSB_App as App;
+
 class WPUSB_Setting {
 
 	/**
@@ -434,40 +437,6 @@ class WPUSB_Setting {
 	}
 
 	/**
- 	 * Set all options
- 	 *
-	 * @since 1.1
-	 * @param Null
-	 * @return Array
-	 */
-	public function set_options() {
-		$prefix   = self::PREFIX;
-		$settings = "{$prefix}_settings";
-		$social   = "{$prefix}_social_media";
-		$extra    = "{$prefix}_extra_settings";
-		$options  = $this->_merge_options( $settings, $social, $extra );
-
-		$this->options = apply_filters( WPUSB_App::SLUG . 'options-args', $options );
-	}
-
-	/**
- 	 * Merge array all options
- 	 *
-	 * @since 1.0
-	 * @param String $settings
-	 * @param String $social
-	 * @param String $extra
-	 * @return Array
-	 */
-	private function _merge_options( $settings, $social, $extra ) {
-		return array_merge(
-			(array) get_option( $settings ),
-			(array) get_option( $social ),
-			(array) get_option( $extra )
-		);
-	}
-
-	/**
 	 * Get all options
 	 *
 	 * @since 1.1
@@ -480,5 +449,36 @@ class WPUSB_Setting {
 		}
 
 		return $this->options;
+	}
+
+	/**
+ 	 * Set all options
+ 	 *
+	 * @since 1.1
+	 * @param Null
+	 * @return Array
+	 */
+	public function set_options() {
+		$options 	   = $this->_get_merge_options();
+		$this->options = apply_filters( WPUSB_App::SLUG . 'options-args', $options );
+	}
+
+	/**
+ 	 * Merge array all options
+ 	 *
+	 * @since 1.0
+	 * @param String $settings
+	 * @param String $social
+	 * @param String $extra
+	 * @return Array
+	 */
+	private function _get_merge_options() {
+		$options_name = Utils::get_options_name();
+
+		return array_merge(
+			(array) get_option( $options_name[1] ),
+			(array) get_option( $options_name[2] ),
+			(array) get_option( $options_name[3] )
+		);
 	}
 }
