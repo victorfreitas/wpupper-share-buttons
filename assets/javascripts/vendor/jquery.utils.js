@@ -36,6 +36,7 @@
 
 	$.fn.addEvent = function(event, action, context) {
         var handle = $.fn.ucfirst( [ '_on', event, action ].join( '-' ) );
+
         this.byAction( action )
         	.on( event, $.proxy( context, handle ) );
 	};;

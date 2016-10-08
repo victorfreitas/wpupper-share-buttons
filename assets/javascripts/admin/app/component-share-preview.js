@@ -1,14 +1,13 @@
 WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $, utils) {
 
-	SharePreview.fn.start = function(container) {
-		this.$el           = container;
+	SharePreview.fn.start = function() {
 		this.spinner       = $( '.ajax-spinner' );
-		this.prefix        = WPUSB.vars.prefix;
-		this.container     = container.closest( '.wpusb-wrap' );
-		this.order         = this.container.byElement( 'sortable' );
-		this.inputOrder    = this.container.byElement( 'order' );
+		this.prefix        = utils.prefix;
+		this.wrap          = this.$el.closest( '.wpusb-wrap' );
+		this.order         = this.wrap.byElement( 'sortable' );
+		this.inputOrder    = this.wrap.byElement( 'order' );
 		this.layoutOptions = $( '.layout-preview' );
-		this.elements      = $( '.wpusb-select-item input' );
+		this.list          = $( '.wpusb-select-item input' );
 		this.init();
 	};
 
@@ -18,7 +17,7 @@ WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $, utils) {
 
 	SharePreview.fn.addEventListener = function() {
 		this.layoutOptions.on( 'click', this._onClickLayout.bind( this ) );
-		this.elements.on( 'click', this._onClick.bind( this ) );
+		this.list.on( 'click', this._onClick.bind( this ) );
 		this.order.sortable( this.sortOptions() );
 	};
 

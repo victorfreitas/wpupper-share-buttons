@@ -1010,4 +1010,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 
 		return apply_filters( App::SLUG . '-component-name', $attr_name, App::SLUG );
 	}
+
+	public static function get_url_donate() {
+		$code = 'KYRMWXEEQN58L';
+
+		if ( 'pt_BR' === get_locale() )
+			$code = 'X7BF5KKYQMA8E';
+
+		return 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=' . $code;
+	}
 }

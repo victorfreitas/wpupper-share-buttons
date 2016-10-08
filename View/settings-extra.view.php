@@ -39,6 +39,9 @@ class WPUSB_Settings_Extra_View {
 			?>
 
 			<p class="description"><?php _e( 'Add the Share Buttons automatically.', App::TEXTDOMAIN ); ?></p>
+
+			<?php View::home_page_notice(); ?>
+
 			<span class="<?php echo "{$prefix}-title-wrap"; ?>"><?php _e( 'Extra Settings', App::TEXTDOMAIN ); ?></span>
 
 			<?php View::menu_top(); ?>

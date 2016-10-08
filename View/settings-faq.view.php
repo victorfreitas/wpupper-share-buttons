@@ -32,6 +32,9 @@ class WPUSB_Settings_Faq_View {
 		<div class="wrap">
 			<h2><?php _e( 'WPUpper Share Buttons', App::TEXTDOMAIN ); ?></h2>
 			<p class="description"><?php _e( 'Add the Share Buttons automatically.', App::TEXTDOMAIN ); ?></p>
+
+			<?php View::home_page_notice(); ?>
+
 			<span class="<?php echo "{$prefix}-title-wrap"; ?>">
 				<?php _e( 'Use options', App::TEXTDOMAIN ); ?>
 			</span>

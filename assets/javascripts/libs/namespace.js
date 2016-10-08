@@ -23,10 +23,19 @@
 
     WPUSB.instantiate = function() {
         var Instantiate = function() {}
-          , Constructor = function() {
-                var instance;
+          , Constructor = function(context) {
+                var instance, elements;
 
-                instance = new Instantiate();
+                instance          = new Instantiate();
+                instance.$el      = context;
+                instance.data     = context.data();
+                instance.elements = {};
+                elements          = context.find( '[data-element]' );
+
+                elements.each(function(index, element) {
+                    instance.elements[WPUSB.utils.ucfirst( element.dataset.element )] = $( element );
+                });
+
                 instance.start.apply( instance, arguments );
 
                 return instance;
@@ -43,6 +52,14 @@
     WPUSB.utils = {
 
         prefix: 'wpusb',
+
+        ucfirst: function(text) {
+            text = text.replace( /(?:-)\w/g, function(match) {
+              return match.toUpperCase();
+            });
+
+            return text.replace( /-/g, '' );
+        },
 
         getAjaxUrl: function() {
             return ( window.WPUSBVars || {} ).ajaxUrl;

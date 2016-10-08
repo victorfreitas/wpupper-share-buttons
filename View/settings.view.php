@@ -41,6 +41,9 @@ class WPUSB_Settings_View {
 			?>
 
 			<p class="description"><?php _e( 'Add the Share Buttons automatically.', App::TEXTDOMAIN ); ?></p>
+
+			<?php self::home_page_notice(); ?>
+
 			<span class="<?php echo "{$prefix}-title-wrap"; ?>"><?php _e( 'Settings', App::TEXTDOMAIN ); ?></span>
 
 			<?php self::menu_top(); ?>
@@ -526,10 +529,42 @@ EOD;
 		return array_merge( $defaults, $args );
 	}
 
-	public static function admin_notice( $prefix, $nonce ) {
-		$class   = "update-nag notice is-dismissible {$prefix}-admin-notice";
-		$message = __( '<strong>Warning! WPUpper Share Buttons:</strong> Is important clean the caches of CSS and JavaScript files. This is necessary for the plugin to work properly to get the number of social networking actions.', App::TEXTDOMAIN );
+	public static function home_page_notice() {
+		if ( apply_filters( App::SLUG . '-admin-message', false ) )
+			return;
+	?>
 
-		printf( '<div data-nonce="%1$s" class="%2$s"><p>%3$s</p></div>', $nonce, $class, $message );
+	<div class="updated inline">
+		<p>
+			<?php
+				$message = sprintf(
+					__( 'Help keep the free %s, you can make a donation or vote with %s at WordPress.org. Thank you very much!', App::TEXTDOMAIN ),
+					__( App::NAME, App::TEXTDOMAIN ),
+					'★★★★★'
+				);
+
+				echo Utils::rm_tags( $message );
+			?>
+		</p>
+		<p>
+			<a href="<?php echo Utils::get_url_donate(); ?>"
+			   target="_blank"
+			   class="button button-primary">
+
+				<?php _e( 'Make a donation', App::TEXTDOMAIN ); ?>
+
+			</a>
+
+			<a href="https://wordpress.org/support/plugin/wpupper-share-buttons/reviews/?filter=5#postform"
+			   target="_blank"
+			   class="button button-secondary">
+
+		   		<?php _e( 'Make a review', App::TEXTDOMAIN ); ?>
+
+		   </a>
+		</p>
+	</div>
+
+	<?php
 	}
 }

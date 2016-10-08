@@ -39,6 +39,8 @@ class WPUSB_Sharing_Report_View {
 			<h2><?php _e( 'WPUpper Share Buttons', $text_domain ); ?></h2>
 			<p class="description"><?php _e( 'Add the Share Buttons automatically.', $text_domain ); ?></p>
 
+			<?php View::home_page_notice(); ?>
+
 			<span class="<?php echo $prefix; ?>-settings-title">
 				<span class="description information-cache">
 					<?php echo "{$description}{$time}."; ?>

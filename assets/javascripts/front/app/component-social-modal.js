@@ -1,28 +1,27 @@
-WPUSB( 'WPUSB.Components.SocialModal', function(SocialModal, $) {
+WPUSB( 'WPUSB.Components.SocialModal', function(SocialModal, $, utils) {
 
-	SocialModal.fn.start = function(container) {
-		this.prefix    = '.' + WPUSB.vars.prefix + '-';
-		this.container = container;
-		this.body      = WPUSB.vars.body;
-		this.$el       = this.body.find( this.prefix + 'modal-networks' );
-		this.close     = this.$el.find( this.prefix + 'btn-close' );
+	SocialModal.fn.start = function() {
+		this.prefix = '.' + utils.prefix + '-';
+		this.body   = WPUSB.vars.body;
+		this.modal  = this.body.find( this.prefix + 'modal-networks' );
+		this.close  = this.modal.find( this.prefix + 'btn-close' );
 
 		this.init();
 	};
 
 	SocialModal.fn.init = function() {
-		WPUSB.OpenPopup.create( this.$el );
+		WPUSB.OpenPopup.create( this.modal );
 
-		this.$el.show();
+		this.modal.show();
 		this.addEventListener();
 		this.setSizes();
 		this.setPosition();
-		this.$el.hide();
+		this.modal.hide();
 	};
 
 	SocialModal.fn.addEventListener = function() {
-		this.container.addEvent( 'click', 'close-popup', this );
-		this.container.on( 'click', this._onClickMask.bind( this ) );
+		this.$el.addEvent( 'click', 'close-popup', this );
+		this.$el.on( 'click', this._onClickMask.bind( this ) );
 		this.body.addEvent( 'click', 'open-modal-networks', this );
 	};
 
@@ -47,20 +46,20 @@ WPUSB( 'WPUSB.Components.SocialModal', function(SocialModal, $) {
 	};
 
 	SocialModal.fn.closeModal = function() {
-		this.container.css( 'opacity', 0 );
-		this.container.hide();
+		this.$el.css( 'opacity', 0 );
 		this.$el.hide();
+		this.modal.hide();
 	};
 
 	SocialModal.fn.openModal = function() {
-		this.container.css( 'opacity', 1 );
-		this.container.show();
+		this.$el.css( 'opacity', 1 );
 		this.$el.show();
+		this.modal.show();
 	};
 
 	SocialModal.fn.setTop = function() {
 		var height   = ( window.innerHeight * 0.5 )
-		  ,	elHeight = ( this.$el.height() * 0.5 )
+		  ,	elHeight = ( this.modal.height() * 0.5 )
 		  , position = ( height - elHeight )
 		;
 
@@ -70,7 +69,7 @@ WPUSB( 'WPUSB.Components.SocialModal', function(SocialModal, $) {
 
 	SocialModal.fn.setLeft = function() {
 		var width    = ( window.innerWidth * 0.5 )
-		  ,	elWidth  = ( this.$el.width() * 0.5 )
+		  ,	elWidth  = ( this.modal.width() * 0.5 )
 		  , position = ( width - elWidth )
 		;
 
@@ -79,7 +78,7 @@ WPUSB( 'WPUSB.Components.SocialModal', function(SocialModal, $) {
 	};
 
 	SocialModal.fn.setPosition = function() {
-		this.$el.css({
+		this.modal.css({
 			top  : this.top,
 			left : this.left
 		});

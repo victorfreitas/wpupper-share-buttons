@@ -1,15 +1,13 @@
 WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, utils) {
 
-	CounterSocialShare.fn.start = function(container) {
-		this.$el              = container;
-		this.prefix           = WPUSB.vars.prefix + '-';
-		this.data             = container.data();
-		this.facebook         = this.$el.byElement( 'facebook' );
-		this.twitter          = this.$el.byElement( 'twitter' );
-		this.google           = this.$el.byElement( 'google-plus' );
-		this.pinterest        = this.$el.byElement( 'pinterest' );
-		this.linkedin         = this.$el.byElement( 'linkedin' );
-		this.totalShare       = this.$el.byElement( 'total-share' );
+	CounterSocialShare.fn.start = function() {
+		this.prefix           = utils.prefix + '-';
+		this.facebook         = this.elements.facebook;
+		this.twitter          = this.elements.twitter;
+		this.google           = this.elements.googlePlus;
+		this.pinterest        = this.elements.pinterest;
+		this.linkedin         = this.elements.linkedin;
+		this.totalShare       = this.elements.totalShare;
 		this.totalCounter     = 0;
 		this.facebookCounter  = 0;
 		this.twitterCounter   = 0;
@@ -17,6 +15,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		this.linkedinCounter  = 0;
 		this.pinterestCounter = 0;
 		this.max              = 5;
+
 		this.init();
 	};
 
@@ -24,6 +23,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		WPUSB.FeaturedReferrer.create( this.$el );
 		WPUSB.OpenPopup.create( this.$el );
 		WPUSB.FixedContext.create( this.$el );
+
 		this.addEventListeners();
 		this.request();
 	};
@@ -72,8 +72,14 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 
 	CounterSocialShare.fn._iterateItems = function(item, index) {
 		var counter = 0;
-		this.totalShare.text( counter );
-		this[item.element].text( counter );
+
+		if ( this.totalShare ) {
+			this.totalShare.text( counter );
+		}
+
+		if ( this[item.element] ) {
+			this[item.element].text( counter );
+		}
 
 		this._getJSON( item );
 	};
@@ -94,16 +100,22 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		this[request.reference] = number;
 		this.max               -= 1;
 		this.totalCounter      += number;
-		this[request.element].text( number );
 
-		if ( !this.max ) {
+		if ( this[request.element] ) {
+			this[request.element].text( number );
+		}
+
+		if ( !this.max && this.totalShare ) {
 			this.totalShare.text( this.totalCounter );
 		}
 	};
 
 	CounterSocialShare.fn._fail = function(request, throwError, status) {
 		this[request.reference] = 0;
-		this[request.element].text( 0 );
+
+		if ( this[request.element] ) {
+			this[request.element].text( 0 );
+		}
 	};
 
 	CounterSocialShare.fn.getNumberByData = function(element, data) {

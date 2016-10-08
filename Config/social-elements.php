@@ -51,6 +51,7 @@ class WPUSB_Social_Elements {
 		'share'     => 'share',
 		'reddit'    => 'reddit',
 		'flipboard' => 'flipboard',
+		'messager'  => 'messager',
 	);
 
 	/**
@@ -371,6 +372,23 @@ class WPUSB_Social_Elements {
 		$std->flipboard->popup       = self::$action;
 		$std->flipboard->inside      = __( 'Share', App::TEXTDOMAIN );
 		$std->flipboard->has_counter = false;
+
+		/**
+		 * @var Object
+		 * @see Facebook messenger
+		 */
+		$std->messenger              = new stdClass();
+		$std->messenger->name        = 'Facebook Messenger';
+		$std->messenger->element     = 'messenger';
+		$std->messenger->link        = 'https://www.facebook.com/dialog/send?app_id=140586622674265&link=' . self::$url . '&redirect_uri=' . self::$url;
+		$std->messenger->title       = __( 'Send on Facebook Messenger', App::TEXTDOMAIN );
+		$std->messenger->class       = $prefix . '-flipboard';
+		$std->messenger->class_item  = self::$item;
+		$std->messenger->class_link  = self::$class_button;
+		$std->messenger->class_icon  = apply_filters( "{$prefix}_class_icon", $prefix_icons . 'messenger' );
+		$std->messenger->popup       = self::$action;
+		$std->messenger->inside      = __( 'Facebook Messenger', App::TEXTDOMAIN );
+		$std->messenger->has_counter = false;
 
 		$args = array(
 			'title'        => self::$title,

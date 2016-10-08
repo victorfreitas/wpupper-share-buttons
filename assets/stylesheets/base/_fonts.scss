@@ -3,11 +3,11 @@
 // ===================================================
 @font-face {
     font-family: 'wpusb';
-    src: url('../fonts/wpusb.eot?w32x1');
-    src: url('../fonts/wpusb.eot?w32x1#iefix') format('embedded-opentype'),
-         url('../fonts/wpusb.ttf?w32x1') format('truetype'),
-         url('../fonts/wpusb.woff?w32x1') format('woff'),
-         url('../fonts/wpusb.svg?w32x1#wpusb') format('svg');
+    src: url('../fonts/wpusb.eot?5zjl98');
+    src: url('../fonts/wpusb.eot?5zjl98#iefix') format('embedded-opentype'),
+         url('../fonts/wpusb.ttf?5zjl98') format('truetype'),
+         url('../fonts/wpusb.woff?5zjl98') format('woff'),
+         url('../fonts/wpusb.svg?5zjl98#wpusb') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -225,4 +225,13 @@
 }
 .wpusb-icon-flipboard-rounded:before {
   content: "\e91e";
+}
+.wpusb-icon-messenger:before {
+  content: "\e920";
+}
+.wpusb-icon-messenger-square:before {
+  content: "\e921";
+}
+.wpusb-icon-messenger-rounded:before {
+  content: "\e922";
 }

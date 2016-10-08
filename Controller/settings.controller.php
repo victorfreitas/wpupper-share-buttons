@@ -161,26 +161,6 @@ class WPUSB_Settings_Controller {
 	}
 
 	/**
-	 * Notice admin
-	 *
-	 * @since 3.6.0
-	 * @param Null
-	 * @return void
-	 */
-	public function admin_notices() {
-		$option = get_site_option( App::SLUG . '-admin-notices' );
-
-		if ( ! $option ) {
-			return;
-		}
-
-		$prefix = App::SLUG;
-		$nonce  = Utils::nonce( Setting::AJAX_ADMIN_NONCE );
-
-		View::admin_notice( $prefix, $nonce );
-	}
-
-	/**
 	 * redirect from plugin page settings
 	 *
 	 * @since 3.6.0
