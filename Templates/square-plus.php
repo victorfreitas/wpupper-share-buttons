@@ -54,20 +54,20 @@ EOD;
 	 * @return String
 	 */
 	public static function items( $args = OBJECT ) {
-		$classes   = self::get_classes_second( $args );
-		$link_type = Utils::link_type( $args->reference->link );
-		$inside    = self::inside( $args );
-		$referrer  = Utils::get_data_referrer( $args );
-		$ga_event  = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
-		$content   = <<<EOD
+		$classes    = self::get_classes_second( $args );
+		$link_type  = Utils::link_type( $args->reference->link );
+		$inside     = self::inside( $args );
+		$referrer   = Utils::get_data_referrer( $args );
+		$ga_event   = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
+		$content    = <<<EOD
 			<div class="{$classes}" {$referrer}>
 
 				<a {$link_type}
-				   {$args->reference->popup}
 				   class="{$args->prefix}-link {$args->class_link}"
 				   title="{$args->reference->title}"
-				   {$ga_event}
-				   rel="nofollow">
+				   rel="nofollow"
+				   {$args->reference->popup}
+				   {$ga_event}>
 
 				   <i class="{$args->item_class_icon} {$args->class_icon}"></i>
 				   {$inside}

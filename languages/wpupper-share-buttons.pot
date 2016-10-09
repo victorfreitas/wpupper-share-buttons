@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPUpper Share Buttons 3.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-buttons\n"
-"POT-Creation-Date: 2016-10-08 17:19-0300\n"
+"POT-Creation-Date: 2016-10-08 20:53-0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,100 +23,108 @@ msgstr ""
 "X-Poedit-SearchPath-5: wpupper-share-buttons.php\n"
 "X-Poedit-SearchPath-6: Templates\n"
 
-#: Config/social-elements.php:94
+#: Config/social-elements.php:95
 msgid "Share on Facebook"
 msgstr ""
 
-#: Config/social-elements.php:100 Config/social-elements.php:134
-#: Config/social-elements.php:151 Config/social-elements.php:168
-#: Config/social-elements.php:185 Config/social-elements.php:202
-#: Config/social-elements.php:270 Config/social-elements.php:287
-#: Config/social-elements.php:304 Config/social-elements.php:355
-#: Config/social-elements.php:372
+#: Config/social-elements.php:101 Config/social-elements.php:135
+#: Config/social-elements.php:152 Config/social-elements.php:169
+#: Config/social-elements.php:186 Config/social-elements.php:203
+#: Config/social-elements.php:271 Config/social-elements.php:288
+#: Config/social-elements.php:305 Config/social-elements.php:356
+#: Config/social-elements.php:373
 msgid "Share"
 msgstr ""
 
-#: Config/social-elements.php:111 Config/social-elements.php:117
+#: Config/social-elements.php:112 Config/social-elements.php:118
 msgid "Tweet"
 msgstr ""
 
-#: Config/social-elements.php:128
+#: Config/social-elements.php:129
 msgid "Share on Google+"
 msgstr ""
 
-#: Config/social-elements.php:145
+#: Config/social-elements.php:146
 msgid "Share on WhatsApp"
 msgstr ""
 
-#: Config/social-elements.php:162
+#: Config/social-elements.php:163
 msgid "Share on Pinterest"
 msgstr ""
 
-#: Config/social-elements.php:179
+#: Config/social-elements.php:180
 msgid "Share on Linkedin"
 msgstr ""
 
-#: Config/social-elements.php:196
+#: Config/social-elements.php:197
 msgid "Share on Tumblr"
 msgstr ""
 
-#: Config/social-elements.php:213
+#: Config/social-elements.php:214
 msgid "Send by email"
 msgstr ""
 
-#: Config/social-elements.php:230
+#: Config/social-elements.php:231
 msgid "Send by Gmail"
 msgstr ""
 
-#: Config/social-elements.php:247
+#: Config/social-elements.php:248
 msgid "Print via PrintFriendly"
 msgstr ""
 
-#: Config/social-elements.php:253
+#: Config/social-elements.php:254
 msgid "Print"
 msgstr ""
 
-#: Config/social-elements.php:264
+#: Config/social-elements.php:265
 msgid "Share on Telegram"
 msgstr ""
 
-#: Config/social-elements.php:281
+#: Config/social-elements.php:282
 msgid "Share on Skype"
 msgstr ""
 
-#: Config/social-elements.php:298
+#: Config/social-elements.php:299
 msgid "Share on Viber"
 msgstr ""
 
-#: Config/social-elements.php:315
+#: Config/social-elements.php:316
 msgid "Like on Facebook"
 msgstr ""
 
-#: Config/social-elements.php:321
+#: Config/social-elements.php:322
 msgid "Like"
 msgstr ""
 
-#: Config/social-elements.php:332 Templates/layouts-primary.php:154
+#: Config/social-elements.php:333 Templates/layouts-primary.php:154
 msgid "Open modal social networks"
 msgstr ""
 
-#: Config/social-elements.php:338
+#: Config/social-elements.php:339
 msgid "More"
 msgstr ""
 
-#: Config/social-elements.php:349
+#: Config/social-elements.php:350
 msgid "Share on Reddit"
 msgstr ""
 
-#: Config/social-elements.php:366
+#: Config/social-elements.php:367
 msgid "Share on Flipboard"
 msgstr ""
 
-#: Config/social-elements.php:543 View/settings-extra.view.php:98
+#: Config/social-elements.php:384
+msgid "Send on Facebook Messenger"
+msgstr ""
+
+#: Config/social-elements.php:390
+msgid "Messenger"
+msgstr ""
+
+#: Config/social-elements.php:561 View/settings-extra.view.php:101
 msgid "I just saw"
 msgstr ""
 
-#: Config/social-elements.php:544
+#: Config/social-elements.php:562
 msgid "Click to see also"
 msgstr ""
 
@@ -154,7 +162,7 @@ msgstr ""
 msgid "Extra Settings | WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/settings.controller.php:131 View/settings-extra.view.php:42
+#: Controller/settings.controller.php:131 View/settings-extra.view.php:45
 #: View/settings.view.php:422
 msgid "Extra Settings"
 msgstr ""
@@ -163,7 +171,7 @@ msgstr ""
 msgid "Use options | WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/settings.controller.php:140 View/settings-faq.view.php:36
+#: Controller/settings.controller.php:140 View/settings-faq.view.php:39
 #: View/settings.view.php:427
 msgid "Use options"
 msgstr ""
@@ -217,83 +225,83 @@ msgstr ""
 msgid "Add the Share Buttons automatically."
 msgstr ""
 
-#: View/settings-extra.view.php:53
+#: View/settings-extra.view.php:56
 msgid "Cache time"
 msgstr ""
 
-#: View/settings-extra.view.php:60
+#: View/settings-extra.view.php:63
 msgid "Minute"
 msgstr ""
 
-#: View/settings-extra.view.php:62
+#: View/settings-extra.view.php:65
 msgid "Set the time in minutes that will be cached in the Sharing report page"
 msgstr ""
 
-#: View/settings-extra.view.php:69 View/settings-extra.view.php:75
+#: View/settings-extra.view.php:72 View/settings-extra.view.php:78
 msgid "Twitter username"
 msgstr ""
 
-#: View/settings-extra.view.php:78
+#: View/settings-extra.view.php:81
 msgid "Your twitter username"
 msgstr ""
 
-#: View/settings-extra.view.php:84 View/settings-extra.view.php:90
+#: View/settings-extra.view.php:87 View/settings-extra.view.php:93
 msgid "Twitter text"
 msgstr ""
 
-#: View/settings-extra.view.php:95
+#: View/settings-extra.view.php:98
 msgid "Use {title} to add the post title"
 msgstr ""
 
-#: View/settings-extra.view.php:97 View/settings-extra.view.php:118
+#: View/settings-extra.view.php:100 View/settings-extra.view.php:121
 msgid "Example: "
 msgstr ""
 
-#: View/settings-extra.view.php:106
+#: View/settings-extra.view.php:109
 msgid "UTM tracking"
 msgstr ""
 
-#: View/settings-extra.view.php:112
+#: View/settings-extra.view.php:115
 msgid "Add UTM tracking (Analytics)"
 msgstr ""
 
-#: View/settings-extra.view.php:121
+#: View/settings-extra.view.php:124
 msgid "Use <code>?</code> and"
 msgstr ""
 
-#: View/settings-extra.view.php:122
+#: View/settings-extra.view.php:125
 msgid "adding parameters to use <code>&</code> in the tracking."
 msgstr ""
 
-#: View/settings-extra.view.php:130
+#: View/settings-extra.view.php:133
 msgid "Bitly access token"
 msgstr ""
 
-#: View/settings-extra.view.php:136
+#: View/settings-extra.view.php:139
 msgid "Insert your access token Bitly"
 msgstr ""
 
-#: View/settings-extra.view.php:140
+#: View/settings-extra.view.php:143
 msgid "Shorten urls using bitly, generate token in "
 msgstr ""
 
-#: View/settings-extra.view.php:148
+#: View/settings-extra.view.php:151
 msgid "Disable CSS"
 msgstr ""
 
-#: View/settings-extra.view.php:165
+#: View/settings-extra.view.php:168
 msgid "Disable JS"
 msgstr ""
 
-#: View/settings-extra.view.php:182
+#: View/settings-extra.view.php:185
 msgid "CSS file in footer"
 msgstr ""
 
-#: View/settings-extra.view.php:195
+#: View/settings-extra.view.php:198
 msgid "Keep the CSS style in the footer is recommended to improve the performance of your website."
 msgstr ""
 
-#: View/settings-faq.view.php:108
+#: View/settings-faq.view.php:111
 msgid "Available filters"
 msgstr ""
 

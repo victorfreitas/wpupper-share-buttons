@@ -5,7 +5,7 @@ Donate link: [Donate Now](https://www.redcross.org/donate/donation)
 Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email form, social media buttons, click to tweet, pinterest, reddit, viber, telegram, gmail, skype, like, linkedin.  
 Requires at least: 3.0.0  
 Tested up to: 4.6  
-Stable tag: 3.11.1  
+Stable tag: 3.12  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -64,9 +64,11 @@ Layout options: default, buttons, rounded, square
 
 ## Changelog
 
-### 3.11.1
+### 3.12
 
+* New button: Facebook Messenger
 * Add message on plugin admin page
+* Update languages
 * Bug fixes
 
 ### 3.11

@@ -66,17 +66,21 @@ EOD;
 				continue;
 			}
 
-			$ga       = apply_filters( App::SLUG . '-ga-event', false, $social );
-			$ga_event = ( $ga ) ? 'onClick="' . $ga . ';"' : '';
-			$social   = Utils::replace_link( $social, $permalink, $title );
+			$ga        = apply_filters( App::SLUG . '-ga-event', false, $social );
+			$ga_event  = ( $ga ) ? 'onClick="' . $ga . ';"' : '';
+			$social    = Utils::replace_link( $social, $permalink, $title );
+			$link_attr = Utils::link_type( $social->link );
 
-			echo <<< EOD
+			echo <<<EOD
 				<div class="{$prefix}-element-popup">
-					<a href="{$social->link}"
+					<a {$link_attr}
 					   class="{$social->class_link}-popup {$social->class}-popup"
-					   {$ga_event}
+					   target="_blank"
 					   rel="nofollow"
-					   data-action="open-popup">
+					   title="{$social->title}"
+					   {$ga_event}
+					   {$social->popup}>
+
 						<i class="{$social->class_icon} {$prefix}-icon-popup"></i>
 						<span class="{$prefix}-name-popup" data-name="{$social->name}"></span>
 					</a>
