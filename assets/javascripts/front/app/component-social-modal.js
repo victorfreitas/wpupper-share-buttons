@@ -58,7 +58,7 @@ WPUSB( 'WPUSB.Components.SocialModal', function(SocialModal, $, utils) {
 				href[index] = this.href;
 			}
 
-			this.href = this.href.replace( '_permalink_', data.elementUrl ).replace( '_title_', data.elementTitle );
+			this.href = this.href.replace( /_permalink_/g, data.elementUrl ).replace( /_title_/g, data.elementTitle );
 		});
 	};
 
