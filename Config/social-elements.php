@@ -193,7 +193,7 @@ class WPUSB_Social_Elements {
 		$std->tumblr              = new stdClass();
 		$std->tumblr->name        = 'Tumblr';
 		$std->tumblr->element     = 'tumblr';
-		$std->tumblr->link        = 'http://www.tumblr.com/share';
+		$std->tumblr->link        = 'http://tumblr.com/widgets/share/tool?canonicalUrl=' . self::$url;
 		$std->tumblr->title       = __( 'Share on Tumblr', App::TEXTDOMAIN );
 		$std->tumblr->class       = $prefix . '-tumblr';
 		$std->tumblr->class_item  = self::$item;
@@ -201,7 +201,7 @@ class WPUSB_Social_Elements {
 		$std->tumblr->class_icon  = apply_filters( "{$prefix}_class_icon", $prefix_icons . 'tumblr' );
 		$std->tumblr->popup       = self::$action;
 		$std->tumblr->inside      = __( 'Share', App::TEXTDOMAIN );
-		$std->tumblr->has_counter = false;
+		$std->tumblr->has_counter = true;
 
 		/**
 		 * @var Object
@@ -473,13 +473,12 @@ class WPUSB_Social_Elements {
 	 * @return Array
 	 */
 	private static function _get_arguments() {
-		$title     = Utils::get_title();
 		$body_mail = Utils::body_mail();
 		$arguments = array(
 			'title'     => '_title_',
 			'link'      => '_permalink_',
 			'thumbnail' => Utils::get_image(),
-			'body_mail' => "\n\n{$title}\n\n{$body_mail}\n",
+			'body_mail' => "\n\n_title_\n\n{$body_mail}\n",
 		);
 
 		return apply_filters( App::SLUG . '-arguments', $arguments );

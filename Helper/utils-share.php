@@ -64,30 +64,28 @@ abstract class WPUSB_Utils_Share {
 	 *
 	 */
 	private static function _set_buttons( $args = array() ) {
-		$prefix  = App::SLUG;
-		$social  = $args['social'];
-		$buttons = self::get_content_by_layout(
-			(object) array(
-				'reference'       => $social,
-				'prefix'          => $prefix,
-				'class_second'    => $args['class_second'],
-				'class_icon'      => $args['class_icon'],
-				'class_link'      => $args['class_link'],
-				'layout'          => $args['layout'],
-				'elements'        => $args['elements'],
-				'permalink'       => $args['permalink'],
-				'share_full'      => '',
-				'ga'              => apply_filters( App::SLUG . '-ga-event', false, $social ),
-				'item_class_icon' => apply_filters(
-					"{$prefix}_item_class_icon",
-					"{$social->class_icon}-{$args['layout']}",
-					$social
-				),
+		$prefix       = App::SLUG;
+		$social       = $args['social'];
+		$args_buttons = (object) array(
+			'reference'       => $social,
+			'prefix'          => $prefix,
+			'class_second'    => $args['class_second'],
+			'class_icon'      => $args['class_icon'],
+			'class_link'      => $args['class_link'],
+			'layout'          => $args['layout'],
+			'elements'        => $args['elements'],
+			'permalink'       => $args['permalink'],
+			'share_full'      => '',
+			'ga'              => apply_filters( App::SLUG . '-ga-event', false, $social ),
+			'item_class_icon' => apply_filters(
+				"{$prefix}_item_class_icon",
+				"{$social->class_icon}-{$args['layout']}",
+				$social
 			),
-			'items'
 		);
+		$buttons = self::get_content_by_layout( $args_buttons, 'items' );
 
-		return apply_filters( App::SLUG . 'set-buttons-html', $buttons );
+		return apply_filters( App::SLUG . '-set-buttons-html', $buttons, $args_buttons );
 	}
 
 	/**
@@ -107,7 +105,7 @@ abstract class WPUSB_Utils_Share {
 		$title            = ( $args['title'] ) ? $args['title'] : Utils::get_real_title( $fixed );
 		$elements         = Elements::social_media();
 		$social_items     = self::get_social_media( $model, $args['items'] );
-		$buttons          = self::get_buttons_open( $args, $model, $permalink );
+		$buttons          = self::get_buttons_open( $args, $model, $permalink, $title );
 
 		foreach ( $social_items as $item ) :
 			if ( ! Elements::items_available( $item ) ) {
@@ -197,22 +195,21 @@ abstract class WPUSB_Utils_Share {
 	 * @return String HTML
 	 *
 	 */
-	public static function get_buttons_open( $args, $model, $permalink ) {
-		$prefix  = App::SLUG;
-		$buttons = self::get_content_by_layout(
-			(object) array(
-				'class_first'    => $args['class_first'],
-				'custom_class'   => $model->class,
-				'layout'         => $args['layout'] ? $args['layout'] : 'default',
-				'prefix'         => $prefix,
-				'position_fixed' => ( $model->position_fixed ) ? "{$prefix}-{$model->position_fixed}" : '',
-				'remove_counter' => $args['elements']['remove_counter'],
-				'permalink'      => $permalink,
-			),
-			'init'
+	public static function get_buttons_open( $args, $model, $permalink, $title ) {
+		$prefix       = App::SLUG;
+		$args_buttons = (object) array(
+			'class_first'    => $args['class_first'],
+			'custom_class'   => $model->class,
+			'layout'         => $args['layout'] ? $args['layout'] : 'default',
+			'prefix'         => $prefix,
+			'position_fixed' => ( $model->position_fixed ) ? "{$prefix}-{$model->position_fixed}" : '',
+			'remove_counter' => $args['elements']['remove_counter'],
+			'permalink'      => $permalink,
+			'title'          => $title,
 		);
+		$buttons = self::get_content_by_layout( $args_buttons, 'init' );
 
-		return $buttons;
+		return apply_filters( App::SLUG . '-init-buttons-html', $buttons, $args_buttons );
 	}
 
 	/**
@@ -238,18 +235,19 @@ abstract class WPUSB_Utils_Share {
 	 *
 	 */
 	public static function content_args( $atts ) {
-		$prefix = App::SLUG;
-
-		return array(
+		$args = array(
 			'nonce'       => self::nonce( Setting::AJAX_VERIFY_NONCE_COUNTER ),
 			'nonce-gplus' => self::nonce( Setting::AJAX_VERIFY_GPLUS_COUNTS ),
 			'token'       => Utils::option( 'bitly_token' ),
-			'prefix'      => $prefix,
+			'prefix'      => App::SLUG,
 			'post_id'     => Utils::get_id(),
 			'tracking'    => Utils::option( 'tracking' ),
 			'permalink'   => $atts->permalink,
-			'fixed_top'   => self::data_fixed_top( $prefix ),
+			'title'       => $atts->title,
+			'fixed_top'   => self::data_fixed_top( App::SLUG ),
 		);
+
+		return apply_filters( App::SLUG . '-content-args', $args, $atts );
 	}
 
 	/**
@@ -294,7 +292,7 @@ abstract class WPUSB_Utils_Share {
 	public static function link_type( $url_share ) {
 		$attr_link = "href=\"{$url_share}\" target=\"_blank\"";
 
-		return apply_filters( App::SLUG . 'attr-link', $attr_link );
+		return apply_filters( App::SLUG . '-attr-link', $attr_link, $url_share );
 	}
 
 	/**
@@ -374,7 +372,7 @@ abstract class WPUSB_Utils_Share {
 				break;
 		endswitch;
 
-		return $content;
+		return apply_filters( App::SLUG . "-content-buttons-{$args->layout}", $content, $args, $method );
 	}
 
 	/**

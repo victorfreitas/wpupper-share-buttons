@@ -49,11 +49,12 @@
 	overflow: auto;
 	padding: 3px;
 	position: fixed;
-	text-align: center;
+	text-align: left;
 	z-index: 99999;
 
 	@media ( max-width: $tablet ) {
 		max-width: 415px;
+		text-align: center;
 	}
 
 	@media ( max-width: $mobile ) {

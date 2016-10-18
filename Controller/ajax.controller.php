@@ -120,7 +120,8 @@ class WPUSB_Ajax_Controller {
 		$count_google    = Utils::post( 'count_google', 0, 'intval' );
 		$count_linkedin  = Utils::post( 'count_linkedin', 0, 'intval' );
 		$count_pinterest = Utils::post( 'count_pinterest', 0, 'intval' );
-		$total           = ( $count_facebook + $count_twitter + $count_google + $count_linkedin + $count_pinterest );
+		$count_tumblr    = Utils::post( 'count_tumblr', 0, 'intval' );
+		$total           = ( $count_facebook + $count_twitter + $count_google + $count_linkedin + $count_pinterest + $count_tumblr );
 		$table           = $wpdb->prefix . Setting::TABLE_NAME;
 
 		if ( $total > 0 ) {
@@ -134,6 +135,7 @@ class WPUSB_Ajax_Controller {
 					'count_google'    => $count_google,
 					'count_linkedin'  => $count_linkedin,
 					'count_pinterest' => $count_pinterest,
+					'count_tumblr'    => $count_tumblr,
 					'total'           => $total,
 				)
 			);
@@ -189,6 +191,7 @@ class WPUSB_Ajax_Controller {
 				'google'     => $data['count_google'],
 				'linkedin'   => $data['count_linkedin'],
 				'pinterest'  => $data['count_pinterest'],
+				'tumblr'     => $data['count_tumblr'],
 				'total'      => $data['total'],
 			),
 			array( 'post_id' => $data['post_id'], ),
@@ -221,6 +224,7 @@ class WPUSB_Ajax_Controller {
 				'google'     => $data['count_google'],
 				'linkedin'   => $data['count_linkedin'],
 				'pinterest'  => $data['count_pinterest'],
+				'tumblr'     => $data['count_tumblr'],
 				'total'      => $data['total'],
 			)
 		);

@@ -32,6 +32,7 @@ class WPUSB_Layouts_Primary {
 		$component  = Utils::get_component_by_type();
 		$content    = <<<EOD
 			<div data-element-url="{$args['permalink']}"
+		     	 data-element-title="{$args['title']}"
 			     data-tracking="{$args['tracking']}"
 			     data-attr-reference="{$args['post_id']}"
 			     data-attr-nonce="{$args['nonce']}"
@@ -41,7 +42,7 @@ class WPUSB_Layouts_Primary {
 			     {$data_token}
 			     {$args['fixed_top']}>
 EOD;
-		return apply_filters( App::SLUG . 'start-buttons-html', $content );
+		return apply_filters( App::SLUG . '-start-buttons-html', $content, $atts );
 	}
 
 	/**
@@ -74,7 +75,7 @@ EOD;
 				{$counter}
 			</div>
 EOD;
-		return apply_filters( App::SLUG . '-btn-items', $content );
+		return apply_filters( App::SLUG . '-btn-items', $content, $args );
 	}
 
 	/**
@@ -90,7 +91,7 @@ EOD;
 		$classes .= " {$atts->reference->class}";
 		$classes .= " {$atts->class_second}";
 
-		return apply_filters( App::SLUG . '-classes-second-layouts-primary', $classes );
+		return apply_filters( App::SLUG . '-classes-second-layouts-primary', $classes, $atts );
 	}
 
 	/**
@@ -108,7 +109,7 @@ EOD;
 			$content = "<span data-title=\"{$atts->reference->inside}\"></span>";
 		}
 
-		return apply_filters( App::SLUG . 'inside-html', $content );
+		return apply_filters( App::SLUG . '-inside-html', $content, $atts );
 	}
 
 	/**
@@ -126,7 +127,7 @@ EOD;
 			$content = "<span data-element=\"{$args->reference->element}\" class=\"{$args->prefix}-count\"></span>";
 		}
 
-		return apply_filters( App::SLUG . 'total-counter', $content );
+		return apply_filters( App::SLUG . '-total-counter', $content, $args );
 	}
 
 	/**
@@ -138,7 +139,7 @@ EOD;
 	 *
 	 */
 	public static function end( $args ) {
-		return apply_filters( App::SLUG . 'end-buttons-html', '</div>' );
+		return apply_filters( App::SLUG . '-end-buttons-html', '</div>', $args );
 	}
 
 	/**
@@ -150,7 +151,7 @@ EOD;
 	 *
 	 */
 	public static function get_btn_plus( $class = '' ) {
-		$prefix = WPUSB_App::SLUG;
+		$prefix = App::SLUG;
 		$title  = __( 'Open modal social networks', App::TEXTDOMAIN );
 
 		return <<<EOD

@@ -281,11 +281,9 @@ class WPUSB_Core {
 	public static function create_table() {
 		global $wpdb;
 
-		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-
 		$charset    = $wpdb->get_charset_collate();
 		$table_name = $wpdb->prefix . Setting::TABLE_NAME;
-		$sql        = "CREATE TABLE IF NOT EXISTS {$table_name} (
+		$query      = "CREATE TABLE IF NOT EXISTS {$table_name} (
 			id         BIGINT(20) NOT NULL AUTO_INCREMENT,
 			post_id    BIGINT(20) UNSIGNED NOT NULL,
 			post_title TEXT       NOT NULL,
@@ -294,11 +292,42 @@ class WPUSB_Core {
 			google     BIGINT(20) UNSIGNED NOT NULL,
 			linkedin   BIGINT(20) UNSIGNED NOT NULL,
 			pinterest  BIGINT(20) UNSIGNED NOT NULL,
+			tumblr     BIGINT(20) UNSIGNED NOT NULL,
 			total      BIGINT(20) UNSIGNED NOT NULL,
 			PRIMARY KEY id ( id ),
 			UNIQUE( post_id )
 		) {$charset};";
 
-		dbDelta( $sql );
+		self::db_delta( $query );
+	}
+
+	/**
+	 * Create table db delta support
+	 *
+	 * @since 1.0
+	 * @param String $query
+	 * @return Void
+	 */
+	public static function db_delta( $query ) {
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+
+		dbDelta( $query );
+	}
+
+	/**
+	 * Alter table on update
+	 *
+	 * @since 1.0
+	 * @param Null
+	 * @global $wpdb
+	 * @return Void
+	 */
+	public static function alter_table() {
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . Setting::TABLE_NAME;
+
+		if ( ! $wpdb->get_var( "SHOW COLUMNS FROM `{$table_name}` LIKE 'tumblr';" ) )
+			$wpdb->query( "ALTER TABLE `{$table_name}` ADD `tumblr` BIGINT(20) UNSIGNED NOT NULL AFTER `pinterest`;" );
 	}
 }

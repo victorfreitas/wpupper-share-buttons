@@ -57,9 +57,11 @@ EOD;
 	 * @return Void
 	 */
 	public static function items( $prefix ) {
-		$elements  = Elements::social_media();
-		$permalink = apply_filters( App::SLUG . '-modal-permalink', Utils::get_real_permalink() );
-		$title     = apply_filters( App::SLUG . '-modal-title', Utils::get_real_title() );
+		$elements    = Elements::social_media();
+		$r_permalink = ( Utils::is_home() ) ? '' : Utils::get_real_permalink();
+		$r_title     = ( $r_permalink ) ? Utils::get_real_title() : '';
+		$permalink   = apply_filters( App::SLUG . '-modal-permalink', $r_permalink );
+		$title       = apply_filters( App::SLUG . '-modal-title', $r_title );
 
 		foreach ( $elements as $key => $social ) {
 			if ( $key === 'share' ) {
@@ -68,7 +70,11 @@ EOD;
 
 			$ga        = apply_filters( App::SLUG . '-ga-event', false, $social );
 			$ga_event  = ( $ga ) ? 'onClick="' . $ga . ';"' : '';
-			$social    = Utils::replace_link( $social, $permalink, $title );
+
+			if ( $permalink || $title ) {
+				$social = Utils::replace_link( $social, $permalink, $title );
+			}
+
 			$link_attr = Utils::link_type( $social->link );
 
 			echo <<<EOD

@@ -157,6 +157,7 @@ class WPUSB_Settings_Controller {
 
 	    if ( $option_value !== Setting::DB_VERSION ) {
 	    	Utils::add_update_option( $option_name, $option_value );
+	    	Core::alter_table();
 	    }
 	}
 

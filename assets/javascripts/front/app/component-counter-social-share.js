@@ -7,6 +7,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		this.google           = this.elements.googlePlus;
 		this.pinterest        = this.elements.pinterest;
 		this.linkedin         = this.elements.linkedin;
+		this.tumblr           = this.elements.tumblr;
 		this.totalShare       = this.elements.totalShare;
 		this.totalCounter     = 0;
 		this.facebookCounter  = 0;
@@ -14,7 +15,8 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		this.googleCounter    = 0;
 		this.linkedinCounter  = 0;
 		this.pinterestCounter = 0;
-		this.max              = 5;
+		this.tumblrCounter    = 0;
+		this.max              = 6;
 
 		this.init();
 	};
@@ -44,6 +46,11 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 				reference : 'twitterCounter',
 				element   : 'twitter',
 				url       : 'https://public.newsharecounts.com/count.json?url=' + this.data.elementUrl
+			},
+			{
+				reference : 'tumblrCounter',
+				element   : 'tumblr',
+				url       : 'https://api.tumblr.com/v2/share/stats?url=' + this.data.elementUrl
 			},
 			{
 				reference : 'googleCounter',
@@ -119,16 +126,28 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 	};
 
 	CounterSocialShare.fn.getNumberByData = function(element, data) {
-		var fbShare = this.getTotalShareFacebook( element, data.share )
-		  , count   = parseFloat( data['count'] )
-		;
+		if ( element === 'facebook' ) {
+			return this.getTotalShareFacebook( data.share );
+		}
 
-		return ( fbShare || count || 0 );
+		if ( element === 'tumblr' ) {
+			return this.getTotalShareTumblr( data.response );
+		}
+
+		return ( parseFloat( data.count ) || 0 );
 	};
 
-	CounterSocialShare.fn.getTotalShareFacebook = function(element, data) {
-		if ( element === 'facebook' && typeof data === 'object' ) {
+	CounterSocialShare.fn.getTotalShareFacebook = function(data) {
+		if ( typeof data === 'object' ) {
 			return parseFloat( data.share_count );
+		}
+
+		return 0;
+	};
+
+	CounterSocialShare.fn.getTotalShareTumblr = function(data) {
+		if ( typeof data === 'object' ) {
+			return parseFloat( data.note_count );
 		}
 
 		return 0;
@@ -151,6 +170,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		    count_google    : this.googleCounter,
 		    count_linkedin  : this.linkedinCounter,
 		    count_pinterest : this.pinterestCounter,
+		    count_tumblr    : this.tumblrCounter,
 		    nonce           : this.data.attrNonce
 	    };
 

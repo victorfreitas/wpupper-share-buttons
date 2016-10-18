@@ -37,6 +37,7 @@ class WPUSB_Fixed_Left {
 		$content    = <<<EOD
 		<div class="{$classes}"
 		     data-element-url="{$args['permalink']}"
+		     data-element-title="{$args['title']}"
 		     data-tracking="{$args['tracking']}"
 		     data-attr-reference="{$args['post_id']}"
 		     data-element="fixed"

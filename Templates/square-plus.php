@@ -32,6 +32,7 @@ class WPUSB_Square_Plus {
 		$component  = Utils::get_component_by_type();
 		$content    = <<<EOD
 		<div data-element-url="{$args['permalink']}"
+		     data-element-title="{$args['title']}"
 		     data-tracking="{$args['tracking']}"
 		     data-attr-reference="{$args['post_id']}"
 		     data-attr-nonce="{$args['nonce']}"

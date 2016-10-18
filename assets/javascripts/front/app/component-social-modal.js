@@ -1,10 +1,12 @@
 WPUSB( 'WPUSB.Components.SocialModal', function(SocialModal, $, utils) {
 
+	var href = [];
+
 	SocialModal.fn.start = function() {
-		this.prefix = '.' + utils.prefix + '-';
+		this.prefix = '.' + utils.prefix;
 		this.body   = WPUSB.vars.body;
-		this.modal  = this.body.find( this.prefix + 'modal-networks' );
-		this.close  = this.modal.find( this.prefix + 'btn-close' );
+		this.modal  = this.body.find( this.prefix + '-modal-networks' );
+		this.close  = this.modal.find( this.prefix + '-btn-close' );
 
 		this.init();
 	};
@@ -37,7 +39,27 @@ WPUSB( 'WPUSB.Components.SocialModal', function(SocialModal, $, utils) {
 
 	SocialModal.fn._onClickOpenModalNetworks = function(event) {
 		event.preventDefault();
+		this.renderLinksUrl( event );
 		this.openModal();
+	};
+
+	SocialModal.fn.renderLinksUrl = function(event) {
+		if ( !this.body.hasClass( 'home' ) ) {
+			return;
+		}
+
+		var component = $( event.currentTarget ).closest( this.prefix )
+		  , data      = component.data()
+		  , buttons   = this.modal.find( this.prefix + '-button-popup' )
+		;
+
+		buttons.each(function(index, element) {
+			if ( !href[index] ) {
+				href[index] = this.href;
+			}
+
+			this.href = this.href.replace( '_permalink_', data.elementUrl ).replace( '_title_', data.elementTitle );
+		});
 	};
 
 	SocialModal.fn.setSizes = function() {
@@ -49,6 +71,17 @@ WPUSB( 'WPUSB.Components.SocialModal', function(SocialModal, $, utils) {
 		this.$el.css( 'opacity', 0 );
 		this.$el.hide();
 		this.modal.hide();
+
+		if ( !this.body.hasClass( 'home' ) ) {
+			return;
+		}
+
+		var buttons = this.modal.find( this.prefix + '-button-popup' );
+
+		buttons.each(function(index, element) {
+			this.href = href[index];
+		});
+
 	};
 
 	SocialModal.fn.openModal = function() {
