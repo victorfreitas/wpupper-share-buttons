@@ -5,14 +5,16 @@ Contributors: victorfreitas
 Donate link: https://www.redcross.org/donate/donation
 Tags: share, social, buttons, share buttons, compartir, botones compartir, free share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, sharing, social bookmarking, email form, social media buttons, click to tweet, reddit, viber, telegram, gmail, skype, like, pinterest, linkedin
 Requires at least: 3.0.0
-Tested up to: 4.6
-Stable tag: 3.13
+Tested up to: 4.6.1
+Stable tag: 3.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Implement the Share Buttons of the major social networks, including the Whats App on your website or blog.
 
 == Description ==
+
+> Require PHP version >= 5.3.0
 
 Implement the Share Buttons of the major social networks, including the Whats App on your website or blog. The buttons are inserted automatically or can be called via shortcode or PHP method.
 
@@ -91,33 +93,37 @@ Translators who did a great job converting the text of the plugin to their nativ
 
 The following plugins are recommended
 
-* ["Remove WP Version"](https://wordpress.org/plugins/jogar-mais-wp-security/) by victorfreitas - Remove version WordPress in WP Generator, Feeds, css and js.
+* ["Remove WP Version"](https://wordpress.org/plugins/jogar-mais-wp-security/) by victorfreitas - Remove version WordPress in WP Generator, Feeds, css and js file.
 
 == Changelog ==
+
+= 3.14 =
+
+* Bug fix PHP version < 5.3.0 on plugin activation
 
 = 3.13 =
 
 * New: Share count support on Tumblr
 * Update Tumblr share API url
 * Update filters support
-* Bug fixes
+* Bug fix
 
 = 3.12 =
 
 * New button: Facebook Messenger
 * Add message on plugin admin page
 * Update languages
-* Bug fixes
+* Bug fix
 
 = 3.11 =
 
 * Performance improvements
-* Bug fixes
+* Bug fix
 * Change class name WPUSB_All_Items to WPUSB_Modal
 
 = 3.10 =
 
-* Bug fixes GLOB_BRACE flag is not available on some non GNU systems
+* Bug fix GLOB_BRACE flag is not available on some non GNU systems
 
 = 3.9.0 =
 
@@ -126,7 +132,7 @@ The following plugins are recommended
 * New button: Share on Flipboard
 * New: Option set url via shortcode or method php
 * New: Option set title via shortcode or method php
-* Bug fixes
+* Bug fix
 
 = 3.8.2 =
 
@@ -135,7 +141,7 @@ The following plugins are recommended
 = 3.8.1 =
 
 * Add filter prefix classes icons
-* Bug fixes
+* Bug fix
 
 = 3.8.0 =
 
@@ -158,19 +164,19 @@ The following plugins are recommended
 
 = 3.6.4 =
 
-* Bug fixes (https://wordpress.org/support/topic/not-sharing-the-article-sharing-the-web-site-address-instead?replies=1)
+* Bug fix (https://wordpress.org/support/topic/not-sharing-the-article-sharing-the-web-site-address-instead?replies=1)
 
 = 3.6.3 =
 
-* Bug fixes
+* Bug fix
 
 = 3.6.2 =
 
-* Bug fixes multisite admin page
+* Bug fix multisite admin page
 
 = 3.6.1 =
 
-* Bug fixes
+* Bug fix
 * Removed persistent message
 
 = 3.6.0 =
@@ -184,36 +190,36 @@ The following plugins are recommended
 
 = 3.5.4 =
 
-* Bug fixes css layout fixed
+* Bug fix css layout fixed
 
 = 3.5.3 =
 
-* Bug fixes
+* Bug fix
 
 = 3.5.2 =
 
-* Bug fixes
+* Bug fix
 
 = 3.5.1 =
 
-* Bug fixes
+* Bug fix
 
 = 3.5.0 =
 
 * New: Layout rounded for position fixed
 * Internal improvements
-* Bug fixes
+* Bug fix
 * Update translations
 
 = 3.4.2 =
 
-* Bug fixes
+* Bug fix
 
 = 3.4.1 =
 
 * General internal improvements
 * Performance improvements
-* Bug fixes
+* Bug fix
 
 = 3.4.0 =
 
@@ -222,20 +228,20 @@ The following plugins are recommended
 
 = 3.3.0 =
 
-* Bug fixes
+* Bug fix
 * New: Possiblity add buttons share on Archive and Category
 * Minor improvements
 
 = 3.2.1 =
 
-* Bug fixes
+* Bug fix
 
 = 3.2.0 =
 
 * New: Layout fixed by context
 * Internal Improvements
 * Updating translations
-* Bug fixes
+* Bug fix
 
 = 3.1.3 =
 
@@ -243,7 +249,7 @@ The following plugins are recommended
 * Improvements in the colors of the buttons on administration page
 * Improved checkbox buttons in administration page
 * Updating translations
-* Bug fixes
+* Bug fix
 
 = 3.1.2 =
 
@@ -259,15 +265,15 @@ The following plugins are recommended
 * New send by Gmail
 * Improvements performance
 * Update translations
-* Bug fixes
+* Bug fix
 
 = 3.0.2 =
 
-* Bug fixes in links
+* Bug fix in links
 
 = 3.0.1 =
 
-* Bug fixes PHP < 5.5
+* Bug fix PHP < 5.5
 
 = 3.0.0 =
 
@@ -281,7 +287,7 @@ The following plugins are recommended
 * internal improvements.
 * Updating translations.
 * Update fonts.
-* Bug fixes.
+* Bug fix.
 
 = 2.9.3 =
 
@@ -289,15 +295,15 @@ The following plugins are recommended
 
 = 2.9.2 =
 
-* Bug fixes
+* Bug fix
 
 = 2.9.1 =
 
-* Bug fixes
+* Bug fix
 
 = 2.9.0 =
 
-* Bug fixes
+* Bug fix
 * Add position fixed top buttons
 * Add option Twitter text in extra settings page
 * Add top menu in the settings
@@ -307,7 +313,7 @@ The following plugins are recommended
 
 = 2.8.2 =
 
-* Bug fixes
+* Bug fix
 
 = 2.8.1 =
 
@@ -325,13 +331,13 @@ The following plugins are recommended
 
 = 2.6.1 =
 
-* Bug fixes
+* Bug fix
 
 = 2.6.0 =
 
 * Tested in version 4.5.0
 * Add icons sharing for Telegram, Skype and Viber
-* Bug fixes
+* Bug fix
 * Improvements performance
 * Update langs pt_BR and es_ES
 
@@ -349,13 +355,13 @@ The following plugins are recommended
 
 = 2.5.0 =
 
-* Bug fixes
+* Bug fix
 * Improvements
 * new icons for filter
 
 = 2.4.1 =
 
-* Bug fixes
+* Bug fix
 
 = 2.3.1 =
 
@@ -378,7 +384,7 @@ The following plugins are recommended
 
 = 2.2.3 =
 
-* Bug fixes counter sharing, before and after buttons on content. [Related by athalas]
+* Bug fix counter sharing, before and after buttons on content. [Related by athalas]
 
 = 2.2.2 =
 
@@ -517,9 +523,6 @@ The following plugins are recommended
 
 == Upgrade Notice ==
 
-= 3.13 =
+= 3.14 =
 
-* New: Share count support on Tumblr
-* Update Tumblr share API url
-* Update filters support
-* Bug fixes
+* Bug fix PHP version < 5.3.0 on plugin activation

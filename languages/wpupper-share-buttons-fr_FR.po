@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2016-10-08 20:55-0300\n"
-"PO-Revision-Date: 2016-10-08 20:55-0300\n"
+"POT-Creation-Date: 2016-11-07 21:53-0200\n"
+"PO-Revision-Date: 2016-11-07 21:54-0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -89,7 +89,7 @@ msgstr "Comme sur Facebook"
 msgid "Like"
 msgstr "Comme"
 
-#: Config/social-elements.php:333 Templates/layouts-primary.php:154
+#: Config/social-elements.php:333 Templates/layouts-primary.php:155
 msgid "Open modal social networks"
 msgstr "réseaux sociaux modales ouverts"
 
@@ -113,11 +113,11 @@ msgstr "Envoyé par Facebook Messenger"
 msgid "Messenger"
 msgstr ""
 
-#: Config/social-elements.php:561 View/settings-extra.view.php:101
+#: Config/social-elements.php:560 View/settings-extra.view.php:101
 msgid "I just saw"
 msgstr "Je viens de voir"
 
-#: Config/social-elements.php:562
+#: Config/social-elements.php:561
 msgid "Click to see also"
 msgstr "Cliquez pour voir aussi"
 
@@ -169,47 +169,51 @@ msgstr "Utilisez les options"
 msgid "Use options"
 msgstr "Utilisez les options"
 
-#: Controller/share-reports.controller.php:225
+#: Controller/share-reports.controller.php:226
 msgid "Title"
 msgstr "Titre :"
 
-#: Controller/share-reports.controller.php:226
+#: Controller/share-reports.controller.php:227
 msgid "Facebook"
 msgstr "Facebook"
 
-#: Controller/share-reports.controller.php:227
+#: Controller/share-reports.controller.php:228
 msgid "Google+"
 msgstr "Google"
 
-#: Controller/share-reports.controller.php:228
+#: Controller/share-reports.controller.php:229
 msgid "Twitter"
 msgstr "Twitter"
 
-#: Controller/share-reports.controller.php:229
+#: Controller/share-reports.controller.php:230
 msgid "Linkedin"
 msgstr "Linkedin"
 
-#: Controller/share-reports.controller.php:230
+#: Controller/share-reports.controller.php:231
 msgid "Pinterest"
 msgstr "Pinterest&nbsp;"
 
-#: Controller/share-reports.controller.php:231
+#: Controller/share-reports.controller.php:232
+msgid "Tumblr"
+msgstr ""
+
+#: Controller/share-reports.controller.php:233
 msgid "Total"
 msgstr "Total"
 
-#: Controller/share-reports.controller.php:292
+#: Controller/share-reports.controller.php:295
 msgid "There is no record available at the moment!"
 msgstr "Il n'y a pas de dossier disponible pour le moment!"
 
-#: Controller/share-reports.controller.php:305
+#: Controller/share-reports.controller.php:308
 msgid "Sharing Report | WPUpper Share Buttons"
 msgstr "Rapport de partage"
 
-#: Controller/share-reports.controller.php:306 View/settings.view.php:432
+#: Controller/share-reports.controller.php:309 View/settings.view.php:432
 msgid "Sharing Report"
 msgstr "Rapport de partage"
 
-#: Templates/fixed-left.php:141 Templates/square-plus.php:109
+#: Templates/fixed-left.php:142 Templates/square-plus.php:110
 msgid "Shares"
 msgstr ""
 
@@ -486,6 +490,16 @@ msgstr " minutes"
 #, php-format
 msgid "%d minute"
 msgstr ""
+
+#: wpupper-share-buttons.php:46
+msgid ""
+"Could not complete installation of <strong>WPUpper Share Buttons</strong> "
+"because your PHP version is less than 5.3.0, please upgrade your PHP version "
+"to use the plugin."
+msgstr ""
+"Impossible de terminer l'installation de <strong>WPUpper Share Buttons</"
+"strong> car votre version PHP est inférieure à 5.3.0, veuillez mettre à "
+"niveau votre version PHP pour utiliser le plugin."
 
 #~ msgid "Share Buttons"
 #~ msgstr "Boutons de partage"

@@ -48,11 +48,13 @@ class WPUSB_Settings_Controller {
 	 * @return Array links action plugins
 	 */
 	public function plugin_link( $links ) {
-		$links[] = sprintf(
+		$link = sprintf(
 			'<a href="%s">%s</a>',
 			Utils::get_page_url(),
 			__( 'Settings', App::TEXTDOMAIN )
 		);
+
+		array_splice( $links, 0, 0, array( $link ) );
 
 		return $links;
 	}
@@ -152,11 +154,11 @@ class WPUSB_Settings_Controller {
 	 * @return void
 	 */
 	public function plugin_updates() {
-		$option_name  = Setting::TABLE_NAME . '_db_version';
-		$option_value = get_site_option( $option_name );
+		$option = Setting::TABLE_NAME . '_db_version';
+		$value  = get_site_option( $option );
 
-	    if ( $option_value !== Setting::DB_VERSION ) {
-	    	Utils::add_update_option( $option_name, $option_value );
+	    if ( $value !== Setting::DB_VERSION ) {
+	    	Utils::add_update_option( $option, $value );
 	    	Core::alter_table();
 	    }
 	}

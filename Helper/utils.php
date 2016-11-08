@@ -193,6 +193,19 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
+	 * Site description
+	 *
+	 * @since 3.6.4
+	 * @param null
+	 * @return String
+	 */
+	public static function get_site_description() {
+		$description = get_option( 'blogdescription' );
+
+		return self::rm_tags( $description );
+	}
+
+	/**
 	 * Post ID
 	 *
 	 * @since 1.0
@@ -406,7 +419,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	/**
 	 * Get content posts
 	 *
-	 * @since 1.0
+	 * @since 1.1
 	 * @param null
 	 * @return String content post
 	 */
@@ -415,14 +428,17 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 
 		$content = '';
 
-		if ( isset( $post->post_content ) ) {
-			$content = $post->post_content;
+		if ( ( self::is_single() || self::is_page() ) && isset( $post->ID ) ) {
+			$content = self::rm_tags( $post->post_content ? $post->post_content : $post->post_excerpt );
 		}
 
-		$content = self::rm_tags( $content );
-		$content = preg_replace( '/\[.*\]/', null, $content );
+		if ( empty( $content ) ) {
+			$content = self::get_site_description();
+		}
 
-		return apply_filters( App::SLUG . 'body-email', $content );
+		$content = preg_replace( '/\[.*\]/', '', $content );
+
+		return apply_filters( App::SLUG . '-body-email', $content );
 	}
 
 	/**
@@ -444,7 +460,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function html_decode( $string ) {
-		return html_entity_decode( $string, ENT_NOQUOTES, 'UTF-8' );
+		return html_entity_decode( $string, ENT_NOQUOTES, get_bloginfo( 'charset' ) );
 	}
 
 	/**

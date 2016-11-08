@@ -42,7 +42,6 @@ class WPUSB_Core {
 	 * @since 1.2
 	 */
 	public function __construct() {
-		add_action( 'plugins_loaded', array( __CLASS__, 'plugins_loaded' ) );
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'add_front_scripts' ) );
 
 		self::_instantiate_controllers();
@@ -123,17 +122,6 @@ class WPUSB_Core {
 			array(),
 			App::VERSION
 		);
-	}
-
-	/**
-	 * Action plugins loaded
-	 *
-	 * @since 1.0
-	 * @param Null
-	 * @return Void
-	 */
-	public static function plugins_loaded() {
-		self::load_text_domain();
 	}
 
 	/**
@@ -258,18 +246,6 @@ class WPUSB_Core {
 	}
 
 	/**
-	 * Initialize text domain hook, plugin translate
-	 *
-	 * @since 1.0
-	 * @param Null
-	 * @return Void
-	 */
-	public static function load_text_domain() {
-		$plugin_dir = basename( dirname( App::FILE ) );
-		load_plugin_textdomain( App::TEXTDOMAIN, false, "{$plugin_dir}/languages/" );
-	}
-
-	/**
 	 * Create table sharing reports.
 	 *
 	 * @since 1.1
@@ -325,9 +301,11 @@ class WPUSB_Core {
 	public static function alter_table() {
 		global $wpdb;
 
-		$table_name = $wpdb->prefix . Setting::TABLE_NAME;
+		$table        = $wpdb->prefix . Setting::TABLE_NAME;
+		$table_exists = $wpdb->query( "SHOW TABLES LIKE '{$table}'" );
 
-		if ( ! $wpdb->get_var( "SHOW COLUMNS FROM `{$table_name}` LIKE 'tumblr';" ) )
-			$wpdb->query( "ALTER TABLE `{$table_name}` ADD `tumblr` BIGINT(20) UNSIGNED NOT NULL AFTER `pinterest`;" );
+		if ( $table_exists && ! $wpdb->get_var( "SHOW COLUMNS FROM `{$table}` LIKE 'tumblr';" ) ) {
+			$wpdb->query( "ALTER TABLE `{$table}` ADD `tumblr` BIGINT(20) UNSIGNED NOT NULL AFTER `pinterest`;" );
+		}
 	}
 }

@@ -5,7 +5,7 @@
  *
  * Plugin Name: WPUpper Share Buttons
  * Plugin URI:  https://github.com/victorfreitas/wpupper-share-buttons
- * Version:     3.13
+ * Version:     3.14
  * Author:      Victor Freitas
  * Author URI:  https://github.com/victorfreitas
  * License:     GPL2
@@ -33,8 +33,30 @@
  ║ Copyright 2015-2016 WPUpper Share Buttons                                           ║
  #═════════════════════════════════════════════════════════════════════════════════════#
  */
-if ( ! function_exists( 'add_action' ) )
+if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
+}
+
+define( 'WPUSB_TEXTDOMAIN', 'wpupper-share-buttons' );
+
+function wpusb_load_textdomain() {
+	load_plugin_textdomain( WPUSB_TEXTDOMAIN, false, basename( dirname(__FILE__) ) . '/languages' );
+}
+add_action( 'init', 'wpusb_load_textdomain' );
+
+if ( version_compare( PHP_VERSION, '5.3.0', '<' ) ) {
+	function wpusb_admin_notices() {
+		printf(
+			'<div class="notice notice-error">
+				<p>%s</p>
+			</div>',
+			__( 'Could not complete installation of <strong>WPUpper Share Buttons</strong> because your PHP version is less than 5.3.0, please upgrade your PHP version to use the plugin.', WPUSB_TEXTDOMAIN )
+		);
+	}
+	add_action( 'admin_notices', 'wpusb_admin_notices' );
+
+	return;
+}
 
 class WPUSB_App {
 
@@ -71,7 +93,7 @@ class WPUSB_App {
      *
      * @var String
      */
-	const VERSION = '3.13';
+	const VERSION = '3.14';
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
