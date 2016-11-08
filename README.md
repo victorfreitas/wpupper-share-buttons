@@ -70,6 +70,8 @@ Layout options: default, buttons, rounded, square
 ### 3.14
 
 * Bug fix PHP version < 5.3.0 on plugin activation
+* Displaying formatted share count
+* Change text color total counts for layout square plus
 
 ### 3.13
 

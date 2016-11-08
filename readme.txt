@@ -100,6 +100,8 @@ The following plugins are recommended
 = 3.14 =
 
 * Bug fix PHP version < 5.3.0 on plugin activation
+* Displaying formatted share count
+* Change text color total counts for layout square plus
 
 = 3.13 =
 
@@ -526,3 +528,5 @@ The following plugins are recommended
 = 3.14 =
 
 * Bug fix PHP version < 5.3.0 on plugin activation
+* Displaying formatted share count
+* Change text color total counts for layout square plus

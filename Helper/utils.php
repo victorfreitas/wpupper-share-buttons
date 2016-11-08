@@ -26,7 +26,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			return '';
 		}
 
-        return sanitize_html_class( $class );
+        return apply_filters( App::SLUG . '_esc_class', sanitize_html_class( $class ) );
 	}
 
 	/**
@@ -403,7 +403,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		global $post;
 
 		$thumbnail   = '';
-		$filter_name = App::SLUG . 'thumbnail-url';
+		$filter_name = App::SLUG . '_thumbnail_url';
 
 		if ( isset( $post->ID ) && has_post_thumbnail() ) {
 			$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
@@ -862,10 +862,10 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function is_single() {
 		if ( is_single() && self::option( 'single' ) === 'on' ) {
-			return true;
+			return apply_filters( App::SLUG . '_is_single', true );
 		}
 
-		return false;
+		return apply_filters( App::SLUG . '_is_single', false );
 	}
 
 	/**
@@ -877,10 +877,10 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function is_page() {
 		if ( ( is_page() || is_page_template() ) && self::option( 'pages' ) === 'on' ) {
-			return true;
+			return apply_filters( App::SLUG . '_is_page', true );
 		}
 
-		return false;
+		return apply_filters( App::SLUG . '_is_page', false );
 	}
 
 	/**
@@ -892,10 +892,10 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function is_home() {
 		if ( ( is_home() || is_front_page() ) && self::option( 'home' ) === 'on' ) {
-			return true;
+			return apply_filters( App::SLUG . '_is_home', true );
 		}
 
-		return false;
+		return apply_filters( App::SLUG . '_is_home', false );
 	}
 
 	/**
@@ -907,10 +907,10 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function is_archive_category() {
 		if ( ( is_archive() || is_category() ) && self::option( 'archive_category' ) === 'on' ) {
-			return true;
+			return apply_filters( App::SLUG . '_is_archive_category', true );
 		}
 
-		return false;
+		return apply_filters( App::SLUG . '_is_archive_category', false );
 	}
 
 	/**
@@ -922,14 +922,14 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function is_active() {
 		if ( self::is_home() || self::is_archive_category() ) {
-			return true;
+			return apply_filters( App::SLUG . '_is_active', true );
 		}
 
 		if ( self::is_page() || self::is_single() ) {
-			return true;
+			return apply_filters( App::SLUG . '_is_active', true );
 		}
 
-		return false;
+		return apply_filters( App::SLUG . '_is_active', false );
 	}
 
 	/**

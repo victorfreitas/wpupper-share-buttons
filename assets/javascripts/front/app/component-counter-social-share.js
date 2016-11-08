@@ -109,11 +109,11 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		this.totalCounter      += number;
 
 		if ( this[request.element] ) {
-			this[request.element].text( number );
+			this[request.element].text( this.formatCounts( number ) );
 		}
 
 		if ( !this.max && this.totalShare ) {
-			this.totalShare.text( this.totalCounter );
+			this.totalShare.text( this.formatCounts( this.totalCounter ) );
 		}
 	};
 
@@ -179,6 +179,42 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 	       url    : utils.getAjaxUrl(),
 	       data   : params
 	   });
+	};
+
+	CounterSocialShare.fn.formatCounts = function(counts) {
+		this.c = counts.toString();
+
+		switch ( Math.pow( 10, this.c.length - 1 ) ) {
+			case 100000000 :
+				return this.t(3) + this.i(3, 4) + 'M';
+
+			case 10000000 :
+				return this.t(2) + this.i(2, 3) + 'M';
+
+			case 1000000 :
+				return this.t(1) + this.i(1, 2) + 'M';
+
+			case 100000 :
+				return this.t(3) + this.i(4, 3) + 'K';
+
+			case 10000 :
+				return this.t(2) + this.i(2, 3) + 'K';
+
+			case 1000 :
+				return this.t(1) + this.i(1, 2) + 'K';
+
+			default :
+				return counts;
+		}
+	};
+
+	CounterSocialShare.fn.t = function(d) {
+		return this.c.substring( 0, d );
+	};
+
+	CounterSocialShare.fn.i = function(d, c) {
+		var i = this.c.substring( d, c );
+		return ( i && i !== '0' ) ? '.' + i : '';
 	};
 
 });
