@@ -11,12 +11,6 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-use WPUSB_Utils as Utils;
-use WPUSB_App as App;
-use WPUSB_Setting as Setting;
-use WPUSB_Social_Elements as Elements;
-use WPUSB_Core as Core;
-
 class WPUSB_Modal {
 
 	/**
@@ -27,10 +21,10 @@ class WPUSB_Modal {
 	 * @return Void
 	 */
 	public static function init() {
-		$prefix    = App::SLUG;
-		$component = Utils::get_component_by_type( 'modal' );
+		$prefix    = WPUSB_App::SLUG;
+		$component = WPUSB_Utils::get_component_by_type( 'modal' );
 
-		do_action( App::SLUG . '-before-modal' );
+		do_action( WPUSB_App::SLUG . '-before-modal' );
 
 		echo <<< EOD
 			<div class="{$prefix}-modal-mask"
@@ -46,7 +40,7 @@ EOD;
 		self::items( $prefix );
 		self::end();
 
-		do_action( App::SLUG . '-after-modal' );
+		do_action( WPUSB_App::SLUG . '-after-modal' );
 	}
 
 	/**
@@ -57,25 +51,25 @@ EOD;
 	 * @return Void
 	 */
 	public static function items( $prefix ) {
-		$elements    = Elements::social_media();
-		$r_permalink = ( Utils::is_home() ) ? '' : Utils::get_real_permalink();
-		$r_title     = ( $r_permalink ) ? Utils::get_real_title() : '';
-		$permalink   = apply_filters( App::SLUG . '-modal-permalink', $r_permalink );
-		$title       = apply_filters( App::SLUG . '-modal-title', $r_title );
+		$elements    = WPUSB_Social_Elements::social_media();
+		$r_permalink = ( WPUSB_Utils::is_home() ) ? '' : WPUSB_Utils::get_real_permalink();
+		$r_title     = ( $r_permalink ) ? WPUSB_Utils::get_real_title() : '';
+		$permalink   = apply_filters( WPUSB_App::SLUG . '-modal-permalink', $r_permalink );
+		$title       = apply_filters( WPUSB_App::SLUG . '-modal-title', $r_title );
 
 		foreach ( $elements as $key => $social ) {
 			if ( $key === 'share' ) {
 				continue;
 			}
 
-			$ga        = apply_filters( App::SLUG . '-ga-event', false, $social );
+			$ga        = apply_filters( WPUSB_App::SLUG . '-ga-event', false, $social );
 			$ga_event  = ( $ga ) ? 'onClick="' . $ga . ';"' : '';
 
 			if ( $permalink || $title ) {
-				$social = Utils::replace_link( $social, $permalink, $title );
+				$social = WPUSB_Utils::replace_link( $social, $permalink, $title );
 			}
 
-			$link_attr = Utils::link_type( $social->link );
+			$link_attr = WPUSB_Utils::link_type( $social->link );
 
 			echo <<<EOD
 				<div class="{$prefix}-element-popup">

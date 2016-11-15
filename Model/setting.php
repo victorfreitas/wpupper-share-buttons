@@ -10,9 +10,6 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-use WPUSB_Utils as Utils;
-use WPUSB_App as App;
-
 class WPUSB_Setting {
 
 	/**
@@ -473,7 +470,7 @@ class WPUSB_Setting {
 	 * @return Array
 	 */
 	private function _get_merge_options() {
-		$options_name = Utils::get_options_name();
+		$options_name = WPUSB_Utils::get_options_name();
 
 		return array_merge(
 			(array) get_option( $options_name[1] ),

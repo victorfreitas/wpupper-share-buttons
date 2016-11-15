@@ -11,27 +11,23 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-use WPUSB_Setting as Setting;
-use WPUSB_App as App;
-use WPUSB_Utils as Utils;
-
 /*
 * Automatic include files
 * in Helper, Controller and Templates
 */
-App::require_files();
-App::uses( 'social-elements', 'Config' );
+WPUSB_App::require_files();
+WPUSB_App::uses( 'social-elements', 'Config' );
 
 // Controllers on front
-App::uses( 'settings', 'Controller' );
-App::uses( 'shares', 'Controller' );
+WPUSB_App::uses( 'settings', 'Controller' );
+WPUSB_App::uses( 'shares', 'Controller' );
 
 // Controllers include on admin
-if ( App::is_admin() ) {
-	App::uses( 'ajax', 'Controller' );
-	App::uses( 'ajax-gplus', 'Controller' );
-	App::uses( 'options', 'Controller' );
-	App::uses( 'share-reports', 'Controller' );
+if ( WPUSB_App::is_admin() ) {
+	WPUSB_App::uses( 'ajax', 'Controller' );
+	WPUSB_App::uses( 'ajax-gplus', 'Controller' );
+	WPUSB_App::uses( 'options', 'Controller' );
+	WPUSB_App::uses( 'share-reports', 'Controller' );
 }
 
 class WPUSB_Core {
@@ -42,10 +38,15 @@ class WPUSB_Core {
 	 * @since 1.2
 	 */
 	public function __construct() {
+		add_action( 'init', array( __CLASS__, 'load_textdomain' ) );
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'add_front_scripts' ) );
 
 		self::_instantiate_controllers();
 		self::_register_actions();
+	}
+
+	public static function load_textdomain() {
+		load_plugin_textdomain( WPUSB_App::TEXTDOMAIN, false, WPUSB_Utils::dirname( 'languages' ) );
 	}
 
 	/**
@@ -56,15 +57,15 @@ class WPUSB_Core {
 	 * @return Void
 	 */
 	public static function add_front_scripts() {
-		$is_active = Utils::is_active();
+		$is_active = WPUSB_Utils::is_active();
 
-		if ( ! apply_filters( App::SLUG , '-add-scripts', $is_active ) ) {
+		if ( ! apply_filters( WPUSB_App::SLUG , '-add-scripts', $is_active ) ) {
 			return;
 		}
 
 		self::_front_scripts();
 
-		if ( 'on' !== Utils::option( 'css_footer' ) ) {
+		if ( 'on' !== WPUSB_Utils::option( 'css_footer' ) ) {
 			self::front_styles();
 			return;
 		}
@@ -80,26 +81,26 @@ class WPUSB_Core {
 	 * @return Void
 	 */
 	private static function _front_scripts() {
-		if ( 'on' === Utils::option( 'disable_js' ) ) {
+		if ( 'on' === WPUSB_Utils::option( 'disable_js' ) ) {
 			return;
 		}
 
-		$context = Utils::option( 'fixed_context' );
+		$context = WPUSB_Utils::option( 'fixed_context' );
 
 		wp_enqueue_script(
-			App::SLUG . '-scripts',
-			Utils::plugin_url( 'javascripts/front/built.js' ),
+			WPUSB_App::SLUG . '-scripts',
+			WPUSB_Utils::plugin_url( 'javascripts/front/built.js' ),
 			array( 'jquery' ),
-			App::VERSION,
+			WPUSB_App::VERSION,
 			true
 		);
 
 		wp_localize_script(
-			App::SLUG . '-scripts',
+			WPUSB_App::SLUG . '-scripts',
 			'WPUSBVars',
 			array(
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-				'context' => str_replace( '{id}', Utils::get_id(), $context ),
+				'context' => str_replace( '{id}', WPUSB_Utils::get_id(), $context ),
 			)
 		);
 	}
@@ -112,15 +113,15 @@ class WPUSB_Core {
 	 * @return Void
 	 */
 	public static function front_styles() {
-		if ( 'on' === Utils::option( 'disable_css' ) ) {
+		if ( 'on' === WPUSB_Utils::option( 'disable_css' ) ) {
 			return;
 		}
 
 		wp_enqueue_style(
-			App::SLUG . '-style',
-			Utils::plugin_url( 'stylesheets/style.css' ),
+			WPUSB_App::SLUG . '-style',
+			WPUSB_Utils::plugin_url( 'stylesheets/style.css' ),
 			array(),
-			App::VERSION
+			WPUSB_App::VERSION
 		);
 	}
 
@@ -132,8 +133,8 @@ class WPUSB_Core {
 	 * @return Void
 	 */
 	private static function _register_actions() {
-		register_activation_hook( App::FILE, array( __CLASS__, 'activate' ) );
-		register_deactivation_hook( App::FILE, array( __CLASS__, 'deactivate' ) );
+		register_activation_hook( WPUSB_App::FILE, array( __CLASS__, 'activate' ) );
+		register_deactivation_hook( WPUSB_App::FILE, array( __CLASS__, 'deactivate' ) );
 	}
 
 	/**
@@ -158,7 +159,7 @@ class WPUSB_Core {
 	 * @return Void
 	 */
 	private static function _instantiate_controllers_admin() {
-		if ( ! App::is_admin() ) {
+		if ( ! WPUSB_App::is_admin() ) {
 			return;
 		}
 
@@ -178,9 +179,9 @@ class WPUSB_Core {
 	public static function activate() {
 		self::create_table();
 
-		Utils::add_options_defaults();
+		WPUSB_Utils::add_options_defaults();
 
-		register_uninstall_hook( App::FILE, array( __CLASS__, 'uninstall' ) );
+		register_uninstall_hook( WPUSB_App::FILE, array( __CLASS__, 'uninstall' ) );
 	}
 
 	/**
@@ -208,7 +209,7 @@ class WPUSB_Core {
 	}
 
 	private static function _delete_options() {
-		$options_name = Utils::get_options_name();
+		$options_name = WPUSB_Utils::get_options_name();
 
 		foreach ( $options_name as $option ) {
 			delete_option( $option );
@@ -225,9 +226,9 @@ class WPUSB_Core {
 	 */
 	private static function _delete_transients() {
 		// Transients
-		delete_transient( Setting::TRANSIENT );
-		delete_transient( Setting::TRANSIENT_SELECT_COUNT );
-		delete_transient( Setting::TRANSIENT_GOOGLE_PLUS );
+		delete_transient( WPUSB_Setting::TRANSIENT );
+		delete_transient( WPUSB_Setting::TRANSIENT_SELECT_COUNT );
+		delete_transient( WPUSB_Setting::TRANSIENT_GOOGLE_PLUS );
 	}
 
 	/**
@@ -241,7 +242,7 @@ class WPUSB_Core {
 	private static function _delete_table() {
 		global $wpdb;
 
-		$table = $wpdb->prefix . Setting::TABLE_NAME;
+		$table = $wpdb->prefix . WPUSB_Setting::TABLE_NAME;
 		$wpdb->query( "DROP TABLE IF EXISTS `{$table}`" );
 	}
 
@@ -258,7 +259,7 @@ class WPUSB_Core {
 		global $wpdb;
 
 		$charset    = $wpdb->get_charset_collate();
-		$table_name = $wpdb->prefix . Setting::TABLE_NAME;
+		$table_name = $wpdb->prefix . WPUSB_Setting::TABLE_NAME;
 		$query      = "CREATE TABLE IF NOT EXISTS {$table_name} (
 			id         BIGINT(20) NOT NULL AUTO_INCREMENT,
 			post_id    BIGINT(20) UNSIGNED NOT NULL,
@@ -301,7 +302,7 @@ class WPUSB_Core {
 	public static function alter_table() {
 		global $wpdb;
 
-		$table        = $wpdb->prefix . Setting::TABLE_NAME;
+		$table        = $wpdb->prefix . WPUSB_Setting::TABLE_NAME;
 		$table_exists = $wpdb->query( "SHOW TABLES LIKE '{$table}'" );
 
 		if ( $table_exists && ! $wpdb->get_var( "SHOW COLUMNS FROM `{$table}` LIKE 'tumblr';" ) ) {

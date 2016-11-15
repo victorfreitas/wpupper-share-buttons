@@ -10,12 +10,6 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-use WPUSB_Setting as Setting;
-use WPUSB_Utils as Utils;
-use WPUSB_Core as Core;
-use WPUSB_Social_Elements as Elements;
-use WPUSB_App as App;
-
 class WPUSB_Ajax_Controller {
 
 	/**
@@ -24,7 +18,7 @@ class WPUSB_Ajax_Controller {
 	* @since 1.2
 	*/
 	public function __construct() {
-		$prefix = App::SLUG;
+		$prefix = WPUSB_App::SLUG;
 
 		add_action( "wp_ajax_{$prefix}_share_count_reports", array( &$this, 'share_count_reports_verify_request' ) );
 		add_action( "wp_ajax_nopriv_{$prefix}_share_count_reports", array( &$this, 'share_count_reports_verify_request' ) );
@@ -40,17 +34,17 @@ class WPUSB_Ajax_Controller {
 	 * @return void
 	 */
 	public function share_count_reports_verify_request() {
-		if ( ! Utils::is_request_ajax() ) {
+		if ( ! WPUSB_Utils::is_request_ajax() ) {
 			exit(0);
 		}
 
-		$nonce = Utils::post( 'nonce', false );
+		$nonce = WPUSB_Utils::post( 'nonce', false );
 
-		if ( ! wp_verify_nonce( $nonce, Setting::AJAX_VERIFY_NONCE_COUNTER ) ) {
+		if ( ! wp_verify_nonce( $nonce, WPUSB_Setting::AJAX_VERIFY_NONCE_COUNTER ) ) {
 			$this->_error_request( 'nonce_is_invalid' );
 		}
 
-		$post_id = Utils::post( 'reference', false, 'intval' );
+		$post_id = WPUSB_Utils::post( 'reference', false, 'intval' );
 
 		if ( ! $post_id ) {
 			$this->_error_request( 'reference_is_empty' );
@@ -67,13 +61,13 @@ class WPUSB_Ajax_Controller {
 	 * @return void
 	 */
 	public function share_preview_verify_request() {
-		if ( ! Utils::is_request_ajax() ) {
+		if ( ! WPUSB_Utils::is_request_ajax() ) {
 			exit(0);
 		}
 
-		$layout  = Utils::post( 'layout', false );
-		$items   = Utils::post( 'items', false );
-		$checked = Utils::post( 'checked', false );
+		$layout  = WPUSB_Utils::post( 'layout', false );
+		$items   = WPUSB_Utils::post( 'items', false );
+		$checked = WPUSB_Utils::post( 'checked', false );
 
 		if ( ! ( $layout || $items || $checked ) ) {
 			exit(0);
@@ -90,17 +84,17 @@ class WPUSB_Ajax_Controller {
 	 * @return void
 	 */
 	public function admin_notice_verify_request() {
-		if ( ! Utils::is_request_ajax() ) {
+		if ( ! WPUSB_Utils::is_request_ajax() ) {
 			exit(0);
 		}
 
-		$nonce = Utils::post( 'nonce', false );
+		$nonce = WPUSB_Utils::post( 'nonce', false );
 
-		if ( ! wp_verify_nonce( $nonce, Setting::AJAX_ADMIN_NONCE ) ) {
+		if ( ! wp_verify_nonce( $nonce, WPUSB_Setting::AJAX_ADMIN_NONCE ) ) {
 			exit(0);
 		}
 
-		delete_option( App::SLUG . '-admin-notices' );
+		delete_option( WPUSB_App::SLUG . '-admin-notices' );
 	}
 
 	/**
@@ -114,15 +108,15 @@ class WPUSB_Ajax_Controller {
 	private function _insert_counts_social_share( $post_id ) {
 		global $wpdb;
 
-		$post_title      = Utils::rm_tags( get_the_title( $post_id ) );
-		$count_facebook  = Utils::post( 'count_facebook', 0, 'intval' );
-		$count_twitter   = Utils::post( 'count_twitter', 0, 'intval' );
-		$count_google    = Utils::post( 'count_google', 0, 'intval' );
-		$count_linkedin  = Utils::post( 'count_linkedin', 0, 'intval' );
-		$count_pinterest = Utils::post( 'count_pinterest', 0, 'intval' );
-		$count_tumblr    = Utils::post( 'count_tumblr', 0, 'intval' );
+		$post_title      = WPUSB_Utils::rm_tags( get_the_title( $post_id ) );
+		$count_facebook  = WPUSB_Utils::post( 'count_facebook', 0, 'intval' );
+		$count_twitter   = WPUSB_Utils::post( 'count_twitter', 0, 'intval' );
+		$count_google    = WPUSB_Utils::post( 'count_google', 0, 'intval' );
+		$count_linkedin  = WPUSB_Utils::post( 'count_linkedin', 0, 'intval' );
+		$count_pinterest = WPUSB_Utils::post( 'count_pinterest', 0, 'intval' );
+		$count_tumblr    = WPUSB_Utils::post( 'count_tumblr', 0, 'intval' );
 		$total           = ( $count_facebook + $count_twitter + $count_google + $count_linkedin + $count_pinterest + $count_tumblr );
-		$table           = $wpdb->prefix . Setting::TABLE_NAME;
+		$table           = $wpdb->prefix . WPUSB_Setting::TABLE_NAME;
 
 		if ( $total > 0 ) {
 			$this->_select(
@@ -258,9 +252,9 @@ class WPUSB_Ajax_Controller {
 		global $wp_version;
 
 		$list         = array();
-		$social       = Elements::social_media();
+		$social       = WPUSB_Social_Elements::social_media();
 		$count        = 0;
-		$fixed_layout = Utils::post( 'fixed_layout', 'buttons' );
+		$fixed_layout = WPUSB_Utils::post( 'fixed_layout', 'buttons' );
 
 		if ( ! is_array( $items ) ) {
 			exit(0);
@@ -273,7 +267,7 @@ class WPUSB_Ajax_Controller {
 
 			$item   = $social->{$element};
 			$list[] = array(
-				'prefix'       => App::SLUG,
+				'prefix'       => WPUSB_App::SLUG,
 				'slash'        => '&#8260;',
 				'counter'      => str_replace( '.', '', $wp_version ),
 				'item_class'   => $item->element,
@@ -291,7 +285,7 @@ class WPUSB_Ajax_Controller {
 			$count++;
 		}
 
-		Utils::send_json( $list );
+		WPUSB_Utils::send_json( $list );
 	}
 
 	/**
@@ -303,7 +297,7 @@ class WPUSB_Ajax_Controller {
 	 */
 	private function _error_request( $message = '' ) {
 		http_response_code( 500 );
-		Utils::error_server_json( 500, $message );
+		WPUSB_Utils::error_server_json( 500, $message );
 		exit(0);
 	}
 
@@ -316,7 +310,7 @@ class WPUSB_Ajax_Controller {
 	 */
 	private function _json_decode_quoted( $txt ) {
 		$text = htmlspecialchars_decode( $txt );
-		$text = Utils::rm_tags( $text, true );
+		$text = WPUSB_Utils::rm_tags( $text, true );
 
 		return json_decode( $text, true );
 	}

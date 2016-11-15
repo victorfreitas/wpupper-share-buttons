@@ -10,12 +10,6 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-use WPUSB_Setting as Setting;
-use WPUSB_Utils as Utils;
-use WPUSB_Core as Core;
-use WPUSB_App as App;
-use WPUSB_Social_Elements as Elements;
-
 class WPUSB_Ajax_Gplus_Controller {
 
 	private $transient;
@@ -28,7 +22,7 @@ class WPUSB_Ajax_Gplus_Controller {
 	* @since 3.6.0
 	*/
 	public function __construct() {
-		$prefix = App::SLUG;
+		$prefix = WPUSB_App::SLUG;
 
 		$this->_set_transient_name();
 
@@ -44,7 +38,7 @@ class WPUSB_Ajax_Gplus_Controller {
 	 * @return void
 	 */
 	private function _set_transient_name() {
-		$this->transient = Setting::TRANSIENT_GOOGLE_PLUS;
+		$this->transient = WPUSB_Setting::TRANSIENT_GOOGLE_PLUS;
 	}
 
 	/**
@@ -77,17 +71,17 @@ class WPUSB_Ajax_Gplus_Controller {
 	 * @return void
 	 */
 	public function gplus_counts_verify_request() {
-		if ( ! Utils::is_request_ajax() ) {
+		if ( ! WPUSB_Utils::is_request_ajax() ) {
 			exit(0);
 		}
 
-		$nonce     = Utils::get( 'nonce', false );
-		$url       = Utils::get( 'url', false, 'esc_url' );
+		$nonce     = WPUSB_Utils::get( 'nonce', false );
+		$url       = WPUSB_Utils::get( 'url', false, 'esc_url' );
 		$permalink = html_entity_decode( $url );
 
-		Utils::ajax_verify_request( $permalink, 'url_is_empty' );
+		WPUSB_Utils::ajax_verify_request( $permalink, 'url_is_empty' );
 
-		if ( ! wp_verify_nonce( $nonce, Setting::AJAX_VERIFY_GPLUS_COUNTS ) ) {
+		if ( ! wp_verify_nonce( $nonce, WPUSB_Setting::AJAX_VERIFY_GPLUS_COUNTS ) ) {
 			$this->_error_request( 'nonce_is_invalid' );
 		}
 
@@ -158,7 +152,7 @@ class WPUSB_Ajax_Gplus_Controller {
 	 */
 	private function _send_request( $args, $url ) {
 		$response      = wp_remote_post( 'https://clients6.google.com/rpc', $args );
-		$plusones      = Utils::retrieve_body_json( $response );
+		$plusones      = WPUSB_Utils::retrieve_body_json( $response );
 		$global_counts = $this->_get_global_counts( $plusones, $url );
 
 		$this->_send_total_counts( $global_counts );
@@ -210,7 +204,7 @@ class WPUSB_Ajax_Gplus_Controller {
 	private function _send_total_counts( $total_counts ) {
 		$counts = json_encode( $total_counts );
 
-		echo Utils::get( 'callback' ) . "({$counts})";
+		echo WPUSB_Utils::get( 'callback' ) . "({$counts})";
 		exit(1);
 	}
 
@@ -223,7 +217,7 @@ class WPUSB_Ajax_Gplus_Controller {
 	 */
 	private function _error_request( $message = '' ) {
 		http_response_code( 500 );
-		Utils::error_server_json( 500, $message );
+		WPUSB_Utils::error_server_json( 500, $message );
 		exit(0);
 	}
 

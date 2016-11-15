@@ -1,6 +1,7 @@
 .#{$prefix}-count {
     background: #ededed;
-    border: 1px solid #dedede;
+    border: 0;
+    padding: 0 10px;
     border-radius: 3px;
     font-family: Arial;
     font-size: 14px;
@@ -8,11 +9,11 @@
     position: relative;
     text-align: center;
 
-    &:before {
+    &:after {
         border-color: transparent #ededed transparent transparent;
         border-style: solid;
         border-width: 10px;
-        content: "";
+        content: '';
         margin-top: -10px;
         position: absolute;
         right: 100%;

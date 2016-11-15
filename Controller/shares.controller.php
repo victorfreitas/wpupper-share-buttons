@@ -10,11 +10,8 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-use WPUSB_Utils as Utils;
-use WPUSB_App as App;
-
 //View
-App::uses( 'shares', 'View' );
+WPUSB_App::uses( 'shares', 'View' );
 
 class WPUSB_Shares_Controller {
 
@@ -27,7 +24,7 @@ class WPUSB_Shares_Controller {
 	* @since 1.2
 	*/
 	public function __construct() {
-		add_shortcode( App::SLUG, array( &$this, 'share' ) );
+		add_shortcode( WPUSB_App::SLUG, array( &$this, 'share' ) );
 		add_filter( 'the_content', array( &$this, 'content' ), 20 );
 		add_action( 'wp_footer', array( &$this, 'buttons_fixed' ), 20 );
 	}
@@ -41,8 +38,8 @@ class WPUSB_Shares_Controller {
 	 * @return Void
 	 */
 	protected function _set_position() {
-		$before = Utils::option( 'before' );
-		$after  = Utils::option( 'after' );
+		$before = WPUSB_Utils::option( 'before' );
+		$after  = WPUSB_Utils::option( 'after' );
 
 		if ( 'on' === $before && 'on' === $after ) {
 			$this->position = 'full';
@@ -74,7 +71,7 @@ class WPUSB_Shares_Controller {
 	public function content( $content ) {
 		$this->_set_position();
 
-		if ( $this->position && Utils::is_active() ) {
+		if ( $this->position && WPUSB_Utils::is_active() ) {
 	    	return $this->_get_new_content( $content );
 		}
 
@@ -113,15 +110,15 @@ class WPUSB_Shares_Controller {
 	 * @return void
 	 */
 	public function buttons_fixed() {
-		if ( apply_filters( App::SLUG . '-modal-html-active', true ) ) {
+		if ( apply_filters( WPUSB_App::SLUG . '-modal-html-active', true ) ) {
 			$this->_add_modal();
 		}
 
-		if ( ! Utils::is_position_fixed() ) {
+		if ( ! WPUSB_Utils::is_position_fixed() ) {
 			return;
 		}
 
-		if ( Utils::is_active() ) {
+		if ( WPUSB_Utils::is_active() ) {
 			$buttons = $this->buttons_share( array(), true );
 
 			echo apply_filters( "{$this->_filter}-fixed", $buttons );
@@ -151,12 +148,12 @@ class WPUSB_Shares_Controller {
 				'title'          => '',
 			),
 			$atts,
-			App::SLUG
+			WPUSB_App::SLUG
 		);
 
-		$args = Utils::sanitize_atts( $atts );
+		$args = WPUSB_Utils::sanitize_atts( $atts );
 
-		return Utils::get_buttons( $args );
+		return WPUSB_Utils::get_buttons( $args );
 	}
 
 	/**
@@ -168,7 +165,7 @@ class WPUSB_Shares_Controller {
 	 * @return String
 	 */
 	public function buttons_share( $atts = array(), $fixed = false ) {
-		return Utils::buttons_share( $atts, $fixed );
+		return WPUSB_Utils::buttons_share( $atts, $fixed );
 	}
 
 	/**
@@ -179,7 +176,7 @@ class WPUSB_Shares_Controller {
 	 * @return Void
 	 */
 	protected function _add_modal() {
-		if ( apply_filters( App::SLUG . '-show-modal', Utils::is_active() ) ) {
+		if ( apply_filters( WPUSB_App::SLUG . '-show-modal', WPUSB_Utils::is_active() ) ) {
 			WPUSB_Modal::init();
 		}
 	}

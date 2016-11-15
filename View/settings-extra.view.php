@@ -10,11 +10,6 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-use WPUSB_Settings_View as View;
-use WPUSB_Setting as Setting;
-use WPUSB_App as App;
-use WPUSB_Utils as Utils;
-
 class WPUSB_Settings_Extra_View {
 
 	/**
@@ -25,26 +20,26 @@ class WPUSB_Settings_Extra_View {
 	 * @return Void, Display page
 	 */
 	public static function render_settings_extra() {
-		$model         = new Setting();
-		$prefix        = App::SLUG;
+		$model         = new WPUSB_Setting();
+		$prefix        = WPUSB_App::SLUG;
 		$extra_setting = "{$prefix}_extra_settings";
 	?>
 		<div class="wrap">
-			<h2><?php _e( 'WPUpper Share Buttons', App::TEXTDOMAIN ); ?></h2>
+			<h2><?php _e( 'WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ); ?></h2>
 
 			<?php
-				if ( Utils::get_update( 'settings-updated' ) ) {
-					View::update_notice_message();
+				if ( WPUSB_Utils::get_update( 'settings-updated' ) ) {
+					WPUSB_Settings_View::update_notice_message();
 				}
 			?>
 
-			<p class="description"><?php _e( 'Add the Share Buttons automatically.', App::TEXTDOMAIN ); ?></p>
+			<p class="description"><?php _e( 'Add the Share Buttons automatically.', WPUSB_App::TEXTDOMAIN ); ?></p>
 
-			<?php View::home_page_notice(); ?>
+			<?php WPUSB_Settings_View::home_page_notice(); ?>
 
-			<span class="<?php echo "{$prefix}-title-wrap"; ?>"><?php _e( 'Extra Settings', App::TEXTDOMAIN ); ?></span>
+			<span class="<?php echo "{$prefix}-title-wrap"; ?>"><?php _e( 'Extra Settings', WPUSB_App::TEXTDOMAIN ); ?></span>
 
-			<?php View::menu_top(); ?>
+			<?php WPUSB_Settings_View::menu_top(); ?>
 
 			<div class="<?php echo "{$prefix}-wrap extra-settings-wrap"; ?>">
 				<form action="options.php" method="post">
@@ -53,52 +48,52 @@ class WPUSB_Settings_Extra_View {
 							<tr>
 								<th scope="row">
 									<label for="<?php echo $prefix; ?>-cache-time">
-										<?php _e( 'Cache time', App::TEXTDOMAIN ); ?>
+										<?php _e( 'Cache time', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>
 								</th>
 								<td>
 									<input id="<?php echo $prefix; ?>-cache-time" step="1" min="1" max="60" type="number"
 									       name="<?php echo "{$extra_setting}[report_cache_time]"; ?>"
 										   value="<?php echo $model->report_cache_time; ?>">
-									<?php _e( 'Minute', App::TEXTDOMAIN ); ?>(s)
+									<?php _e( 'Minute', WPUSB_App::TEXTDOMAIN ); ?>(s)
 									<p class="description">
-										<?php _e( 'Set the time in minutes that will be cached in the Sharing report page', App::TEXTDOMAIN ); ?>
+										<?php _e( 'Set the time in minutes that will be cached in the Sharing report page', WPUSB_App::TEXTDOMAIN ); ?>
 									</p>
 								</td>
 							</tr>
 							<tr>
 								<th scope="row">
 									<label for="<?php echo $prefix; ?>-twitter-username">
-										<?php _e( 'Twitter username', App::TEXTDOMAIN ); ?>
+										<?php _e( 'Twitter username', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>
 								</th>
 								<td>
 									<input id="<?php echo $prefix; ?>-twitter-username"
 									       class="large-text"
-										   placeholder="<?php _e( 'Twitter username', App::TEXTDOMAIN ); ?>"
+										   placeholder="<?php _e( 'Twitter username', WPUSB_App::TEXTDOMAIN ); ?>"
 									       name="<?php echo "{$extra_setting}[twitter_username]"; ?>"
 										   value="<?php echo $model->twitter_username; ?>">
-									<p class="description"><?php _e( 'Your twitter username', App::TEXTDOMAIN ); ?></p>
+									<p class="description"><?php _e( 'Your twitter username', WPUSB_App::TEXTDOMAIN ); ?></p>
 								</td>
 							</tr>
 							<tr>
 								<th scope="row">
 									<label for="<?php echo $prefix; ?>-twitter-text">
-										<?php _e( 'Twitter text', App::TEXTDOMAIN ); ?>
+										<?php _e( 'Twitter text', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>
 								</th>
 								<td>
 									<input id="<?php echo $prefix; ?>-twitter-text"
 									       class="large-text"
-										   placeholder="<?php _e( 'Twitter text', App::TEXTDOMAIN ); ?>"
+										   placeholder="<?php _e( 'Twitter text', WPUSB_App::TEXTDOMAIN ); ?>"
 									       name="<?php echo "{$extra_setting}[twitter_text]"; ?>"
 										   value="<?php echo $model->twitter_text; ?>">
 
 										<div class="<?php echo $prefix; ?>-blockquote">
-											<?php _e( 'Use {title} to add the post title', App::TEXTDOMAIN ); ?>
+											<?php _e( 'Use {title} to add the post title', WPUSB_App::TEXTDOMAIN ); ?>
 											<p class="description">
-											<strong><?php _e( 'Example: ', App::TEXTDOMAIN ); ?></strong>
-												<?php _e( 'I just saw', App::TEXTDOMAIN ); ?> {title}
+											<strong><?php _e( 'Example: ', WPUSB_App::TEXTDOMAIN ); ?></strong>
+												<?php _e( 'I just saw', WPUSB_App::TEXTDOMAIN ); ?> {title}
 											</p>
 										</div>
 								</td>
@@ -106,23 +101,23 @@ class WPUSB_Settings_Extra_View {
 							<tr>
 								<th scope="row">
 									<label for="<?php echo $prefix; ?>-tracking-analytics">
-										<?php _e( 'UTM tracking', App::TEXTDOMAIN ); ?>
+										<?php _e( 'UTM tracking', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>
 								</th>
 								<td>
 									<input id="<?php echo $prefix; ?>-tracking-analytics"
 									       class="large-text"
-										   placeholder="<?php _e( 'Add UTM tracking (Analytics)', App::TEXTDOMAIN ); ?>"
+										   placeholder="<?php _e( 'Add UTM tracking (Analytics)', WPUSB_App::TEXTDOMAIN ); ?>"
 									       name="<?php echo "{$extra_setting}[tracking]"; ?>"
 										   value="<?php echo $model->tracking; ?>">
 
 									<div class="<?php echo $prefix; ?>-blockquote">
 										<p class="description">
-											<strong><?php _e( 'Example: ', App::TEXTDOMAIN ); ?></strong>
+											<strong><?php _e( 'Example: ', WPUSB_App::TEXTDOMAIN ); ?></strong>
 											?utm_source=share_buttons&utm_medium=social_media&utm_campaign=social_share
 											<br>
-											<?php _e( 'Use <code>?</code> and', App::TEXTDOMAIN ); ?>
-											<?php _e( 'adding parameters to use <code>&</code> in the tracking.', App::TEXTDOMAIN ); ?>
+											<?php _e( 'Use <code>?</code> and', WPUSB_App::TEXTDOMAIN ); ?>
+											<?php _e( 'adding parameters to use <code>&</code> in the tracking.', WPUSB_App::TEXTDOMAIN ); ?>
 										</p>
 									</div>
 								</td>
@@ -130,17 +125,17 @@ class WPUSB_Settings_Extra_View {
 							<tr>
 								<th scope="row">
 									<label for="<?php echo $prefix; ?>-short-url">
-										<?php _e( 'Bitly access token', App::TEXTDOMAIN ); ?>
+										<?php _e( 'Bitly access token', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>
 								</th>
 								<td>
 									<input name="<?php echo "{$extra_setting}[bitly_token]"; ?>"
 									       value="<?php echo $model->bitly_token; ?>"
-									       placeholder="<?php _e( 'Insert your access token Bitly', App::TEXTDOMAIN ); ?>"
+									       placeholder="<?php _e( 'Insert your access token Bitly', WPUSB_App::TEXTDOMAIN ); ?>"
 									       id="<?php echo $prefix; ?>-short-url"
 									       class="large-text">
 									<p class="description">
-										<?php _e( 'Shorten urls using bitly, generate token in ', App::TEXTDOMAIN ); ?>
+										<?php _e( 'Shorten urls using bitly, generate token in ', WPUSB_App::TEXTDOMAIN ); ?>
 										<a href="https://bitly.com/a/oauth_apps" target="_blank">Bitly</a>
 									</p>
 								</td>
@@ -148,12 +143,12 @@ class WPUSB_Settings_Extra_View {
 							<tr>
 								<th scope="row">
 									<label for="<?php echo $prefix; ?>-disable-css">
-										<?php _e( 'Disable CSS', App::TEXTDOMAIN ); ?>
+										<?php _e( 'Disable CSS', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>
 								</th>
 								<td>
 								<?php
-									View::add_checkbox(array(
+									WPUSB_Settings_View::add_checkbox(array(
 										'name'    => "{$extra_setting}[disable_css]",
 										'id'      => 'disable-css',
 										'checked' => checked( 'on', $model->disable_css, false ),
@@ -165,12 +160,12 @@ class WPUSB_Settings_Extra_View {
 							<tr>
 								<th scope="row">
 									<label for="<?php echo $prefix; ?>-disable-script">
-										<?php _e( 'Disable JS', App::TEXTDOMAIN ); ?>
+										<?php _e( 'Disable JS', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>
 								</th>
 								<td>
 								<?php
-									View::add_checkbox(array(
+									WPUSB_Settings_View::add_checkbox(array(
 										'name'    => "{$extra_setting}[disable_js]",
 										'id'      => 'disable-script',
 										'checked' => checked( 'on', $model->disable_js, false ),
@@ -182,12 +177,12 @@ class WPUSB_Settings_Extra_View {
 							<tr>
 								<th scope="row">
 									<label for="<?php echo $prefix; ?>-css-footer">
-										<?php _e( 'CSS file in footer', App::TEXTDOMAIN ); ?>
+										<?php _e( 'CSS file in footer', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>
 								</th>
 								<td>
 								<?php
-									View::add_checkbox(array(
+									WPUSB_Settings_View::add_checkbox(array(
 										'name'    => "{$extra_setting}[css_footer]",
 										'id'      => 'css-footer',
 										'checked' => checked( 'on', $model->css_footer, false ),
@@ -195,7 +190,7 @@ class WPUSB_Settings_Extra_View {
 									));
 								?>
 								<p class="description">
-									<?php _e( 'Keep the CSS style in the footer is recommended to improve the performance of your website.', App::TEXTDOMAIN ); ?>
+									<?php _e( 'Keep the CSS style in the footer is recommended to improve the performance of your website.', WPUSB_App::TEXTDOMAIN ); ?>
 								</p>
 								</td>
 							</tr>

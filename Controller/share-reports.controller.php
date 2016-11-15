@@ -10,20 +10,15 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-use WPUSB_Sharing_Report_View as View;
-use WPUSB_App as App;
-use WPUSB_Utils as Utils;
-use WPUSB_Setting as Setting;
-
 //View
-App::uses( 'share-report', 'View' );
+WPUSB_App::uses( 'share-report', 'View' );
 
 if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
 
 if ( ! class_exists( 'WP_Screen' ) ) {
-	Utils::include_file_screen();
+	WPUSB_Utils::include_file_screen();
 }
 
 if ( ! class_exists( 'Walker_Category_Checklist' ) ) {
@@ -59,8 +54,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	public function __construct() {
 		add_action( 'admin_menu', array( &$this, 'menu' ) );
 
-		$this->cache_time = Utils::option( 'report_cache_time', 10, 'intval' );
-		$this->search     = Utils::get( 's', false );
+		$this->cache_time = WPUSB_Utils::option( 'report_cache_time', 10, 'intval' );
+		$this->search     = WPUSB_Utils::get( 's', false );
 
 		parent::__construct(array(
 			'singular' => 'social-share-report',
@@ -84,8 +79,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		global $wpdb;
 
 		$offset = ( ( $current_page - 1 ) * self::POSTS_PER_PAGE );
-		$cache  = get_transient( Setting::TRANSIENT );
-		$table  = $wpdb->prefix . Setting::TABLE_NAME;
+		$cache  = get_transient( WPUSB_Setting::TRANSIENT );
+		$table  = $wpdb->prefix . WPUSB_Setting::TABLE_NAME;
 		$where  = $this->_where();
 
 		if ( ! $this->_table_exists( $wpdb, $table ) ) {
@@ -109,7 +104,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		$cache[ $current_page ][ $orderby ][ $order ] = $wpdb->get_results( $query );
 
 		if ( ! $this->search ) {
-			set_transient( Setting::TRANSIENT, $cache, $this->cache_time * MINUTE_IN_SECONDS );
+			set_transient( WPUSB_Setting::TRANSIENT, $cache, $this->cache_time * MINUTE_IN_SECONDS );
 		}
 
 		return $cache[ $current_page ][ $orderby ][ $order ];
@@ -126,8 +121,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	private function _total_items() {
 		global $wpdb;
 
-		$cache = get_transient( Setting::TRANSIENT_SELECT_COUNT );
-		$table = $wpdb->prefix . Setting::TABLE_NAME;
+		$cache = get_transient( WPUSB_Setting::TRANSIENT_SELECT_COUNT );
+		$table = $wpdb->prefix . WPUSB_Setting::TABLE_NAME;
 
 		if ( ! $this->_table_exists( $wpdb, $table ) ) {
 			return 0;
@@ -180,7 +175,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	private function _set_cache_caunter( $total_items ) {
 		if ( ! $this->search ) {
 			set_transient(
-				Setting::TRANSIENT_SELECT_COUNT,
+				WPUSB_Setting::TRANSIENT_SELECT_COUNT,
 				$total_items,
 				$this->cache_time * MINUTE_IN_SECONDS
 			);
@@ -199,7 +194,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 
 		switch ( $column ) {
 			case 'title' :
-				return View::get_permalink_title( $items->post_id, $items->post_title );
+				return WPUSB_Sharing_Report_View::get_permalink_title( $items->post_id, $items->post_title );
 				break;
 
 			case 'facebook'  :
@@ -209,7 +204,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			case 'pinterest' :
 			case 'tumblr'    :
 			case 'total'     :
-				return Utils::number_format( $items->{$column} );
+				return WPUSB_Utils::number_format( $items->{$column} );
 				break;
 		}
 	}
@@ -223,14 +218,14 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 */
 	public function get_columns() {
 		$columns = array(
-			'Title'     => __( 'Title', App::TEXTDOMAIN ),
-			'Facebook'  => __( 'Facebook', App::TEXTDOMAIN ),
-			'Google'    => __( 'Google+', App::TEXTDOMAIN ),
-			'Twitter'   => __( 'Twitter', App::TEXTDOMAIN ),
-			'Linkedin'  => __( 'Linkedin', App::TEXTDOMAIN ),
-			'Pinterest' => __( 'Pinterest', App::TEXTDOMAIN ),
-			'Tumblr'    => __( 'Tumblr', App::TEXTDOMAIN ),
-			'Total'     => __( 'Total', App::TEXTDOMAIN ),
+			'Title'     => __( 'Title', WPUSB_App::TEXTDOMAIN ),
+			'Facebook'  => __( 'Facebook', WPUSB_App::TEXTDOMAIN ),
+			'Google'    => __( 'Google+', WPUSB_App::TEXTDOMAIN ),
+			'Twitter'   => __( 'Twitter', WPUSB_App::TEXTDOMAIN ),
+			'Linkedin'  => __( 'Linkedin', WPUSB_App::TEXTDOMAIN ),
+			'Pinterest' => __( 'Pinterest', WPUSB_App::TEXTDOMAIN ),
+			'Tumblr'    => __( 'Tumblr', WPUSB_App::TEXTDOMAIN ),
+			'Total'     => __( 'Total', WPUSB_App::TEXTDOMAIN ),
 		);
 
 		return $columns;
@@ -266,8 +261,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 * @return Array
 	 */
 	public function prepare_items() {
-		$orderby               = Utils::get( 'orderby', 'total', 'sanitize_sql_orderby' );
-		$order_type            = Utils::get( 'order', 'desc', 'sanitize_sql_orderby' );
+		$orderby               = WPUSB_Utils::get( 'orderby', 'total', 'sanitize_sql_orderby' );
+		$order_type            = WPUSB_Utils::get( 'order', 'desc', 'sanitize_sql_orderby' );
 		$reference             = $this->_verify_sql_orderby( $orderby, 'total' );
 		$order                 = $this->_verify_sql_order( $order_type, 'desc' );
 		$posts_per_page        = $this->get_items_per_page( 'ssb_posts_per_page', self::POSTS_PER_PAGE );
@@ -292,7 +287,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 * @return String
 	 */
 	public function no_items() {
-		_e( 'There is no record available at the moment!', App::TEXTDOMAIN );
+		_e( 'There is no record available at the moment!', WPUSB_App::TEXTDOMAIN );
 	}
 
 	/**
@@ -304,11 +299,11 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 */
 	public function menu() {
 	  	add_submenu_page(
-	  		App::SLUG,
-	  		__( 'Sharing Report | WPUpper Share Buttons', App::TEXTDOMAIN ),
-	  		__( 'Sharing Report', App::TEXTDOMAIN ),
+	  		WPUSB_App::SLUG,
+	  		__( 'Sharing Report | WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ),
+	  		__( 'Sharing Report', WPUSB_App::TEXTDOMAIN ),
 	  		'manage_options',
-	  		Setting::SHARING_REPORT,
+	  		WPUSB_Setting::SHARING_REPORT,
 	  		array( &$this, 'report' )
 	  	);
 	}
@@ -321,7 +316,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 * @return Void
 	 */
 	public function report() {
-		View::render_sharing_report( $this );
+		WPUSB_Sharing_Report_View::render_sharing_report( $this );
 	}
 
 	/**

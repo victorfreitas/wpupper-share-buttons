@@ -10,12 +10,6 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-use WPUSB_Social_Elements as Elements;
-use WPUSB_Settings_View as View;
-use WPUSB_Setting as Setting;
-use WPUSB_App as App;
-use WPUSB_Utils as Utils;
-
 class WPUSB_Settings_Faq_View {
 
 	/**
@@ -26,20 +20,20 @@ class WPUSB_Settings_Faq_View {
 	 * @return Void Display page
 	 */
 	public static function render_page_faq() {
-		$prefix           = App::SLUG;
+		$prefix           = WPUSB_App::SLUG;
 		$use_options_file = dirname( __FILE__ ) . '/use-options.php';
 	?>
 		<div class="wrap">
-			<h2><?php _e( 'WPUpper Share Buttons', App::TEXTDOMAIN ); ?></h2>
-			<p class="description"><?php _e( 'Add the Share Buttons automatically.', App::TEXTDOMAIN ); ?></p>
+			<h2><?php _e( 'WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ); ?></h2>
+			<p class="description"><?php _e( 'Add the Share Buttons automatically.', WPUSB_App::TEXTDOMAIN ); ?></p>
 
-			<?php View::home_page_notice(); ?>
+			<?php WPUSB_Settings_View::home_page_notice(); ?>
 
 			<span class="<?php echo "{$prefix}-title-wrap"; ?>">
-				<?php _e( 'Use options', App::TEXTDOMAIN ); ?>
+				<?php _e( 'Use options', WPUSB_App::TEXTDOMAIN ); ?>
 			</span>
 
-			<?php View::menu_top(); ?>
+			<?php WPUSB_Settings_View::menu_top(); ?>
 
 			<div class="<?php echo "{$prefix}-wrap-faq"; ?>">
 <pre data-element="highlight">
@@ -49,7 +43,7 @@ class WPUSB_Settings_Faq_View {
  *
  * Items Available:
 <?php
-foreach ( Elements::$items_available as $item ) :
+foreach ( WPUSB_Social_Elements::$items_available as $item ) :
 echo " * {$item}\n";
 endforeach;
 ?>
@@ -108,7 +102,7 @@ echo do_shortcode( '[wpusb]' );
 
 <hr>
 
-<h2><?php _e( 'Available filters', App::TEXTDOMAIN ); ?></h2>
+<h2><?php _e( 'Available filters', WPUSB_App::TEXTDOMAIN ); ?></h2>
 
 <hr>
 

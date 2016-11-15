@@ -12,10 +12,6 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-use WPUSB_Setting as Setting;
-use WPUSB_App as App;
-use WPUSB_Utils as Utils;
-
 class WPUSB_Layouts_Primary {
 
 	/**
@@ -26,10 +22,10 @@ class WPUSB_Layouts_Primary {
 	 * @return String
 	 */
 	public static function init( \stdClass $atts ) {
-		$args       = Utils::content_args( $atts );
-		$classes    = Utils::get_classes_first( $atts );
-		$data_token = Utils::get_data_token( $args['token'] );
-		$component  = Utils::get_component_by_type();
+		$args       = WPUSB_Utils::content_args( $atts );
+		$classes    = WPUSB_Utils::get_classes_first( $atts );
+		$data_token = WPUSB_Utils::get_data_token( $args['token'] );
+		$component  = WPUSB_Utils::get_component_by_type();
 		$content    = <<<EOD
 			<div data-element-url="{$args['permalink']}"
 		     	 data-element-title="{$args['title']}"
@@ -42,7 +38,7 @@ class WPUSB_Layouts_Primary {
 			     {$data_token}
 			     {$args['fixed_top']}>
 EOD;
-		return apply_filters( App::SLUG . '-start-buttons-html', $content, $atts );
+		return apply_filters( WPUSB_App::SLUG . '-start-buttons-html', $content, $atts );
 	}
 
 	/**
@@ -54,10 +50,10 @@ EOD;
 	 */
 	public static function items( $args = OBJECT ) {
 		$classes   = self::get_classes_second( $args );
-		$link_type = Utils::link_type( $args->reference->link );
+		$link_type = WPUSB_Utils::link_type( $args->reference->link );
 		$inside    = self::inside( $args );
 		$counter   = self::add_count( $args );
-		$referrer  = Utils::get_data_referrer( $args );
+		$referrer  = WPUSB_Utils::get_data_referrer( $args );
 		$ga_event  = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
 		$content   = <<<EOD
 			<div class="{$classes}" {$referrer}>
@@ -75,7 +71,7 @@ EOD;
 				{$counter}
 			</div>
 EOD;
-		return apply_filters( App::SLUG . '-btn-items', $content, $args );
+		return apply_filters( WPUSB_App::SLUG . '-btn-items', $content, $args );
 	}
 
 	/**
@@ -91,7 +87,7 @@ EOD;
 		$classes .= " {$atts->reference->class}";
 		$classes .= " {$atts->class_second}";
 
-		return apply_filters( App::SLUG . '-classes-second-layouts-primary', $classes, $atts );
+		return apply_filters( WPUSB_App::SLUG . '-classes-second-layouts-primary', $classes, $atts );
 	}
 
 	/**
@@ -105,11 +101,11 @@ EOD;
 	public static function inside( $atts ) {
 		$content = '';
 
-		if ( Utils::is_active_inside( $atts->elements ) ) {
+		if ( WPUSB_Utils::is_active_inside( $atts->elements ) ) {
 			$content = "<span data-title=\"{$atts->reference->inside}\"></span>";
 		}
 
-		return apply_filters( App::SLUG . '-inside-html', $content, $atts );
+		return apply_filters( WPUSB_App::SLUG . '-inside-html', $content, $atts );
 	}
 
 	/**
@@ -120,14 +116,14 @@ EOD;
 	 * @return String
 	 */
 	public static function add_count( $args ) {
-		$active_counter = Utils::is_active_couter( $args->elements );
+		$active_counter = WPUSB_Utils::is_active_couter( $args->elements );
 		$content        = '';
 
 		if ( $args->reference->has_counter && $active_counter ) {
 			$content = "<span data-element=\"{$args->reference->element}\" class=\"{$args->prefix}-count\"></span>";
 		}
 
-		return apply_filters( App::SLUG . '-total-counter', $content, $args );
+		return apply_filters( WPUSB_App::SLUG . '-total-counter', $content, $args );
 	}
 
 	/**
@@ -139,7 +135,7 @@ EOD;
 	 *
 	 */
 	public static function end( $args ) {
-		return apply_filters( App::SLUG . '-end-buttons-html', '</div>', $args );
+		return apply_filters( WPUSB_App::SLUG . '-end-buttons-html', '</div>', $args );
 	}
 
 	/**
@@ -151,8 +147,8 @@ EOD;
 	 *
 	 */
 	public static function get_btn_plus( $class = '' ) {
-		$prefix = App::SLUG;
-		$title  = __( 'Open modal social networks', App::TEXTDOMAIN );
+		$prefix = WPUSB_App::SLUG;
+		$title  = __( 'Open modal social networks', WPUSB_App::TEXTDOMAIN );
 
 		return <<<EOD
 			<div class="{$prefix}-{$class} {$prefix}-popup-open-networks">

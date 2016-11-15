@@ -11,11 +11,6 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-use WPUSB_Settings_View as View;
-use WPUSB_Setting as Setting;
-use WPUSB_App as App;
-use WPUSB_Utils as Utils;
-
 class WPUSB_Fixed_Left {
 
 	protected static $layout;
@@ -29,11 +24,11 @@ class WPUSB_Fixed_Left {
 	public static function init( \stdClass $atts ) {
 		self::_set_layout();
 
-		$args       = Utils::content_args( $atts );
+		$args       = WPUSB_Utils::content_args( $atts );
 		$classes    = self::get_classes_first( $atts );
-		$data_token = Utils::get_data_token( $args['token'] );
+		$data_token = WPUSB_Utils::get_data_token( $args['token'] );
 		$counter    = self::add_count( $atts );
-		$component  = Utils::get_component_by_type();
+		$component  = WPUSB_Utils::get_component_by_type();
 		$content    = <<<EOD
 		<div class="{$classes}"
 		     data-element-url="{$args['permalink']}"
@@ -49,7 +44,7 @@ class WPUSB_Fixed_Left {
 			<div data-element="buttons" class="{$atts->position_fixed}-container">
 			{$counter}
 EOD;
-		return apply_filters( App::SLUG . 'init-buttons-fixed', $content );
+		return apply_filters( WPUSB_App::SLUG . 'init-buttons-fixed', $content );
 	}
 
 	/**
@@ -61,7 +56,7 @@ EOD;
 	 */
 	public static function items( $args = OBJECT ) {
 		$classes    = self::get_classes_second( $args );
-		$link_type  = Utils::link_type( $args->reference->link );
+		$link_type  = WPUSB_Utils::link_type( $args->reference->link );
 		$layout     = self::$layout;
 		$btn_class  = ( 'buttons' == $layout ) ? 'button' : $layout;
 		$ga_event   = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
@@ -84,7 +79,7 @@ EOD;
 				</a>
 			</div>
 EOD;
-		return apply_filters( App::SLUG . '-btn-items', $content );
+		return apply_filters( WPUSB_App::SLUG . '-btn-items', $content );
 	}
 
 	/**
@@ -100,7 +95,7 @@ EOD;
 		$classes .= " {$atts->reference->class}";
 		$classes .= " {$atts->class_second}";
 
-		return apply_filters( App::SLUG . '-classes-second-fixed-left', $classes );
+		return apply_filters( WPUSB_App::SLUG . '-classes-second-fixed-left', $classes );
 	}
 
 	/**
@@ -114,7 +109,7 @@ EOD;
 		$prefix  = $args->prefix;
 		$content = '';
 
-		if ( Utils::is_active_couter( $args ) ) {
+		if ( WPUSB_Utils::is_active_couter( $args ) ) {
 			$inside  = self::_get_inside_count();
 			$content = <<<EOD
 				<div class="{$prefix}-item {$prefix}-total-share">
@@ -128,7 +123,7 @@ EOD;
 EOD;
 		}
 
-		return apply_filters( App::SLUG . '-total-counter-fixed', $content );
+		return apply_filters( WPUSB_App::SLUG . '-total-counter-fixed', $content );
 	}
 
 	/**
@@ -139,7 +134,7 @@ EOD;
 	 * @return String
 	 */
 	private static function _get_inside_count() {
-		$inside = '<span>' . __( 'Shares', App::TEXTDOMAIN ) . '</span>';
+		$inside = '<span>' . __( 'Shares', WPUSB_App::TEXTDOMAIN ) . '</span>';
 
 		return ( 'default' == self::$layout ) ? $inside : '';
 	}
@@ -159,7 +154,7 @@ EOD;
 		$classes .= " {$atts->position_fixed}";
 		$classes .= " {$atts->class_first} {$atts->custom_class}";
 
-		return apply_filters( App::SLUG . '-classes-first-fixed-left', $classes );
+		return apply_filters( WPUSB_App::SLUG . '-classes-first-fixed-left', $classes );
 	}
 
 	/**
@@ -171,14 +166,14 @@ EOD;
 	 *
 	 */
 	public static function end( $args ) {
-		$prefix  = App::SLUG;
+		$prefix  = WPUSB_App::SLUG;
 		$content = <<<EOD
 				</div>
 				<span class="{$prefix}-toggle"
 					  data-action="close-buttons"></span>
 			</div>
 EOD;
-		return apply_filters( App::SLUG . '-close-buttons-fixed', $content );
+		return apply_filters( WPUSB_App::SLUG . '-close-buttons-fixed', $content );
 	}
 
 	/**
@@ -190,6 +185,6 @@ EOD;
 	 *
 	 */
 	public static function _set_layout() {
-		self::$layout = Utils::option( 'fixed_layout', 'buttons' );
+		self::$layout = WPUSB_Utils::option( 'fixed_layout', 'buttons' );
 	}
 }

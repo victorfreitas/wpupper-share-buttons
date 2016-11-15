@@ -11,11 +11,6 @@
 if ( ! function_exists( 'add_action' ) )
 	exit(0);
 
-use WPUSB_Utils as Utils;
-use WPUSB_Setting as Setting;
-use WPUSB_Social_Elements as Elements;
-use WPUSB_App as App;
-
 abstract class WPUSB_Utils_Share {
 
 	public static $count_elements = 0;
@@ -64,7 +59,7 @@ abstract class WPUSB_Utils_Share {
 	 *
 	 */
 	private static function _set_buttons( $args = array() ) {
-		$prefix       = App::SLUG;
+		$prefix       = WPUSB_App::SLUG;
 		$social       = $args['social'];
 		$args_buttons = (object) array(
 			'reference'       => $social,
@@ -76,7 +71,7 @@ abstract class WPUSB_Utils_Share {
 			'elements'        => $args['elements'],
 			'permalink'       => $args['permalink'],
 			'share_full'      => '',
-			'ga'              => apply_filters( App::SLUG . '-ga-event', false, $social ),
+			'ga'              => apply_filters( WPUSB_App::SLUG . '-ga-event', false, $social ),
 			'item_class_icon' => apply_filters(
 				"{$prefix}_item_class_icon",
 				"{$social->class_icon}-{$args['layout']}",
@@ -85,7 +80,7 @@ abstract class WPUSB_Utils_Share {
 		);
 		$buttons = self::get_content_by_layout( $args_buttons, 'items' );
 
-		return apply_filters( App::SLUG . '-set-buttons-html', $buttons, $args_buttons );
+		return apply_filters( WPUSB_App::SLUG . '-set-buttons-html', $buttons, $args_buttons );
 	}
 
 	/**
@@ -97,18 +92,18 @@ abstract class WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function get_buttons( $args = array(), $fixed = false ) {
-		$model            = new Setting();
-		$args             = apply_filters( App::SLUG . 'buttons-args', $args );
+		$model            = new WPUSB_Setting();
+		$args             = apply_filters( WPUSB_App::SLUG . 'buttons-args', $args );
 		$args['layout']   = self::get_layout( $args, $model->layout, $fixed );
 		$args['is_fixed'] = $fixed;
-		$permalink        = ( $args['url'] ) ? $args['url'] : Utils::get_real_permalink( $fixed );
-		$title            = ( $args['title'] ) ? $args['title'] : Utils::get_real_title( $fixed );
-		$elements         = Elements::social_media();
+		$permalink        = ( $args['url'] ) ? $args['url'] : WPUSB_Utils::get_real_permalink( $fixed );
+		$title            = ( $args['title'] ) ? $args['title'] : WPUSB_Utils::get_real_title( $fixed );
+		$elements         = WPUSB_Social_Elements::social_media();
 		$social_items     = self::get_social_media( $model, $args['items'] );
 		$buttons          = self::get_buttons_open( $args, $model, $permalink, $title );
 
 		foreach ( $social_items as $item ) :
-			if ( ! Elements::items_available( $item ) ) {
+			if ( ! WPUSB_Social_Elements::items_available( $item ) ) {
 				continue;
 			}
 
@@ -137,7 +132,7 @@ abstract class WPUSB_Utils_Share {
 			return self::get_selected_items( $items );
 
 		if ( ! $model )
-			$model = new Setting();
+			$model = new WPUSB_Setting();
 
 		$social_media = $model->social_media;
 
@@ -196,7 +191,7 @@ abstract class WPUSB_Utils_Share {
 	 *
 	 */
 	public static function get_buttons_open( $args, $model, $permalink, $title ) {
-		$prefix       = App::SLUG;
+		$prefix       = WPUSB_App::SLUG;
 		$args_buttons = (object) array(
 			'class_first'    => $args['class_first'],
 			'custom_class'   => $model->class,
@@ -209,7 +204,7 @@ abstract class WPUSB_Utils_Share {
 		);
 		$buttons = self::get_content_by_layout( $args_buttons, 'init' );
 
-		return apply_filters( App::SLUG . '-init-buttons-html', $buttons, $args_buttons );
+		return apply_filters( WPUSB_App::SLUG . '-init-buttons-html', $buttons, $args_buttons );
 	}
 
 	/**
@@ -223,7 +218,7 @@ abstract class WPUSB_Utils_Share {
 	public static function nonce( $action ) {
 		$nonce = wp_create_nonce( $action );
 
-		return Utils::rm_tags( $nonce );
+		return WPUSB_Utils::rm_tags( $nonce );
 	}
 
 	/**
@@ -236,18 +231,18 @@ abstract class WPUSB_Utils_Share {
 	 */
 	public static function content_args( $atts ) {
 		$args = array(
-			'nonce'       => self::nonce( Setting::AJAX_VERIFY_NONCE_COUNTER ),
-			'nonce-gplus' => self::nonce( Setting::AJAX_VERIFY_GPLUS_COUNTS ),
-			'token'       => Utils::option( 'bitly_token' ),
-			'prefix'      => App::SLUG,
-			'post_id'     => Utils::get_id(),
-			'tracking'    => Utils::option( 'tracking' ),
+			'nonce'       => self::nonce( WPUSB_Setting::AJAX_VERIFY_NONCE_COUNTER ),
+			'nonce-gplus' => self::nonce( WPUSB_Setting::AJAX_VERIFY_GPLUS_COUNTS ),
+			'token'       => WPUSB_Utils::option( 'bitly_token' ),
+			'prefix'      => WPUSB_App::SLUG,
+			'post_id'     => WPUSB_Utils::get_id(),
+			'tracking'    => WPUSB_Utils::option( 'tracking' ),
 			'permalink'   => $atts->permalink,
 			'title'       => $atts->title,
-			'fixed_top'   => self::data_fixed_top( App::SLUG ),
+			'fixed_top'   => self::data_fixed_top( WPUSB_App::SLUG ),
 		);
 
-		return apply_filters( App::SLUG . '-content-args', $args, $atts );
+		return apply_filters( WPUSB_App::SLUG . '-content-args', $args, $atts );
 	}
 
 	/**
@@ -261,7 +256,7 @@ abstract class WPUSB_Utils_Share {
 	public static function data_fixed_top( $prefix ) {
 		$element = '';
 
-		if ( Utils::is_fixed_top() )
+		if ( WPUSB_Utils::is_fixed_top() )
 			$element = "data-element=\"{$prefix}-fixed-top\"";
 
 		return $element;
@@ -292,7 +287,7 @@ abstract class WPUSB_Utils_Share {
 	public static function link_type( $url_share ) {
 		$attr_link = "href=\"{$url_share}\" target=\"_blank\"";
 
-		return apply_filters( App::SLUG . '-attr-link', $attr_link, $url_share );
+		return apply_filters( WPUSB_App::SLUG . '-attr-link', $attr_link, $url_share );
 	}
 
 	/**
@@ -322,7 +317,7 @@ abstract class WPUSB_Utils_Share {
 	public static function is_active_couter( $atts ) {
 		$args         = (object) $atts;
 		$atts_counter = $args->remove_counter;
-		$opt_counter  = Utils::option( 'disabled_count', false, 'intval' );
+		$opt_counter  = WPUSB_Utils::option( 'disabled_count', false, 'intval' );
 
 		return ! ( ( '' !== $atts_counter ) ? $atts_counter : $opt_counter );
 	}
@@ -337,7 +332,7 @@ abstract class WPUSB_Utils_Share {
 	 */
 	public static function is_active_inside( $atts ) {
 		$atts_inside = $atts['remove_inside'];
-		$opt_inside  = Utils::option( 'disabled_inside', false, 'intval' );
+		$opt_inside  = WPUSB_Utils::option( 'disabled_inside', false, 'intval' );
 
 		return ! ( ( '' !== $atts_inside ) ? $atts_inside : $opt_inside );
 	}
@@ -372,7 +367,7 @@ abstract class WPUSB_Utils_Share {
 				break;
 		endswitch;
 
-		return apply_filters( App::SLUG . "-content-buttons-{$args->layout}", $content, $args, $method );
+		return apply_filters( WPUSB_App::SLUG . "-content-buttons-{$args->layout}", $content, $args, $method );
 	}
 
 	/**
@@ -418,7 +413,7 @@ abstract class WPUSB_Utils_Share {
 	 *
 	 */
 	public static function is_position_fixed() {
-		return ( 'on' === Utils::option( 'fixed' ) );
+		return ( 'on' === WPUSB_Utils::option( 'fixed' ) );
 	}
 
 	/**
@@ -430,7 +425,7 @@ abstract class WPUSB_Utils_Share {
 	 *
 	 */
 	public static function get_data_referrer( $atts ) {
-		$opt_referrer = Utils::option( 'referrer', false );
+		$opt_referrer = WPUSB_Utils::option( 'referrer', false );
 
 		if ( $opt_referrer === 'yes' ) {
 			$attr  = "data-referrer=\"{$atts->reference->element}\"";
@@ -450,17 +445,17 @@ abstract class WPUSB_Utils_Share {
 	 */
 	public static function buttons_share( $atts = array(), $fixed = false ) {
 		$args = array(
-			'class_first'  => Utils::isset_get( $atts, 'class_first' ),
-			'class_second' => Utils::isset_get( $atts, 'class_second' ),
-			'class_link'   => Utils::isset_get( $atts, 'class_link' ),
-			'class_icon'   => Utils::isset_get( $atts, 'class_icon' ),
-			'layout'       => Utils::isset_get( $atts, 'layout' ),
-			'items'        => Utils::isset_get( $atts, 'items' ),
-			'url'          => Utils::isset_get( $atts, 'url' ),
-			'title'        => Utils::isset_get( $atts, 'title' ),
+			'class_first'  => WPUSB_Utils::isset_get( $atts, 'class_first' ),
+			'class_second' => WPUSB_Utils::isset_get( $atts, 'class_second' ),
+			'class_link'   => WPUSB_Utils::isset_get( $atts, 'class_link' ),
+			'class_icon'   => WPUSB_Utils::isset_get( $atts, 'class_icon' ),
+			'layout'       => WPUSB_Utils::isset_get( $atts, 'layout' ),
+			'items'        => WPUSB_Utils::isset_get( $atts, 'items' ),
+			'url'          => WPUSB_Utils::isset_get( $atts, 'url' ),
+			'title'        => WPUSB_Utils::isset_get( $atts, 'title' ),
 			'elements'     => array(
-				'remove_inside'  => Utils::isset_get( $atts, 'remove_inside' ),
-				'remove_counter' => Utils::isset_get( $atts, 'remove_counter' ),
+				'remove_inside'  => WPUSB_Utils::isset_get( $atts, 'remove_inside' ),
+				'remove_counter' => WPUSB_Utils::isset_get( $atts, 'remove_counter' ),
 			),
 		);
 
@@ -478,14 +473,14 @@ abstract class WPUSB_Utils_Share {
 	 */
 	public static function sanitize_atts( $atts = array() ) {
 		return array(
-			'class_first'  => Utils::esc_class( $atts['class_first'] ),
-			'class_second' => Utils::esc_class( $atts['class_second'] ),
-			'class_link'   => Utils::esc_class( $atts['class_link'] ),
-			'class_icon'   => Utils::esc_class( $atts['class_icon'] ),
-			'layout'       => Utils::rm_tags( $atts['layout'] ),
-			'items'        => Utils::rm_tags( $atts['items'] ),
+			'class_first'  => WPUSB_Utils::esc_class( $atts['class_first'] ),
+			'class_second' => WPUSB_Utils::esc_class( $atts['class_second'] ),
+			'class_link'   => WPUSB_Utils::esc_class( $atts['class_link'] ),
+			'class_icon'   => WPUSB_Utils::esc_class( $atts['class_icon'] ),
+			'layout'       => WPUSB_Utils::rm_tags( $atts['layout'] ),
+			'items'        => WPUSB_Utils::rm_tags( $atts['items'] ),
 			'url'          => rawurlencode( esc_url( $atts['url'] ) ),
-			'title'	       => Utils::rm_tags( $atts['title'] ),
+			'title'	       => WPUSB_Utils::rm_tags( $atts['title'] ),
 			'elements'     => array(
 				'remove_inside'  => self::get_remove_type( $atts, 'remove_inside' ),
 				'remove_counter' => self::get_remove_type( $atts, 'remove_counter' ),
