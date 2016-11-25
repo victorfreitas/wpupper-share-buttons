@@ -43,7 +43,7 @@ class WPUSB_Shares_Controller {
 			return;
 		}
 
-		$args = apply_filters( $this->_filter . '-wc-share-args', array() );
+		$args = apply_filters( WPUSB_App::SLUG . '_wc_share_args', array() );
 
 		echo apply_filters( $this->_filter, $this->buttons_share( $args ), 'woocommerce_share' );
 	}
