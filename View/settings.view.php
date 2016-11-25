@@ -65,6 +65,7 @@ class WPUSB_Settings_View {
 										'value'      => 'on',
 										'is_checked' => checked( 'on', $model->home, false ),
 										'title'      => __( 'Page home', WPUSB_App::TEXTDOMAIN ),
+										'class'      => 'hide-input',
 									));
 									self::td(array(
 										'type'       => 'checkbox',
@@ -73,6 +74,7 @@ class WPUSB_Settings_View {
 										'value'      => 'on',
 										'is_checked' => checked( 'on', $model->archive_category, false ),
 										'title'      => __( 'Archive/Category', WPUSB_App::TEXTDOMAIN ),
+										'class'      => 'hide-input',
 									));
 									self::td(array(
 										'type'       => 'checkbox',
@@ -81,6 +83,7 @@ class WPUSB_Settings_View {
 										'value'      => 'on',
 										'is_checked' => checked( 'on', $model->pages, false ),
 										'title'      => __( 'Pages', WPUSB_App::TEXTDOMAIN ),
+										'class'      => 'hide-input',
 									));
 									self::td(array(
 										'type'       => 'checkbox',
@@ -89,7 +92,21 @@ class WPUSB_Settings_View {
 										'value'      => 'on',
 										'is_checked' => checked( 'on', $model->single, false ),
 										'title'      => __( 'Single', WPUSB_App::TEXTDOMAIN ),
+										'class'      => 'hide-input',
 									));
+
+									if ( class_exists( 'WooCommerce' ) ) :
+										self::td(array(
+											'type'       => 'checkbox',
+											'id'         => 'woocommerce',
+											'name'       => "{$option_name}[woocommerce]",
+											'value'      => 'on',
+											'is_checked' => checked( 'on', $model->woocommerce, false ),
+											'title'      => __( 'WooCommerce share', WPUSB_App::TEXTDOMAIN ),
+											'class'      => 'hide-input',
+										));
+									endif;
+
 									self::td(array(
 										'type'       => 'checkbox',
 										'id'         => 'before',
@@ -97,6 +114,7 @@ class WPUSB_Settings_View {
 										'value'      => 'on',
 										'is_checked' => checked( 'on', $model->before, false ),
 										'title'      => __( 'Before content', WPUSB_App::TEXTDOMAIN ),
+										'class'      => 'hide-input',
 									));
 									self::td(array(
 										'type'       => 'checkbox',
@@ -105,6 +123,7 @@ class WPUSB_Settings_View {
 										'value'      => 'on',
 										'is_checked' => checked( 'on', $model->after, false ),
 										'title'      => __( 'After content', WPUSB_App::TEXTDOMAIN ),
+										'class'      => 'hide-input',
 									));
 								?>
 							</tr>
@@ -177,7 +196,7 @@ class WPUSB_Settings_View {
 									self::td(array(
 										'type'       => 'radio',
 										'id'         => 'default',
-										'class'      => 'layout-preview',
+										'class'      => 'hide-input layout-preview',
 										'name'       => "{$option_name}[layout]",
 										'value'      => 'default',
 										'is_checked' => checked( 'default', $model->layout, false ),
@@ -186,7 +205,7 @@ class WPUSB_Settings_View {
 									self::td(array(
 										'type'       => 'radio',
 										'id'         => 'buttons',
-										'class'      => 'layout-preview',
+										'class'      => 'hide-input layout-preview',
 										'name'       => "{$option_name}[layout]",
 										'value'      => 'buttons',
 										'is_checked' => checked( 'buttons', $model->layout, false ),
@@ -195,7 +214,7 @@ class WPUSB_Settings_View {
 									self::td(array(
 										'type'       => 'radio',
 										'id'         => 'rounded',
-										'class'      => 'layout-preview',
+										'class'      => 'hide-input layout-preview',
 										'name'       => "{$option_name}[layout]",
 										'value'      => 'rounded',
 										'is_checked' => checked( 'rounded', $model->layout, false ),
@@ -204,7 +223,7 @@ class WPUSB_Settings_View {
 									self::td(array(
 										'type'       => 'radio',
 										'id'         => 'square',
-										'class'      => 'layout-preview',
+										'class'      => 'hide-input layout-preview',
 										'name'       => "{$option_name}[layout]",
 										'value'      => 'square',
 										'is_checked' => checked( 'square', $model->layout, false ),
@@ -213,7 +232,7 @@ class WPUSB_Settings_View {
 									self::td(array(
 										'type'       => 'radio',
 										'id'         => 'square-plus',
-										'class'      => 'layout-preview',
+										'class'      => 'hide-input layout-preview',
 										'name'       => "{$option_name}[layout]",
 										'value'      => 'square-plus',
 										'is_checked' => checked( 'square-plus', $model->layout, false ),
@@ -229,7 +248,7 @@ class WPUSB_Settings_View {
 									self::td(array(
 										'type'       => 'radio',
 										'id'         => 'fixed-left',
-										'class'      => 'layout-preview layout-fixed',
+										'class'      => 'hide-input layout-preview layout-fixed',
 										'name'       => "{$option_name}[position_fixed]",
 										'value'      => 'fixed-left',
 										'is_checked' => checked( 'fixed-left', $model->position_fixed, false ),
@@ -239,7 +258,7 @@ class WPUSB_Settings_View {
 									self::td(array(
 										'type'       => 'radio',
 										'id'         => 'fixed-right',
-										'class'      => 'layout-preview layout-fixed',
+										'class'      => 'hide-input layout-preview layout-fixed',
 										'name'       => "{$option_name}[position_fixed]",
 										'value'      => 'fixed-right',
 										'is_checked' => checked( 'fixed-right', $model->position_fixed, false ),
@@ -265,7 +284,7 @@ class WPUSB_Settings_View {
 										self::td(array(
 											'type'       => 'radio',
 											'id'         => 'fixed-square',
-											'class'      => 'layout-preview fixed-layout',
+											'class'      => 'hide-input layout-preview fixed-layout',
 											'name'       => "{$option_name}[fixed_layout]",
 											'value'      => 'buttons',
 											'is_checked' => ( $fixed_layout ) ? $checked_layout : 'checked="checked"',
@@ -275,7 +294,7 @@ class WPUSB_Settings_View {
 										self::td(array(
 											'type'       => 'radio',
 											'id'         => 'fixed-rounded',
-											'class'      => 'layout-preview fixed-layout',
+											'class'      => 'hide-input layout-preview fixed-layout',
 											'name'       => "{$option_name}[fixed_layout]",
 											'value'      => 'default',
 											'is_checked' => checked( 'default', $model->fixed_layout, false ),

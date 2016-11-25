@@ -61,6 +61,10 @@ class WPUSB_Settings_Controller {
 	 * @return Void
 	 */
 	public function admin_scripts() {
+		if ( ! WPUSB_Utils::is_plugin_page() ) {
+			return;
+		}
+
 		$page_settings = ( WPUSB_App::SLUG === WPUSB_Utils::get( 'page' ) );
 		$deps          = ( $page_settings ) ? array( WPUSB_App::SLUG . '-style' ) : array();
 

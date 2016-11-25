@@ -27,6 +27,25 @@ class WPUSB_Shares_Controller {
 		add_shortcode( WPUSB_App::SLUG, array( &$this, 'share' ) );
 		add_filter( 'the_content', array( &$this, 'content' ), 20 );
 		add_action( 'wp_footer', array( &$this, 'buttons_fixed' ), 20 );
+		add_action( 'woocommerce_share', array( &$this, 'wc_render_share' ), 20 );
+	}
+
+	/**
+	 * Add share buttons on WooCommerce product page
+	 *
+	 * @since 3.16
+	 * @version 0.0.1
+	 * @param Null
+	 * @return Void
+	 */
+	public function wc_render_share() {
+		if ( WPUSB_Utils::option( 'woocommerce' ) !== 'on' ) {
+			return;
+		}
+
+		$args = apply_filters( $this->_filter . '-wc-share-args', array() );
+
+		echo apply_filters( $this->_filter, $this->buttons_share( $args ), 'woocommerce_share' );
 	}
 
 	/**
@@ -69,6 +88,10 @@ class WPUSB_Shares_Controller {
 	 * @return String
 	 */
 	public function content( $content ) {
+		if ( WPUSB_Utils::is_product() ) {
+			return $content;
+		}
+
 		$this->_set_position();
 
 		if ( $this->position && WPUSB_Utils::is_active() ) {
@@ -78,6 +101,15 @@ class WPUSB_Shares_Controller {
 		return $content;
 	}
 
+	/**
+	 * Render content share
+	 * single | page | home | archive | category
+	 *
+	 * @since 3.2.2
+	 * @version 2.0.0
+	 * @param String $content
+	 * @return String
+	 */
 	private function _get_new_content( $content ) {
 		$buttons = apply_filters( $this->_filter, $this->buttons_share() );
 

@@ -60,15 +60,9 @@ $_itemsAvailable : 'items-available';
 }
 
 // ----------------------------------------------------------------------------
-// -- Advanced selector > Settings > Places available
+// -- Advanced selector
 // ----------------------------------------------------------------------------
-@include input-remove( single );
-@include input-remove( pages );
-@include input-remove( home );
-@include input-remove( archive_category );
-@include input-remove( before );
-@include input-remove( after );
-@include input-remove( fixed );
+@include input-remove( hide-input );
 
 // ----------------------------------------------------------------------------
 // -- Advanced selector > Settings > Social networks available
@@ -76,32 +70,6 @@ $_itemsAvailable : 'items-available';
 @each $key, $color in $colors {
     @include input-remove( $key );
 }
-
-// ----------------------------------------------------------------------------
-// -- Advanced selector > Settings > Layout options
-// ----------------------------------------------------------------------------
-@include input-remove( default );
-@include input-remove( buttons );
-@include input-remove( rounded );
-@include input-remove( square );
-@include input-remove( 'square-plus' );
-
-// ----------------------------------------------------------------------------
-// -- Advanced selector > Settings > Position fixed
-// ----------------------------------------------------------------------------
-@include input-remove( 'fixed-right' );
-@include input-remove( 'fixed-left' );
-@include input-remove( 'fixed-top' );
-@include input-remove( 'referrer' );
-@include input-remove( 'fixed-square' );
-@include input-remove( 'fixed-rounded' );
-// ----------------------------------------------------------------------------
-// -- Advanced selector > Extra settings > Remove elements
-// ----------------------------------------------------------------------------
-@include input-remove( 'remove-count' );
-@include input-remove( 'remove-inside' );
-@include input-remove( 'disable-css' );
-@include input-remove( 'disable-script' );
 
 .#{$prefix}-#{$_itemsAvailable},
 .#{$prefix}-social-networks,

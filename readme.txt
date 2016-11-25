@@ -6,15 +6,13 @@ Donate link: https://www.redcross.org/donate/donation
 Tags: share, social, buttons, share buttons, compartir, botones compartir, free share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, sharing, social bookmarking, email form, social media buttons, click to tweet, reddit, viber, telegram, gmail, skype, like, pinterest, linkedin
 Requires at least: 3.0.0
 Tested up to: 4.6.1
-Stable tag: 3.15
+Stable tag: 3.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Implement the Share Buttons of the major social networks, including the Whats App on your website or blog.
 
 == Description ==
-
-> Required PHP version 5.2.4 or above
 
 Implement the Share Buttons of the major social networks, including the Whats App on your website or blog. The buttons are inserted automatically or can be called via shortcode or PHP method.
 
@@ -96,6 +94,11 @@ The following plugins are recommended
 * ["Remove WP Version"](https://wordpress.org/plugins/jogar-mais-wp-security/) by victorfreitas - Remove version WordPress in WP Generator, Feeds, css and js file.
 
 == Changelog ==
+
+= 3.16 =
+
+* Add WooCommerce Share support
+* Remove plugin scripts another's pages on admin
 
 = 3.15 =
 
@@ -530,6 +533,7 @@ The following plugins are recommended
 
 == Upgrade Notice ==
 
-= 3.15 =
+= 3.16 =
 
-* Required php version 5.2.4 or above
+* Add WooCommerce Share support
+* Remove plugin scripts another's pages on admin

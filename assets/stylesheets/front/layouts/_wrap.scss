@@ -30,6 +30,10 @@
     margin-bottom: 10px;
     margin-left: 10px;
 
+    &:first-child {
+        margin-left: 0;
+    }
+
     a {
         -moz-transition: background 0.3s ease;
         -webkit-transition: background 0.3s ease;

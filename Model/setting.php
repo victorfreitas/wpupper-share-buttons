@@ -309,6 +309,14 @@ class WPUSB_Setting {
 	private $css_footer;
 
 	/**
+	 * WooCommerce share
+	 *
+	 * @since 1.0
+	 * @var String
+	 */
+	private $woocommerce;
+
+	/**
 	 * Plugin general prefix
 	 *
 	 * @since 1.0

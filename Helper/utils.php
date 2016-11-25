@@ -1099,12 +1099,46 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		return apply_filters( WPUSB_App::SLUG . '-component-name', $attr_name, WPUSB_App::SLUG );
 	}
 
+	/**
+	 * Get donate paypal url
+	 *
+	 * @since 3.9.0
+	 * @param Null
+	 * @return String
+	 */
 	public static function get_url_donate() {
 		$code = 'KYRMWXEEQN58L';
 
-		if ( 'pt_BR' === get_locale() )
+		if ( 'pt_BR' === get_locale() ) {
 			$code = 'X7BF5KKYQMA8E';
+		}
 
 		return 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=' . $code;
+	}
+
+	/**
+	 * Check is WooCommerce product page
+	 *
+	 * @since 3.16
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function is_product() {
+		if ( ! function_exists( 'is_product' ) ) {
+			return false;
+		}
+
+		return ( ( self::option( 'woocommerce' ) === 'on' ) && is_product() );
+	}
+
+	/**
+	 * Check is plugin admin page
+	 *
+	 * @since 3.16
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function is_plugin_page() {
+		return ( false !== strpos( self::get( 'page' ), WPUSB_App::SLUG ) );
 	}
 }

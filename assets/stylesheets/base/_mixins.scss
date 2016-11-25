@@ -57,7 +57,8 @@
 // --               INPUT REMOVE
 // ===================================================
 @mixin input-remove($selector) {
-    ##{$prefix}-#{$selector} {
+    ##{$prefix}-#{$selector},
+    .#{$selector} {
         cursor: pointer;
         display: none;
         left: -100%;

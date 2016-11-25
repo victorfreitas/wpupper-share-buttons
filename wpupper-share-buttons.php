@@ -5,7 +5,7 @@
  *
  * Plugin Name: WPUpper Share Buttons
  * Plugin URI:  https://github.com/victorfreitas/wpupper-share-buttons
- * Version:     3.15
+ * Version:     3.16
  * Author:      Victor Freitas
  * Author URI:  https://github.com/victorfreitas
  * License:     GPL2
@@ -72,7 +72,7 @@ class WPUSB_App {
      *
      * @var String
      */
-	const VERSION = '3.15';
+	const VERSION = '3.16';
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.

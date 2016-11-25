@@ -1,9 +1,11 @@
 #wrapper .#{$prefix},
 #content .#{$prefix} {
     .#{$prefix}-item a,
-    .#{$prefix}-item a:hover {
+    .#{$prefix}-item a:hover,
+    .#{$prefix}-item a:focus {
         font-family: $fontFamily;
         text-decoration: none;
+        outline: none;
     }
 }
 
