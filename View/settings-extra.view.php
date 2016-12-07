@@ -6,7 +6,8 @@
  * @subpackage View Admin Page
  * @version 1.4.0
  */
-if ( ! function_exists( 'add_action' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
+	 // Exit if accessed directly.
 	exit(0);
 }
 
@@ -74,6 +75,30 @@ class WPUSB_Settings_Extra_View {
 									       name="<?php echo "{$extra_setting}[twitter_username]"; ?>"
 										   value="<?php echo $model->twitter_username; ?>">
 									<p class="description"><?php _e( 'Your twitter username', WPUSB_App::TEXTDOMAIN ); ?></p>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-twitter-hashtags">
+										<?php _e( 'Twitter hashtags', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<td>
+									<input id="<?php echo $prefix; ?>-twitter-hashtags"
+									       class="large-text"
+										   placeholder="<?php _e( 'Twitter hashtags', WPUSB_App::TEXTDOMAIN ); ?>"
+									       name="<?php echo "{$extra_setting}[twitter_hashtags]"; ?>"
+										   value="<?php echo $model->twitter_hashtags; ?>">
+
+										<div class="<?php echo $prefix; ?>-blockquote">
+											<div class="description">
+												<?php _e( 'Optional Hashtags appended onto the tweet (comma separated. don\'t include "#")', WPUSB_App::TEXTDOMAIN ); ?>
+											</div>
+											<p class="description">
+												<strong><?php _e( 'Example: ', WPUSB_App::TEXTDOMAIN ); ?></strong>
+												social, share, like
+											</p>
+										</div>
 								</td>
 							</tr>
 							<tr>

@@ -6,7 +6,8 @@
  * @subpackage Social Icons Display
  * @version 2.2.0
  */
-if ( ! function_exists( 'add_action' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
+	 // Exit if accessed directly.
 	exit(0);
 }
 

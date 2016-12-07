@@ -6,7 +6,8 @@
  * @subpackage Settings Model
  * @version 1.3.0
  */
-if ( ! function_exists( 'add_action' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
+	 // Exit if accessed directly.
 	exit(0);
 }
 
@@ -187,6 +188,14 @@ class WPUSB_Setting {
 	 * @var string
 	 */
 	private $twitter_username;
+
+	/**
+	 * Twitter hashtags value
+	 *
+	 * @since 1.0
+	 * @var string
+	 */
+	private $twitter_hashtags;
 
 	/**
 	 * UTM Tracking value

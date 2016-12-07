@@ -7,8 +7,8 @@
  * @since 3.0.0
  * @version 1.0
  */
-
-if ( ! function_exists( 'add_action' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
+	 // Exit if accessed directly.
 	exit(0);
 }
 
@@ -101,11 +101,15 @@ EOD;
 	public static function inside( $atts ) {
 		$content = '';
 
+		if ( ! $atts->reference->inside ) {
+			return WPUSB_Utils::filter_inside( $atts );
+		}
+
 		if ( WPUSB_Utils::is_active_inside( $atts->elements ) ) {
 			$content = "<span data-title=\"{$atts->reference->inside}\"></span>";
 		}
 
-		return apply_filters( WPUSB_App::SLUG . '-inside-html', $content, $atts );
+		return WPUSB_Utils::filter_inside( $atts, $content );
 	}
 
 	/**

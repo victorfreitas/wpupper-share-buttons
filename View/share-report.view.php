@@ -6,7 +6,8 @@
  * @subpackage Views Sharing Report
  * @version 2.3.0
  */
-if ( ! function_exists( 'add_action' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
+	 // Exit if accessed directly.
 	exit(0);
 }
 

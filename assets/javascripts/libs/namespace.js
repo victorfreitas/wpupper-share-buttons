@@ -103,6 +103,10 @@
             }
 
             return Math.abs( hash );
+        },
+
+        decodeUrl : function(uri) {
+            return decodeURIComponent( uri );
         }
     };
 

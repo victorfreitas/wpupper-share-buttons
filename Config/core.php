@@ -7,7 +7,8 @@
  * @since 3.1.0
  * @version 1.0
  */
-if ( ! function_exists( 'add_action' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
+	 // Exit if accessed directly.
 	exit(0);
 }
 
@@ -25,7 +26,6 @@ WPUSB_App::uses( 'shares', 'Controller' );
 // Controllers include on admin
 if ( WPUSB_App::is_admin() ) {
 	WPUSB_App::uses( 'ajax', 'Controller' );
-	WPUSB_App::uses( 'ajax-gplus', 'Controller' );
 	WPUSB_App::uses( 'options', 'Controller' );
 	WPUSB_App::uses( 'share-reports', 'Controller' );
 }
@@ -164,7 +164,6 @@ class WPUSB_Core {
 		}
 
 		new WPUSB_Ajax_Controller();
-		new WPUSB_Ajax_Gplus_Controller();
 		new WPUSB_Options_Controller();
 		new WPUSB_Share_Reports_Controller();
 	}

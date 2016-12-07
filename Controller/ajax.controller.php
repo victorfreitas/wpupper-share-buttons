@@ -6,7 +6,8 @@
  * @subpackage Ajax Controller
  * @version 3.0.0
  */
-if ( ! function_exists( 'add_action' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
+	 // Exit if accessed directly.
 	exit(0);
 }
 

@@ -6,7 +6,8 @@
  * @subpackage Ajax Google Plus Controller
  * @version 3.6.0
  */
-if ( ! function_exists( 'add_action' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
+	 // Exit if accessed directly.
 	exit(0);
 }
 

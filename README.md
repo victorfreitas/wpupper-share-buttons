@@ -4,9 +4,9 @@ Contributors: victorfreitas
 Donate link: [Donate Now](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KYRMWXEEQN58L)  
 Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email form, social media buttons, click to tweet, pinterest, reddit, viber, telegram, gmail, skype, like, linkedin.  
 Requires at least: 3.0.0  
-Tested up to: 4.6.1  
+Tested up to: 4.7  
 PHP version: 5.3.0  
-Stable tag: 3.16  
+Stable tag: 3.17  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -64,6 +64,15 @@ Layout options: default, buttons, rounded, square
 4. Using the content editor -> [wpusb class_first="" class_second="" class_link="" class_icon="" layout="default" remove_inside="0" remove_counter="0"]  
 
 ## Changelog
+
+## 3.17
+
+* Tested in version 4.7
+* Performance improvements on get Google Plus share count
+* Bug fixes email send on mobile. [Related by @marius84]
+* Code improvements
+* Social share API improvements
+* Add Twitter hashtags option
 
 ### 3.16
 

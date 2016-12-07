@@ -7,7 +7,8 @@
  * @since 3.7.0
  * @version 2.1.0
  */
-if ( ! function_exists( 'add_action' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
+	 // Exit if accessed directly.
 	exit(0);
 }
 
@@ -21,6 +22,7 @@ class WPUSB_Social_Elements {
 	public static $caracter;
 	public static $twitter_text;
 	public static $twitter_via;
+	public static $twitter_hashtags;
 	public static $viber_text;
 	public static $whatsapp_text;
 	public static $thumbnail;
@@ -87,7 +89,7 @@ class WPUSB_Social_Elements {
 		$std->facebook              = new stdClass();
 		$std->facebook->name        = 'Facebook';
 		$std->facebook->element     = 'facebook';
-		$std->facebook->link        = 'https://www.facebook.com/sharer/sharer.php?u=' . self::$url;
+		$std->facebook->link        = 'https://www.facebook.com/sharer.php?u=' . self::$url;
 		$std->facebook->title       = __( 'Share on Facebook', WPUSB_App::TEXTDOMAIN );
 		$std->facebook->class       = $prefix . '-facebook';
 		$std->facebook->class_item  = self::$item;
@@ -104,7 +106,7 @@ class WPUSB_Social_Elements {
 		$std->twitter              = new stdClass();
 		$std->twitter->name        = 'Twitter';
 		$std->twitter->element     = 'twitter';
-		$std->twitter->link        = 'https://twitter.com/share?url=' . self::$url . '&text=' . self::$twitter_text . self::$twitter_via;
+		$std->twitter->link        = 'https://twitter.com/intent/tweet?url=' . self::$url . '&text=' . self::$twitter_text . self::$twitter_via . self::$twitter_hashtags;
 		$std->twitter->title       = __( 'Tweet', WPUSB_App::TEXTDOMAIN );
 		$std->twitter->class       = $prefix . '-twitter';
 		$std->twitter->class_item  = self::$item;
@@ -155,7 +157,7 @@ class WPUSB_Social_Elements {
 		$std->pinterest              = new stdClass();
 		$std->pinterest->name        = 'Pinterest';
 		$std->pinterest->element     = 'pinterest';
-		$std->pinterest->link        = 'https://pinterest.com/pin/create/button/?url=' . self::$url . '&media=' . self::$thumbnail . '&description=' . self::$title;
+		$std->pinterest->link        = 'https://pinterest.com/pin/create/bookmarklet/?url=' . self::$url . '&media=' . self::$thumbnail . '&description=' . self::$title;
 		$std->pinterest->title       = __( 'Share on Pinterest', WPUSB_App::TEXTDOMAIN );
 		$std->pinterest->class       = $prefix . '-pinterest';
 		$std->pinterest->class_item  = self::$item;
@@ -189,7 +191,7 @@ class WPUSB_Social_Elements {
 		$std->tumblr              = new stdClass();
 		$std->tumblr->name        = 'Tumblr';
 		$std->tumblr->element     = 'tumblr';
-		$std->tumblr->link        = 'http://tumblr.com/widgets/share/tool?canonicalUrl=' . self::$url;
+		$std->tumblr->link        = 'https://www.tumblr.com/widgets/share/tool?canonicalUrl=' . self::$url . '&title=' . self::$title;
 		$std->tumblr->title       = __( 'Share on Tumblr', WPUSB_App::TEXTDOMAIN );
 		$std->tumblr->class       = $prefix . '-tumblr';
 		$std->tumblr->class_item  = self::$item;
@@ -332,7 +334,7 @@ class WPUSB_Social_Elements {
 		$std->share->class_link  = self::$class_button;
 		$std->share->class_icon  = apply_filters( "{$prefix}_class_icon", $prefix_icons . 'share' );
 		$std->share->popup       = 'data-action="open-modal-networks"';
-		$std->share->inside      = __( 'More', WPUSB_App::TEXTDOMAIN );
+		$std->share->inside      = false;
 		$std->share->has_counter = false;
 
 		/**
@@ -546,18 +548,44 @@ class WPUSB_Social_Elements {
 	 * Set properts for Twitter
 	 *
 	 * @since 3.1.4
-	 * @version 1.0.0
+	 * @version 2.0
 	 * @param Null
 	 * @return Void
 	 */
 	private static function _set_properts_twitter() {
-		$tvia               = WPUSB_Utils::option( 'twitter_username' );
-		$via                = preg_replace( '/[^a-zA-Z0-9_]+/', '', $tvia );
-		$text_a             = apply_filters( WPUSB_App::SLUG . '-twitter-after', __( 'I just saw', WPUSB_App::TEXTDOMAIN ) );
-		$text_b             = apply_filters( WPUSB_App::SLUG . '-twitter-before', __( 'Click to see also', WPUSB_App::TEXTDOMAIN ) );
+		$text_a = apply_filters(
+			WPUSB_App::SLUG . '-twitter-after',
+			__( 'I just saw', WPUSB_App::TEXTDOMAIN )
+		);
+		$text_b = apply_filters(
+			WPUSB_App::SLUG . '-twitter-before',
+			__( 'Click to see also', WPUSB_App::TEXTDOMAIN )
+		);
+
 		$text               = WPUSB_Utils::get_twitter_text( self::$title, $text_a, $text_b, self::$caracter );
 		$option_text        = WPUSB_Utils::option( 'twitter_text' );
 		self::$twitter_text = ( ! empty( $option_text ) ) ? str_replace( '{title}', self::$title, $option_text ) : $text;
-		self::$twitter_via  = ( ! empty( $via ) ) ? "&via={$via}" : '';
+
+
+		self::_set_twitter_extra_params();
+	}
+
+	/**
+	 * Set properts for twitter extra params
+	 *
+	 * @since 3.17
+	 * @version 1.0
+	 * @param Null
+	 * @return Void
+	 */
+	public static function _set_twitter_extra_params() {
+		$via      = WPUSB_Utils::option( 'twitter_username' );
+		$hashtags = WPUSB_Utils::option( 'twitter_hashtags' );
+		$hashtags = apply_filters( WPUSB_App::SLUG . '-twitter-hashtags', $hashtags );
+		$hashtags = WPUSB_Utils::sanitize_twitter_params( $hashtags );
+		$via      = WPUSB_Utils::sanitize_twitter_params( $via );
+
+		self::$twitter_via      = ( ! empty( $via ) ) ? "&via={$via}" : '';
+		self::$twitter_hashtags = ( ! empty( $hashtags ) ) ? "&hashtags={$hashtags}" : '';
 	}
 }

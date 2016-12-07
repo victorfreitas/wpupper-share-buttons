@@ -7,7 +7,8 @@
  * @subpackage Social Icons Display
  * @version 1.0
  */
-if ( ! function_exists( 'add_action' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
+	 // Exit if accessed directly.
 	exit(0);
 }
 
@@ -75,7 +76,6 @@ EOD;
 				<div class="{$prefix}-element-popup">
 					<a {$link_attr}
 					   class="{$social->class_link}-popup {$social->class}-popup"
-					   target="_blank"
 					   rel="nofollow"
 					   title="{$social->title}"
 					   {$ga_event}

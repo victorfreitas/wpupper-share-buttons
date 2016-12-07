@@ -1,7 +1,15 @@
 WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $) {
 
 	OpenPopup.create = function(container) {
-        this.$el = container;
+		this.$el = container;
+        this.init();
+    };
+
+    OpenPopup.init = function() {
+    	if ( this.isMobile() ) {
+    		return;
+    	}
+
         this.addEventListener();
 	};
 
@@ -41,4 +49,13 @@ WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $) {
 			, 'menubar=no,toolbar=no,status=no,width=' + width + ',height=' + height + ',toolbar=no,left=' + left + ',top=' + top
 		);
 	};
+
+	OpenPopup.isMobile = function() {
+		if ( window.innerWidth <= 768 ) {
+			return true;
+		}
+
+		return false;
+	};
+
 }, {} );

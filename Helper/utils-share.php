@@ -7,9 +7,10 @@
  * @since 3.0.0
  * @version 1.0
  */
-
-if ( ! function_exists( 'add_action' ) )
+if ( ! defined( 'ABSPATH' ) ) {
+	 // Exit if accessed directly.
 	exit(0);
+}
 
 abstract class WPUSB_Utils_Share {
 
@@ -285,7 +286,7 @@ abstract class WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function link_type( $url_share ) {
-		$attr_link = "href=\"{$url_share}\" target=\"_blank\"";
+		$attr_link = "href=\"{$url_share}\"";
 
 		return apply_filters( WPUSB_App::SLUG . '-attr-link', $attr_link, $url_share );
 	}
@@ -501,5 +502,17 @@ abstract class WPUSB_Utils_Share {
 			return $atts['elements'][ $type ];
 
 		return $atts[ $type ];
+	}
+
+	/**
+	 * Add filter on inside html buttons
+	 *
+	 * @since 3.17
+	 * @param Object $args
+	 * @param String $content
+	 * @return String
+	 */
+	public static function filter_inside( $args, $content = '' ) {
+		return apply_filters( WPUSB_App::SLUG . '-inside-html', $content, $args );
 	}
 }

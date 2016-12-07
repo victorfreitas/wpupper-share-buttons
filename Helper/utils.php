@@ -6,7 +6,8 @@
  * @subpackage Utils Helper
  * @version 2.3.0
  */
-if ( ! function_exists( 'add_action' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
+	 // Exit if accessed directly.
 	exit(0);
 }
 
@@ -1140,5 +1141,20 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function is_plugin_page() {
 		return ( false !== strpos( self::get( 'page' ), WPUSB_App::SLUG ) );
+	}
+
+	/**
+	 * Sanitize twitter params ( via | hashtags )
+	 *
+	 * @since 3.17
+	 * @param String $value
+	 * @return String
+	 */
+	public static function sanitize_twitter_params( $value ) {
+		if ( empty( $value ) ) {
+			return '';
+		}
+
+		return preg_replace( '/[^a-zA-Z0-9_,]+/', '', $value );
 	}
 }
