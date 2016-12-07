@@ -232,15 +232,12 @@ abstract class WPUSB_Utils_Share {
 	 */
 	public static function content_args( $atts ) {
 		$args = array(
-			'nonce'       => self::nonce( WPUSB_Setting::AJAX_VERIFY_NONCE_COUNTER ),
-			'nonce-gplus' => self::nonce( WPUSB_Setting::AJAX_VERIFY_GPLUS_COUNTS ),
-			'token'       => WPUSB_Utils::option( 'bitly_token' ),
-			'prefix'      => WPUSB_App::SLUG,
-			'post_id'     => WPUSB_Utils::get_id(),
-			'tracking'    => WPUSB_Utils::option( 'tracking' ),
-			'permalink'   => $atts->permalink,
-			'title'       => $atts->title,
-			'fixed_top'   => self::data_fixed_top( WPUSB_App::SLUG ),
+			'nonce'     => self::nonce( WPUSB_Setting::AJAX_VERIFY_NONCE_COUNTER ),
+			'prefix'    => WPUSB_App::SLUG,
+			'post_id'   => WPUSB_Utils::get_id(),
+			'permalink' => $atts->permalink,
+			'title'     => $atts->title,
+			'fixed_top' => self::data_fixed_top( WPUSB_App::SLUG ),
 		);
 
 		return apply_filters( WPUSB_App::SLUG . '-content-args', $args, $atts );

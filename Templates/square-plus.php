@@ -23,21 +23,17 @@ class WPUSB_Square_Plus {
 	 * @return String
 	 */
 	public static function init( \stdClass $atts ) {
-		$args       = WPUSB_Utils::content_args( $atts );
-		$classes    = WPUSB_Utils::get_classes_first( $atts );
-		$data_token = WPUSB_Utils::get_data_token( $args['token'] );
-		$counter    = self::add_count( $atts );
-		$component  = WPUSB_Utils::get_component_by_type();
-		$content    = <<<EOD
+		$args      = WPUSB_Utils::content_args( $atts );
+		$classes   = WPUSB_Utils::get_classes_first( $atts );
+		$counter   = self::add_count( $atts );
+		$component = WPUSB_Utils::get_component_by_type();
+		$content   = <<<EOD
 		<div data-element-url="{$args['permalink']}"
 		     data-element-title="{$args['title']}"
-		     data-tracking="{$args['tracking']}"
 		     data-attr-reference="{$args['post_id']}"
 		     data-attr-nonce="{$args['nonce']}"
-		     data-attr-nonce-gplus="{$args['nonce-gplus']}"
-		     {$component}
 		     class="{$classes}"
-		     {$data_token}
+		     {$component}
 		     {$args['fixed_top']}>
 
 		     {$counter}

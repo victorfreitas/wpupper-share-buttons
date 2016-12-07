@@ -25,22 +25,18 @@ class WPUSB_Fixed_Left {
 	public static function init( \stdClass $atts ) {
 		self::_set_layout();
 
-		$args       = WPUSB_Utils::content_args( $atts );
-		$classes    = self::get_classes_first( $atts );
-		$data_token = WPUSB_Utils::get_data_token( $args['token'] );
-		$counter    = self::add_count( $atts );
-		$component  = WPUSB_Utils::get_component_by_type();
-		$content    = <<<EOD
+		$args      = WPUSB_Utils::content_args( $atts );
+		$classes   = self::get_classes_first( $atts );
+		$counter   = self::add_count( $atts );
+		$component = WPUSB_Utils::get_component_by_type();
+		$content   = <<<EOD
 		<div class="{$classes}"
 		     data-element-url="{$args['permalink']}"
 		     data-element-title="{$args['title']}"
-		     data-tracking="{$args['tracking']}"
 		     data-attr-reference="{$args['post_id']}"
 		     data-element="fixed"
 		     data-attr-nonce="{$args['nonce']}"
-		     data-attr-nonce-gplus="{$args['nonce-gplus']}"
-		     {$component}
-		     {$data_token}>
+		     {$component}>
 
 			<div data-element="buttons" class="{$atts->position_fixed}-container">
 			{$counter}
