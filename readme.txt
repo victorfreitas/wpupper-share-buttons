@@ -98,6 +98,7 @@ The following plugins are recommended
 = 3.17 =
 
 * Tested in version 4.7
+* Add Twitter hashtags option
 * Performance improvements on get Google Plus share count
 * Bug fixes email send on mobile. [Related by @marius84]
 * Code improvements
