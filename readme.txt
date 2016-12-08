@@ -6,7 +6,7 @@ Donate link: https://www.redcross.org/donate/donation
 Tags: share, social, buttons, share buttons, compartir, botones compartir, free share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, sharing, social bookmarking, email form, social media buttons, click to tweet, reddit, viber, telegram, gmail, skype, like, pinterest, linkedin
 Requires at least: 3.0.0
 Tested up to: 4.7
-Stable tag: 3.17
+Stable tag: 3.18
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -94,6 +94,10 @@ The following plugins are recommended
 * ["Remove WP Version"](https://wordpress.org/plugins/jogar-mais-wp-security/) by victorfreitas - Remove version WordPress in WP Generator, Feeds, css and js file.
 
 == Changelog ==
+
+= 3.18 =
+
+* Fix bug share on Messenger
 
 = 3.17 =
 
@@ -542,11 +546,6 @@ The following plugins are recommended
 
 == Upgrade Notice ==
 
-= 3.17 =
+= 3.18 =
 
-* Tested in version 4.7
-* Performance improvements on get Google Plus share count
-* Bug fixes email send on mobile. [Related by @marius84]
-* Code improvements
-* Social share API improvements
-* Add Twitter hashtags option
+* Fix bug share on Messenger

@@ -72,6 +72,10 @@ EOD;
 
 			$link_attr = WPUSB_Utils::link_type( $social->link );
 
+			if ( $social->element === 'messenger' ) {
+				$social->popup = str_replace( '_permalink_', $permalink, $social->popup );
+			}
+
 			echo <<<EOD
 				<div class="{$prefix}-element-popup">
 					<a {$link_attr}

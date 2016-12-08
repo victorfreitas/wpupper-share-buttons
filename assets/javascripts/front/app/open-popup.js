@@ -7,6 +7,7 @@ WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $) {
 
     OpenPopup.init = function() {
     	if ( this.isMobile() ) {
+    		this.mobileUrl();
     		return;
     	}
 
@@ -56,6 +57,11 @@ WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $) {
 		}
 
 		return false;
+	};
+
+	OpenPopup.mobileUrl = function() {
+		var messenger = this.$el.find( '[data-messenger-mobile]' );
+		messenger.attr( 'href', messenger.data( 'messenger-mobile' ) );
 	};
 
 }, {} );

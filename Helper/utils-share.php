@@ -79,6 +79,12 @@ abstract class WPUSB_Utils_Share {
 				$social
 			),
 		);
+		$item = $args_buttons->reference;
+
+		if ( $item->element === 'messenger' ) {
+			$args_buttons->reference->popup = str_replace( '_permalink_', $args_buttons->permalink, $item->popup );
+		}
+
 		$buttons = self::get_content_by_layout( $args_buttons, 'items' );
 
 		return apply_filters( WPUSB_App::SLUG . '-set-buttons-html', $buttons, $args_buttons );

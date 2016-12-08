@@ -384,7 +384,7 @@ class WPUSB_Social_Elements {
 		$std->messenger->class_item  = self::$item;
 		$std->messenger->class_link  = self::$class_button;
 		$std->messenger->class_icon  = apply_filters( "{$prefix}_class_icon", $prefix_icons . 'messenger' );
-		$std->messenger->popup       = '';
+		$std->messenger->popup       = 'data-messenger-mobile="fb-messenger://share?link=' . self::$url . '"';
 		$std->messenger->inside      = __( 'Messenger', WPUSB_App::TEXTDOMAIN );
 		$std->messenger->has_counter = false;
 
