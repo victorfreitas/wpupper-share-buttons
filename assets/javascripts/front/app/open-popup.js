@@ -52,7 +52,7 @@ WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $) {
 	};
 
 	OpenPopup.isMobile = function() {
-		if ( window.innerWidth <= 768 ) {
+		if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test( navigator.userAgent ) ) {
 			return true;
 		}
 
