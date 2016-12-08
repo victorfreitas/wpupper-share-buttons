@@ -68,6 +68,7 @@ Layout options: default, buttons, rounded, square
 ## 3.18
 
 * Fix bug share on Messenger
+* Show mobile items on landscape tablet. [Related by @marius84]
 
 ## 3.17
 
