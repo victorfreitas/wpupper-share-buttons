@@ -271,6 +271,16 @@
     }
 }
 
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px)  {
+    .#{$prefix} {
+        .#{$prefix}-whatsapp,
+        .#{$prefix}-telegram,
+        .#{$prefix}-viber {
+            display: inline-block;
+        }
+    }
+}
+
 @media ( max-width: $mobile ) {
     .#{$prefix}-item a span {
         display: none;
