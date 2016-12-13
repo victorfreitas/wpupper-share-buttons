@@ -5,7 +5,7 @@
  *
  * Plugin Name: WPUpper Share Buttons
  * Plugin URI:  https://github.com/victorfreitas/wpupper-share-buttons
- * Version:     3.18.1
+ * Version:     3.19
  * Author:      Victor Freitas
  * Author URI:  https://github.com/victorfreitas
  * License:     GPL2
@@ -73,7 +73,7 @@ class WPUSB_App {
      *
      * @var String
      */
-	const VERSION = '3.18.1';
+	const VERSION = '3.19';
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -84,52 +84,13 @@ class WPUSB_App {
 	public static function uses( $class, $location ) {
 		$extension = 'php';
 		$sep       = DIRECTORY_SEPARATOR;
-		$dirname   = dirname( __FILE__ );
+		$root      = dirname( __FILE__ );
 
-		if ( $location == 'View' ||  $location == 'Controller' ) {
+		if ( $location === 'View' ||  $location === 'Controller' ) {
 			$extension = strtolower( $location ) . ".{$extension}";
 		}
 
-		require_once( "{$dirname}{$sep}{$location}{$sep}{$class}.{$extension}" );
-	}
-
-	/**
-	 * Automatic list files in
-	 * Helpers, Controllers and Templates.
-	 *
-	 * @since 3.0
-	 * @version 2.0
-	 * @param Null
-	 * @return Array
-	 */
-	public static function get_files() {
-		$root = dirname( __FILE__ );
-
-		if ( defined( 'GLOB_BRACE' ) ) {
-			$pattern = "{$root}{/Helper/,/Templates/}*.php";
-			return glob( $pattern, GLOB_BRACE );
-		}
-
-		$helpers   = glob( "{$root}/Helper/*.php" );
-		$templates = glob( "{$root}/Templates/*.php" );
-
-		return array_merge( $helpers, $templates );
-	}
-
-	/**
-	 * Automatic include files in
-	 * Helpers, Controllers and Templates.
-	 *
-	 * @since 3.0.0
-	 * @param Null
-	 * @return Void
-	 */
-	public static function require_files() {
-		$files = self::get_files();
-
-		foreach( $files as $key => $file ) {
-			require_once( $file );
-		}
+		require_once( "{$root}{$sep}{$location}{$sep}{$class}.{$extension}" );
 	}
 
 	/**

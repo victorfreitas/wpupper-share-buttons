@@ -1,11 +1,10 @@
 <?php
 /**
- *
  * @package WPUpper Share Buttons
  * @subpackage Functions
  * @author  Victor Freitas
- * @since 3.1.0
- * @version 1.0
+ * @since 3.19
+ * @version 2.0
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
@@ -13,17 +12,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /*
-* Automatic include files
-* in Helper, Controller and Templates
-*/
-WPUSB_App::require_files();
+ * Helpers
+ */
+WPUSB_App::uses( 'utils-share', 'Helper' );
+WPUSB_App::uses( 'utils', 'Helper' );
+
+/*
+ * Templates
+ */
+WPUSB_App::uses( 'layouts-primary', 'Templates' );
+WPUSB_App::uses( 'square-plus', 'Templates' );
+WPUSB_App::uses( 'fixed-left', 'Templates' );
+WPUSB_App::uses( 'modal', 'Templates' );
+
+/*
+ * Social networks
+ */
 WPUSB_App::uses( 'social-elements', 'Config' );
 
-// Controllers on front
+/*
+ * Controllers frontend
+ */
 WPUSB_App::uses( 'settings', 'Controller' );
 WPUSB_App::uses( 'shares', 'Controller' );
 
-// Controllers include on admin
+/*
+ * Controllers admin
+ */
 if ( WPUSB_App::is_admin() ) {
 	WPUSB_App::uses( 'ajax', 'Controller' );
 	WPUSB_App::uses( 'options', 'Controller' );
