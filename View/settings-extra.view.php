@@ -167,6 +167,26 @@ class WPUSB_Settings_Extra_View {
 							</tr>
 							<tr>
 								<th scope="row">
+									<label for="<?php echo $prefix; ?>-sharing-report-disable">
+										<?php _e( 'Deactivate sharing report', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<td>
+								<?php
+									WPUSB_Settings_View::add_checkbox(array(
+										'name'    => "{$extra_setting}[sharing_report_disabled]",
+										'id'      => 'sharing-report-disable',
+										'checked' => checked( 'on', $model->sharing_report_disabled, false ),
+										'value'   => 'on',
+									));
+								?>
+									<p class="description">
+										<?php _e( 'This allows you to disable counting of the shares report. You will not lose the report you have already computed.', WPUSB_App::TEXTDOMAIN ); ?>
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">
 									<label for="<?php echo $prefix; ?>-disable-css">
 										<?php _e( 'Disable CSS', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>

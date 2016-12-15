@@ -199,6 +199,10 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 	};
 
 	CounterSocialShare.fn._onClickOpenPopup = function(event) {
+		if ( this.data.report ) {
+			return;
+		}
+
 		var params = {
 	       	action          : 'wpusb_share_count_reports',
 		    reference       : this.data.attrReference,

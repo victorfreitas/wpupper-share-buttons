@@ -20,11 +20,19 @@ class WPUSB_Ajax_Controller {
 	*/
 	public function __construct() {
 		$prefix = WPUSB_App::SLUG;
+		$this->sharing_report( $prefix );
+
+		add_action( "wp_ajax_{$prefix}_share_preview", array( &$this, 'share_preview_verify_request' ) );
+		add_action( "wp_ajax_{$prefix}_admin_notices", array( &$this, 'admin_notice_verify_request' ) );
+	}
+
+	public function sharing_report( $prefix ) {
+		if ( WPUSB_Utils::is_sharing_report_disabled() ) {
+			return;
+		}
 
 		add_action( "wp_ajax_{$prefix}_share_count_reports", array( &$this, 'share_count_reports_verify_request' ) );
 		add_action( "wp_ajax_nopriv_{$prefix}_share_count_reports", array( &$this, 'share_count_reports_verify_request' ) );
-		add_action( "wp_ajax_{$prefix}_share_preview", array( &$this, 'share_preview_verify_request' ) );
-		add_action( "wp_ajax_{$prefix}_admin_notices", array( &$this, 'admin_notice_verify_request' ) );
 	}
 
 	/**

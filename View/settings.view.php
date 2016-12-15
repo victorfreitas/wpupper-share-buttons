@@ -442,11 +442,17 @@ class WPUSB_Settings_View {
 						<?php _e( 'Use options', WPUSB_App::TEXTDOMAIN ); ?>
 					</a>
 				</li>
+
+				<?php if ( ! WPUSB_Utils::is_sharing_report_disabled() ) : ?>
+
 				<li<?php echo WPUSB_Utils::selected_menu( $report ); ?>>
 					<a href="<?php menu_page_url( $report ); ?>">
 						<?php _e( 'Sharing Report', WPUSB_App::TEXTDOMAIN ); ?>
 					</a>
 				</li>
+
+				<?php endif; ?>
+
 			</ul>
 		</div>
 	<?php

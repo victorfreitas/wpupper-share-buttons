@@ -1014,11 +1014,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return Void
 	 */
 	public static function send_json( $response ) {
-		$charset = self::rm_tags( get_option( 'blog_charset' ) );
-
-		@header( 'Content-Type: application/json; charset=' . $charset );
-		echo wp_json_encode( $response );
-		exit(1);
+		wp_send_json( $response );
 	}
 
 	/**
@@ -1083,16 +1079,16 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function get_component_by_type( $type = 'counter' ) {
 		$component = 'data-' . WPUSB_App::SLUG . '-component=';
-		$attr_name = '';
+		$attr_name = ( self::is_sharing_report_disabled() ) ? 'data-report="no" ' : '';
 
 		switch ( $type ) :
 
 			case 'counter' :
-				$attr_name = $component . '"counter-social-share"';
+				$attr_name .= $component . '"counter-social-share"';
 				break;
 
 			case 'modal' :
-				$attr_name = $component . '"social-modal"';
+				$attr_name .= $component . '"social-modal"';
 				break;
 
 		endswitch;
@@ -1156,5 +1152,16 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		}
 
 		return preg_replace( '/[^a-zA-Z0-9_,]+/', '', $value );
+	}
+
+	/**
+	 * Check sharing report is disabled
+	 *
+	 * @since 3.20
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function is_sharing_report_disabled() {
+		return ( 'on' === WPUSB_Utils::option( 'sharing_report_disabled' ) );
 	}
 }

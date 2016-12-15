@@ -326,6 +326,14 @@ class WPUSB_Setting {
 	private $woocommerce;
 
 	/**
+	 * Disable sharing report counts
+	 *
+	 * @since 1.0
+	 * @var String
+	 */
+	private $sharing_report_disabled;
+
+	/**
 	 * Plugin general prefix
 	 *
 	 * @since 1.0

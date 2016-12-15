@@ -180,7 +180,10 @@ class WPUSB_Core {
 
 		new WPUSB_Ajax_Controller();
 		new WPUSB_Options_Controller();
-		new WPUSB_Share_Reports_Controller();
+
+		if ( ! WPUSB_Utils::is_sharing_report_disabled() ) {
+			new WPUSB_Share_Reports_Controller();
+		}
 	}
 
 	/**
