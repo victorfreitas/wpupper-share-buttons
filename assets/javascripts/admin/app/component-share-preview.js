@@ -58,28 +58,33 @@ WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $, utils) {
 			this.layout = $( '.layout-preview:checked' ).val();
 		}
 
-		this.itemsOrder = this.order.sortable( 'toArray' );
-		this.inputOrder.val( JSON.stringify( this.itemsOrder ) );
+		var order = this.order.sortable( 'toArray' );
+		this.inputOrder.val( JSON.stringify( order ) );
 	};
 
 	SharePreview.fn._stop = function(event, ui) {
 		this.itemsChecked = [];
-		this.order.find( 'input:checked' )
-		    .each(function(index, value) {
-		    	this.itemsChecked.push( $( value ).val() );
-		    }.bind( this ) );
 
+		this.each( this.order.find( 'input:checked' ) );
 		this.request();
+	};
+
+	SharePreview.fn.each = function(items) {
+		var self = this;
+
+	    items.each(function(index, item) {
+	    	self.itemsChecked.push( item.value );
+	    });
 	};
 
 	SharePreview.fn.request = function() {
 		this.spinner.css( 'visibility', 'visible' );
+
 		var fixed_layout = $( '.fixed-layout:checked' )
 		  , params       = {
 				action       : 'wpusb_share_preview',
 				layout       : this.layout,
 			    fixed_layout : fixed_layout.val(),
-				items        : JSON.stringify( this.itemsOrder ),
 				checked      : JSON.stringify( this.itemsChecked )
 			}
 		;

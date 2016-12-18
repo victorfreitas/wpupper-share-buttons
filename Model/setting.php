@@ -402,14 +402,6 @@ class WPUSB_Setting {
 	*/
 	const AJAX_VERIFY_GPLUS_COUNTS = 'wpusb-google-plus-counts';
 
-	/**
-	* Nonce admin notice
-	*
-	* @since 1.0
-	* @var string
-	*/
-	const AJAX_ADMIN_NONCE = 'wpusb-admin-notice';
-
 	public function __construct( $ID = false ) {
 		if ( false !== $ID ) {
 			$this->ID = abs( intval( $ID ) );

@@ -23,7 +23,6 @@ class WPUSB_Ajax_Controller {
 		$this->sharing_report( $prefix );
 
 		add_action( "wp_ajax_{$prefix}_share_preview", array( &$this, 'share_preview_verify_request' ) );
-		add_action( "wp_ajax_{$prefix}_admin_notices", array( &$this, 'admin_notice_verify_request' ) );
 	}
 
 	public function sharing_report( $prefix ) {
@@ -74,36 +73,14 @@ class WPUSB_Ajax_Controller {
 			exit(0);
 		}
 
-		$layout  = WPUSB_Utils::post( 'layout', false );
-		$items   = WPUSB_Utils::post( 'items', false );
-		$checked = WPUSB_Utils::post( 'checked', false );
+		$layout   = WPUSB_Utils::post( 'layout', false );
+		$checkeds = WPUSB_Utils::post( 'checked', false );
 
-		if ( ! ( $layout || $items || $checked ) ) {
+		if ( ! ( $layout || $checkeds ) ) {
 			exit(0);
 		}
 
-		$this->_share_preview( $layout, $items, $checked );
-	}
-
-	/**
-	 * Ajax request delete option admin notice
-	 *
-	 * @since 3.6.0
-	 * @param null
-	 * @return void
-	 */
-	public function admin_notice_verify_request() {
-		if ( ! WPUSB_Utils::is_request_ajax() ) {
-			exit(0);
-		}
-
-		$nonce = WPUSB_Utils::post( 'nonce', false );
-
-		if ( ! wp_verify_nonce( $nonce, WPUSB_Setting::AJAX_ADMIN_NONCE ) ) {
-			exit(0);
-		}
-
-		delete_option( WPUSB_App::SLUG . '-admin-notices' );
+		$this->_share_preview( $layout, $checkeds );
 	}
 
 	/**
@@ -240,14 +217,12 @@ class WPUSB_Ajax_Controller {
 	 *
 	 * @since 1.0
 	 * @param String $layout
-	 * @param String $items
-	 * @param String $checked
+	 * @param String $checkeds
 	 * @return Void
 	 */
-	private function _share_preview( $layout, $items, $checked ) {
-		$items   = $this->_json_decode_quoted( $items );
-		$checked = $this->_json_decode_quoted( $checked );
-		$this->_share_preview_list( $layout, $items, $checked );
+	private function _share_preview( $layout, $checkeds ) {
+		$checkeds = $this->_json_decode_quoted( $checkeds );
+		$this->_share_preview_list( $layout, $checkeds );
 	}
 
 	/**
@@ -257,7 +232,7 @@ class WPUSB_Ajax_Controller {
 	 * @param null
 	 * @return Void
 	 */
-	private function _share_preview_list( $layout, $items, $checked ) {
+	private function _share_preview_list( $layout, $checkeds ) {
 		global $wp_version;
 
 		$list         = array();
@@ -265,12 +240,12 @@ class WPUSB_Ajax_Controller {
 		$count        = 0;
 		$fixed_layout = WPUSB_Utils::post( 'fixed_layout', 'buttons' );
 
-		if ( ! is_array( $items ) ) {
+		if ( ! is_array( $checkeds ) ) {
 			exit(0);
 		}
 
-		foreach ( $items as $key => $element ) {
-			if ( ! in_array( $element, $checked ) ) {
+		foreach ( $checkeds as $element ) {
+			if ( ! WPUSB_Social_Elements::items_available( $element ) ) {
 				continue;
 			}
 

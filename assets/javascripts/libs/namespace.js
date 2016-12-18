@@ -24,18 +24,26 @@
     WPUSB.instantiate = function() {
         var Instantiate = function() {}
           , Constructor = function(context) {
-                var instance, elements;
+                var instance
+                  , elements = {}
+                ;
 
-                instance          = new Instantiate();
-                instance.$el      = context;
-                instance.data     = context.data();
-                instance.elements = {};
-                elements          = context.find( '[data-element]' );
+                instance      = new Instantiate();
+                instance.$el  = context;
+                instance.data = context.data();
 
-                elements.each(function(index, element) {
-                    instance.elements[WPUSB.utils.ucfirst( element.dataset.element )] = $( element );
+                context.find( '[data-element]' ).each(function(index, element) {
+                    var name = WPUSB.utils.ucfirst( element.dataset.element );
+
+                    if ( elements[name] ) {
+                        return;
+                    }
+
+                     elements[name] = context.byElement( element.dataset.element );
                 });
 
+
+                instance.elements = elements;
                 instance.start.apply( instance, arguments );
 
                 return instance;

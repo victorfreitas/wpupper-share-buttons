@@ -258,7 +258,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function get_real_permalink( $is_fixed = false ) {
-		$url = apply_filters( WPUSB_App::SLUG - '-real-permalink', false, $is_fixed );
+		$url = apply_filters( WPUSB_App::SLUG . '-real-permalink', false, $is_fixed );
 
 		if ( $url ) {
 			return self::html_decode( esc_url( $url ) );
@@ -412,7 +412,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function get_real_title( $is_fixed = false ) {
-		$title = apply_filters( WPUSB_App::SLUG - '-real-title', false, $is_fixed );
+		$title = apply_filters( WPUSB_App::SLUG . '-real-title', false, $is_fixed );
 
 		if ( $title ) {
 			return self::rm_tags( $title );
@@ -1078,8 +1078,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function get_component_by_type( $type = 'counter' ) {
-		$component = 'data-' . WPUSB_App::SLUG . '-component=';
-		$attr_name = ( self::is_sharing_report_disabled() ) ? 'data-report="no" ' : '';
+		$component  = 'data-' . WPUSB_App::SLUG . '-component=';
+		$attr_name  = ( self::is_sharing_report_disabled() ) ? 'data-report="no" ' : '';
+		$attr_name .= ( self::is_disabled_social_counts_js() ) ? ' data-disabled-share-counts="1" ' : '';
 
 		switch ( $type ) :
 
@@ -1163,5 +1164,27 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function is_sharing_report_disabled() {
 		return ( 'on' === WPUSB_Utils::option( 'sharing_report_disabled' ) );
+	}
+
+	/**
+	 * Check counts is disabled
+	 *
+	 * @since 3.21
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function is_count_disabled() {
+		return ( '1' === WPUSB_Utils::option( 'disabled_count' ) );
+	}
+
+	/**
+	 * Check component js share counts is disabled
+	 *
+	 * @since 3.21
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function is_disabled_social_counts_js() {
+		return ( self::is_count_disabled() && self::is_sharing_report_disabled() );
 	}
 }

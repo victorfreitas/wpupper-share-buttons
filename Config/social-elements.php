@@ -63,8 +63,9 @@ class WPUSB_Social_Elements {
 	public static function items_available( $item ) {
 		$items = apply_filters( WPUSB_App::SLUG . '-items-available', self::$items_available );
 
-		if ( isset( $items[ $item ] ) )
+		if ( isset( $items[ $item ] ) ) {
 			return true;
+		}
 
 		return false;
 	}
@@ -412,8 +413,9 @@ class WPUSB_Social_Elements {
 	private static function _ksort( $elements ) {
 		$tag = WPUSB_App::SLUG . '-elements-args';
 
-		if ( ! is_null( self::$social_networks ) )
+		if ( ! is_null( self::$social_networks ) ) {
 			return apply_filters( $tag, self::$social_networks );
+		}
 
 		$order  = WPUSB_Utils::option( 'order', false );
 		$social = $elements;

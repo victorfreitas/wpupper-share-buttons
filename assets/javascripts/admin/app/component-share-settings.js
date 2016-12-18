@@ -1,8 +1,6 @@
 WPUSB( 'WPUSB.Components.ShareSettings', function(ShareSettings, $, utils) {
 
 	ShareSettings.fn.start = function() {
-		this.posFixed = this.$el.byElement( 'position-fixed' );
-		this.fixed    = this.elements.fixed;
 		this.init();
 	};
 
@@ -11,22 +9,22 @@ WPUSB( 'WPUSB.Components.ShareSettings', function(ShareSettings, $, utils) {
 	};
 
 	ShareSettings.fn.addEventListener = function() {
-		this.posFixed.on( 'change', this._onChangeFixedLeft.bind( this ) );
+		this.elements.positionFixed.on( 'change', this._onChangeFixedLeft.bind( this ) );
 		this.$el.addEvent( 'click', 'fixed-disabled', this );
 	};
 
 	ShareSettings.fn._onChangeFixedLeft = function(event) {
-		if ( this.posFixed.is( ':checked' ) ) {
-			this.fixed.val( 'on' );
+		if ( this.elements.positionFixed.is( ':checked' ) ) {
+			this.elements.fixed.val( 'on' );
 			return;
 		}
 
-		this.fixed.val( '' );
+		this.elements.fixed.val( '' );
 	};
 
 	ShareSettings.fn._onClickFixedDisabled = function(event) {
-		this.posFixed.prop( 'checked', false );
-		this.fixed.val( '' );
+		this.elements.positionFixed.prop( 'checked', false );
+		this.elements.fixed.val( '' );
 	};
 
 });

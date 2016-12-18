@@ -1,6 +1,19 @@
-WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, utils) {
+WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 
-	CounterSocialShare.fn.start = function() {
+	Model.fn.start = function() {
+		if ( this.isShareCountsDisabled() ) {
+			return;
+		}
+
+		this.setParams();
+		this.init();
+	};
+
+	Model.fn.isShareCountsDisabled = function() {
+		return ( this.data.disabledShareCounts === 1 );
+	};
+
+	Model.fn.setParams = function() {
 		this.prefix           = utils.prefix + '-';
 		this.facebook         = this.elements.facebook;
 		this.twitter          = this.elements.twitter;
@@ -17,11 +30,9 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		this.pinterestCounter = 0;
 		this.tumblrCounter    = 0;
 		this.max              = 6;
-
-		this.init();
 	};
 
-	CounterSocialShare.fn.init = function() {
+	Model.fn.init = function() {
 		WPUSB.FeaturedReferrer.create( this.$el );
 		WPUSB.OpenPopup.create( this.$el );
 		WPUSB.FixedContext.create( this.$el );
@@ -30,12 +41,12 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		this.request();
 	};
 
-	CounterSocialShare.fn.addEventListeners = function() {
+	Model.fn.addEventListeners = function() {
 		this.$el.addEvent( 'click', 'open-popup', this );
 		WPUSB.ToggleButtons.create( this.$el.data( 'element' ), this.$el );
 	};
 
-	CounterSocialShare.fn.request = function() {
+	Model.fn.request = function() {
 		this.items = [
 			{
 				reference : 'facebookCounter',
@@ -77,11 +88,11 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		this._eachAjaxSocial();
 	};
 
-	CounterSocialShare.fn._eachAjaxSocial = function() {
+	Model.fn._eachAjaxSocial = function() {
 		this.items.forEach( this._iterateItems.bind( this ) );
 	};
 
-	CounterSocialShare.fn._iterateItems = function(item, index) {
+	Model.fn._iterateItems = function(item, index) {
 		var counter = 0;
 
 		if ( this.totalShare ) {
@@ -95,7 +106,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		this._getJSON( item );
 	};
 
-	CounterSocialShare.fn._getJSON = function(request) {
+	Model.fn._getJSON = function(request) {
 		var args = $.extend({
 				dataType : 'jsonp'
 			}, request )
@@ -106,7 +117,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		ajax.fail( $.proxy( this, '_fail', request ) );
 	};
 
-	CounterSocialShare.fn._done = function(request, response) {
+	Model.fn._done = function(request, response) {
 		var number              = this.getNumberByData( request.element, response );
 		this[request.reference] = number;
 		this.max               -= 1;
@@ -121,7 +132,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		}
 	};
 
-	CounterSocialShare.fn._fail = function(request, throwError, status) {
+	Model.fn._fail = function(request, throwError, status) {
 		this[request.reference] = 0;
 
 		if ( this[request.element] ) {
@@ -129,7 +140,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		}
 	};
 
-	CounterSocialShare.fn.getNumberByData = function(element, response) {
+	Model.fn.getNumberByData = function(element, response) {
 		switch ( element ) {
 			case 'facebook' :
 				return this.getTotalShareFacebook( response.share );
@@ -145,7 +156,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		}
 	};
 
-	CounterSocialShare.fn.getTotalShareGooglePlus = function(response) {
+	Model.fn.getTotalShareGooglePlus = function(response) {
 		var data = {};
 
 		if ( typeof response.error === 'object' ) {
@@ -165,7 +176,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		return 0;
 	};
 
-	CounterSocialShare.fn.getTotalShareFacebook = function(response) {
+	Model.fn.getTotalShareFacebook = function(response) {
 		if ( typeof response === 'object' ) {
 			return parseInt( response.share_count );
 		}
@@ -173,7 +184,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		return 0;
 	};
 
-	CounterSocialShare.fn.getTotalShareTumblr = function(response) {
+	Model.fn.getTotalShareTumblr = function(response) {
 		if ( typeof response === 'object' ) {
 			return parseInt( response.note_count );
 		}
@@ -181,7 +192,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		return 0;
 	};
 
-	CounterSocialShare.fn.getParamsGoogle = function() {
+	Model.fn.getParamsGoogle = function() {
 		return JSON.stringify({
 			id         : utils.decodeUrl( this.data.elementUrl ),
 			key        : 'p',
@@ -198,7 +209,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		});
 	};
 
-	CounterSocialShare.fn._onClickOpenPopup = function(event) {
+	Model.fn._onClickOpenPopup = function(event) {
 		if ( this.data.report ) {
 			return;
 		}
@@ -222,7 +233,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 	   });
 	};
 
-	CounterSocialShare.fn.formatCounts = function(counts) {
+	Model.fn.formatCounts = function(counts) {
 		this.c = counts.toString();
 
 		switch ( Math.pow( 10, this.c.length - 1 ) ) {
@@ -249,11 +260,11 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(CounterSocialShare, $, ut
 		}
 	};
 
-	CounterSocialShare.fn.t = function(d) {
+	Model.fn.t = function(d) {
 		return this.c.substring( 0, d );
 	};
 
-	CounterSocialShare.fn.i = function(d, c) {
+	Model.fn.i = function(d, c) {
 		var i = this.c.substring( d, c );
 		return ( i && i !== '0' ) ? '.' + i : '';
 	};
