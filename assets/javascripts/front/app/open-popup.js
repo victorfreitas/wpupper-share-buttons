@@ -28,7 +28,7 @@ WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $) {
 
 		this.popupCenter(
 			target.attr( 'href' ),
-			'Compartilhar',
+			'Share',
 			width,
 			height
 		);

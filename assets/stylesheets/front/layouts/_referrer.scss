@@ -1,6 +1,5 @@
-.#{$prefix} .#{$prefix}-referrer {
-    float: left;
-    margin-left: 0;
+.#{$prefix}:not(.#{$prefix}-fixed-top) .#{$prefix}-referrer {
+    margin-left: 10px;
     width: 100%;
 
     .#{$prefix}-button {
@@ -10,9 +9,15 @@
     }
 }
 
-.#{$prefix}-square-plus .#{$prefix}-referrer {
+.#{$prefix}-square-plus:not(.#{$prefix}-fixed-top) .#{$prefix}-referrer {
 	display: table;
 	height: 36px;
+	margin-left: 5px;
+
+	.#{$prefix}-link {
+	    line-height: 30px;
+	    text-align: center;
+	}
 }
 
 @include featured-referrer( facebook, $colorfacebook );

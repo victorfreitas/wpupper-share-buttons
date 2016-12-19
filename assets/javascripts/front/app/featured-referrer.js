@@ -1,12 +1,12 @@
-WPUSB( 'WPUSB.FeaturedReferrer', function(FeaturedReferrer, $, utils) {
+WPUSB( 'WPUSB.FeaturedReferrer', function(Referrer, $, utils) {
 
-	FeaturedReferrer.create = function(container) {
-		this.prefix = WPUSB.vars.prefix + '-';
+	Referrer.create = function(container) {
+		this.prefix = utils.prefix + '-';
 		this.$el    = container;
 		this.init();
 	};
 
-	FeaturedReferrer.init = function() {
+	Referrer.init = function() {
 		if ( this.$el.attr('class').match( '-fixed' ) ) {
 			return;
 		}
@@ -14,7 +14,7 @@ WPUSB( 'WPUSB.FeaturedReferrer', function(FeaturedReferrer, $, utils) {
 		this.setReferrer();
 	};
 
-	FeaturedReferrer.setReferrer = function() {
+	Referrer.setReferrer = function() {
 		if ( this.isMatch( 'twitter' ) || this.isMatch( 't' ) ) {
 			this.showReferrer( 'twitter' );
 			return;
@@ -35,25 +35,29 @@ WPUSB( 'WPUSB.FeaturedReferrer', function(FeaturedReferrer, $, utils) {
 		}
 	};
 
-	FeaturedReferrer.showReferrer = function(referrer) {
+	Referrer.showReferrer = function(referrer) {
 		var className = this.prefix + 'referrer'
-		  , element   = this.$el.byReferrer( referrer );
+		  , element   = this.$el.byReferrer( referrer )
+		;
 
-		this.$el.find( '.' + this.prefix + 'count' ).hide();
+		this.$el.find( '.' + this.prefix + 'count' ).remove();
+		this.$el.find( '.' + this.prefix + 'counter' ).remove();
+
+		this.$el.prepend( element );
+
 		element.addClass( className );
-		element.addClass( className + '-' + referrer );
 
 		this.refTitle( element );
 	};
 
-	FeaturedReferrer.refTitle = function(element) {
+	Referrer.refTitle = function(element) {
 		if ( !element.find( 'span[data-title]' ).length ) {
 			var title = '<span data-title="' + element.data( 'ref-title' ) + '"></span>';
 			element.find( 'a' ).append( title );
 		}
 	};
 
-	FeaturedReferrer.isMatch = function(name) {
+	Referrer.isMatch = function(name) {
 		var ref     = document.referrer
 		  , pattern = new RegExp( '^https?:\/\/([^\/]+\\.)?' + name + '\\.com?(\/|$)', 'i' )
 		;

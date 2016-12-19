@@ -89,7 +89,7 @@
 }
 
 @mixin featured-referrer($element, $color) {
-    .#{$prefix} .#{$prefix}-referrer-#{$element} {
+    .#{$prefix}:not(.#{$prefix}-fixed-top) .#{$prefix}-referrer-#{$element} {
         .#{$prefix}-button {
             background: $color;
             border-radius: 3px;

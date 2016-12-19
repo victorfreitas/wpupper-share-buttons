@@ -6,7 +6,7 @@ Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google
 Requires at least: 3.0.0  
 Tested up to: 4.7  
 PHP version: 5.3.0  
-Stable tag: 3.21  
+Stable tag: 3.21.1  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -64,6 +64,10 @@ Layout options: default, buttons, rounded, square
 4. Using the content editor -> [wpusb class_first="" class_second="" class_link="" class_icon="" layout="default" remove_inside="0" remove_counter="0"]  
 
 ## Changelog
+
+## 3.21.1
+
+* Bug fixes featured referrer
 
 ## 3.21
 
