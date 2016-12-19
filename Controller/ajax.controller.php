@@ -261,7 +261,7 @@ class WPUSB_Ajax_Controller {
 				'layout'       => $layout,
 				'item_title'   => $item->title,
 				'has_counter'  => $item->has_counter,
-				'item_inside'  => $item->inside,
+				'item_inside'  => ( $item->inside ) ? $item->inside : '',
 				'fixed_layout' => $fixed_layout,
 				'btn_class'    => ( $fixed_layout == 'buttons' ) ? 'button' : $fixed_layout,
 				'is_fixed_2'   => ( $fixed_layout == 'buttons' ) ? false : true,
