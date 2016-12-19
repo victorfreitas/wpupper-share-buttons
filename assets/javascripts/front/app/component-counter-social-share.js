@@ -2,6 +2,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 
 	Model.fn.start = function() {
 		if ( this.isShareCountsDisabled() ) {
+			this.renderExtras();
 			return;
 		}
 
@@ -33,10 +34,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 	};
 
 	Model.fn.init = function() {
-		WPUSB.FeaturedReferrer.create( this.$el );
-		WPUSB.OpenPopup.create( this.$el );
-		WPUSB.FixedContext.create( this.$el );
-
+		this.renderExtras();
 		this.addEventListeners();
 		this.request();
 	};
@@ -267,6 +265,12 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 	Model.fn.i = function(d, c) {
 		var i = this.c.substring( d, c );
 		return ( i && i !== '0' ) ? '.' + i : '';
+	};
+
+	Model.fn.renderExtras = function() {
+		WPUSB.FeaturedReferrer.create( this.$el );
+		WPUSB.OpenPopup.create( this.$el );
+		WPUSB.FixedContext.create( this.$el );
 	};
 
 });
