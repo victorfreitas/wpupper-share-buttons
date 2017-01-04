@@ -1,5 +1,5 @@
 .#{$prefix}-menu {
-    border-bottom: 1px solid #E1E1E1;
+    border: 0;
     position: relative;
     top: 6px;
     width: 100%;
@@ -27,8 +27,8 @@
 
 		&.active,
 		&:hover {
-		    background: $bgAdmin;
-		    border-bottom-color: $bgAdmin;
+		    background: $colorWhite;
+		    border-bottom-color: $colorWhite;
 		}
 	}
 

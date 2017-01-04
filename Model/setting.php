@@ -334,6 +334,14 @@ class WPUSB_Setting {
 	private $sharing_report_disabled;
 
 	/**
+	 * Share count label
+	 *
+	 * @since 1.0
+	 * @var String
+	 */
+	private $share_count_label;
+
+	/**
 	 * Plugin general prefix
 	 *
 	 * @since 1.0
@@ -444,7 +452,6 @@ class WPUSB_Setting {
 
 			default :
 				$this->{$prop_name} = WPUSB_Utils::option( $prop_name );
-
 		}
 
 		return $this->{$prop_name};

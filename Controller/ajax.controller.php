@@ -251,25 +251,25 @@ class WPUSB_Ajax_Controller {
 
 			$item   = $social->{$element};
 			$list[] = array(
-				'prefix'       => WPUSB_App::SLUG,
-				'slash'        => '&#8260;',
-				'counter'      => str_replace( '.', '', $wp_version ),
-				'item_class'   => $item->element,
-				'item_name'    => $item->name,
-				'inside'       => true,
-				'first'        => ( 0 === $count ) ? true : false,
-				'layout'       => $layout,
-				'item_title'   => $item->title,
-				'has_counter'  => $item->has_counter,
-				'item_inside'  => ( $item->inside ) ? $item->inside : '',
-				'fixed_layout' => $fixed_layout,
-				'btn_class'    => ( $fixed_layout == 'buttons' ) ? 'button' : $fixed_layout,
-				'is_fixed_2'   => ( $fixed_layout == 'buttons' ) ? false : true,
+				'prefix'            => WPUSB_App::SLUG,
+				'counter'           => str_replace( '.', '', $wp_version ),
+				'item_class'        => $item->element,
+				'item_name'         => $item->name,
+				'inside'            => true,
+				'first'             => ( 0 === $count ) ? true : false,
+				'layout'            => $layout,
+				'item_title'        => $item->title,
+				'has_counter'       => $item->has_counter,
+				'item_inside'       => ( $item->inside ) ? $item->inside : '',
+				'fixed_layout'      => $fixed_layout,
+				'btn_class'         => ( $fixed_layout == 'buttons' ) ? 'button' : $fixed_layout,
+				'is_fixed_2'        => ( $fixed_layout == 'buttons' ) ? false : true,
+				'share_count_label' => WPUSB_Utils::get_share_count_label(),
 			);
 			$count++;
 		}
 
-		WPUSB_Utils::send_json( $list );
+		wp_send_json( $list );
 	}
 
 	/**

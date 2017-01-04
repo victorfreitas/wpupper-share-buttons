@@ -170,6 +170,22 @@ class WPUSB_Settings_View {
 							</tr>
 							<tr>
 								<th scope="row">
+									<label for="<?php echo $prefix; ?>-share-count-label">
+										<?php _e( 'Share count label', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'id'          => 'share-count-label',
+										'class'       => 'large-text',
+										'name'        => "{$option_name}[share_count_label]",
+										'value'       => $model->share_count_label,
+										'placeholder' => __( 'Change text of the share count title. Default SHARES', WPUSB_App::TEXTDOMAIN )
+									));
+								?>
+							</tr>
+							<tr>
+								<th scope="row">
 									<label for="<?php echo $prefix; ?>-context">
 										<?php _e( 'Context ID', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>

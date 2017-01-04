@@ -18,6 +18,11 @@ WPUSB_App::uses( 'utils-share', 'Helper' );
 WPUSB_App::uses( 'utils', 'Helper' );
 
 /*
+ * Load scripts admin and frontend
+ */
+WPUSB_App::uses( 'enqueue-scripts', 'Config' );
+
+/*
  * Templates
  */
 WPUSB_App::uses( 'layouts-primary', 'Templates' );
@@ -45,99 +50,23 @@ if ( WPUSB_App::is_admin() ) {
 	WPUSB_App::uses( 'share-reports', 'Controller' );
 }
 
-class WPUSB_Core {
+final class WPUSB_Core {
+
+	private static $_instance = null;
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
 	 * @since 1.2
 	 */
-	public function __construct() {
+	private function __construct() {
 		add_action( 'init', array( __CLASS__, 'load_textdomain' ) );
-		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'add_front_scripts' ) );
-
-		self::_instantiate_controllers();
-		self::_register_actions();
+		self::instantiate_controllers();
+		self::register_actions();
 	}
 
 	public static function load_textdomain() {
 		load_plugin_textdomain( WPUSB_App::TEXTDOMAIN, false, WPUSB_Utils::dirname( 'languages' ) );
-	}
-
-	/**
-	 * Enqueue scripts and styles
-	 *
-	 * @since 1.0
-	 * @param Null
-	 * @return Void
-	 */
-	public static function add_front_scripts() {
-		$is_active = WPUSB_Utils::is_active();
-
-		if ( ! apply_filters( WPUSB_App::SLUG , '-add-scripts', $is_active ) ) {
-			return;
-		}
-
-		self::_front_scripts();
-
-		if ( 'on' !== WPUSB_Utils::option( 'css_footer' ) ) {
-			self::front_styles();
-			return;
-		}
-
-		add_action( 'wp_footer', array( __CLASS__, 'front_styles' ) );
-	}
-
-	/**
-	 * Enqueue front scripts
-	 *
-	 * @since 3.1.0
-	 * @param Null
-	 * @return Void
-	 */
-	private static function _front_scripts() {
-		if ( 'on' === WPUSB_Utils::option( 'disable_js' ) ) {
-			return;
-		}
-
-		$context = WPUSB_Utils::option( 'fixed_context' );
-
-		wp_enqueue_script(
-			WPUSB_App::SLUG . '-scripts',
-			WPUSB_Utils::plugin_url( 'javascripts/front/built.js' ),
-			array( 'jquery' ),
-			WPUSB_App::VERSION,
-			true
-		);
-
-		wp_localize_script(
-			WPUSB_App::SLUG . '-scripts',
-			'WPUSBVars',
-			array(
-				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-				'context' => str_replace( '{id}', WPUSB_Utils::get_id(), $context ),
-			)
-		);
-	}
-
-	/**
-	 * Enqueue front styles
-	 *
-	 * @since 3.1.0
-	 * @param Null
-	 * @return Void
-	 */
-	public static function front_styles() {
-		if ( 'on' === WPUSB_Utils::option( 'disable_css' ) ) {
-			return;
-		}
-
-		wp_enqueue_style(
-			WPUSB_App::SLUG . '-style',
-			WPUSB_Utils::plugin_url( 'stylesheets/style.css' ),
-			array(),
-			WPUSB_App::VERSION
-		);
 	}
 
 	/**
@@ -147,7 +76,7 @@ class WPUSB_Core {
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _register_actions() {
+	protected static function register_actions() {
 		register_activation_hook( WPUSB_App::FILE, array( __CLASS__, 'activate' ) );
 		register_deactivation_hook( WPUSB_App::FILE, array( __CLASS__, 'deactivate' ) );
 	}
@@ -159,11 +88,11 @@ class WPUSB_Core {
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _instantiate_controllers() {
+	protected static function instantiate_controllers() {
 		$share    = new WPUSB_Shares_Controller();
 		$settings = new WPUSB_Settings_Controller();
 
-		self::_instantiate_controllers_admin();
+		self::instantiate_controllers_admin();
 	}
 
 	/**
@@ -173,7 +102,7 @@ class WPUSB_Core {
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _instantiate_controllers_admin() {
+	protected static function instantiate_controllers_admin() {
 		if ( ! WPUSB_App::is_admin() ) {
 			return;
 		}
@@ -220,12 +149,12 @@ class WPUSB_Core {
 	 * @return Void
 	 */
 	public static function uninstall() {
-		self::_delete_options();
-		self::_delete_transients();
-		self::_delete_table();
+		self::delete_options();
+		self::delete_transients();
+		self::delete_table();
 	}
 
-	private static function _delete_options() {
+	protected static function delete_options() {
 		$options_name = WPUSB_Utils::get_options_name();
 
 		foreach ( $options_name as $option ) {
@@ -241,7 +170,7 @@ class WPUSB_Core {
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _delete_transients() {
+	protected static function delete_transients() {
 		// Transients
 		delete_transient( WPUSB_Setting::TRANSIENT );
 		delete_transient( WPUSB_Setting::TRANSIENT_SELECT_COUNT );
@@ -256,11 +185,11 @@ class WPUSB_Core {
 	 * @param Null
 	 * @return Void
 	 */
-	private static function _delete_table() {
+	protected static function delete_table() {
 		global $wpdb;
 
 		$table = $wpdb->prefix . WPUSB_Setting::TABLE_NAME;
-		$wpdb->query( "DROP TABLE IF EXISTS `{$table}`" );
+		$wpdb->query( "DROP TABLE IF EXISTS {$table}" );
 	}
 
 	/**
@@ -277,20 +206,22 @@ class WPUSB_Core {
 
 		$charset    = $wpdb->get_charset_collate();
 		$table_name = $wpdb->prefix . WPUSB_Setting::TABLE_NAME;
-		$query      = "CREATE TABLE IF NOT EXISTS {$table_name} (
-			id         BIGINT(20) NOT NULL AUTO_INCREMENT,
-			post_id    BIGINT(20) UNSIGNED NOT NULL,
-			post_title TEXT       NOT NULL,
-			facebook   BIGINT(20) UNSIGNED NOT NULL,
-			twitter    BIGINT(20) UNSIGNED NOT NULL,
-			google     BIGINT(20) UNSIGNED NOT NULL,
-			linkedin   BIGINT(20) UNSIGNED NOT NULL,
-			pinterest  BIGINT(20) UNSIGNED NOT NULL,
-			tumblr     BIGINT(20) UNSIGNED NOT NULL,
-			total      BIGINT(20) UNSIGNED NOT NULL,
-			PRIMARY KEY id ( id ),
-			UNIQUE( post_id )
-		) {$charset};";
+		$query      = "
+			CREATE TABLE IF NOT EXISTS {$table_name} (
+				id         BIGINT(20) NOT NULL AUTO_INCREMENT,
+				post_id    BIGINT(20) UNSIGNED NOT NULL,
+				post_title TEXT       NOT NULL,
+				facebook   BIGINT(20) UNSIGNED NOT NULL,
+				twitter    BIGINT(20) UNSIGNED NOT NULL,
+				google     BIGINT(20) UNSIGNED NOT NULL,
+				linkedin   BIGINT(20) UNSIGNED NOT NULL,
+				pinterest  BIGINT(20) UNSIGNED NOT NULL,
+				tumblr     BIGINT(20) UNSIGNED NOT NULL,
+				total      BIGINT(20) UNSIGNED NOT NULL,
+				PRIMARY KEY id ( id ),
+				UNIQUE( post_id )
+			) {$charset};
+		";
 
 		self::db_delta( $query );
 	}
@@ -311,7 +242,8 @@ class WPUSB_Core {
 	/**
 	 * Alter table on update
 	 *
-	 * @since 1.0
+	 * @since 3.13
+	 * @version 1.2
 	 * @param Null
 	 * @global $wpdb
 	 * @return Void
@@ -322,8 +254,22 @@ class WPUSB_Core {
 		$table        = $wpdb->prefix . WPUSB_Setting::TABLE_NAME;
 		$table_exists = $wpdb->query( "SHOW TABLES LIKE '{$table}'" );
 
-		if ( $table_exists && ! $wpdb->get_var( "SHOW COLUMNS FROM `{$table}` LIKE 'tumblr';" ) ) {
-			$wpdb->query( "ALTER TABLE `{$table}` ADD `tumblr` BIGINT(20) UNSIGNED NOT NULL AFTER `pinterest`;" );
+		if ( $table_exists && ! $wpdb->get_var( "SHOW COLUMNS FROM {$table} LIKE 'tumblr';" ) ) {
+			$wpdb->query( "ALTER TABLE {$table} ADD tumblr BIGINT(20) UNSIGNED NOT NULL AFTER pinterest;" );
+		}
+	}
+
+	/**
+	 * Singleton instance
+	 *
+	 * @since 3.22
+	 * @param Null
+	 * @return Void
+	 */
+	public static function instance() {
+		if ( is_null( self::$_instance ) ) {
+			self::$_instance = new self;
 		}
 	}
 }
+WPUSB_Core::instance();

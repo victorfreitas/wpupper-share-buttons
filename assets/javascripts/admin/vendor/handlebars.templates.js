@@ -130,16 +130,16 @@ templates['square-plus'] = template({"1":function(container,depth0,helpers,parti
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
     + "-item "
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
-    + "-counter wpusb-counter\">\n				<span class=\""
+    + "-counter "
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
-    + "-counter\">"
+    + "-total-share\">\n				<div class=\""
+    + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
+    + "-shares-count\">"
     + alias3(((helper = (helper = helpers.counter || (depth0 != null ? depth0.counter : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"counter","hash":{},"data":data}) : helper)))
-    + "</span>\n				<span class=\""
+    + "</div>\n				<div class=\""
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
-    + "-text\" data-title=\"shares\"></span>\n				<div class=\""
-    + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
-    + "-slash\" data-slash=\""
-    + ((stack1 = ((helper = (helper = helpers.slash || (depth0 != null ? depth0.slash : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"slash","hash":{},"data":data}) : helper))) != null ? stack1 : "")
+    + "-shares-text\" data-title=\""
+    + alias3(((helper = (helper = helpers.share_count_label || (depth0 != null ? depth0.share_count_label : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"share_count_label","hash":{},"data":data}) : helper)))
     + "\"></div>\n			</div>\n\n			<div class=\""
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
     + "-item "
@@ -160,7 +160,7 @@ templates['square-plus'] = template({"1":function(container,depth0,helpers,parti
     + alias3(((helper = (helper = helpers.item_class || (depth0 != null ? depth0.item_class : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"item_class","hash":{},"data":data}) : helper)))
     + "-square-plus\"></i>\n\n"
     + ((stack1 = helpers["if"].call(depth0,(depth0 != null ? depth0.inside : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "				</a>\n			</div>\n\n";
+    + "				</a>\n			</div>\n";
 },"3":function(container,depth0,helpers,partials,data) {
     var helper;
 
@@ -170,21 +170,21 @@ templates['square-plus'] = template({"1":function(container,depth0,helpers,parti
 },"5":function(container,depth0,helpers,partials,data) {
     var helper, alias1=helpers.helperMissing, alias2="function", alias3=container.escapeExpression;
 
-  return "\n			<div class=\""
+  return "		<div class=\""
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
     + "-item "
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
     + "-"
     + alias3(((helper = (helper = helpers.item_class || (depth0 != null ? depth0.item_class : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"item_class","hash":{},"data":data}) : helper)))
-    + "\">\n				<a href=\"#\" class=\""
+    + "\">\n			<a href=\"#\" class=\""
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
     + "-link\" title=\""
     + alias3(((helper = (helper = helpers.item_title || (depth0 != null ? depth0.item_title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"item_title","hash":{},"data":data}) : helper)))
-    + "\">\n					<i class=\""
+    + "\">\n				<i class=\""
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
     + "-icon-"
     + alias3(((helper = (helper = helpers.item_class || (depth0 != null ? depth0.item_class : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"item_class","hash":{},"data":data}) : helper)))
-    + "-square-plus\"></i>\n				</a>\n			</div>\n\n";
+    + "-square-plus\"></i>\n			</a>\n		</div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 

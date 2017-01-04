@@ -31,7 +31,7 @@ $_itemsAvailable : 'items-available';
 
 .#{$prefix}-wrap {
     @extend %noSelect;
-    background: $bgAdmin;
+    background: $colorWhite;
     padding: 0 10px;
     border-color: #e1e1e1;
     border-style: solid;
@@ -39,6 +39,24 @@ $_itemsAvailable : 'items-available';
     position: relative;
 
     label { cursor: auto; }
+
+    input[type="number"] {
+        text-align: center;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        background: #fbf8f8;
+        border-width: 0 0 1px 4px;
+        box-shadow: none;
+        padding: 4px 0;
+        border-color: #ccc;
+        text-indent: 2px;
+
+        &:focus {
+            border-color: $colorCheckboxOn;
+        }
+    }
 }
 
 .#{$prefix}-#{$_itemsAvailable} td,

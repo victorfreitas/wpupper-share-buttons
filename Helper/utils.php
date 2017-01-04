@@ -1007,17 +1007,6 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
-	 * Send a JSON response back to an Ajax request.
-	 *
-	 * @since 3.6.0
-	 * @param mixed $response
-	 * @return Void
-	 */
-	public static function send_json( $response ) {
-		wp_send_json( $response );
-	}
-
-	/**
 	 * Retrieve only the body from the raw response and decode json.
 	 *
 	 * @since 3.6.0
@@ -1186,5 +1175,19 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function is_disabled_social_counts_js() {
 		return ( self::is_count_disabled() && self::is_sharing_report_disabled() );
+	}
+
+	/**
+	 * Get text of the share count title. Default SHARES
+	 *
+	 * @since 3.22
+	 * @version 1.0
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function get_share_count_label() {
+		$share_text  = __( 'SHARES', WPUSB_App::TEXTDOMAIN );
+
+		return self::option( 'share_count_label', $share_text );
 	}
 }

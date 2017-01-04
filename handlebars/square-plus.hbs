@@ -3,10 +3,9 @@
 	{{#if first}}
 		<div class="{{prefix}} {{prefix}}-{{layout}} social-share {{prefix}}-preview">
 
-			<div class="{{prefix}}-item {{prefix}}-counter wpusb-counter">
-				<span class="{{prefix}}-counter">{{counter}}</span>
-				<span class="{{prefix}}-text" data-title="shares"></span>
-				<div class="{{prefix}}-slash" data-slash="{{{slash}}}"></div>
+			<div class="{{prefix}}-item {{prefix}}-counter {{prefix}}-total-share">
+				<div class="{{prefix}}-shares-count">{{counter}}</div>
+				<div class="{{prefix}}-shares-text" data-title="{{share_count_label}}"></div>
 			</div>
 
 			<div class="{{prefix}}-item {{prefix}}-{{item_class}} {{prefix}}-full {{prefix}}-inside">
@@ -18,17 +17,14 @@
 					{{/if}}
 				</a>
 			</div>
-
 	{{/if}}
 
 	{{#unless first}}
-
-			<div class="{{prefix}}-item {{prefix}}-{{item_class}}">
-				<a href="#" class="{{prefix}}-link" title="{{item_title}}">
-					<i class="{{prefix}}-icon-{{item_class}}-square-plus"></i>
-				</a>
-			</div>
-
+		<div class="{{prefix}}-item {{prefix}}-{{item_class}}">
+			<a href="#" class="{{prefix}}-link" title="{{item_title}}">
+				<i class="{{prefix}}-icon-{{item_class}}-square-plus"></i>
+			</a>
+		</div>
 	{{/unless}}
 {{/each}}
 </div>

@@ -53,7 +53,11 @@ class WPUSB_Settings_Extra_View {
 									</label>
 								</th>
 								<td>
-									<input id="<?php echo $prefix; ?>-cache-time" step="1" min="1" max="60" type="number"
+									<input type="number"
+										   id="<?php echo $prefix; ?>-cache-time"
+										   step="1"
+										   min="1"
+										   max="60"
 									       name="<?php echo "{$extra_setting}[report_cache_time]"; ?>"
 										   value="<?php echo $model->report_cache_time; ?>">
 									<?php _e( 'Minute', WPUSB_App::TEXTDOMAIN ); ?>(s)
@@ -69,7 +73,8 @@ class WPUSB_Settings_Extra_View {
 									</label>
 								</th>
 								<td>
-									<input id="<?php echo $prefix; ?>-twitter-username"
+									<input type="text"
+										   id="<?php echo $prefix; ?>-twitter-username"
 									       class="large-text"
 										   placeholder="<?php _e( 'Twitter username', WPUSB_App::TEXTDOMAIN ); ?>"
 									       name="<?php echo "{$extra_setting}[twitter_username]"; ?>"
@@ -84,7 +89,8 @@ class WPUSB_Settings_Extra_View {
 									</label>
 								</th>
 								<td>
-									<input id="<?php echo $prefix; ?>-twitter-hashtags"
+									<input type="text"
+										   id="<?php echo $prefix; ?>-twitter-hashtags"
 									       class="large-text"
 										   placeholder="<?php _e( 'Twitter hashtags', WPUSB_App::TEXTDOMAIN ); ?>"
 									       name="<?php echo "{$extra_setting}[twitter_hashtags]"; ?>"
@@ -108,7 +114,8 @@ class WPUSB_Settings_Extra_View {
 									</label>
 								</th>
 								<td>
-									<input id="<?php echo $prefix; ?>-twitter-text"
+									<input type="text"
+										   id="<?php echo $prefix; ?>-twitter-text"
 									       class="large-text"
 										   placeholder="<?php _e( 'Twitter text', WPUSB_App::TEXTDOMAIN ); ?>"
 									       name="<?php echo "{$extra_setting}[twitter_text]"; ?>"
@@ -130,7 +137,8 @@ class WPUSB_Settings_Extra_View {
 									</label>
 								</th>
 								<td>
-									<input id="<?php echo $prefix; ?>-tracking-analytics"
+									<input type="text"
+										   id="<?php echo $prefix; ?>-tracking-analytics"
 									       class="large-text"
 										   placeholder="<?php _e( 'Add UTM tracking (Analytics)', WPUSB_App::TEXTDOMAIN ); ?>"
 									       name="<?php echo "{$extra_setting}[tracking]"; ?>"
@@ -154,7 +162,8 @@ class WPUSB_Settings_Extra_View {
 									</label>
 								</th>
 								<td>
-									<input name="<?php echo "{$extra_setting}[bitly_token]"; ?>"
+									<input type="text"
+										   name="<?php echo "{$extra_setting}[bitly_token]"; ?>"
 									       value="<?php echo $model->bitly_token; ?>"
 									       placeholder="<?php _e( 'Insert your access token Bitly', WPUSB_App::TEXTDOMAIN ); ?>"
 									       id="<?php echo $prefix; ?>-short-url"

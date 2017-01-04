@@ -100,23 +100,17 @@ EOD;
 	 * @return String
 	 */
 	public static function add_count( $args ) {
-		$prefix      = $args->prefix;
-		$shares_text = __( 'Shares', WPUSB_App::TEXTDOMAIN );
-		$content     = '';
-
-		if ( WPUSB_Utils::is_active_couter( $args ) ) {
-			$content = <<<EOD
-				<div class="{$prefix}-item {$prefix}-counter">
-					<span class="{$prefix}-counter"
-					      data-element="total-share">
-					</span>
-					<span class="{$prefix}-text" data-title="{$shares_text}"></span>
-
-					<div class="{$prefix}-slash" data-slash="&#8260;"></div>
-				</div>
-EOD;
+		if ( ! WPUSB_Utils::is_active_couter( $args ) ) {
+			return '';
 		}
 
+		$share_label = WPUSB_Utils::get_share_count_label();
+		$content     = <<<EOD
+			<div class="{$args->prefix}-item {$args->prefix}-total-share">
+				<div class="{$args->prefix}-shares-count" data-element="total-share"></div>
+				<div class="{$args->prefix}-shares-text" data-title="{$share_label}"></div>
+			</div>
+EOD;
 		return apply_filters( WPUSB_App::SLUG . 'total-counter', $content );
 	}
 
