@@ -67,8 +67,8 @@ Layout options: default, buttons, rounded, square
 
 ## 3.22
 
-* New: Add option change share count label for layout Square Plus
-* New: Change layout share count for layout Square Plus
+* New: Add option change share count label for theme Square Plus
+* New: Change layout share count for theme Square Plus
 * Admin page layout improvements
 * Code improvements
 * Update languages
