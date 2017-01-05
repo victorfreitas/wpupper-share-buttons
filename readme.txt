@@ -6,7 +6,7 @@ Donate link: https://www.redcross.org/donate/donation
 Tags: share, social, buttons, share buttons, compartir, botones compartir, free share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, sharing, social bookmarking, email form, social media buttons, click to tweet, reddit, viber, telegram, gmail, skype, like, pinterest, linkedin
 Requires at least: 3.0.0
 Tested up to: 4.7
-Stable tag: 3.22
+Stable tag: 3.23
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -94,6 +94,12 @@ The following plugins are recommended
 * ["Remove WP Version"](https://wordpress.org/plugins/jogar-mais-wp-security/) by victorfreitas - Remove version WordPress in WP Generator, Feeds, css and js file.
 
 == Changelog ==
+
+= 3.23 =
+
+* New: Add option insert title above the share buttons
+* Improvements performance font icons. [Related by @marius84]
+* Update languages
 
 = 3.22 =
 
@@ -581,10 +587,8 @@ The following plugins are recommended
 
 == Upgrade Notice ==
 
-= 3.22 =
+= 3.23 =
 
-* New: Add option change share count label for theme Square Plus
-* New: Change layout share count for theme Square Plus
-* Admin page layout improvements
-* Code improvements
+* New option: Insert title above the sharing buttons.
+* Improvements performance font icons. [Related by @marius84]
 * Update languages

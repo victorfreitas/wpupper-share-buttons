@@ -61,6 +61,7 @@ $args = array(
      'layout'       => 'default', //String
      'items'        => '', // Mixed String|Array -- Example: 'facebook, google' | array( 'facebook', 'google' )
      'title'        => '', //String
+     'header_title' => '', //String
      'url'          => '', //string
      'elements'     => array( // Array
          'remove_inside'  =>  false, // Boolean

@@ -3,11 +3,12 @@
 // ===================================================
 @font-face {
     font-family: 'wpusb';
-    src: url('../fonts/wpusb.eot?n53qy7');
-    src: url('../fonts/wpusb.eot?n53qy7#iefix') format('embedded-opentype'),
-         url('../fonts/wpusb.ttf?n53qy7') format('truetype'),
-         url('../fonts/wpusb.woff?n53qy7') format('woff'),
-         url('../fonts/wpusb.svg?n53qy7#wpusb') format('svg');
+    src: url('../fonts/wpusb.eot?n53qy7');  /* IE9 Compat Modes */
+    src: url('../fonts/wpusb.eot?n53qy7#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/wpusb.woff2?n53qy7') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/wpusb.woff?n53qy7') format('woff'), /* Pretty Modern Browsers */
+         url('../fonts/wpusb.ttf?n53qy7') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/wpusb.svg?n53qy7#wpusb') format('svg'); /* Legacy iOS */
     font-weight: normal;
     font-style: normal;
 }
