@@ -51,21 +51,3 @@ div[data-#{$prefix}-component="share-preview"] {
         width: 48px;
     }
 }
-
-.#{$prefix}-square-plus {
-    .#{$prefix}-counter {
-        top: 2px;
-
-        .#{$prefix}-text {
-            bottom: 4px;
-        }
-
-        .#{$prefix}-slash {
-            font-size: 30px;
-            font-weight: normal;
-            left: 83px;
-            line-height: 15px;
-            top: 10px;
-        }
-    }
-}

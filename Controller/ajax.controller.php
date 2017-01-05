@@ -265,6 +265,7 @@ class WPUSB_Ajax_Controller {
 				'btn_class'         => ( $fixed_layout == 'buttons' ) ? 'button' : $fixed_layout,
 				'is_fixed_2'        => ( $fixed_layout == 'buttons' ) ? false : true,
 				'share_count_label' => WPUSB_Utils::get_share_count_label(),
+				'title'             => WPUSB_Utils::option( 'title' ),
 			);
 			$count++;
 		}

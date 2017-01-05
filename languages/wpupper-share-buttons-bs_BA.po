@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2017-01-04 01:24-0200\n"
-"PO-Revision-Date: 2017-01-04 01:24-0200\n"
+"POT-Creation-Date: 2017-01-05 14:59-0200\n"
+"PO-Revision-Date: 2017-01-05 14:59-0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: bs\n"
@@ -106,7 +106,7 @@ msgstr ""
 msgid "Like"
 msgstr ""
 
-#: Config/social-elements.php:332 Templates/layouts-primary.php:151
+#: Config/social-elements.php:332 Templates/layouts-primary.php:154
 msgid "Open modal social networks"
 msgstr ""
 
@@ -153,7 +153,7 @@ msgid "Extra Settings | WPUpper Share Buttons"
 msgstr ""
 
 #: Controller/settings.controller.php:76 View/settings-extra.view.php:41
-#: View/settings.view.php:453
+#: View/settings.view.php:471
 msgid "Extra Settings"
 msgstr ""
 
@@ -162,11 +162,11 @@ msgid "Use options | WPUpper Share Buttons"
 msgstr ""
 
 #: Controller/settings.controller.php:85 View/settings-faq.view.php:34
-#: View/settings.view.php:458
+#: View/settings.view.php:476
 msgid "Use options"
 msgstr ""
 
-#: Controller/share-reports.controller.php:222
+#: Controller/share-reports.controller.php:222 View/settings.view.php:191
 msgid "Title"
 msgstr "Naslov"
 
@@ -206,7 +206,7 @@ msgstr ""
 msgid "Sharing Report | WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/share-reports.controller.php:305 View/settings.view.php:466
+#: Controller/share-reports.controller.php:305 View/settings.view.php:484
 msgid "Sharing Report"
 msgstr ""
 
@@ -378,97 +378,110 @@ msgstr ""
 msgid "Change text of the share count title. Default SHARES"
 msgstr ""
 
-#: View/settings.view.php:190
-msgid "Context ID"
+#: View/settings.view.php:184
+#, php-format
+msgid "Used in %s layout."
 msgstr ""
 
-#: View/settings.view.php:199
-msgid "Enter name to context of search. ID of content tag"
+#: View/settings.view.php:184 View/settings.view.php:274
+msgid "Square plus"
 msgstr ""
 
 #: View/settings.view.php:200
+msgid "Insert the title here."
+msgstr ""
+
+#: View/settings.view.php:201
+msgid "Text to display above the sharing buttons."
+msgstr ""
+
+#: View/settings.view.php:208
+msgid "Context ID"
+msgstr ""
+
+#: View/settings.view.php:217
+msgid "Enter name to context of search. ID of content tag"
+msgstr ""
+
+#: View/settings.view.php:218
 msgid ""
 "This is to set the fixed layout to the left of the post content. "
 "<strong>Example:</strong> <code>wrap</code> use {id} for post id."
 msgstr ""
 
-#: View/settings.view.php:207
+#: View/settings.view.php:225
 msgid "Layout options"
 msgstr "Layout Options"
 
-#: View/settings.view.php:209
+#: View/settings.view.php:227
 msgid "All layout supports responsive"
 msgstr ""
 
-#: View/settings.view.php:220
+#: View/settings.view.php:238
 msgid "Default"
 msgstr "Zadano"
 
-#: View/settings.view.php:229
+#: View/settings.view.php:247
 msgid "Button"
 msgstr ""
 
-#: View/settings.view.php:238 View/settings.view.php:318
+#: View/settings.view.php:256 View/settings.view.php:336
 msgid "Rounded"
 msgstr ""
 
-#: View/settings.view.php:247 View/settings.view.php:308
+#: View/settings.view.php:265 View/settings.view.php:326
 msgid "Square"
 msgstr "Kvadrat"
 
-#: View/settings.view.php:256
-msgid "Square plus"
-msgstr ""
-
-#: View/settings.view.php:262
+#: View/settings.view.php:280
 msgid "Position fixed"
 msgstr ""
 
-#: View/settings.view.php:272
+#: View/settings.view.php:290
 msgid "Fixed left"
 msgstr ""
 
-#: View/settings.view.php:282
+#: View/settings.view.php:300
 msgid "Fixed right"
 msgstr ""
 
-#: View/settings.view.php:289
+#: View/settings.view.php:307
 msgid "Clear"
 msgstr ""
 
-#: View/settings.view.php:290
+#: View/settings.view.php:308
 msgid "Click to clear the positions."
 msgstr ""
 
-#: View/settings.view.php:295
+#: View/settings.view.php:313
 msgid "Position fixed layout"
 msgstr ""
 
-#: View/settings.view.php:324
+#: View/settings.view.php:342
 msgid "Fixed Items in top"
 msgstr ""
 
-#: View/settings.view.php:336
+#: View/settings.view.php:354
 msgid "It is activated when scrolling the page on the buttons position."
 msgstr ""
 
-#: View/settings.view.php:342
+#: View/settings.view.php:360
 msgid "Highlighted by reference"
 msgstr ""
 
-#: View/settings.view.php:354
+#: View/settings.view.php:372
 msgid "This allows highlight the social network where the user Came from."
 msgstr ""
 
-#: View/settings.view.php:360
+#: View/settings.view.php:378
 msgid "Remove button title"
 msgstr ""
 
-#: View/settings.view.php:375
+#: View/settings.view.php:393
 msgid "Remove counter"
 msgstr ""
 
-#: View/settings.view.php:396
+#: View/settings.view.php:414
 msgid ""
 "The share count Twitter is powered by <a href=\"http://newsharecounts.com\" "
 "target=\"_blank\">newsharecounts.com</a>, you have to sign up with your "
@@ -477,30 +490,30 @@ msgid ""
 "That, and nothing else!"
 msgstr ""
 
-#: View/settings.view.php:414
+#: View/settings.view.php:432
 msgid "Save Changes"
 msgstr "Sačuvati promene"
 
-#: View/settings.view.php:432
+#: View/settings.view.php:450
 msgid "Settings saved."
 msgstr "Postavke sačuvane."
 
-#: View/settings.view.php:448
+#: View/settings.view.php:466
 msgid "General"
 msgstr ""
 
-#: View/settings.view.php:578
+#: View/settings.view.php:596
 #, php-format
 msgid ""
 "Help keep the free %s, you can make a donation or vote with %s at WordPress."
 "org. Thank you very much!"
 msgstr ""
 
-#: View/settings.view.php:591
+#: View/settings.view.php:609
 msgid "Make a donation"
 msgstr ""
 
-#: View/settings.view.php:599
+#: View/settings.view.php:617
 msgid "Make a review"
 msgstr ""
 

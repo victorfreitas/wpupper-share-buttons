@@ -9,65 +9,79 @@
     }
 }
 
-.#{$prefix}-item a {
-    color: #424242;
-    border-bottom: none;
-    cursor: pointer;
+.#{$prefix}-item {
     display: inline-block;
-    font-family: $fontFamily;
-    text-decoration: none;
+    font-family: Arial, Sans-serif;
+    margin-bottom: 10px;
+    margin-right: 10px;
 
-    &:hover {
-        border-bottom: none;
-        box-shadow: none;
+    &:last-child {
+        margin-right: 0;
+    }
+
+    a {
+        -moz-transition: background 0.3s ease;
+        -webkit-transition: background 0.3s ease;
+        border: none;
+        color: #424242;
+        cursor: pointer;
+        display: inline-block;
         font-family: $fontFamily;
         text-decoration: none;
-    }
+        transition: background 0.3s ease;
 
-    i,
-    span {
-        display: inline-block;
-        vertical-align: middle;
-        text-align: center;
-    }
-
-    i {
-        font-size: $size;
-        height: $size;
-        width: $size;
-    }
-
-    span {
-        font-size: 12px;
-        margin-left: 5px;
-
-        &:before {
-            content: attr(data-title);
+        &:hover {
+            border-bottom: none;
+            box-shadow: none;
+            font-family: $fontFamily;
+            text-decoration: none;
         }
-    }
-
-    .#{$prefix}-buttons & {
-        border-radius: 3px;
-        color: #fff;
 
         i,
-        i:hover {
-            color: inherit;
-            font-size: 26px;
-            height: 31px;
-            line-height: $size;
+        span {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        i {
+            font-size: $size;
+            height: $size;
+            width: $size;
         }
 
         span {
-            margin-left: 0;
-            padding: 0 5px;
-            position: relative;
-            right: 2px;
+            font-size: 12px;
+            margin-left: 5px;
+
+            &:before {
+                content: attr(data-title);
+            }
         }
 
-        .#{$prefix}-icon-facebook:before {
-            bottom: 1px;
-            position: relative;
+        .#{$prefix}-buttons & {
+            border-radius: 3px;
+            color: #fff;
+
+            i,
+            i:hover {
+                color: inherit;
+                font-size: 26px;
+                height: 31px;
+                line-height: $size;
+            }
+
+            span {
+                margin-left: 0;
+                padding: 0 5px;
+                position: relative;
+                right: 2px;
+            }
+
+            .#{$prefix}-icon-facebook:before {
+                bottom: 1px;
+                position: relative;
+            }
         }
     }
 }

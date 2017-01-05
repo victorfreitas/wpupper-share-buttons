@@ -95,7 +95,8 @@
     &:hover,
     &:active,
     &:visited,
-    &:focus {
+    &:focus,
+    &:-webkit-any-link {
     	color: #fff;
         border-bottom: none;
         box-shadow: none;

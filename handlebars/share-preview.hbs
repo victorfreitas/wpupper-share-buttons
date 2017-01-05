@@ -2,6 +2,11 @@
 
 	{{#if first}}
 		<div class="{{prefix}} {{prefix}}-{{layout}} social-share {{prefix}}-preview">
+		{{#if title}}
+			<div class="{{prefix}}-title">
+			 	<span>{{title}}</span>
+			 </div>
+		 {{/if}}
 	{{/if}}
 
 	<div class="{{prefix}}-item {{prefix}}-{{item_class}}">

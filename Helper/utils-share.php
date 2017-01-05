@@ -197,21 +197,26 @@ abstract class WPUSB_Utils_Share {
 	 * @return String HTML
 	 *
 	 */
-	public static function get_buttons_open( $args, $model, $permalink, $title ) {
-		$prefix       = WPUSB_App::SLUG;
-		$args_buttons = (object) array(
-			'class_first'    => $args['class_first'],
+	public static function get_buttons_open( $defaults, $model, $permalink, $title ) {
+		$prefix = WPUSB_App::SLUG;
+		$args   = array(
 			'custom_class'   => $model->class,
-			'layout'         => $args['layout'] ? $args['layout'] : 'default',
+			'layout'         => ( $defaults['layout'] ) ? $defaults['layout'] : 'default',
 			'prefix'         => $prefix,
 			'position_fixed' => ( $model->position_fixed ) ? "{$prefix}-{$model->position_fixed}" : '',
-			'remove_counter' => $args['elements']['remove_counter'],
+			'remove_counter' => $defaults['elements']['remove_counter'],
+			'remove_inside'  => $defaults['elements']['remove_inside'],
 			'permalink'      => $permalink,
 			'title'          => $title,
+			'header_title'   => ( $defaults['header_title'] ) ? $defaults['header_title'] : WPUSB_Utils::option( 'title' ),
 		);
-		$buttons = self::get_content_by_layout( $args_buttons, 'init' );
 
-		return apply_filters( WPUSB_App::SLUG . '-init-buttons-html', $buttons, $args_buttons );
+		unset( $defaults['elements'] );
+
+		$args    = (object) array_merge( $defaults, $args );
+		$buttons = self::get_content_by_layout( $args, 'init' );
+
+		return apply_filters( WPUSB_App::SLUG . '-init-buttons-html', $buttons, $args );
 	}
 
 	/**
@@ -457,6 +462,7 @@ abstract class WPUSB_Utils_Share {
 			'items'        => WPUSB_Utils::isset_get( $atts, 'items' ),
 			'url'          => WPUSB_Utils::isset_get( $atts, 'url' ),
 			'title'        => WPUSB_Utils::isset_get( $atts, 'title' ),
+			'header_title' => WPUSB_Utils::isset_get( $atts, 'header_title' ),
 			'elements'     => array(
 				'remove_inside'  => WPUSB_Utils::isset_get( $atts, 'remove_inside' ),
 				'remove_counter' => WPUSB_Utils::isset_get( $atts, 'remove_counter' ),
@@ -485,6 +491,7 @@ abstract class WPUSB_Utils_Share {
 			'items'        => WPUSB_Utils::rm_tags( $atts['items'] ),
 			'url'          => rawurlencode( esc_url( $atts['url'] ) ),
 			'title'	       => WPUSB_Utils::rm_tags( $atts['title'] ),
+			'header_title' => WPUSB_Utils::rm_tags( $atts['header_title'] ),
 			'elements'     => array(
 				'remove_inside'  => self::get_remove_type( $atts, 'remove_inside' ),
 				'remove_counter' => self::get_remove_type( $atts, 'remove_counter' ),

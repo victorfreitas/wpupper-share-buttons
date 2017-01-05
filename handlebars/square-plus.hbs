@@ -1,11 +1,19 @@
 {{#each this}}
 
 	{{#if first}}
+
+		{{#if title}}
+			<div class="{{prefix}}-title">
+			 	<span>{{title}}</span>
+			 </div>
+		 {{/if}}
+
 		<div class="{{prefix}} {{prefix}}-{{layout}} social-share {{prefix}}-preview">
 
 			<div class="{{prefix}}-item {{prefix}}-counter {{prefix}}-total-share">
 				<div class="{{prefix}}-shares-count">{{counter}}</div>
 				<div class="{{prefix}}-shares-text" data-title="{{share_count_label}}"></div>
+				<span class="wpusb-pipe" data-pipe="&#x0007C;"></span>
 			</div>
 
 			<div class="{{prefix}}-item {{prefix}}-{{item_class}} {{prefix}}-full {{prefix}}-inside">

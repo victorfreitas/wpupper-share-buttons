@@ -22,10 +22,11 @@ class WPUSB_Layouts_Primary {
 	 * @return String
 	 */
 	public static function init( \stdClass $atts ) {
-		$args      = WPUSB_Utils::content_args( $atts );
-		$classes   = WPUSB_Utils::get_classes_first( $atts );
-		$component = WPUSB_Utils::get_component_by_type();
-		$content   = <<<EOD
+		$args         = WPUSB_Utils::content_args( $atts );
+		$classes      = WPUSB_Utils::get_classes_first( $atts );
+		$component    = WPUSB_Utils::get_component_by_type();
+		$header_title = WPUSB_Shares_View::get_header_title( $atts );
+		$content      = <<<EOD
 			<div data-element-url="{$args['permalink']}"
 		     	 data-element-title="{$args['title']}"
 			     data-attr-reference="{$args['post_id']}"
@@ -33,6 +34,8 @@ class WPUSB_Layouts_Primary {
 			     class="{$classes}"
 			     {$component}
 			     {$args['fixed_top']}>
+
+			 {$header_title}
 EOD;
 		return apply_filters( WPUSB_App::SLUG . '-start-buttons-html', $content, $atts );
 	}

@@ -180,7 +180,25 @@ class WPUSB_Settings_View {
 										'class'       => 'large-text',
 										'name'        => "{$option_name}[share_count_label]",
 										'value'       => $model->share_count_label,
-										'placeholder' => __( 'Change text of the share count title. Default SHARES', WPUSB_App::TEXTDOMAIN )
+										'placeholder' => __( 'Change text of the share count title. Default SHARES', WPUSB_App::TEXTDOMAIN ),
+										'description' => sprintf( __( 'Used in %s layout.', WPUSB_App::TEXTDOMAIN ), __( 'Square plus', WPUSB_App::TEXTDOMAIN ) ),
+									));
+								?>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-title">
+										<?php _e( 'Title', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'id'          => 'title',
+										'class'       => 'large-text',
+										'name'        => "{$option_name}[title]",
+										'value'       => $model->title,
+										'placeholder' => __( 'Insert the title here.', WPUSB_App::TEXTDOMAIN ),
+										'description' => __( 'Text to display above the sharing buttons.', WPUSB_App::TEXTDOMAIN ),
 									));
 								?>
 							</tr>

@@ -23,14 +23,6 @@ WPUSB_App::uses( 'utils', 'Helper' );
 WPUSB_App::uses( 'enqueue-scripts', 'Config' );
 
 /*
- * Templates
- */
-WPUSB_App::uses( 'layouts-primary', 'Templates' );
-WPUSB_App::uses( 'square-plus', 'Templates' );
-WPUSB_App::uses( 'fixed-left', 'Templates' );
-WPUSB_App::uses( 'modal', 'Templates' );
-
-/*
  * Social networks
  */
 WPUSB_App::uses( 'social-elements', 'Config' );
@@ -40,6 +32,14 @@ WPUSB_App::uses( 'social-elements', 'Config' );
  */
 WPUSB_App::uses( 'settings', 'Controller' );
 WPUSB_App::uses( 'shares', 'Controller' );
+
+/*
+ * Templates
+ */
+WPUSB_App::uses( 'layouts-primary', 'Templates' );
+WPUSB_App::uses( 'square-plus', 'Templates' );
+WPUSB_App::uses( 'fixed-left', 'Templates' );
+WPUSB_App::uses( 'modal', 'Templates' );
 
 /*
  * Controllers admin
@@ -60,7 +60,6 @@ final class WPUSB_Core {
 	 * @since 1.2
 	 */
 	private function __construct() {
-		add_action( 'init', array( __CLASS__, 'load_textdomain' ) );
 		self::instantiate_controllers();
 		self::register_actions();
 	}
@@ -272,4 +271,5 @@ final class WPUSB_Core {
 		}
 	}
 }
-WPUSB_Core::instance();
+add_action( 'plugins_loaded', array( 'WPUSB_Core', 'instance' ) );
+add_action( 'init', array( 'WPUSB_Core', 'load_textdomain' ) );

@@ -179,6 +179,7 @@ class WPUSB_Shares_Controller {
 				'items'          => '',
 				'url'            => '',
 				'title'          => '',
+				'header_title'   => '',
 			),
 			$atts,
 			WPUSB_App::SLUG

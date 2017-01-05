@@ -23,11 +23,12 @@ class WPUSB_Square_Plus {
 	 * @return String
 	 */
 	public static function init( \stdClass $atts ) {
-		$args      = WPUSB_Utils::content_args( $atts );
-		$classes   = WPUSB_Utils::get_classes_first( $atts );
-		$counter   = self::add_count( $atts );
-		$component = WPUSB_Utils::get_component_by_type();
-		$content   = <<<EOD
+		$args         = WPUSB_Utils::content_args( $atts );
+		$classes      = WPUSB_Utils::get_classes_first( $atts );
+		$counter      = self::add_count( $atts );
+		$component    = WPUSB_Utils::get_component_by_type();
+		$header_title = WPUSB_Shares_View::get_header_title( $atts );
+		$content      = <<<EOD
 		<div data-element-url="{$args['permalink']}"
 		     data-element-title="{$args['title']}"
 		     data-attr-reference="{$args['post_id']}"
@@ -36,6 +37,7 @@ class WPUSB_Square_Plus {
 		     {$component}
 		     {$args['fixed_top']}>
 
+			 {$header_title}
 		     {$counter}
 EOD;
 		return apply_filters( WPUSB_App::SLUG . 'start-buttons-html', $content );
@@ -109,6 +111,7 @@ EOD;
 			<div class="{$args->prefix}-item {$args->prefix}-total-share">
 				<div class="{$args->prefix}-shares-count" data-element="total-share"></div>
 				<div class="{$args->prefix}-shares-text" data-title="{$share_label}"></div>
+				<span class="{$args->prefix}-pipe" data-pipe="&#x0007C;"></span>
 			</div>
 EOD;
 		return apply_filters( WPUSB_App::SLUG . 'total-counter', $content );

@@ -342,6 +342,14 @@ class WPUSB_Setting {
 	private $share_count_label;
 
 	/**
+	 * Title above share buttons
+	 *
+	 * @since 1.0
+	 * @var String
+	 */
+	private $title;
+
+	/**
 	 * Plugin general prefix
 	 *
 	 * @since 1.0

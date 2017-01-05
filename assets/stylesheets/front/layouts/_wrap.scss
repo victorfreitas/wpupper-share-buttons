@@ -24,33 +24,9 @@
     a { box-shadow: none; }
 }
 
-.#{$prefix} .#{$prefix}-item {
-    display: inline-block;
-    font-family: Arial;
-    margin-bottom: 10px;
-    margin-left: 10px;
-
-    &:first-child {
-        margin-left: 0;
-    }
-
-    a {
-        -moz-transition: background 0.3s ease;
-        -webkit-transition: background 0.3s ease;
-                transition: background 0.3s ease;
-        border: none;
-    }
-
-
-}
-
 .#{$prefix}-square-plus {
     .#{$prefix}-item {
-        margin-left: 5px;
-    }
-
-    .#{$prefix}-full {
-        margin-left: 0;
+        margin-right: 5px;
     }
 }
 
@@ -298,8 +274,9 @@
     .#{$prefix}-total-share {
         color: #8c8c8c;
         font-weight: 700;
-        margin: 0 10px 0 0;
+        margin: 0 15px 0 0;
         line-height: 1.5;
+        position: relative;
 
         .#{$prefix}-shares-count {
             line-height: .5;
@@ -311,6 +288,19 @@
 
             &:before {
                 content: attr(data-title);
+            }
+        }
+
+        .#{$prefix}-pipe {
+            font-size: 30px;
+            font-weight: normal;
+            position: absolute;
+            right: -5px;
+            top: -14px;
+            width: 1px;
+
+            &:before {
+                content: attr(data-pipe);
             }
         }
     }
