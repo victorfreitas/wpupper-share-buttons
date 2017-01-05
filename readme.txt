@@ -97,13 +97,13 @@ The following plugins are recommended
 
 = 3.23 =
 
-* New: Add option insert title above the share buttons
+* New option: Insert title above the sharing buttons.
 * Improvements performance font icons. [Related by @marius84]
 * Update languages
 
 = 3.22 =
 
-* New: Add option change share count label for theme Square Plus
+* New option: Change share count label for theme Square Plus
 * New: Change layout share count for theme Square Plus
 * Admin page layout improvements
 * Code improvements
