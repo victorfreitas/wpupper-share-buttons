@@ -12,7 +12,10 @@
 	<div class="{{prefix}}-item {{prefix}}-{{item_class}}">
 		<a class="{{prefix}}-button" title="{{item_title}}">
 			<i class="{{prefix}}-icon-{{item_class}}-{{layout}}"></i>
-			<span class="wpusb-title">{{item_inside}}</span>
+
+			{{#if item_inside}}
+				<span class="wpusb-title">{{item_inside}}</span>
+			{{/if}}
 		</a>
 
 		{{#if has_counter}}

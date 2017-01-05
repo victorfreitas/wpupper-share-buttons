@@ -51,3 +51,8 @@ div[data-#{$prefix}-component="share-preview"] {
         width: 48px;
     }
 }
+
+.#{$prefix}-item a span {
+    position: relative;
+    top: 7px;
+}
