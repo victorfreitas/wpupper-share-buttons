@@ -108,9 +108,8 @@ WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $, utils) {
 		WPUSB.Preview.create( this.$el );
 	};
 
-	SharePreview.fn._fail = function(throwError, status) {
+	SharePreview.fn._fail = function(xhr, status, thrownError) {
 		this.spinner.css( 'visibility', 'hidden' );
-		console.warn( throwError );
 	};
 
 	SharePreview.fn.render = function(response) {

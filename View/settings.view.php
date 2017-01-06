@@ -446,7 +446,7 @@ class WPUSB_Settings_View {
 	 */
 	public static function update_notice_message() {
 	?>
-		<div class="updated notice is-dismissible">
+		<div class="updated notice is-dismissible" id="updated-notice">
 			<p><strong><?php _e( 'Settings saved.', WPUSB_App::TEXTDOMAIN ); ?></strong></p>
 			<button class="notice-dismiss"></button>
 		</div>
@@ -456,6 +456,7 @@ class WPUSB_Settings_View {
 	public static function menu_top() {
 		$general    = WPUSB_Setting::HOME_SETTINGS;
 		$extra      = WPUSB_Setting::EXTRA_SETTINGS;
+		$custom_css = WPUSB_Setting::CUSTOM_CSS;
 		$use_option = WPUSB_Setting::USE_OPTIONS;
 		$report     = WPUSB_Setting::SHARING_REPORT;
 	?>
@@ -469,6 +470,11 @@ class WPUSB_Settings_View {
 				<li<?php echo WPUSB_Utils::selected_menu( $extra ); ?>>
 					<a href="<?php menu_page_url( $extra ); ?>">
 						<?php _e( 'Extra Settings', WPUSB_App::TEXTDOMAIN ); ?>
+					</a>
+				</li>
+				<li<?php echo WPUSB_Utils::selected_menu( $custom_css ); ?>>
+					<a href="<?php menu_page_url( $custom_css ); ?>">
+						<?php _e( 'Custom CSS', WPUSB_App::TEXTDOMAIN ); ?>
 					</a>
 				</li>
 				<li<?php echo WPUSB_Utils::selected_menu( $use_option ); ?>>

@@ -11,6 +11,7 @@
 	"sub"      : true,
 	"globals"  : {
 		"Handlebars" : true,
+		"CodeMirror" : true,
 		"console"    : true,
 		"jQuery"     : true,
 		"Toastr"     : true,

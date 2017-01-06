@@ -363,7 +363,7 @@ class WPUSB_Setting {
 	 * @since 1.0
 	 * @var string
 	 */
-	const DB_VERSION = '1.2';
+	const DB_VERSION = '1.3';
 
 	/**
 	 * Sharing report table name
@@ -400,6 +400,7 @@ class WPUSB_Setting {
 	const HOME_SETTINGS  = 'wpusb';
 	const EXTRA_SETTINGS = 'wpusb-extra-settings';
 	const USE_OPTIONS    = 'wpusb-faq';
+	const CUSTOM_CSS     = 'wpusb-custom-css';
 	const SHARING_REPORT = 'wpusb-sharing-report';
 
 	/**
@@ -502,12 +503,16 @@ class WPUSB_Setting {
 	 * @return Array
 	 */
 	private function _get_merge_options() {
-		$options_name = WPUSB_Utils::get_options_name();
+		$options = WPUSB_Utils::get_options_name();
+		$value   = array();
 
-		return array_merge(
-			(array) get_option( $options_name[1] ),
-			(array) get_option( $options_name[2] ),
-			(array) get_option( $options_name[3] )
-		);
+		unset( $options[4] );
+
+		foreach ( $options as $option ) :
+			$option_value = (array) get_site_option( $option );
+			$value        = array_merge( $value, $option_value );
+		endforeach;
+
+		return $value;
 	}
 }

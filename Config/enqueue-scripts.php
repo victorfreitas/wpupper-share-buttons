@@ -37,6 +37,8 @@ final class WPUSB_Scripts {
 			return;
 		}
 
+		self::codemirror_scripts();
+
 		wp_enqueue_script(
 			WPUSB_App::SLUG . '-admin-scripts',
 			WPUSB_Utils::plugin_url( 'javascripts/admin/built.js' ),
@@ -66,9 +68,9 @@ final class WPUSB_Scripts {
 		if ( $page_settings ) {
 			wp_register_style(
 				$handle,
-				WPUSB_Utils::plugin_url( 'stylesheets/style.css' ),
+				WPUSB_Utils::plugin_url( self::get_front_css_path() ),
 				array(),
-				WPUSB_App::VERSION
+				filemtime( WPUSB_Utils::file_path( self::get_front_css_path() ) )
 			);
 		}
 
@@ -149,10 +151,144 @@ final class WPUSB_Scripts {
 
 		wp_enqueue_style(
 			WPUSB_App::SLUG . '-style',
-			WPUSB_Utils::plugin_url( 'stylesheets/style.css' ),
+			WPUSB_Utils::plugin_url( self::get_front_css_path() ),
+			array(),
+			filemtime( WPUSB_Utils::file_path( self::get_front_css_path() ) )
+		);
+	}
+
+	public static function codemirror_scripts() {
+		if ( WPUSB_Utils::get( 'page' ) !== WPUSB_Setting::CUSTOM_CSS ) {
+			return;
+		}
+
+		$path_codemirror = 'Vendor/codemirror/';
+
+		//Lib
+		wp_enqueue_script(
+			WPUSB_App::SLUG . '-codemirror-js',
+			WPUSB_Utils::plugin_url( 'lib/codemirror.js', $path_codemirror ),
+			array(),
+			'5.22',
+			true
+		);
+		wp_enqueue_style(
+			WPUSB_App::SLUG . '-codemirror-css',
+			WPUSB_Utils::plugin_url( 'lib/codemirror.css', $path_codemirror ),
 			array(),
 			WPUSB_App::VERSION
 		);
+
+		//Theme
+		wp_enqueue_style(
+			WPUSB_App::SLUG . '-codemirror-theme-seti',
+			WPUSB_Utils::plugin_url( 'theme/seti.css', $path_codemirror ),
+			array(),
+			'5.22'
+		);
+
+		//Mode
+		wp_enqueue_script(
+			WPUSB_App::SLUG . '-codemirror-mode-css',
+			WPUSB_Utils::plugin_url( 'mode/css/css.js', $path_codemirror ),
+			array(),
+			'5.22',
+			true
+		);
+
+		//AddOn Edit
+		wp_enqueue_script(
+			WPUSB_App::SLUG . '-codemirror-addon-edit-closebrackets',
+			WPUSB_Utils::plugin_url( 'addon/edit/closebrackets.js', $path_codemirror ),
+			array(),
+			'5.22',
+			true
+		);
+		wp_enqueue_script(
+			WPUSB_App::SLUG . '-codemirror-addon-edit-matchbrackets',
+			WPUSB_Utils::plugin_url( 'addon/edit/matchbrackets.js', $path_codemirror ),
+			array(),
+			'5.22',
+			true
+		);
+		wp_enqueue_script(
+			WPUSB_App::SLUG . '-codemirror-addon-edit-trailingspace',
+			WPUSB_Utils::plugin_url( 'addon/edit/trailingspace.js', $path_codemirror ),
+			array(),
+			'5.22',
+			true
+		);
+
+		//AddOn Display
+		wp_enqueue_script(
+			WPUSB_App::SLUG . '-codemirror-addon-display-placeholder',
+			WPUSB_Utils::plugin_url( 'addon/display/placeholder.js', $path_codemirror ),
+			array(),
+			'5.22',
+			true
+		);
+
+		//AddOn Hint
+		wp_enqueue_script(
+			WPUSB_App::SLUG . '-codemirror-addon-hint-css-hint',
+			WPUSB_Utils::plugin_url( 'addon/hint/css-hint.js', $path_codemirror ),
+			array(),
+			'5.22',
+			true
+		);
+		wp_enqueue_script(
+			WPUSB_App::SLUG . '-codemirror-addon-hint-show-hint-js',
+			WPUSB_Utils::plugin_url( 'addon/hint/show-hint.js', $path_codemirror ),
+			array(),
+			'5.22',
+			true
+		);
+		wp_enqueue_style(
+			WPUSB_App::SLUG . '-codemirror-addon-hint-show-hint',
+			WPUSB_Utils::plugin_url( 'addon/hint/show-hint.css', $path_codemirror ),
+			array(),
+			'5.22'
+		);
+
+		//AddOn Lint
+		wp_enqueue_style(
+			WPUSB_App::SLUG . '-codemirror-addon-lint-lint',
+			WPUSB_Utils::plugin_url( 'addon/lint/lint.css', $path_codemirror ),
+			array(),
+			'5.22'
+		);
+		wp_enqueue_script(
+			WPUSB_App::SLUG . '-codemirror-addon-lint-lint-js',
+			WPUSB_Utils::plugin_url( 'addon/lint/lint.js', $path_codemirror ),
+			array(),
+			'5.22',
+			true
+		);
+		wp_enqueue_script(
+			WPUSB_App::SLUG . '-codemirror-addon-lint-css-lint',
+			WPUSB_Utils::plugin_url( 'addon/lint/css-lint.js', $path_codemirror ),
+			array(),
+			'5.22',
+			true
+		);
+
+		//AddOn Selection
+		wp_enqueue_script(
+			WPUSB_App::SLUG . '-codemirror-addon-selection-active-line',
+			WPUSB_Utils::plugin_url( 'addon/selection/active-line.js', $path_codemirror ),
+			array(),
+			'5.22',
+			true
+		);
+	}
+
+
+	public static function get_front_css_path() {
+		if ( WPUSB_Utils::file_css_min_exists() ) {
+			return 'stylesheets/style.min.css';
+		}
+
+		return 'stylesheets/style.css';
 	}
 
 	/**

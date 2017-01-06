@@ -18,6 +18,7 @@ WPUSB_App::uses( 'setting', 'Model' );
 if ( WPUSB_App::is_admin() ) {
 	WPUSB_App::uses( 'settings', 'View' );
 	WPUSB_App::uses( 'settings-extra', 'View' );
+	WPUSB_App::uses( 'settings-custom-css', 'View' );
 	WPUSB_App::uses( 'settings-faq', 'View' );
 }
 
@@ -70,18 +71,29 @@ class WPUSB_Settings_Controller {
 			'dashicons-share'
 	  	);
 
+		$title = __( 'Extra Settings', WPUSB_App::TEXTDOMAIN );
 	  	add_submenu_page(
 	  		WPUSB_App::SLUG,
-	  		__( 'Extra Settings | WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ),
-	  		__( 'Extra Settings', WPUSB_App::TEXTDOMAIN ),
+	  		$title,
+	  		$title,
 	  		'manage_options',
 	  		WPUSB_Setting::EXTRA_SETTINGS,
 	  		array( 'WPUSB_Settings_Extra_View', 'render_settings_extra' )
 	  	);
 
+	  	$title = __( 'Custom CSS', WPUSB_App::TEXTDOMAIN );
 	  	add_submenu_page(
 	  		WPUSB_App::SLUG,
-	  		__( 'Use options | WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ),
+	  		$title,
+	  		$title,
+	  		'manage_options',
+	  		WPUSB_Setting::CUSTOM_CSS,
+	  		array( 'WPUSB_Settings_Custom_CSS_View', 'render' )
+	  	);
+
+	  	add_submenu_page(
+	  		WPUSB_App::SLUG,
+	  		__( 'Use options', WPUSB_App::TEXTDOMAIN ),
 	  		__( 'Use options', WPUSB_App::TEXTDOMAIN ),
 	  		'manage_options',
 	  		WPUSB_Setting::USE_OPTIONS,
@@ -97,12 +109,15 @@ class WPUSB_Settings_Controller {
 	 * @return void
 	 */
 	public function plugin_updates() {
-		$option = WPUSB_Setting::TABLE_NAME . '_db_version';
-		$value  = get_site_option( $option );
+		$option          = WPUSB_Setting::TABLE_NAME . '_db_version';
+		$current_version = WPUSB_Setting::DB_VERSION;
+		$db_version      = WPUSB_Utils::get_option( $option );
 
-	    if ( $value !== WPUSB_Setting::DB_VERSION ) {
-	    	WPUSB_Utils::add_update_option( $option, $value );
-	    	WPUSB_Core::alter_table();
+	    if ( $db_version === $current_version ) {
+	    	return;
 	    }
+
+    	WPUSB_Utils::add_option( $option, $current_version );
+    	WPUSB_Core::alter_table();
 	}
 }

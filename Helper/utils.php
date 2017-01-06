@@ -138,10 +138,53 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function rm_tags( $value, $remove_breaks = false ) {
 		if ( is_array( $value ) ) {
-			return array_map( __METHOD__, $value );
+			$values = self::filter_values_sanitize_option( $value, current_filter() );
+			return array_map( __METHOD__, $values );
 		}
 
 	    return wp_strip_all_tags( $value, $remove_breaks );
+	}
+
+	/**
+	 * Remove empty values is sanitize option
+	 *
+	 * @since 3.24
+	 * @version 1.0
+	 * @param Array $values
+	 * @param String $filter
+	 * @return Array
+	*/
+	public static function filter_values_sanitize_option( $values, $filter ) {
+		if ( self::is_sanitize_option_filter( $filter ) ) {
+			return array_filter( $values );
+		}
+
+		return $values;
+	}
+
+	/**
+	 * Verify is sanitize option filter
+	 *
+	 * @since 3.24
+	 * @version 1.0
+	 * @param String $filter
+	 * @return Boolean
+	*/
+	public static function is_sanitize_option_filter( $filter ) {
+		return ( is_admin() && self::indexof( $filter, 'sanitize_option_' ) );
+	}
+
+	/**
+	 * Find the position of the first occurrence of a substring in a string
+	 *
+	 * @since 3.24
+	 * @version 1.0
+	 * @param String $value
+	 * @param String $search
+	 * @return Boolean
+	*/
+	public static function indexof( $value, $search ) {
+		return ( false !== strpos( $value, $search ) );
 	}
 
 	/**
@@ -156,7 +199,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			$request_ajax = $_SERVER['HTTP_X_REQUESTED_WITH'];
 		}
 
-		return ( ! empty( $request_ajax ) && strtolower( $request_ajax ) == 'xmlhttprequest' );
+		return ( ! empty( $request_ajax ) && strtolower( $request_ajax ) === 'xmlhttprequest' );
 	}
 
 	/**
@@ -185,7 +228,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function site_name() {
-		$site_name = get_option( 'blogname' );
+		$site_name = self::get_option( 'blogname' );
 
 		return self::rm_tags( $site_name );
 	}
@@ -198,7 +241,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function get_site_description() {
-		$description = get_option( 'blogdescription' );
+		$description = self::get_option( 'blogdescription' );
 
 		return self::rm_tags( $description );
 	}
@@ -634,21 +677,73 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
+	 * Verify is multisite and delete option
+	 *
+	 * @since 1.0.0
+	 * @since 3.24
+	 * @param String $option
+	 * @return Mixed
+	 */
+	public static function delete_option( $option ) {
+		if ( is_multisite() ) {
+			return delete_site_option( $option );
+		}
+
+		return delete_option( $option );
+	}
+
+	/**
+	 * Verify is multisite and get option
+	 *
+	 * @since 1.0.0
+	 * @since 3.24
+	 * @param String $option
+	 * @return Mixed
+	 */
+	public static function get_option( $option ) {
+		if ( is_multisite() ) {
+			return get_site_option( $option );
+		}
+
+		return get_option( $option );
+	}
+
+	/**
 	 * Verify option exists and update option
 	 *
 	 * @since 1.0.0
-	 * @since 3.6.2 Modified
+	 * @since 3.24
 	 * @param String $option
 	 * @param String $value
-	 * @return String
+	 * @return Boolean
 	 */
-	public static function add_update_option( $option, $value ) {
-		if ( $value ) {
-			update_site_option( $option, WPUSB_Setting::DB_VERSION );
-			return;
+	public static function add_option( $option, $value ) {
+		if ( is_multisite() ) {
+			return self::add_site_option( $option, $value );
 		}
 
-		add_site_option( $option, WPUSB_Setting::DB_VERSION );
+		if ( false === get_option( $option ) ) {
+			return add_option( $option, $value );
+		}
+
+		return update_option( $option, $value );
+	}
+
+	/**
+	 * Verify option exists and update option
+	 *
+	 * @since 1.0.0
+	 * @since 3.24
+	 * @param String $option
+	 * @param String $value
+	 * @return Boolean
+	 */
+	public static function add_site_option( $option, $value ) {
+		if ( false === get_site_option( $option ) ) {
+			return add_site_option( $option, $value );
+		}
+
+		return update_site_option( $option, $value );
 	}
 
 	/**
@@ -1056,6 +1151,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			WPUSB_App::SLUG . '_settings',
 			WPUSB_App::SLUG . '_social_media',
 			WPUSB_App::SLUG . '_extra_settings',
+			WPUSB_App::SLUG . '_custom_css',
 		);
 	}
 
@@ -1189,5 +1285,100 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$share_text  = __( 'SHARES', WPUSB_App::TEXTDOMAIN );
 
 		return self::option( 'share_count_label', $share_text );
+	}
+
+	/**
+	 * Get custom css string
+	 *
+	 * @since 3.24
+	 * @version 1.0
+	 * @param Null
+	 * @return String
+	 */
+	public static function get_custom_css() {
+		$options    = self::get_options_name();
+		$custom_css = self::get_option( $options[4] );
+
+		return self::rm_tags( $custom_css );
+	}
+
+	/**
+	 * Build custom css
+	 *
+	 * @since 3.24
+	 * @version 1.0
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function build_css( $custom_css ) {
+		$file     = self::get_file_css_min();
+		$css_base = self::get_css_base();
+		$fp       = @fopen( $file, 'wb' );
+
+		@fwrite( $fp, self::minify_css( $css_base . $custom_css ) );
+		@fclose( $fp );
+		@chmod( $file, 0644 );
+
+		return file_exists( $file );
+	}
+
+	/**
+	 * Minify custom css
+	 *
+	 * @since 3.24
+	 * @version 1.0
+	 * @param Null
+	 * @return String
+	 */
+	public static function minify_css( $css ) {
+		$css     = preg_replace( '!/\*[^*]*\*+([^\/][^*]*\*+)*/!', '', $css );
+		$css     = str_replace( array( "\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $css );
+		$search  = array( ': ', ', ', ' {', '; ', ' ;', ';}' );
+		$replace = array( ':', ',', '{', ';', ';', '}' );
+		$css     = str_replace( $search, $replace, $css );
+
+	    return $css;
+	}
+
+	/**
+	 * Get CSS base string
+	 *
+	 * @since 3.24
+	 * @version 1.0
+	 * @param Null
+	 * @return String
+	 */
+	public static function get_css_base() {
+		$base = self::file_path( 'stylesheets/style.css' );
+		$file = @fopen( $base, 'r' );
+		$tmp  = @fread( $file, @filesize( $base ) );
+
+        @fclose( $file );
+
+        return $tmp;
+	}
+
+	/**
+	 * Get css min file
+	 *
+	 * @since 3.24
+	 * @version 1.0
+	 * @param Null
+	 * @return string
+	 */
+	public static function get_file_css_min() {
+		return self::file_path( 'stylesheets/style.min.css' );
+	}
+
+	/**
+	 * Check CSS min exists
+	 *
+	 * @since 3.24
+	 * @version 1.0
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function file_css_min_exists() {
+		return file_exists( self::get_file_css_min() );
 	}
 }

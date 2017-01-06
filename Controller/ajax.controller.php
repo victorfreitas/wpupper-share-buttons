@@ -22,7 +22,8 @@ class WPUSB_Ajax_Controller {
 		$prefix = WPUSB_App::SLUG;
 		$this->sharing_report( $prefix );
 
-		add_action( "wp_ajax_{$prefix}_share_preview", array( &$this, 'share_preview_verify_request' ) );
+		add_action( "wp_ajax_{$prefix}_share_preview", array( &$this, 'share_preview_request' ) );
+		add_action( "wp_ajax_{$prefix}_save_custom_css", array( &$this, 'save_custom_css_request' ) );
 	}
 
 	public function sharing_report( $prefix ) {
@@ -68,7 +69,7 @@ class WPUSB_Ajax_Controller {
 	 * @param null
 	 * @return void
 	 */
-	public function share_preview_verify_request() {
+	public function share_preview_request() {
 		if ( ! WPUSB_Utils::is_request_ajax() ) {
 			exit(0);
 		}
@@ -298,5 +299,37 @@ class WPUSB_Ajax_Controller {
 		$text = WPUSB_Utils::rm_tags( $text, true );
 
 		return json_decode( $text, true );
+	}
+
+	public function save_custom_css_request() {
+		if ( ! WPUSB_Utils::is_request_ajax() ) {
+			exit(0);
+		}
+
+		if ( ! isset( $_POST['custom_css'] ) ) {
+			wp_send_json_error('');
+		}
+
+		$this->_save_custom_css();
+	}
+
+	private function _save_custom_css() {
+		$custom_css = WPUSB_Utils::post( 'custom_css' );
+		$options    = WPUSB_Utils::get_options_name();
+
+		if ( empty( $custom_css ) ) {
+			@unlink( WPUSB_Utils::get_file_css_min() );
+			WPUSB_Utils::delete_option( $options[4] );
+			wp_send_json_success('');
+		}
+
+		WPUSB_Utils::add_option( $options[4], $custom_css );
+
+		if ( WPUSB_Utils::build_css( $custom_css ) ) {
+			wp_send_json_success('');
+		}
+
+		$error_text = __( 'Error: Could not create css file.', WPUSB_App::TEXTDOMAIN );
+		wp_send_json_error( $error_text );
 	}
 }

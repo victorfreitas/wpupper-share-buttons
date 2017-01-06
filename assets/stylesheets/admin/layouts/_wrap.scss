@@ -235,3 +235,7 @@ $_itemsAvailable : 'items-available';
         top: 9px;
     }
 }
+
+.#{$prefix}-custom-css-wrap .updated {
+    display: none;
+}
