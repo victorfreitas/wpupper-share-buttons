@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPUpper Share Buttons 3.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-buttons\n"
-"POT-Creation-Date: 2017-01-05 14:59-0200\n"
+"POT-Creation-Date: 2017-01-06 09:41-0200\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,19 +26,19 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 "X-Poedit-SearchPathExcluded-1: assets\n"
 
-#: Config/enqueue-scripts.php:55
+#: Config/enqueue-scripts.php:57
 msgid "View Untitled"
 msgstr ""
 
-#: Config/enqueue-scripts.php:56
+#: Config/enqueue-scripts.php:58
 msgid "View without count"
 msgstr ""
 
-#: Config/enqueue-scripts.php:57
+#: Config/enqueue-scripts.php:59
 msgid "See with title"
 msgstr ""
 
-#: Config/enqueue-scripts.php:58
+#: Config/enqueue-scripts.php:60
 msgid "See with count"
 msgstr ""
 
@@ -143,35 +143,36 @@ msgstr ""
 msgid "Click to see also"
 msgstr ""
 
-#: Controller/settings.controller.php:48 View/settings.view.php:43
+#: Controller/ajax.controller.php:332
+msgid "Error: Could not create css file."
+msgstr ""
+
+#: Controller/settings.controller.php:49 View/settings.view.php:43
 msgid "Settings"
 msgstr ""
 
-#: Controller/settings.controller.php:65 View/settings-extra.view.php:29
-#: View/settings-faq.view.php:28 View/settings.view.php:31
-#: View/share-report.view.php:35
+#: Controller/settings.controller.php:66 View/settings-custom-css.view.php:29
+#: View/settings-extra.view.php:29 View/settings-faq.view.php:28
+#: View/settings.view.php:31 View/share-report.view.php:35
 msgid "WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/settings.controller.php:66
+#: Controller/settings.controller.php:67
 msgid "WPUpper Share"
 msgstr ""
 
-#: Controller/settings.controller.php:75
-msgid "Extra Settings | WPUpper Share Buttons"
-msgstr ""
-
-#: Controller/settings.controller.php:76 View/settings-extra.view.php:41
-#: View/settings.view.php:471
+#: Controller/settings.controller.php:74 View/settings-extra.view.php:41
+#: View/settings.view.php:472
 msgid "Extra Settings"
 msgstr ""
 
-#: Controller/settings.controller.php:84
-msgid "Use options | WPUpper Share Buttons"
+#: Controller/settings.controller.php:84 View/settings-custom-css.view.php:32
+#: View/settings.view.php:477
+msgid "Custom CSS"
 msgstr ""
 
-#: Controller/settings.controller.php:85 View/settings-faq.view.php:34
-#: View/settings.view.php:476
+#: Controller/settings.controller.php:96 Controller/settings.controller.php:97
+#: View/settings-faq.view.php:34 View/settings.view.php:482
 msgid "Use options"
 msgstr ""
 
@@ -215,16 +216,24 @@ msgstr ""
 msgid "Sharing Report | WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/share-reports.controller.php:305 View/settings.view.php:484
+#: Controller/share-reports.controller.php:305 View/settings.view.php:490
 msgid "Sharing Report"
 msgstr ""
 
-#: Helper/utils.php:1189
+#: Helper/utils.php:1285
 msgid "SHARES"
 msgstr ""
 
 #: Templates/fixed-left.php:134
 msgid "Shares"
+msgstr ""
+
+#: View/settings-custom-css.view.php:51
+msgid "Enter your custom CSS ..."
+msgstr ""
+
+#: View/settings-custom-css.view.php:65 View/settings.view.php:432
+msgid "Save Changes"
 msgstr ""
 
 #: View/settings-extra.view.php:37 View/settings-faq.view.php:29
@@ -325,7 +334,7 @@ msgstr ""
 msgid "Keep the CSS style in the footer is recommended to improve the performance of your website."
 msgstr ""
 
-#: View/settings-faq.view.php:106
+#: View/settings-faq.view.php:107
 msgid "Available filters"
 msgstr ""
 
@@ -486,28 +495,24 @@ msgstr ""
 msgid "The share count Twitter is powered by <a href=\"http://newsharecounts.com\" target=\"_blank\">newsharecounts.com</a>, you have to sign up with your Twitter account to get free service and twitter count. Just visit the website, fill in the domain of your site and click Sign in with Twitter. That, and nothing else!"
 msgstr ""
 
-#: View/settings.view.php:432
-msgid "Save Changes"
-msgstr ""
-
 #: View/settings.view.php:450
 msgid "Settings saved."
 msgstr ""
 
-#: View/settings.view.php:466
+#: View/settings.view.php:467
 msgid "General"
 msgstr ""
 
-#: View/settings.view.php:596
+#: View/settings.view.php:602
 #, php-format
 msgid "Help keep the free %s, you can make a donation or vote with %s at WordPress.org. Thank you very much!"
 msgstr ""
 
-#: View/settings.view.php:609
+#: View/settings.view.php:615
 msgid "Make a donation"
 msgstr ""
 
-#: View/settings.view.php:617
+#: View/settings.view.php:623
 msgid "Make a review"
 msgstr ""
 
