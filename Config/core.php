@@ -32,6 +32,7 @@ WPUSB_App::uses( 'social-elements', 'Config' );
  */
 WPUSB_App::uses( 'settings', 'Controller' );
 WPUSB_App::uses( 'shares', 'Controller' );
+WPUSB_App::uses( 'widgets', 'Controller' );
 
 /*
  * Templates
@@ -60,8 +61,13 @@ final class WPUSB_Core {
 	 * @since 1.2
 	 */
 	private function __construct() {
-		self::instantiate_controllers();
-		self::register_actions();
+		add_action( 'widgets_init', array( __CLASS__, 'add_widgets' ) );
+		self::init_controllers();
+	}
+
+	public static function add_widgets()
+	{
+		register_widget( 'WPUSB_Widgets_Controller' );
 	}
 
 	public static function load_textdomain() {
@@ -75,7 +81,7 @@ final class WPUSB_Core {
 	 * @param Null
 	 * @return Void
 	 */
-	protected static function register_actions() {
+	public static function register_actions() {
 		register_activation_hook( WPUSB_App::FILE, array( __CLASS__, 'activate' ) );
 		register_deactivation_hook( WPUSB_App::FILE, array( __CLASS__, 'deactivate' ) );
 	}
@@ -87,11 +93,11 @@ final class WPUSB_Core {
 	 * @param Null
 	 * @return Void
 	 */
-	protected static function instantiate_controllers() {
+	protected static function init_controllers() {
 		$share    = new WPUSB_Shares_Controller();
 		$settings = new WPUSB_Settings_Controller();
 
-		self::instantiate_controllers_admin();
+		self::init_controllers_admin();
 	}
 
 	/**
@@ -101,7 +107,7 @@ final class WPUSB_Core {
 	 * @param Null
 	 * @return Void
 	 */
-	protected static function instantiate_controllers_admin() {
+	protected static function init_controllers_admin() {
 		if ( ! WPUSB_App::is_admin() ) {
 			return;
 		}
@@ -121,12 +127,15 @@ final class WPUSB_Core {
 	 * @param Null
 	 * @return Void
 	 */
-	public static function activate() {
-		self::create_table();
-
-		WPUSB_Utils::add_options_defaults();
-
+	public static function activate( $network_wide = false ) {
 		register_uninstall_hook( WPUSB_App::FILE, array( __CLASS__, 'uninstall' ) );
+
+		if ( $network_wide ) {
+			return self::_create_table_for_network();
+		}
+
+		WPUSB_Utils::add_default_options();
+		self::_create_table();
 	}
 
 	/**
@@ -136,7 +145,7 @@ final class WPUSB_Core {
 	 * @param Null
 	 * @return Void
 	 */
-	public static function deactivate() {
+	public static function deactivate( $network_wide = false ) {
 
 	}
 
@@ -148,22 +157,60 @@ final class WPUSB_Core {
 	 * @return Void
 	 */
 	public static function uninstall() {
-		self::delete_options();
-		self::delete_transients();
-		self::delete_table();
+		if ( ! is_multisite() ) {
+			return self::delete_settings();
+		}
+
+		$sites = WPUSB_Utils::get_sites();
+
+		if ( ! $sites ) {
+			return;
+		}
+
+		foreach ( $sites as $site ) :
+			$current = (array)$site;
+			$blog_id = (int)$current['blog_id'];
+
+			if ( ! $blog_id || ! $current['public'] ) {
+				continue;
+			}
+
+			switch_to_blog( $blog_id );
+			self::delete_settings();
+			restore_current_blog();
+		endforeach;
 	}
 
+	/**
+	 * Delete settings
+	 *
+	 * @since 3.25
+	 * @param Null
+	 * @return Void
+	 */
+	protected static function delete_settings() {
+		self::delete_options();
+		self::delete_transients();
+		self::drop_table();
+	}
+
+	/**
+	 * Delete options settings
+	 *
+	 * @since 1.0
+	 * @param Null
+	 * @return Void
+	 */
 	protected static function delete_options() {
 		$options_name = WPUSB_Utils::get_options_name();
 
 		foreach ( $options_name as $option ) {
-			delete_option( $option );
-			delete_site_option( $option );
+			WPUSB_Utils::delete_option( $option );
 		}
 	}
 
 	/**
-	 * Delete transient on plugin uninstallation
+	 * Delete transients
 	 *
 	 * @since 1.0
 	 * @param Null
@@ -184,11 +231,43 @@ final class WPUSB_Core {
 	 * @param Null
 	 * @return Void
 	 */
-	protected static function delete_table() {
+	protected static function drop_table() {
 		global $wpdb;
 
-		$table = $wpdb->prefix . WPUSB_Setting::TABLE_NAME;
+		$table = WPUSB_Utils::get_table_name();
 		$wpdb->query( "DROP TABLE IF EXISTS {$table}" );
+	}
+
+	/**
+	 * Create table sharing reports for networks activation
+	 *
+	 * @since 3.25
+	 * @global $wpdb
+	 * @param Null
+	 * @return Void
+	 */
+	private static function _create_table_for_network() {
+		global $wpdb;
+
+		$sites = WPUSB_Utils::get_sites();
+
+		if ( ! $sites ) {
+			return;
+		}
+
+		foreach ( $sites as $site ) :
+			$current = (array)$site;
+			$blog_id = (int)$current['blog_id'];
+
+			if ( ! $blog_id || ! $current['public'] ) {
+				continue;
+			}
+
+			switch_to_blog( $blog_id );
+			self::_create_table();
+			WPUSB_Utils::add_default_options();
+			restore_current_blog();
+		endforeach;
 	}
 
 	/**
@@ -197,14 +276,13 @@ final class WPUSB_Core {
 	 * @since 1.1
 	 * @global $wpdb
 	 * @param Null
-	 * @global $wpdb
 	 * @return Void
 	 */
-	public static function create_table() {
+	private static function _create_table() {
 		global $wpdb;
 
 		$charset    = $wpdb->get_charset_collate();
-		$table_name = $wpdb->prefix . WPUSB_Setting::TABLE_NAME;
+		$table_name = WPUSB_Utils::get_table_name();
 		$query      = "
 			CREATE TABLE IF NOT EXISTS {$table_name} (
 				id         BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -250,7 +328,7 @@ final class WPUSB_Core {
 	public static function alter_table() {
 		global $wpdb;
 
-		$table        = $wpdb->prefix . WPUSB_Setting::TABLE_NAME;
+		$table        = WPUSB_Utils::get_table_name();
 		$table_exists = $wpdb->query( "SHOW TABLES LIKE '{$table}'" );
 
 		if ( $table_exists && ! $wpdb->get_var( "SHOW COLUMNS FROM {$table} LIKE 'tumblr';" ) ) {
@@ -271,5 +349,6 @@ final class WPUSB_Core {
 		}
 	}
 }
+WPUSB_Core::register_actions();
 add_action( 'plugins_loaded', array( 'WPUSB_Core', 'instance' ) );
 add_action( 'init', array( 'WPUSB_Core', 'load_textdomain' ) );

@@ -118,3 +118,13 @@
 		}
 	}
 }
+
+div[data-#{$prefix}-component="buttons-section"] .#{$prefix}-modal-networks .#{$prefix}-element-popup {
+	a:hover,
+	a:focus,
+	a {
+		box-shadow: none;
+		color: #fff;
+		text-decoration: none !important;
+	}
+}

@@ -1,7 +1,7 @@
-WPUSB( 'WPUSB.FeaturedReferrer', function(Referrer, $, utils) {
+WPUSB( 'WPUSB.FeaturedReferrer', function(Referrer, $) {
 
 	Referrer.create = function(container) {
-		this.prefix = utils.prefix + '-';
+		this.prefix = this.utils.prefix + '-';
 		this.$el    = container;
 		this.init();
 	};

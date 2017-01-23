@@ -17,7 +17,8 @@ WPUSB_App::uses( 'shares', 'View' );
 class WPUSB_Shares_Controller {
 
 	private $_filter = 'wpusb-buttons';
-	protected $position;
+
+	protected $position = false;
 
 	/**
 	* Initialize the plugin by setting localization, filters, and administration functions.
@@ -26,9 +27,10 @@ class WPUSB_Shares_Controller {
 	*/
 	public function __construct() {
 		add_shortcode( WPUSB_App::SLUG, array( &$this, 'share' ) );
-		add_filter( 'the_content', array( &$this, 'content' ), 20 );
-		add_action( 'wp_footer', array( &$this, 'buttons_fixed' ), 20 );
-		add_action( 'woocommerce_share', array( &$this, 'wc_render_share' ), 20 );
+		add_filter( 'get_the_excerpt', array( &$this, 'remove_content_action' ), 9 );
+		add_filter( 'the_content', array( &$this, 'content' ) );
+		add_action( 'woocommerce_share', array( &$this, 'wc_render_share' ) );
+		add_action( 'wp_footer', array( &$this, 'buttons_fixed' ) );
 	}
 
 	/**
@@ -62,21 +64,28 @@ class WPUSB_Shares_Controller {
 		$after  = WPUSB_Utils::option( 'after' );
 
 		if ( 'on' === $before && 'on' === $after ) {
-			$this->position = 'full';
-			return;
-		}
-
-		if ( 'on' === $before ) {
+			$this->position = 'both';
+		} elseif ( 'on' === $before ) {
 			$this->position = 'before';
-			return;
-		}
-
-		if ( 'on' === $after ) {
+		} elseif ( 'on' === $after ) {
 			$this->position = 'after';
-			return;
+		}
+	}
+
+	/**
+	 * Remove action from excerpts
+	 *
+	 * @since 3.25
+	 * @version 1.0
+	 * @param String $content
+	 * @return String
+	 */
+	public function remove_content_action( $content ) {
+		if ( WPUSB_Utils::is_home() ) {
+			remove_action( 'the_content', array( &$this, 'content' ) );
 		}
 
-		$this->position = false;
+		return $content;
 	}
 
 	/**
@@ -84,12 +93,12 @@ class WPUSB_Shares_Controller {
 	 * single | page | home | archive | category
 	 *
 	 * @since 3.2.2
-	 * @version 2.0.0
+	 * @version 2.0
 	 * @param String $content
 	 * @return String
 	 */
 	public function content( $content ) {
-		if ( WPUSB_Utils::is_product() ) {
+		if ( is_feed() || WPUSB_Utils::is_product() ) {
 			return $content;
 		}
 
@@ -115,7 +124,7 @@ class WPUSB_Shares_Controller {
 		$buttons = apply_filters( $this->_filter, $this->buttons_share() );
 
 		switch ( $this->position ) {
-			case 'full' :
+			case 'both' :
 	      		$new_content  = $buttons;
 	      		$new_content .= $content;
 	      		$new_content .= $buttons;
@@ -143,10 +152,6 @@ class WPUSB_Shares_Controller {
 	 * @return void
 	 */
 	public function buttons_fixed() {
-		if ( apply_filters( WPUSB_App::SLUG . '-modal-html-active', true ) ) {
-			$this->_add_modal();
-		}
-
 		if ( ! WPUSB_Utils::is_position_fixed() ) {
 			return;
 		}
@@ -200,18 +205,5 @@ class WPUSB_Shares_Controller {
 	 */
 	public function buttons_share( $atts = array(), $fixed = false ) {
 		return WPUSB_Utils::buttons_share( $atts, $fixed );
-	}
-
-	/**
-	 * Adding in footer html modal social networks
-	 *
-	 * @since 1.0
-	 * @param Null
-	 * @return Void
-	 */
-	protected function _add_modal() {
-		if ( apply_filters( WPUSB_App::SLUG . '-show-modal', WPUSB_Utils::is_active() ) ) {
-			WPUSB_Modal::init();
-		}
 	}
 }

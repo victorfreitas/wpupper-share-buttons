@@ -3,9 +3,19 @@
     .#{$prefix}-item a,
     .#{$prefix}-item a:hover,
     .#{$prefix}-item a:focus {
+        border-bottom: none;
         font-family: $fontFamily;
-        text-decoration: none;
         outline: none;
+        text-decoration: none;
+    }
+}
+
+#wrapper .#{$prefix},
+#content .#{$prefix}:not(.#{$prefix}-buttons, .#{$prefix}-square-plus) {
+    .#{$prefix}-item a,
+    .#{$prefix}-item a:hover,
+    .#{$prefix}-item a:focus {
+        box-shadow: none;
     }
 }
 
@@ -29,13 +39,6 @@
         font-family: $fontFamily;
         text-decoration: none;
         transition: background 0.3s ease;
-
-        &:hover {
-            border-bottom: none;
-            box-shadow: none;
-            font-family: $fontFamily;
-            text-decoration: none;
-        }
 
         i,
         span {

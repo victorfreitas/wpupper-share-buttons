@@ -29,11 +29,12 @@ class WPUSB_Square_Plus {
 		$component    = WPUSB_Utils::get_component_by_type();
 		$header_title = WPUSB_Shares_View::get_header_title( $atts );
 		$content      = <<<EOD
-		<div data-element-url="{$args['permalink']}"
+		<div class="{$classes}"
+			 id="{$args['prefix']}-container-square-plus"
+			 data-element-url="{$args['permalink']}"
 		     data-element-title="{$args['title']}"
 		     data-attr-reference="{$args['post_id']}"
 		     data-attr-nonce="{$args['nonce']}"
-		     class="{$classes}"
 		     {$component}
 		     {$args['fixed_top']}>
 
@@ -56,6 +57,7 @@ EOD;
 		$inside     = self::inside( $args );
 		$referrer   = WPUSB_Utils::get_data_referrer( $args );
 		$ga_event   = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
+		$modal_data = WPUSB_Utils::get_modal_data_id( $args->reference->element, $args->number );
 		$content    = <<<EOD
 			<div class="{$classes}" {$referrer}>
 
@@ -64,7 +66,8 @@ EOD;
 				   title="{$args->reference->title}"
 				   rel="nofollow"
 				   {$args->reference->popup}
-				   {$ga_event}>
+				   {$ga_event}
+				   {$modal_data}>
 
 				   <i class="{$args->item_class_icon} {$args->class_icon}"></i>
 				   {$inside}
@@ -87,7 +90,7 @@ EOD;
 		$classes .= " {$atts->reference->class}";
 		$classes .= " {$atts->class_second}";
 
-		if ( WPUSB_Utils::is_first() && WPUSB_Utils::is_active_inside( $atts->elements ) ) {
+		if ( WPUSB_Utils::is_first() && ! WPUSB_Utils::is_inactive_inside( $atts->elements ) ) {
 			$classes .= " {$atts->prefix}-inside {$atts->prefix}-full";
 		}
 
@@ -102,7 +105,7 @@ EOD;
 	 * @return String
 	 */
 	public static function add_count( $args ) {
-		if ( ! WPUSB_Utils::is_active_couter( $args ) ) {
+		if ( WPUSB_Utils::is_inactive_couter( $args ) ) {
 			return '';
 		}
 
@@ -132,7 +135,7 @@ EOD;
 			return WPUSB_Utils::filter_inside( $atts );
 		}
 
-		if ( WPUSB_Utils::is_first() && WPUSB_Utils::is_active_inside( $atts->elements ) ) {
+		if ( WPUSB_Utils::is_first() && ! WPUSB_Utils::is_inactive_inside( $atts->elements ) ) {
 			$content = "<span data-title=\"{$atts->reference->name}\"></span>";
 		}
 

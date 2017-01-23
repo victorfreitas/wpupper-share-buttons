@@ -6,5 +6,5 @@ jQuery(function($) {
 		, prefix : 'wpusb'
 	};
 
-	WPUSB.Application.init.apply( null, [context] );
+	WPUSB.Application.init.apply( WPUSB.utils, [context] );
 });

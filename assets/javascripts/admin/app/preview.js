@@ -1,9 +1,9 @@
-WPUSB( 'WPUSB.Preview', function(Preview, $, utils) {
+WPUSB( 'WPUSB.Preview', function(Preview, $) {
 
 	Preview.create = function(container) {
 		this.title   = $( '[data-action="no-title"]' );
 		this.counter = $( '[data-action="no-counter"]' );
-		this.preview = utils.getPreviewTitles();
+		this.preview = Preview.utils.getPreviewTitles();
 		this.init();
 	};
 

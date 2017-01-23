@@ -39,10 +39,12 @@ final class WPUSB_Scripts {
 
 		self::codemirror_scripts();
 
+		wp_enqueue_style( 'wp-color-picker' );
+
 		wp_enqueue_script(
 			WPUSB_App::SLUG . '-admin-scripts',
 			WPUSB_Utils::plugin_url( 'javascripts/admin/built.js' ),
-			array( 'jquery', 'jquery-ui-sortable' ),
+			array( 'jquery', 'jquery-ui-sortable', 'wp-color-picker' ),
 			WPUSB_App::VERSION,
 			true
 		);
@@ -92,7 +94,7 @@ final class WPUSB_Scripts {
 	public static function add_front_scripts() {
 		$is_active = WPUSB_Utils::is_active();
 
-		if ( ! apply_filters( WPUSB_App::SLUG , '-add-scripts', $is_active ) ) {
+		if ( ! WPUSB_Utils::is_active_widget() && ! apply_filters( WPUSB_App::SLUG . '-add-scripts', $is_active ) ) {
 			return;
 		}
 
@@ -285,7 +287,7 @@ final class WPUSB_Scripts {
 
 	public static function get_front_css_path() {
 		if ( WPUSB_Utils::file_css_min_exists() ) {
-			return 'stylesheets/style.min.css';
+			return WPUSB_Utils::get_path_css_min();
 		}
 
 		return 'stylesheets/style.css';

@@ -1,4 +1,4 @@
-WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
+WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 
 	Model.fn.start = function() {
 		if ( this.isShareCountsDisabled() ) {
@@ -15,7 +15,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 	};
 
 	Model.fn.setParams = function() {
-		this.prefix           = utils.prefix + '-';
+		this.prefix           = this.utils.prefix + '-';
 		this.facebook         = this.elements.facebook;
 		this.twitter          = this.elements.twitter;
 		this.google           = this.elements.googlePlus;
@@ -192,14 +192,14 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 
 	Model.fn.getParamsGoogle = function() {
 		return JSON.stringify({
-			id         : utils.decodeUrl( this.data.elementUrl ),
+			id         : this.utils.decodeUrl( this.data.elementUrl ),
 			key        : 'p',
 			method     : 'pos.plusones.get',
 			jsonrpc    : '2.0',
 			apiVersion : 'v1',
 			params     : {
 				nolog   : true,
-				id      : utils.decodeUrl( this.data.elementUrl ),
+				id      : this.utils.decodeUrl( this.data.elementUrl ),
 				source  : 'widget',
 				userId  : '@viewer',
 				groupId : '@self'
@@ -226,7 +226,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 
 		$.ajax({
 	       method : 'POST',
-	       url    : utils.getAjaxUrl(),
+	       url    : this.utils.getAjaxUrl(),
 	       data   : params
 	   });
 	};

@@ -30,7 +30,8 @@ class WPUSB_Fixed_Left {
 		$counter   = self::add_count( $atts );
 		$component = WPUSB_Utils::get_component_by_type();
 		$content   = <<<EOD
-		<div class="{$classes}"
+		<div class="{$classes} {$args['prefix']}-fixed"
+		     id="{$args['prefix']}-container-fixed"
 		     data-element-url="{$args['permalink']}"
 		     data-element-title="{$args['title']}"
 		     data-attr-reference="{$args['post_id']}"
@@ -57,6 +58,7 @@ EOD;
 		$layout     = self::$layout;
 		$btn_class  = ( 'buttons' == $layout ) ? 'button' : $layout;
 		$ga_event   = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
+		$modal_data = WPUSB_Utils::get_modal_data_id( $args->reference->element, $args->number );
 		$class_icon = apply_filters(
 			"{$args->prefix}_item_class_icon",
 			"{$args->reference->class_icon}-{$layout}",
@@ -70,6 +72,7 @@ EOD;
 				   class="{$args->prefix}-{$btn_class} {$args->class_link}"
 				   title="{$args->reference->title}"
 				   {$ga_event}
+				   {$modal_data}
 				   rel="nofollow">
 
 				   <i class="{$class_icon} {$args->class_icon}"></i>
@@ -106,7 +109,7 @@ EOD;
 		$prefix  = $args->prefix;
 		$content = '';
 
-		if ( WPUSB_Utils::is_active_couter( $args ) ) {
+		if ( ! WPUSB_Utils::is_inactive_couter( $args ) ) {
 			$inside  = self::_get_inside_count();
 			$content = <<<EOD
 				<div class="{$prefix}-item {$prefix}-total-share">

@@ -30,9 +30,12 @@ class WPUSB_Settings_Controller {
 	* @since 1.2
 	*/
 	public function __construct() {
+		$prefix = WPUSB_App::SLUG;
+
 		add_filter( WPUSB_Utils::base_name( 'plugin_action_links_' ), array( &$this, 'plugin_link' ) );
 		add_action( 'admin_menu', array( &$this, 'menu_page' ) );
-		add_action( 'admin_init', array( &$this, 'plugin_updates' ) );
+		add_action( 'admin_init', array( &$this, 'admin_init' ) );
+		add_action( "update_option_{$prefix}_settings", array( &$this, 'rebuild_custom_css' ), 10, 3 );
 	}
 
 	/**
@@ -102,13 +105,25 @@ class WPUSB_Settings_Controller {
 	}
 
 	/**
+	 * Action for admin init
+	 *
+	 * @since 3.25
+	 * @param Null
+	 * @return void
+	 */
+	public function admin_init() {
+		$this->_plugin_update();
+		$this->_build_custom_css();
+	}
+
+	/**
 	 * Register plugin updates
 	 *
 	 * @since 3.6.0
 	 * @param Null
 	 * @return void
 	 */
-	public function plugin_updates() {
+	private function _plugin_update() {
 		$option          = WPUSB_Setting::TABLE_NAME . '_db_version';
 		$current_version = WPUSB_Setting::DB_VERSION;
 		$db_version      = WPUSB_Utils::get_option( $option );
@@ -117,7 +132,42 @@ class WPUSB_Settings_Controller {
 	    	return;
 	    }
 
-    	WPUSB_Utils::add_option( $option, $current_version );
+    	WPUSB_Utils::update_option( $option, $current_version );
     	WPUSB_Core::alter_table();
+	}
+
+	/**
+	 * Build custom css
+	 *
+	 * @since 3.25
+	 * @param Null
+	 * @return void
+	 */
+	private function _build_custom_css() {
+		if ( WPUSB_Utils::file_css_min_exists() ) {
+			return;
+		}
+
+		$custom_css = WPUSB_Utils::get_all_custom_css();
+
+		if ( empty( $custom_css ) ) {
+			return;
+		}
+
+		WPUSB_Utils::build_css( $custom_css );
+	}
+
+	/**
+	 * Rebuild custom css file
+	 *
+	 * @since 3.25
+	 * @param mixed  $old_value
+	 * @param mixed  $value
+	 * @param string $option
+	 * @return void
+	 */
+	public function rebuild_custom_css( $old_value, $value, $option ) {
+		$custom_css = WPUSB_Utils::get_all_custom_css();
+		WPUSB_Utils::build_css( $custom_css );
 	}
 }

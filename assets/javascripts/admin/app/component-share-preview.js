@@ -1,8 +1,8 @@
-WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $, utils) {
+WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $) {
 
 	SharePreview.fn.start = function() {
 		this.spinner       = $( '.ajax-spinner' );
-		this.prefix        = utils.prefix;
+		this.prefix        = this.utils.prefix;
 		this.wrap          = this.$el.closest( '.wpusb-wrap' );
 		this.order         = this.wrap.byElement( 'sortable' );
 		this.inputOrder    = this.wrap.byElement( 'order' );
@@ -91,7 +91,7 @@ WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $, utils) {
 
 		var ajax = $.ajax({
 			type     : 'POST',
-			url      : utils.getAjaxUrl(),
+			url      : this.utils.getAjaxUrl(),
 			data     : params,
 			dataType : 'json'
 		});

@@ -3,10 +3,10 @@ Author URL: Victor Freitas
 Contributors: victorfreitas  
 Donate link: [Donate Now](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KYRMWXEEQN58L)  
 Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email form, social media buttons, click to tweet, pinterest, reddit, viber, telegram, gmail, skype, like, linkedin.  
-Requires at least: 3.0.0  
-Tested up to: 4.7  
+Requires at least: 3.0  
+Tested up to: 4.7.1  
 PHP version: 5.3.0  
-Stable tag: 3.24  
+Stable tag: 3.25  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 

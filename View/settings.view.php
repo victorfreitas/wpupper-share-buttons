@@ -133,7 +133,9 @@ class WPUSB_Settings_View {
 									<label for="social-media"><?php _e( 'Social networks available', WPUSB_App::TEXTDOMAIN ); ?></label>
 								</th>
 									<?php
-										foreach ( WPUSB_Social_Elements::social_media() as $key => $social ) {
+										$social_elements = WPUSB_Social_Elements::social_media();
+
+										foreach ( $social_elements as $key => $social ) {
 											$option_value = WPUSB_Utils::option( $key );
 											$id           = ( 'google' == $key ) ? "{$key}-plus" : $key;
 											self::td(array(
@@ -147,78 +149,10 @@ class WPUSB_Settings_View {
 												'td-id'       => $key,
 												'td-title'    => $social->name,
 												'span'        => false,
+												'class'       => 'hide-input',
 											));
 										}
 									?>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="<?php echo $prefix; ?>-class">
-										<?php _e( 'Custom class', WPUSB_App::TEXTDOMAIN ); ?>
-									</label>
-								</th>
-								<?php
-									self::td(array(
-										'id'          => 'class',
-										'class'       => 'large-text',
-										'name'        => "{$option_name}[class]",
-										'value'       => $model->class,
-										'placeholder' => __( 'Custom class for primary div', WPUSB_App::TEXTDOMAIN ),
-										'span'        => false,
-									));
-								?>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="<?php echo $prefix; ?>-share-count-label">
-										<?php _e( 'Share count label', WPUSB_App::TEXTDOMAIN ); ?>
-									</label>
-								</th>
-								<?php
-									self::td(array(
-										'id'          => 'share-count-label',
-										'class'       => 'large-text',
-										'name'        => "{$option_name}[share_count_label]",
-										'value'       => $model->share_count_label,
-										'placeholder' => __( 'Change text of the share count title. Default SHARES', WPUSB_App::TEXTDOMAIN ),
-										'description' => sprintf( __( 'Used in %s layout.', WPUSB_App::TEXTDOMAIN ), __( 'Square plus', WPUSB_App::TEXTDOMAIN ) ),
-									));
-								?>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="<?php echo $prefix; ?>-title">
-										<?php _e( 'Title', WPUSB_App::TEXTDOMAIN ); ?>
-									</label>
-								</th>
-								<?php
-									self::td(array(
-										'id'          => 'title',
-										'class'       => 'large-text',
-										'name'        => "{$option_name}[title]",
-										'value'       => $model->title,
-										'placeholder' => __( 'Insert the title here.', WPUSB_App::TEXTDOMAIN ),
-										'description' => __( 'Text to display above the sharing buttons.', WPUSB_App::TEXTDOMAIN ),
-									));
-								?>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="<?php echo $prefix; ?>-context">
-										<?php _e( 'Context ID', WPUSB_App::TEXTDOMAIN ); ?>
-									</label>
-								</th>
-								<?php
-									self::td(array(
-										'id'          => 'fixed-context',
-										'class'       => 'large-text',
-										'name'        => "{$option_name}[fixed_context]",
-										'value'       => $model->fixed_context,
-										'placeholder' => __( 'Enter name to context of search. ID of content tag', WPUSB_App::TEXTDOMAIN ),
-										'description' => __( 'This is to set the fixed layout to the left of the post content. <strong>Example:</strong> <code>wrap</code> use {id} for post id.', WPUSB_App::TEXTDOMAIN ),
-										'span'        => false,
-									));
-								?>
 							</tr>
 							<tr class="<?php echo $prefix; ?>-layout-options">
 								<th scope="row">
@@ -336,6 +270,108 @@ class WPUSB_Settings_View {
 											'title'      => __( 'Rounded', WPUSB_App::TEXTDOMAIN ),
 										));
 									?>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-icons-size">
+										<?php _e( 'Custom icons size', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'type'  => 'number',
+										'id'    => 'icons-size',
+										'class' => 'small-text',
+										'name'  => "{$option_name}[icons_size]",
+										'value' => $model->icons_size,
+										'span'  => true,
+										'title' => 'px',
+									));
+								?>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-icons-color">
+										<?php _e( 'Custom icons color', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'type'  => 'text',
+										'id'    => 'icons-color',
+										'class' => "{$prefix}-colorpicker",
+										'name'  => "{$option_name}[icons_color]",
+										'value' => $model->icons_color,
+									));
+								?>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-class">
+										<?php _e( 'Custom class', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'id'          => 'class',
+										'class'       => 'large-text',
+										'name'        => "{$option_name}[class]",
+										'value'       => $model->class,
+										'placeholder' => __( 'Custom class for primary div', WPUSB_App::TEXTDOMAIN ),
+									));
+								?>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-share-count-label">
+										<?php _e( 'Share count label', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'id'          => 'share-count-label',
+										'class'       => 'large-text',
+										'name'        => "{$option_name}[share_count_label]",
+										'value'       => $model->share_count_label,
+										'placeholder' => __( 'Change text of the share count title. Default SHARES', WPUSB_App::TEXTDOMAIN ),
+										'description' => sprintf( __( 'Used in %s layout.', WPUSB_App::TEXTDOMAIN ), __( 'Square plus', WPUSB_App::TEXTDOMAIN ) ),
+									));
+								?>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-title">
+										<?php _e( 'Title', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'id'          => 'title',
+										'class'       => 'large-text',
+										'name'        => "{$option_name}[title]",
+										'value'       => $model->title,
+										'placeholder' => __( 'Insert the title here.', WPUSB_App::TEXTDOMAIN ),
+										'description' => __( 'Text to display above the sharing buttons.', WPUSB_App::TEXTDOMAIN ),
+									));
+								?>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-context">
+										<?php _e( 'Context ID', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'id'          => 'fixed-context',
+										'class'       => 'large-text',
+										'name'        => "{$option_name}[fixed_context]",
+										'value'       => $model->fixed_context,
+										'placeholder' => __( 'Enter name to context of search. ID of content tag', WPUSB_App::TEXTDOMAIN ),
+										'description' => __( 'This is to set the fixed layout to the left of the post content. <strong>Example:</strong> <code>wrap</code> use {id} for post id.', WPUSB_App::TEXTDOMAIN ),
+										'span'        => false,
+									));
+								?>
 							</tr>
 							<tr>
 								<th scope="row">
@@ -505,7 +541,7 @@ class WPUSB_Settings_View {
 		$label  = self::_get_label( $prefix, $args );
 
 		echo <<<EOD
-			<td id="{$args['td-id']}"
+			<{$args['tag']} id="{$args['td-id']}"
 			    class="{$args['td-class']}"
 			    title="{$args['td-title']}">
 
@@ -518,7 +554,7 @@ class WPUSB_Settings_View {
 	            	   {$args['is_checked']}>
 	           	{$label}
 	           	<p class="description">{$args['description']}</p>
-	        </td>
+	        </{$args['tag']}>
 EOD;
 	}
 
@@ -585,6 +621,7 @@ EOD;
 			'td-title'    => '',
 			'data-attr'   => '',
 			'span'        => true,
+			'tag'         => 'td',
 		);
 
 		return array_merge( $defaults, $args );

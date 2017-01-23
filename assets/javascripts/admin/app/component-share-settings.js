@@ -1,4 +1,4 @@
-WPUSB( 'WPUSB.Components.ShareSettings', function(ShareSettings, $, utils) {
+WPUSB( 'WPUSB.Components.ShareSettings', function(ShareSettings, $) {
 
 	ShareSettings.fn.start = function() {
 		this.init();

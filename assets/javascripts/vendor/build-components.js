@@ -1,11 +1,11 @@
-WPUSB( 'WPUSB.BuildComponents', function(BuildComponents, $, utils) {
+WPUSB( 'WPUSB.BuildComponents', function(Model, $) {
 
-	BuildComponents.create = function(container) {
-		var components = '[data-' + utils.prefix + '-component]';
+	Model.create = function(container) {
+		var components = '[data-' + Model.utils.prefix + '-component]';
 		container.findComponent( components, $.proxy( this, '_start' ) );
 	};
 
-	BuildComponents._start = function(elements) {
+	Model._start = function(elements) {
 		if ( typeof WPUSB.Components == 'undefined' ) {
 			return;
 		}
@@ -13,18 +13,18 @@ WPUSB( 'WPUSB.BuildComponents', function(BuildComponents, $, utils) {
 		this._iterator( elements );
 	};
 
-	BuildComponents._iterator = function(elements) {
+	Model._iterator = function(elements) {
 		var name;
 
 		elements.each( function(index, element) {
 			element = $( element );
-			name    = elements.ucfirst( this.getComponent( element ) );
+			name    = this.utils.ucfirst( this.getComponent( element ) );
 			this._callback( name, element );
 		}.bind( this ) );
 	};
 
-	BuildComponents.getComponent = function(element) {
-		var component = element.data( utils.prefix + '-component' );
+	Model.getComponent = function(element) {
+		var component = element.data( this.utils.prefix + '-component' );
 
 		if ( !component ) {
 			return '';
@@ -33,7 +33,7 @@ WPUSB( 'WPUSB.BuildComponents', function(BuildComponents, $, utils) {
 		return component;
 	};
 
-	BuildComponents._callback = function(name, element) {
+	Model._callback = function(name, element) {
 		var callback = WPUSB.Components[name];
 
 		if ( typeof callback == 'function' ) {
@@ -41,7 +41,7 @@ WPUSB( 'WPUSB.BuildComponents', function(BuildComponents, $, utils) {
 			return;
 		}
 
-		console.warn( 'Component "' + name + '" is not a function.' );
+		console.log( 'Component "' + name + '" is not a function.' );
 	};
 
 }, {} );

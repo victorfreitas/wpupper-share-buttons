@@ -50,11 +50,11 @@ $_itemsAvailable : 'items-available';
         border-width: 0 0 1px 4px;
         box-shadow: none;
         padding: 4px 0;
-        border-color: #ccc;
+        border-color: $colorCheckboxOn;
         text-indent: 2px;
 
         &:focus {
-            border-color: $colorCheckboxOn;
+            border-color: #bbb;
         }
     }
 }
@@ -85,9 +85,6 @@ $_itemsAvailable : 'items-available';
 // ----------------------------------------------------------------------------
 // -- Advanced selector > Settings > Social networks available
 // ----------------------------------------------------------------------------
-@each $key, $color in $colors {
-    @include input-remove( $key );
-}
 
 .#{$prefix}-#{$_itemsAvailable},
 .#{$prefix}-social-networks,
@@ -99,7 +96,7 @@ $_itemsAvailable : 'items-available';
 .#{$prefix}-fixed-square,
 .#{$prefix}-fixed-rounded {
     input + label {
-        background: #F6FBFD;
+        background: $colorWhite;
         border-radius: 5px;
         box-shadow: inset 0 0 1px 1px #D2D2D2;
         color: #4F5558;

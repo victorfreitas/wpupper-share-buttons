@@ -103,11 +103,10 @@ class WPUSB_Ajax_Controller {
 		$count_pinterest = WPUSB_Utils::post( 'count_pinterest', 0, 'intval' );
 		$count_tumblr    = WPUSB_Utils::post( 'count_tumblr', 0, 'intval' );
 		$total           = ( $count_facebook + $count_twitter + $count_google + $count_linkedin + $count_pinterest + $count_tumblr );
-		$table           = $wpdb->prefix . WPUSB_Setting::TABLE_NAME;
 
 		if ( $total > 0 ) {
 			$this->_select(
-				$table,
+				WPUSB_Utils::get_table_name(),
 				array(
 					'post_id'         => $post_id,
 					'post_title'      => $post_title,
@@ -136,9 +135,8 @@ class WPUSB_Ajax_Controller {
 	private function _select( $table, $data ) {
 		global $wpdb;
 
-		$sql       = $wpdb->prepare( "SELECT COUNT(*) FROM `{$table}` WHERE `post_id` = %d", $data['post_id'] );
-		$row_count = $wpdb->get_var( $sql );
-		$count     = intval( $row_count );
+		$query = $wpdb->prepare( "SELECT COUNT(*) FROM `{$table}` WHERE `post_id` = %d", $data['post_id'] );
+		$count = intval( $wpdb->get_var( $query ) );
 
 		if ( 1 === $count ) {
 			$this->_update( $table, $data );
@@ -267,6 +265,7 @@ class WPUSB_Ajax_Controller {
 				'is_fixed_2'        => ( $fixed_layout == 'buttons' ) ? false : true,
 				'share_count_label' => WPUSB_Utils::get_share_count_label(),
 				'title'             => WPUSB_Utils::option( 'title' ),
+				'container_buttons' => ( $layout === 'buttons' ) ? '-buttons' : '',
 			);
 			$count++;
 		}
@@ -315,21 +314,26 @@ class WPUSB_Ajax_Controller {
 
 	private function _save_custom_css() {
 		$custom_css = WPUSB_Utils::post( 'custom_css' );
-		$options    = WPUSB_Utils::get_options_name();
+
+		$this->_change_custom_css_option( $custom_css );
+
+		$css = WPUSB_Utils::get_all_custom_css( $custom_css );
+
+		if ( WPUSB_Utils::build_css( $css ) ) {
+			wp_send_json_success('');
+		}
+
+		$error_text = __( 'Error: Could not process css file.', WPUSB_App::TEXTDOMAIN );
+		wp_send_json_error( $error_text );
+	}
+
+	private function _change_custom_css_option( $custom_css ) {
+		$options = WPUSB_Utils::get_options_name();
 
 		if ( empty( $custom_css ) ) {
-			@unlink( WPUSB_Utils::get_file_css_min() );
-			WPUSB_Utils::delete_option( $options[4] );
-			wp_send_json_success('');
+			return WPUSB_Utils::delete_option( $options[4] );
 		}
 
-		WPUSB_Utils::add_option( $options[4], $custom_css );
-
-		if ( WPUSB_Utils::build_css( $custom_css ) ) {
-			wp_send_json_success('');
-		}
-
-		$error_text = __( 'Error: Could not create css file.', WPUSB_App::TEXTDOMAIN );
-		wp_send_json_error( $error_text );
+		WPUSB_Utils::update_option( $options[4], $custom_css );
 	}
 }

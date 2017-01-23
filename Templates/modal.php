@@ -21,27 +21,29 @@ class WPUSB_Modal {
 	 * @param Null
 	 * @return Void
 	 */
-	public static function init() {
-		$prefix    = WPUSB_App::SLUG;
-		$component = WPUSB_Utils::get_component_by_type( 'modal' );
+	public static function init( $atts = array(), $number = 0 ) {
+		if ( ! intval( $number ) ) {
+			return;
+		}
 
-		do_action( WPUSB_App::SLUG . '-before-modal' );
+		$prefix = WPUSB_App::SLUG;
+		$items  = self::items( $prefix, $atts );
+		$end    = self::end();
 
-		echo <<< EOD
+		return <<<EOD
 			<div class="{$prefix}-modal-mask"
-			     {$component}
+				 data-element="{$prefix}-modal-{$number}"
 			     style="display:none;">
 
 				<a class="{$prefix}-btn-close" data-action="close-popup">
 					<i class="{$prefix}-icon-close"></i>
 				</a>
 			</div>
-			<div class="{$prefix}-modal-networks">
+			<div class="{$prefix}-modal-networks"
+			     data-element="{$prefix}-modal-container-{$number}">
+			{$items}
+			{$end}
 EOD;
-		self::items( $prefix );
-		self::end();
-
-		do_action( WPUSB_App::SLUG . '-after-modal' );
 	}
 
 	/**
@@ -51,19 +53,18 @@ EOD;
 	 * @param String $prefix
 	 * @return Void
 	 */
-	public static function items( $prefix ) {
-		$elements    = WPUSB_Social_Elements::social_media();
-		$r_permalink = ( WPUSB_Utils::is_home() ) ? '' : WPUSB_Utils::get_real_permalink();
-		$r_title     = ( $r_permalink ) ? WPUSB_Utils::get_real_title() : '';
-		$permalink   = apply_filters( WPUSB_App::SLUG . '-modal-permalink', $r_permalink );
-		$title       = apply_filters( WPUSB_App::SLUG . '-modal-title', $r_title );
+	public static function items( $prefix, $atts ) {
+		$elements  = WPUSB_Social_Elements::social_media();
+		$permalink = apply_filters( "{$prefix}-modal-permalink", WPUSB_Utils::isset_get( $atts, 'permalink' ) );
+		$title     = apply_filters( "{$prefix}-modal-title", WPUSB_Utils::isset_get( $atts, 'title' ) );
+		$items     = '';
 
 		foreach ( $elements as $key => $social ) {
 			if ( $key === 'share' ) {
 				continue;
 			}
 
-			$ga        = apply_filters( WPUSB_App::SLUG . '-ga-event', false, $social );
+			$ga        = apply_filters( "{$prefix}-ga-event", false, $social );
 			$ga_event  = ( $ga ) ? 'onClick="' . $ga . ';"' : '';
 
 			if ( $permalink || $title ) {
@@ -76,7 +77,7 @@ EOD;
 				$social->popup = str_replace( '_permalink_', $permalink, $social->popup );
 			}
 
-			echo <<<EOD
+			$items .= <<<EOD
 				<div class="{$prefix}-element-popup">
 					<a {$link_attr}
 					   class="{$social->class_link}-popup {$social->class}-popup"
@@ -91,6 +92,8 @@ EOD;
 				</div>
 EOD;
 		}
+
+		return $items;
 	}
 
 	/**
@@ -101,6 +104,6 @@ EOD;
 	 * @return Void
 	 */
 	public static function end() {
-		echo '</div>';
+		return '</div>';
 	}
 }

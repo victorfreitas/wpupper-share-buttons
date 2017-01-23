@@ -1,17 +1,15 @@
-WPUSB( 'WPUSB.Components.SocialModal', function(SocialModal, $, utils) {
+WPUSB( 'WPUSB.Components.ButtonsSection', function(Modal, $) {
 
-	var href = [];
-
-	SocialModal.fn.start = function() {
-		this.prefix = '.' + utils.prefix;
-		this.body   = WPUSB.vars.body;
-		this.modal  = this.body.find( this.prefix + '-modal-networks' );
+	Modal.fn.start = function() {
+		this.prefix = '.' + this.utils.prefix;
+		this.id     = this.$el.find( this.prefix + '-share a' ).data( 'modal-id' );
+		this.modal  = this.$el.byElement( this.utils.prefix + '-modal-container-' + this.id );
 		this.close  = this.modal.find( this.prefix + '-btn-close' );
-
+		this.mask   = this.$el.byElement( this.utils.prefix + '-modal-' + this.id );
 		this.init();
 	};
 
-	SocialModal.fn.init = function() {
+	Modal.fn.init = function() {
 		WPUSB.OpenPopup.create( this.modal );
 
 		this.modal.show();
@@ -21,76 +19,40 @@ WPUSB( 'WPUSB.Components.SocialModal', function(SocialModal, $, utils) {
 		this.modal.hide();
 	};
 
-	SocialModal.fn.addEventListener = function() {
-		this.$el.addEvent( 'click', 'close-popup', this );
-		this.$el.on( 'click', this._onClickMask.bind( this ) );
-		this.body.addEvent( 'click', 'open-modal-networks', this );
+	Modal.fn.addEventListener = function() {
+		this.mask.addEvent( 'click', 'close-popup', this );
+		this.mask.on( 'click', this._onClickClosePopup.bind( this ) );
+		this.$el.on( 'click', '[data-modal-id="' + this.id + '"]', this._onClickOpenModalNetworks.bind( this ) );
 	};
 
-	SocialModal.fn._onClickClosePopup = function(event) {
+	Modal.fn._onClickClosePopup = function(event) {
 		event.preventDefault();
 		this.closeModal();
 	};
 
-	SocialModal.fn._onClickMask = function(event) {
+	Modal.fn._onClickOpenModalNetworks = function(event) {
 		event.preventDefault();
-		this.closeModal();
-	};
-
-	SocialModal.fn._onClickOpenModalNetworks = function(event) {
-		event.preventDefault();
-		this.renderLinksUrl( event );
 		this.openModal();
 	};
 
-	SocialModal.fn.renderLinksUrl = function(event) {
-		if ( !this.body.hasClass( 'home' ) ) {
-			return;
-		}
-
-		var component = $( event.currentTarget ).closest( this.prefix )
-		  , data      = component.data()
-		  , buttons   = this.modal.find( this.prefix + '-button-popup' )
-		;
-
-		buttons.each(function(index, element) {
-			if ( !href[index] ) {
-				href[index] = this.href;
-			}
-
-			this.href = this.href.replace( /_permalink_/g, data.elementUrl ).replace( /_title_/g, data.elementTitle );
-		});
-	};
-
-	SocialModal.fn.setSizes = function() {
+	Modal.fn.setSizes = function() {
 		this.setTop();
 		this.setLeft();
 	};
 
-	SocialModal.fn.closeModal = function() {
-		this.$el.css( 'opacity', 0 );
-		this.$el.hide();
+	Modal.fn.closeModal = function() {
+		this.mask.css( 'opacity', 0 );
+		this.mask.hide();
 		this.modal.hide();
-
-		if ( !this.body.hasClass( 'home' ) ) {
-			return;
-		}
-
-		var buttons = this.modal.find( this.prefix + '-button-popup' );
-
-		buttons.each(function(index, element) {
-			this.href = href[index];
-		});
-
 	};
 
-	SocialModal.fn.openModal = function() {
-		this.$el.css( 'opacity', 1 );
-		this.$el.show();
+	Modal.fn.openModal = function() {
+		this.mask.css( 'opacity', 1 );
+		this.mask.show();
 		this.modal.show();
 	};
 
-	SocialModal.fn.setTop = function() {
+	Modal.fn.setTop = function() {
 		var height   = ( window.innerHeight * 0.5 )
 		  ,	elHeight = ( this.modal.height() * 0.5 )
 		  , position = ( height - elHeight )
@@ -100,7 +62,7 @@ WPUSB( 'WPUSB.Components.SocialModal', function(SocialModal, $, utils) {
 		this.top    = position + 'px';
 	};
 
-	SocialModal.fn.setLeft = function() {
+	Modal.fn.setLeft = function() {
 		var width    = ( window.innerWidth * 0.5 )
 		  ,	elWidth  = ( this.modal.width() * 0.5 )
 		  , position = ( width - elWidth )
@@ -110,11 +72,12 @@ WPUSB( 'WPUSB.Components.SocialModal', function(SocialModal, $, utils) {
 		this.left     =  position + 'px';
 	};
 
-	SocialModal.fn.setPosition = function() {
+	Modal.fn.setPosition = function() {
 		this.modal.css({
 			top  : this.top,
 			left : this.left
 		});
+
 		this.close.css({
 			top   : this.btnTop,
 			right : this.btnRight

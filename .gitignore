@@ -1,4 +1,4 @@
 .sass-cache
 node_modules
 .phpintel/
-assets/stylesheets/style.min.css
+assets/stylesheets/style.min*.css

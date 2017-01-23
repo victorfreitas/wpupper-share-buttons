@@ -1,0 +1,54 @@
+.#{$prefix}-widget-select-content {
+
+	label {
+		display: block;
+	}
+
+	select {
+    	width: 100%;
+	}
+}
+
+.#{$prefix}-widget-checkbox-content {
+
+	.#{$prefix}-widget-text {
+		display: inline-block;
+		font-weight: bold;
+		position: relative;
+		top: -9px;
+		width: 150px;
+	}
+
+	.#{$prefix}-custom-switch {
+		display: inline-block;
+	}
+}
+
+##{$prefix}-widget-table {
+
+	.#{$prefix}-social-networks {
+	    display: inline-block;
+	    margin: 20px 0 20px 0;
+	}
+
+	.#{$prefix}-td {
+		margin-bottom: 15px;
+		margin-left: 15px;
+	}
+
+	.#{$prefix}-sortable-placeholder {
+		background: #f9f9f9;
+		border-radius: 5px;
+		border: 1px dotted #a0a5aa;
+		height: 26px;
+		left: 8px;
+		position: relative;
+		top: 1px;
+		width: 28px;
+	}
+}
+
+.#{$prefix}-icons_color-label {
+    position: relative;
+    top: -10px;
+}

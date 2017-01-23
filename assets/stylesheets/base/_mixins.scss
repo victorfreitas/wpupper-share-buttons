@@ -58,9 +58,10 @@
 // ===================================================
 @mixin input-remove($selector) {
     ##{$prefix}-#{$selector},
-    .#{$selector} {
-        cursor: pointer;
-        display: none;
+    .#{$selector},
+    [id*="-#{$selector}"] {
+        cursor: pointer !important;
+        display: none !important;
         left: -100%;
         position: absolute;
         top: -100%;
@@ -73,12 +74,13 @@
     .#{$prefix}-social-networks {
 
         @if pinterest == $element {
-            input + label[for="#{$prefix}-#{$element}"] {
+            input + label[for="#{$prefix}-#{$element}"],
+            input + label[for*="-#{$element}"] {
                 padding: 5px 11px;
             }
         }
 
-        input + label[for="#{$prefix}-#{$element}"]:before {
+        input + label[for*="-#{$element}"]:before {
             background: $color;
         }
 

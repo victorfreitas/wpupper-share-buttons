@@ -81,7 +81,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 
 		$offset = ( ( $current_page - 1 ) * self::POSTS_PER_PAGE );
 		$cache  = get_transient( WPUSB_Setting::TRANSIENT );
-		$table  = $wpdb->prefix . WPUSB_Setting::TABLE_NAME;
+		$table  = WPUSB_Utils::get_table_name();
 		$where  = $this->_where();
 
 		if ( ! $this->_table_exists( $wpdb, $table ) ) {
@@ -123,7 +123,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		global $wpdb;
 
 		$cache = get_transient( WPUSB_Setting::TRANSIENT_SELECT_COUNT );
-		$table = $wpdb->prefix . WPUSB_Setting::TABLE_NAME;
+		$table = WPUSB_Utils::get_table_name();
 
 		if ( ! $this->_table_exists( $wpdb, $table ) ) {
 			return 0;

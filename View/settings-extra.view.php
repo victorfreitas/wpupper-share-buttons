@@ -176,6 +176,26 @@ class WPUSB_Settings_Extra_View {
 							</tr>
 							<tr>
 								<th scope="row">
+									<label for="<?php echo $prefix; ?>-minify-html">
+										<?php _e( 'Minify html buttons share', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<td>
+								<?php
+									WPUSB_Settings_View::add_checkbox(array(
+										'name'    => "{$extra_setting}[minify_html]",
+										'id'      => 'minify-html',
+										'checked' => checked( 'on', $model->minify_html, false ),
+										'value'   => 'on',
+									));
+								?>
+									<p class="description">
+										<?php _e( 'Minify the HTML helps site performance.', WPUSB_App::TEXTDOMAIN ); ?>
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">
 									<label for="<?php echo $prefix; ?>-sharing-report-disable">
 										<?php _e( 'Deactivate sharing report', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>

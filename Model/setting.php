@@ -350,6 +350,30 @@ class WPUSB_Setting {
 	private $title;
 
 	/**
+	 * Custom icons size
+	 *
+	 * @since 1.0
+	 * @var Integer
+	 */
+	private $icons_size;
+
+	/**
+	 * Custom icons color
+	 *
+	 * @since 1.0
+	 * @var String
+	 */
+	private $icons_color;
+
+	/**
+	 * Minify html output
+	 *
+	 * @since 1.0
+	 * @var String
+	 */
+	private $minify_html;
+
+	/**
 	 * Plugin general prefix
 	 *
 	 * @since 1.0
@@ -456,7 +480,7 @@ class WPUSB_Setting {
 				break;
 
 			case 'social_media' :
-				$this->{$prop_name} = get_option( self::PREFIX . '_social_media' );
+				$this->{$prop_name} = WPUSB_Utils::get_option( self::PREFIX . '_social_media' );
 				break;
 
 			default :
@@ -489,7 +513,7 @@ class WPUSB_Setting {
 	 * @return Array
 	 */
 	public function set_options() {
-		$options 	   = $this->_get_merge_options();
+		$options 	   = $this->_get_merged_options();
 		$this->options = apply_filters( WPUSB_App::SLUG . 'options-args', $options );
 	}
 
@@ -502,15 +526,18 @@ class WPUSB_Setting {
 	 * @param String $extra
 	 * @return Array
 	 */
-	private function _get_merge_options() {
+	private function _get_merged_options() {
 		$options = WPUSB_Utils::get_options_name();
 		$value   = array();
 
 		unset( $options[4] );
 
 		foreach ( $options as $option ) :
-			$option_value = (array) get_site_option( $option );
-			$value        = array_merge( $value, $option_value );
+			$option_value = WPUSB_Utils::get_option( $option );
+
+			if ( is_array( $option_value ) ) {
+				$value = array_merge( $value, $option_value );
+			}
 		endforeach;
 
 		return $value;

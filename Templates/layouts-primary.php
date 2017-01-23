@@ -26,12 +26,14 @@ class WPUSB_Layouts_Primary {
 		$classes      = WPUSB_Utils::get_classes_first( $atts );
 		$component    = WPUSB_Utils::get_component_by_type();
 		$header_title = WPUSB_Shares_View::get_header_title( $atts );
+		$layout       = ( 'buttons' === $atts->layout ) ? '-buttons' : '';
 		$content      = <<<EOD
-			<div data-element-url="{$args['permalink']}"
+			<div class="{$classes}"
+		     	 id="{$args['prefix']}-container{$layout}"
+				 data-element-url="{$args['permalink']}"
 		     	 data-element-title="{$args['title']}"
 			     data-attr-reference="{$args['post_id']}"
 			     data-attr-nonce="{$args['nonce']}"
-			     class="{$classes}"
 			     {$component}
 			     {$args['fixed_top']}>
 
@@ -48,13 +50,14 @@ EOD;
 	 * @return String
 	 */
 	public static function items( $args = OBJECT ) {
-		$classes   = self::get_classes_second( $args );
-		$link_type = WPUSB_Utils::link_type( $args->reference->link );
-		$inside    = self::inside( $args );
-		$counter   = self::add_count( $args );
-		$referrer  = WPUSB_Utils::get_data_referrer( $args );
-		$ga_event  = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
-		$content   = <<<EOD
+		$classes    = self::get_classes_second( $args );
+		$link_type  = WPUSB_Utils::link_type( $args->reference->link );
+		$inside     = self::inside( $args );
+		$counter    = self::add_count( $args );
+		$referrer   = WPUSB_Utils::get_data_referrer( $args );
+		$modal_data = WPUSB_Utils::get_modal_data_id( $args->reference->element, $args->number );
+		$ga_event   = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
+		$content    = <<<EOD
 			<div class="{$classes}" {$referrer}>
 
 				<a {$link_type}
@@ -62,6 +65,7 @@ EOD;
 				   class="{$args->reference->class_link} {$args->class_link}"
 				   title="{$args->reference->title}"
 				   {$ga_event}
+				   {$modal_data}
 				   rel="nofollow">
 
 				   <i class="{$args->item_class_icon} {$args->class_icon}"></i>
@@ -104,7 +108,7 @@ EOD;
 			return WPUSB_Utils::filter_inside( $atts );
 		}
 
-		if ( WPUSB_Utils::is_active_inside( $atts->elements ) ) {
+		if ( ! WPUSB_Utils::is_inactive_inside( $atts->elements ) ) {
 			$content = "<span data-title=\"{$atts->reference->inside}\"></span>";
 		}
 
@@ -119,10 +123,10 @@ EOD;
 	 * @return String
 	 */
 	public static function add_count( $args ) {
-		$active_counter = WPUSB_Utils::is_active_couter( $args->elements );
+		$active_counter = WPUSB_Utils::is_inactive_couter( $args->elements );
 		$content        = '';
 
-		if ( $args->reference->has_counter && $active_counter ) {
+		if ( $args->reference->has_counter && ! $active_counter ) {
 			$content = "<span data-element=\"{$args->reference->element}\" class=\"{$args->prefix}-count\"></span>";
 		}
 

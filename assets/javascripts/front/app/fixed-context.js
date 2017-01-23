@@ -1,4 +1,4 @@
-WPUSB( 'WPUSB.FixedContext', function(FixedContext, $, utils) {
+WPUSB( 'WPUSB.FixedContext', function(FixedContext, $) {
 
 	FixedContext.create = function(container) {
 		this.$el = container;
@@ -15,7 +15,7 @@ WPUSB( 'WPUSB.FixedContext', function(FixedContext, $, utils) {
 	};
 
 	FixedContext.issetContext = function() {
-		this.id = utils.getContext();
+		this.id = this.utils.getContext();
 		return this.getContext( true );
 	};
 
