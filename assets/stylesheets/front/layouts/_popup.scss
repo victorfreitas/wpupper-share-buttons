@@ -119,12 +119,41 @@
 	}
 }
 
-div[data-#{$prefix}-component="buttons-section"] .#{$prefix}-modal-networks .#{$prefix}-element-popup {
+.#{$prefix}-modal-networks .#{$prefix}-element-popup {
 	a:hover,
 	a:focus,
 	a {
-		box-shadow: none;
-		color: #fff;
+		box-shadow: none !important;
+		color: #fff !important;
 		text-decoration: none !important;
+	}
+}
+
+##{$prefix}-container-square-plus,
+##{$prefix}-container-fixed,
+##{$prefix}-container-buttons {
+	.#{$prefix}-item {
+		a:hover,
+		a:focus,
+		a {
+			text-decoration: none;
+		}
+
+		a:hover,
+		a:focus {
+			color: #fff;
+		}
+	}
+}
+
+##{$prefix}-container-buttons,
+##{$prefix}-container-square-plus,
+##{$prefix}-container-fixed {
+	.#{$prefix}-item {
+		a:hover,
+		a:focus {
+			color: #fff;
+			box-shadow: none;
+		}
 	}
 }

@@ -5,7 +5,7 @@ Donate link: [Donate Now](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&ho
 Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email form, social media buttons, click to tweet, pinterest, reddit, viber, telegram, gmail, skype, like, linkedin.  
 Requires at least: 3.0  
 Tested up to: 4.7.1  
-PHP version: 5.3.0  
+PHP version: 5.2.4  
 Stable tag: 3.25  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
@@ -64,6 +64,18 @@ Layout options: default, buttons, rounded, square
 4. Using the content editor -> [wpusb class_first="" class_second="" class_link="" class_icon="" layout="default" remove_inside="0" remove_counter="0"]  
 
 ## Changelog
+
+## 3.25
+
+* New option: Change size icons
+* New option: Change color icons
+* New option: Widget share buttons available
+* Improvements custom css option
+* Update languages
+* Improvements in multisite
+* Improvements on admin and frontend
+* Correction of alignment for layout fixed right. [Related by @talgalili]
+* Bug fixes
 
 ## 3.24
 

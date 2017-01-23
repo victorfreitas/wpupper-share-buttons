@@ -95,6 +95,18 @@ The following plugins are recommended
 
 == Changelog ==
 
+= 3.25 =
+
+* New option: Change size icons
+* New option: Change color icons
+* New option: Widget share buttons available
+* Improvements custom css option
+* Update languages
+* Improvements in multisite
+* Improvements on admin and frontend
+* Correction of alignment for layout fixed right. [Related by @talgalili]
+* Bug fixes
+
 = 3.24 =
 
 * New option: Now you can add custom css directly in the plugin settings.
@@ -593,8 +605,14 @@ The following plugins are recommended
 
 == Upgrade Notice ==
 
-= 3.24 =
+= 3.25 =
 
-* New option: Now you can add custom css directly in the plugin settings.
-* Code improvements
+* New option: Change size icons
+* New option: Change color icons
+* New option: Widget share buttons available
+* Improvements custom css option
 * Update languages
+* Improvements in multisite
+* Improvements on admin and frontend
+* Correction of alignment for layout fixed right. [Related by @talgalili]
+* Bug fixes

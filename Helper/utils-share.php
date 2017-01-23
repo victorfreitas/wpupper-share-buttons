@@ -129,6 +129,8 @@ abstract class WPUSB_Utils_Share {
 
 		self::$count_elements = 0;
 
+		$buttons .= self::get_content_by_layout( (object) $args, 'end' );
+
 		return WPUSB_Shares_View::get_buttons_section( $buttons, $share_modal, $args, self::$number );
 	}
 
@@ -221,7 +223,7 @@ abstract class WPUSB_Utils_Share {
 			'remove_inside'  => $defaults['elements']['remove_inside'],
 			'permalink'      => $permalink,
 			'title'          => $title,
-			'header_title'   => ( $defaults['header_title'] ) ? $defaults['header_title'] : WPUSB_Utils::option( 'title' ),
+			'header_title'   => ( '' !== $defaults['header_title'] ) ? $defaults['header_title'] : WPUSB_Utils::option( 'title' ),
 		);
 
 		unset( $defaults['elements'] );

@@ -42,6 +42,7 @@ class WPUSB_Widgets_Controller extends \WP_Widget {
 			'layout'         => $this->get_property( 'layout', 'default' ),
 			'items'          => $this->get_property( 'items' ),
 			'title'          => $this->get_property( 'post_title' ),
+			'header_title'   => false,
 			'url'            => $this->get_property( 'url' ),
 			'remove_inside'  => $this->get_property( 'inside', 0, 'intval' ),
 			'remove_counter' => $this->get_property( 'counter', 0, 'intval' ),

@@ -9,7 +9,8 @@
             -webkit-box-shadow:  0 2px darken( $iconColor, $amount );
                     box-shadow: 0 2px darken( $iconColor, $amount );
 
-           &:hover {
+           &:hover,
+           &:focus {
                 -moz-box-shadow:  0 2px darken( $iconColor, $amount );
                 -webkit-box-shadow:  0 2px darken( $iconColor, $amount );
                         box-shadow: 0 2px darken( $iconColor, $amount );

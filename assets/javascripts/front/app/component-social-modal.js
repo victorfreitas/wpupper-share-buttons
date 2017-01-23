@@ -3,13 +3,13 @@ WPUSB( 'WPUSB.Components.ButtonsSection', function(Modal, $) {
 	Modal.fn.start = function() {
 		this.prefix = '.' + this.utils.prefix;
 		this.id     = this.$el.find( this.prefix + '-share a' ).data( 'modal-id' );
-		this.modal  = this.$el.byElement( this.utils.prefix + '-modal-container-' + this.id );
-		this.close  = this.modal.find( this.prefix + '-btn-close' );
-		this.mask   = this.$el.byElement( this.utils.prefix + '-modal-' + this.id );
 		this.init();
 	};
 
 	Modal.fn.init = function() {
+		this.setModal();
+		this.setMask();
+
 		WPUSB.OpenPopup.create( this.modal );
 
 		this.modal.show();
@@ -17,6 +17,29 @@ WPUSB( 'WPUSB.Components.ButtonsSection', function(Modal, $) {
 		this.setSizes();
 		this.setPosition();
 		this.modal.hide();
+	};
+
+	Modal.fn.setModal = function() {
+		var modalId = this.utils.prefix + '-modal-container-' + this.id
+		  , modal   = this.$el.byElement( modalId )
+		;
+
+		WPUSB.vars.body.append( modal.clone() );
+
+		this.modal = WPUSB.vars.body.byElement( modalId );
+		this.close = this.modal.find( this.prefix + '-btn-close' );
+
+		modal.remove();
+	};
+
+	Modal.fn.setMask = function() {
+		var maskId = this.utils.prefix + '-modal-' + this.id
+		  , mask   = this.$el.byElement( maskId )
+		;
+
+		WPUSB.vars.body.append( mask.clone() );
+		this.mask = WPUSB.vars.body.byElement( maskId );
+		mask.remove();
 	};
 
 	Modal.fn.addEventListener = function() {
@@ -53,8 +76,8 @@ WPUSB( 'WPUSB.Components.ButtonsSection', function(Modal, $) {
 	};
 
 	Modal.fn.setTop = function() {
-		var height   = ( window.innerHeight * 0.5 )
-		  ,	elHeight = ( this.modal.height() * 0.5 )
+		var height   = ( window.innerHeight / 4 )
+		  ,	elHeight = ( this.modal.height() / 4 )
 		  , position = ( height - elHeight )
 		;
 
@@ -63,8 +86,8 @@ WPUSB( 'WPUSB.Components.ButtonsSection', function(Modal, $) {
 	};
 
 	Modal.fn.setLeft = function() {
-		var width    = ( window.innerWidth * 0.5 )
-		  ,	elWidth  = ( this.modal.width() * 0.5 )
+		var width    = ( window.innerWidth / 4 )
+		  ,	elWidth  = ( this.modal.width() / 4 )
 		  , position = ( width - elWidth )
 		;
 
