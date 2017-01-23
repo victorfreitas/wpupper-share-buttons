@@ -328,12 +328,12 @@ class WPUSB_Ajax_Controller {
 	}
 
 	private function _change_custom_css_option( $custom_css ) {
-		$options = WPUSB_Utils::get_options_name();
+		$option = WPUSB_Utils::get_options_name( 5 );
 
 		if ( empty( $custom_css ) ) {
-			return WPUSB_Utils::delete_option( $options[4] );
+			return WPUSB_Utils::delete_option( $option );
 		}
 
-		WPUSB_Utils::update_option( $options[4], $custom_css );
+		WPUSB_Utils::update_option( $option, $custom_css );
 	}
 }

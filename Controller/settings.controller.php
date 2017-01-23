@@ -124,7 +124,7 @@ class WPUSB_Settings_Controller {
 	 * @return void
 	 */
 	private function _plugin_update() {
-		$option          = WPUSB_Setting::TABLE_NAME . '_db_version';
+		$option          = WPUSB_Utils::get_options_name( 1 );
 		$current_version = WPUSB_Setting::DB_VERSION;
 		$db_version      = WPUSB_Utils::get_option( $option );
 
@@ -148,13 +148,7 @@ class WPUSB_Settings_Controller {
 			return;
 		}
 
-		$custom_css = WPUSB_Utils::get_all_custom_css();
-
-		if ( empty( $custom_css ) ) {
-			return;
-		}
-
-		WPUSB_Utils::build_css( $custom_css );
+		$this->_rebuild_css();
 	}
 
 	/**
@@ -167,6 +161,17 @@ class WPUSB_Settings_Controller {
 	 * @return void
 	 */
 	public function rebuild_custom_css( $old_value, $value, $option ) {
+		$this->_rebuild_css();
+	}
+
+	/**
+	 * Rebuild custom css file
+	 *
+	 * @since 3.25
+	 * @param null
+	 * @return void
+	 */
+	private function _rebuild_css() {
 		$custom_css = WPUSB_Utils::get_all_custom_css();
 		WPUSB_Utils::build_css( $custom_css );
 	}

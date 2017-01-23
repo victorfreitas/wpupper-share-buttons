@@ -530,7 +530,8 @@ class WPUSB_Setting {
 		$options = WPUSB_Utils::get_options_name();
 		$value   = array();
 
-		unset( $options[4] );
+		unset( $options[1] );
+		unset( $options[5] );
 
 		foreach ( $options as $option ) :
 			$option_value = WPUSB_Utils::get_option( $option );
