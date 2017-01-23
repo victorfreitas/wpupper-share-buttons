@@ -70,6 +70,7 @@ Layout options: default, buttons, rounded, square
 * New option: Change size icons
 * New option: Change color icons
 * New option: Widget share buttons available
+* New option: Minify HTML share buttons output
 * Improvements custom css option
 * Update languages
 * Improvements in multisite
