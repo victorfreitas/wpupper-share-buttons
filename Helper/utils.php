@@ -304,14 +304,14 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param null
 	 * @return String
 	 */
-	public static function get_real_permalink( $is_fixed = false ) {
+	public static function get_real_permalink( $is_fixed = false, $is_widget = false ) {
 		$url = apply_filters( WPUSB_App::SLUG . '-real-permalink', false, $is_fixed );
 
 		if ( $url ) {
 			return self::html_decode( esc_url( $url ) );
 		}
 
-		if ( $is_fixed && self::is_home() || self::is_home() && is_page( self::get_id() ) ) {
+		if ( ( $is_fixed || $is_widget ) && self::is_home() || self::is_home() && is_page( self::get_id() ) ) {
 			return self::site_url();
 		}
 
@@ -458,14 +458,14 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param null
 	 * @return String
 	 */
-	public static function get_real_title( $is_fixed = false ) {
+	public static function get_real_title( $is_fixed = false, $is_widget = false ) {
 		$title = apply_filters( WPUSB_App::SLUG . '-real-title', false, $is_fixed );
 
 		if ( $title ) {
 			return self::rm_tags( $title );
 		}
 
-		if ( $is_fixed && self::is_home() || self::is_home() && is_page( self::get_id() ) ) {
+		if ( ( $is_fixed || $is_widget ) && self::is_home() || self::is_home() && is_page( self::get_id() ) ) {
 			return rawurlencode( self::site_name() );
 		}
 

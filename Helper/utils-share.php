@@ -105,8 +105,8 @@ abstract class WPUSB_Utils_Share {
 		$args              = apply_filters( WPUSB_App::SLUG . 'buttons-args', $args );
 		$args['layout']    = self::get_layout( $args, $model->layout, $fixed );
 		$args['is_fixed']  = $fixed;
-		$args['permalink'] = ( $args['url'] ) ? $args['url'] : WPUSB_Utils::get_real_permalink( $fixed );
-		$args['title']     = ( $args['title'] ) ? $args['title'] : WPUSB_Utils::get_real_title( $fixed );
+		$args['permalink'] = ( $args['url'] ) ? $args['url'] : WPUSB_Utils::get_real_permalink( $fixed, $args['is_widget'] );
+		$args['title']     = ( $args['title'] ) ? $args['title'] : WPUSB_Utils::get_real_title( $fixed, $args['is_widget'] );
 		$elements          = WPUSB_Social_Elements::social_media();
 		$social_items      = self::get_social_media( $model, $args['items'] );
 		$buttons           = self::get_buttons_open( $args, $model, $args['permalink'], $args['title'] );
@@ -495,6 +495,7 @@ abstract class WPUSB_Utils_Share {
 		$header_title   = WPUSB_Utils::isset_get( $atts, 'header_title' );
 		$remove_inside  = WPUSB_Utils::isset_get( $atts, 'remove_inside' );
 		$remove_counter = WPUSB_Utils::isset_get( $atts, 'remove_counter' );
+		$is_widget      = WPUSB_Utils::isset_get( $atts, 'is_widget' );
 
 		return array(
 			'class_first'  => WPUSB_Utils::esc_class( $class_first ),
@@ -506,6 +507,7 @@ abstract class WPUSB_Utils_Share {
 			'url'          => rawurlencode( esc_url( $url ) ),
 			'title'	       => WPUSB_Utils::rm_tags( $title ),
 			'header_title' => WPUSB_Utils::rm_tags( $header_title ),
+			'is_widget'    => WPUSB_Utils::rm_tags( $is_widget ),
 			'elements'     => array(
 				'remove_inside'  => WPUSB_Utils::rm_tags( $remove_inside ),
 				'remove_counter' => WPUSB_Utils::rm_tags( $remove_counter ),

@@ -46,6 +46,7 @@ class WPUSB_Widgets_Controller extends \WP_Widget {
 			'url'            => $this->get_property( 'url' ),
 			'remove_inside'  => $this->get_property( 'inside', 0, 'intval' ),
 			'remove_counter' => $this->get_property( 'counter', 0, 'intval' ),
+			'is_widget'      => true,
 		);
 
 		echo $args['before_widget'];
