@@ -2,3 +2,4 @@
 node_modules
 .phpintel/
 assets/stylesheets/style.min*.css
+*.log

@@ -311,7 +311,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			return self::html_decode( esc_url( $url ) );
 		}
 
-		if ( self::is_front_page() || $is_fixed && self::is_home() || self::is_home() && is_page( self::get_id() ) ) {
+		if ( $is_fixed && self::is_home() || self::is_home() && is_page( self::get_id() ) ) {
 			return self::site_url();
 		}
 
@@ -465,7 +465,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			return self::rm_tags( $title );
 		}
 
-		if ( self::is_front_page() || $is_fixed && self::is_home() || self::is_home() && is_page( self::get_id() ) ) {
+		if ( $is_fixed && self::is_home() || self::is_home() && is_page( self::get_id() ) ) {
 			return rawurlencode( self::site_name() );
 		}
 

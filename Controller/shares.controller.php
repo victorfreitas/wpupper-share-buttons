@@ -27,7 +27,6 @@ class WPUSB_Shares_Controller {
 	*/
 	public function __construct() {
 		add_shortcode( WPUSB_App::SLUG, array( &$this, 'share' ) );
-		add_filter( 'get_the_excerpt', array( &$this, 'remove_content_action' ), 9 );
 		add_filter( 'the_content', array( &$this, 'content' ) );
 		add_action( 'woocommerce_share', array( &$this, 'wc_render_share' ) );
 		add_action( 'wp_footer', array( &$this, 'buttons_fixed' ) );
@@ -70,22 +69,6 @@ class WPUSB_Shares_Controller {
 		} elseif ( 'on' === $after ) {
 			$this->position = 'after';
 		}
-	}
-
-	/**
-	 * Remove action from excerpts
-	 *
-	 * @since 3.25
-	 * @version 1.0
-	 * @param String $content
-	 * @return String
-	 */
-	public function remove_content_action( $content ) {
-		if ( WPUSB_Utils::is_home() ) {
-			remove_action( 'the_content', array( &$this, 'content' ) );
-		}
-
-		return $content;
 	}
 
 	/**
