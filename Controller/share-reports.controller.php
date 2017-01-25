@@ -53,7 +53,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	private $search;
 
 	public function __construct() {
-		add_action( 'admin_menu', array( &$this, 'menu' ) );
+		add_action( 'admin_menu', array( $this, 'menu' ) );
 
 		$this->cache_time = WPUSB_Utils::option( 'report_cache_time', 10, 'intval' );
 		$this->search     = WPUSB_Utils::get( 's', false );
@@ -305,7 +305,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	  		__( 'Sharing Report', WPUSB_App::TEXTDOMAIN ),
 	  		'manage_options',
 	  		WPUSB_Setting::SHARING_REPORT,
-	  		array( &$this, 'report' )
+	  		array( $this, 'report' )
 	  	);
 	}
 

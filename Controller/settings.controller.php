@@ -32,10 +32,10 @@ class WPUSB_Settings_Controller {
 	public function __construct() {
 		$prefix = WPUSB_App::SLUG;
 
-		add_filter( WPUSB_Utils::base_name( 'plugin_action_links_' ), array( &$this, 'plugin_link' ) );
-		add_action( 'admin_menu', array( &$this, 'menu_page' ) );
-		add_action( 'admin_init', array( &$this, 'admin_init' ) );
-		add_action( "update_option_{$prefix}_settings", array( &$this, 'rebuild_custom_css' ), 10, 3 );
+		add_filter( WPUSB_Utils::base_name( 'plugin_action_links_' ), array( $this, 'plugin_link' ) );
+		add_action( 'admin_menu', array( $this, 'menu_page' ) );
+		add_action( 'admin_init', array( $this, 'admin_init' ) );
+		add_action( "update_option_{$prefix}_settings", array( $this, 'rebuild_custom_css' ), 10, 3 );
 	}
 
 	/**

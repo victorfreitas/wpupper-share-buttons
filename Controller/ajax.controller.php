@@ -22,8 +22,8 @@ class WPUSB_Ajax_Controller {
 		$prefix = WPUSB_App::SLUG;
 		$this->sharing_report( $prefix );
 
-		add_action( "wp_ajax_{$prefix}_share_preview", array( &$this, 'share_preview_request' ) );
-		add_action( "wp_ajax_{$prefix}_save_custom_css", array( &$this, 'save_custom_css_request' ) );
+		add_action( "wp_ajax_{$prefix}_share_preview", array( $this, 'share_preview_request' ) );
+		add_action( "wp_ajax_{$prefix}_save_custom_css", array( $this, 'save_custom_css_request' ) );
 	}
 
 	public function sharing_report( $prefix ) {
@@ -31,8 +31,8 @@ class WPUSB_Ajax_Controller {
 			return;
 		}
 
-		add_action( "wp_ajax_{$prefix}_share_count_reports", array( &$this, 'share_count_reports_verify_request' ) );
-		add_action( "wp_ajax_nopriv_{$prefix}_share_count_reports", array( &$this, 'share_count_reports_verify_request' ) );
+		add_action( "wp_ajax_{$prefix}_share_count_reports", array( $this, 'share_count_reports_verify_request' ) );
+		add_action( "wp_ajax_nopriv_{$prefix}_share_count_reports", array( $this, 'share_count_reports_verify_request' ) );
 	}
 
 	/**

@@ -30,7 +30,7 @@ class WPUSB_Widgets_Controller extends \WP_Widget {
 
 		WPUSB_Widgets_View::set_instance( $this );
 
-		add_action( "update_option_{$this->option_name}", array( &$this, 'rebuild_css' ), 10, 3 );
+		add_action( "update_option_{$this->option_name}", array( $this, 'rebuild_css' ), 10, 3 );
 	}
 
 	public function widget( $args, $instance ) {

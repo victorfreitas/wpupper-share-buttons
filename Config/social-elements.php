@@ -555,21 +555,23 @@ class WPUSB_Social_Elements {
 	 * @return Void
 	 */
 	private static function _set_properts_twitter() {
-		$text_a = apply_filters(
-			WPUSB_App::SLUG . '-twitter-after',
-			__( 'I just saw', WPUSB_App::TEXTDOMAIN )
-		);
-		$text_b = apply_filters(
-			WPUSB_App::SLUG . '-twitter-before',
-			__( 'Click to see also', WPUSB_App::TEXTDOMAIN )
-		);
-
-		$text               = WPUSB_Utils::get_twitter_text( self::$title, $text_a, $text_b, self::$caracter );
-		$option_text        = WPUSB_Utils::option( 'twitter_text' );
-		self::$twitter_text = ( ! empty( $option_text ) ) ? str_replace( '{title}', self::$title, $option_text ) : $text;
-
-
 		self::_set_twitter_extra_params();
+
+		$text = WPUSB_Utils::option( 'twitter_text', false );
+
+		if ( $text && WPUSB_Utils::indexof( $text, '{' ) ) {
+			$search             = array( '{title}', '{', '}' );
+			$replace            = array( self::$title, '', '' );
+			self::$twitter_text = str_replace( $search, $replace, $text );
+			return;
+		}
+
+		$slug        = WPUSB_App::SLUG;
+		$domain      = WPUSB_App::TEXTDOMAIN;
+		$before_text = apply_filters( "{$slug}-twitter-before", __( 'Click to see also', $domain ) );
+		$after_text  = apply_filters( "{$slug}-twitter-after", __( 'I just saw', $domain ) );
+
+		self::$twitter_text = WPUSB_Utils::get_twitter_text( self::$title, $after_text, $before_text, self::$caracter );
 	}
 
 	/**

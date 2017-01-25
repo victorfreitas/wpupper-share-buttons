@@ -27,8 +27,8 @@ class WPUSB_Ajax_Gplus_Controller {
 
 		$this->_set_transient_name();
 
-		add_action( "wp_ajax_{$prefix}_gplus_counts", array( &$this, 'gplus_counts_verify_request' ) );
-		add_action( "wp_ajax_nopriv_{$prefix}_gplus_counts", array( &$this, 'gplus_counts_verify_request' ) );
+		add_action( "wp_ajax_{$prefix}_gplus_counts", array( $this, 'gplus_counts_verify_request' ) );
+		add_action( "wp_ajax_nopriv_{$prefix}_gplus_counts", array( $this, 'gplus_counts_verify_request' ) );
 	}
 
 	/**

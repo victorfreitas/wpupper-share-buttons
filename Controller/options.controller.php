@@ -20,7 +20,7 @@ class WPUSB_Options_Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		add_action( 'admin_init', array( &$this, 'register_options_settings' ) );
+		add_action( 'admin_init', array( $this, 'register_options_settings' ) );
 	}
 
 	/**

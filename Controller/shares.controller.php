@@ -26,10 +26,10 @@ class WPUSB_Shares_Controller {
 	* @since 1.2
 	*/
 	public function __construct() {
-		add_shortcode( WPUSB_App::SLUG, array( &$this, 'share' ) );
-		add_filter( 'the_content', array( &$this, 'content' ) );
-		add_action( 'woocommerce_share', array( &$this, 'wc_render_share' ) );
-		add_action( 'wp_footer', array( &$this, 'buttons_fixed' ) );
+		add_shortcode( WPUSB_App::SLUG, array( $this, 'share' ) );
+		add_filter( 'the_content', array( $this, 'content' ) );
+		add_action( 'woocommerce_share', array( $this, 'wc_render_share' ) );
+		add_action( 'wp_footer', array( $this, 'buttons_fixed' ) );
 	}
 
 	/**
