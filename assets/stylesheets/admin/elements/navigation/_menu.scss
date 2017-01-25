@@ -1,7 +1,8 @@
 .#{$prefix}-menu {
     border: 0;
+    margin-top: 15px;
     position: relative;
-    top: 6px;
+    top: -3px;
     width: 100%;
 
 	ul {
@@ -11,30 +12,32 @@
 	}
 
 	li {
-		background: #f6f6f6;
-		border-color: #d6d6d6;
+		@extend %transitionAll;
+		background-color: #fff;
+		border-color: #e2e2e2;
+		border-radius: 3px;
 		border-style: solid;
-		border-width: 1px 0 1px 1px;
+		border-width: 1px;
 		display: inline-block;
 		font-size: 12px;
 		line-height: 1em;
-		margin: 0 0 -1px 0;
+		margin: 0 5px -1px 0;
 		position: relative;
-
-		&:last-child {
-			border-right: 1px solid #d6d6d6;
-		}
 
 		&.active,
 		&:hover {
-		    background: $colorWhite;
-		    border-bottom-color: $colorWhite;
+			background-color: $btnColor;
+			border-color: $btnColor;
+
+			a {
+				color: #fff;
+			}
 		}
 	}
 
 	a {
 		box-shadow: none;
-		color: #555;
+		color: #777;
 		display: block;
 		font-weight: bold;
 		padding: 12px 25px;
@@ -43,8 +46,5 @@
 }
 
 .#{$prefix}-settings-wrap .#{$prefix}-menu {
-	border-bottom: none;
-	display: inline-block;
-	top: 40px;
-	width: initial;
+	top: 15px;
 }

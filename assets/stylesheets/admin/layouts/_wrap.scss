@@ -31,12 +31,11 @@ $_itemsAvailable : 'items-available';
 
 .#{$prefix}-wrap {
     @extend %noSelect;
-    background: $colorWhite;
-    padding: 0 10px;
-    border-color: #e1e1e1;
-    border-style: solid;
-    border-width: 0 1px 1px 1px;
-    position: relative;
+        background: $colorWhite;
+        border-radius: 5px;
+        border: 0;
+        padding: 0 10px;
+        position: relative;
 
     label { cursor: auto; }
 
@@ -50,7 +49,7 @@ $_itemsAvailable : 'items-available';
         border-width: 0 0 1px 4px;
         box-shadow: none;
         padding: 4px 0;
-        border-color: $colorCheckboxOn;
+        border-color: $btnColor;
         text-indent: 2px;
 
         &:focus {
@@ -96,6 +95,7 @@ $_itemsAvailable : 'items-available';
 .#{$prefix}-fixed-square,
 .#{$prefix}-fixed-rounded {
     input + label {
+        @extend %transitionAll;
         background: $colorWhite;
         border-radius: 5px;
         box-shadow: inset 0 0 1px 1px #D2D2D2;
@@ -118,7 +118,7 @@ $_itemsAvailable : 'items-available';
 .#{$prefix}-fixed-square,
 .#{$prefix}-fixed-rounded {
     input + label:before {
-        background: $colorCheckboxOn;
+        background: $btnColor;
     }
 }
 
@@ -152,7 +152,7 @@ $_itemsAvailable : 'items-available';
 
 .#{$prefix}-social-networks {
     input + label:after {
-        color: #807E7E;
+        color: #9E9E9E;
         font-size: 20px;
         position: relative;
         text-shadow: initial;
@@ -212,7 +212,7 @@ $_itemsAvailable : 'items-available';
 .#{$prefix}-remove-elements input:checked + label:after {
     position: relative;
     @extend .#{$prefix}-icon-toggle-on:before;
-    color: $colorCheckboxOn;
+    color: $btnColor;
 }
 
 .#{$prefix}-highlight {
