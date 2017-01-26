@@ -46,5 +46,7 @@
 }
 
 .#{$prefix}-settings-wrap .#{$prefix}-menu {
-	top: 15px;
+    display: inline-block;
+    top: 30px;
+    width: auto;
 }
