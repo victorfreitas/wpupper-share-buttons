@@ -21,7 +21,7 @@ class WPUSB_Settings_Extra_View {
 	 * @return Void, Display page
 	 */
 	public static function render_settings_extra() {
-		$model         = new WPUSB_Setting();
+		$model         = WPUSB_Setting::get_instance();
 		$prefix        = WPUSB_App::SLUG;
 		$extra_setting = "{$prefix}_extra_settings";
 	?>

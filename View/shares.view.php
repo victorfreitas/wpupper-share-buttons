@@ -14,8 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WPUSB_Shares_View {
 
-	public static function buttons_share( $atts = array() ) {
-		return WPUSB_Utils::buttons_share( $atts );
+	public static function buttons_share( $atts = array(), $fixed = false ) {
+		return WPUSB_Utils::buttons_share( $atts, $fixed );
 	}
 
 	public static function get_buttons_section( $buttons, $share_modal, $args, $number ) {
@@ -122,7 +122,7 @@ EOD;
 		}
 
 		return <<<EOD
-			#{$prefix}-container .{$prefix}-item i {
+			#{$prefix}-container i {
 			  color: {$color};
 			}
 
@@ -161,6 +161,12 @@ EOD;
 			#{$prefix}-container .{$prefix}-icon-like-rounded {
 				background: {$color};
 				color: #fff;
+			}
+
+			.{$prefix} .{$prefix}-item a:hover {
+				filter: alpha(opacity=80);
+				opacity: 0.8;
+				zoom: 1;
 			}
 EOD;
 	}
@@ -205,6 +211,12 @@ EOD;
 			#{$id} .{$prefix}-item .{$prefix}-icon-like-rounded  {
 				background: {$color};
 				color: #fff;
+			}
+
+			.{$prefix} .{$prefix}-item a:hover {
+				filter: alpha(opacity=80);
+				opacity: 0.8;
+				zoom: 1;
 			}
 EOD;
 	}

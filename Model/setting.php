@@ -278,14 +278,6 @@ class WPUSB_Setting {
 	private $twitter_text;
 
 	/**
-	 * ID of post
-	 *
-	 * @since 1.0
-	 * @var Integer
-	 */
-	private $ID;
-
-	/**
 	 * Short url
 	 *
 	 * @since 1.0
@@ -374,6 +366,14 @@ class WPUSB_Setting {
 	private $minify_html;
 
 	/**
+	 * Instance singleton
+	 *
+	 * @since 1.0
+	 * @var null|Object class
+	 */
+	private static $instance = null;
+
+	/**
 	 * Plugin general prefix
 	 *
 	 * @since 1.0
@@ -443,10 +443,8 @@ class WPUSB_Setting {
 	*/
 	const AJAX_VERIFY_GPLUS_COUNTS = 'wpusb-google-plus-counts';
 
-	public function __construct( $ID = false ) {
-		if ( false !== $ID ) {
-			$this->ID = abs( intval( $ID ) );
-		}
+	private function __construct() {
+		$this->set_options();
 	}
 
 	/**
@@ -498,10 +496,6 @@ class WPUSB_Setting {
 	 * @return Array
 	 */
 	public function get_options() {
-		if ( is_null( $this->options ) ) {
-			$this->set_options();
-		}
-
 		return $this->options;
 	}
 
@@ -513,8 +507,7 @@ class WPUSB_Setting {
 	 * @return Array
 	 */
 	public function set_options() {
-		$options 	   = $this->_get_merged_options();
-		$this->options = apply_filters( WPUSB_App::SLUG . 'options-args', $options );
+		$this->options = $this->_get_merged_options();
 	}
 
 	/**
@@ -527,20 +520,35 @@ class WPUSB_Setting {
 	 * @return Array
 	 */
 	private function _get_merged_options() {
-		$options = WPUSB_Utils::get_options_name();
-		$value   = array();
+		$options_name = WPUSB_Utils::get_options_name();
+		$options      = array();
 
-		unset( $options[1] );
-		unset( $options[5] );
+		unset( $options_name[1] );
+		unset( $options_name[5] );
 
-		foreach ( $options as $option ) :
-			$option_value = WPUSB_Utils::get_option( $option );
+		foreach ( $options_name as $option_name ) :
+			$option = WPUSB_Utils::get_option( $option_name );
 
-			if ( is_array( $option_value ) ) {
-				$value = array_merge( $value, $option_value );
+			if ( is_array( $option ) ) {
+				$options = array_merge( $options, $option );
 			}
 		endforeach;
 
-		return $value;
+		return apply_filters( WPUSB_App::SLUG . 'options-args', $options );
+	}
+
+	/**
+ 	 * Singleton instance generate
+ 	 *
+	 * @since 1.0
+	 * @param null
+	 * @return Object class
+	 */
+	public static function get_instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self;
+		}
+
+		return self::$instance;
 	}
 }

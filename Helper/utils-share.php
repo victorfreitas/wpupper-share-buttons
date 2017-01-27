@@ -101,7 +101,7 @@ abstract class WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function get_buttons( $args = array(), $fixed = false ) {
-		$model             = new WPUSB_Setting();
+		$model             = WPUSB_Setting::get_instance();
 		$args              = apply_filters( WPUSB_App::SLUG . 'buttons-args', $args );
 		$args['layout']    = self::get_layout( $args, $model->layout, $fixed );
 		$args['is_fixed']  = $fixed;
@@ -149,7 +149,7 @@ abstract class WPUSB_Utils_Share {
 		}
 
 		if ( ! $model ) {
-			$model = new WPUSB_Setting();
+			$model = WPUSB_Setting::get_instance();
 		}
 
 		$social_media = $model->social_media;

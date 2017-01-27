@@ -625,7 +625,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function option( $name, $default = '', $sanitize = 'rm_tags' ) {
-		$setting = new WPUSB_Setting();
+		$setting = WPUSB_Setting::get_instance();
 		$option  = self::isset_get( $setting->options, $name, false );
 
 		unset( $setting );

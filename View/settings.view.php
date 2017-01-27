@@ -22,7 +22,7 @@ class WPUSB_Settings_View {
 	 * @return Void Display page
 	 */
 	public static function render_settings_page() {
-		$model               = new WPUSB_Setting();
+		$model               = WPUSB_Setting::get_instance();
 		$prefix              = WPUSB_App::SLUG;
 		$option_name         = "{$prefix}_settings";
 		$option_social_media = "{$prefix}_social_media";

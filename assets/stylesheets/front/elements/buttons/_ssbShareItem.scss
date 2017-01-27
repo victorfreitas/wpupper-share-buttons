@@ -89,6 +89,15 @@
     }
 }
 
+.#{$prefix}-default,
+.#{$prefix}-square,
+.#{$prefix}-rounded {
+    .#{$prefix}-button span {
+        color: #424242;
+    }
+}
+
+
 @each $key, $color in $colors {
     // Theme > Other
     @include icon( $key, $color );
