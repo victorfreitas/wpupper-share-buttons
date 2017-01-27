@@ -18,6 +18,7 @@ abstract class WPUSB_Utils_Share {
 	public static $layout_fixed = 'position_fixed';
 	public static $social_media = array();
 	public static $number = 0;
+	public static $instances = array();
 
 	/**
 	 * Set buttons args
@@ -107,10 +108,16 @@ abstract class WPUSB_Utils_Share {
 		$args['is_fixed']  = $fixed;
 		$args['permalink'] = ( $args['url'] ) ? $args['url'] : WPUSB_Utils::get_real_permalink( $fixed, $args['is_widget'] );
 		$args['title']     = ( $args['title'] ) ? $args['title'] : WPUSB_Utils::get_real_title( $fixed, $args['is_widget'] );
-		$elements          = WPUSB_Social_Elements::social_media();
-		$social_items      = self::get_social_media( $model, $args['items'] );
-		$buttons           = self::get_buttons_open( $args, $model, $args['permalink'], $args['title'] );
-		$share_modal       = false;
+		$hash              = WPUSB_Utils::get_hash( $args );
+
+		if ( $hash && isset( self::$instances[ $hash ] ) ) {
+			return self::$instances[ $hash ];
+		}
+
+		$elements     = WPUSB_Social_Elements::social_media();
+		$social_items = self::get_social_media( $model, $args['items'] );
+		$buttons      = self::get_buttons_open( $args, $model, $args['permalink'], $args['title'] );
+		$share_modal  = false;
 
 		foreach ( $social_items as $item ) :
 			if ( ! WPUSB_Social_Elements::items_available( $item ) ) {
@@ -130,8 +137,11 @@ abstract class WPUSB_Utils_Share {
 		self::$count_elements = 0;
 
 		$buttons .= self::get_content_by_layout( (object) $args, 'end' );
+		$buttons  = WPUSB_Shares_View::get_buttons_section( $buttons, $share_modal, $args, self::$number );
 
-		return WPUSB_Shares_View::get_buttons_section( $buttons, $share_modal, $args, self::$number );
+		self::$instances[ $hash ] = $buttons;
+
+		return $buttons;
 	}
 
 	/**

@@ -158,9 +158,14 @@ EOD;
 
 			#{$prefix}-container .{$prefix}-printer i:not(.{$prefix}-icon-printer-default),
 			#{$prefix}-container .{$prefix}-icon-like-square,
-			#{$prefix}-container .{$prefix}-icon-like-rounded {
+			#{$prefix}-container .{$prefix}-icon-like-rounded,
+			#{$prefix}-container .{$prefix}-icon-viber-rounded {
 				background: {$color};
 				color: #fff;
+			}
+
+			#{$prefix}-container .{$prefix}-icon-whatsapp-square {
+				box-shadow: 0px 0px 0px 5px #303030 inset;
 			}
 
 			.{$prefix} .{$prefix}-item a:hover {
@@ -208,9 +213,14 @@ EOD;
 			#{$id} .{$prefix}-rounded .{$prefix}-printer i,
 			#{$id} .{$prefix}-square .{$prefix}-printer i,
 			#{$id} .{$prefix}-item .{$prefix}-icon-like-square,
-			#{$id} .{$prefix}-item .{$prefix}-icon-like-rounded  {
+			#{$id} .{$prefix}-item .{$prefix}-icon-like-rounded,
+			#{$id} .{$prefix}-item .{$prefix}-icon-viber-rounded  {
 				background: {$color};
 				color: #fff;
+			}
+
+			#{$id} #{$prefix}-container .{$prefix}-icon-whatsapp-square {
+				box-shadow: 0px 0px 0px 5px #303030 inset;
 			}
 
 			.{$prefix} .{$prefix}-item a:hover {

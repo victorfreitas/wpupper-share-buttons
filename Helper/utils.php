@@ -1592,6 +1592,21 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		return is_active_widget( false, false, $id_base, true );
 	}
 
+	/**
+	 * Generate hash MD5 with json_econde
+	 *
+	 * @since 3.25.3
+	 * @param Mixed $args
+	 * @return String|Boolean
+	 */
+	public static function get_hash( $args = '' ) {
+		if ( function_exists( 'json_encode' ) ) {
+			return md5( json_encode( $args ) );
+		}
+
+		return false;
+	}
+
 	public static function log( $data, $log_name = '' )
 	{
 		$name = "{$log_name}-"  . date( 'd-m-Y' )        . '.log';
