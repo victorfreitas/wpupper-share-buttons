@@ -113,9 +113,17 @@ EOD;
 EOD;
 	}
 
-	public static function get_css_icons_color() {
+	public static function get_css_icons_color( $option = array() ) {
 		$prefix = WPUSB_App::SLUG;
-		$color  = WPUSB_Utils::option( 'icons_color' );
+		$color  = '';
+
+		if ( isset( $option['icons_color'] ) ) {
+			$color = WPUSB_Utils::rm_tags( $option['icons_color'] );
+		}
+
+		if ( empty( $option ) ) {
+			$color = WPUSB_Utils::option( 'icons_color' );
+		}
 
 		if ( empty( $color ) ) {
 			return '';

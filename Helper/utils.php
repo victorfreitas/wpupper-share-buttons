@@ -1332,8 +1332,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return Boolean
 	 */
 	public static function build_css( $custom_css ) {
+		self::delete_custom_css_file();
+
 		if ( empty( $custom_css ) ) {
-			self::delete_custom_css_file();
 			return ! self::file_css_min_exists();
 		}
 
@@ -1449,10 +1450,18 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Null
 	 * @return String
 	 */
-	public static function get_all_custom_css( $custom_css = null ) {
+	public static function get_all_custom_css( $custom_css = null, $option = array() ) {
 		$settings_icons_size_css = '';
-		$settings_icons_size     = self::option( 'icons_size', 0, 'intval' );
-		$settings_icons_color    = WPUSB_Shares_View::get_css_icons_color();
+		$settings_icons_size     = '';
+		$settings_icons_color    = WPUSB_Shares_View::get_css_icons_color( $option );
+
+		if ( isset( $option['icons_size'] ) ) {
+			$settings_icons_size = intval( $option['icons_size'] );
+		}
+
+		if ( empty( $option ) ) {
+			$settings_icons_size = self::option( 'icons_size', 0, 'intval' );
+		}
 
 		if ( $settings_icons_size ) {
 			$settings_icons_size_css = WPUSB_Shares_View::get_css_icons_size( $settings_icons_size );

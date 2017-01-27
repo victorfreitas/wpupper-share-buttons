@@ -161,7 +161,7 @@ class WPUSB_Settings_Controller {
 	 * @return void
 	 */
 	public function rebuild_custom_css( $old_value, $value, $option ) {
-		$this->_rebuild_css();
+		$this->_rebuild_css( $value );
 	}
 
 	/**
@@ -171,8 +171,8 @@ class WPUSB_Settings_Controller {
 	 * @param null
 	 * @return void
 	 */
-	private function _rebuild_css() {
-		$custom_css = WPUSB_Utils::get_all_custom_css();
+	private function _rebuild_css( $option = array() ) {
+		$custom_css = WPUSB_Utils::get_all_custom_css( null, $option );
 		WPUSB_Utils::build_css( $custom_css );
 	}
 }
