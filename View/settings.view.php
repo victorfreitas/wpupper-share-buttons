@@ -605,7 +605,9 @@ EOD;
 			'value'       => '',
 			'description' => '',
 		);
-		$args = array_merge( $defaults, $args );
+		$args      = array_merge( $defaults, $args );
+		$on_title  = __( 'YES', WPUSB_App::SLUG );
+		$off_title = __( 'NO', WPUSB_App::SLUG );
 
 		echo <<<EOD
 			<div class="{$prefix}-custom-switch">
@@ -618,7 +620,9 @@ EOD;
 			    	   {$args['checked']}>
 
 			    <label for="{$prefix}-{$args['id']}">
-			        <span class="{$prefix}-inner"></span>
+			        <span class="{$prefix}-inner"
+			        	  data-title-on="{$on_title}"
+			        	  data-title-off="{$off_title}"></span>
 			        <span class="{$prefix}-switch"></span>
 			    </label>
 

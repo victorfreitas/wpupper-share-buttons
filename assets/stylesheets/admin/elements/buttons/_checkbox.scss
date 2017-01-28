@@ -42,15 +42,15 @@
 	.#{$prefix}-inner:before {
 	    background-color: $colorCheckboxOn;
 	    color: $colorWhite;
-	    content: "YES";
+	    content: attr( data-title-on );
 	    padding-left: 9px;
 	}
 
 	.#{$prefix}-inner:after {
 	    background-color: $colorCheckboxOff;
 	    color: $colorWhite;
-	    content: "NO";
-	    padding-right: 12px;
+	    content: attr( data-title-off );
+	    padding-right: 9px;
 	    text-align: right;
 	}
 
