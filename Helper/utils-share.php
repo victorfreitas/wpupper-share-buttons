@@ -136,12 +136,13 @@ abstract class WPUSB_Utils_Share {
 
 		self::$count_elements = 0;
 
-		$buttons .= self::get_content_by_layout( (object) $args, 'end' );
-		$buttons  = WPUSB_Shares_View::get_buttons_section( $buttons, $share_modal, $args, self::$number );
+		$buttons         .= self::get_content_by_layout( (object) $args, 'end' );
+		$buttons_section = WPUSB_Shares_View::get_buttons_section( $buttons, $share_modal, $args, self::$number );
+		$html_buttons    = WPUSB_Utils::minify_html( $buttons_section );
 
-		self::$instances[ $hash ] = $buttons;
+		self::$instances[ $hash ] = $html_buttons;
 
-		return $buttons;
+		return apply_filters( WPUSB_App::SLUG . '_html_buttons', $html_buttons, $elements, $args );
 	}
 
 	/**
@@ -482,7 +483,7 @@ abstract class WPUSB_Utils_Share {
 		$args          = self::sanitize_atts( $atts );
 		$buttons_share = self::get_buttons( $args, $fixed );
 
-		return WPUSB_Utils::minify_html( $buttons_share );
+		return $buttons_share;
 	}
 
 	/**
