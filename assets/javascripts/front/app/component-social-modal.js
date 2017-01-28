@@ -11,12 +11,7 @@ WPUSB( 'WPUSB.Components.ButtonsSection', function(Modal, $) {
 		this.setMask();
 
 		WPUSB.OpenPopup.create( this.modal );
-
-		this.modal.show();
 		this.addEventListener();
-		this.setSizes();
-		this.setPosition();
-		this.modal.hide();
 	};
 
 	Modal.fn.setModal = function() {
@@ -28,6 +23,9 @@ WPUSB( 'WPUSB.Components.ButtonsSection', function(Modal, $) {
 
 		this.modal = WPUSB.vars.body.byElement( modalId );
 		this.close = this.modal.find( this.prefix + '-btn-close' );
+
+		this.setSizes();
+		this.setPosition();
 
 		modal.remove();
 	};
@@ -76,8 +74,8 @@ WPUSB( 'WPUSB.Components.ButtonsSection', function(Modal, $) {
 	};
 
 	Modal.fn.setTop = function() {
-		var height   = ( window.innerHeight / 4 )
-		  ,	elHeight = ( this.modal.height() / 4 )
+		var height   = ( window.innerHeight * 0.5 )
+		  ,	elHeight = ( this.modal.height() * 0.5 )
 		  , position = ( height - elHeight )
 		;
 
@@ -86,8 +84,8 @@ WPUSB( 'WPUSB.Components.ButtonsSection', function(Modal, $) {
 	};
 
 	Modal.fn.setLeft = function() {
-		var width    = ( window.innerWidth / 4 )
-		  ,	elWidth  = ( this.modal.width() / 4 )
+		var width    = ( window.innerWidth * 0.5 )
+		  ,	elWidth  = ( this.modal.width() * 0.5 )
 		  , position = ( width - elWidth )
 		;
 

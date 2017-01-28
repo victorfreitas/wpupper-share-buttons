@@ -48,7 +48,9 @@
 	}
 }
 
-.#{$prefix}-icons_color-label {
+.#{$prefix}-icons_color-label,
+.#{$prefix}-icons_background-label {
+    display: block;
     position: relative;
     top: -10px;
 }

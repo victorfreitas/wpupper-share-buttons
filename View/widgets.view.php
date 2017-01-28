@@ -29,7 +29,7 @@ class WPUSB_Widgets_View {
 		);
 		$placeholder = isset( $placeholders[ $id ] ) ? $placeholders[ $id ] : '';
 
-		if ( $id === 'icons_color' ) {
+		if ( $id === 'icons_color' || $id === 'icons_background' ) {
 			$class = "{$prefix}-widget-colorpicker";
 		}
 	?>

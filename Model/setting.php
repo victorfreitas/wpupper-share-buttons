@@ -358,6 +358,14 @@ class WPUSB_Setting {
 	private $icons_color;
 
 	/**
+	 * Custom icons background color
+	 *
+	 * @since 1.0
+	 * @var String
+	 */
+	private $buttons_background_color;
+
+	/**
 	 * Minify html output
 	 *
 	 * @since 1.0

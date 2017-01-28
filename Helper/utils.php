@@ -1399,6 +1399,72 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
+	 * Get custom background color for icons
+	 *
+	 * @since 3.26
+	 * @version 1.0
+	 * @param Array $option
+	 * @return string
+	 */
+	public static function get_custom_background_color_icons( $option = array() ) {
+		$background = '';
+
+		if ( isset( $option['buttons_background_color'] ) ) {
+			$background = self::rm_tags( $option['buttons_background_color'] );
+		}
+
+		if ( empty( $option ) ) {
+			$background = self::option( 'buttons_background_color' );
+		}
+
+		return ( $background ) ? $background : '';
+	}
+
+	/**
+	 * Get custom color for icons
+	 *
+	 * @since 3.26
+	 * @version 1.0
+	 * @param Array $option
+	 * @return string
+	 */
+	public static function get_custom_color_icons( $option = array() ) {
+		$color = '';
+
+		if ( isset( $option['icons_color'] ) ) {
+			$color = WPUSB_Utils::rm_tags( $option['icons_color'] );
+		}
+
+		if ( empty( $option ) ) {
+			$color = WPUSB_Utils::option( 'icons_color' );
+		}
+
+		return $color;
+	}
+
+	/**
+	 * Get validate color and icon color
+	 *
+	 * @since 3.26
+	 * @version 1.0
+	 * @param Array $option
+	 * @return string
+	 */
+	public static function get_validate_color_icons( $color, $background ) {
+		if ( empty( $color ) || empty( $background ) ) {
+			$icon_color = '#fff';
+		}
+
+		if ( empty( $color ) && ! empty( $background ) ) {
+			$color = $background;
+		}
+
+		$icon_color = isset( $icon_color ) ? $icon_color : $color;
+
+		return array( $color, $icon_color );
+	}
+
+	/**
 	 * Get path css min
 	 *
 	 * @since 3.25
@@ -1509,14 +1575,15 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		foreach ( $options as $number => $option ) :
 			$icons_size  = self::isset_get( $option, 'icons_size' );
 			$icons_color = self::isset_get( $option, 'icons_color' );
+			$background  = self::isset_get( $option, 'icons_background' );
 			$layout      = self::isset_get( $option, 'layout' );
 
 			if ( intval( $number ) && ! empty( $icons_size ) ) :
 				$icons_size_css .= WPUSB_Shares_View::get_css_icons_size( $icons_size, $number, $layout );
 			endif;
 
-			if ( ! empty( $icons_color ) ) :
-				$icons_color_css .= WPUSB_Shares_View::get_widget_css_icons_color( $number, $icons_color );
+			if ( ! empty( $icons_color ) || ! empty( $background ) ) :
+				$icons_color_css .= WPUSB_Shares_View::get_widget_css_icons_color( $number, $icons_color, $background );
 			endif;
 		endforeach;
 

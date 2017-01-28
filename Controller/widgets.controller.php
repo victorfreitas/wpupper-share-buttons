@@ -69,8 +69,8 @@ class WPUSB_Widgets_Controller extends \WP_Widget {
 
 	public function update( $new_instance, $old_instance ) {
 		$instance               = $this->sanitize( $new_instance );
-		$instance['url']        = esc_url( $new_instance['url'] );
-		$instance['icons_size'] = absint( $new_instance['icons_size'] );
+		$instance['url']        = ( $new_instance['url'] ) ? esc_url( $new_instance['url'] ) : '';
+		$instance['icons_size'] = ( $new_instance['icons_size'] ) ? absint( $new_instance['icons_size'] ) : '';
 
 		return $instance;
 	}
@@ -87,6 +87,7 @@ class WPUSB_Widgets_Controller extends \WP_Widget {
 		WPUSB_Widgets_View::field_input( __( 'Custom url', $domain ), 'url' );
 		WPUSB_Widgets_View::field_input( __( 'Custom icons size', $domain ), 'icons_size', 'number' );
 		WPUSB_Widgets_View::field_input( __( 'Custom icons color', $domain ), 'icons_color' );
+		WPUSB_Widgets_View::field_input( __( 'Custom buttons background color', $domain ), 'icons_background' );
 		WPUSB_Widgets_View::field_select( __( 'Layout', $domain ), 'layout', $this->get_layout() );
 		WPUSB_Widgets_View::field_checkbox( __( 'Remove counter', $domain ), 'counter' );
 		WPUSB_Widgets_View::field_checkbox( __( 'Remove button title', $domain ), 'inside' );

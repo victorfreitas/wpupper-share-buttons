@@ -114,30 +114,42 @@ EOD;
 	}
 
 	public static function get_css_icons_color( $option = array() ) {
+		$background = WPUSB_Utils::get_custom_background_color_icons( $option );
+		$color      = WPUSB_Utils::get_custom_color_icons( $option );
+		$colors     = WPUSB_Utils::get_validate_color_icons( $color, $background );
+
+		if ( empty( $color ) && empty( $background ) ) {
+			return '';
+		}
+
+		return self::get_custom_css_buttons( $colors[0], $background, $colors[1] );
+	}
+
+	public static function get_widget_css_icons_color( $number, $color, $background ) {
 		$prefix = WPUSB_App::SLUG;
-		$color  = '';
 
-		if ( isset( $option['icons_color'] ) ) {
-			$color = WPUSB_Utils::rm_tags( $option['icons_color'] );
+		if ( empty( $color ) && empty( $background ) ) {
+			return '';
 		}
 
-		if ( empty( $option ) ) {
-			$color = WPUSB_Utils::option( 'icons_color' );
-		}
+		$colors = WPUSB_Utils::get_validate_color_icons( $color, $background );
+		$id     = "#widget-{$prefix}-{$number}";
 
-		if ( empty( $color ) ) {
+		return self::get_custom_css_buttons( $colors[0], $background, $colors[1], $id );
+	}
+
+	public static function get_custom_css_buttons( $color, $background, $icon_color, $id_widget = '' ) {
+		$prefix         = WPUSB_App::SLUG;
+		$background_css = self::get_css_icons_background( $background, $color, $id_widget );
+
+		if ( empty( $color ) && empty( $background ) ) {
 			return '';
 		}
 
 		return <<<EOD
-			#{$prefix}-container i {
+			{$background_css}
+			{$id_widget} #{$prefix}-container i {
 			  color: {$color};
-			}
-
-			#{$prefix}-container-buttons .{$prefix}-item a,
-			#{$prefix}-container-square-plus .{$prefix}-item a,
-			#{$prefix}-container-fixed .{$prefix}-item a {
-				background-color: {$color};
 			}
 
 			#{$prefix}-container-buttons .{$prefix}-item a,
@@ -154,87 +166,54 @@ EOD;
 				box-shadow: none;
 			}
 
-			#{$prefix}-container-square-plus .{$prefix}-item i,
-			#{$prefix}-container-buttons .{$prefix}-item i,
-			#{$prefix}-container-fixed .{$prefix}-item i {
-				color: #fff;
+			{$id_widget} #{$prefix}-container-square-plus .{$prefix}-item i,
+			{$id_widget} #{$prefix}-container-buttons .{$prefix}-item i,
+			{$id_widget} #{$prefix}-container-fixed .{$prefix}-item i,
+			{$id_widget} #{$prefix}-container-square-plus .{$prefix}-item .{$prefix}-link,
+			{$id_widget} #{$prefix}-container-buttons .{$prefix}-item a {
+				color: {$icon_color};
 			}
 
-			#{$prefix}-container-fixed .{$prefix}-counts {
+			{$id_widget} #{$prefix}-container-fixed .{$prefix}-counts {
 				border-bottom: 1px dotted #ebebeb;
-			}
-
-			#{$prefix}-container .{$prefix}-printer i:not(.{$prefix}-icon-printer-default),
-			#{$prefix}-container .{$prefix}-icon-like-square,
-			#{$prefix}-container .{$prefix}-icon-like-rounded,
-			#{$prefix}-container .{$prefix}-icon-viber-rounded {
-				background: {$color};
-				color: #fff;
-			}
-
-			#{$prefix}-container .{$prefix}-icon-whatsapp-square {
-				box-shadow: 0px 0px 0px 5px #303030 inset;
 			}
 
 			.{$prefix} .{$prefix}-item a:hover {
 				filter: alpha(opacity=80);
 				opacity: 0.8;
 				zoom: 1;
+			}
+
+			{$id_widget} #{$prefix}-container .{$prefix}-printer i:not(.{$prefix}-icon-printer-default),
+			{$id_widget} #{$prefix}-container .{$prefix}-icon-like-square,
+			{$id_widget} #{$prefix}-container .{$prefix}-icon-like-rounded,
+			{$id_widget} #{$prefix}-container .{$prefix}-icon-viber-rounded {
+				background-color: {$color};
+				color: #fff;
+			}
+
+			{$id_widget} #{$prefix}-container .{$prefix}-icon-whatsapp-square {
+				box-shadow: 0px 0px 0px 5px {$color} inset;
 			}
 EOD;
 	}
 
-	public static function get_widget_css_icons_color( $number, $color ) {
+	public static function get_css_icons_background( $background, $color, $id_widget ) {
 		$prefix = WPUSB_App::SLUG;
 
-		if ( empty( $color ) ) {
+		if ( empty( $background ) && ! empty( $color ) ) {
+			$background = $color;
+		}
+
+		if ( empty( $background ) ) {
 			return '';
 		}
 
-		$id = "widget-{$prefix}-{$number}";
-
 		return <<<EOD
-			#{$id} .{$prefix}-item i {
-			  color: {$color};
-			}
-
-			#{$id} .{$prefix}-buttons .{$prefix}-item a,
-			#{$id} .{$prefix}-square-plus .{$prefix}-item a {
-				background-color: {$color};
-				-moz-box-shadow: 0 2px #545454;
-				-webkit-box-shadow: 0 2px #545454;
-				box-shadow: 0 2px #545454;
-			}
-
-			#{$id} .{$prefix}-buttons .{$prefix}-item a:active,
-			#{$id} .{$prefix}-square-plus .{$prefix}-item a:active {
-				-moz-box-shadow: none;
-				-webkit-box-shadow: none;
-				box-shadow: none;
-			}
-
-			#{$id} .{$prefix}-square-plus .{$prefix}-item i,
-			#{$id} .{$prefix}-buttons .{$prefix}-item i {
-			  color: #fff;
-			}
-
-			#{$id} .{$prefix}-rounded .{$prefix}-printer i,
-			#{$id} .{$prefix}-square .{$prefix}-printer i,
-			#{$id} .{$prefix}-item .{$prefix}-icon-like-square,
-			#{$id} .{$prefix}-item .{$prefix}-icon-like-rounded,
-			#{$id} .{$prefix}-item .{$prefix}-icon-viber-rounded  {
-				background: {$color};
-				color: #fff;
-			}
-
-			#{$id} #{$prefix}-container .{$prefix}-icon-whatsapp-square {
-				box-shadow: 0px 0px 0px 5px #303030 inset;
-			}
-
-			.{$prefix} .{$prefix}-item a:hover {
-				filter: alpha(opacity=80);
-				opacity: 0.8;
-				zoom: 1;
+			{$id_widget} #{$prefix}-container-buttons .{$prefix}-item a,
+			{$id_widget} #{$prefix}-container-square-plus .{$prefix}-item a,
+			{$id_widget} #{$prefix}-container-fixed .{$prefix}-item a {
+				background-color: {$background};
 			}
 EOD;
 	}

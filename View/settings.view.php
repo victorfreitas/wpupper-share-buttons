@@ -307,6 +307,28 @@ class WPUSB_Settings_View {
 							</tr>
 							<tr>
 								<th scope="row">
+									<label for="<?php echo $prefix; ?>-icons-background-color">
+										<?php _e( 'Custom buttons background color', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'type'        => 'text',
+										'id'          => 'buttons-background',
+										'class'       => "{$prefix}-colorpicker",
+										'name'        => "{$option_name}[buttons_background_color]",
+										'value'       => $model->buttons_background_color,
+										'description' => sprintf(
+											__( 'By layouts: %s, %s, and %s.', WPUSB_App::TEXTDOMAIN ),
+											__( 'Button', WPUSB_App::TEXTDOMAIN ),
+											__( 'Square plus', WPUSB_App::TEXTDOMAIN ),
+											__( 'Position fixed', WPUSB_App::TEXTDOMAIN )
+										),
+									));
+								?>
+							</tr>
+							<tr>
+								<th scope="row">
 									<label for="<?php echo $prefix; ?>-class">
 										<?php _e( 'Custom class', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>
@@ -358,7 +380,7 @@ class WPUSB_Settings_View {
 							<tr>
 								<th scope="row">
 									<label for="<?php echo $prefix; ?>-context">
-										<?php _e( 'Context ID', WPUSB_App::TEXTDOMAIN ); ?>
+										<?php _e( 'HTML id attribute', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>
 								</th>
 								<?php
