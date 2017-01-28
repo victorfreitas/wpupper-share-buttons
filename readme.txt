@@ -52,36 +52,37 @@ Translators who did a great job converting the text of the plugin to their nativ
 
 == Screenshots ==
 
-1. Admin - Options Page. Possibility of ordering social networks
-2. Admin - Options Page. Preview buttons
-3. Admin - Extra settings page
+1. Admin - Settings Page. Drag and drop social networks and Preview buttons
+2. Admin - Extra settings page
+3. Admin - Custom CSS
 4. Admin - Use options page
-5. Admin - Sharing report page
-6. After button click share
-7. Layout: Square Plus with counter
-8. Layout: Square Plus - No counter
-9. Layout: Square Plus - Mobile landscape
-10. Layout: Square Plus - Mobile portrait
-11. Layout: Default
-12. Layout: Default - No counter
-13. Layout: Default - No title and counter
-14. Layout: Buttons
-15. Layout: Buttons - No counter
-16. Layout: Buttons - No tile and counter
-17. Layout: Rounded
-18. Layout: Rounded - No counter
-19. Layout: Rounded - No title and counter
-20. Layout: Rounded - Mobile portrait
-21. Layout: Square
-22. Layout: Square - No counter
-23. Layout: Square - No title and counter
-24. Layout: Square - Mobile portrait
-25. Layout: Buttons - Fixed left with counter
-26. Layout: Buttons - Fixed left toggle
-27. Layout: Buttons - Fixed left no counter
-28. Layout: Buttons - Fixed left mobile portrait
-29. Layout: Buttons - Fixed left mobile landscape
-30. Layout: Buttons - Fixed left tablet portrait
+5. Admin - Widget
+6. Admin - Sharing report page
+7. After button click share
+8. Layout: Square Plus with counter
+9. Layout: Square Plus - No counter
+10. Layout: Square Plus - Mobile landscape
+11. Layout: Square Plus - Mobile portrait
+12. Layout: Default
+13. Layout: Default - No counter
+14. Layout: Default - No title and counter
+15. Layout: Buttons
+16. Layout: Buttons - No counter
+17. Layout: Buttons - No tile and counter
+18. Layout: Rounded
+19. Layout: Rounded - No counter
+20. Layout: Rounded - No title and counter
+21. Layout: Rounded - Mobile portrait
+22. Layout: Square
+23. Layout: Square - No counter
+24. Layout: Square - No title and counter
+25. Layout: Square - Mobile portrait
+26. Layout: Buttons - Fixed left with counter
+27. Layout: Buttons - Fixed left toggle
+28. Layout: Buttons - Fixed left no counter
+29. Layout: Buttons - Fixed left mobile portrait
+30. Layout: Buttons - Fixed left mobile landscape
+31. Layout: Buttons - Fixed left tablet portrait
 
 * Share buttons
 * Settings panel

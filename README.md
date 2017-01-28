@@ -39,19 +39,22 @@ endif;
 ``` PHP
 //Default Arguments
 $args = array(
-    'class_first'  => '',
-    'class_second' => '',
-    'class_link'   => '',
-    'class_icon'   => '',
-    'layout'       => 'default',
-    'title'        => '',
-    'url'          => '',
-    'elements'     => array(
-        'remove_inside'  => false,
-        'remove_counter' => false,
+     'class_first'  => '', // String
+     'class_second' => '', // String
+     'class_link'   => '', // String
+     'class_icon'   => '', // String
+     'layout'       => 'default', //String
+     'items'        => '', // Mixed String|Array -- Example: 'facebook, google' | array( 'facebook', 'google' )
+     'title'        => '', //String
+     'header_title' => '', //String
+     'url'          => '', //string
+     'elements'     => array( // Array
+         'remove_inside'  =>  false, // Boolean
+         'remove_counter' =>  false, // Boolean
     ),
 );
 if ( class_exists( 'WPUSB_Shares_View' ) ) :
+    // $args is optional
     echo WPUSB_Shares_View::buttons_share( $args );
 endif;
 
