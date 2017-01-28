@@ -1,8 +1,12 @@
 WPUSB( 'WPUSB.Components.ButtonsSection', function(Modal, $) {
 
+	var modalIds = {};
+
 	Modal.fn.start = function() {
-		this.prefix = '.' + this.utils.prefix;
-		this.id     = this.$el.find( this.prefix + '-share a' ).data( 'modal-id' );
+		this.prefix  = '.' + this.utils.prefix;
+		this.id      = this.$el.find( this.prefix + '-share a' ).data( 'modal-id' );
+		this.modalId = this.utils.prefix + '-modal-container-' + this.id;
+		this.maskId  = this.utils.prefix + '-modal-' + this.id;
 		this.init();
 	};
 
@@ -12,16 +16,20 @@ WPUSB( 'WPUSB.Components.ButtonsSection', function(Modal, $) {
 
 		WPUSB.OpenPopup.create( this.modal );
 		this.addEventListener();
+
+		modalIds[this.id] = true;
 	};
 
 	Modal.fn.setModal = function() {
-		var modalId = this.utils.prefix + '-modal-container-' + this.id
-		  , modal   = this.$el.byElement( modalId )
-		;
+		var modal = this.$el.byElement( this.modalId );
 
-		WPUSB.vars.body.append( modal.clone() );
+		if ( !modalIds[this.id] ) {
+			WPUSB.vars.body.append( modal.clone() );
+		}
 
-		this.modal = WPUSB.vars.body.byElement( modalId );
+		modal.show();
+
+		this.modal = WPUSB.vars.body.byElement( this.modalId );
 		this.close = this.modal.find( this.prefix + '-btn-close' );
 
 		this.setSizes();
@@ -31,12 +39,13 @@ WPUSB( 'WPUSB.Components.ButtonsSection', function(Modal, $) {
 	};
 
 	Modal.fn.setMask = function() {
-		var maskId = this.utils.prefix + '-modal-' + this.id
-		  , mask   = this.$el.byElement( maskId )
-		;
+		var mask = this.$el.byElement( this.maskId );
 
-		WPUSB.vars.body.append( mask.clone() );
-		this.mask = WPUSB.vars.body.byElement( maskId );
+		if ( !modalIds[this.id] ) {
+			WPUSB.vars.body.append( mask.clone() );
+		}
+
+		this.mask = WPUSB.vars.body.byElement( this.maskId );
 		mask.remove();
 	};
 
