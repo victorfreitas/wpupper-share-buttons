@@ -405,6 +405,8 @@ class WPUSB_Setting {
 	 */
 	const TABLE_NAME = 'wpusb_report';
 
+	const TABLE_SHORT_URL = 'wpusb_short_url';
+
 	/**
 	 * Directory separator AND File name
 	 *

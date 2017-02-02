@@ -136,6 +136,7 @@ final class WPUSB_Core {
 
 		WPUSB_Utils::add_default_options();
 		self::_create_table();
+		self::_create_table_short_url();
 	}
 
 	/**
@@ -265,6 +266,7 @@ final class WPUSB_Core {
 
 			switch_to_blog( $blog_id );
 			self::_create_table();
+			self::_create_table_short_url();
 			WPUSB_Utils::add_default_options();
 			restore_current_blog();
 		endforeach;
@@ -286,15 +288,41 @@ final class WPUSB_Core {
 		$query      = "
 			CREATE TABLE IF NOT EXISTS {$table_name} (
 				id         BIGINT(20) NOT NULL AUTO_INCREMENT,
-				post_id    BIGINT(20) UNSIGNED NOT NULL,
-				post_title TEXT       NOT NULL,
-				facebook   BIGINT(20) UNSIGNED NOT NULL,
-				twitter    BIGINT(20) UNSIGNED NOT NULL,
-				google     BIGINT(20) UNSIGNED NOT NULL,
-				linkedin   BIGINT(20) UNSIGNED NOT NULL,
-				pinterest  BIGINT(20) UNSIGNED NOT NULL,
-				tumblr     BIGINT(20) UNSIGNED NOT NULL,
-				total      BIGINT(20) UNSIGNED NOT NULL,
+				post_id    BIGINT(20) NOT NULL DEFAULT 0,
+				facebook   BIGINT(20) NOT NULL DEFAULT 0,
+				twitter    BIGINT(20) NOT NULL DEFAULT 0,
+				google     BIGINT(20) NOT NULL DEFAULT 0,
+				linkedin   BIGINT(20) NOT NULL DEFAULT 0,
+				pinterest  BIGINT(20) NOT NULL DEFAULT 0,
+				tumblr     BIGINT(20) NOT NULL DEFAULT 0,
+				total      BIGINT(20) NOT NULL DEFAULT 0,
+				PRIMARY KEY id ( id ),
+				UNIQUE( post_id )
+			) {$charset};
+		";
+
+		self::db_delta( $query );
+	}
+
+	/**
+	 * Create table short url.
+	 *
+	 * @since 1.1
+	 * @global $wpdb
+	 * @param Null
+	 * @return Void
+	 */
+	private static function _create_table_short_url() {
+		global $wpdb;
+
+		$charset    = $wpdb->get_charset_collate();
+		$table_name = $wpdb->prefix . WPUSB_Setting::TABLE_SHORT_URL;
+		$query      = "
+			CREATE TABLE IF NOT EXISTS {$table_name} (
+				id         BIGINT(20) NOT NULL AUTO_INCREMENT,
+				post_id    BIGINT(20) NOT NULL DEFAULT 0,
+				short_url  TEXT       NOT NULL DEFAULT '',
+				expires    INT(11)    NOT NULL DEFAULT 0,
 				PRIMARY KEY id ( id ),
 				UNIQUE( post_id )
 			) {$charset};
@@ -328,12 +356,54 @@ final class WPUSB_Core {
 	public static function alter_table() {
 		global $wpdb;
 
-		$table        = WPUSB_Utils::get_table_name();
-		$table_exists = $wpdb->query( "SHOW TABLES LIKE '{$table}'" );
+		$table = WPUSB_Utils::get_table_name();
 
-		if ( $table_exists && ! $wpdb->get_var( "SHOW COLUMNS FROM {$table} LIKE 'tumblr';" ) ) {
-			$wpdb->query( "ALTER TABLE {$table} ADD tumblr BIGINT(20) UNSIGNED NOT NULL AFTER pinterest;" );
+		if ( ! self::column_exists( 'tumblr' ) ) {
+			$wpdb->query(
+				"ALTER TABLE
+					{$table}
+				 ADD
+					tumblr BIGINT(20) NOT NULL DEFAULT 0
+				 AFTER
+					pinterest;
+				"
+			);
 		}
+
+		if ( self::column_exists( 'post_title' ) ) {
+			$wpdb->query( "ALTER TABLE {$table} DROP post_title;" );
+		}
+
+		self::_create_table_short_url();
+	}
+
+	/**
+	 * Check column exists
+	 *
+	 * @since 3.27
+	 * @param Null
+	 * @return String
+	 */
+	public static function column_exists( $column ) {
+		global $wpdb;
+
+		$table = WPUSB_Utils::get_table_name();
+		$query = $wpdb->prepare(
+			"SELECT
+				COLUMN_NAME
+			 FROM
+			 	information_schema.COLUMNS
+			 WHERE
+			 	TABLE_NAME = %s
+			 	AND TABLE_SCHEMA = %s
+			 	AND COLUMN_NAME = %s;
+			",
+			$table,
+			$wpdb->dbname,
+			$column
+		);
+
+		return $wpdb->get_var( $query );
 	}
 
 	/**

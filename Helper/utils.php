@@ -352,14 +352,14 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function generate_short_url( $url = false ) {
-		$bitly_token = self::option( 'bitly_token', false );
-		$permalink   = ( $url ) ? $url : self::get_permalink();
+		$token     = self::option( 'bitly_token' );
+		$permalink = ( $url ) ? $url : self::get_permalink();
 
-		if ( ! $bitly_token ) {
+		if ( empty( $token ) ) {
 			return self::url_clean( $permalink );
 		}
 
-		return self::bitly_short_url_cache( $bitly_token, $permalink );
+		return self::bitly_short_url_cache( $token, $permalink );
 	}
 
 	/**
@@ -806,6 +806,20 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
+	 * Generate transient name bitly short url cache
+	 *
+	 * @since 3.27
+	 * @param String $url
+	 * @return String
+	 */
+	public static function get_transient_name_bitly( $url ) {
+		$prefix = WPUSB_App::SLUG;
+		$hash   = md5( $url );
+
+		return "{$prefix}_{$hash}";
+	}
+
+	/**
 	 * Get short url in cache
 	 *
 	 * @since 1.0
@@ -814,7 +828,8 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function bitly_short_url_cache( $token, $url ) {
-		$cache_url = get_transient( $url );
+		$transient = self::get_transient_name_bitly( $url );
+		$cache_url = get_transient( $transient );
 
 		if ( false !== $cache_url ) {
 			return $cache_url;
@@ -832,45 +847,43 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function bitly_short_url( $token, $url ) {
-		$api_url  = 'https://api-ssl.bitly.com/v3/shorten/';
-		$api_url .= "?access_token={$token}&longUrl={$url}";
-		$args     = array(
+		$api  = 'https://api-ssl.bitly.com/v3/shorten/';
+		$args = array(
 			'httpversion' => '1.1',
 			'headers'     => array(
-				'Content-Type' => 'application/json'
+				'Content-Type' => 'application/json',
+			),
+			'body'        => array(
+				'access_token' => $token,
+				'longUrl'      => esc_url( $url ),
 			),
 	    );
 
-	    $response = wp_remote_get( $api_url, $args );
+		$response = wp_remote_get( $api, $args );
+		$bitly    = self::retrieve_body_json( $response );
 
-	    if ( is_wp_error( $response ) ) {
-	    	return $url;
-	    }
-
-	    $body = wp_remote_retrieve_body( $response );
-
-	    return self::_bitly_response( $body, $url );
-	}
-
-	/**
-	 * Generate shorturl by bitly
-	 *
-	 * @since 1.0
-	 * @param Array $response
-	 * @return String
-	 */
-	private static function _bitly_response( $body, $url ) {
-		$response   = json_decode( $body );
-		$transient  = WPUSB_App::SLUG . '-shorturl-cache-expire';
-		$cache_time = apply_filters( $transient, ( 4 * WEEK_IN_SECONDS ) );
-
-		if ( 200 !== $response->status_code ) {
+		if ( ! isset( $bitly->data->url ) ) {
 			return $url;
 		}
 
-		set_transient( $url, $response->data->url, $cache_time );
+		self::_bitly_set_cache( $bitly->data->url, $url );
 
-		return $response->data->url;
+	    return $bitly->data->url;
+	}
+
+	/**
+	 * Set cache shorturl bitly
+	 *
+	 * @since 1.0
+	 * @param String $short_url
+	 * @return String
+	 */
+	private static function _bitly_set_cache( $short_url, $url ) {
+		$tag        = WPUSB_App::SLUG . '-shorturl-cache-expire';
+		$cache_time = apply_filters( $tag, ( 4 * WEEK_IN_SECONDS ) );
+		$transient  = self::get_transient_name_bitly( $url );
+
+		set_transient( $transient, esc_url( $short_url ), $cache_time );
 	}
 
 	/**
