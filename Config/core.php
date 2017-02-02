@@ -288,6 +288,7 @@ final class WPUSB_Core {
 		$query      = "
 			CREATE TABLE IF NOT EXISTS {$table_name} (
 				id         BIGINT(20) NOT NULL AUTO_INCREMENT,
+				post_title TEXT       NOT NULL DEFAULT '',
 				post_id    BIGINT(20) NOT NULL DEFAULT 0,
 				facebook   BIGINT(20) NOT NULL DEFAULT 0,
 				twitter    BIGINT(20) NOT NULL DEFAULT 0,
@@ -340,7 +341,6 @@ final class WPUSB_Core {
 	 */
 	public static function db_delta( $query ) {
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-
 		dbDelta( $query );
 	}
 
@@ -368,10 +368,6 @@ final class WPUSB_Core {
 					pinterest;
 				"
 			);
-		}
-
-		if ( self::column_exists( 'post_title' ) ) {
-			$wpdb->query( "ALTER TABLE {$table} DROP post_title;" );
 		}
 
 		self::_create_table_short_url();
