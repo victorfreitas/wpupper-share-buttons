@@ -288,7 +288,7 @@ final class WPUSB_Core {
 		$query      = "
 			CREATE TABLE IF NOT EXISTS {$table_name} (
 				id         BIGINT(20) NOT NULL AUTO_INCREMENT,
-				post_title TEXT       NOT NULL DEFAULT '',
+				post_title TEXT       NOT NULL,
 				post_id    BIGINT(20) NOT NULL DEFAULT 0,
 				facebook   BIGINT(20) NOT NULL DEFAULT 0,
 				twitter    BIGINT(20) NOT NULL DEFAULT 0,
@@ -322,7 +322,7 @@ final class WPUSB_Core {
 			CREATE TABLE IF NOT EXISTS {$table_name} (
 				id         BIGINT(20) NOT NULL AUTO_INCREMENT,
 				post_id    BIGINT(20) NOT NULL DEFAULT 0,
-				short_url  TEXT       NOT NULL DEFAULT '',
+				short_url  TEXT       NOT NULL,
 				expires    INT(11)    NOT NULL DEFAULT 0,
 				PRIMARY KEY id ( id ),
 				UNIQUE( post_id )
