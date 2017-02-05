@@ -1625,17 +1625,21 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return Void
 	 */
 	public static function get_sites() {
-		global $wp_version;
+		global $wpdb;
 
-		if ( version_compare( $wp_version, '4.6', '>=' ) ) {
-			return function_exists( 'get_sites' ) ? get_sites() : false;
+		if ( ! isset( $wpdb->blogs ) ) {
+			return false;
 		}
 
-		if ( version_compare( $wp_version, '3.7', '>=' ) ) {
-			return function_exists( 'wp_get_sites' ) ? wp_get_sites() : false;
-		}
-
-		return false;
+		return $wpdb->get_col(
+			"SELECT
+				`blog_id`
+			 FROM
+			 	`{$wpdb->blogs}`
+			 WHERE
+			 	`public` = 1
+			"
+		);
 	}
 
 	/**
@@ -1698,7 +1702,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 
 	public static function log( $data, $log_name = '' )
 	{
-		$name = "{$log_name}-"  . date( 'd-m-Y' )        . '.log';
+		$name = "{$log_name}-"  . date( 'd-m-Y' ) . '.log';
 		$log  = print_r( $data, true ) . PHP_EOL;
 		$log .= "\n=============================\n";
 

@@ -65,8 +65,7 @@ final class WPUSB_Core {
 		self::init_controllers();
 	}
 
-	public static function add_widgets()
-	{
+	public static function add_widgets() {
 		register_widget( 'WPUSB_Widgets_Controller' );
 	}
 
@@ -164,18 +163,11 @@ final class WPUSB_Core {
 
 		$sites = WPUSB_Utils::get_sites();
 
-		if ( ! $sites ) {
+		if ( empty( $sites ) ) {
 			return;
 		}
 
-		foreach ( $sites as $site ) :
-			$current = (array)$site;
-			$blog_id = (int)$current['blog_id'];
-
-			if ( ! $blog_id || ! $current['public'] ) {
-				continue;
-			}
-
+		foreach ( $sites as $blog_id ) :
 			switch_to_blog( $blog_id );
 			self::delete_settings();
 			restore_current_blog();
@@ -248,22 +240,13 @@ final class WPUSB_Core {
 	 * @return Void
 	 */
 	private static function _create_table_for_network() {
-		global $wpdb;
-
 		$sites = WPUSB_Utils::get_sites();
 
-		if ( ! $sites ) {
+		if ( empty( $sites ) ) {
 			return;
 		}
 
-		foreach ( $sites as $site ) :
-			$current = (array)$site;
-			$blog_id = (int)$current['blog_id'];
-
-			if ( ! $blog_id || ! $current['public'] ) {
-				continue;
-			}
-
+		foreach ( $sites as $blog_id ) :
 			switch_to_blog( $blog_id );
 			self::_create_table();
 			self::_create_table_short_url();
