@@ -192,16 +192,26 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
-	 * Verify request wp ajax
+	 * Get filtered super global server by key
+	 *
+	 * @since 1.0
+	 * @param String $key
+	 * @return String
+	*/
+	public static function get_server( $key ) {
+		$name = strtoupper( $key );
+		return filter_input( INPUT_SERVER, $name, FILTER_SANITIZE_STRING );
+	}
+
+	/**
+	 * Verify request ajax
 	 *
 	 * @since 1.0
 	 * @param null
 	 * @return Boolean
 	*/
 	public static function is_request_ajax() {
-		if ( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) ) {
-			$request_ajax = $_SERVER['HTTP_X_REQUESTED_WITH'];
-		}
+		$request_ajax = self::get_server( 'HTTP_X_REQUESTED_WITH' );
 
 		return ( ! empty( $request_ajax ) && strtolower( $request_ajax ) === 'xmlhttprequest' );
 	}
@@ -260,11 +270,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	public static function get_id() {
 		global $post;
 
-		if ( isset( $post->ID ) ) {
-			return intval( $post->ID );
-		}
-
-		return 0;
+		return isset( $post->ID ) ? intval( $post->ID ) : false;
 	}
 
 	/**
@@ -274,10 +280,11 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param null
 	 * @return String
 	 */
-	public static function site_url( $path = '' ) {
+	public static function site_url( $path = '', $short = true ) {
 		$site_url = get_home_url( null, "/{$path}" );
+		$url      = self::parse_url_params( $site_url );
 
-		return self::parse_url_params( $site_url );
+		return ( $short ) ? self::bitly_short_url( $url ) : $url; 
 	}
 
 	/**
@@ -304,22 +311,23 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param null
 	 * @return String
 	 */
-	public static function get_real_permalink( $is_fixed = false, $is_widget = false ) {
-		$url = apply_filters( WPUSB_App::SLUG . '-real-permalink', false, $is_fixed );
+	public static function get_real_permalink( $fixed = false, $widget = false, $short = true ) {
+		$url = apply_filters( WPUSB_App::SLUG . '-real-permalink', false, $fixed, $widget );
 
 		if ( $url ) {
-			return self::html_decode( esc_url( $url ) );
+			return esc_url( $url );
 		}
 
-		if ( ( $is_fixed || $is_widget ) && self::is_home() || self::is_home() && is_page( self::get_id() ) ) {
+		if ( ( $fixed || $widget ) && self::is_home() || self::is_home() && is_page( self::get_id() ) ) {
 			return self::site_url();
 		}
 
-		if ( ! ( $is_fixed && self::is_archive_category() ) ) {
-			return self::generate_short_url();
+		if ( ! ( ( $fixed || $widget ) && self::is_archive_category() ) ) {
+			$url = self::get_permalink();
+			return ( $short ) ? self::bitly_short_url( $url ) : $url;
 		}
 
-		return self::get_term_link();
+		return self::get_term_link( $short );
 	}
 
 
@@ -330,7 +338,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param null
 	 * @return String
 	 */
-	public static function get_term_link() {
+	public static function get_term_link( $short = true ) {
 		$term      = self::get_queried_object();
 		$term_link = get_term_link( $term );
 
@@ -340,7 +348,18 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 
 		$term_link = self::parse_url_params( $term_link );
 
-		return self::generate_short_url( $term_link );
+		return ( $short ) ? self::bitly_short_url( $term_link ) : $term_link;
+	}
+
+	/**
+	 * Generate hash name bitly short url cache
+	 *
+	 * @since 3.27
+	 * @param String $permalink
+	 * @return String
+	 */
+	public static function bitly_get_cache_id( $permalink ) {
+		return md5( $permalink );
 	}
 
 	/**
@@ -351,15 +370,83 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Null
 	 * @return String
 	 */
-	public static function generate_short_url( $url = false ) {
-		$token     = self::option( 'bitly_token' );
-		$permalink = ( $url ) ? $url : self::get_permalink();
+	public static function bitly_short_url( $permalink ) {
+		$token = self::option( 'bitly_token' );
 
 		if ( empty( $token ) ) {
 			return self::url_clean( $permalink );
 		}
 
-		return self::bitly_short_url_cache( $token, $permalink );
+		return self::bitly_get_url( $token, $permalink );
+	}
+
+	/**
+	 * Get short url in cache
+	 *
+	 * @since 1.0
+	 * @param String $token
+	 * @param String $url
+	 * @return String
+	 */
+	public static function bitly_get_url( $token, $permalink ) {
+		$id        = self::bitly_get_cache_id( $permalink );
+		$cache_url = WPUSB_URL_Shortener::get_cache( $id );
+
+		if ( ! empty( $cache_url ) ) {
+			return $cache_url;
+		}
+
+		return self::bitly_remote_get_url( $token, $permalink );
+	}
+
+	/**
+	 * Set cache shorturl bitly
+	 *
+	 * @since 1.0
+	 * @param String $url_short
+	 * @return String
+	 */
+	public static function bitly_set_cache( $url_short, $permalink ) {
+		$tag        = WPUSB_App::SLUG . '-shorturl-cache-expire';
+		$cache_time = apply_filters( $tag, ( 4 * WEEK_IN_SECONDS ) );
+		$id         = self::bitly_get_cache_id( $permalink );
+		$url_short  = esc_url_raw( $url_short );
+		$post_id    = self::get_id();
+
+		WPUSB_URL_Shortener::set_cache( $id, $post_id, $url_short, $cache_time );
+	}
+
+	/**
+	 * Remote request bitly API
+	 *
+	 * @since 1.0
+	 * @param String $token
+	 * @param String $url
+	 * @return String
+	 */
+	public static function bitly_remote_get_url( $token, $permalink ) {
+		$api  = 'https://api-ssl.bitly.com/v3/shorten/';
+		$args = array(
+			'httpversion' => '1.1',
+			'headers'     => array(
+				'Content-Type' => 'application/json',
+			),
+			'body'        => array(
+				'access_token' => $token,
+				'longUrl'      => rawurldecode( $permalink ),
+			),
+	    );
+
+		$response = wp_remote_get( $api, $args );
+		$bitly    = self::retrieve_body_json( $response );
+
+		if ( ! isset( $bitly->data->url ) ) {
+			return $permalink;
+		}
+
+		self::bitly_set_cache( $bitly->data->url, $permalink );
+
+	    return esc_url( $bitly->data->url );
 	}
 
 	/**
@@ -370,42 +457,44 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param String $url
 	 * @return String
 	 */
-	public static function parse_url_params( $url ) {
+	public static function parse_url_params( $permalink ) {
 		$tracking     = self::get_tracking();
 		$query_string = self::get_query_string();
 
 		if ( empty( $tracking ) && empty( $query_string ) ) {
-			$post_url = self::html_decode( esc_url( $url ) );
-			return rawurlencode( $post_url );
+			$url = esc_url( $permalink );
+			return rawurlencode( $url );
 		}
 
-		$has_param = strpos( $url, '?' );
+		$has_param = self::indexof( $permalink, '?' );
 
-		if ( ! empty( $tracking ) && empty( $query_string ) && false === $has_param ) {
-			$post_url = self::html_decode( esc_url( $url . $tracking ) );
-			return rawurlencode( $post_url );
+		if ( ! empty( $tracking ) && empty( $query_string ) && ! $has_param ) {
+			$url = esc_url( $permalink );
+			return rawurlencode( $url . $tracking );
 		}
 
-		if ( empty( $tracking ) && ! empty( $query_string ) && false === $has_param ) {
-			$post_url = self::html_decode( esc_url( $url . '?' . $query_string ) );
-			return rawurlencode( $post_url );
+		if ( empty( $tracking ) && ! empty( $query_string ) && ! $has_param ) {
+			$url = esc_url( $permalink );
+			return rawurlencode( "{$url}?{$query_string}" );
 		}
 
 		$args = add_query_arg( $tracking, '', $query_string );
 
 		parse_str( str_replace( '?', '', $args ), $params );
 
-		$url_params = http_build_query( $params );
+		$build_query = http_build_query( $params );
 
-		if ( false !== $has_param ) {
-			$url = remove_query_arg( array_keys( $params ), $url );
-			$post_url = self::html_decode( esc_url( add_query_arg( $url_params, '', $url ) ) );
-			return rawurlencode( $post_url );
+		if ( $has_param ) {
+			$url = remove_query_arg( array_keys( $params ), $permalink );
+			$url = esc_url( add_query_arg( $build_query, '', $url ) );
+			$url = str_replace( '&#038;', '&', $url );
+			return rawurlencode( $url );
 		}
 
-		$post_url = self::html_decode( esc_url( $url . '?' . $url_params ) );
+		$url = esc_url( "{$permalink}?{$build_query}" );
+		$url = str_replace( '&#038;', '&', $url );
 
-		return rawurlencode( $post_url );
+		return rawurlencode( $url );
 	}
 
 	/**
@@ -417,11 +506,20 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function get_query_string() {
-		if ( ! isset( $_SERVER['QUERY_STRING'] ) ) {
-			return false;
-		}
+		$query_string = self::get_server( 'QUERY_STRING' );
+		return self::sanitize_query_string( $query_string );
+	}
 
-		return self::rm_tags( $_SERVER['QUERY_STRING'], true );
+	/**
+	 * Sanitize query string
+	 *
+	 * @since 3.27
+	 * @param String $query_string
+	 * @return String
+	 */
+	public static function sanitize_query_string( $query_string ) {
+		$query_string = rawurldecode( $query_string );
+	    return self::rm_tags( $query_string, true );
 	}
 
 	/**
@@ -433,8 +531,16 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function url_clean( $url ) {
-		$name = WPUSB_App::SLUG . '-url-share';
-		return apply_filters( $name, $url );
+		$tag          = WPUSB_App::SLUG . '-url-share';
+		$filtered_url = apply_filters( $tag, $url, self::get_id() );
+
+		if ( $filtered_url === $url ) {
+			return $url;
+		}
+
+		$decoded_url = rawurldecode( $filtered_url );
+
+		return rawurlencode( esc_url( $decoded_url ) );
 	}
 
 	/**
@@ -458,18 +564,18 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param null
 	 * @return String
 	 */
-	public static function get_real_title( $is_fixed = false, $is_widget = false ) {
-		$title = apply_filters( WPUSB_App::SLUG . '-real-title', false, $is_fixed );
+	public static function get_real_title( $fixed = false, $widget = false ) {
+		$title = apply_filters( WPUSB_App::SLUG . '-real-title', false, $fixed );
 
 		if ( $title ) {
 			return self::rm_tags( $title );
 		}
 
-		if ( ( $is_fixed || $is_widget ) && self::is_home() || self::is_home() && is_page( self::get_id() ) ) {
+		if ( ( $fixed || $widget ) && self::is_home() || self::is_home() && is_page( self::get_id() ) ) {
 			return rawurlencode( self::site_name() );
 		}
 
-		if ( ! ( $is_fixed && self::is_archive_category() ) ) {
+		if ( ! ( ( $fixed || $widget ) && self::is_archive_category() ) ) {
 			return rawurlencode( self::get_title() );
 		}
 
@@ -803,87 +909,6 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		if ( 'true' === $page ) {
 			return true;
 		}
-	}
-
-	/**
-	 * Generate transient name bitly short url cache
-	 *
-	 * @since 3.27
-	 * @param String $url
-	 * @return String
-	 */
-	public static function get_transient_name_bitly( $url ) {
-		$prefix = WPUSB_App::SLUG;
-		$hash   = md5( $url );
-
-		return "{$prefix}_{$hash}";
-	}
-
-	/**
-	 * Get short url in cache
-	 *
-	 * @since 1.0
-	 * @param String $token
-	 * @param String $url
-	 * @return String
-	 */
-	public static function bitly_short_url_cache( $token, $url ) {
-		$transient = self::get_transient_name_bitly( $url );
-		$cache_url = get_transient( $transient );
-
-		if ( false !== $cache_url ) {
-			return $cache_url;
-		}
-
-		return self::bitly_short_url( $token, $url );
-	}
-
-	/**
-	 * Remote request bitly API
-	 *
-	 * @since 1.0
-	 * @param String $token
-	 * @param String $url
-	 * @return String
-	 */
-	public static function bitly_short_url( $token, $url ) {
-		$api  = 'https://api-ssl.bitly.com/v3/shorten/';
-		$args = array(
-			'httpversion' => '1.1',
-			'headers'     => array(
-				'Content-Type' => 'application/json',
-			),
-			'body'        => array(
-				'access_token' => $token,
-				'longUrl'      => esc_url( $url ),
-			),
-	    );
-
-		$response = wp_remote_get( $api, $args );
-		$bitly    = self::retrieve_body_json( $response );
-
-		if ( ! isset( $bitly->data->url ) ) {
-			return $url;
-		}
-
-		self::_bitly_set_cache( $bitly->data->url, $url );
-
-	    return $bitly->data->url;
-	}
-
-	/**
-	 * Set cache shorturl bitly
-	 *
-	 * @since 1.0
-	 * @param String $short_url
-	 * @return String
-	 */
-	private static function _bitly_set_cache( $short_url, $url ) {
-		$tag        = WPUSB_App::SLUG . '-shorturl-cache-expire';
-		$cache_time = apply_filters( $tag, ( 4 * WEEK_IN_SECONDS ) );
-		$transient  = self::get_transient_name_bitly( $url );
-
-		set_transient( $transient, esc_url( $short_url ), $cache_time );
 	}
 
 	/**
@@ -1416,21 +1441,22 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 *
 	 * @since 3.26
 	 * @version 1.0
-	 * @param Array $option
+	 * @param Array $options
 	 * @return string
 	 */
-	public static function get_custom_background_color_icons( $option = array() ) {
+	public static function get_custom_background_color_icons( $options = array() ) {
 		$background = '';
+		$key        = 'buttons_background_color';
 
-		if ( isset( $option['buttons_background_color'] ) ) {
-			$background = self::rm_tags( $option['buttons_background_color'] );
+		if ( isset( $options[ $key ] ) ) {
+			$background = self::rm_tags( $options[ $key ] );
 		}
 
-		if ( empty( $option ) ) {
-			$background = self::option( 'buttons_background_color' );
+		if ( empty( $options ) ) {
+			$background = self::option( $key );
 		}
 
-		return ( $background ) ? $background : '';
+		return $background;
 	}
 
 	/**
@@ -1438,18 +1464,19 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 *
 	 * @since 3.26
 	 * @version 1.0
-	 * @param Array $option
+	 * @param Array $options
 	 * @return string
 	 */
-	public static function get_custom_color_icons( $option = array() ) {
+	public static function get_custom_color_icons( $options = array() ) {
 		$color = '';
+		$key   = 'icons_color';
 
-		if ( isset( $option['icons_color'] ) ) {
-			$color = WPUSB_Utils::rm_tags( $option['icons_color'] );
+		if ( isset( $options[ $key ] ) ) {
+			$color = WPUSB_Utils::rm_tags( $options[ $key ] );
 		}
 
-		if ( empty( $option ) ) {
-			$color = WPUSB_Utils::option( 'icons_color' );
+		if ( empty( $options ) ) {
+			$color = WPUSB_Utils::option( $key );
 		}
 
 		return $color;

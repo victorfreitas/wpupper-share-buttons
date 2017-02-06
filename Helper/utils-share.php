@@ -116,7 +116,7 @@ abstract class WPUSB_Utils_Share {
 
 		$elements     = WPUSB_Social_Elements::social_media();
 		$social_items = self::get_social_media( $model, $args['items'] );
-		$buttons      = self::get_buttons_open( $args, $model, $args['permalink'], $args['title'] );
+		$buttons      = self::get_buttons_open( $args, $model );
 		$share_modal  = false;
 
 		foreach ( $social_items as $item ) :
@@ -223,7 +223,13 @@ abstract class WPUSB_Utils_Share {
 	 * @return String HTML
 	 *
 	 */
-	public static function get_buttons_open( $defaults, $model, $permalink, $title ) {
+	public static function get_buttons_open( $defaults, $model ) {
+		$permalink = $defaults['url'];
+
+		if ( empty( $permalink ) ) {
+			$permalink = WPUSB_Utils::get_real_permalink( $defaults['is_fixed'], $defaults['is_widget'], false );
+		}
+
 		$prefix = WPUSB_App::SLUG;
 		$args   = array(
 			'custom_class'   => $model->class,
@@ -233,7 +239,7 @@ abstract class WPUSB_Utils_Share {
 			'remove_counter' => $defaults['elements']['remove_counter'],
 			'remove_inside'  => $defaults['elements']['remove_inside'],
 			'permalink'      => $permalink,
-			'title'          => $title,
+			'title'          => $defaults['title'],
 			'header_title'   => ( '' !== $defaults['header_title'] ) ? $defaults['header_title'] : WPUSB_Utils::option( 'title' ),
 		);
 
@@ -516,7 +522,7 @@ abstract class WPUSB_Utils_Share {
 			'layout'       => WPUSB_Utils::rm_tags( $layout ),
 			'items'        => WPUSB_Utils::rm_tags( $items ),
 			'url'          => rawurlencode( esc_url( $url ) ),
-			'title'	       => WPUSB_Utils::rm_tags( $title ),
+			'title'        => WPUSB_Utils::rm_tags( $title ),
 			'header_title' => WPUSB_Utils::rm_tags( $header_title ),
 			'is_widget'    => WPUSB_Utils::rm_tags( $is_widget ),
 			'elements'     => array(

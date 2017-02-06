@@ -3,7 +3,7 @@
  * @package WPUpper Share Buttons
  * @subpackage Functions
  * @author  Victor Freitas
- * @since 3.19
+ * @since 1.0
  * @version 2.0
  */
 if ( ! defined( 'ABSPATH' ) ) {
@@ -30,6 +30,7 @@ WPUSB_App::uses( 'social-elements', 'Config' );
 /*
  * Controllers frontend
  */
+WPUSB_App::uses( 'url-shortener', 'Controller' );
 WPUSB_App::uses( 'settings', 'Controller' );
 WPUSB_App::uses( 'shares', 'Controller' );
 WPUSB_App::uses( 'widgets', 'Controller' );
@@ -65,6 +66,13 @@ final class WPUSB_Core {
 		self::init_controllers();
 	}
 
+	/**
+	 * Widget register
+	 *
+	 * @since 3.25
+	 * @param Null
+	 * @return Void
+	 */
 	public static function add_widgets() {
 		register_widget( 'WPUSB_Widgets_Controller' );
 	}
@@ -270,7 +278,7 @@ final class WPUSB_Core {
 		$table_name = WPUSB_Utils::get_table_name();
 		$query      = "
 			CREATE TABLE IF NOT EXISTS {$table_name} (
-				id         BIGINT(20) NOT NULL AUTO_INCREMENT,
+				id         BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 				post_title TEXT       NOT NULL,
 				post_id    BIGINT(20) NOT NULL DEFAULT 0,
 				facebook   BIGINT(20) NOT NULL DEFAULT 0,
@@ -281,7 +289,8 @@ final class WPUSB_Core {
 				tumblr     BIGINT(20) NOT NULL DEFAULT 0,
 				total      BIGINT(20) NOT NULL DEFAULT 0,
 				PRIMARY KEY id ( id ),
-				UNIQUE( post_id )
+				UNIQUE( post_id ),
+				INDEX( post_id )
 			) {$charset};
 		";
 
@@ -300,15 +309,17 @@ final class WPUSB_Core {
 		global $wpdb;
 
 		$charset    = $wpdb->get_charset_collate();
-		$table_name = $wpdb->prefix . WPUSB_Setting::TABLE_SHORT_URL;
+		$table_name = $wpdb->prefix . WPUSB_URL_Shortener::TABLE_NAME;
 		$query      = "
 			CREATE TABLE IF NOT EXISTS {$table_name} (
-				id         BIGINT(20) NOT NULL AUTO_INCREMENT,
-				post_id    BIGINT(20) NOT NULL DEFAULT 0,
-				short_url  TEXT       NOT NULL,
-				expires    INT(11)    NOT NULL DEFAULT 0,
+				id         BIGINT(20)   UNSIGNED NOT NULL AUTO_INCREMENT,
+				post_id    BIGINT(20)   NOT NULL DEFAULT 0,
+				hash       VARCHAR(32)  NOT NULL,
+				short_url  VARCHAR(100) NOT NULL,
+				expires    INT(11)      NOT NULL DEFAULT 0,
 				PRIMARY KEY id ( id ),
-				UNIQUE( post_id )
+				UNIQUE( hash, post_id ),
+				INDEX( hash, post_id )
 			) {$charset};
 		";
 
