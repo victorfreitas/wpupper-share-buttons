@@ -31,9 +31,9 @@ class WPUSB_URL_Shortener {
 	public static function get_cache( $hash ) {
 		global $wpdb;
 
-		$table = $wpdb->prefix . self::TABLE_NAME;
-		$time  = current_time( 'timestamp' );
-		$query = $wpdb->prepare(
+		$table        = $wpdb->prefix . self::TABLE_NAME;
+		$current_time = current_time( 'timestamp' );
+		$query        = $wpdb->prepare(
 			"SELECT
 				`short_url`
 			 FROM
@@ -44,7 +44,7 @@ class WPUSB_URL_Shortener {
 			 	AND `expires` > %d
 			",
 			$hash,
-			$time
+			$current_time
 		);
 		$value = $wpdb->get_var( $query );
 
@@ -101,7 +101,7 @@ class WPUSB_URL_Shortener {
 			",
 			$hash
 		);
-	
+
 		return (int)$wpdb->get_var( $query );
 	}
 
