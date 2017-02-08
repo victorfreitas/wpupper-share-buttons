@@ -396,6 +396,10 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			return $cache_url;
 		}
 
+		if ( ! is_singular() ) {
+			return $permalink;
+		}
+
 		return self::bitly_remote_get_url( $token, $permalink );
 	}
 
@@ -425,28 +429,18 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function bitly_remote_get_url( $token, $permalink ) {
-		$api  = 'https://api-ssl.bitly.com/v3/shorten/';
-		$args = array(
-			'httpversion' => '1.1',
-			'headers'     => array(
-				'Content-Type' => 'application/json',
-			),
-			'body'        => array(
-				'access_token' => $token,
-				'longUrl'      => rawurldecode( $permalink ),
-			),
-	    );
+		$bitly_api = new WPUSB_URL_Shortener( $permalink, $token );
+		$url_short = $bitly_api->get_short();
 
-		$response = wp_remote_get( $api, $args );
-		$bitly    = self::retrieve_body_json( $response );
+		unset( $bitly_api );
 
-		if ( ! isset( $bitly->data->url ) ) {
+		if ( ! $url_short ) {
 			return $permalink;
 		}
 
-		self::bitly_set_cache( $bitly->data->url, $permalink );
+		self::bitly_set_cache( $url_short, $permalink );
 
-	    return esc_url( $bitly->data->url );
+	    return esc_url( $url_short );
 	}
 
 	/**
@@ -755,7 +749,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return json
 	 */
 	public static function error_server_json( $code, $message = 'Message Error', $echo = true ) {
-		$response = json_encode(array(
+		$response = self::json_encode(array(
 			'status'  => 'error',
 			'code'    => $code,
 			'message' => $message,
@@ -1720,12 +1714,60 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String|Boolean
 	 */
 	public static function get_hash( $args = '' ) {
-		if ( function_exists( 'json_encode' ) ) {
-			return md5( json_encode( $args ) );
-		}
-
-		return false;
+		return md5( self::json_encode( $args ) );
 	}
+
+	/**
+	 * Check curl function exists
+	 *
+	 * @since 3.27
+	 * @param Null
+	 * @return Boolean
+	 */
+    public static function has_curl() {
+        return function_exists( 'curl_init' );
+    }
+
+	/**
+	 * Check json functions exist
+	 *
+	 * @since 3.27
+	 * @param Null
+	 * @return Boolean
+	 */
+    public static function has_json() {
+        return function_exists( 'json_encode' );
+    }
+
+	/**
+	 * Json decode string to object
+	 *
+	 * @since 3.27
+	 * @param String $value
+	 * @return Mixed Object|false
+	 */
+    public static function json_decode( $value ) {
+        if ( ! self::has_json() ) {
+        	return false;
+        }
+
+        return json_decode( $value );
+    }
+
+	/**
+	 * Json encode string to object
+	 *
+	 * @since 3.27
+	 * @param String $value
+	 * @return Mixed Object|Array
+	 */
+    public static function json_encode( $value ) {
+        if ( ! self::has_json() ) {
+        	return false;
+        }
+
+        return json_encode( $value );
+    }
 
 	public static function log( $data, $log_name = '' )
 	{

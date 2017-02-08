@@ -13,9 +13,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WPUSB_URL_Shortener {
 
-	private static $data = array();
+	private $permalink;
+
+	private $token;
+
+	private $domains = array(
+		'com' => 'bitly.com',
+		'ly'  => 'bit.ly',
+		'mp'  => 'j.mp',
+	);
 
 	const TABLE_NAME = 'wpusb_url_shortener';
+	const API = 'https://api-ssl.bitly.com/v3/shorten';
+
+	public function __construct( $permalink, $token ) {
+		$this->_set_permalink( $permalink );
+		$this->_set_token( $token );
+	}
+
+	private function _set_permalink( $permalink ) {
+		$this->permalink = $permalink;
+	}
+
+	private function _set_token( $token ) {
+		$this->token = $token;
+	}
 
 	/**
 	 * Get url short cache
@@ -159,4 +181,36 @@ class WPUSB_URL_Shortener {
 			array( '%d', '%s', '%s', '%d' )
 		);
 	}
+
+    public function get_short() {
+    	if ( ! WPUSB_Utils::has_curl() || ! WPUSB_Utils::has_json() ) {
+    		return false;
+    	}
+
+		$params = array(
+			'access_token' => $this->token,
+			'longUrl'      => $this->permalink,
+			'domain'       => $this->domains['ly'],
+		);
+		$url = esc_url_raw( add_query_arg( $params, self::API ) );
+		$ch  = curl_init();
+
+        curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 5 );
+        curl_setopt( $ch, CURLOPT_TIMEOUT, 5 );
+        curl_setopt( $ch, CURLOPT_URL, $url );
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt( $ch, CURLOPT_HEADER, false );
+
+        $response = curl_exec( $ch );
+
+        curl_close( $ch );
+
+        $response = WPUSB_Utils::json_decode( $response );
+
+        if ( is_object( $response ) && 200 === $response->status_code ) {
+        	return $response->data->url;
+        }
+
+        return false;
+    }
 }
