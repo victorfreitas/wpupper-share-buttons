@@ -224,12 +224,6 @@ abstract class WPUSB_Utils_Share {
 	 *
 	 */
 	public static function get_buttons_open( $defaults, $model ) {
-		$permalink = $defaults['url'];
-
-		if ( empty( $permalink ) ) {
-			$permalink = WPUSB_Utils::get_real_permalink( $defaults['is_fixed'], $defaults['is_widget'], false );
-		}
-
 		$prefix = WPUSB_App::SLUG;
 		$args   = array(
 			'custom_class'   => $model->class,
@@ -238,7 +232,7 @@ abstract class WPUSB_Utils_Share {
 			'position_fixed' => ( $model->position_fixed ) ? "{$prefix}-{$model->position_fixed}" : '',
 			'remove_counter' => $defaults['elements']['remove_counter'],
 			'remove_inside'  => $defaults['elements']['remove_inside'],
-			'permalink'      => $permalink,
+			'permalink'      => $defaults['permalink'],
 			'title'          => $defaults['title'],
 			'header_title'   => ( '' !== $defaults['header_title'] ) ? $defaults['header_title'] : WPUSB_Utils::option( 'title' ),
 		);
