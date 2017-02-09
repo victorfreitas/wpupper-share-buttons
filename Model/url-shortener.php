@@ -42,13 +42,10 @@ class WPUSB_URL_Shortener {
 	/**
 	 * Get url short cache
 	 *
-	 * @since 1.0
+	 * @since 3.27
 	 * @global $wpdb
 	 * @param String $hash
-	 * @param Integer $post_id
-	 * @param String $short_url
-	 * @param Integer $expiration
-	 * @return Integer
+	 * @return String
 	 */
 	public static function get_cache( $hash ) {
 		global $wpdb;
@@ -80,7 +77,7 @@ class WPUSB_URL_Shortener {
 	/**
 	 * Set url short cache
 	 *
-	 * @since 1.0
+	 * @since 3.27
 	 * @global $wpdb
 	 * @param String $hash
 	 * @param Integer $post_id
@@ -103,7 +100,7 @@ class WPUSB_URL_Shortener {
 	/**
 	 * Check hash exists
 	 *
-	 * @since 1.0
+	 * @since 3.27
 	 * @global $wpdb
 	 * @param String $hash
 	 * @return Integer
@@ -130,17 +127,17 @@ class WPUSB_URL_Shortener {
 	/**
 	 * Update records in the table
 	 *
-	 * @since 1.0
+	 * @since 3.27
 	 * @global $wpdb
 	 * @param String $short_url
 	 * @param Integer $expiration_time
 	 * @param String $hash
-	 * @return Void
+	 * @return Integer
 	 */
 	private static function _update( $short_url, $expiration_time, $hash ) {
 		global $wpdb;
 
-		$wpdb->update(
+		return $wpdb->update(
 			$wpdb->prefix . self::TABLE_NAME,
 			array(
 				'short_url' => $short_url,
@@ -155,13 +152,13 @@ class WPUSB_URL_Shortener {
 	/**
 	 * Insert records in the table
 	 *
-	 * @since 1.0
+	 * @since 3.27
 	 * @global $wpdb
 	 * @param Integer $post_id
 	 * @param String $hash
 	 * @param String $short_url
 	 * @param Integer $expiration_time
-	 * @return Void
+	 * @return Integer
 	 */
 	private static function _insert( $post_id, $hash, $short_url, $expiration_time ) {
 		global $wpdb;
@@ -170,7 +167,7 @@ class WPUSB_URL_Shortener {
 
 		$wpdb->delete( $table, array( 'post_id' => $post_id ) );
 
-		$wpdb->insert(
+		return $wpdb->insert(
 			$table,
 			array(
 				'post_id'   => $post_id,
@@ -182,6 +179,14 @@ class WPUSB_URL_Shortener {
 		);
 	}
 
+	/**
+	 * Generate URL short with curl from request API
+	 *
+	 * @since 3.27
+	 * @global $wpdb
+	 * @param Null
+	 * @return Mixed False|String
+	 */
     public function get_short() {
     	if ( ! WPUSB_Utils::has_curl() || ! WPUSB_Utils::has_json() ) {
     		return false;

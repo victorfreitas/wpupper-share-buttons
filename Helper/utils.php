@@ -227,8 +227,10 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$post_id = self::get_id();
 
 		if ( $post_id ) {
-			$post_title = self::rm_tags( get_the_title( $post_id ) );
-			return self::html_decode( $post_title );
+			$post_title = get_the_title( $post_id );
+			$post_title = self::html_decode( $post_title );
+
+			return self::rm_tags( $post_title );
 		}
 
 		return self::site_name();
@@ -412,7 +414,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function bitly_set_cache( $url_short, $permalink ) {
 		$tag        = WPUSB_App::SLUG . '-shorturl-cache-expire';
-		$cache_time = apply_filters( $tag, ( 4 * WEEK_IN_SECONDS ) );
+		$cache_time = apply_filters( $tag, ( 12 * WEEK_IN_SECONDS ) );
 		$id         = self::bitly_get_cache_id( $permalink );
 		$url_short  = esc_url_raw( $url_short );
 		$post_id    = self::get_id();
@@ -604,23 +606,23 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 *
 	 * @since 1.0
 	 * @param null
-	 * @return String thumbnail
+	 * @return String
 	 */
 	public static function get_image() {
 		global $post;
 
-		$thumbnail   = '';
-		$filter_name = WPUSB_App::SLUG . '_thumbnail_url';
+		$attachment_url = '';
+		$tag            = WPUSB_App::SLUG . '_thumbnail_url';
 
 		if ( isset( $post->ID ) && has_post_thumbnail() ) {
-			$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
+			$attachment_url = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) );
 		}
 
-		if ( ! $thumbnail ) {
-			return apply_filters( $filter_name, '' );
+		if ( ! $attachment_url ) {
+			return apply_filters( $tag, '' );
 		}
 
-		return apply_filters( $filter_name, $thumbnail[0] );
+		return apply_filters( $tag, $attachment_url );
 	}
 
 	/**
@@ -1022,9 +1024,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String|NULL
 	 */
 	public static function selected_menu( $current ) {
-		$page = self::get( 'page' );
-
-		if ( $page === $current ) {
+		if ( self::get( 'page' ) === $current ) {
 			return ' class="active"';
 		}
 
@@ -1152,7 +1152,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	public static function retrieve_body_json( $response ) {
 		$results = wp_remote_retrieve_body( $response );
 
-		return json_decode( $results );
+		return self::json_decode( $results );
 	}
 
 	/**

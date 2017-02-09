@@ -235,8 +235,11 @@ final class WPUSB_Core {
 	protected static function drop_table() {
 		global $wpdb;
 
-		$table = WPUSB_Utils::get_table_name();
-		$wpdb->query( "DROP TABLE IF EXISTS {$table}" );
+		$table_share_report = WPUSB_Utils::get_table_name();
+		$table_bitly        = $wpdb->prefix . WPUSB_URL_Shortener::TABLE_NAME;
+
+		$wpdb->query( "DROP TABLE IF EXISTS {$table_share_report}" );
+		$wpdb->query( "DROP TABLE IF EXISTS {$table_bitly}" );
 	}
 
 	/**
