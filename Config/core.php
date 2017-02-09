@@ -143,7 +143,6 @@ final class WPUSB_Core {
 
 		WPUSB_Utils::add_default_options();
 		self::_create_table();
-		self::_create_table_short_url();
 	}
 
 	/**
@@ -260,7 +259,6 @@ final class WPUSB_Core {
 		foreach ( $sites as $blog_id ) :
 			switch_to_blog( $blog_id );
 			self::_create_table();
-			self::_create_table_short_url();
 			WPUSB_Utils::add_default_options();
 			restore_current_blog();
 		endforeach;
@@ -298,6 +296,7 @@ final class WPUSB_Core {
 		";
 
 		self::db_delta( $query );
+		self::_create_table_short_url();
 	}
 
 	/**

@@ -223,23 +223,23 @@ abstract class WPUSB_Utils_Share {
 	 * @return String HTML
 	 *
 	 */
-	public static function get_buttons_open( $defaults, $model ) {
+	public static function get_buttons_open( $atts, $model ) {
 		$prefix = WPUSB_App::SLUG;
 		$args   = array(
 			'custom_class'   => $model->class,
-			'layout'         => ( $defaults['layout'] ) ? $defaults['layout'] : 'default',
+			'layout'         => ( $atts['layout'] ) ? $atts['layout'] : 'default',
 			'prefix'         => $prefix,
 			'position_fixed' => ( $model->position_fixed ) ? "{$prefix}-{$model->position_fixed}" : '',
-			'remove_counter' => $defaults['elements']['remove_counter'],
-			'remove_inside'  => $defaults['elements']['remove_inside'],
-			'permalink'      => $defaults['permalink'],
-			'title'          => $defaults['title'],
-			'header_title'   => ( '' !== $defaults['header_title'] ) ? $defaults['header_title'] : WPUSB_Utils::option( 'title' ),
+			'remove_counter' => $atts['elements']['remove_counter'],
+			'remove_inside'  => $atts['elements']['remove_inside'],
+			'permalink'      => $atts['permalink'],
+			'title'          => $atts['title'],
+			'header_title'   => ( '' !== $atts['header_title'] ) ? $atts['header_title'] : WPUSB_Utils::option( 'title' ),
 		);
 
-		unset( $defaults['elements'] );
+		unset( $atts['elements'] );
 
-		$args    = (object) array_merge( $defaults, $args );
+		$args    = (object) array_merge( $atts, $args );
 		$buttons = self::get_content_by_layout( $args, 'init' );
 
 		return apply_filters( WPUSB_App::SLUG . '-init-buttons-html', $buttons, $args );
