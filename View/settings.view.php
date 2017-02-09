@@ -269,6 +269,15 @@ class WPUSB_Settings_View {
 											'is_checked' => checked( 'default', $model->fixed_layout, false ),
 											'title'      => __( 'Rounded', WPUSB_App::TEXTDOMAIN ),
 										));
+
+										self::td(array(
+											'type'        => 'text',
+											'id'          => 'fixed-default-label',
+											'class'       => 'regular-text',
+											'name'        => "{$option_name}[fixed_default_label]",
+											'value'       => $model->fixed_default_label,
+											'placeholder' => __( 'Change text of the share count title. Default SHARES', WPUSB_App::TEXTDOMAIN ),
+										));
 									?>
 							</tr>
 							<tr>
@@ -561,23 +570,25 @@ class WPUSB_Settings_View {
 		$span   = '';
 		$args   = self::_get_td_args( $args );
 		$label  = self::_get_label( $prefix, $args );
+	?>
+		<<?php echo $args['tag']; ?>
+		    id="<?php echo $args['td-id']; ?>"
+		    class="<?php echo $args['td-class']; ?>"
+		    title="<?php echo $args['td-title']; ?>">
 
-		echo <<<EOD
-			<{$args['tag']} id="{$args['td-id']}"
-			    class="{$args['td-class']}"
-			    title="{$args['td-title']}">
-
-	            <input type="{$args['type']}" {$args['data-attr']}
-	                   id="{$prefix}-{$args['id']}"
-	                   class="{$args['class']}"
-	            	   name="{$args['name']}"
-	            	   value="{$args['value']}"
-	            	   placeholder="{$args['placeholder']}"
-	            	   {$args['is_checked']}>
-	           	{$label}
-	           	<p class="description">{$args['description']}</p>
-	        </{$args['tag']}>
-EOD;
+            <input type="<?php echo $args['type']; ?>"
+                   <?php echo $args['data-attr']; ?>
+                   id="<?php printf( '%s-%s', $prefix, $args['id'] ); ?>"
+                   class="<?php echo $args['class'] ; ?>"
+            	   name="<?php echo $args['name'] ; ?>"
+            	   value="<?php echo $args['value'] ; ?>"
+            	   placeholder="<?php echo $args['placeholder'] ; ?>"
+            	   <?php echo $args['is_checked']; ?>>
+            	
+           	{$label}
+           	<p class="description">{$args['description']}</p>
+        </{$args['tag']}>
+	<?php
 	}
 
 	private static function _get_label( $prefix, $args ) {
@@ -648,6 +659,7 @@ EOD;
 			'data-attr'   => '',
 			'span'        => true,
 			'tag'         => 'td',
+			'label'       => true,
 		);
 
 		return array_merge( $defaults, $args );
