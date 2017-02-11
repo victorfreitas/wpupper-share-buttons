@@ -1,6 +1,8 @@
 WPUSB( 'WPUSB.Components.SharePreview', function(Model, $) {
 
-	var SPINNER = '<span class="ajax-spinner" style="visibility:visible">loading...</span>';
+	var SPINNER   = '<span class="ajax-spinner" style="visibility:visible">loading...</span>'
+	  , CLOSE_BTN = '<button class="button wpusb-preview-close" data-action="preview-close">x</button>'
+	;
 
 	Model.fn.start = function() {
 		this.spinner       = $( '.ajax-spinner' );
@@ -105,8 +107,8 @@ WPUSB( 'WPUSB.Components.SharePreview', function(Model, $) {
 	};
 
 	Model.fn._done = function(response) {
-		this.elements.preview.html( this.render( response ) );
-		WPUSB.Preview.create( this.$el );
+		this.elements.preview.html( this.render( response ) ).append( CLOSE_BTN );
+		WPUSB.Preview.create( this.$el, this.elements.preview );
 	};
 
 	Model.fn._fail = function(xhr, status, thrownError) {

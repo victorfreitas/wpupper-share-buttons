@@ -1,51 +1,62 @@
-WPUSB( 'WPUSB.Preview', function(Preview, $) {
+WPUSB( 'WPUSB.Preview', function(Model, $) {
 
-	Preview.create = function(container) {
+	Model.create = function(container, preview) {
+		this.$el     = container;
+		this.preview = preview;
 		this.title   = $( '[data-action="no-title"]' );
 		this.counter = $( '[data-action="no-counter"]' );
-		this.preview = Preview.utils.getPreviewTitles();
+		this.titles  = this.utils.getPreviewTitles();
 		this.init();
 	};
 
-	Preview.init = function() {
+	Model.init = function() {
 		this.addEventListener();
 	};
 
-	Preview.addEventListener = function() {
-		this.title.text( this.preview.titleRemove );
-		this.counter.text( this.preview.counterRemove );
+	Model.addEventListener = function() {
+		this.title.text( this.titles.titleRemove );
+		this.counter.text( this.titles.counterRemove );
+		this.$el.addEvent( 'click', 'preview-close', this );
 		this.title.on( 'click', this._onClickTitle.bind( this ) );
 		this.counter.on( 'click', this._onClickCounter.bind( this ) );
 	};
 
-	Preview._onClickTitle = function(event) {
+	Model._onClickPreviewClose = function(event) {
+		event.preventDefault();
+
+		this.preview
+			.removeClass( this.utils.prefix + '-preview-container' )
+			.empty();
+	};
+
+	Model._onClickTitle = function(event) {
 		event.preventDefault();
 		var text = this.titleChangeText( this.title.text() );
 		this.title.text( text );
 		$( '.wpusb-title' ).toggle( 'fast' );
 	};
 
-	Preview._onClickCounter = function(event) {
+	Model._onClickCounter = function(event) {
 		event.preventDefault();
 		var text = this.counterChangeText( this.counter.text() );
 		this.counter.text( text );
 		$( '.wpusb-counter' ).toggle( 'fast' );
 	};
 
-	Preview.counterChangeText = function(text) {
-		if ( text == this.preview.counterRemove ) {
-			return this.preview.counterInsert;
+	Model.counterChangeText = function(text) {
+		if ( text == this.titles.counterRemove ) {
+			return this.titles.counterInsert;
 		}
 
-		return this.preview.counterRemove;
+		return this.titles.counterRemove;
 	};
 
-	Preview.titleChangeText = function(text) {
-		if ( text == this.preview.titleRemove ) {
-			return this.preview.titleInsert;
+	Model.titleChangeText = function(text) {
+		if ( text == this.titles.titleRemove ) {
+			return this.titles.titleInsert;
 		}
 
-		return this.preview.titleRemove;
+		return this.titles.titleRemove;
 	};
 
 }, {} );

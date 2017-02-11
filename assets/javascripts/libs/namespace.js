@@ -112,10 +112,22 @@
             return this.parseName( text, /(-)\w/g );
         },
 
+        isMobile: function() {
+            return ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|Tablet OS|IEMobile|Opera Mini/i.test(
+                navigator.userAgent
+            ) );
+        },
+
         parseName: function(text, regex) {
             return text.replace( regex, function(match) {
                 return match.toUpperCase();
             }).replace( /-/g, '' );
+        },
+
+        remove: function(element) {
+            element.fadeOut( 'fast', function() {
+                element.remove();
+            });
         },
 
         hashStr: function(str) {

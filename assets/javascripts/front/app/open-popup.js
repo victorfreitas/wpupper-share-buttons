@@ -6,9 +6,8 @@ WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $) {
     };
 
     OpenPopup.init = function() {
-    	if ( this.isMobile() ) {
-    		this.mobileUrl();
-    		return;
+    	if ( this.utils.isMobile() ) {
+    		return this.setMessengerUrl();
     	}
 
         this.addEventListener();
@@ -51,16 +50,13 @@ WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $) {
 		);
 	};
 
-	OpenPopup.isMobile = function() {
-		if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test( navigator.userAgent ) ) {
-			return true;
+	OpenPopup.setMessengerUrl = function() {
+		var messenger = this.$el.find( '[data-messenger-mobile]' );
+
+		if ( !messenger.length ) {
+			return;
 		}
 
-		return false;
-	};
-
-	OpenPopup.mobileUrl = function() {
-		var messenger = this.$el.find( '[data-messenger-mobile]' );
 		messenger.attr( 'href', messenger.data( 'messenger-mobile' ) );
 	};
 
