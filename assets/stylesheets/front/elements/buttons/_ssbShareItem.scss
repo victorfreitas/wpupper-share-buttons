@@ -186,11 +186,17 @@
     top: -3px;
 }
 
-.fixed-left-container .#{$prefix}-icon-share-buttons,
-.fixed-right-container .#{$prefix}-icon-share-buttons {
-    left: -3px;
-    position: relative;
-    top: 1px;
+.#{$prefix}-fixed-left-container,
+.#{$prefix}-fixed-right-container {
+    .#{$prefix}-icon-share-buttons {
+        left: -3px;
+        position: relative;
+        top: 1px;
+    }
+
+    .#{$prefix}-item {
+        a { box-shadow: none; }
+    }
 }
 
 .#{$prefix}-rounded,

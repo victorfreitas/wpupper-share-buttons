@@ -198,10 +198,6 @@
     .#{$prefix}-item {
         text-align: right;
     }
-
-    .#{$prefix}-total-share {
-        margin-left: 60px;
-    }
 }
 
 .#{$prefix}-fixed-right,
@@ -209,7 +205,7 @@
     @media ( min-width: $tablet ) {
         .#{$prefix}-button:hover {
             box-shadow: none;
-            width: 70px;
+            width: 60px;
         }
     }
 }

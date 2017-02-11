@@ -39,7 +39,7 @@ class WPUSB_Fixed_Left {
 		     data-attr-nonce="{$args['nonce']}"
 		     {$component}>
 
-			<div data-element="buttons" class="{$atts->position_fixed}-container">
+			<div data-element="buttons" class="{$args['prefix']}-{$atts->position_fixed}-container">
 			{$counter}
 EOD;
 		return apply_filters( WPUSB_App::SLUG . 'init-buttons-fixed', $content );

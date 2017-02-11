@@ -1,6 +1,8 @@
-WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $) {
+WPUSB( 'WPUSB.Components.SharePreview', function(Model, $) {
 
-	SharePreview.fn.start = function() {
+	var SPINNER = '<span class="ajax-spinner" style="visibility:visible">loading...</span>';
+
+	Model.fn.start = function() {
 		this.spinner       = $( '.ajax-spinner' );
 		this.prefix        = this.utils.prefix;
 		this.wrap          = this.$el.closest( '.wpusb-wrap' );
@@ -11,17 +13,17 @@ WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $) {
 		this.init();
 	};
 
-	SharePreview.fn.init = function() {
+	Model.fn.init = function() {
 		this.addEventListener();
 	};
 
-	SharePreview.fn.addEventListener = function() {
+	Model.fn.addEventListener = function() {
 		this.layoutOptions.on( 'click', this._onClickLayout.bind( this ) );
 		this.list.on( 'click', this._onClick.bind( this ) );
 		this.order.sortable( this.sortOptions() );
 	};
 
-	SharePreview.fn._onClickLayout = function(event) {
+	Model.fn._onClickLayout = function(event) {
 		this.layout = event.currentTarget.value;
 
 		if ( event.currentTarget.className.match( 'fixed-layout' ) ) {
@@ -31,7 +33,7 @@ WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $) {
 		this._onClick();
 	};
 
-	SharePreview.fn._onClick = function(event) {
+	Model.fn._onClick = function(event) {
 		if ( event ) {
 			this.layout = $( '.layout-preview:checked' ).val();
 		}
@@ -40,7 +42,7 @@ WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $) {
 		this._stop();
 	};
 
-	SharePreview.fn.sortOptions = function() {
+	Model.fn.sortOptions = function() {
 		return {
 			opacity     : 0.5,
 			cursor      : 'move',
@@ -53,7 +55,7 @@ WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $) {
 		};
 	};
 
-	SharePreview.fn._update = function(event, ui) {
+	Model.fn._update = function(event, ui) {
 		if ( ui ) {
 			this.layout = $( '.layout-preview:checked' ).val();
 		}
@@ -62,14 +64,14 @@ WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $) {
 		this.inputOrder.val( JSON.stringify( order ) );
 	};
 
-	SharePreview.fn._stop = function(event, ui) {
+	Model.fn._stop = function(event, ui) {
 		this.itemsChecked = [];
 
 		this.each( this.order.find( 'input:checked' ) );
 		this.request();
 	};
 
-	SharePreview.fn.each = function(items) {
+	Model.fn.each = function(items) {
 		var self = this;
 
 	    items.each(function(index, item) {
@@ -77,8 +79,11 @@ WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $) {
 	    });
 	};
 
-	SharePreview.fn.request = function() {
-		this.spinner.css( 'visibility', 'visible' );
+	Model.fn.request = function() {
+		this.elements
+			.preview
+			.addClass( this.prefix + '-preview-container' )
+			.append( SPINNER );
 
 		var fixed_layout = $( '.fixed-layout:checked' )
 		  , params       = {
@@ -99,25 +104,21 @@ WPUSB( 'WPUSB.Components.SharePreview', function(SharePreview, $) {
 		ajax.then( $.proxy( this, '_done' ), $.proxy( this, '_fail' ) );
 	};
 
-	SharePreview.fn._done = function(response) {
-		this.spinner.css( 'visibility', 'hidden' );
-		this.$el
-		     .byElement( this.prefix )
-		      .addClass( this.prefix + '-preview-container' )
-		      .html( this.render( response ) );
+	Model.fn._done = function(response) {
+		this.elements.preview.html( this.render( response ) );
 		WPUSB.Preview.create( this.$el );
 	};
 
-	SharePreview.fn._fail = function(xhr, status, thrownError) {
-		this.spinner.css( 'visibility', 'hidden' );
+	Model.fn._fail = function(xhr, status, thrownError) {
+
 	};
 
-	SharePreview.fn.render = function(response) {
+	Model.fn.render = function(response) {
 		return WPUSB.Templates[this.templateName()]
-		                .call( null, response );
+		            .call( null, response );
 	};
 
-	SharePreview.fn.templateName = function() {
+	Model.fn.templateName = function() {
 		var layout;
 
 		switch ( this.layout ) {

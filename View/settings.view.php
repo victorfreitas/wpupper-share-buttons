@@ -47,8 +47,7 @@ class WPUSB_Settings_View {
 			<div class="<?php echo "{$prefix}-wrap"; ?>" data-<?php echo $prefix; ?>-component="share-settings">
 
 			<div data-<?php echo $prefix; ?>-component="share-preview">
-				<span class="ajax-spinner">loading...</span>
-				<div data-element="<?php echo $prefix; ?>"></div>
+				<div data-element="preview"></div>
 			</div>
 
 				<form action="options.php" method="post">
@@ -269,16 +268,31 @@ class WPUSB_Settings_View {
 											'is_checked' => checked( 'default', $model->fixed_layout, false ),
 											'title'      => __( 'Rounded', WPUSB_App::TEXTDOMAIN ),
 										));
-
-										self::td(array(
-											'type'        => 'text',
-											'id'          => 'fixed-default-label',
-											'class'       => 'regular-text',
-											'name'        => "{$option_name}[fixed_default_label]",
-											'value'       => $model->fixed_default_label,
-											'placeholder' => __( 'Change text of the share count title. Default SHARES', WPUSB_App::TEXTDOMAIN ),
-										));
 									?>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-fixed-default-label">
+										<?php _e( 'Text below sharing count', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'id'          => 'fixed-default-label',
+										'class'       => 'large-text',
+										'name'        => "{$option_name}[fixed_default_label]",
+										'value'       => $model->fixed_default_label,
+										'placeholder' => __(
+											'Change text below sharing count. Default SHARES',
+											WPUSB_App::TEXTDOMAIN
+										),
+										'description' => sprintf(
+											__( 'Used in %s %s.', WPUSB_App::TEXTDOMAIN ),
+											strtolower(__( 'Position fixed layout', WPUSB_App::TEXTDOMAIN )),
+											strtolower(__( 'Rounded', WPUSB_App::TEXTDOMAIN ))
+										),
+									));
+								?>
 							</tr>
 							<tr>
 								<th scope="row">
@@ -295,6 +309,38 @@ class WPUSB_Settings_View {
 										'value' => $model->icons_size,
 										'span'  => true,
 										'title' => 'px',
+									));
+								?>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-share-count-color">
+										<?php _e( 'Share count color', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'type'  => 'text',
+										'id'    => 'share-count-color',
+										'class' => "{$prefix}-colorpicker",
+										'name'  => "{$option_name}[share_count_color]",
+										'value' => $model->share_count_color,
+									));
+								?>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-share-count-bg">
+										<?php _e( 'Share count background', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'type'  => 'text',
+										'id'    => 'share-count-bg',
+										'class' => "{$prefix}-colorpicker",
+										'name'  => "{$option_name}[share_count_bg]",
+										'value' => $model->share_count_bg,
 									));
 								?>
 							</tr>
@@ -355,7 +401,7 @@ class WPUSB_Settings_View {
 							<tr>
 								<th scope="row">
 									<label for="<?php echo $prefix; ?>-share-count-label">
-										<?php _e( 'Share count label', WPUSB_App::TEXTDOMAIN ); ?>
+										<?php _e( 'Text bellow sharing count', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>
 								</th>
 								<?php
@@ -364,7 +410,7 @@ class WPUSB_Settings_View {
 										'class'       => 'large-text',
 										'name'        => "{$option_name}[share_count_label]",
 										'value'       => $model->share_count_label,
-										'placeholder' => __( 'Change text of the share count title. Default SHARES', WPUSB_App::TEXTDOMAIN ),
+										'placeholder' => __( 'Change text below sharing count. Default SHARES', WPUSB_App::TEXTDOMAIN ),
 										'description' => sprintf( __( 'Used in %s layout.', WPUSB_App::TEXTDOMAIN ), __( 'Square plus', WPUSB_App::TEXTDOMAIN ) ),
 									));
 								?>
@@ -567,28 +613,30 @@ class WPUSB_Settings_View {
 
 	public static function td( $args = array() ) {
 		$prefix = WPUSB_App::SLUG;
-		$span   = '';
 		$args   = self::_get_td_args( $args );
 		$label  = self::_get_label( $prefix, $args );
 	?>
-		<<?php echo $args['tag']; ?>
+		<?php printf( '<%s', $args['tag'] ); ?>
 		    id="<?php echo $args['td-id']; ?>"
 		    class="<?php echo $args['td-class']; ?>"
 		    title="<?php echo $args['td-title']; ?>">
 
             <input type="<?php echo $args['type']; ?>"
-                   <?php echo $args['data-attr']; ?>
                    id="<?php printf( '%s-%s', $prefix, $args['id'] ); ?>"
                    class="<?php echo $args['class'] ; ?>"
             	   name="<?php echo $args['name'] ; ?>"
             	   value="<?php echo $args['value'] ; ?>"
             	   placeholder="<?php echo $args['placeholder'] ; ?>"
+                   <?php echo $args['data-attr']; ?>
             	   <?php echo $args['is_checked']; ?>>
-            	
-           	{$label}
-           	<p class="description">{$args['description']}</p>
-        </{$args['tag']}>
-	<?php
+    <?php
+			echo $label;
+
+       		if ( ! empty( $args['description'] ) ) :
+       			printf( '<p class="description">%s</p>', $args['description'] );
+       		endif;
+
+        printf( '</%s>', $args['tag'] );
 	}
 
 	private static function _get_label( $prefix, $args ) {

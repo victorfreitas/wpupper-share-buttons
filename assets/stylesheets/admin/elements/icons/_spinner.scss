@@ -1,13 +1,12 @@
 .ajax-spinner {
-    background: url( '../icons/ajax-spinner.gif?2' ) no-repeat;
-    -webkit-background-size: 20px 20px;
-    	    background-size: 20px 20px;
-    bottom: 1%;
+    -webkit-background-size: 16px 16px;
+            background-size: 16px 16px;
+    background: url('../icons/ajax-spinner.gif?v=3') no-repeat center;
     color: #888888;
-    left: 30%;
-    line-height: 21px;
-    position: absolute;
-    text-indent: 23px;
+    display: block;
+    line-height: 16px;
+    text-align: center;
+    text-indent: 90px;
     text-transform: uppercase;
     visibility: hidden;
 }
