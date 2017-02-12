@@ -195,7 +195,13 @@
     }
 
     .#{$prefix}-item {
-        a { box-shadow: none; }
+        a,
+        a:active,
+        a:focus {
+            box-shadow: none;
+            outline: none;
+            top: 0;
+        }
     }
 }
 

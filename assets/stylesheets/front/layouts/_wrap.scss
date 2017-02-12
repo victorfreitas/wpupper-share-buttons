@@ -55,6 +55,7 @@
         .#{$prefix}-button,
         .#{$prefix}-counts {
             border-radius: initial;
+            display: inline-block;
             text-align: center;
             width: 48px;
         }
