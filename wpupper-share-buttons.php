@@ -105,4 +105,24 @@ class WPUSB_App {
 	}
 }
 
-WPUSB_App::uses( 'core', 'Config' );
+$supported = true;
+
+if ( version_compare( PHP_VERSION, '5.2', '<' ) ) {
+	$supported = false;
+
+	function wpusb_not_supported_php_version() { ?>
+		<div class="error notice is-dismissible">
+			<p>
+				<strong><?php echo WPUSB_App::NAME; ?></strong>
+				<?php
+					_e( 'It does not support your PHP version. Please, install a version greater than or equal to 5.2.0.', WPUSB_App::TEXTDOMAIN );
+				?>
+			</p>
+		</div>
+	<?php }
+	add_action( 'admin_notices', 'wpusb_not_supported_php_version' );
+}
+
+if ( $supported ) {
+	WPUSB_App::uses( 'core', 'Config' );
+}
