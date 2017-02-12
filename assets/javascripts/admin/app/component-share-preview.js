@@ -32,6 +32,8 @@ WPUSB( 'WPUSB.Components.SharePreview', function(Model, $) {
 			this.layout = $( '[data-element="position-fixed"]:checked' ).val();
 		}
 
+		$( '.' + this.prefix + '-layout-options' ).trigger( 'changeLayout', this.layout );
+
 		this._onClick();
 	};
 
@@ -48,7 +50,6 @@ WPUSB( 'WPUSB.Components.SharePreview', function(Model, $) {
 		return {
 			opacity     : 0.5,
 			cursor      : 'move',
-			axis        : 'x',
 			tolerance   : 'pointer',
 			items       : '> td',
 			placeholder : this.prefix + '-highlight',

@@ -9,7 +9,19 @@ WPUSB( 'WPUSB.ColorPicker', function(Model, $) {
 	};
 
 	Model.renderColorPicker = function() {
-		$( '.' + this.utils.prefix + '-colorpicker' ).wpColorPicker();
+		var className = '.' + this.utils.prefix + '-colorpicker'
+		  , options   = {
+		    change: function(event, ui) {
+		    	var color = ui.color.toString();
+
+		    	$( '.wpusb-item a' ).css({
+		    		'background-color': color,
+		    		'box-shadow': '0 2px ' + color
+		    	});
+		    }.bind( this )
+		};
+
+		$( className ).wpColorPicker( options );
 	};
 
 }, {} );
