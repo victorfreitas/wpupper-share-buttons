@@ -1,7 +1,10 @@
 {{#each this}}
 
 	{{#if first}}
-		<div id="{{prefix}}-container{{container_buttons}}" class="{{prefix}} {{prefix}}-{{layout}} social-share {{prefix}}-preview">
+		<div id="{{prefix}}-container{{container_buttons}}"
+             data-preview-layout="{{layout}}"
+			 class="{{prefix}} {{prefix}}-{{layout}} social-share {{prefix}}-preview">
+
 		{{#if title}}
 			<div class="{{prefix}}-title">
 			 	<span>{{title}}</span>
@@ -10,16 +13,22 @@
 	{{/if}}
 
 	<div class="{{prefix}}-item {{prefix}}-{{item_class}}">
-		<a class="{{prefix}}-button" title="{{item_title}}">
-			<i class="{{prefix}}-icon-{{item_class}}-{{layout}}"></i>
+		<a class="{{prefix}}-button" title="{{item_title}}"
+		   data-item="bg-color">
+
+			<i class="{{prefix}}-icon-{{item_class}}-{{layout}}"
+			   data-item="icons-color"></i>
 
 			{{#if item_inside}}
-				<span class="wpusb-title">{{item_inside}}</span>
+				<span class="{{prefix}}-title"
+					  data-item="inside">{{item_inside}}</span>
 			{{/if}}
 		</a>
 
 		{{#if has_counter}}
-			<span class="{{prefix}}-count wpusb-counter">{{counter}}</span>
+			<style data-element-style></style>
+			<span class="{{prefix}}-count {{prefix}}-counter"
+				  data-item="text">{{counter}}</span>
 		{{/if}}
 	</div>
 

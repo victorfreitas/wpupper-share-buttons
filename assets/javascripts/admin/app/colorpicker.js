@@ -11,17 +11,89 @@ WPUSB( 'WPUSB.ColorPicker', function(Model, $) {
 	Model.renderColorPicker = function() {
 		var className = '.' + this.utils.prefix + '-colorpicker'
 		  , options   = {
-		    change: function(event, ui) {
-		    	var color = ui.color.toString();
-
-		    	$( '.wpusb-item a' ).css({
-		    		'background-color': color,
-		    		'box-shadow': '0 2px ' + color
-		    	});
-		    }.bind( this )
+		    change: this._onChangeColorPicker.bind( this )
 		};
 
 		$( className ).wpColorPicker( options );
 	};
+
+	Model._onChangeColorPicker = function(event, ui) {
+		event.preventDefault();
+		this.activePreview( event.target );
+
+		var color   = ui.color.toString()
+    	  , element = event.target.dataset.element
+    	  , item    = $( '[data-item="' + element + '"]' )
+    	  , layout  = $( '[data-preview-layout]' ).data( 'preview-layout' )
+    	  , style   = event.target.dataset.style
+    	;
+
+    	if ( !item.length ) {
+    		return;
+    	}
+
+    	switch ( layout ) {
+    		case 'buttons':
+    			this.styleCountPseudo( element, style, color );
+    			this.styleShadow( element, color );
+    			this.setItemColorBg( item, style, color );
+    			return;
+
+    		case 'square-plus':
+    			this.styleShadow( element, color );
+    			this.setItemColorBg( item, style, color );
+    			return;
+
+    		case 'default':
+    		case 'rounded':
+    		case 'square' :
+    			this.styleCountPseudo( element, style, color );
+    			this.setItemColor( item, style, color, element );
+    			break;
+
+    		case 'fixed-left':
+    		case 'fixed-right':
+    			this.styleCountPseudo( element, style, color );
+    			this.setItemColorBg( item, style, color );
+    			return;
+    	}
+    };
+
+    Model.setItemColorBg = function(item, style, color) {
+    	item.css( style, color );
+    };
+
+    Model.setItemColor = function(item, style, color, element) {
+    	if ( style !== 'color' && element !== 'text' ) {
+    		return;
+    	}
+
+    	item.css( style, color );
+    };
+
+    Model.activePreview = function(target) {
+    	if ( $( '[data-element="preview"]' ).hasClass( 'preview-active' ) ) {
+    		return;
+    	}
+
+    	$( '.wpusb-layout-options input:checked' ).click();
+    };
+
+    Model.styleCountPseudo = function(element, style, color) {
+    	if ( !( element === 'text' && style === 'background-color' ) ) {
+    		return;
+    	}
+
+		var styles = '.wpusb-count:after{border-color:transparent ' + color + ' transparent transparent}';
+		$( '[data-element-style]' ).text( styles );    	
+    };
+
+    Model.styleShadow = function(element, color) {
+    	if ( element !== 'bg-color' ) {
+    		return;
+    	}
+
+		$( '.wpusb-button, .wpusb-link' ).css( 'box-shadow', '0 2px ' + color );    	
+    };
 
 }, {} );

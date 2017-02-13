@@ -2,6 +2,7 @@
 
 	{{#if first}}
 		<div id="{{prefix}}-container-fixed"
+		     data-preview-layout="{{layout}}"
 			 class="{{prefix}}
 			 {{prefix}}-{{layout}}-container
 			 {{prefix}}-{{fixed_layout}}
@@ -10,12 +11,13 @@
 
 			<div class="{{prefix}}-item {{prefix}}-total-share">
 				<div class="{{prefix}}-counts">
-					<span data-element="total-share">
+					<span data-element="total-share" data-item="text">
 						{{counter}}
 					</span>
 
 					{{#if is_fixed_2}}
-						<span data-element="fixed-label-text">Shares</span>
+						<span data-element="fixed-label-text"
+							  data-item="text">Shares</span>
 					{{/if}}
 
 				</div>
@@ -23,11 +25,11 @@
 	{{/if}}
 
 	<div class="{{prefix}}-item {{prefix}}-{{item_class}}">
-		<a title="Tweet" class="{{prefix}}-{{btn_class}}" rel="nofollow">
-			<i class="{{prefix}}-icon-{{item_class}}-{{fixed_layout}} "></i>
+		<a title="Tweet" class="{{prefix}}-{{btn_class}}" data-item="bg-color">
+			<i class="{{prefix}}-icon-{{item_class}}-{{fixed_layout}}" data-item="icons-color"></i>
 		</a>
 	</div>
 
 {{/each}}
-	<span class="wpusb-toggle"></span>
+	<span class="{{prefix}}-toggle"></span>
 </div>

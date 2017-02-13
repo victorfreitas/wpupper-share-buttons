@@ -8,20 +8,30 @@
 			 </div>
 		 {{/if}}
 
-		<div id="{{prefix}}-container-square-plus" class="{{prefix}} {{prefix}}-{{layout}} social-share {{prefix}}-preview">
+		<div id="{{prefix}}-container-square-plus"
+		     data-preview-layout="{{layout}}"
+		     class="{{prefix}} {{prefix}}-{{layout}} social-share {{prefix}}-preview">
 
 			<div class="{{prefix}}-item {{prefix}}-counter {{prefix}}-total-share">
-				<div class="{{prefix}}-shares-count">{{counter}}</div>
-				<div class="{{prefix}}-shares-text" data-element="square-plus-text" data-title="{{share_count_label}}"></div>
-				<span class="wpusb-pipe" data-pipe="&#x0007C;"></span>
+				<div class="{{prefix}}-shares-count" data-item="text">{{counter}}</div>
+
+				<div class="{{prefix}}-shares-text"
+					 data-element="square-plus-text"
+					 data-item="text"
+					 data-title="{{share_count_label}}"></div>
+
+				<span class="wpusb-pipe" data-pipe="&#x0007C;" data-item="text"></span>
 			</div>
 
 			<div class="{{prefix}}-item {{prefix}}-{{item_class}} {{prefix}}-full {{prefix}}-inside">
-				<a href="#" class="{{prefix}}-link" title="{{item_title}}">
-					<i class="{{prefix}}-icon-{{item_class}}-square-plus"></i>
+				<a href="#" class="{{prefix}}-link" title="{{item_title}}" data-item="bg-color">
+
+					<i class="{{prefix}}-icon-{{item_class}}-square-plus" data-item="icons-color"></i>
 
 					{{#if inside}}
-						<span class="wpusb-title" data-title="{{item_name}}"></span>
+						<span class="wpusb-title"
+							  data-item="inside"
+							  data-title="{{item_name}}"></span>
 					{{/if}}
 				</a>
 			</div>
@@ -29,8 +39,8 @@
 
 	{{#unless first}}
 		<div class="{{prefix}}-item {{prefix}}-{{item_class}}">
-			<a href="#" class="{{prefix}}-link" title="{{item_title}}">
-				<i class="{{prefix}}-icon-{{item_class}}-square-plus"></i>
+			<a href="#" class="{{prefix}}-link" title="{{item_title}}" data-item="bg-color">
+				<i class="{{prefix}}-icon-{{item_class}}-square-plus" data-item="icons-color"></i>
 			</a>
 		</div>
 	{{/unless}}

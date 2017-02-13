@@ -24,6 +24,7 @@ class WPUSB_Settings_View {
 	public static function render_settings_page() {
 		$model               = WPUSB_Setting::get_instance();
 		$prefix              = WPUSB_App::SLUG;
+		$current_layout      = WPUSB_Utils::option( 'layout' );
 		$option_name         = "{$prefix}_settings";
 		$option_social_media = "{$prefix}_social_media";
 		$hide_class          = 'hide-input';
@@ -171,6 +172,9 @@ class WPUSB_Settings_View {
 										'value'      => 'default',
 										'is_checked' => checked( 'default', $model->layout, false ),
 										'title'      => __( 'Default', WPUSB_App::TEXTDOMAIN ),
+										'attr'       => array(
+											'data-action' => 'primary-layout',
+										),
 									));
 									self::td(array(
 										'type'       => 'radio',
@@ -180,6 +184,9 @@ class WPUSB_Settings_View {
 										'value'      => 'buttons',
 										'is_checked' => checked( 'buttons', $model->layout, false ),
 										'title'      => __( 'Button', WPUSB_App::TEXTDOMAIN ),
+										'attr'       => array(
+											'data-action' => 'primary-layout',
+										),
 									));
 									self::td(array(
 										'type'       => 'radio',
@@ -189,6 +196,9 @@ class WPUSB_Settings_View {
 										'value'      => 'rounded',
 										'is_checked' => checked( 'rounded', $model->layout, false ),
 										'title'      => __( 'Rounded', WPUSB_App::TEXTDOMAIN ),
+										'attr'       => array(
+											'data-action' => 'primary-layout',
+										),
 									));
 									self::td(array(
 										'type'       => 'radio',
@@ -198,6 +208,9 @@ class WPUSB_Settings_View {
 										'value'      => 'square',
 										'is_checked' => checked( 'square', $model->layout, false ),
 										'title'      => __( 'Square', WPUSB_App::TEXTDOMAIN ),
+										'attr'       => array(
+											'data-action' => 'primary-layout',
+										),
 									));
 									self::td(array(
 										'type'       => 'radio',
@@ -207,6 +220,9 @@ class WPUSB_Settings_View {
 										'value'      => 'square-plus',
 										'is_checked' => checked( 'square-plus', $model->layout, false ),
 										'title'      => __( 'Square plus', WPUSB_App::TEXTDOMAIN ),
+										'attr'       => array(
+											'data-action' => 'primary-layout',
+										),
 									));
 								?>
 							</tr>
@@ -223,7 +239,9 @@ class WPUSB_Settings_View {
 										'value'      => 'fixed-left',
 										'is_checked' => checked( 'fixed-left', $model->position_fixed, false ),
 										'title'      => __( 'Fixed left', WPUSB_App::TEXTDOMAIN ),
-										'data-attr'  => 'data-element="position-fixed"',
+										'attr'       => array(
+											'data-element' => 'position-fixed',
+										),
 									));
 									self::td(array(
 										'type'       => 'radio',
@@ -233,7 +251,9 @@ class WPUSB_Settings_View {
 										'value'      => 'fixed-right',
 										'is_checked' => checked( 'fixed-right', $model->position_fixed, false ),
 										'title'      => __( 'Fixed right', WPUSB_App::TEXTDOMAIN ),
-										'data-attr'  => 'data-element="position-fixed"',
+										'attr'       => array(
+											'data-element' => 'position-fixed',
+										),
 									));
 								?>
 								<td class="<?php echo "{$prefix}-fixed-clear"; ?>">
@@ -245,14 +265,14 @@ class WPUSB_Settings_View {
 							</tr>
 
 							<?php
-								$tr_position_fixed_class = $tr_class_hide;
+								$class_tr_hide = $tr_class_hide;
 
 								if ( WPUSB_Utils::option( 'position_fixed', false ) ) {
-									$tr_position_fixed_class = '';
+									$class_tr_hide = '';
 								}
 							?>
 
-							<tr class="<?php echo $prefix; ?>-position-fixed <?php echo $tr_position_fixed_class; ?>"
+							<tr class="<?php echo $prefix; ?>-position-fixed <?php echo $class_tr_hide; ?>"
 								data-element="tr-fixed-layout">
 								<th scope="row">
 									<?php _e( 'Position fixed layout', WPUSB_App::TEXTDOMAIN ); ?>
@@ -269,7 +289,9 @@ class WPUSB_Settings_View {
 											'value'      => 'buttons',
 											'is_checked' => ( $fixed_layout ) ? $checked_layout : 'checked="checked"',
 											'title'      => __( 'Square', WPUSB_App::TEXTDOMAIN ),
-											'data-attr'  => 'data-action="fixed-layout"',
+											'attr'       => array(
+												'data-action' => 'fixed-layout',
+											),
 										));
 
 										self::td(array(
@@ -280,20 +302,22 @@ class WPUSB_Settings_View {
 											'value'      => 'default',
 											'is_checked' => checked( 'default', $model->fixed_layout, false ),
 											'title'      => __( 'Rounded', WPUSB_App::TEXTDOMAIN ),
-											'data-attr'  => 'data-action="fixed-layout"',
+											'attr'       => array(
+												'data-action' => 'fixed-layout',
+											),
 										));
 									?>
 							</tr>
 
 							<?php
-								$fixed_label_class = $tr_class_hide;
+								$class_tr_hide = $tr_class_hide;
 
 								if ( WPUSB_Utils::option( 'fixed_layout' ) === 'default' ) {
-									$fixed_label_class = '';
+									$class_tr_hide = '';
 								}
 							?>
 
-							<tr class="<?php echo $fixed_label_class; ?>"
+							<tr class="<?php echo $class_tr_hide; ?>"
 								data-element="tr-fixed-label">
 								<th scope="row">
 									<label for="<?php echo $prefix; ?>-fixed-default-label">
@@ -304,9 +328,11 @@ class WPUSB_Settings_View {
 									self::td(array(
 										'id'          => 'fixed-default-label',
 										'class'       => 'large-text',
-										'name'        => "{$option_name}[fixed_default_label]",
-										'value'       => $model->fixed_default_label,
-										'data-attr'   => 'data-action="fixed-label"',
+										'name'        => "{$option_name}[text_label_fixed_default]",
+										'value'       => $model->text_label_fixed_default,
+										'attr'        => array(
+											'data-action' => 'fixed-label',
+										),
 										'placeholder' => __(
 											'Change text below sharing count. Default SHARES',
 											WPUSB_App::TEXTDOMAIN
@@ -319,110 +345,7 @@ class WPUSB_Settings_View {
 									));
 								?>
 							</tr>
-							<tr>
-								<th scope="row">
-									<label for="<?php echo $prefix; ?>-icons-size">
-										<?php _e( 'Custom icons size', WPUSB_App::TEXTDOMAIN ); ?>
-									</label>
-								</th>
-								<?php
-									self::td(array(
-										'type'  => 'number',
-										'id'    => 'icons-size',
-										'class' => 'small-text',
-										'name'  => "{$option_name}[icons_size]",
-										'value' => $model->icons_size,
-										'span'  => true,
-										'title' => 'px',
-									));
-								?>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="<?php echo $prefix; ?>-share-count-color">
-										<?php _e( 'Share count color', WPUSB_App::TEXTDOMAIN ); ?>
-									</label>
-								</th>
-								<?php
-									self::td(array(
-										'type'  => 'text',
-										'id'    => 'share-count-color',
-										'class' => "{$prefix}-colorpicker",
-										'name'  => "{$option_name}[share_count_color]",
-										'value' => $model->share_count_color,
-									));
-								?>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="<?php echo $prefix; ?>-share-count-bg">
-										<?php _e( 'Share count background', WPUSB_App::TEXTDOMAIN ); ?>
-									</label>
-								</th>
-								<?php
-									self::td(array(
-										'type'  => 'text',
-										'id'    => 'share-count-bg',
-										'class' => "{$prefix}-colorpicker",
-										'name'  => "{$option_name}[share_count_bg]",
-										'value' => $model->share_count_bg,
-									));
-								?>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="<?php echo $prefix; ?>-icons-color">
-										<?php _e( 'Custom icons color', WPUSB_App::TEXTDOMAIN ); ?>
-									</label>
-								</th>
-								<?php
-									self::td(array(
-										'type'  => 'text',
-										'id'    => 'icons-color',
-										'class' => "{$prefix}-colorpicker",
-										'name'  => "{$option_name}[icons_color]",
-										'value' => $model->icons_color,
-									));
-								?>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="<?php echo $prefix; ?>-icons-background-color">
-										<?php _e( 'Custom buttons background color', WPUSB_App::TEXTDOMAIN ); ?>
-									</label>
-								</th>
-								<?php
-									self::td(array(
-										'type'        => 'text',
-										'id'          => 'buttons-background',
-										'class'       => "{$prefix}-colorpicker",
-										'name'        => "{$option_name}[buttons_background_color]",
-										'value'       => $model->buttons_background_color,
-										'description' => sprintf(
-											__( 'By layouts: %s, %s, and %s.', WPUSB_App::TEXTDOMAIN ),
-											__( 'Button', WPUSB_App::TEXTDOMAIN ),
-											__( 'Square plus', WPUSB_App::TEXTDOMAIN ),
-											__( 'Position fixed', WPUSB_App::TEXTDOMAIN )
-										),
-									));
-								?>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="<?php echo $prefix; ?>-class">
-										<?php _e( 'Custom class', WPUSB_App::TEXTDOMAIN ); ?>
-									</label>
-								</th>
-								<?php
-									self::td(array(
-										'id'          => 'class',
-										'class'       => 'large-text',
-										'name'        => "{$option_name}[class]",
-										'value'       => $model->class,
-										'placeholder' => __( 'Custom class for primary div', WPUSB_App::TEXTDOMAIN ),
-									));
-								?>
-							</tr>
+
 
 							<?php
 								$plus_share_label_class = $tr_class_hide;
@@ -448,7 +371,186 @@ class WPUSB_Settings_View {
 										'value'       => $model->share_count_label,
 										'placeholder' => __( 'Change text below sharing count. Default SHARES', WPUSB_App::TEXTDOMAIN ),
 										'description' => sprintf( __( 'Used in %s layout.', WPUSB_App::TEXTDOMAIN ), __( 'Square plus', WPUSB_App::TEXTDOMAIN ) ),
-										'data-attr'   => 'data-action="plus-share-label"',
+										'attr'        => array(
+											'data-action' => 'plus-share-label',
+										),
+									));
+								?>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-icons-size">
+										<?php _e( 'Icons size', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'type'  => 'number',
+										'id'    => 'icons-size',
+										'class' => 'small-text',
+										'name'  => "{$option_name}[icons_size]",
+										'value' => $model->icons_size,
+										'span'  => true,
+										'title' => 'px',
+									));
+								?>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-title-color">
+										<?php _e( 'Buttons title color', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'type'  => 'text',
+										'id'    => 'title-color',
+										'class' => "{$prefix}-colorpicker",
+										'name'  => "{$option_name}[button_title_color]",
+										'value' => $model->button_title_color,
+										'attr'  => array(
+											'data-element' => 'inside',
+											'data-style'   => 'color',
+										),
+									));
+								?>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-count-text-color">
+										<?php _e( 'Share count text color', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'type'  => 'text',
+										'id'    => 'count-text-color',
+										'class' => "{$prefix}-colorpicker",
+										'name'  => "{$option_name}[share_count_text_color]",
+										'value' => $model->share_count_text_color,
+										'attr'        => array(
+											'data-element' => 'text',
+											'data-style'   => 'color',
+										),
+									));
+								?>
+							</tr>
+
+							<?php
+								$class_tr_hide = $tr_class_hide;
+								$layouts       = array(
+									'default' => 1,
+									'buttons' => 1,
+									'rounded' => 1,
+									'square'  => 1,
+								);
+
+								if ( isset( $layouts[ $current_layout ] ) ) {
+									$class_tr_hide = '';
+								}
+							?>
+
+							<tr class="<?php echo $class_tr_hide; ?>"
+							    data-element="tr-share-count-bg-color">
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-share-count-bg">
+										<?php _e( 'Share count background color', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'type'  => 'text',
+										'id'    => 'counts-bg',
+										'class' => "{$prefix}-colorpicker",
+										'name'  => "{$option_name}[share_count_bg_color]",
+										'value' => $model->share_count_bg_color,
+										'attr'        => array(
+											'data-element' => 'text',
+											'data-style'   => 'background-color',
+										),
+										'description' => sprintf(
+											__( 'By layouts: %s, %s, %s and %s.', WPUSB_App::TEXTDOMAIN ),
+											__( 'Default', WPUSB_App::TEXTDOMAIN ),
+											__( 'Button', WPUSB_App::TEXTDOMAIN ),
+											__( 'Rounded', WPUSB_App::TEXTDOMAIN ),
+											__( 'Square', WPUSB_App::TEXTDOMAIN )
+										),
+									));
+								?>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-icons-color">
+										<?php _e( 'Icons color', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'type'  => 'text',
+										'id'    => 'icons-color',
+										'class' => "{$prefix}-colorpicker",
+										'name'  => "{$option_name}[icons_color]",
+										'value' => $model->icons_color,
+										'attr'  => array(
+											'data-element' => 'icons-color',
+											'data-style'   => 'color',
+										),
+									));
+								?>
+							</tr>
+
+							<?php
+								$class_tr_hide = $tr_class_hide;
+								$layouts       = array(
+									'buttons'     => 1,
+									'square-plus' => 1,
+								);
+
+								if ( isset( $layouts[ $current_layout ] ) || WPUSB_Utils::option( 'position_fixed', false ) ) {
+									$class_tr_hide = '';
+								}
+							?>
+
+							<tr class="<?php echo $class_tr_hide; ?>"
+							    data-element="tr-button-bg-color">
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-button-bg-color">
+										<?php _e( 'Buttons background color', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'type'        => 'text',
+										'id'          => 'button-bg-color',
+										'class'       => "{$prefix}-colorpicker",
+										'name'        => "{$option_name}[button_bg_color]",
+										'value'       => $model->button_bg_color,
+										'attr'        => array(
+											'data-element' => 'bg-color',
+											'data-style'   => 'background-color',
+										),
+										'description' => sprintf(
+											__( 'By layouts: %s, %s, and %s.', WPUSB_App::TEXTDOMAIN ),
+											__( 'Button', WPUSB_App::TEXTDOMAIN ),
+											__( 'Square plus', WPUSB_App::TEXTDOMAIN ),
+											__( 'Position fixed', WPUSB_App::TEXTDOMAIN )
+										),
+									));
+								?>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-class">
+										<?php _e( 'Custom class', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'id'          => 'class',
+										'class'       => 'large-text',
+										'name'        => "{$option_name}[class]",
+										'value'       => $model->class,
+										'placeholder' => __( 'Custom class for primary div', WPUSB_App::TEXTDOMAIN ),
 									));
 								?>
 							</tr>
@@ -648,6 +750,30 @@ class WPUSB_Settings_View {
 	<?php
 	}
 
+	private static function _get_td_args( $args ) {
+		$defaults = array(
+			'type'        => 'text',
+			'description' => '',
+			'placeholder' => '',
+			'id'          => '',
+			'class'       => '',
+			'name'        => '',
+			'value'       => '',
+			'is_checked'  => '',
+			'title'       => '',
+			'td-id'       => '',
+			'td-class'    => '',
+			'label-class' => '',
+			'td-title'    => '',
+			'attr'        => '',
+			'span'        => true,
+			'tag'         => 'td',
+			'label'       => true,
+		);
+
+		return array_merge( $defaults, $args );
+	}
+
 	public static function td( $args = array() ) {
 		$prefix = WPUSB_App::SLUG;
 		$args   = self::_get_td_args( $args );
@@ -664,7 +790,7 @@ class WPUSB_Settings_View {
             	   name="<?php echo $args['name'] ; ?>"
             	   value="<?php echo $args['value'] ; ?>"
             	   placeholder="<?php echo $args['placeholder'] ; ?>"
-                   <?php echo $args['data-attr']; ?>
+                   <?php echo self::get_attrs( $args ); ?>
             	   <?php echo $args['is_checked']; ?>>
     <?php
 			echo $label;
@@ -726,30 +852,6 @@ EOD;
 EOD;
 	}
 
-	private static function _get_td_args( $args ) {
-		$defaults = array(
-			'type'        => 'text',
-			'description' => '',
-			'placeholder' => '',
-			'id'          => '',
-			'class'       => '',
-			'name'        => '',
-			'value'       => '',
-			'is_checked'  => '',
-			'title'       => '',
-			'td-id'       => '',
-			'td-class'    => '',
-			'label-class' => '',
-			'td-title'    => '',
-			'data-attr'   => '',
-			'span'        => true,
-			'tag'         => 'td',
-			'label'       => true,
-		);
-
-		return array_merge( $defaults, $args );
-	}
-
 	public static function home_page_notice() {
 		if ( apply_filters( WPUSB_App::SLUG . '-admin-message', false ) )
 			return;
@@ -787,5 +889,19 @@ EOD;
 	</div>
 
 	<?php
+	}
+
+	public static function get_attrs( $args ) {
+		if ( ! is_array( $args['attr'] ) ) {
+			return $args['attr'];
+		}
+
+		$attributes = '';
+
+		foreach ( $args['attr'] as $attr => $value ) :
+			$attributes .= sprintf( ' %s="%s"', $attr, $value );
+		endforeach;
+
+		return $attributes;
 	}
 }

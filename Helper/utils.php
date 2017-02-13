@@ -1440,7 +1440,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function get_custom_background_color_icons( $options = array() ) {
 		$background = '';
-		$key        = 'buttons_background_color';
+		$key        = 'button_bg_color';
 
 		if ( isset( $options[ $key ] ) ) {
 			$background = self::rm_tags( $options[ $key ] );

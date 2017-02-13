@@ -17,18 +17,6 @@
 		@extend .#{$prefix}-icon-#{$key}:before;
 	}
 }
-.#{$prefix}-icon-like-default:before,
-.#{$prefix}-icon-like-rounded:before,
-.#{$prefix}-icon-like-square:before {
-	@extend .#{$prefix}-icon-like:before;
-}
-// ===================================================
-// --               Rounded, Square
-// ===================================================
-.#{$prefix}-icon-printer-square:before,
-.#{$prefix}-icon-printer-rounded:before {
-	@extend .#{$prefix}-icon-printer:before;
-}
 // ===================================================
 // --               Networks Popup
 // ===================================================

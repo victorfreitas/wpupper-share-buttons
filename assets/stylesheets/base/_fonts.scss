@@ -3,12 +3,12 @@
 // ===================================================
 @font-face {
     font-family: 'wpusb';
-    src: url('../fonts/wpusb.eot?n53qy7');  /* IE9 Compat Modes */
-    src: url('../fonts/wpusb.eot?n53qy7#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         url('../fonts/wpusb.woff2?n53qy7') format('woff2'), /* Super Modern Browsers */
-         url('../fonts/wpusb.woff?n53qy7') format('woff'), /* Pretty Modern Browsers */
-         url('../fonts/wpusb.ttf?n53qy7') format('truetype'), /* Safari, Android, iOS */
-         url('../fonts/wpusb.svg?n53qy7#wpusb') format('svg'); /* Legacy iOS */
+    src: url('../fonts/wpusb.eot?jip557');  /* IE9 Compat Modes */
+    src: url('../fonts/wpusb.eot?jip557#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/wpusb.woff2?jip557') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/wpusb.woff?jip557') format('woff'), /* Pretty Modern Browsers */
+         url('../fonts/wpusb.ttf?jip557') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/wpusb.svg?jip557#wpusb') format('svg'); /* Legacy iOS */
     font-weight: normal;
     font-style: normal;
 }
@@ -17,9 +17,6 @@
     @extend %icon;
 }
 
-.wpusb-icon-like:before {
-  content: "\f088";
-}
 .wpusb-icon-angle-double-left:before {
   content: "\f100";
 }
@@ -32,17 +29,20 @@
 .wpusb-icon-checked:before {
   content: "\e901";
 }
-.wpusb-icon-toggle-off:before {
-  content: "\f204";
+.wpusb-icon-like:before {
+  content: "\f088";
 }
-.wpusb-icon-toggle-on:before {
-  content: "\f205";
+.wpusb-icon-like-square:before {
+  content: "\e90b";
+}
+.wpusb-icon-like-rounded:before {
+  content: "\e916";
 }
 .wpusb-icon-share:before {
   content: "\f1e0";
 }
 .wpusb-icon-share-square:before {
-  content: "\f1e1";
+  content: "\e925";
 }
 .wpusb-icon-share-rounded:before {
   content: "\e917";
@@ -96,7 +96,7 @@
   content: "\e610";
 }
 .wpusb-icon-whatsapp-square:before {
-  content: "\e90b";
+  content: "\e923";
 }
 .wpusb-icon-whatsapp-rounded:before {
   content: "\e908";
@@ -129,7 +129,7 @@
   content: "\f003";
 }
 .wpusb-icon-email-square:before {
-  content: "\f199";
+  content: "\e927";
 }
 .wpusb-icon-email-rounded:before {
   content: "\ea86";
@@ -177,10 +177,16 @@
   content: "\e915";
 }
 .wpusb-icon-viber-rounded:before {
-  content: "\e916";
+  content: "\e924";
 }
 .wpusb-icon-printer:before {
   content: "\e607";
+}
+.wpusb-icon-printer-square:before {
+  content: "\e928";
+}
+.wpusb-icon-printer-rounded:before {
+  content: "\e926";
 }
 .wpusb-icon-vine:before {
   content: "\e90e";
@@ -206,14 +212,14 @@
 .wpusb-icon-snapchat-rounded:before {
   content: "\f2ab";
 }
-.wpusb-icon-reddit-rounded:before {
-  content: "\f1a1";
-}
-.wpusb-icon-reddit-square:before {
-  content: "\f1a2";
-}
 .wpusb-icon-reddit:before {
   content: "\f281";
+}
+.wpusb-icon-reddit-square:before {
+  content: "\e929";
+}
+.wpusb-icon-reddit-rounded:before {
+  content: "\f1a1";
 }
 .wpusb-icon-flipboard:before {
   content: "\e91b";

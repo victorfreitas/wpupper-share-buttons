@@ -15,7 +15,7 @@ WPUSB( 'WPUSB.Components.ShareSettings', function(Model, $) {
 		this.$el.addEvent( 'keyup', 'fixed-label', this );
 		this.$el.addEvent( 'keyup', 'plus-share-label', this );
 		this.$el.addEvent( 'focus', 'plus-share-label', this );
-		$( '.' + this.utils.prefix + '-layout-options' ).on( 'changeLayout', this._onChangeLayout.bind( this ) );
+		this.$el.addEvent( 'change', 'primary-layout', this );
 	};
 
 	Model.fn._onChangeFixedLeft = function(event) {
@@ -61,13 +61,33 @@ WPUSB( 'WPUSB.Components.ShareSettings', function(Model, $) {
 		$( '#' + this.utils.prefix + '-square-plus' ).click();
 	};
 
-	Model.fn._onChangeLayout = function(event, value) {
-		if ( value !== 'square-plus' ) {
-			this.elements.trSharePlusLabel.fadeOut();
-			return;
+	Model.fn._onChangePrimaryLayout = function(event) {
+		var squarePlus     = 'fadeOut'
+		  , countBgColor   = 'fadeOut'
+		  , buttonsBgColor = 'fadeOut'
+		;
+
+		switch ( event.currentTarget.value ) {
+			case 'buttons' :
+				countBgColor   = 'fadeIn';
+				buttonsBgColor = 'fadeIn';
+				break;
+
+			case 'default' :
+			case 'rounded' :
+			case 'square'  :
+				countBgColor   = 'fadeIn';
+				break;
+
+			case 'square-plus' :
+				squarePlus     = 'fadeIn';
+				buttonsBgColor = 'fadeIn';
+				break;
 		}
 
-		this.elements.trSharePlusLabel.fadeIn();
+		this.elements.trButtonBgColor[buttonsBgColor]();
+		this.elements.trShareCountBgColor[countBgColor]();
+		this.elements.trSharePlusLabel[squarePlus]();
 	};
 
 	Model.fn._onClickFixedDisabled = function(event) {

@@ -197,10 +197,6 @@ $_itemsAvailable : 'items-available';
     z-index: 2;
 }
 
-.#{$prefix}-remove-elements input + label:after {
-    @extend .#{$prefix}-icon-toggle-off:before;
-}
-
 .#{$prefix}-remove-elements input + label {
     background: transparent;
     border-radius: initial;
@@ -209,12 +205,6 @@ $_itemsAvailable : 'items-available';
     font-weight: normal;
     padding: 0;
     text-shadow: initial;
-}
-
-.#{$prefix}-remove-elements input:checked + label:after {
-    position: relative;
-    @extend .#{$prefix}-icon-toggle-on:before;
-    color: $btnColor;
 }
 
 .#{$prefix}-highlight {
@@ -237,4 +227,10 @@ $_itemsAvailable : 'items-available';
 
 .#{$prefix}-custom-css-wrap .updated {
     display: none;
+}
+
+@media ( min-width: $tablet ) {
+    ##{$prefix}-container-fixed {
+        top: 5px;
+    }
 }

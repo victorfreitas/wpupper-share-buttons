@@ -363,7 +363,7 @@ class WPUSB_Setting {
 	 * @since 1.0
 	 * @var String
 	 */
-	private $buttons_background_color;
+	private $button_bg_color;
 
 	/**
 	 * Minify html output
@@ -372,6 +372,38 @@ class WPUSB_Setting {
 	 * @var String
 	 */
 	private $minify_html;
+
+	/**
+	 * Text color layout fixed default
+	 *
+	 * @since 3.27
+	 * @var String
+	 */
+	private $text_label_fixed_default;
+
+	/**
+	 * Title color layout button
+	 *
+	 * @since 3.27
+	 * @var String
+	 */
+	private $button_title_color;
+
+	/**
+	 * Share count text color
+	 *
+	 * @since 3.27
+	 * @var String
+	 */
+	private $share_count_text_color;
+
+	/**
+	 * Share count background color
+	 *
+	 * @since 3.27
+	 * @var String
+	 */
+	private $share_count_bg_color;
 
 	/**
 	 * Instance singleton

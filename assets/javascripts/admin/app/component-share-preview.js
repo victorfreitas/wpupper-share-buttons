@@ -85,7 +85,7 @@ WPUSB( 'WPUSB.Components.SharePreview', function(Model, $) {
 	Model.fn.request = function() {
 		this.elements
 			.preview
-			.addClass( this.prefix + '-preview-container' )
+			.addClass( this.prefix + '-preview-container preview-active' )
 			.append( SPINNER );
 
 		var fixed_layout = $( '.fixed-layout:checked' )

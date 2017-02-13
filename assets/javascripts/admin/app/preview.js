@@ -23,10 +23,7 @@ WPUSB( 'WPUSB.Preview', function(Model, $) {
 
 	Model._onClickPreviewClose = function(event) {
 		event.preventDefault();
-
-		this.preview
-			.removeClass( this.utils.prefix + '-preview-container' )
-			.empty();
+		this.preview.attr( 'class', '' ).empty();
 	};
 
 	Model._onClickTitle = function(event) {

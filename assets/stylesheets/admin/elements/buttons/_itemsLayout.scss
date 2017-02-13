@@ -11,6 +11,15 @@ $_items_mobile : ( whatsapp, telegram, viber );
              display: block;
          }
     }
+
+    @media ( max-width: $tablet ) {
+        .#{$prefix}-fixed-left,
+        .#{$prefix}-fixed-right {
+            .#{$prefix}-#{$item} {
+                 display: table-cell;
+             }
+        }
+    }
 }
 
 %close-btn-style {
@@ -64,6 +73,10 @@ div[data-#{$prefix}-component="share-preview"] {
 
     .#{$prefix}-count {
         padding: 5px 8px;
+    }
+
+    @media ( max-width: $tablet ) {
+        padding: 0;
     }
 }
 
