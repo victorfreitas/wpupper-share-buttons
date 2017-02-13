@@ -2068,6 +2068,8 @@ templates['square-plus'] = template({"1":function(container,depth0,helpers,parti
 
 });;WPUSB( 'WPUSB.Components.ShareSettings', function(Model, $) {
 
+	var currentIconSize;
+
 	Model.fn.start = function() {
 		this.init();
 	};
@@ -2084,6 +2086,8 @@ templates['square-plus'] = template({"1":function(container,depth0,helpers,parti
 		this.$el.addEvent( 'keyup', 'plus-share-label', this );
 		this.$el.addEvent( 'focus', 'plus-share-label', this );
 		this.$el.addEvent( 'change', 'primary-layout', this );
+		this.$el.addEvent( 'change', 'position-fixed', this );
+		this.$el.addEvent( 'keyup', 'icons-size', this );
 	};
 
 	Model.fn._onChangeFixedLeft = function(event) {
@@ -2095,6 +2099,31 @@ templates['square-plus'] = template({"1":function(container,depth0,helpers,parti
 		}
 
 		this.clear();
+	};
+
+	Model.fn._onKeyupIconsSize= function(event) {
+		var value  = Math.abs( event.currentTarget.value )
+		  , item   = $( '.wpusb-item i' )
+		  , layout = $( '[data-preview-layout]' ).data( 'preview-layout' )
+		;
+
+		currentIconSize = ( currentIconSize ) ? currentIconSize : item.css( 'font-size' );
+
+		if ( !value ) {
+			value = currentIconSize.replace( 'px', '' );
+		}
+
+		if ( value > 100 ) {
+			value = 100;
+		}
+
+		event.currentTarget.value = value;
+
+		item.css( { 'font-size' : value + 'px' } );
+	};
+
+	Model.fn._onChangePositionFixed = function(event) {
+		this.elements.trButtonBgColor.fadeIn();
 	};
 
 	Model.fn._onChangeFixedLayout = function(event) {
@@ -2126,6 +2155,10 @@ templates['square-plus'] = template({"1":function(container,depth0,helpers,parti
 	};
 
 	Model.fn._onFocusPlusShareLabel = function(event) {
+		if ( this.elements.preview.hasClass( 'preview-active' ) ) {
+			return;
+		}
+
 		$( '#' + this.utils.prefix + '-square-plus' ).click();
 	};
 

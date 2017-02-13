@@ -49,8 +49,8 @@
 
         i {
             font-size: $size;
-            height: $size;
-            width: $size;
+            height: auto;
+            width: auto;
         }
 
         span {
@@ -65,13 +65,15 @@
         .#{$prefix}-buttons & {
             border-radius: 3px;
             color: #fff;
+            padding: 2px 0 2px 4px;
 
             i,
             i:hover {
                 color: inherit;
                 font-size: 26px;
-                height: 31px;
-                line-height: $size;
+                width: auto;
+                height: auto;
+                line-height: 1;
             }
 
             span {

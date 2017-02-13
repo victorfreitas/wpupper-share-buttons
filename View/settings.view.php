@@ -241,6 +241,7 @@ class WPUSB_Settings_View {
 										'title'      => __( 'Fixed left', WPUSB_App::TEXTDOMAIN ),
 										'attr'       => array(
 											'data-element' => 'position-fixed',
+											'data-action'  => 'position-fixed',
 										),
 									));
 									self::td(array(
@@ -253,6 +254,7 @@ class WPUSB_Settings_View {
 										'title'      => __( 'Fixed right', WPUSB_App::TEXTDOMAIN ),
 										'attr'       => array(
 											'data-element' => 'position-fixed',
+											'data-action'  => 'position-fixed',
 										),
 									));
 								?>
@@ -360,7 +362,12 @@ class WPUSB_Settings_View {
 
 								<th scope="row">
 									<label for="<?php echo $prefix; ?>-share-count-label">
-										<?php _e( 'Text bellow sharing count', WPUSB_App::TEXTDOMAIN ); ?>
+										<?php
+											printf(
+												__( '%s: Text bellow sharing count', WPUSB_App::TEXTDOMAIN ),
+												__( 'Square plus', WPUSB_App::TEXTDOMAIN )
+											);
+										?>
 									</label>
 								</th>
 								<?php
@@ -392,6 +399,9 @@ class WPUSB_Settings_View {
 										'value' => $model->icons_size,
 										'span'  => true,
 										'title' => 'px',
+										'attr'  => array(
+											'data-action' => 'icons-size',
+										),
 									));
 								?>
 							</tr>
