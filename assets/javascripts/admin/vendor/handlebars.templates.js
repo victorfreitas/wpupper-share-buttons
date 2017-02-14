@@ -96,8 +96,8 @@ templates['share-preview'] = template({"1":function(container,depth0,helpers,par
 
   return "		<div id=\""
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
-    + "-container"
-    + alias3(((helper = (helper = helpers.container_buttons || (depth0 != null ? depth0.container_buttons : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"container_buttons","hash":{},"data":data}) : helper)))
+    + "-container-"
+    + alias3(((helper = (helper = helpers.layout || (depth0 != null ? depth0.layout : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"layout","hash":{},"data":data}) : helper)))
     + "\"\n             data-preview-layout=\""
     + alias3(((helper = (helper = helpers.layout || (depth0 != null ? depth0.layout : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"layout","hash":{},"data":data}) : helper)))
     + "\"\n			 class=\""

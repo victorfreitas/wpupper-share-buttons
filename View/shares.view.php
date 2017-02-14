@@ -48,67 +48,17 @@ EOD;
 	}
 
 	public static function get_css_icons_size( $icons_size, $number = false, $layout = '' ) {
-		$option_layout   = WPUSB_Utils::option( 'layout' );
-		$layout_id       = ( 'buttons' === $option_layout ) ? "-{$option_layout}" : '';
-		$prefix          = WPUSB_App::SLUG;
-		$size            = absint( $icons_size );
-		$id              = "{$prefix}-container{$layout_id}";
-		$id_fixed        = ",#{$prefix}-container-fixed .{$prefix}-item a:not(.{$prefix}-default) i";
+		$prefix = WPUSB_App::SLUG;
+		$size   = absint( $icons_size );
+		$id     = ".{$prefix}";
 
 		if ( false !== $number ) {
-			$id       = "widget-{$prefix}-{$number}";
-			$id_fixed = '';
+			$id = "#widget-{$prefix}-{$number}";
 		}
-
-		$size_icon_share = self::get_css_icon_share_square( $id, $prefix, $size );
-
-		if ( ! empty( $layout ) && $layout === 'square-plus' || empty( $layout ) && $option_layout === 'square-plus' ) {
-			return <<<EOD
-				#{$id} .{$prefix}-item a i {
-				    font-size: {$size}px;
-				}
-				{$size_icon_share}
-EOD;
-		}
-
-		$print_size = ( $size - 5 );
-		$smal_size  = ( $size + 6 );
 
 		return <<<EOD
-			#{$id} .{$prefix}-item a:not(.{$prefix}-default) i{$id_fixed} {
+			{$id} .{$prefix}-item a i {
 			    font-size: {$size}px;
-			    height: {$size}px;
-			    line-height: initial;
-			    width: {$size}px;
-			}
-
-			#{$id} .{$prefix}-item a:not(.{$prefix}-default) .{$prefix}-icon-email-square {
-				font-size: {$smal_size}px;
-			}
-
-			#{$id} .{$prefix}-printer a:not(.{$prefix}-default) i {
-				font-size: {$print_size}px;
-				line-height: {$size}px;
-			}
-
-			#{$id} .{$prefix}-item a:not(.{$prefix}-default) .{$prefix}-icon-reddit-square {
-				font-size: {$smal_size}px;
-			}
-
-			#{$id} .{$prefix}-item a:not(.{$prefix}-default) .{$prefix}-icon-share-square {
-				font-size: {$smal_size}px;
-			}
-
-			{$size_icon_share}
-EOD;
-	}
-
-	public static function get_css_icon_share_square( $id, $prefix, $size ) {
-		$size = ( $size + 5 );
-
-		return <<<EOD
-			#{$id} .{$prefix}-item a .{$prefix}-icon-share-square {
-				font-size: {$size}px;
 			}
 EOD;
 	}
@@ -140,7 +90,8 @@ EOD;
 
 	public static function get_custom_css_buttons( $color, $background, $icon_color, $id_widget = '' ) {
 		$prefix         = WPUSB_App::SLUG;
-		$background_css = self::get_css_icons_background( $background, $color, $id_widget );
+		$background_css = self::get_css_icons_background( $background, $id_widget );
+		$btn_hover_css  = self::get_css_btn_hover();
 
 		if ( empty( $color ) && empty( $background ) ) {
 			return '';
@@ -148,7 +99,7 @@ EOD;
 
 		return <<<EOD
 			{$background_css}
-			{$id_widget} #{$prefix}-container i {
+			{$id_widget} .{$prefix} .{$prefix}-item i {
 			  color: {$color};
 			}
 
@@ -166,44 +117,12 @@ EOD;
 				box-shadow: none;
 			}
 
-			{$id_widget} #{$prefix}-container-square-plus .{$prefix}-item i,
-			{$id_widget} #{$prefix}-container-buttons .{$prefix}-item i,
-			{$id_widget} #{$prefix}-container-fixed .{$prefix}-item i,
-			{$id_widget} #{$prefix}-container-square-plus .{$prefix}-item .{$prefix}-link,
-			{$id_widget} #{$prefix}-container-buttons .{$prefix}-item a {
-				color: {$icon_color};
-			}
-
-			{$id_widget} #{$prefix}-container-fixed .{$prefix}-counts {
-				border-bottom: 1px dotted #ebebeb;
-			}
-
-			.{$prefix} .{$prefix}-item a:hover {
-				filter: alpha(opacity=80);
-				opacity: 0.8;
-				zoom: 1;
-			}
-
-			{$id_widget} #{$prefix}-container .{$prefix}-printer i:not(.{$prefix}-icon-printer-default),
-			{$id_widget} #{$prefix}-container .{$prefix}-icon-like-square,
-			{$id_widget} #{$prefix}-container .{$prefix}-icon-like-rounded,
-			{$id_widget} #{$prefix}-container .{$prefix}-icon-viber-rounded {
-				background-color: {$color};
-				color: #fff;
-			}
-
-			{$id_widget} #{$prefix}-container .{$prefix}-icon-whatsapp-square {
-				box-shadow: 0px 0px 0px 5px {$color} inset;
-			}
+			{$btn_hover_css}
 EOD;
 	}
 
-	public static function get_css_icons_background( $background, $color, $id_widget ) {
+	public static function get_css_icons_background( $background, $id_widget ) {
 		$prefix = WPUSB_App::SLUG;
-
-		if ( empty( $background ) && ! empty( $color ) ) {
-			$background = $color;
-		}
 
 		if ( empty( $background ) ) {
 			return '';
@@ -214,6 +133,18 @@ EOD;
 			{$id_widget} #{$prefix}-container-square-plus .{$prefix}-item a,
 			{$id_widget} #{$prefix}-container-fixed .{$prefix}-item a {
 				background-color: {$background};
+			}
+EOD;
+	}
+
+	public static function get_css_btn_hover() {
+		$prefix = WPUSB_App::SLUG;
+
+		return <<<EOD
+			.{$prefix} .{$prefix}-item a:hover {
+				filter: alpha(opacity=80);
+				opacity: 0.8;
+				zoom: 1;
 			}
 EOD;
 	}

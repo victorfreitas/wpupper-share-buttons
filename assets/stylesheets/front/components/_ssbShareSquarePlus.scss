@@ -16,27 +16,13 @@
 			color: #fff;
 			font-size: 22px;
 			height: initial;
+			left: -1px;
+			line-height: 27px;
+			position: relative;
 			width: initial;
-		    left: -1px;
-		    position: relative;
-    		line-height: 28px;
 
 	    	&:hover {
 	    		color: inherit;
-	    	}
-
-	    	&.#{$prefix}-icon-whatsapp-square-plus,
-	    	&.#{$prefix}-icon-google-plus-square-plus {
-	    		font-size: 28px;
-	    	}
-
-	    	&.#{$prefix}-icon-email-square-plus {
-				position: relative;
-				right: 1px;
-	    	}
-
-	    	&.#{$prefix}-icon-gmail-square-plus {
-				margin-right: 2px;
 	    	}
 	    }
 	}

@@ -26,10 +26,9 @@ class WPUSB_Layouts_Primary {
 		$classes      = WPUSB_Utils::get_classes_first( $atts );
 		$component    = WPUSB_Utils::get_component_by_type();
 		$header_title = WPUSB_Shares_View::get_header_title( $atts );
-		$layout       = ( 'buttons' === $atts->layout ) ? '-buttons' : '';
 		$content      = <<<EOD
 			<div class="{$classes}"
-		     	 id="{$args['prefix']}-container{$layout}"
+		     	 id="{$args['prefix']}-container-{$atts->layout}"
 				 data-element-url="{$args['permalink']}"
 		     	 data-element-title="{$args['title']}"
 			     data-attr-reference="{$args['post_id']}"

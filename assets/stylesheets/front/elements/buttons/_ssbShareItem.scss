@@ -65,6 +65,7 @@
         .#{$prefix}-buttons & {
             border-radius: 3px;
             color: #fff;
+            min-width: 32px;
             padding: 2px 0 2px 4px;
 
             i,
@@ -130,5 +131,9 @@
             outline: none;
             top: 0;
         }
+    }
+
+    &:not(.#{$prefix}-default) .#{$prefix}-total-share {
+        background-color: #e3e3e3;
     }
 }

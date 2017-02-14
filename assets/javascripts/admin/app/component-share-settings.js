@@ -20,6 +20,7 @@ WPUSB( 'WPUSB.Components.ShareSettings', function(Model, $) {
 		this.$el.addEvent( 'change', 'primary-layout', this );
 		this.$el.addEvent( 'change', 'position-fixed', this );
 		this.$el.addEvent( 'keyup', 'icons-size', this );
+		this.$el.addEvent( 'mouseup', 'icons-size', this );
 	};
 
 	Model.fn._onChangeFixedLeft = function(event) {
@@ -52,6 +53,10 @@ WPUSB( 'WPUSB.Components.ShareSettings', function(Model, $) {
 		event.currentTarget.value = value;
 
 		item.css( { 'font-size' : value + 'px' } );
+	};
+
+	Model.fn._onMouseupIconsSize= function(event) {
+		this._onKeyupIconsSize( event );
 	};
 
 	Model.fn._onChangePositionFixed = function(event) {
