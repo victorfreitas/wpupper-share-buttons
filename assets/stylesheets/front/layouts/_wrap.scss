@@ -47,7 +47,6 @@
     .#{$prefix}-item {
         display: table;
         margin-bottom: 0;
-        margin-left: 0;
         margin-right: 0;
 
         .#{$prefix}-button {
@@ -149,6 +148,14 @@
             text-decoration: none;
         }
     }
+}
+
+.#{$prefix}-fixed-left .#{$prefix}-item {
+    margin-left: 0;
+}
+
+.#{$prefix}-fixed-right .#{$prefix}-item {
+    margin-left: auto;
 }
 
 .#{$prefix}-fixed-left {
