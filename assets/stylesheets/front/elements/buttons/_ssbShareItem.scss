@@ -62,11 +62,14 @@
             }
         }
 
-        .#{$prefix}-buttons & {
+        .#{$prefix}-buttons:not(##{$prefix}-container-fixed) & {
             border-radius: 3px;
-            color: #fff;
             min-width: 32px;
             padding: 2px 0 2px 4px;
+        }
+
+        .#{$prefix}-buttons & {
+            color: #fff;
 
             i,
             i:hover {
@@ -131,9 +134,5 @@
             outline: none;
             top: 0;
         }
-    }
-
-    &:not(.#{$prefix}-default) .#{$prefix}-total-share {
-        background-color: #e3e3e3;
     }
 }

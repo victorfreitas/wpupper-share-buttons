@@ -1,13 +1,11 @@
 {{#each this}}
 
 	{{#if first}}
-		<div id="{{prefix}}-container-fixed"
-		     data-preview-layout="{{layout}}"
-			 class="{{prefix}}
-			 {{prefix}}-{{layout}}-container
-			 {{prefix}}-{{fixed_layout}}
-			 {{prefix}}-{{layout}}
-			 social-share">
+	<div id="{{prefix}}-container-fixed"
+	     data-preview-layout="{{layout}}"
+		 class="{{prefix}} {{prefix}}-{{fixed_layout}} {{prefix}}-{{layout}} {{prefix}}-fixed social-share">
+
+		 <div data-element="buttons" class="{{prefix}}-{{layout}}-container">
 
 			<div class="{{prefix}}-item {{prefix}}-total-share">
 				<div class="{{prefix}}-counts">
@@ -24,12 +22,16 @@
 			</div>
 	{{/if}}
 
-	<div class="{{prefix}}-item {{prefix}}-{{item_class}}">
-		<a title="Tweet" class="{{prefix}}-{{btn_class}}" data-item="bg-color">
-			<i class="{{prefix}}-icon-{{item_class}}-{{fixed_layout}}" data-item="icons-color"></i>
-		</a>
+			<div class="{{prefix}}-item {{prefix}}-{{item_class}}">
+				<a title="Tweet" class="{{prefix}}-{{btn_class}}" data-item="bg-color">
+					<i class="{{prefix}}-icon-{{item_class}}-{{fixed_layout}}" data-item="icons-color"></i>
+				</a>
+			</div>
+
+	{{#if last}}
+			<span class="{{prefix}}-toggle"></span>
+		</div>
 	</div>
+	{{/if}}
 
 {{/each}}
-	<span class="{{prefix}}-toggle"></span>
-</div>

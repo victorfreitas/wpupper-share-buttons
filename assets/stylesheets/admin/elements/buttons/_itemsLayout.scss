@@ -5,16 +5,14 @@ $_items_mobile : ( whatsapp, telegram, viber );
         display: inline-block;
     }
 
-    .#{$prefix}-fixed-left,
-    .#{$prefix}-fixed-right {
+    .#{$prefix}-fixed {
         .#{$prefix}-#{$item} {
-             display: block;
+             display: table;
          }
     }
 
     @media ( max-width: $tablet ) {
-        .#{$prefix}-fixed-left,
-        .#{$prefix}-fixed-right {
+        .#{$prefix}-fixed {
             .#{$prefix}-#{$item} {
                  display: table-cell;
              }
@@ -80,17 +78,8 @@ div[data-#{$prefix}-component="share-preview"] {
     }
 }
 
-.#{$prefix}-fixed-left,
-.#{$prefix}-fixed-right {
+.#{$prefix}-fixed {
     z-index: 99999;
-
-    .#{$prefix}-item a {
-        border-radius: initial;
-        height: 48px;
-        line-height: 48px;
-        text-align: center;
-        width: 48px;
-    }
 }
 
 .#{$prefix}-item a span {

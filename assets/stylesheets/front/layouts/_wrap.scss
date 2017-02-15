@@ -33,8 +33,7 @@
 // ===================================================
 // --          Items position fixed left
 // ===================================================
-.#{$prefix}-fixed-left,
-.#{$prefix}-fixed-right {
+.#{$prefix}-fixed {
     position: fixed;
     top: 23%;
     z-index: 999;
@@ -46,7 +45,7 @@
     }
 
     .#{$prefix}-item {
-        display: block;
+        display: table;
         margin-bottom: 0;
         margin-left: 0;
         margin-right: 0;
@@ -54,15 +53,15 @@
         .#{$prefix}-button {
             @extend %brightness;
             @extend %transitionAll;
-            line-height: 48px;
             height: 48px;
             width: 48px;
         }
 
         .#{$prefix}-button,
+        .#{$prefix}-default,
         .#{$prefix}-counts {
             border-radius: initial;
-            display: inline-block;
+            display: table;
             text-align: center;
         }
 
@@ -74,13 +73,9 @@
             display: none;
         }
 
-        .#{$prefix}-button i {
-            display: inline;
-            line-height: 48px;
-
-            &:hover {
-                line-height: 48px;
-            }
+        .#{$prefix}-button i,
+        .#{$prefix}-default i {
+            display: table-cell;
         }
 
         .#{$prefix}-default {
@@ -92,7 +87,6 @@
 
             i {
                 font-size: 20px;
-                line-height: 40px;
                 height: 40px;
                 width: 40px;
             }
@@ -220,8 +214,7 @@
     }
 }
 
-.#{$prefix}-fixed-right,
-.#{$prefix}-fixed-left {
+.#{$prefix}-fixed {
     @media ( min-width: $tablet ) {
         .#{$prefix}-button:hover {
             box-shadow: none;
@@ -269,8 +262,7 @@
         }
     }
 
-    .#{$prefix}-fixed-left,
-     .#{$prefix}-fixed-right {
+    .#{$prefix}-fixed {
         .#{$prefix}-whatsapp,
         .#{$prefix}-telegram,
         .#{$prefix}-viber {
@@ -331,8 +323,7 @@
 // --        Layout Fixed left Mobile
 //===================================================
 @media ( max-width: $tablet ) {
-    .#{$prefix}-fixed-left,
-    .#{$prefix}-fixed-right {
+    .#{$prefix}-fixed {
         bottom: 0;
         display: table;
         left: initial;
@@ -354,8 +345,7 @@
             width: auto;
 
             .#{$prefix}-button {
-                display: block;
-                width: auto;
+                width: 100%;
             }
 
             .#{$prefix}-default {

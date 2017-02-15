@@ -231,6 +231,6 @@ $_itemsAvailable : 'items-available';
 
 @media ( min-width: $tablet ) {
     ##{$prefix}-container-fixed {
-        top: 5px;
+        top: 50px;
     }
 }

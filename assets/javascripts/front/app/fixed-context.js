@@ -1,39 +1,35 @@
 WPUSB( 'WPUSB.FixedContext', function(Model, $) {
 
 	Model.create = function(container) {
-		this.$el = container;
+		this.$el = container.find( '#' + this.utils.prefix + '-container-fixed' );
 		this.id  = this.utils.getContext();
 
-		if ( ! this.id || ! this.isLayoutFixed() || ! this.issetContext() ) {
+		if ( !this.id || !this.$el.length ) {
 			return;
 		}
 
         this.init();
 	};
 
-	Model.isLayoutFixed = function() {
-		return this.$el.attr('class').match( '-fixed-' );
-	};
-
-	Model.issetContext = function() {
-		return this.getContext( true );
-	};
-
 	Model.init = function() {
 		this.setContext();
+
+		if ( !this.context ) {
+			return;
+		}
+
+		this.setRect();
+		this.setLeft( this.rect.left );
 		this.alignButtons();
 	};
 
 	Model.setContext = function() {
-		this.context = this.getContext();
-		this.setRect();
+		this.context = this.getElement();
 	};
 
 	Model.setRect = function() {
 		this.rect = this.context.getBoundingClientRect();
 		this.top  = this.rect.top;
-
-		this.setLeft( this.rect.left );
 	};
 
 	Model.setLeft = function(left) {
@@ -43,9 +39,8 @@ WPUSB( 'WPUSB.FixedContext', function(Model, $) {
 	Model.alignButtons = function() {
 		this.$el.byAction( 'close-buttons' ).remove();
 		this.changeClass();
-		this.$el.css({
-			left : this.left
-		});
+
+		this.$el.css( 'left', this.left );
 
 		this.setLeftMobile();
 	};
@@ -55,16 +50,13 @@ WPUSB( 'WPUSB.FixedContext', function(Model, $) {
 			return;
 		}
 
-		this.$el.css({
-			left : 'initial'
-		});
+		this.$el.css( 'left', 'initial' );
 	};
 
 	Model.changeClass = function() {
-		var prefix  = WPUSB.vars.prefix
-		  , classes = this.$el.attr('class');
+		var prefix = this.utils.prefix;
 
-		if ( classes.match( '-fixed-left' ) ) {
+		if ( this.$el.hasClass( prefix + '-fixed-left' ) ) {
 			return;
 		}
 
@@ -72,25 +64,19 @@ WPUSB( 'WPUSB.FixedContext', function(Model, $) {
 		this.$el.addClass( prefix + '-fixed-left' );
 	};
 
-	Model.getContext = function(verify) {
+	Model.getElement = function() {
 		var id = this.id.replace( /[^A-Z0-9a-z-_]/g, '' )
-		  , el
+		  , el = this.utils.getId( id )
 		;
 
-		if ( !id ) {
-			return false;
-		}
-
-		el = document.getElementById( id );
-
-		( verify ) ? this.addNotice( el ) : '';
+		( !el ) ? this.addNotice( el, id ) : '';
 
 		return el;
 	};
 
-	Model.addNotice = function(el) {
-		if ( ! el ) {
-			console.log( 'WPUSB: Context not found.' );
+	Model.addNotice = function(el, id) {
+		if ( !el ) {
+			console.log( 'WPUSB: ID (' + id + ') not found' );
 		}
 	};
 

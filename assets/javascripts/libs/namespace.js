@@ -130,6 +130,14 @@
             });
         },
 
+        getId: function(id) {
+            if ( !id ) {
+                return false;
+            }
+
+            return document.getElementById( id );
+        },
+
         hashStr: function(str) {
             var hash   = 0
               , i      = 0

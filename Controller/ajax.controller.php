@@ -243,6 +243,8 @@ class WPUSB_Ajax_Controller {
 			exit(0);
 		}
 
+		$total = ( count( $checkeds ) - 1 );
+
 		foreach ( $checkeds as $element ) {
 			if ( ! WPUSB_Social_Elements::items_available( $element ) ) {
 				continue;
@@ -255,7 +257,8 @@ class WPUSB_Ajax_Controller {
 				'item_class'        => $item->element,
 				'item_name'         => $item->name,
 				'inside'            => true,
-				'first'             => ( 0 === $count ) ? true : false,
+				'first'             => ( 0 === $count ),
+				'last'              => ( $count === $total ),
 				'layout'            => $layout,
 				'item_title'        => $item->title,
 				'has_counter'       => $item->has_counter,
