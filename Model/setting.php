@@ -387,7 +387,7 @@ class WPUSB_Setting {
 	 * @since 3.27
 	 * @var String
 	 */
-	private $button_title_color;
+	private $btn_inside_color;
 
 	/**
 	 * Share count text color
@@ -395,7 +395,7 @@ class WPUSB_Setting {
 	 * @since 3.27
 	 * @var String
 	 */
-	private $share_count_text_color;
+	private $counts_text_color;
 
 	/**
 	 * Share count background color
@@ -403,7 +403,7 @@ class WPUSB_Setting {
 	 * @since 3.27
 	 * @var String
 	 */
-	private $share_count_bg_color;
+	private $counts_bg_color;
 
 	/**
 	 * Instance singleton

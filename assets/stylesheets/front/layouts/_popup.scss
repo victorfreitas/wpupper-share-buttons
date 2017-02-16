@@ -120,9 +120,9 @@
 }
 
 .#{$prefix}-modal-networks .#{$prefix}-element-popup {
-	a:hover,
-	a:focus,
-	a {
+	.#{$prefix}-btn:hover,
+	.#{$prefix}-btn:focus,
+	.#{$prefix}-btn {
 		box-shadow: none !important;
 		color: #fff !important;
 		text-decoration: none !important;
@@ -133,14 +133,14 @@
 ##{$prefix}-container-fixed,
 ##{$prefix}-container-buttons {
 	.#{$prefix}-item {
-		a:hover,
-		a:focus,
-		a {
+		.#{$prefix}-btn:hover,
+		.#{$prefix}-btn:focus,
+		.#{$prefix}-btn {
 			text-decoration: none;
 		}
 
-		a:hover,
-		a:focus {
+		.#{$prefix}-btn:hover,
+		.#{$prefix}-btn:focus {
 			color: #fff;
 		}
 	}
@@ -149,8 +149,8 @@
 ##{$prefix}-container,
 ##{$prefix}-container-fixed {
 	.#{$prefix}-item {
-		a:hover,
-		a:focus {
+		.#{$prefix}-btn:hover,
+		.#{$prefix}-btn:focus {
 			color: #fff;
 			box-shadow: none;
 		}

@@ -56,12 +56,13 @@ EOD;
 		$referrer   = WPUSB_Utils::get_data_referrer( $args );
 		$modal_data = WPUSB_Utils::get_modal_data_id( $args->reference->element, $args->number );
 		$ga_event   = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
+		$class_btn  = WPUSB_Utils::get_class_btn();
 		$content    = <<<EOD
 			<div class="{$classes}" {$referrer}>
 
 				<a {$link_type}
 				   {$args->reference->popup}
-				   class="{$args->reference->class_link} {$args->class_link}"
+				   class="{$args->reference->class_link} {$class_btn} {$args->class_link}"
 				   title="{$args->reference->title}"
 				   {$ga_event}
 				   {$modal_data}
@@ -108,7 +109,12 @@ EOD;
 		}
 
 		if ( ! WPUSB_Utils::is_inactive_inside( $atts->elements ) ) {
-			$content = "<span data-title=\"{$atts->reference->inside}\"></span>";
+			$class_btn_inside = WPUSB_Utils::get_class_btn_inside();
+			$content          = sprintf(
+				'<span class="%s" data-title="%s"></span>',
+				$class_btn_inside,
+				$atts->reference->inside
+			);
 		}
 
 		return WPUSB_Utils::filter_inside( $atts, $content );
@@ -126,7 +132,11 @@ EOD;
 		$content        = '';
 
 		if ( $args->reference->has_counter && ! $active_counter ) {
-			$content = "<span data-element=\"{$args->reference->element}\" class=\"{$args->prefix}-count\"></span>";
+			$content = sprintf(
+				'<span data-element="%s" class="%s-count"></span>',
+				$args->reference->element,
+				$args->prefix
+			);
 		}
 
 		return apply_filters( WPUSB_App::SLUG . '-total-counter', $content, $args );

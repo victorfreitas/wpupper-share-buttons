@@ -40,17 +40,17 @@ WPUSB( 'WPUSB.Components.ShareSettings', function(Model, $) {
 		  , layout = $( '[data-preview-layout]' ).data( 'preview-layout' )
 		;
 
+		if ( value > 100 ) {
+			value = 100;
+		}
+
+		event.currentTarget.value = ( value ) ? value : '';
+
 		currentIconSize = ( currentIconSize ) ? currentIconSize : item.css( 'font-size' );
 
 		if ( !value ) {
 			value = currentIconSize.replace( 'px', '' );
 		}
-
-		if ( value > 100 ) {
-			value = 100;
-		}
-
-		event.currentTarget.value = value;
 
 		item.css( { 'font-size' : value + 'px' } );
 	};

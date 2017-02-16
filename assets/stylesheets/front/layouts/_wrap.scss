@@ -6,7 +6,7 @@
 
     .#{$prefix}-count {
         display: none;
-        margin-left: 10px;
+        margin-left: 12px;
     }
 
     .#{$prefix}-item,
@@ -21,7 +21,7 @@
 .#{$prefix}-default .#{$prefix}-item,
 .#{$prefix}-square .#{$prefix}-item,
 .#{$prefix}-rounded .#{$prefix}-item {
-    a { box-shadow: none; }
+    .#{$prefix}-btn { box-shadow: none; }
 }
 
 .#{$prefix}-square-plus {
@@ -279,7 +279,7 @@
 }
 
 @media ( max-width: $mobile ) {
-    .#{$prefix}-item a span {
+    .#{$prefix}-item .#{$prefix}-btn span {
         display: none;
     }
 }

@@ -20,16 +20,16 @@
 					 data-item="text"
 					 data-title="{{share_count_label}}"></div>
 
-				<span class="wpusb-pipe" data-pipe="&#x0007C;" data-item="text"></span>
+				<span class="{{prefix}}-pipe" data-pipe="&#x0007C;" data-item="text"></span>
 			</div>
 
 			<div class="{{prefix}}-item {{prefix}}-{{item_class}} {{prefix}}-full {{prefix}}-inside">
-				<a href="#" class="{{prefix}}-link" title="{{item_title}}" data-item="bg-color">
+				<a href="#" class="{{prefix}}-link {{prefix}}-btn" title="{{item_title}}" data-item="bg-color">
 
 					<i class="{{prefix}}-icon-{{item_class}}-square-plus" data-item="icons-color"></i>
 
 					{{#if inside}}
-						<span class="wpusb-title"
+						<span class="{{prefix}}-title"
 							  data-item="inside"
 							  data-title="{{item_name}}"></span>
 					{{/if}}
@@ -39,7 +39,7 @@
 
 	{{#unless first}}
 		<div class="{{prefix}}-item {{prefix}}-{{item_class}}">
-			<a href="#" class="{{prefix}}-link" title="{{item_title}}" data-item="bg-color">
+			<a href="#" class="{{prefix}}-link {{prefix}}-btn" title="{{item_title}}" data-item="bg-color">
 				<i class="{{prefix}}-icon-{{item_class}}-square-plus" data-item="icons-color"></i>
 			</a>
 		</div>

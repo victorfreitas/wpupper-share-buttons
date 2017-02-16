@@ -57,6 +57,7 @@ EOD;
 		$elements  = WPUSB_Social_Elements::social_media();
 		$permalink = apply_filters( "{$prefix}-modal-permalink", WPUSB_Utils::isset_get( $atts, 'permalink' ) );
 		$title     = apply_filters( "{$prefix}-modal-title", WPUSB_Utils::isset_get( $atts, 'title' ) );
+		$class_btn = WPUSB_Utils::get_class_btn();
 		$items     = '';
 
 		foreach ( $elements as $key => $social ) {
@@ -78,9 +79,9 @@ EOD;
 			}
 
 			$items .= <<<EOD
-				<div class="{$prefix}-element-popup">
+				<div class="{$prefix}-element-popup {$prefix}-item-{$social->element}">
 					<a {$link_attr}
-					   class="{$social->class_link}-popup {$social->class}-popup"
+					   class="{$social->class_link}-popup {$class_btn} {$social->class}-popup"
 					   rel="nofollow"
 					   title="{$social->title}"
 					   {$ga_event}

@@ -416,8 +416,8 @@ class WPUSB_Settings_View {
 										'type'  => 'text',
 										'id'    => 'title-color',
 										'class' => "{$prefix}-colorpicker",
-										'name'  => "{$option_name}[button_title_color]",
-										'value' => $model->button_title_color,
+										'name'  => "{$option_name}[btn_inside_color]",
+										'value' => $model->btn_inside_color,
 										'attr'  => array(
 											'data-element' => 'inside',
 											'data-style'   => 'color',
@@ -436,8 +436,8 @@ class WPUSB_Settings_View {
 										'type'  => 'text',
 										'id'    => 'count-text-color',
 										'class' => "{$prefix}-colorpicker",
-										'name'  => "{$option_name}[share_count_text_color]",
-										'value' => $model->share_count_text_color,
+										'name'  => "{$option_name}[counts_text_color]",
+										'value' => $model->counts_text_color,
 										'attr'        => array(
 											'data-element' => 'text',
 											'data-style'   => 'color',
@@ -472,9 +472,9 @@ class WPUSB_Settings_View {
 										'type'  => 'text',
 										'id'    => 'counts-bg',
 										'class' => "{$prefix}-colorpicker",
-										'name'  => "{$option_name}[share_count_bg_color]",
-										'value' => $model->share_count_bg_color,
-										'attr'        => array(
+										'name'  => "{$option_name}[counts_bg_color]",
+										'value' => $model->counts_bg_color,
+										'attr'  => array(
 											'data-element' => 'text',
 											'data-style'   => 'background-color',
 										),

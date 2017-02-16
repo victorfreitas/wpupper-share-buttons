@@ -1,8 +1,8 @@
 #wrapper .#{$prefix},
 #content .#{$prefix} {
-    .#{$prefix}-item a,
-    .#{$prefix}-item a:hover,
-    .#{$prefix}-item a:focus {
+    .#{$prefix}-item .#{$prefix}-btn,
+    .#{$prefix}-item .#{$prefix}-btn:hover,
+    .#{$prefix}-item .#{$prefix}-btn:focus {
         border-bottom: none;
         font-family: $fontFamily;
         outline: none;
@@ -12,9 +12,9 @@
 
 #wrapper .#{$prefix},
 #content .#{$prefix}:not(.#{$prefix}-buttons, .#{$prefix}-square-plus) {
-    .#{$prefix}-item a,
-    .#{$prefix}-item a:hover,
-    .#{$prefix}-item a:focus {
+    .#{$prefix}-item .#{$prefix}-btn,
+    .#{$prefix}-item .#{$prefix}-btn:hover,
+    .#{$prefix}-item .#{$prefix}-btn:focus {
         box-shadow: none;
     }
 }
@@ -29,7 +29,7 @@
         margin-right: 0;
     }
 
-    a {
+    .#{$prefix}-btn {
         -moz-transition: background 0.3s ease;
         -webkit-transition: background 0.3s ease;
         border: none;
@@ -127,9 +127,9 @@
     }
 
     .#{$prefix}-item {
-        a,
-        a:active,
-        a:focus {
+        .#{$prefix}-btn,
+        .#{$prefix}-btn:active,
+        .#{$prefix}-btn:focus {
             box-shadow: none;
             outline: none;
             top: 0;

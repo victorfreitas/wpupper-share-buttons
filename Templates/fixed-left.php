@@ -30,7 +30,7 @@ class WPUSB_Fixed_Left {
 		$counter   = self::add_count( $atts );
 		$component = WPUSB_Utils::get_component_by_type();
 		$content   = <<<EOD
-		<div class="{$classes} {$args['prefix']}-fixed"
+		<div class="{$classes} {$args['prefix']}-fixed {$args['prefix']}-fixed-{$atts->layout}"
 		     id="{$args['prefix']}-container-fixed"
 		     data-element-url="{$args['permalink']}"
 		     data-element-title="{$args['title']}"
@@ -59,6 +59,7 @@ EOD;
 		$btn_class  = ( 'buttons' == $layout ) ? 'button' : $layout;
 		$ga_event   = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
 		$modal_data = WPUSB_Utils::get_modal_data_id( $args->reference->element, $args->number );
+		$class_btn  = WPUSB_Utils::get_class_btn();
 		$class_icon = apply_filters(
 			"{$args->prefix}_item_class_icon",
 			"{$args->reference->class_icon}-{$layout}",
@@ -69,7 +70,7 @@ EOD;
 
 				<a {$link_type}
 				   {$args->reference->popup}
-				   class="{$args->prefix}-{$btn_class} {$args->class_link}"
+				   class="{$args->prefix}-{$btn_class} {$class_btn} {$args->class_link}"
 				   title="{$args->reference->title}"
 				   {$ga_event}
 				   {$modal_data}
@@ -134,9 +135,15 @@ EOD;
 	 * @return String
 	 */
 	private static function _get_inside_count() {
-		$inside = '<span>' . __( 'Shares', WPUSB_App::TEXTDOMAIN ) . '</span>';
+		if ( 'default' !== self::$layout ) {
+			return '';
+		}
 
-		return ( 'default' == self::$layout ) ? $inside : '';
+		return sprintf(
+			'<span class="%s">%s</span>',
+			WPUSB_Utils::get_class_btn_inside(),
+			__( 'Shares', WPUSB_App::TEXTDOMAIN )
+		);
 	}
 
 	/**

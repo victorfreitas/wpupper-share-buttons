@@ -1364,9 +1364,8 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return Boolean
 	 */
 	public static function build_css( $custom_css ) {
-		self::delete_custom_css_file();
-
 		if ( empty( $custom_css ) ) {
+			self::delete_custom_css_file();
 			return ! self::file_css_min_exists();
 		}
 
@@ -1431,74 +1430,6 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
-	 * Get custom background color for icons
-	 *
-	 * @since 3.26
-	 * @version 1.0
-	 * @param Array $options
-	 * @return string
-	 */
-	public static function get_custom_background_color_icons( $options = array() ) {
-		$background = '';
-		$key        = 'button_bg_color';
-
-		if ( isset( $options[ $key ] ) ) {
-			$background = self::rm_tags( $options[ $key ] );
-		}
-
-		if ( empty( $options ) ) {
-			$background = self::option( $key );
-		}
-
-		return $background;
-	}
-
-	/**
-	 * Get custom color for icons
-	 *
-	 * @since 3.26
-	 * @version 1.0
-	 * @param Array $options
-	 * @return string
-	 */
-	public static function get_custom_color_icons( $options = array() ) {
-		$color = '';
-		$key   = 'icons_color';
-
-		if ( isset( $options[ $key ] ) ) {
-			$color = WPUSB_Utils::rm_tags( $options[ $key ] );
-		}
-
-		if ( empty( $options ) ) {
-			$color = WPUSB_Utils::option( $key );
-		}
-
-		return $color;
-	}
-
-	/**
-	 * Get validate color and icon color
-	 *
-	 * @since 3.26
-	 * @version 1.0
-	 * @param Array $option
-	 * @return string
-	 */
-	public static function get_validate_color_icons( $color, $background ) {
-		if ( empty( $color ) || empty( $background ) ) {
-			$icon_color = '#fff';
-		}
-
-		if ( empty( $color ) && ! empty( $background ) ) {
-			$color = $background;
-		}
-
-		$icon_color = isset( $icon_color ) ? $icon_color : $color;
-
-		return array( $color, $icon_color );
-	}
-
-	/**
 	 * Get path css min
 	 *
 	 * @since 3.25
@@ -1550,31 +1481,15 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Null
 	 * @return String
 	 */
-	public static function get_all_custom_css( $custom_css = null, $option = array() ) {
-		$settings_icons_size_css = '';
-		$settings_icons_size     = '';
-		$settings_icons_color    = WPUSB_Shares_View::get_css_icons_color( $option );
-
-		if ( isset( $option['icons_size'] ) ) {
-			$settings_icons_size = intval( $option['icons_size'] );
-		}
-
-		if ( empty( $option ) ) {
-			$settings_icons_size = self::option( 'icons_size', 0, 'intval' );
-		}
-
-		if ( $settings_icons_size ) {
-			$settings_icons_size_css = WPUSB_Shares_View::get_css_icons_size( $settings_icons_size );
-		}
+	public static function get_all_custom_css( $custom_css = null, $options = array() ) {
+		$settings_style = WPUSB_Shares_View::get_css_buttons_styles( $options );
 
 		if ( is_null( $custom_css ) ) {
 			$custom_css = self::get_custom_css();
 		}
 
 		$css  = $custom_css;
-		$css .= $settings_icons_size_css;
-		$css .= $settings_icons_color;
-		$css .= self::get_widget_custom_css();
+		$css .= $settings_style;
 
 		if ( ! empty( $css ) ) {
 			return htmlspecialchars_decode( $css );
@@ -1767,6 +1682,92 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
         }
 
         return json_encode( $value );
+    }
+
+	/**
+	 * Default class for all buttons link
+	 *
+	 * @since 3.27
+	 * @param Null
+	 * @return String
+	 */
+    public static function get_class_btn() {
+    	$prefix = WPUSB_App::SLUG;
+    	return "{$prefix}-btn";
+    }
+
+	/**
+	 * Default class for all buttons inside title
+	 *
+	 * @since 3.27
+	 * @param Null
+	 * @return String
+	 */
+    public static function get_class_btn_inside() {
+    	$prefix = WPUSB_App::SLUG;
+    	return "{$prefix}-btn-inside";
+    }
+
+	/**
+	 * Get widget attribute tag id by number
+	 *
+	 * @since 3.27
+	 * @param Integer $number
+	 * @return String
+	 */
+    public static function get_widget_attr_id( $number ) {
+		$prefix = WPUSB_App::SLUG;
+		return "#widget-{$prefix}-{$number}";
+    }
+
+    public static function get_field_css_by_key( $key, $options ) {
+    	$field = '';
+
+		if ( isset( $options[ $key ] ) && ! empty( $options[ $key ] ) ) {
+			$field = self::rm_tags( $options[ $key ] );
+		}
+
+		if ( empty( $options ) ) {
+			$field = self::option( $key );
+		}
+
+		return $field;
+    }
+
+    public static function get_css_icons_size( $options ) {
+    	$size = self::get_field_css_by_key( 'icons_size', $options );
+
+		if ( ! empty( $size ) ) {
+			$size = sprintf( 'font-size: %dpx;', $size );
+		}
+
+		return $size;
+    }
+
+    public static function get_css_icons_color( $options ) {
+		$color = self::get_field_css_by_key( 'icons_color', $options );
+
+		if ( ! empty( $color ) ) {
+			$color = sprintf( 'color: %s;', $color );
+		}
+
+		return $color;
+    }
+
+    public static function get_css_btn_inside( $options ) {
+		return self::get_field_css_by_key( 'btn_inside_color', $options );
+    }
+
+    public static function get_css_counts_color( $options ) {
+    	return self::get_field_css_by_key( 'counts_text_color', $options );
+    }
+
+    public static function get_css_counts_bg_color( $options ) {
+    	return self::get_field_css_by_key( 'counts_bg_color', $options );
+    }
+
+    public static function get_css_bg_color( $options ) {
+		return self::get_field_css_by_key( 'button_bg_color', $options );
     }
 
 	public static function log( $data, $log_name = '' )

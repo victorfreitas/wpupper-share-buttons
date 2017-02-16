@@ -47,93 +47,129 @@ EOD;
 EOD;
 	}
 
-	public static function get_css_icons_size( $icons_size, $number = false, $layout = '' ) {
-		$prefix = WPUSB_App::SLUG;
-		$size   = absint( $icons_size );
-		$id     = ".{$prefix}";
+	public static function get_css_buttons_styles( $options, $number = 0 ) {
+		$widget_id  = ( $number ) ? WPUSB_Utils::get_widget_attr_id( $number ) : '';
+		$css        = '';
+		$css       .= self::get_css_icons( $options, $widget_id );
+		$css       .= self::get_css_btn_inside( $options, $widget_id );
+		$css       .= self::get_css_counts_color( $options, $widget_id );
+		$css       .= self::get_css_counts_bg_color( $options, $widget_id );
+		$css       .= self::get_css_bg_color( $options, $widget_id );
 
-		if ( false !== $number ) {
-			$id = "#widget-{$prefix}-{$number}";
+		return $css;
+	}
+
+	public static function get_css_icons( $options, $widget_id = '' ) {
+		$prefix      = WPUSB_App::SLUG;
+		$color       = WPUSB_Utils::get_css_icons_color( $options );
+		$size        = WPUSB_Utils::get_css_icons_size( $options );
+		$color_hover = '';
+
+		if ( empty( $color ) && empty( $size ) ) {
+			return '';
 		}
 
 		return <<<EOD
-			{$id} .{$prefix}-item a i {
-			    font-size: {$size}px;
-			}
+		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-btn i {
+			{$color}
+			{$size}
+		}
+		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-btn i:hover {
+			{$color}
+			{$size}
+		}
 EOD;
 	}
 
-	public static function get_css_icons_color( $option = array() ) {
-		$background = WPUSB_Utils::get_custom_background_color_icons( $option );
-		$color      = WPUSB_Utils::get_custom_color_icons( $option );
-		$colors     = WPUSB_Utils::get_validate_color_icons( $color, $background );
+	public static function get_css_btn_inside( $options, $widget_id = '' ) {
+		$btn_inside = WPUSB_Utils::get_css_btn_inside( $options );
+		$prefix     = WPUSB_App::SLUG;
 
-		if ( empty( $color ) && empty( $background ) ) {
-			return '';
-		}
-
-		return self::get_custom_css_buttons( $colors[0], $background, $colors[1] );
-	}
-
-	public static function get_widget_css_icons_color( $number, $color, $background ) {
-		$prefix = WPUSB_App::SLUG;
-
-		if ( empty( $color ) && empty( $background ) ) {
-			return '';
-		}
-
-		$colors = WPUSB_Utils::get_validate_color_icons( $color, $background );
-		$id     = "#widget-{$prefix}-{$number}";
-
-		return self::get_custom_css_buttons( $colors[0], $background, $colors[1], $id );
-	}
-
-	public static function get_custom_css_buttons( $color, $background, $icon_color, $id_widget = '' ) {
-		$prefix         = WPUSB_App::SLUG;
-		$background_css = self::get_css_icons_background( $background, $id_widget );
-		$btn_hover_css  = self::get_css_btn_hover();
-
-		if ( empty( $color ) && empty( $background ) ) {
+		if ( empty( $btn_inside ) ) {
 			return '';
 		}
 
 		return <<<EOD
-			{$background_css}
-			{$id_widget} .{$prefix} .{$prefix}-item i {
-			  color: {$color};
-			}
-
-			#{$prefix}-container-buttons .{$prefix}-item a,
-			#{$prefix}-container-square-plus .{$prefix}-item a {
-				-moz-box-shadow: 0 2px #545454;
-				-webkit-box-shadow: 0 2px #545454;
-				box-shadow: 0 2px #545454;
-			}
-
-			#{$prefix}-container-buttons .{$prefix}-item a:active,
-			#{$prefix}-container-square-plus .{$prefix}-item a:active {
-				-moz-box-shadow: none;
-				-webkit-box-shadow: none;
-				box-shadow: none;
-			}
-
-			{$btn_hover_css}
+		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-btn-inside {
+			color: {$btn_inside};
+		}
 EOD;
 	}
 
-	public static function get_css_icons_background( $background, $id_widget ) {
-		$prefix = WPUSB_App::SLUG;
+	public static function get_css_counts_color( $options, $widget_id = '' ) {
+		$counts_color = WPUSB_Utils::get_css_counts_color( $options );
+		$prefix       = WPUSB_App::SLUG;
 
-		if ( empty( $background ) ) {
+		if ( empty( $counts_color ) ) {
 			return '';
 		}
 
 		return <<<EOD
-			{$id_widget} #{$prefix}-container-buttons .{$prefix}-item a,
-			{$id_widget} #{$prefix}-container-square-plus .{$prefix}-item a,
-			{$id_widget} #{$prefix}-container-fixed .{$prefix}-item a {
-				background-color: {$background};
-			}
+		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-counts,
+		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-count,
+		{$widget_id} .{$prefix} .{$prefix}-total-share {
+			color: {$counts_color};
+		}
+EOD;
+	}
+
+	public static function get_css_counts_bg_color( $options, $widget_id = '' ) {
+		$counts_bg_color = WPUSB_Utils::get_css_counts_bg_color( $options );
+		$prefix          = WPUSB_App::SLUG;
+
+		if ( empty( $counts_bg_color ) ) {
+			return '';
+		}
+
+		return <<<EOD
+		.{$prefix} .{$prefix}-item .{$prefix}-counter,
+		.{$prefix} .{$prefix}-item .{$prefix}-count {
+			background-color: {$counts_bg_color};
+		}
+		.{$prefix} .{$prefix}-item .{$prefix}-counter:after,
+		.{$prefix} .{$prefix}-item .{$prefix}-count:after {
+			border-color: transparent {$counts_bg_color} transparent transparent;
+		}
+EOD;
+	}
+
+	public static function get_css_bg_color( $options, $widget_id = '' ) {
+		$bg_color  = WPUSB_Utils::get_css_bg_color( $options );
+		$btn_hover = self::get_css_btn_hover();
+		$prefix    = WPUSB_App::SLUG;
+
+		if ( empty( $bg_color ) ) {
+			return '';
+		}
+
+		return <<<EOD
+		{$widget_id} .{$prefix}-buttons .{$prefix}-item .{$prefix}-btn,
+		{$widget_id} .{$prefix}-square-plus .{$prefix}-item .{$prefix}-btn,
+		{$widget_id} .{$prefix}-fixed .{$prefix}-item .{$prefix}-btn {
+		    background-color: {$bg_color};
+		}
+
+		{$widget_id} .{$prefix}-buttons .{$prefix}-item .{$prefix}-btn:hover,
+		{$widget_id} .{$prefix}-square-plus .{$prefix}-item .{$prefix}-btn:hover,
+		{$widget_id} .{$prefix}-fixed .{$prefix}-item .{$prefix}-btn:hover {
+		    background-color: {$bg_color};
+		}
+
+		{$widget_id} #{$prefix}-container-buttons .{$prefix}-item .{$prefix}-btn,
+		{$widget_id} #{$prefix}-container-square-plus .{$prefix}-item .{$prefix}-btn {
+			-moz-box-shadow: 0 2px {$bg_color};
+			-webkit-box-shadow: 0 2px {$bg_color};
+			box-shadow: 0 2px {$bg_color};
+		}
+
+		{$widget_id} #{$prefix}-container-buttons .{$prefix}-item .{$prefix}-btn:active,
+		{$widget_id} #{$prefix}-container-square-plus .{$prefix}-item .{$prefix}-btn:active {
+			-moz-box-shadow: none;
+			-webkit-box-shadow: none;
+			box-shadow: none;
+		}
+
+		{$btn_hover}
 EOD;
 	}
 
@@ -141,11 +177,12 @@ EOD;
 		$prefix = WPUSB_App::SLUG;
 
 		return <<<EOD
-			.{$prefix} .{$prefix}-item a:hover {
-				filter: alpha(opacity=80);
-				opacity: 0.8;
-				zoom: 1;
-			}
+		.{$prefix} .{$prefix}-item .{$prefix}-btn:hover {
+			filter: alpha(opacity=80);
+			-moz-opacity: 0.8;
+			opacity: 0.8;
+			zoom: 1;
+		}
 EOD;
 	}
 }

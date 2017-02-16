@@ -58,11 +58,12 @@ EOD;
 		$referrer   = WPUSB_Utils::get_data_referrer( $args );
 		$ga_event   = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
 		$modal_data = WPUSB_Utils::get_modal_data_id( $args->reference->element, $args->number );
+		$class_btn  = WPUSB_Utils::get_class_btn();
 		$content    = <<<EOD
 			<div class="{$classes}" {$referrer}>
 
 				<a {$link_type}
-				   class="{$args->prefix}-link {$args->class_link}"
+				   class="{$args->prefix}-link {$class_btn} {$args->class_link}"
 				   title="{$args->reference->title}"
 				   rel="nofollow"
 				   {$args->reference->popup}
@@ -136,7 +137,12 @@ EOD;
 		}
 
 		if ( WPUSB_Utils::is_first() && ! WPUSB_Utils::is_inactive_inside( $atts->elements ) ) {
-			$content = "<span data-title=\"{$atts->reference->name}\"></span>";
+			$class_btn_inside = WPUSB_Utils::get_class_btn_inside();
+			$content          = sprintf(
+				'<span class="%s" data-title="%s"></span>',
+				$class_btn_inside,
+				$atts->reference->name
+			);
 		}
 
 		return WPUSB_Utils::filter_inside( $atts, $content );
