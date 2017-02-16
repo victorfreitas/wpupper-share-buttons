@@ -82,19 +82,26 @@ class WPUSB_Widgets_Controller extends \WP_Widget {
 		$domain = WPUSB_App::TEXTDOMAIN;
 		$hash   = md5( uniqid( rand(), true ) );
 
+		printf( '<div data-widgets-hash="%s">', $hash );
+
 		WPUSB_Widgets_View::field_input( __( 'Widget title', $domain ), 'title' );
-		WPUSB_Widgets_View::field_input( __( 'Custom post title', $domain ), 'post_title' );
-		WPUSB_Widgets_View::field_input( __( 'Custom url', $domain ), 'url' );
-		WPUSB_Widgets_View::field_input( __( 'Custom icons size', $domain ), 'icons_size', 'number' );
-		WPUSB_Widgets_View::field_input( __( 'Custom icons color', $domain ), 'icons_color' );
-		WPUSB_Widgets_View::field_input( __( 'Custom buttons background color', $domain ), 'icons_background' );
+		WPUSB_Widgets_View::field_input( __( 'Post title', $domain ), 'post_title' );
+		WPUSB_Widgets_View::field_input( __( 'URL', $domain ), 'url' );
+		WPUSB_Widgets_View::field_input( __( 'Icons size', $domain ), 'icons_size', 'number' );
+		WPUSB_Widgets_View::field_input( __( 'Icons color', $domain ), 'icons_color', 'color' );
+		WPUSB_Widgets_View::field_input( __( 'Buttons background color. <br>By layouts: Square plus and Button', $domain ), 'icons_background', 'color' );
+		WPUSB_Widgets_View::field_input( __( 'Buttons title color', $domain ), 'btn_inside_color', 'color' );
+		WPUSB_Widgets_View::field_input( __( 'Share count text color', $domain ), 'counts_text_color', 'color' );
+		WPUSB_Widgets_View::field_input( __( 'Share count background color. <br>By layouts: Default, Button, Rounded and Square.', $domain ), 'counts_bg_color', 'color' );
 		WPUSB_Widgets_View::field_select( __( 'Layout', $domain ), 'layout', $this->get_layout() );
 		WPUSB_Widgets_View::field_checkbox( __( 'Remove counter', $domain ), 'counter' );
 		WPUSB_Widgets_View::field_checkbox( __( 'Remove button title', $domain ), 'inside' );
 
 		do_action( "{$prefix}_widget_form", $instance, $prefix );
 
-		WPUSB_Widgets_View::social_items( $hash );
+		WPUSB_Widgets_View::social_items();
+
+		echo '</div>';
 	?>
 		<script>
 			jQuery(function($) {
@@ -105,17 +112,10 @@ class WPUSB_Widgets_Controller extends \WP_Widget {
 				}
 
 				context = $( '[class*="sidebars-column"], [id*="section-sidebar-widgets"]' );
-
-				WPUSB.Sortable.create.call(
-					WPUSB.Sortable,
-					context.find( '[data-widget-hash="<?php echo $hash; ?>"]' )
+				WPUSB.Components.Widgets.call(
+					null,
+					context.find( '[data-widgets-hash="<?php echo $hash; ?>"]' )
 				);
-
-				if ( typeof $.prototype.wpColorPicker !== 'function' ) {
-					return;
-				}
-
-				context.find( <?php echo "'.{$prefix}-widget-colorpicker'"; ?> ).wpColorPicker();
 			});
 		</script>
 	<?php

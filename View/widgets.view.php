@@ -23,32 +23,56 @@ class WPUSB_Widgets_View {
 		$prefix       = WPUSB_App::SLUG;
 		$value        = $instance->get_property( $id );
 		$class        = ( $type === 'number' ) ? 'small-text' : 'large-text';
+		$after_label  = false;
+		$class_label  = '';
+		$attr         = '';
 		$placeholders = array(
 			'post_title' => __( 'Override post title', WPUSB_App::TEXTDOMAIN ),
 			'url'        => __( 'Override permalinks', WPUSB_App::TEXTDOMAIN ),
 		);
 		$placeholder = isset( $placeholders[ $id ] ) ? $placeholders[ $id ] : '';
 
-		if ( $id === 'icons_color' || $id === 'icons_background' ) {
-			$class = "{$prefix}-widget-colorpicker";
+		if ( $type === 'color' ) {
+			$class       = '';
+			$after_label = true;
+			$class_label = "{$prefix}-label-color";
+			$type        = 'text';
+			$attr        = 'data-element="color-picker"';
 		}
+
+		$label = self::get_label( $instance, $id, $text, $class_label );
 	?>
 		<p>
-			<label for="<?php echo $instance->sanitize( $instance->get_field_id( $id ) ); ?>"
-			 	   class="<?php echo "{$prefix}-{$id}"; ?>-label">
-				<?php echo $text; ?>
-			</label>
-
+			<?php
+				if ( ! $after_label ) {
+					echo $label;
+				}
+			?>
 			<input type="<?php echo $type; ?>"
 				   id="<?php echo $instance->sanitize( $instance->get_field_id( $id ) ); ?>"
 			       name="<?php echo $instance->sanitize( $instance->get_field_name( $id ) ); ?>"
 			       class="<?php echo $class; ?>"
 			       value="<?php echo $value; ?>"
-			       placeholder="<?php echo $placeholder; ?>">
+			       placeholder="<?php echo $placeholder; ?>"
+			       <?php echo $attr; ?>>
 
 			<?php echo ( $type === 'number' ) ? 'px' : ''; ?>
+
+			<?php
+				if ( $after_label ) {
+					echo $label;
+				}
+			?>
 		</p>
 	<?php
+	}
+
+	public static function get_label( $instance, $id, $text, $class_label ) {
+		$prefix   = WPUSB_App::SLUG;
+		$field_id = $instance->sanitize( $instance->get_field_id( $id ) );
+		$class    = "{$class_label} {$prefix}-{$id}";
+
+		return sprintf( '<label for="%s" class="%s-label">%s</label>', $field_id, $class, $text );
 	}
 
 	public static function field_select( $text, $id, $options ) {
@@ -98,14 +122,14 @@ class WPUSB_Widgets_View {
 	<?php
 	}
 
-	public static function social_items( $hash ) {
+	public static function social_items() {
 		$instance = self::$instance;
 		$prefix   = WPUSB_App::SLUG;
 	?>
 		<table id="<?php echo $prefix; ?>-widget-table">
 			<tbody>
 				<tr class="<?php echo $prefix; ?>-social-networks"
-					data-widget-hash="<?php echo $hash; ?>">
+					data-element="social-items">
 	<?php
 		$elements = WPUSB_Social_Elements::social_media();
 		$order    = $instance->get_property( 'items', array() );

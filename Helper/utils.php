@@ -1482,14 +1482,16 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function get_all_custom_css( $custom_css = null, $options = array() ) {
-		$settings_style = WPUSB_Shares_View::get_css_buttons_styles( $options );
+		$settings_css = WPUSB_Shares_View::get_css_buttons_styles( $options );
+		$widgets_css  = self::get_widget_custom_css();
 
 		if ( is_null( $custom_css ) ) {
 			$custom_css = self::get_custom_css();
 		}
 
 		$css  = $custom_css;
-		$css .= $settings_style;
+		$css .= $settings_css;
+		$css .= $widgets_css;
 
 		if ( ! empty( $css ) ) {
 			return htmlspecialchars_decode( $css );
@@ -1518,25 +1520,22 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			return '';
 		}
 
-		$icons_size_css  = '';
-		$icons_color_css = '';
+		$widgets_css    = '';
+		$widget_options = array();
 
 		foreach ( $options as $number => $option ) :
-			$icons_size  = self::isset_get( $option, 'icons_size' );
-			$icons_color = self::isset_get( $option, 'icons_color' );
-			$background  = self::isset_get( $option, 'icons_background' );
-			$layout      = self::isset_get( $option, 'layout' );
-
-			if ( intval( $number ) && ! empty( $icons_size ) ) :
-				$icons_size_css .= WPUSB_Shares_View::get_css_icons_size( $icons_size, $number, $layout );
-			endif;
-
-			if ( ! empty( $icons_color ) || ! empty( $background ) ) :
-				$icons_color_css .= WPUSB_Shares_View::get_widget_css_icons_color( $number, $icons_color, $background );
-			endif;
+			$widget_options = array(
+				'icons_size'        => self::isset_get( $option, 'icons_size' ),
+				'icons_color'       => self::isset_get( $option, 'icons_color' ),
+				'btn_inside_color'  => self::isset_get( $option, 'btn_inside_color' ),
+				'counts_text_color' => self::isset_get( $option, 'counts_text_color' ),
+				'counts_bg_color'   => self::isset_get( $option, 'counts_bg_color' ),
+				'button_bg_color'   => self::isset_get( $option, 'icons_background' ),
+			);
+			$widgets_css .= WPUSB_Shares_View::get_css_buttons_styles( $widget_options, $number );
 		endforeach;
 
-		return "{$icons_size_css}{$icons_color_css}";
+		return $widgets_css;
 	}
 
 	/**
