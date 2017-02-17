@@ -131,21 +131,21 @@ EOD;
 	}
 
 	public static function get_css_counts_bg_color( $options, $widget_id = '' ) {
-		$counts_bg_color = WPUSB_Utils::get_css_counts_bg_color( $options );
-		$prefix          = WPUSB_App::SLUG;
+		$bg_color = WPUSB_Utils::get_css_counts_bg_color( $options );
+		$prefix   = WPUSB_App::SLUG;
 
-		if ( empty( $counts_bg_color ) ) {
+		if ( empty( $bg_color ) ) {
 			return '';
 		}
 
 		return <<<EOD
-		.{$prefix} .{$prefix}-item .{$prefix}-counter,
-		.{$prefix} .{$prefix}-item .{$prefix}-count {
-			background-color: {$counts_bg_color};
+		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-counter,
+		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-count {
+			background-color: {$bg_color};
 		}
-		.{$prefix} .{$prefix}-item .{$prefix}-counter:after,
-		.{$prefix} .{$prefix}-item .{$prefix}-count:after {
-			border-color: transparent {$counts_bg_color} transparent transparent;
+		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-counter:after,
+		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-count:after {
+			border-color: transparent {$bg_color} transparent transparent;
 		}
 EOD;
 	}

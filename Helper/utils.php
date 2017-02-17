@@ -1779,6 +1779,14 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
     	return ( self::get_meta( $ID ) === 'yes' );
     }
 
+    public static function is_customize_preview() {
+    	if ( ! function_exists( 'is_customize_preview' ) ) {
+    		return false;
+    	}
+
+    	return is_customize_preview();
+    }
+
 	public static function log( $data, $log_name = 'debug' )
 	{
 		$name = sprintf( '%s-%s.log', $log_name, date( 'd-m-Y' ) );

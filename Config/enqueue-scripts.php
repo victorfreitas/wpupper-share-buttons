@@ -92,13 +92,15 @@ final class WPUSB_Scripts {
 	 * @return Void
 	 */
 	public static function add_front_scripts() {
-		$is_active = WPUSB_Utils::is_active();
-
 		if ( WPUSB_Utils::is_disabled_by_meta() ) {
 			return;
 		}
 
-		if ( ! WPUSB_Utils::is_active_widget() && ! apply_filters( WPUSB_App::SLUG . '-add-scripts', $is_active ) ) {
+		$active_scripts    = WPUSB_Utils::is_active();
+		$load_scripts      = apply_filters( WPUSB_App::SLUG . '-add-scripts', $active_scripts );
+		$customize_preview = WPUSB_Utils::is_customize_preview();
+
+		if ( ! $customize_preview && ( ! WPUSB_Utils::is_active_widget() && ! $load_scripts ) ) {
 			return;
 		}
 

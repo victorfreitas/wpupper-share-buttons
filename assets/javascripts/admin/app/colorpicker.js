@@ -84,8 +84,8 @@ WPUSB( 'WPUSB.ColorPicker', function(Model, $) {
     		return;
     	}
 
-		var styles = '.wpusb-count:after{border-color:transparent ' + color + ' transparent transparent}';
-		$( '[data-element-style]' ).text( styles );    	
+		var styles = '.wpusb-count:after{border-color:transparent ' + color + ' transparent transparent !important}';
+		$( '[data-element-style]' ).text( styles );
     };
 
     Model.styleShadow = function(element, color) {
@@ -93,7 +93,7 @@ WPUSB( 'WPUSB.ColorPicker', function(Model, $) {
     		return;
     	}
 
-		$( '.wpusb-button, .wpusb-link' ).css( 'box-shadow', '0 2px ' + color );    	
+		$( '.wpusb-button, .wpusb-link' ).css( 'box-shadow', '0 2px ' + color );
     };
 
 }, {} );
