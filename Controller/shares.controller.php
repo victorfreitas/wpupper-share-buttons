@@ -30,6 +30,8 @@ class WPUSB_Shares_Controller {
 		add_filter( 'the_content', array( $this, 'content' ) );
 		add_action( 'woocommerce_share', array( $this, 'wc_render_share' ) );
 		add_action( 'wp_footer', array( $this, 'buttons_fixed' ) );
+		add_action( 'add_meta_boxes', array( $this, 'register_meta_boxes' ) );
+		add_action( 'save_post', array( $this, 'save_meta' ) );
 	}
 
 	/**
@@ -188,5 +190,30 @@ class WPUSB_Shares_Controller {
 	 */
 	public function buttons_share( $atts = array(), $fixed = false ) {
 		return WPUSB_Utils::buttons_share( $atts, $fixed );
+	}
+
+	public function register_meta_boxes() {
+		add_meta_box(
+			WPUSB_App::TEXTDOMAIN,
+			WPUSB_App::NAME,
+			array( $this, 'render_meta_box' ),
+			'post',
+			'side',
+			'low'
+		);
+	}
+
+	public function render_meta_box( $post ) {
+		WPUSB_Shares_View::render_meta_box( $post );
+	}
+
+	public function save_meta( $post_id ) {
+		if ( wp_is_post_revision( $post_id ) || defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+
+		$value = WPUSB_Utils::post( WPUSB_Setting::META_KEY );
+
+		update_post_meta( $post_id, WPUSB_Setting::META_KEY, $value );
 	}
 }

@@ -1769,6 +1769,16 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		return self::get_field_css_by_key( 'button_bg_color', $options );
     }
 
+    public static function get_meta( $post_id ) {
+    	$value = get_post_meta( $post_id, WPUSB_Setting::META_KEY, true );
+    	return self::rm_tags( $value );
+    }
+
+    public static function is_disabled_by_meta( $ID = 0 ) {
+    	$ID = ( $ID ) ? $ID : self::get_id();
+    	return ( self::get_meta( $ID ) === 'yes' );
+    }
+
 	public static function log( $data, $log_name = '' )
 	{
 		$name = "{$log_name}-"  . date( 'd-m-Y' ) . '.log';

@@ -480,6 +480,10 @@ abstract class WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function buttons_share( $atts = array(), $fixed = false ) {
+		if ( WPUSB_Utils::is_disabled_by_meta() ) {
+			return;
+		}
+
 		$args          = self::sanitize_atts( $atts );
 		$buttons_share = self::get_buttons( $args, $fixed );
 

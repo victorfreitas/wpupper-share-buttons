@@ -438,6 +438,14 @@ class WPUSB_Setting {
 	const TABLE_NAME = 'wpusb_report';
 
 	/**
+	 * Post meta key
+	 *
+	 * @since 1.0
+	 * @var string
+	 */
+	const META_KEY = 'wpusb_post_meta';
+
+	/**
 	 * Directory separator AND File name
 	 *
 	 * @since 1.0

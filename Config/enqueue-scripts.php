@@ -94,6 +94,10 @@ final class WPUSB_Scripts {
 	public static function add_front_scripts() {
 		$is_active = WPUSB_Utils::is_active();
 
+		if ( WPUSB_Utils::is_disabled_by_meta() ) {
+			return;
+		}
+
 		if ( ! WPUSB_Utils::is_active_widget() && ! apply_filters( WPUSB_App::SLUG . '-add-scripts', $is_active ) ) {
 			return;
 		}

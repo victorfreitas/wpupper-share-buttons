@@ -36,6 +36,10 @@ class WPUSB_Widgets_Controller extends \WP_Widget {
 	public function widget( $args, $instance ) {
 		$this->set_instance( $instance );
 
+		if ( WPUSB_Utils::is_disabled_by_meta() ) {
+			return;
+		}
+
 		$title      = $this->get_widget_title();
 		$prefix     = WPUSB_App::SLUG;
 		$share_args = array(

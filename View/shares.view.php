@@ -18,6 +18,23 @@ class WPUSB_Shares_View {
 		return WPUSB_Utils::buttons_share( $atts, $fixed );
 	}
 
+	public static function render_meta_box( $post ) {
+		$is_disabled = WPUSB_Utils::is_disabled_by_meta( $post->ID );
+
+		printf(
+			'<input type="checkbox"
+			        value="yes"
+			        id="%1$s"
+			        name="%1$s" %3$s>
+			<label for="%1$s">
+				%2$s
+			</label>',
+			WPUSB_Setting::META_KEY,
+			__( 'Disable on this post', WPUSB_App::SLUG ),
+			checked( $is_disabled, true, false )
+		);
+	}
+
 	public static function get_buttons_section( $buttons, $share_modal, $args, $number ) {
 		$prefix = WPUSB_App::SLUG;
 
