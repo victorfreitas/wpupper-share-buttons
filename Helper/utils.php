@@ -1779,9 +1779,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
     	return ( self::get_meta( $ID ) === 'yes' );
     }
 
-	public static function log( $data, $log_name = '' )
+	public static function log( $data, $log_name = 'debug' )
 	{
-		$name = "{$log_name}-"  . date( 'd-m-Y' ) . '.log';
+		$name = sprintf( '%s-%s.log', $log_name, date( 'd-m-Y' ) );
 		$log  = print_r( $data, true ) . PHP_EOL;
 		$log .= "\n=============================\n";
 
