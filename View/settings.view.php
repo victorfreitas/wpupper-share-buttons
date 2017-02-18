@@ -49,6 +49,7 @@ class WPUSB_Settings_View {
 
 			<div class="<?php echo "{$prefix}-wrap"; ?>" data-<?php echo $prefix; ?>-component="share-settings">
 
+			<style data-element-style></style>
 			<div data-<?php echo $prefix; ?>-component="share-preview">
 				<div data-element="preview"></div>
 			</div>

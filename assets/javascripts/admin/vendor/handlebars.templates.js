@@ -138,13 +138,15 @@ templates['share-preview'] = template({"1":function(container,depth0,helpers,par
 
   return "				<span class=\""
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
-    + "-title\"\n					  data-item=\"inside\">"
+    + "-title "
+    + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
+    + "-btn-inside\"\n					  data-item=\"inside\">"
     + alias3(((helper = (helper = helpers.item_inside || (depth0 != null ? depth0.item_inside : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"item_inside","hash":{},"data":data}) : helper)))
     + "</span>\n";
 },"7":function(container,depth0,helpers,partials,data) {
     var helper, alias1=helpers.helperMissing, alias2="function", alias3=container.escapeExpression;
 
-  return "			<style data-element-style></style>\n			<span class=\""
+  return "			<span class=\""
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
     + "-count "
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
@@ -234,7 +236,9 @@ templates['square-plus'] = template({"1":function(container,depth0,helpers,parti
 
   return "						<span class=\""
     + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
-    + "-title\"\n							  data-item=\"inside\"\n							  data-title=\""
+    + "-title "
+    + alias3(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"prefix","hash":{},"data":data}) : helper)))
+    + "-btn-inside\"\n							  data-item=\"inside\"\n							  data-title=\""
     + alias3(((helper = (helper = helpers.item_name || (depth0 != null ? depth0.item_name : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"item_name","hash":{},"data":data}) : helper)))
     + "\"></span>\n";
 },"7":function(container,depth0,helpers,partials,data) {

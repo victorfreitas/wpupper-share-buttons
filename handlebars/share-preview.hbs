@@ -20,13 +20,12 @@
 			   data-item="icons-color"></i>
 
 			{{#if item_inside}}
-				<span class="{{prefix}}-title"
+				<span class="{{prefix}}-title {{prefix}}-btn-inside"
 					  data-item="inside">{{item_inside}}</span>
 			{{/if}}
 		</a>
 
 		{{#if has_counter}}
-			<style data-element-style></style>
 			<span class="{{prefix}}-count {{prefix}}-counter"
 				  data-item="text">{{counter}}</span>
 		{{/if}}

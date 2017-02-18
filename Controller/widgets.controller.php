@@ -23,8 +23,9 @@ class WPUSB_Widgets_Controller extends \WP_Widget {
 			$id_base,
 			WPUSB_App::NAME,
 			array(
-				'classname'   => $id_base,
-				'description' => __( 'Insert share buttons of social networks.', WPUSB_App::TEXTDOMAIN ),
+				'classname'                   => $id_base,
+				'description'                 => __( 'Insert share buttons of social networks.', WPUSB_App::TEXTDOMAIN ),
+				'customize_selective_refresh' => true,
 			)
 		);
 
