@@ -411,6 +411,7 @@ final class WPUSB_Core {
 		}
 	}
 }
+
 WPUSB_Core::register_actions();
 add_action( 'plugins_loaded', array( 'WPUSB_Core', 'instance' ) );
 add_action( 'init', array( 'WPUSB_Core', 'load_textdomain' ) );

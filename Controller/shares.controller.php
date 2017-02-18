@@ -43,7 +43,7 @@ class WPUSB_Shares_Controller {
 	 * @return Void
 	 */
 	public function wc_render_share() {
-		if ( WPUSB_Utils::option( 'woocommerce' ) !== 'on' ) {
+		if ( ! $this->is_wc_active() || $this->is_disabled() ) {
 			return;
 		}
 
@@ -75,7 +75,6 @@ class WPUSB_Shares_Controller {
 
 	/**
 	 * The content after it is finished processing
-	 * single | page | home | archive | category
 	 *
 	 * @since 3.2.2
 	 * @version 2.0
@@ -83,7 +82,7 @@ class WPUSB_Shares_Controller {
 	 * @return String
 	 */
 	public function content( $content ) {
-		if ( is_feed() || WPUSB_Utils::is_product() ) {
+		if ( $this->is_disabled() || is_feed() || WPUSB_Utils::is_product() ) {
 			return $content;
 		}
 
@@ -192,17 +191,41 @@ class WPUSB_Shares_Controller {
 		return WPUSB_Utils::buttons_share( $atts, $fixed );
 	}
 
-	public function register_meta_boxes() {
-		$post_types = get_post_types( array(
+	public function is_wc_active() {
+		return ( WPUSB_Utils::option( 'woocommerce' ) === 'on' );
+	}
+
+	public function is_disabled() {
+		return WPUSB_Utils::is_disabled_by_meta();
+	}
+
+	public function get_post_types() {
+		return get_post_types( array(
 			'public'  => true,
 			'show_ui' => true,
 		) );
+	}
 
+	public function register_meta_boxes() {
+		global $wp_version;
+
+		$post_types = $this->get_post_types();
+
+		if ( version_compare( $wp_version, '4.4.0', '>=' ) ) {
+			return $this->add_meta_box( $post_types );
+		}
+
+		foreach ( $post_types as $post_type ) :
+			$this->add_meta_box( $post_type );
+		endforeach;
+	}
+
+	public function add_meta_box( $screen ) {
 		add_meta_box(
 			WPUSB_App::TEXTDOMAIN,
 			WPUSB_App::NAME,
 			array( $this, 'render_meta_box' ),
-			$post_types,
+			$screen,
 			'side',
 			'low'
 		);

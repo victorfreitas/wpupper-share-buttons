@@ -422,14 +422,6 @@ class WPUSB_Setting {
 	const PREFIX = 'wpusb';
 
 	/**
-	 * Sharing report db version
-	 *
-	 * @since 1.0
-	 * @var string
-	 */
-	const DB_VERSION = '1.4';
-
-	/**
 	 * Sharing report table name
 	 *
 	 * @since 1.0

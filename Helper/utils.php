@@ -286,7 +286,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$site_url = get_home_url( null, "/{$path}" );
 		$url      = self::parse_url_params( $site_url );
 
-		return ( $short ) ? self::bitly_short_url( $url ) : $url; 
+		return ( $short ) ? self::bitly_short_url( $url ) : $url;
 	}
 
 	/**
@@ -413,13 +413,15 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function bitly_set_cache( $url_short, $permalink ) {
-		$tag        = WPUSB_App::SLUG . '-shorturl-cache-expire';
-		$cache_time = apply_filters( $tag, ( 12 * WEEK_IN_SECONDS ) );
-		$id         = self::bitly_get_cache_id( $permalink );
-		$url_short  = esc_url_raw( $url_short );
-		$post_id    = self::get_id();
+		$tag  = WPUSB_App::SLUG . '-shorturl-cache-expire';
+		$time = ( 12 * WEEK_IN_SECONDS );
 
-		WPUSB_URL_Shortener::set_cache( $id, $post_id, $url_short, $cache_time );
+		WPUSB_URL_Shortener::set_cache(
+			self::bitly_get_cache_id( $permalink ),
+			self::get_id(),
+			esc_url_raw( $url_short ),
+			apply_filters( $tag, $time )
+		);
 	}
 
 	/**
@@ -1563,7 +1565,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		global $wpdb;
 
 		if ( ! isset( $wpdb->blogs ) ) {
-			return false;
+			return array();
 		}
 
 		return $wpdb->get_col(

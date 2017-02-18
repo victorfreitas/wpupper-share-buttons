@@ -65,10 +65,12 @@ class WPUSB_Settings_Controller {
 	 * @return void
 	 */
 	public function menu_page() {
+		$capability = apply_filters( WPUSB_App::SLUG . '_page_capability', 'manage_options' );
+
 		add_menu_page(
 			__( 'WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ),
 			__( 'WPUpper Share', WPUSB_App::TEXTDOMAIN ),
-			'manage_options',
+			$capability,
 			WPUSB_Setting::HOME_SETTINGS,
 			array( 'WPUSB_Settings_View', 'render_settings_page' ),
 			'dashicons-share'
@@ -79,7 +81,7 @@ class WPUSB_Settings_Controller {
 	  		WPUSB_App::SLUG,
 	  		$title,
 	  		$title,
-	  		'manage_options',
+	  		$capability,
 	  		WPUSB_Setting::EXTRA_SETTINGS,
 	  		array( 'WPUSB_Settings_Extra_View', 'render_settings_extra' )
 	  	);
@@ -89,7 +91,7 @@ class WPUSB_Settings_Controller {
 	  		WPUSB_App::SLUG,
 	  		$title,
 	  		$title,
-	  		'manage_options',
+	  		$capability,
 	  		WPUSB_Setting::CUSTOM_CSS,
 	  		array( 'WPUSB_Settings_Custom_CSS_View', 'render' )
 	  	);
@@ -98,7 +100,7 @@ class WPUSB_Settings_Controller {
 	  		WPUSB_App::SLUG,
 	  		__( 'Use options', WPUSB_App::TEXTDOMAIN ),
 	  		__( 'Use options', WPUSB_App::TEXTDOMAIN ),
-	  		'manage_options',
+	  		$capability,
 	  		WPUSB_Setting::USE_OPTIONS,
 	  		array( 'WPUSB_Settings_Faq_View', 'render_page_faq' )
 	  	);
@@ -113,7 +115,6 @@ class WPUSB_Settings_Controller {
 	 */
 	public function admin_init() {
 		$this->_plugin_update();
-		$this->_build_custom_css();
 	}
 
 	/**
@@ -124,30 +125,15 @@ class WPUSB_Settings_Controller {
 	 * @return void
 	 */
 	private function _plugin_update() {
-		$option          = WPUSB_Utils::get_options_name( 1 );
-		$current_version = WPUSB_Setting::DB_VERSION;
-		$db_version      = WPUSB_Utils::get_option( $option );
+		$option     = WPUSB_Utils::get_options_name( 1 );
+		$db_version = WPUSB_Utils::get_option( $option );
 
-	    if ( $db_version === $current_version ) {
+	    if ( $db_version === WPUSB_App::VERSION ) {
 	    	return;
 	    }
 
-    	WPUSB_Utils::update_option( $option, $current_version );
+    	WPUSB_Utils::update_option( $option, WPUSB_App::VERSION );
     	WPUSB_Core::alter_table();
-	}
-
-	/**
-	 * Build custom css
-	 *
-	 * @since 3.25
-	 * @param Null
-	 * @return void
-	 */
-	private function _build_custom_css() {
-		if ( WPUSB_Utils::file_css_min_exists() ) {
-			return;
-		}
-
 		$this->_rebuild_css();
 	}
 
@@ -168,11 +154,11 @@ class WPUSB_Settings_Controller {
 	 * Rebuild custom css file
 	 *
 	 * @since 3.25
-	 * @param null
+	 * @param Array $value
 	 * @return void
 	 */
-	private function _rebuild_css( $option = array() ) {
-		$custom_css = WPUSB_Utils::get_all_custom_css( null, $option );
+	private function _rebuild_css( $value = array() ) {
+		$custom_css = WPUSB_Utils::get_all_custom_css( null, $value );
 		WPUSB_Utils::build_css( $custom_css );
 	}
 }

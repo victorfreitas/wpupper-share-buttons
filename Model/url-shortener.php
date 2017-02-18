@@ -212,7 +212,7 @@ class WPUSB_URL_Shortener {
 
         $response = WPUSB_Utils::json_decode( $response );
 
-        if ( is_object( $response ) && 200 === $response->status_code ) {
+        if ( isset( $response->status_code ) && 200 === intval( $response->status_code ) ) {
         	return $response->data->url;
         }
 
