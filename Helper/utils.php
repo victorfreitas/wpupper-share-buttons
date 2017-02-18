@@ -1593,6 +1593,19 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
+	 * Widget follow us id base or option name
+	 *
+	 * @since 1.0
+	 * @param Boolean $option
+	 * @return String
+	 */
+	public static function get_widget_follow_id_base( $option = false ) {
+		$id_base = self::get_widget_id_base() . '-follow';
+
+		return ( $option ) ? "widget_{$id_base}" : $id_base;
+	}
+
+	/**
 	 * Minify html output
 	 *
 	 * @since 3.25

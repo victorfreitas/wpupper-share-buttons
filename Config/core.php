@@ -39,6 +39,7 @@ WPUSB_App::uses( 'url-shortener', 'Controller' );
 WPUSB_App::uses( 'settings', 'Controller' );
 WPUSB_App::uses( 'shares', 'Controller' );
 WPUSB_App::uses( 'widgets', 'Controller' );
+WPUSB_App::uses( 'widget-follow', 'Controller' );
 
 /*
  * Templates
@@ -80,6 +81,7 @@ final class WPUSB_Core {
 	 */
 	public static function add_widgets() {
 		register_widget( 'WPUSB_Widgets_Controller' );
+		register_widget( 'WPUSB_Widget_Follow_Controller' );
 	}
 
 	public static function load_textdomain() {

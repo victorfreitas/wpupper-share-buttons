@@ -2,7 +2,7 @@
 /**
  * @package WPUpper Share Buttons
  * @author  Victor Freitas
- * @subpackage Widgets Controller
+ * @subpackage Widgets Share
  * @since 3.25
  */
 if ( ! defined( 'ABSPATH' ) ) {
@@ -63,6 +63,8 @@ class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
 		$prefix = WPUSB_App::SLUG;
 		$domain = WPUSB_App::TEXTDOMAIN;
 		$hash   = md5( uniqid( rand(), true ) );
+
+		WPUSB_Widgets_View::set_instance( $this );
 
 		printf( '<div data-widgets-hash="%s">', $hash );
 
@@ -138,6 +140,8 @@ class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
 		WPUSB_Widgets_View::social_items();
 
 		echo '</div>';
+
+		WPUSB_Widgets_View::unset_instance();
 	?>
 		<script>
 			jQuery(function($) {

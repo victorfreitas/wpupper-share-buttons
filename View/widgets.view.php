@@ -18,6 +18,10 @@ class WPUSB_Widgets_View {
 		self::$instance = $instance;
 	}
 
+	public static function unset_instance() {
+		self::$instance = null;
+	}
+
 	public static function field_input( $text, $id, $type = 'text' ) {
 		$instance     = self::$instance;
 		$prefix       = WPUSB_App::SLUG;

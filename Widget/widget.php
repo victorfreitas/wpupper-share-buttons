@@ -27,15 +27,16 @@ class WPUpper_SB_Widget extends WP_Widget {
 			)
 		);
 
-		WPUSB_Widgets_View::set_instance( $this );
-
 		add_action( "update_option_{$this->option_name}", array( $this, 'rebuild_css' ), 10, 3 );
 	}
 
 	public function update( $new_instance, $old_instance ) {
 		$instance               = $this->sanitize( $new_instance );
-		$instance['url']        = ( $new_instance['url'] ) ? esc_url( $new_instance['url'] ) : '';
 		$instance['icons_size'] = ( $new_instance['icons_size'] ) ? absint( $new_instance['icons_size'] ) : '';
+
+		if ( isset( $new_instance['url'] ) ) {
+			$instance['url'] = ( $new_instance['url'] ) ? esc_url( $new_instance['url'] ) : '';
+		}
 
 		return $instance;
 	}
