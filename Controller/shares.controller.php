@@ -193,11 +193,16 @@ class WPUSB_Shares_Controller {
 	}
 
 	public function register_meta_boxes() {
+		$post_types = get_post_types( array(
+			'public'  => true,
+			'show_ui' => true,
+		) );
+
 		add_meta_box(
 			WPUSB_App::TEXTDOMAIN,
 			WPUSB_App::NAME,
 			array( $this, 'render_meta_box' ),
-			'post',
+			$post_types,
 			'side',
 			'low'
 		);
