@@ -84,4 +84,151 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		</script>
 	<?php
 	}
+
+	private function get_networks() {
+		$std    = new stdClass();
+		$domain = WPUSB_App::TEXTDOMAIN;
+
+		/**
+		 * @var Object
+		 * @see Facebook
+		 */
+		$std->facebook              = new stdClass();
+		$std->facebook->name        = 'Facebook';
+		$std->facebook->placeholder = 'https://www.facebook.com/myname';
+		$std->facebook->title       = __( 'Follow us on Facebook', $domain );
+		$std->facebook->default     = true;
+
+		/**
+		 * @var Object
+		 * @see Twitter
+		 */
+		$std->twitter              = new stdClass();
+		$std->twitter->name        = 'Twitter';
+		$std->twitter->placeholder = 'https://twitter.com/myname';
+		$std->twitter->title       = __( 'Follow us on Twitter', $domain );
+		$std->twitter->default     = true;
+
+		/**
+		 * @var Object
+		 * @see Linkedin
+		 */
+		$std->linkedin              = new stdClass();
+		$std->linkedin->name        = 'Linkedin';
+		$std->linkedin->placeholder = 'https://www.linkedin.com/in/myname';
+		$std->linkedin->title       = __( 'Find us on Linkedin', $domain );
+		$std->linkedin->default     = true;
+
+		/**
+		 * @var Object
+		 * @see Google Plus
+		 */
+		$std->google              = new stdClass();
+		$std->google->name        = 'Google Plus';
+		$std->google->placeholder = 'https://plus.google.com/+myname';
+		$std->google->title       = __( 'Follow us on Google+', $domain );
+		$std->google->default     = false;
+
+		/**
+		 * @var Object
+		 * @see Pinterest
+		 */
+		$std->pinterest              = new stdClass();
+		$std->pinterest->name        = 'Pinterest';
+		$std->pinterest->placeholder = 'https://www.pinterest.com/myname/';
+		$std->pinterest->title       = __( 'My Pinterest board', $domain );
+		$std->pinterest->default     = false;
+
+		/**
+		 * @var Object
+		 * @see Instagram
+		 */
+		$std->instagram              = new stdClass();
+		$std->instagram->name        = 'Instagram';
+		$std->instagram->placeholder = 'https://www.instagram.com/myname/';
+		$std->instagram->title       = __( 'Check out our Instagram', $domain );
+		$std->instagram->default     = false;
+
+		/**
+		 * @var Object
+		 * @see Reddit
+		 */
+		$std->reddit              = new stdClass();
+		$std->reddit->name        = 'Reddit';
+		$std->reddit->placeholder = 'https://www.reddit.com/user/myname';
+		$std->reddit->title       = __( 'Follow us Reddit', $domain );
+		$std->reddit->default     = true;
+
+		/**
+		 * @var Object
+		 * @see YouTube
+		 */
+		$std->youtube              = new stdClass();
+		$std->youtube->name        = 'YouTube';
+		$std->youtube->placeholder = 'https://www.youtube.com/user/myname';
+		$std->youtube->title       = __( 'Subscribe to our YouTube', $domain );
+		$std->youtube->default     = false;
+
+		/**
+		 * @var Object
+		 * @see Vimeo
+		 */
+		$std->vimeo              = new stdClass();
+		$std->vimeo->name        = 'Vimeo';
+		$std->vimeo->placeholder = 'https://vimeo.com/myname';
+		$std->vimeo->title       = __( 'Find us on vimeo', $domain );
+		$std->vimeo->default     = false;
+
+		/**
+		 * @var Object
+		 * @see RSS
+		 */
+		$std->feed              = new stdClass();
+		$std->feed->name        = 'RSS';
+		$std->feed->placeholder = esc_url( get_feed_link() );
+		$std->feed->title       = __( 'Subscribe to our RSS Feed', $domain );
+		$std->feed->default     = false;
+
+		/**
+		 * @var Object
+		 * @see Tumblr
+		 */
+		$std->tumblr              = new stdClass();
+		$std->tumblr->name        = 'Tumblr';
+		$std->tumblr->placeholder = 'https://myname.tumblr.com/';
+		$std->tumblr->title       = __( 'Find us on Tumblr', $domain );
+		$std->tumblr->default     = false;
+
+		/**
+		 * @var Object
+		 * @see Flickr
+		 */
+		$std->flickr              = new stdClass();
+		$std->flickr->name        = 'Flickr';
+		$std->flickr->placeholder = 'https://www.flickr.com/photos/myname';
+		$std->flickr->title       = __( 'Check out our Flickr', $domain );
+		$std->flickr->default     = false;
+
+		/**
+		 * @var Object
+		 * @see Foursquare
+		 */
+		$std->foursquare              = new stdClass();
+		$std->foursquare->name        = 'Foursquare';
+		$std->foursquare->placeholder = 'https://foursquare.com/myname';
+		$std->foursquare->title       = __( 'Check out our Foursquare', $domain );
+		$std->foursquare->default     = false;
+
+		/**
+		 * @var Object
+		 * @see E-mail
+		 */
+		$std->mail              = new stdClass();
+		$std->mail->name        = 'E-mail';
+		$std->mail->placeholder = 'Subject';
+		$std->mail->title       = __( 'Contact Us', $domain );
+		$std->mail->default     = false;
+
+		return apply_filters( WPUSB_App::SLUG . '_follow_us_networks', $std );
+	}
 }

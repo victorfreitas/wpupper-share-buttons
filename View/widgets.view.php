@@ -141,7 +141,7 @@ class WPUSB_Widgets_View {
 
 		foreach ( $items as $key => $item ) :
 			$element = $elements->{$item};
-			$id 	 = ( 'google' == $key ) ? "{$key}-plus" : $key;
+			$id 	 = ( 'google' === $key ) ? "{$key}-plus" : $key;
 
 			WPUSB_Settings_View::td(array(
 				'type'        => 'checkbox',
