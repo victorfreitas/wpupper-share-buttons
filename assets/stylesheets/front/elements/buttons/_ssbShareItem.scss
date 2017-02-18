@@ -84,7 +84,7 @@
                 margin-left: 0;
                 padding: 0 5px;
                 position: relative;
-                right: 2px;
+                right: 3px;
             }
 
             .#{$prefix}-icon-facebook:before {
@@ -134,5 +134,12 @@
             outline: none;
             top: 0;
         }
+    }
+}
+
+##{$prefix}-container-buttons {
+    .#{$prefix}-facebook i {
+        position: relative;
+        top: 2px;
     }
 }

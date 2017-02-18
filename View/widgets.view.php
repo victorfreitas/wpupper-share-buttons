@@ -14,7 +14,7 @@ class WPUSB_Widgets_View {
 
 	public static $instance = null;
 
-	public static function set_instance( WPUSB_Widgets_Controller $instance ) {
+	public static function set_instance( WPUpper_SB_Widget $instance ) {
 		self::$instance = $instance;
 	}
 

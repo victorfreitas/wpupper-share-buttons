@@ -406,46 +406,6 @@ class WPUSB_Settings_View {
 									));
 								?>
 							</tr>
-							<tr>
-								<th scope="row">
-									<label for="<?php echo $prefix; ?>-title-color">
-										<?php _e( 'Buttons title color', WPUSB_App::TEXTDOMAIN ); ?>
-									</label>
-								</th>
-								<?php
-									self::td(array(
-										'type'  => 'text',
-										'id'    => 'title-color',
-										'class' => "{$prefix}-colorpicker",
-										'name'  => "{$option_name}[btn_inside_color]",
-										'value' => $model->btn_inside_color,
-										'attr'  => array(
-											'data-element' => 'inside',
-											'data-style'   => 'color',
-										),
-									));
-								?>
-							</tr>
-							<tr>
-								<th scope="row">
-									<label for="<?php echo $prefix; ?>-count-text-color">
-										<?php _e( 'Share count text color', WPUSB_App::TEXTDOMAIN ); ?>
-									</label>
-								</th>
-								<?php
-									self::td(array(
-										'type'  => 'text',
-										'id'    => 'count-text-color',
-										'class' => "{$prefix}-colorpicker",
-										'name'  => "{$option_name}[counts_text_color]",
-										'value' => $model->counts_text_color,
-										'attr'        => array(
-											'data-element' => 'text',
-											'data-style'   => 'color',
-										),
-									));
-								?>
-							</tr>
 
 							<?php
 								$class_tr_hide = $tr_class_hide;
@@ -485,6 +445,26 @@ class WPUSB_Settings_View {
 											__( 'Button', WPUSB_App::TEXTDOMAIN ),
 											__( 'Rounded', WPUSB_App::TEXTDOMAIN ),
 											__( 'Square', WPUSB_App::TEXTDOMAIN )
+										),
+									));
+								?>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-count-text-color">
+										<?php _e( 'Share count text color', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'type'  => 'text',
+										'id'    => 'count-text-color',
+										'class' => "{$prefix}-colorpicker",
+										'name'  => "{$option_name}[counts_text_color]",
+										'value' => $model->counts_text_color,
+										'attr'        => array(
+											'data-element' => 'text',
+											'data-style'   => 'color',
 										),
 									));
 								?>
@@ -545,6 +525,26 @@ class WPUSB_Settings_View {
 											__( 'Button', WPUSB_App::TEXTDOMAIN ),
 											__( 'Square plus', WPUSB_App::TEXTDOMAIN ),
 											__( 'Position fixed', WPUSB_App::TEXTDOMAIN )
+										),
+									));
+								?>
+							</tr>
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-title-color">
+										<?php _e( 'Buttons title color', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'type'  => 'text',
+										'id'    => 'title-color',
+										'class' => "{$prefix}-colorpicker",
+										'name'  => "{$option_name}[btn_inside_color]",
+										'value' => $model->btn_inside_color,
+										'attr'  => array(
+											'data-element' => 'inside',
+											'data-style'   => 'color',
 										),
 									));
 								?>

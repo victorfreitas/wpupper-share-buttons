@@ -10,36 +10,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit(0);
 }
 
-WPUSB_App::uses( 'widgets', 'View' );
-
-class WPUSB_Widgets_Controller extends \WP_Widget {
-
-	public $instance;
+class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
 
 	public function __construct() {
-		$id_base = WPUSB_Utils::get_widget_id_base();
+		$id_base     = WPUSB_Utils::get_widget_id_base();
+		$description = __( 'Insert share buttons of social networks.', WPUSB_App::TEXTDOMAIN );
 
-		parent::__construct(
-			$id_base,
-			WPUSB_App::NAME,
-			array(
-				'classname'                   => $id_base,
-				'description'                 => __( 'Insert share buttons of social networks.', WPUSB_App::TEXTDOMAIN ),
-				'customize_selective_refresh' => true,
-			)
-		);
-
-		WPUSB_Widgets_View::set_instance( $this );
-
-		add_action( "update_option_{$this->option_name}", array( $this, 'rebuild_css' ), 10, 3 );
+		parent::__construct( $id_base, $description );
 	}
 
 	public function widget( $args, $instance ) {
-		$this->set_instance( $instance );
-
 		if ( WPUSB_Utils::is_disabled_by_meta() ) {
 			return;
 		}
+
+		$this->set_instance( $instance );
 
 		$title      = $this->get_widget_title();
 		$prefix     = WPUSB_App::SLUG;
@@ -72,14 +57,6 @@ class WPUSB_Widgets_Controller extends \WP_Widget {
 		echo $args['after_widget'];
 	}
 
-	public function update( $new_instance, $old_instance ) {
-		$instance               = $this->sanitize( $new_instance );
-		$instance['url']        = ( $new_instance['url'] ) ? esc_url( $new_instance['url'] ) : '';
-		$instance['icons_size'] = ( $new_instance['icons_size'] ) ? absint( $new_instance['icons_size'] ) : '';
-
-		return $instance;
-	}
-
 	public function form( $instance ) {
 		$this->set_instance( $instance );
 
@@ -89,18 +66,72 @@ class WPUSB_Widgets_Controller extends \WP_Widget {
 
 		printf( '<div data-widgets-hash="%s">', $hash );
 
-		WPUSB_Widgets_View::field_input( __( 'Widget title', $domain ), 'title' );
-		WPUSB_Widgets_View::field_input( __( 'Post title', $domain ), 'post_title' );
-		WPUSB_Widgets_View::field_input( __( 'URL', $domain ), 'url' );
-		WPUSB_Widgets_View::field_input( __( 'Icons size', $domain ), 'icons_size', 'number' );
-		WPUSB_Widgets_View::field_input( __( 'Icons color', $domain ), 'icons_color', 'color' );
-		WPUSB_Widgets_View::field_input( __( 'Buttons background color. <br>By layouts: Square plus and Button', $domain ), 'icons_background', 'color' );
-		WPUSB_Widgets_View::field_input( __( 'Buttons title color', $domain ), 'btn_inside_color', 'color' );
-		WPUSB_Widgets_View::field_input( __( 'Share count text color', $domain ), 'counts_text_color', 'color' );
-		WPUSB_Widgets_View::field_input( __( 'Share count background color. <br>By layouts: Default, Button, Rounded and Square.', $domain ), 'counts_bg_color', 'color' );
-		WPUSB_Widgets_View::field_select( __( 'Layout', $domain ), 'layout', $this->get_layout() );
-		WPUSB_Widgets_View::field_checkbox( __( 'Remove counter', $domain ), 'counter' );
-		WPUSB_Widgets_View::field_checkbox( __( 'Remove button title', $domain ), 'inside' );
+		WPUSB_Widgets_View::field_input(
+			__( 'Widget title', $domain ),
+			'title'
+		);
+
+		WPUSB_Widgets_View::field_input(
+			__( 'Post title', $domain ),
+			'post_title'
+		);
+
+		WPUSB_Widgets_View::field_input(
+			__( 'URL', $domain ),
+			'url'
+		);
+
+		WPUSB_Widgets_View::field_input(
+			__( 'Icons size', $domain ),
+			'icons_size',
+			'number'
+		);
+
+		WPUSB_Widgets_View::field_input(
+			__( 'Icons color', $domain ),
+			'icons_color',
+			'color'
+		);
+
+		WPUSB_Widgets_View::field_input(
+			__( 'Buttons background color. <br>By layouts: Square plus and Button', $domain ),
+			'icons_background',
+			'color'
+		);
+
+		WPUSB_Widgets_View::field_input(
+			__( 'Buttons title color', $domain ),
+			'btn_inside_color',
+			'color'
+		);
+
+		WPUSB_Widgets_View::field_input(
+			__( 'Share count text color', $domain ),
+			'counts_text_color',
+			'color'
+		);
+
+		WPUSB_Widgets_View::field_input(
+			__( 'Share count background color. <br>By layouts: Default, Button, Rounded and Square.', $domain ),
+			'counts_bg_color',
+			'color'
+		);
+
+		WPUSB_Widgets_View::field_select(
+			__( 'Layout', $domain ),
+			'layout',
+			$this->get_layout()
+		);
+
+		WPUSB_Widgets_View::field_checkbox(
+			__( 'Remove counter', $domain ),
+			'counter'
+		);
+
+		WPUSB_Widgets_View::field_checkbox(
+			__( 'Remove button title', $domain ),
+			'inside'
+		);
 
 		do_action( "{$prefix}_widget_form", $instance, $prefix );
 
@@ -112,7 +143,7 @@ class WPUSB_Widgets_Controller extends \WP_Widget {
 			jQuery(function($) {
 				var context;
 
-				if ( typeof WPUSB === 'undefined' ) {
+				if ( typeof WPUSB !== 'function' ) {
 					return;
 				}
 
@@ -124,45 +155,5 @@ class WPUSB_Widgets_Controller extends \WP_Widget {
 			});
 		</script>
 	<?php
-	}
-
-	public function is_checked( $key ) {
-		$items   = $this->get_property( 'items' );
-		$current = WPUSB_Utils::isset_get( $items, $key );
-
-		return checked( $key, $current, false );
-	}
-
-	public function get_property( $property, $default = '', $sanitize = false ) {
-		$value = WPUSB_Utils::isset_get( $this->instance, $property, $default );
-
-		if ( $sanitize && is_callable( $sanitize ) ) {
-			return call_user_func( $sanitize, $value );
-		}
-
-		return $this->sanitize( $value );
-	}
-
-	public function sanitize( $value ) {
-		return WPUSB_Utils::rm_tags( $value );
-	}
-
-	public function set_instance( $instance ) {
-		$this->instance = $instance;
-	}
-
-	public function get_widget_title() {
-		return apply_filters( 'widget_title', $this->get_property( 'title' ), $this->instance, $this->id_base );
-	}
-
-	public function get_layout( $key = false ) {
-		$layouts = WPUSB_Utils::get_layouts();
-
-		return ( ! $key ) ? $layouts : WPUSB_Utils::isset_get( $layouts, $key );
-	}
-
-	public function rebuild_css( $old_value, $value, $option ) {
-		$custom_css = WPUSB_Utils::get_all_custom_css();
-		WPUSB_Utils::build_css( $custom_css );
 	}
 }

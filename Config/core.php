@@ -18,6 +18,11 @@ WPUSB_App::uses( 'utils-share', 'Helper' );
 WPUSB_App::uses( 'utils', 'Helper' );
 
 /*
+ * Widget
+ */
+WPUSB_App::uses( 'widget', 'Widget' );
+
+/*
  * Load scripts admin and frontend
  */
 WPUSB_App::uses( 'enqueue-scripts', 'Config' );
