@@ -1,0 +1,62 @@
+##{$prefix}-follow-us-item {
+	background: $bgAdmin;
+    border: 1px solid #e5e5e5;
+    border-radius: 2px;
+    padding: 0;
+
+	.#{$prefix}-title {
+		-webkit-box-shadow: 0 0 1px 0 #999;
+		background: #fafafa;
+		border-bottom: 1px solid #e5e5e5;
+		box-shadow: 0 0 1px 0 #999;
+		color: #23282d;
+		cursor: pointer;
+		display: block;
+		font-size: 16px;
+		font-weight: bold;
+		margin: 0;
+		padding: 3px 0;
+		position: relative;
+		text-indent: 5px;
+		width: 100%;
+
+		.#{$prefix}-arrow {
+		    bottom: 5px;
+		    color: #555d66;
+		    font-size: 25px;
+		    line-height: 1;
+		    position: absolute;
+		    right: 8px;
+		}
+	}
+
+	.#{$prefix}-fields-content {
+	    padding: 6px;
+	    display: none;
+
+	    .description {
+			display: inline-block;
+			font-size: 12px;
+			margin-bottom: 5px;
+			padding: 0;
+			width: 100%;
+	    }
+
+	    .bold {
+	    	font-weight: bold;
+	    }
+	}
+}
+
+##{$prefix}-widget-table {
+
+	.strong {
+		background: #5d5d5d;
+		color: #fff;
+		display: inline-block;
+		margin: 20px 0;
+		padding: 4px;
+		text-align: center;
+		width: 98%;
+	}
+}

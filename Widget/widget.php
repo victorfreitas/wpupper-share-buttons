@@ -70,10 +70,43 @@ class WPUpper_SB_Widget extends WP_Widget {
 		return apply_filters( 'widget_title', $this->get_property( 'title' ), $this->instance, $this->id_base );
 	}
 
-	public function get_layout( $key = false ) {
+	public function get_layout( $key = false, $follow = false ) {
 		$layouts = WPUSB_Utils::get_layouts();
 
+		if ( $follow ) {
+			unset( $layouts['buttons'] );
+			unset( $layouts['square-plus'] );
+		}
+
 		return ( ! $key ) ? $layouts : WPUSB_Utils::isset_get( $layouts, $key );
+	}
+
+	public function get_network( $network, $field ) {
+		$items = $this->get_property( $network );
+
+		return WPUSB_Utils::isset_get( $items, $field );
+	}
+
+	public function render_checkboxes( $items ) {
+		$prefix = WPUSB_App::SLUG;
+
+		foreach ( $items as $name => $item ) :
+			$id = ( 'google' === $name ) ? "{$name}-plus" : $name;
+
+			WPUSB_Settings_View::td(array(
+				'type'        => 'checkbox',
+				'id'          => esc_attr( $this->get_field_id( $id ) ),
+				'name'        => esc_attr( $this->get_field_name( 'items' ) ) . "[{$name}]",
+				'value'       => $name,
+				'label-class' => "{$prefix}-icon {$prefix}-{$id}-icon",
+				'td-class'    => "{$prefix}-td",
+				'td-id'       => $name,
+				'td-title'    => ucfirst( $name ),
+				'span'        => false,
+				'class'       => 'hide-input',
+				'is_checked'  => $this->is_checked( $name ),
+			));
+		endforeach;
 	}
 
 	public function rebuild_css( $old_value, $value, $option ) {

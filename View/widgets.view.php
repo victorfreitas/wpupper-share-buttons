@@ -53,8 +53,8 @@ class WPUSB_Widgets_View {
 				}
 			?>
 			<input type="<?php echo $type; ?>"
-				   id="<?php echo $instance->sanitize( $instance->get_field_id( $id ) ); ?>"
-			       name="<?php echo $instance->sanitize( $instance->get_field_name( $id ) ); ?>"
+				   id="<?php echo esc_attr( $instance->get_field_id( $id ) ); ?>"
+			       name="<?php echo esc_attr( $instance->get_field_name( $id ) ); ?>"
 			       class="<?php echo $class; ?>"
 			       value="<?php echo $value; ?>"
 			       placeholder="<?php echo $placeholder; ?>"
@@ -73,7 +73,7 @@ class WPUSB_Widgets_View {
 
 	public static function get_label( $instance, $id, $text, $class_label ) {
 		$prefix   = WPUSB_App::SLUG;
-		$field_id = $instance->sanitize( $instance->get_field_id( $id ) );
+		$field_id = esc_attr( $instance->get_field_id( $id ) );
 		$class    = "{$class_label} {$prefix}-{$id}";
 
 		return sprintf( '<label for="%s" class="%s-label">%s</label>', $field_id, $class, $text );
@@ -84,12 +84,12 @@ class WPUSB_Widgets_View {
 		$current  = $instance->get_property( $id );
 	?>
 		<p class="<?php echo WPUSB_App::SLUG . '-widget-select-content'; ?>">
-			<label for="<?php echo $instance->sanitize( $instance->get_field_id( $id ) ); ?>">
+			<label for="<?php echo esc_attr( $instance->get_field_id( $id ) ); ?>">
 				<?php echo $text; ?>
 			</label>
 
-			<select name="<?php echo $instance->sanitize( $instance->get_field_name( $id ) ); ?>"
-				    id="<?php echo $instance->sanitize( $instance->get_field_id( $id ) ); ?>">
+			<select name="<?php echo esc_attr( $instance->get_field_name( $id ) ); ?>"
+				    id="<?php echo esc_attr( $instance->get_field_id( $id ) ); ?>">
 			<?php
 				foreach ( $options as $key => $option ) :
 					printf(
@@ -116,8 +116,8 @@ class WPUSB_Widgets_View {
 			</div>
 	<?php
 		WPUSB_Settings_View::add_checkbox(array(
-			'name'    => $instance->sanitize( $instance->get_field_name( $id ) ),
-			'id'      => $instance->sanitize( $instance->get_field_id( $id ) ),
+			'name'    => esc_attr( $instance->get_field_name( $id ) ),
+			'id'      => esc_attr( $instance->get_field_id( $id ) ),
 			'checked' => checked( 1, $value, false ),
 			'value'   => true,
 		));
@@ -134,33 +134,98 @@ class WPUSB_Widgets_View {
 			<tbody>
 				<tr class="<?php echo $prefix; ?>-social-networks"
 					data-element="social-items">
-	<?php
-		$elements = WPUSB_Social_Elements::social_media();
-		$order    = $instance->get_property( 'items', array() );
-		$items    = array_merge( $order, WPUSB_Social_Elements::$items_available );
 
-		foreach ( $items as $key => $item ) :
-			$element = $elements->{$item};
-			$id 	 = ( 'google' === $key ) ? "{$key}-plus" : $key;
+					<th class="strong">
+						<?php _e( 'Drag & Drop to order and click to select', WPUSB_App::TEXTDOMAIN ); ?>
+					</th>
+					<?php
+						$order = $instance->get_property( 'items', array() );
+						$items = array_merge( $order, WPUSB_Social_Elements::$items_available );
 
-			WPUSB_Settings_View::td(array(
-				'type'        => 'checkbox',
-				'id'          => $instance->sanitize( $instance->get_field_id( $id ) ),
-				'name'        => $instance->sanitize( $instance->get_field_name( 'items' ) ) . "[{$key}]",
-				'value'       => $key,
-				'label-class' => "{$prefix}-icon {$element->class}-icon",
-				'td-class'    => "{$prefix}-td",
-				'td-id'       => $key,
-				'td-title'    => $element->name,
-				'span'        => false,
-				'class'       => 'hide-input',
-				'is_checked'  => $instance->is_checked( $key ),
-			));
-		endforeach;
-	?>
+						$instance->render_checkboxes( $items );
+					?>
 				</tr>
 			</tbody>
 		</table>
+	<?php
+	}
+
+	public static function follow_us_networks( $networks ) {
+		$instance = self::$instance;
+		$prefix   = WPUSB_App::SLUG;
+	?>
+		<table id="<?php echo $prefix; ?>-widget-table">
+			<tbody>
+				<tr class="<?php echo $prefix; ?>-social-networks"
+					data-element="social-items">
+
+					<th class="strong">
+						<?php _e( 'Drag & Drop to order and click to select', WPUSB_App::TEXTDOMAIN ); ?>
+					</th>
+					<?php
+						$items = $instance->get_property( 'items', array() );
+						$instance->render_checkboxes( $networks );
+					?>
+				</tr>
+			</tbody>
+		</table>
+	<?php
+	}
+
+	public static function follow_us_fields( $network, $id ) {
+		$instance   = self::$instance;
+		$prefix     = WPUSB_App::SLUG;
+		$field_id   = esc_attr( $instance->get_field_id( $id ) );
+		$field_name = esc_attr( $instance->get_field_name( $id ) );
+	?>
+		<p id="<?php printf( '%s-follow-us-item', $prefix ); ?>">
+
+			<a class="<?php printf( '%s-title', $prefix ); ?>"
+			      data-action="title"
+			      data-item="<?php echo $id; ?>">
+
+				<?php echo $network->name; ?>
+
+				<span class="<?php printf( '%s-arrow', $prefix ); ?>"
+				      data-element="arrow">
+					&#9662;
+				</span>
+			</a>
+
+			<span class="<?php printf( '%s-fields-content', $prefix ); ?>"
+			      data-field="content"
+			      data-element="<?php echo $id; ?>">
+
+				<label for="<?php echo $field_id; ?>-url">
+					<?php _e( 'Enter the network URL here:', WPUSB_App::TEXTDOMAIN ); ?>
+				</label>
+				<input type="text"
+					   id="<?php echo $field_id; ?>-url"
+					   class="large-text"
+				       name="<?php printf( '%s[url]', $field_name ); ?>"
+				       value="<?php echo esc_url( $instance->get_network( $id, 'url' ) ); ?>">
+
+				<span class="description">
+					<?php
+						printf(
+							'<span class="bold">%s</span> %s',
+							__( 'Example:', WPUSB_App::TEXTDOMAIN ),
+							$network->placeholder_url
+						);
+					?>
+				</span>
+
+				<label for="<?php echo $field_id; ?>-title">
+					<?php _e( 'Give the title:', WPUSB_App::TEXTDOMAIN ); ?>
+				</label>
+				<input type="text"
+					   id="<?php echo $field_id; ?>-title"
+					   class="large-text"
+				       name="<?php printf( '%s[title]', $field_name ); ?>"
+				       value="<?php echo esc_attr( $instance->get_network( $id, 'title' ) ); ?>"
+				       placeholder="<?php echo $network->placeholder_title; ?>">
+			</span>
+		</p>
 	<?php
 	}
 }
