@@ -86,8 +86,8 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 	}
 
 	private function get_networks() {
-		$std    = new stdClass();
 		$domain = WPUSB_App::TEXTDOMAIN;
+		$std    = new stdClass();
 
 		/**
 		 * @var Object
@@ -223,11 +223,11 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @var Object
 		 * @see E-mail
 		 */
-		$std->mail              = new stdClass();
-		$std->mail->name        = 'E-mail';
-		$std->mail->placeholder = 'Subject';
-		$std->mail->title       = __( 'Contact Us', $domain );
-		$std->mail->default     = false;
+		$std->email              = new stdClass();
+		$std->email->name        = 'E-mail';
+		$std->email->placeholder = 'Subject';
+		$std->email->title       = __( 'Contact Us', $domain );
+		$std->email->default     = false;
 
 		return apply_filters( WPUSB_App::SLUG . '_follow_us_networks', $std );
 	}
