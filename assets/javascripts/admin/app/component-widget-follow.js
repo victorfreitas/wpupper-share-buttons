@@ -25,7 +25,8 @@ WPUSB( 'WPUSB.Components.WidgetFollow', function(Model, $) {
 	Model.fn.addEventListener = function() {
 		this.$el.addEvent( 'click', 'title', this );
 		this.$el.addEvent( 'change', 'networks', this );
-		this.$el.addEvent( 'mouseleave', 'field-url', this );
+		this.$el.addEvent( 'keyup', 'field-url', this );
+		this.$el.addEvent( 'focusout', 'field-url', this );
 	};
 
 	Model.fn._onClickTitle = function(event) {
@@ -68,12 +69,24 @@ WPUSB( 'WPUSB.Components.WidgetFollow', function(Model, $) {
 		}
 	};
 
-	Model.fn._onMouseleaveFieldUrl = function(event) {
-		var regex  = /(https?:)\/\/(www\.)?(\w|\d)+.+?\//
+	Model.fn._onKeyupFieldUrl = function(event) {
+		this.validateFieldUrl( event );
+	};
+
+	Model.fn._onFocusoutFieldUrl = function(event) {
+		this.validateFieldUrl( event );
+	};
+
+	Model.fn.validateFieldUrl = function(event) {
+		var regex  = /(https?:)\/\/(www\.)?.+(\.\w{2,})/
 		  , target = $( event.currentTarget )
 		;
 
 		if ( target.isEmptyValue() ) {
+			target.css({
+				'background-color' : '#fff',
+				'border-color'     : '#ddd'
+			});
 			return;
 		}
 

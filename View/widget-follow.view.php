@@ -51,7 +51,7 @@ class WPUSB_Widget_Follow_View {
 		?>
 			<div class="<?php printf( '%1$s-item %1$s-%2$s', $prefix, $element ); ?>">
 				<a href="<?php echo $is_email ? WPUSB_Utils::rm_tags( $link ) : esc_url( $link ); ?>"
-				   target="_blank"
+				   <?php echo ( $is_email ) ? '' : 'target="_blank"'; ?>
 				   class="<?php echo $prefix; ?>-btn"
 				   title="<?php echo $title; ?>">
 
