@@ -38,6 +38,10 @@ class WPUpper_SB_Widget extends WP_Widget {
 			$instance['url'] = ( $new_instance['url'] ) ? esc_url( $new_instance['url'] ) : '';
 		}
 
+		if ( isset( $new_instance['custom_class'] ) ) {
+			$instance['custom_class'] = WPUSB_Utils::esc_class( $new_instance['custom_class'] );
+		}
+
 		return $instance;
 	}
 
@@ -81,8 +85,8 @@ class WPUpper_SB_Widget extends WP_Widget {
 		return ( ! $key ) ? $layouts : WPUSB_Utils::isset_get( $layouts, $key );
 	}
 
-	public function get_network( $network, $field ) {
-		$items = $this->get_property( $network );
+	public function get_network( $network, $field, $sanitize = false ) {
+		$items = $this->get_property( $network, $sanitize );
 
 		return WPUSB_Utils::isset_get( $items, $field );
 	}
@@ -105,6 +109,9 @@ class WPUpper_SB_Widget extends WP_Widget {
 				'span'        => false,
 				'class'       => 'hide-input',
 				'is_checked'  => $this->is_checked( $name ),
+				'attr'        => array(
+					'data-action' => 'networks',
+				),
 			));
 		endforeach;
 	}

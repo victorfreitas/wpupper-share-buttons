@@ -24,6 +24,8 @@ WPUSB( 'WPUSB.Components.WidgetFollow', function(Model, $) {
 
 	Model.fn.addEventListener = function() {
 		this.$el.addEvent( 'click', 'title', this );
+		this.$el.addEvent( 'change', 'networks', this );
+		this.$el.addEvent( 'mouseleave', 'field-url', this );
 	};
 
 	Model.fn._onClickTitle = function(event) {
@@ -31,16 +33,63 @@ WPUSB( 'WPUSB.Components.WidgetFollow', function(Model, $) {
 		  , arrow
 		;
 
-		this.$el.find( '[data-field="content"]:visible' ).slideUp(200);
+		if ( !current ) {
+			return;
+		}
+
+		this.$el.find( '[data-field="content"]:visible' ).slideUp( 200 );
 		this.$el.find( '[data-element="arrow"].active' ).removeClass( 'active' ).html( '&#9662;' );
 
 		if ( !current.is( ':visible' ) ) {
 			arrow = $( event.currentTarget ).find( '[data-element="arrow"]' );
-			current.slideDown(200);
+			current.slideDown( 200 );
 			arrow.addClass( 'active' ).html( '&#9652;' );
 		}
 
 		event.preventDefault();
+	};
+
+	Model.fn._onChangeNetworks = function(event) {
+		event.preventDefault();
+
+		var name    = event.currentTarget.value
+		  , element = this.elements[name + 'Url']
+		  , info    = this.elements.infoMessage
+		;
+
+		if ( !event.currentTarget.checked || !element ) {
+			info.fadeOut();
+			return;
+		}
+
+		if ( element.isEmptyValue() ) {
+			info.text( info.data( 'message' ).replace( '[item]', name ) ).slideDown( 200 );
+			return;
+		}
+	};
+
+	Model.fn._onMouseleaveFieldUrl = function(event) {
+		var regex  = /(https?:)\/\/(www\.)?(\w|\d)+.+?\//
+		  , target = $( event.currentTarget )
+		;
+
+		if ( target.isEmptyValue() ) {
+			return;
+		}
+
+		if ( !event.currentTarget.value.match( regex ) ) {
+			target.css({
+				'background-color' : '#ebccd1',
+				'border-color'     : '#ff9cac',
+				'box-shadow'       : 'none'
+			});
+			return;
+		}
+
+		target.css({
+			'background-color' : '#caffd4',
+			'border-color'     : '#caffd4'
+		});
 	};
 
 });

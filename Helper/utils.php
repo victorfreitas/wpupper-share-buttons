@@ -20,7 +20,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function esc_class( $class ) {
-		if ( empty( $class ) || is_array( $class ) ) {
+		if ( empty( $class ) || ! is_string( $class ) ) {
 			return '';
 		}
 
@@ -1484,8 +1484,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function get_all_custom_css( $custom_css = null, $options = array() ) {
-		$settings_css = WPUSB_Shares_View::get_css_buttons_styles( $options );
-		$widgets_css  = self::get_widget_custom_css();
+		$settings_css      = WPUSB_Shares_View::get_css_buttons_styles( $options );
+		$widgets_css       = self::get_widget_custom_css();
+		$widget_follow_css = self::get_widget_follow_custom_css();
 
 		if ( is_null( $custom_css ) ) {
 			$custom_css = self::get_custom_css();
@@ -1494,6 +1495,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$css  = $custom_css;
 		$css .= $settings_css;
 		$css .= $widgets_css;
+		$css .= $widget_follow_css;
 
 		if ( ! empty( $css ) ) {
 			return htmlspecialchars_decode( $css );
@@ -1534,7 +1536,47 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 				'counts_bg_color'   => self::isset_get( $option, 'counts_bg_color' ),
 				'button_bg_color'   => self::isset_get( $option, 'icons_background' ),
 			);
-			$widgets_css .= WPUSB_Shares_View::get_css_buttons_styles( $widget_options, $number );
+			$widget_id    = self::get_widget_attr_id( $number );
+			$widgets_css .= WPUSB_Shares_View::get_css_buttons_styles( $widget_options, $widget_id );
+		endforeach;
+
+		return $widgets_css;
+	}
+
+	/**
+	 * Get Widget Follow custom CSS
+	 *
+	 * @since 3.25
+	 * @version 1.0
+	 * @param Null
+	 * @return String
+	 */
+	public static function get_widget_follow_custom_css() {
+		$option_name = self::get_widget_follow_id_base( true );
+		$options     = self::get_option( $option_name );
+
+		if ( isset( $options['_multiwidget'] ) ) {
+			unset( $options['_multiwidget'] );
+		}
+
+		if ( empty( $options ) || ! is_array( $options ) ) {
+			return '';
+		}
+
+		$widgets_css    = '';
+		$widget_options = array();
+
+		foreach ( $options as $number => $option ) :
+			$widget_options = array(
+				'icons_size'        => self::isset_get( $option, 'icons_size' ),
+				'icons_color'       => self::isset_get( $option, 'icons_color' ),
+				'btn_inside_color'  => '',
+				'counts_text_color' => '',
+				'counts_bg_color'   => '',
+				'button_bg_color'   => '',
+			);
+			$widget_id    = self::get_widget_attr_id( $number, 'follow-' );
+			$widgets_css .= WPUSB_Shares_View::get_css_buttons_styles( $widget_options, $widget_id );
 		endforeach;
 
 		return $widgets_css;
@@ -1729,9 +1771,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Integer $number
 	 * @return String
 	 */
-    public static function get_widget_attr_id( $number ) {
+    public static function get_widget_attr_id( $number, $follow = '' ) {
 		$prefix = WPUSB_App::SLUG;
-		return "#widget-{$prefix}-{$number}";
+		return sprintf( "#widget-%s-%s%d", $prefix, $follow, $number );
     }
 
     public static function get_field_css_by_key( $key, $options ) {

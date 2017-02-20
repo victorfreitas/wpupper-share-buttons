@@ -2,7 +2,7 @@
 /**
  * @package WPUpper Share Buttons
  * @author  Victor Freitas
- * @subpackage Widgets Controller
+ * @subpackage Widgets
  * @since 3.25
  */
 if ( ! defined( 'ABSPATH' ) ) {
@@ -31,8 +31,9 @@ class WPUSB_Widgets_View {
 		$class_label  = '';
 		$attr         = '';
 		$placeholders = array(
-			'post_title' => __( 'Override post title', WPUSB_App::TEXTDOMAIN ),
-			'url'        => __( 'Override permalinks', WPUSB_App::TEXTDOMAIN ),
+			'post_title'   => __( 'Override post title', WPUSB_App::TEXTDOMAIN ),
+			'url'          => __( 'Override permalinks', WPUSB_App::TEXTDOMAIN ),
+			'custom_class' => __( 'Class name for CSS customization' ),
 		);
 		$placeholder = isset( $placeholders[ $id ] ) ? $placeholders[ $id ] : '';
 
@@ -159,8 +160,13 @@ class WPUSB_Widgets_View {
 				<tr class="<?php echo $prefix; ?>-social-networks"
 					data-element="social-items">
 
-					<th class="strong">
-						<?php _e( 'Drag & Drop to order and click to select', WPUSB_App::TEXTDOMAIN ); ?>
+					<th>
+						<span class="strong">
+							<?php _e( 'Drag & Drop to order and click to select', WPUSB_App::TEXTDOMAIN ); ?>
+						</span>
+						<span class="info-error <?php echo $prefix; ?>-hide"
+						      data-message="<?php _e( 'The [item] URL field is empty.', WPUSB_App::TEXTDOMAIN ); ?>"
+						      data-element="info-message"></span>
 					</th>
 					<?php
 						$items = $instance->get_property( 'items', array() );
@@ -177,6 +183,7 @@ class WPUSB_Widgets_View {
 		$prefix     = WPUSB_App::SLUG;
 		$field_id   = esc_attr( $instance->get_field_id( $id ) );
 		$field_name = esc_attr( $instance->get_field_name( $id ) );
+		$is_email   = ( $id === 'email' );
 	?>
 		<p id="<?php printf( '%s-follow-us-item', $prefix ); ?>">
 
@@ -196,12 +203,16 @@ class WPUSB_Widgets_View {
 			      data-field="content"
 			      data-element="<?php echo $id; ?>">
 
+			    <?php if ( ! $is_email ) : ?>
+
 				<label for="<?php echo $field_id; ?>-url">
 					<?php _e( 'Enter the network URL here:', WPUSB_App::TEXTDOMAIN ); ?>
 				</label>
 				<input type="text"
 					   id="<?php echo $field_id; ?>-url"
 					   class="large-text"
+					   data-action="field-url"
+					   data-element="<?php echo $id; ?>-url"
 				       name="<?php printf( '%s[url]', $field_name ); ?>"
 				       value="<?php echo esc_url( $instance->get_network( $id, 'url' ) ); ?>">
 
@@ -210,10 +221,39 @@ class WPUSB_Widgets_View {
 						printf(
 							'<span class="bold">%s</span> %s',
 							__( 'Example:', WPUSB_App::TEXTDOMAIN ),
-							$network->placeholder_url
+							$network->url
 						);
 					?>
 				</span>
+
+				<?php endif; ?>
+
+				<?php
+					if ( $is_email ) :
+						$value       = esc_attr( $instance->get_network( $id, 'email' ) );
+						$admin_email = WPUSB_Utils::rm_tags( get_option( 'admin_email' ) );
+						$subject     = esc_attr( $instance->get_network( $id, 'subject' ) );
+				?>
+
+				<label for="<?php echo $field_id; ?>-email">
+					<?php _e( 'Your email:', WPUSB_App::TEXTDOMAIN ); ?>
+				</label>
+				<input type="text"
+					   id="<?php echo $field_id; ?>-email"
+					   class="large-text"
+				       name="<?php printf( '%s[email]', $field_name ); ?>"
+				       value="<?php echo empty( $value ) ? $admin_email : $value; ?>">
+
+				<label for="<?php echo $field_id; ?>-subject">
+					<?php _e( 'Subject:', WPUSB_App::TEXTDOMAIN ); ?>
+				</label>
+				<input type="text"
+					   id="<?php echo $field_id; ?>-subject"
+					   class="large-text"
+				       name="<?php printf( '%s[subject]', $field_name ); ?>"
+				       value="<?php echo empty( $subject ) ? $network->subject : $subject; ?>">
+
+				<?php endif; ?>
 
 				<label for="<?php echo $field_id; ?>-title">
 					<?php _e( 'Give the title:', WPUSB_App::TEXTDOMAIN ); ?>
@@ -223,7 +263,7 @@ class WPUSB_Widgets_View {
 					   class="large-text"
 				       name="<?php printf( '%s[title]', $field_name ); ?>"
 				       value="<?php echo esc_attr( $instance->get_network( $id, 'title' ) ); ?>"
-				       placeholder="<?php echo $network->placeholder_title; ?>">
+				       placeholder="<?php echo $network->title; ?>">
 			</span>
 		</p>
 	<?php

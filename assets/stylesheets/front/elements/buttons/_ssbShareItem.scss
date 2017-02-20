@@ -143,3 +143,15 @@
         top: 2px;
     }
 }
+
+##{$prefix}-container-follow {
+
+    .#{$prefix}-item {
+
+        .#{$prefix}-btn:hover,
+        .#{$prefix}-btn:active,
+        .#{$prefix}-btn:focus {
+            outline: none;
+        }
+    }
+}

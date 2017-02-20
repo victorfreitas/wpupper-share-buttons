@@ -3,12 +3,12 @@
 // ===================================================
 @font-face {
     font-family: 'wpusb';
-    src: url('../fonts/wpusb.eot?15mize');  /* IE9 Compat Modes */
-    src: url('../fonts/wpusb.eot?15mize#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         url('../fonts/wpusb.woff2?15mize') format('woff2'), /* Super Modern Browsers */
-         url('../fonts/wpusb.woff?15mize') format('woff'), /* Pretty Modern Browsers */
-         url('../fonts/wpusb.ttf?15mize') format('truetype'), /* Safari, Android, iOS */
-         url('../fonts/wpusb.svg?15mize#wpusb') format('svg'); /* Legacy iOS */
+    src: url('../fonts/wpusb.eot?djrbzi');  /* IE9 Compat Modes */
+    src: url('../fonts/wpusb.eot?djrbzi#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/wpusb.woff2?djrbzi') format('woff2'), /* Super Modern Browsers */
+         url('../fonts/wpusb.woff?djrbzi') format('woff'), /* Pretty Modern Browsers */
+         url('../fonts/wpusb.ttf?djrbzi') format('truetype'), /* Safari, Android, iOS */
+         url('../fonts/wpusb.svg?djrbzi#wpusb') format('svg'); /* Legacy iOS */
     font-weight: normal;
     font-style: normal;
 }
@@ -209,12 +209,6 @@
 .wpusb-icon-printer-rounded:before {
   content: "\e926";
 }
-.wpusb-icon-vine:before {
-  content: "\e90e";
-}
-.wpusb-icon-vk-square:before {
-  content: "\e90f";
-}
 .wpusb-icon-rss:before {
   content: "\e910";
 }
@@ -223,9 +217,6 @@
 }
 .wpusb-icon-rss-rounded:before {
   content: "\e92c";
-}
-.wpusb-icon-plus-square:before {
-  content: "\f0fe";
 }
 .wpusb-icon-snapchat:before {
   content: "\f2ac";

@@ -64,8 +64,7 @@ EOD;
 EOD;
 	}
 
-	public static function get_css_buttons_styles( $options, $number = 0 ) {
-		$widget_id  = ( $number ) ? WPUSB_Utils::get_widget_attr_id( $number ) : '';
+	public static function get_css_buttons_styles( $options, $widget_id = '' ) {
 		$css        = '';
 		$css       .= self::get_css_icons( $options, $widget_id );
 		$css       .= self::get_css_btn_inside( $options, $widget_id );
@@ -86,12 +85,18 @@ EOD;
 			return '';
 		}
 
+		$prefix_first = $prefix;
+
+		if ( false !== strpos( $widget_id, 'follow' ) ) {
+			$prefix_first = "{$prefix}-follow";
+		}
+
 		return <<<EOD
-		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-btn i {
+		{$widget_id} .{$prefix_first} .{$prefix}-item .{$prefix}-btn i {
 			{$color}
 			{$size}
 		}
-		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-btn i:hover {
+		{$widget_id} .{$prefix_first} .{$prefix}-item .{$prefix}-btn i:hover {
 			{$color}
 			{$size}
 		}

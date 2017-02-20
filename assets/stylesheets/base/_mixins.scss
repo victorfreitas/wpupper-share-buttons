@@ -27,7 +27,9 @@
         }
     } @else {
         .#{$prefix} .#{$prefix}-#{$icon} i,
-        .#{$prefix} .#{$prefix}-#{$icon} i:hover {
+        .#{$prefix} .#{$prefix}-#{$icon} i:hover,
+        ##{$prefix}-container-follow .#{$prefix}-#{$icon} i,
+        ##{$prefix}-container-follow .#{$prefix}-#{$icon} i:hover {
             color: $iconColor;
         }
     }
@@ -50,6 +52,13 @@
     .#{$prefix}-square {
         .#{$prefix}-#{$element} a:hover,
         .#{$prefix}-#{$element} a:hover i {
+            color: darken( $color, 6 );
+        }
+    }
+
+    ##{$prefix}-container-follow .#{$prefix}-#{$element} {
+        .#{$prefix}-btn:hover,
+        .#{$prefix}-btn:hover i {
             color: darken( $color, 6 );
         }
     }
