@@ -17,14 +17,20 @@ class WPUpper_SB_Widget extends WP_Widget {
 	protected $instance;
 
 	public function __construct( $id_base, $description, $name = '' ) {
-		parent::__construct(
-			$id_base,
-			WPUSB_App::NAME . $name,
+		$options = apply_filters(
+			WPUSB_App::SLUG . '_widget_options',
 			array(
 				'classname'                   => $id_base,
 				'description'                 => $description,
 				'customize_selective_refresh' => true,
-			)
+			),
+			$id_base
+		);
+
+		parent::__construct(
+			$id_base,
+			WPUSB_App::NAME . $name,
+			$options
 		);
 
 		add_action( "update_option_{$this->option_name}", array( $this, 'rebuild_css' ), 10, 3 );

@@ -147,11 +147,18 @@
 ##{$prefix}-container-follow {
 
     .#{$prefix}-item {
+        display: table-cell;
+        margin: 0;
+        padding: 0 3px;
 
         .#{$prefix}-btn:hover,
         .#{$prefix}-btn:active,
         .#{$prefix}-btn:focus {
             outline: none;
+        }
+
+        .#{$prefix}-btn i {
+            font-size: 32px;
         }
     }
 }

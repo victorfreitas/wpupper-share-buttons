@@ -22,10 +22,10 @@
       },
       "attrs": [],
       "properties": {
-        "id": 5,
+        "id": 3,
         "order": 281,
         "name": "angle-double-left",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 61696
       },
       "setIdx": 0,
@@ -53,10 +53,10 @@
       },
       "attrs": [],
       "properties": {
-        "id": 6,
+        "id": 4,
         "order": 282,
         "name": "angle-double-right",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 61697
       },
       "setIdx": 0,
@@ -87,9 +87,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 7,
+        "id": 5,
         "order": 283,
-        "prevSize": 32,
+        "prevSize": 28,
         "ligatures": "cross, cancel",
         "name": "remove",
         "code": 59648
@@ -122,9 +122,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 8,
+        "id": 6,
         "order": 284,
-        "prevSize": 32,
+        "prevSize": 28,
         "ligatures": "checkmark2, tick2",
         "name": "checked",
         "code": 59649
@@ -151,9 +151,9 @@
       "attrs": [],
       "properties": {
         "name": "share",
-        "id": 9,
+        "id": 7,
         "order": 285,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 61920
       },
       "setIdx": 0,
@@ -181,9 +181,9 @@
       ],
       "properties": {
         "order": 286,
-        "id": 10,
+        "id": 8,
         "name": "share-square",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59685
       },
       "setIdx": 0,
@@ -210,9 +210,9 @@
       ],
       "properties": {
         "order": 287,
-        "id": 11,
+        "id": 9,
         "name": "share-rounded",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59671
       },
       "setIdx": 0,
@@ -235,9 +235,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 1,
+        "id": 10,
         "order": 276,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59694,
         "name": "vimeo"
       },
@@ -263,9 +263,9 @@
       "attrs": [],
       "properties": {
         "name": "vimeo-square",
-        "id": 3,
+        "id": 11,
         "order": 278,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 61844
       },
       "setIdx": 0,
@@ -287,9 +287,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 0,
+        "id": 12,
         "order": 277,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59693,
         "name": "vimeo-rounded"
       },
@@ -317,9 +317,9 @@
       "properties": {
         "ligatures": "foursquare, brand77",
         "name": "foursquare",
-        "id": 4,
+        "id": 13,
         "order": 360,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 60118
       },
       "setIdx": 0,
@@ -349,9 +349,9 @@
       ],
       "properties": {
         "order": 359,
-        "id": 12,
+        "id": 14,
         "name": "foursquare-square",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59653
       },
       "setIdx": 0,
@@ -381,9 +381,9 @@
       ],
       "properties": {
         "order": 358,
-        "id": 13,
+        "id": 15,
         "name": "foursquare-rounded",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59657
       },
       "setIdx": 0,
@@ -416,9 +416,9 @@
       ],
       "properties": {
         "order": 288,
-        "id": 14,
+        "id": 16,
         "name": "instagram",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59665
       },
       "setIdx": 0,
@@ -451,9 +451,9 @@
       ],
       "properties": {
         "order": 289,
-        "id": 15,
+        "id": 17,
         "name": "instagram-square",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59690
       },
       "setIdx": 0,
@@ -487,9 +487,9 @@
       ],
       "properties": {
         "order": 290,
-        "id": 16,
+        "id": 18,
         "name": "instagram-rounded",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59691
       },
       "setIdx": 0,
@@ -517,10 +517,10 @@
       },
       "attrs": [],
       "properties": {
-        "id": 17,
+        "id": 19,
         "order": 291,
         "name": "like",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 61576
       },
       "setIdx": 0,
@@ -560,9 +560,9 @@
       ],
       "properties": {
         "order": 292,
-        "id": 18,
+        "id": 20,
         "name": "like-square",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59659
       },
       "setIdx": 0,
@@ -592,9 +592,9 @@
       ],
       "properties": {
         "order": 293,
-        "id": 19,
+        "id": 21,
         "name": "like-rounded",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59670
       },
       "setIdx": 0,
@@ -623,9 +623,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 20,
+        "id": 22,
         "order": 294,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 60044,
         "ligatures": "facebook, brand6",
         "name": "facebook"
@@ -656,9 +656,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 21,
+        "id": 23,
         "order": 295,
-        "prevSize": 32,
+        "prevSize": 28,
         "ligatures": "facebook2, brand7",
         "name": "facebook-square",
         "code": 58882
@@ -689,9 +689,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 22,
+        "id": 24,
         "order": 296,
-        "prevSize": 32,
+        "prevSize": 28,
         "ligatures": "facebook3, brand8",
         "name": "facebook-rounded",
         "code": 58889
@@ -724,9 +724,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 23,
+        "id": 25,
         "order": 297,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 60049,
         "ligatures": "twitter, brand11",
         "name": "twitter"
@@ -758,9 +758,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 24,
+        "id": 26,
         "order": 298,
-        "prevSize": 32,
+        "prevSize": 28,
         "ligatures": "twitter2, brand12",
         "name": "twitter-square",
         "code": 58884
@@ -791,9 +791,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 25,
+        "id": 27,
         "order": 299,
-        "prevSize": 32,
+        "prevSize": 28,
         "ligatures": "twitter3, brand13",
         "name": "twitter-rounded",
         "code": 58892
@@ -826,10 +826,10 @@
       "attrs": [],
       "properties": {
         "order": 300,
-        "prevSize": 32,
+        "prevSize": 28,
         "ligatures": "google-plus, brand5",
         "name": "google-plus",
-        "id": 26,
+        "id": 28,
         "code": 59652
       },
       "setIdx": 0,
@@ -859,10 +859,10 @@
       "attrs": [],
       "properties": {
         "order": 301,
-        "prevSize": 32,
+        "prevSize": 28,
         "ligatures": "google-plus2, brand6",
         "name": "google-plus-square",
-        "id": 27,
+        "id": 29,
         "code": 59672
       },
       "setIdx": 0,
@@ -892,10 +892,10 @@
       "attrs": [],
       "properties": {
         "order": 302,
-        "prevSize": 32,
+        "prevSize": 28,
         "ligatures": "google-plus3, brand7",
         "name": "google-plus-rounded",
-        "id": 28,
+        "id": 30,
         "code": 59679
       },
       "setIdx": 0,
@@ -927,9 +927,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 29,
+        "id": 31,
         "order": 303,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 60105,
         "ligatures": "linkedin2, brand64",
         "name": "linkedin"
@@ -961,8 +961,8 @@
       "attrs": [],
       "properties": {
         "order": 304,
-        "id": 30,
-        "prevSize": 32,
+        "id": 32,
+        "prevSize": 28,
         "ligatures": "linkedin, brand63",
         "name": "linkedin-square",
         "code": 58886
@@ -990,9 +990,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 31,
+        "id": 33,
         "order": 305,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59658,
         "name": "linkedin-rounded"
       },
@@ -1032,8 +1032,8 @@
       ],
       "properties": {
         "order": 306,
-        "id": 32,
-        "prevSize": 32,
+        "id": 34,
+        "prevSize": 28,
         "code": 58880,
         "name": "pinterest"
       },
@@ -1063,9 +1063,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 33,
+        "id": 35,
         "order": 307,
-        "prevSize": 32,
+        "prevSize": 28,
         "ligatures": "pinterest2, brand72",
         "name": "pinterest-square",
         "code": 58888
@@ -1097,9 +1097,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 34,
+        "id": 36,
         "order": 308,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 60112,
         "ligatures": "pinterest, brand71",
         "name": "pinterest-rounded"
@@ -1139,8 +1139,8 @@
       ],
       "properties": {
         "order": 309,
-        "id": 35,
-        "prevSize": 32,
+        "id": 37,
+        "prevSize": 28,
         "code": 58896,
         "name": "whatsapp"
       },
@@ -1171,9 +1171,9 @@
       ],
       "properties": {
         "order": 310,
-        "id": 36,
+        "id": 38,
         "name": "whatsapp-square",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59683
       },
       "setIdx": 0,
@@ -1201,8 +1201,8 @@
       "attrs": [],
       "properties": {
         "order": 311,
-        "id": 37,
-        "prevSize": 32,
+        "id": 39,
+        "prevSize": 28,
         "code": 59656,
         "name": "whatsapp-rounded"
       },
@@ -1232,9 +1232,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 38,
+        "id": 40,
         "order": 312,
-        "prevSize": 32,
+        "prevSize": 28,
         "ligatures": "tumblr, brand50",
         "name": "tumblr",
         "code": 58893
@@ -1266,10 +1266,10 @@
       "attrs": [],
       "properties": {
         "order": 313,
-        "prevSize": 32,
+        "prevSize": 28,
         "ligatures": "tumblr2, brand50",
         "name": "tumblr-square",
-        "id": 39,
+        "id": 41,
         "code": 59650
       },
       "setIdx": 0,
@@ -1297,8 +1297,8 @@
       "attrs": [],
       "properties": {
         "order": 314,
-        "id": 40,
-        "prevSize": 32,
+        "id": 42,
+        "prevSize": 28,
         "name": "tumblr-rounded",
         "code": 58897
       },
@@ -1326,9 +1326,9 @@
       ],
       "properties": {
         "order": 315,
-        "id": 41,
+        "id": 43,
         "name": "gmail",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59651
       },
       "setIdx": 0,
@@ -1373,9 +1373,9 @@
       ],
       "properties": {
         "order": 316,
-        "id": 42,
+        "id": 44,
         "name": "gmail-square",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59673
       },
       "setIdx": 0,
@@ -1417,9 +1417,9 @@
       ],
       "properties": {
         "order": 317,
-        "id": 43,
+        "id": 45,
         "name": "gmail-rounded",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59674
       },
       "setIdx": 0,
@@ -1444,9 +1444,9 @@
       "attrs": [],
       "properties": {
         "name": "email",
-        "id": 44,
+        "id": 46,
         "order": 318,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 61443
       },
       "setIdx": 0,
@@ -1474,9 +1474,9 @@
       ],
       "properties": {
         "order": 319,
-        "id": 45,
+        "id": 47,
         "name": "email-square",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59687
       },
       "setIdx": 0,
@@ -1511,9 +1511,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 46,
+        "id": 48,
         "order": 320,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 60038,
         "ligatures": "mail5, contact5",
         "name": "email-rounded"
@@ -1545,9 +1545,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 47,
+        "id": 49,
         "order": 321,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 60065,
         "ligatures": "flickr2, brand24",
         "name": "flickr"
@@ -1578,9 +1578,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 48,
+        "id": 50,
         "order": 322,
-        "prevSize": 32,
+        "prevSize": 28,
         "ligatures": "flickr3, brand25",
         "name": "flickr-square",
         "code": 58890
@@ -1612,9 +1612,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 49,
+        "id": 51,
         "order": 323,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 60067,
         "ligatures": "flickr4, brand26",
         "name": "flickr-rounded"
@@ -1644,10 +1644,10 @@
       },
       "attrs": [],
       "properties": {
-        "id": 50,
+        "id": 52,
         "order": 324,
         "name": "youtube",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 61799
       },
       "setIdx": 0,
@@ -1675,10 +1675,10 @@
       },
       "attrs": [],
       "properties": {
-        "id": 51,
+        "id": 53,
         "order": 325,
         "name": "youtube-square",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 61798
       },
       "setIdx": 0,
@@ -1706,9 +1706,9 @@
       "attrs": [],
       "properties": {
         "order": 326,
-        "id": 52,
+        "id": 54,
         "name": "youtube-rounded",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59661
       },
       "setIdx": 0,
@@ -1738,9 +1738,9 @@
       "attrs": [],
       "properties": {
         "name": "telegram",
-        "id": 53,
+        "id": 55,
         "order": 327,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 61912
       },
       "setIdx": 0,
@@ -1770,9 +1770,9 @@
       ],
       "properties": {
         "order": 328,
-        "id": 54,
+        "id": 56,
         "name": "telegram-square",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59660
       },
       "setIdx": 0,
@@ -1802,10 +1802,10 @@
       "attrs": [],
       "properties": {
         "order": 329,
-        "prevSize": 32,
+        "prevSize": 28,
         "name": "telegram-rounded",
         "ligatures": "telegram, brand15",
-        "id": 55,
+        "id": 57,
         "code": 59654
       },
       "setIdx": 0,
@@ -1828,9 +1828,9 @@
       "attrs": [],
       "properties": {
         "order": 330,
-        "id": 56,
+        "id": 58,
         "name": "skype",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59666
       },
       "setIdx": 0,
@@ -1854,9 +1854,9 @@
       "attrs": [],
       "properties": {
         "order": 331,
-        "id": 57,
+        "id": 59,
         "name": "skype-square",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59667
       },
       "setIdx": 0,
@@ -1882,9 +1882,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 58,
+        "id": 60,
         "order": 332,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59655,
         "name": "skype-rounded"
       },
@@ -1911,8 +1911,8 @@
       "attrs": [],
       "properties": {
         "order": 333,
-        "id": 59,
-        "prevSize": 32,
+        "id": 61,
+        "prevSize": 28,
         "code": 59668,
         "name": "viber"
       },
@@ -1936,9 +1936,9 @@
       "attrs": [],
       "properties": {
         "order": 334,
-        "id": 60,
+        "id": 62,
         "name": "viber-square",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59669
       },
       "setIdx": 0,
@@ -1965,9 +1965,9 @@
       ],
       "properties": {
         "order": 335,
-        "id": 61,
+        "id": 63,
         "name": "viber-rounded",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59684
       },
       "setIdx": 0,
@@ -1996,9 +1996,9 @@
       },
       "attrs": [],
       "properties": {
-        "id": 62,
+        "id": 64,
         "order": 336,
-        "prevSize": 32,
+        "prevSize": 28,
         "ligatures": "printer, print",
         "name": "printer",
         "code": 58887
@@ -2040,9 +2040,9 @@
       ],
       "properties": {
         "order": 337,
-        "id": 63,
+        "id": 65,
         "name": "printer-square",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59688
       },
       "setIdx": 0,
@@ -2075,9 +2075,9 @@
       ],
       "properties": {
         "order": 338,
-        "id": 64,
+        "id": 66,
         "name": "printer-rounded",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59686
       },
       "setIdx": 0,
@@ -2106,7 +2106,7 @@
       "attrs": [],
       "properties": {
         "order": 341,
-        "prevSize": 32,
+        "prevSize": 28,
         "ligatures": "feed2, rss",
         "name": "rss",
         "id": 67,
@@ -2134,9 +2134,9 @@
       "attrs": [],
       "properties": {
         "name": "rss-square",
-        "id": 2,
+        "id": 68,
         "order": 279,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 61763
       },
       "setIdx": 0,
@@ -2163,9 +2163,9 @@
       ],
       "properties": {
         "order": 342,
-        "id": 68,
+        "id": 69,
         "name": "rss-rounded",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59692
       },
       "setIdx": 0,
@@ -2192,7 +2192,7 @@
         "name": "snapchat",
         "id": 70,
         "order": 344,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 62124
       },
       "setIdx": 0,
@@ -2219,7 +2219,7 @@
         "name": "snapchat-square",
         "id": 71,
         "order": 345,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 62125
       },
       "setIdx": 0,
@@ -2246,7 +2246,7 @@
         "name": "snapchat-rounded",
         "id": 72,
         "order": 361,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 62123
       },
       "setIdx": 0,
@@ -2273,7 +2273,7 @@
         "name": "reddit",
         "id": 73,
         "order": 347,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 62081
       },
       "setIdx": 0,
@@ -2320,7 +2320,7 @@
         "order": 348,
         "id": 74,
         "name": "reddit-square",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59689
       },
       "setIdx": 0,
@@ -2347,7 +2347,7 @@
         "name": "reddit-rounded",
         "id": 75,
         "order": 349,
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 61857
       },
       "setIdx": 0,
@@ -2376,7 +2376,7 @@
         "order": 350,
         "id": 76,
         "name": "flipboard",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59675
       },
       "setIdx": 0,
@@ -2405,7 +2405,7 @@
         "order": 351,
         "id": 77,
         "name": "flipboard-square",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59676
       },
       "setIdx": 0,
@@ -2434,7 +2434,7 @@
         "order": 352,
         "id": 78,
         "name": "flipboard-square2",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59677
       },
       "setIdx": 0,
@@ -2463,7 +2463,7 @@
         "order": 353,
         "id": 79,
         "name": "flipboard-rounded",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59678
       },
       "setIdx": 0,
@@ -2493,7 +2493,7 @@
         "order": 354,
         "id": 80,
         "name": "messenger",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59680
       },
       "setIdx": 0,
@@ -2526,7 +2526,7 @@
         "order": 355,
         "id": 81,
         "name": "messenger-square",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59681
       },
       "setIdx": 0,
@@ -2558,12 +2558,100 @@
         "order": 356,
         "id": 82,
         "name": "messenger-rounded",
-        "prevSize": 32,
+        "prevSize": 28,
         "code": 59682
       },
       "setIdx": 0,
       "setId": 0,
       "iconIdx": 79
+    },
+    {
+      "icon": {
+        "paths": [
+          "M688.975 584.849c-39.959 0-72.348 44.911-72.348 100.119 0 55.319 32.389 100.229 72.348 100.229s72.348-44.911 72.348-100.229c-0.055-55.207-32.389-100.119-72.348-100.119zM940.857 324.229c8.292-20.313 8.626-135.736-35.339-246.317 0 0-100.786 11.075-253.273 115.757-32-8.904-86.15-13.246-140.188-13.246-54.15 0-108.244 4.341-140.244 13.246-152.543-104.682-253.329-115.757-253.329-115.757-43.91 110.581-43.464 226.004-35.284 246.317-51.646 56.098-83.2 123.493-83.2 215.43 0 399.917 331.855 406.317 415.555 406.317 19.033 0 56.654 0.111 96.501 0.111 39.791 0 77.467-0.111 96.389-0.111 83.812 0 415.555-6.4 415.555-406.317 0-91.937-31.499-159.333-83.145-215.43zM513.56 896.835h-3.116c-209.864 0-373.371-24.988-373.371-229.009 0-48.919 17.252-94.22 58.267-131.84 68.285-62.72 183.931-29.551 315.103-29.551 0.557 0 1.113 0 1.614 0 0.557 0 1.002 0 1.502 0 131.172 0 246.873-33.169 315.214 29.551 40.904 37.621 58.157 82.922 58.157 131.84 0 204.021-163.45 229.009-373.371 229.009zM335.082 584.849c-39.959 0-72.348 44.911-72.348 100.119 0 55.319 32.389 100.229 72.348 100.229 40.014 0 72.403-44.911 72.403-100.229 0-55.207-32.389-100.119-72.403-100.119z"
+        ],
+        "attrs": [
+          {}
+        ],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "github"
+        ],
+        "grid": 16
+      },
+      "attrs": [
+        {}
+      ],
+      "properties": {
+        "order": 2,
+        "id": 2,
+        "name": "github",
+        "prevSize": 28,
+        "code": 59695
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 80
+    },
+    {
+      "icon": {
+        "paths": [
+          "M352.998 714.666v0c1.333-2.001 0.665-6.001-2.001-8.667-3.333-2.667-7.334-3.333-9.334-1.333-1.333 2.001-0.665 6.001 2.001 8.667 3.333 2.667 7.334 3.333 9.334 1.333zM334.332 687.335c-2.001-2.667-5.333-4-8-2.667-2.001 1.333-2.001 5.333 0 8 2.667 3.333 6.001 4.666 8 3.333v0c2.001-1.333 2.001-5.333 0-8.667zM306.999 660.668v0c0.665-1.333-0.665-4-3.333-5.333-2.001-0.665-4.666-0.665-5.333 1.333-1.333 2.001 0 4 2.667 5.333 2.667 0.665 5.333 0.665 6.001-1.333zM320.999 675.999v0c1.333-1.333 1.333-4.666-1.333-6.666-2.001-2.667-5.333-3.333-6.666-2.001-2.001 2.001-1.333 4.666 0.665 7.334 2.001 2.001 5.333 3.333 7.334 1.333zM378.332 726.001v0c0.665-2.667-2.001-6.001-6.001-7.334s-7.334 0-8.667 2.667c-0.665 2.667 2.001 6.001 6.001 7.334s7.334 0 8.667-2.667zM406.332 728v0c0-2.667-3.333-5.333-8-5.333-4 0-6.666 2.667-6.666 5.333s3.333 5.333 7.334 5.333 7.334-2.667 7.334-5.333zM432.332 723.334v0c-0.665-2.667-4.666-4-8.667-3.333s-6.666 3.333-6.001 6.001 4 4.666 8 4 6.666-4 6.666-6.666zM860.333 512c0-188.667-152.667-341.333-341.333-341.333s-341.333 152.667-341.333 341.333c0 150.667 98.001 278.667 233.334 324 17.333 3.333 23.334-7.334 23.334-16.668 0-8 0-34.667-0.665-63.334 0 0-94.667 20.667-114.667-40.666 0 0-15.333-39.332-38-49.334 0 0-30.667-21.334 2.667-21.334 0 0 33.332 2.667 52 35.334 29.999 52.667 80 37.334 99.334 28.666 3.333-21.999 12-37.334 21.999-46.001-76-8.667-156-38-156-168.667 0-37.334 13.334-67.334 35.334-91.334-3.333-8.667-15.333-43.334 3.333-90.667 28.666-8.667 94.001 35.334 94.001 35.334 27.335-8 56-11.332 85.333-11.332s57.999 3.333 85.333 11.332c0 0 65.333-43.999 94.001-35.334 18.666 47.332 6.666 82.001 3.333 90.667 21.999 24 35.334 54.001 35.334 91.334 0 131.333-80 160-156 168.667 12 10.667 23.334 31.334 23.334 63.334 0 45.333-0.665 82.001-0.665 93.333 0 9.334 6.001 20.001 23.334 16.668 135.334-45.333 233.334-173.333 233.334-324zM1030.999 192v640.001c0 106-86 191.999-191.999 191.999h-640.001c-106 0-191.999-86-191.999-191.999v-640.001c0-106 86-191.999 191.999-191.999h640.001c106 0 191.999 86 191.999 191.999z"
+        ],
+        "width": 1038,
+        "attrs": [
+          {}
+        ],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "github-square"
+        ],
+        "grid": 16
+      },
+      "attrs": [
+        {}
+      ],
+      "properties": {
+        "order": 1,
+        "id": 0,
+        "name": "github-square",
+        "prevSize": 28,
+        "code": 59662
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 81
+    },
+    {
+      "icon": {
+        "paths": [
+          "M512.8 509.28c0 0-0.533 0-0.8 0h-0.8c-63.52 0-119.467-16.16-152.586 14.294-19.786 18.24-28.106 40.214-28.106 63.84 0 98.773 79.094 110.933 180.747 110.933h1.547c101.6 0 180.747-12.214 180.747-110.933 0-23.627-8.32-45.653-28.106-63.84-33.173-30.453-89.12-14.294-152.64-14.294zM426.294 644.267c-19.36 0-34.986-21.76-34.986-48.533s15.627-48.427 34.986-48.427c19.36 0 35.040 21.653 35.040 48.427 0.053 26.773-15.627 48.533-35.040 48.533zM597.653 644.267c-19.36 0-35.040-21.76-35.040-48.533s15.68-48.427 35.040-48.427c19.306 0 34.986 21.653 34.986 48.427 0.053 26.773-15.627 48.533-34.986 48.533zM512 0c-282.773 0-512 229.227-512 512s229.227 512 512 512 512-229.227 512-512-229.227-512-512-512zM558.72 722.080c-9.173 0-27.414 0-46.72 0.106-19.306-0.106-37.547-0.106-46.72-0.106-40.533 0-201.173-3.147-201.173-196.747 0-44.48 15.253-77.067 40.267-104.267-3.947-9.814-4.16-65.706 17.067-119.253 0 0 48.853 5.333 122.72 56.053 15.414-4.32 41.653-6.506 67.84-6.506s52.373 2.186 67.894 6.453c73.867-50.72 122.72-56.053 122.72-56.053 21.227 53.547 21.067 109.494 17.067 119.253 25.014 27.2 40.267 59.786 40.267 104.267-0.053 193.706-160.694 196.8-201.227 196.8z"
+        ],
+        "attrs": [
+          {}
+        ],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "github-with-circle"
+        ],
+        "grid": 16
+      },
+      "attrs": [
+        {}
+      ],
+      "properties": {
+        "order": 1,
+        "id": 1,
+        "name": "github-rounded",
+        "prevSize": 28,
+        "code": 59663
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 82
     }
   ],
   "height": 1024,
