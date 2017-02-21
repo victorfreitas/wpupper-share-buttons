@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPUpper Share Buttons 3.25\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-buttons\n"
-"POT-Creation-Date: 2017-02-20 20:13-0300\n"
+"POT-Creation-Date: 2017-02-20 22:13-0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,19 +27,19 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 "X-Poedit-SearchPathExcluded-1: assets\n"
 
-#: Config/enqueue-scripts.php:59
+#: Config/enqueue-scripts.php:60
 msgid "View Untitled"
 msgstr ""
 
-#: Config/enqueue-scripts.php:60
+#: Config/enqueue-scripts.php:61
 msgid "View without count"
 msgstr ""
 
-#: Config/enqueue-scripts.php:61
+#: Config/enqueue-scripts.php:62
 msgid "See with title"
 msgstr ""
 
-#: Config/enqueue-scripts.php:62
+#: Config/enqueue-scripts.php:63
 msgid "See with count"
 msgstr ""
 
@@ -136,11 +136,11 @@ msgstr ""
 msgid "Messenger"
 msgstr ""
 
-#: Config/social-elements.php:571
+#: Config/social-elements.php:574
 msgid "Click to see also"
 msgstr ""
 
-#: Config/social-elements.php:572 View/settings-extra.view.php:128
+#: Config/social-elements.php:575 View/settings-extra.view.php:132
 msgid "I just saw"
 msgstr ""
 
@@ -283,7 +283,7 @@ msgid "Subscribe to our YouTube"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:228
-msgid "Find us on vimeo"
+msgid "Find us on Vimeo"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:237
@@ -327,7 +327,7 @@ msgid "URL"
 msgstr ""
 
 #: Controller/widgets.controller.php:99
-msgid "Buttons background color. <br>By layouts: Square plus and Button"
+msgid "Buttons background color. <br>Layouts: Square plus and Button"
 msgstr ""
 
 #: Controller/widgets.controller.php:105 View/settings.view.php:535
@@ -339,7 +339,7 @@ msgid "Share count text color"
 msgstr ""
 
 #: Controller/widgets.controller.php:117
-msgid "Share count background color. <br>By layouts: Default, Button, Rounded and Square."
+msgid "Share count background color. <br>Layouts: Default, Button, Rounded and Square."
 msgstr ""
 
 #: Controller/widgets.controller.php:129 View/settings.view.php:656
@@ -398,104 +398,104 @@ msgstr ""
 msgid "Add the Share Buttons automatically."
 msgstr ""
 
-#: View/settings-extra.view.php:52
+#: View/settings-extra.view.php:56
 msgid "Cache time"
 msgstr ""
 
-#: View/settings-extra.view.php:63
+#: View/settings-extra.view.php:67
 msgid "Minute"
 msgstr ""
 
-#: View/settings-extra.view.php:65
+#: View/settings-extra.view.php:69
 msgid "Set the time in minutes that will be cached in the Sharing report page"
 msgstr ""
 
-#: View/settings-extra.view.php:72 View/settings-extra.view.php:79
+#: View/settings-extra.view.php:76 View/settings-extra.view.php:83
 msgid "Twitter username"
 msgstr ""
 
-#: View/settings-extra.view.php:82
+#: View/settings-extra.view.php:86
 msgid "Your twitter username"
 msgstr ""
 
-#: View/settings-extra.view.php:88 View/settings-extra.view.php:95
+#: View/settings-extra.view.php:92 View/settings-extra.view.php:99
 msgid "Twitter hashtags"
 msgstr ""
 
-#: View/settings-extra.view.php:101
+#: View/settings-extra.view.php:105
 msgid "Optional Hashtags appended onto the tweet (comma separated. don't include \"#\")"
 msgstr ""
 
-#: View/settings-extra.view.php:104 View/settings-extra.view.php:127
-#: View/settings-extra.view.php:149
+#: View/settings-extra.view.php:108 View/settings-extra.view.php:131
+#: View/settings-extra.view.php:153
 msgid "Example: "
 msgstr ""
 
-#: View/settings-extra.view.php:113 View/settings-extra.view.php:120
+#: View/settings-extra.view.php:117 View/settings-extra.view.php:124
 msgid "Twitter text"
 msgstr ""
 
-#: View/settings-extra.view.php:125
+#: View/settings-extra.view.php:129
 msgid "Use {title} to add the post title"
 msgstr ""
 
-#: View/settings-extra.view.php:136
+#: View/settings-extra.view.php:140
 msgid "UTM tracking"
 msgstr ""
 
-#: View/settings-extra.view.php:143
+#: View/settings-extra.view.php:147
 msgid "Add UTM tracking (Analytics)"
 msgstr ""
 
-#: View/settings-extra.view.php:152
+#: View/settings-extra.view.php:156
 msgid "Use <code>?</code> and"
 msgstr ""
 
-#: View/settings-extra.view.php:153
+#: View/settings-extra.view.php:157
 msgid "adding parameters to use <code>&</code> in the tracking."
 msgstr ""
 
-#: View/settings-extra.view.php:161
+#: View/settings-extra.view.php:165
 msgid "Bitly access token"
 msgstr ""
 
-#: View/settings-extra.view.php:168
+#: View/settings-extra.view.php:173
 msgid "Insert your access token Bitly"
 msgstr ""
 
-#: View/settings-extra.view.php:172
+#: View/settings-extra.view.php:177
 msgid "Shorten urls using bitly, generate token in "
 msgstr ""
 
-#: View/settings-extra.view.php:180
+#: View/settings-extra.view.php:185
 msgid "Minify html buttons share"
 msgstr ""
 
-#: View/settings-extra.view.php:193
+#: View/settings-extra.view.php:198
 msgid "Minify the HTML helps site performance."
 msgstr ""
 
-#: View/settings-extra.view.php:200
+#: View/settings-extra.view.php:205
 msgid "Deactivate sharing report"
 msgstr ""
 
-#: View/settings-extra.view.php:213
+#: View/settings-extra.view.php:218
 msgid "This allows you to disable counting of the shares report. You will not lose the report you have already computed."
 msgstr ""
 
-#: View/settings-extra.view.php:220
+#: View/settings-extra.view.php:225
 msgid "Disable CSS"
 msgstr ""
 
-#: View/settings-extra.view.php:237
+#: View/settings-extra.view.php:242
 msgid "Disable JS"
 msgstr ""
 
-#: View/settings-extra.view.php:254
+#: View/settings-extra.view.php:259
 msgid "CSS file in footer"
 msgstr ""
 
-#: View/settings-extra.view.php:267
+#: View/settings-extra.view.php:272
 msgid "Keep the CSS style in the footer is recommended to improve the performance of your website."
 msgstr ""
 
@@ -586,7 +586,7 @@ msgstr ""
 
 #: View/settings.view.php:368
 #, php-format
-msgid "%s: Text bellow sharing count"
+msgid "%s: Text below sharing count"
 msgstr ""
 
 #: View/settings.view.php:381
@@ -600,7 +600,7 @@ msgstr ""
 
 #: View/settings.view.php:443
 #, php-format
-msgid "By layouts: %s, %s, %s and %s."
+msgid "Layouts: %s, %s, %s and %s."
 msgstr ""
 
 #: View/settings.view.php:509
@@ -609,7 +609,7 @@ msgstr ""
 
 #: View/settings.view.php:524
 #, php-format
-msgid "By layouts: %s, %s, and %s."
+msgid "Layouts: %s, %s, and %s."
 msgstr ""
 
 #: View/settings.view.php:564
@@ -750,6 +750,6 @@ msgstr ""
 msgid "Give the title:"
 msgstr ""
 
-#: wpupper-share-buttons.php:118
+#: wpupper-share-buttons.php:119
 msgid "It does not support your PHP version. Please, install a version greater than or equal to 5.2.0."
 msgstr ""

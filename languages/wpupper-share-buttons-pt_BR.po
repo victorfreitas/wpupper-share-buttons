@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: WPUpper Share Buttons 3.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2017-02-20 20:23-0300\n"
-"PO-Revision-Date: 2017-02-20 20:29-0300\n"
+"POT-Creation-Date: 2017-02-20 22:14-0300\n"
+"PO-Revision-Date: 2017-02-20 22:14-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -25,19 +25,19 @@ msgstr ""
 "X-Poedit-SearchPath-5: wpupper-share-buttons.php\n"
 "X-Poedit-SearchPath-6: Templates\n"
 
-#: Config/enqueue-scripts.php:59
+#: Config/enqueue-scripts.php:60
 msgid "View Untitled"
 msgstr "Ver sem título"
 
-#: Config/enqueue-scripts.php:60
+#: Config/enqueue-scripts.php:61
 msgid "View without count"
 msgstr "Ver sem contador"
 
-#: Config/enqueue-scripts.php:61
+#: Config/enqueue-scripts.php:62
 msgid "See with title"
 msgstr "Ver com título"
 
-#: Config/enqueue-scripts.php:62
+#: Config/enqueue-scripts.php:63
 msgid "See with count"
 msgstr "Ver com contador"
 
@@ -134,11 +134,11 @@ msgstr "Enviar via Facebook Messenger"
 msgid "Messenger"
 msgstr "Messenger"
 
-#: Config/social-elements.php:571
+#: Config/social-elements.php:574
 msgid "Click to see also"
 msgstr "Clique para ver também"
 
-#: Config/social-elements.php:572 View/settings-extra.view.php:128
+#: Config/social-elements.php:575 View/settings-extra.view.php:132
 msgid "I just saw"
 msgstr "Acabei de ver"
 
@@ -399,93 +399,93 @@ msgstr "Salvar Alterações"
 msgid "Add the Share Buttons automatically."
 msgstr "Adiciona os botões de compartilhamento automaticamente."
 
-#: View/settings-extra.view.php:52
+#: View/settings-extra.view.php:56
 msgid "Cache time"
 msgstr "Tempo de cache"
 
-#: View/settings-extra.view.php:63
+#: View/settings-extra.view.php:67
 msgid "Minute"
 msgstr "Minuto"
 
-#: View/settings-extra.view.php:65
+#: View/settings-extra.view.php:69
 msgid "Set the time in minutes that will be cached in the Sharing report page"
 msgstr ""
 "Defina o tempo em minutos que terá o cache na página relatório de "
 "compartilhamento"
 
-#: View/settings-extra.view.php:72 View/settings-extra.view.php:79
+#: View/settings-extra.view.php:76 View/settings-extra.view.php:83
 msgid "Twitter username"
 msgstr "Nome de usuário do Twitter"
 
-#: View/settings-extra.view.php:82
+#: View/settings-extra.view.php:86
 msgid "Your twitter username"
 msgstr "Seu nome de usuário twitter"
 
-#: View/settings-extra.view.php:88 View/settings-extra.view.php:95
+#: View/settings-extra.view.php:92 View/settings-extra.view.php:99
 msgid "Twitter hashtags"
 msgstr "Twitter hashtags"
 
-#: View/settings-extra.view.php:101
+#: View/settings-extra.view.php:105
 msgid ""
 "Optional Hashtags appended onto the tweet (comma separated. don't include \"#"
 "\")"
 msgstr ""
 "Hashtags opcional anexado ao tweet (separados por vírgula, não incluir \"#\")"
 
-#: View/settings-extra.view.php:104 View/settings-extra.view.php:127
-#: View/settings-extra.view.php:149
+#: View/settings-extra.view.php:108 View/settings-extra.view.php:131
+#: View/settings-extra.view.php:153
 msgid "Example: "
 msgstr "Exemplo: "
 
-#: View/settings-extra.view.php:113 View/settings-extra.view.php:120
+#: View/settings-extra.view.php:117 View/settings-extra.view.php:124
 msgid "Twitter text"
 msgstr "Twitter texto"
 
-#: View/settings-extra.view.php:125
+#: View/settings-extra.view.php:129
 msgid "Use {title} to add the post title"
 msgstr "Usar {title} para adicinar o titúlo do post"
 
-#: View/settings-extra.view.php:136
+#: View/settings-extra.view.php:140
 msgid "UTM tracking"
 msgstr "Acompanhamento de UTM"
 
-#: View/settings-extra.view.php:143
+#: View/settings-extra.view.php:147
 msgid "Add UTM tracking (Analytics)"
 msgstr "Adicione UTM tracking (Analíticas)"
 
-#: View/settings-extra.view.php:152
+#: View/settings-extra.view.php:156
 msgid "Use <code>?</code> and"
 msgstr "Usar <code>?</code> e"
 
-#: View/settings-extra.view.php:153
+#: View/settings-extra.view.php:157
 msgid "adding parameters to use <code>&</code> in the tracking."
 msgstr "para adicinar parâmetros <code>&</code> no tracking."
 
-#: View/settings-extra.view.php:161
+#: View/settings-extra.view.php:165
 msgid "Bitly access token"
 msgstr "Token de acesso bitly"
 
-#: View/settings-extra.view.php:168
+#: View/settings-extra.view.php:173
 msgid "Insert your access token Bitly"
 msgstr "Insira o seu token de acesso Bitly"
 
-#: View/settings-extra.view.php:172
+#: View/settings-extra.view.php:177
 msgid "Shorten urls using bitly, generate token in "
 msgstr "Encurtar urls usando bitly, gerar chave em "
 
-#: View/settings-extra.view.php:180
+#: View/settings-extra.view.php:185
 msgid "Minify html buttons share"
 msgstr "Minificar HTML botões de compartilhamento"
 
-#: View/settings-extra.view.php:193
+#: View/settings-extra.view.php:198
 msgid "Minify the HTML helps site performance."
 msgstr "Minificar o HTML ajuda na performance do site."
 
-#: View/settings-extra.view.php:200
+#: View/settings-extra.view.php:205
 msgid "Deactivate sharing report"
 msgstr "Desativar relatório de compartilhamento"
 
-#: View/settings-extra.view.php:213
+#: View/settings-extra.view.php:218
 msgid ""
 "This allows you to disable counting of the shares report. You will not lose "
 "the report you have already computed."
@@ -493,19 +493,19 @@ msgstr ""
 "Isso permite desabilitar a contagem do relatório de compartilhamento. Você "
 "não perderá o relatório que já calculou."
 
-#: View/settings-extra.view.php:220
+#: View/settings-extra.view.php:225
 msgid "Disable CSS"
 msgstr "Desabilitar CSS"
 
-#: View/settings-extra.view.php:237
+#: View/settings-extra.view.php:242
 msgid "Disable JS"
 msgstr "Desabilitar JS"
 
-#: View/settings-extra.view.php:254
+#: View/settings-extra.view.php:259
 msgid "CSS file in footer"
 msgstr "Arquivo CSS no footer"
 
-#: View/settings-extra.view.php:267
+#: View/settings-extra.view.php:272
 msgid ""
 "Keep the CSS style in the footer is recommended to improve the performance "
 "of your website."
@@ -783,7 +783,7 @@ msgstr "Assunto:"
 msgid "Give the title:"
 msgstr "Dê um título:"
 
-#: wpupper-share-buttons.php:118
+#: wpupper-share-buttons.php:119
 msgid ""
 "It does not support your PHP version. Please, install a version greater than "
 "or equal to 5.2.0."
