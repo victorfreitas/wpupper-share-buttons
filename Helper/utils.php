@@ -375,7 +375,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	public static function bitly_short_url( $permalink ) {
 		$token = self::option( 'bitly_token' );
 
-		if ( empty( $token ) ) {
+		if ( empty( $token ) || self::is_attachment() || self::is_customize_preview() ) {
 			return self::url_clean( $permalink );
 		}
 
@@ -445,6 +445,17 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		self::bitly_set_cache( $url_short, $permalink );
 
 	    return esc_url( $url_short );
+	}
+
+	/**
+	 * Check current post_type attachment
+	 *
+	 * @since 3.27
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function is_attachment() {
+		return ( get_post_type( self::get_id() ) === 'attachment' );
 	}
 
 	/**
