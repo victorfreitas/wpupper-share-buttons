@@ -3,18 +3,18 @@
 Author URL: https://github.com/victorfreitas
 Contributors: victorfreitas
 Donate link: https://www.redcross.org/donate/donation
-Tags: share, social, buttons, share buttons, compartir, botones compartir, free share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, sharing, social bookmarking, email form, social media buttons, click to tweet, reddit, viber, telegram, gmail, skype, like, pinterest, linkedin
+Tags: share, social, buttons, share buttons, compartir, botones compartir, free share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, sharing, social bookmarking, email, social media buttons, click to tweet, reddit, viber, telegram, gmail, skype, like, pinterest, linkedin, follow us, follow, widget follow, Instagram, YouTube, GitHub, Vimeo, Flickr, Foursquare, SnapChat
 Requires at least: 3.0
 Tested up to: 4.7.2
 Stable tag: 3.27
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Implement the Share Buttons of the major social networks, including the Whats App on your website or blog.
+Implement the Social Share and Follow Us Widget of the major social networks, including the Whats App on your website or blog.
 
 == Description ==
 
-Implement the Share Buttons of the major social networks, including the Whats App on your website or blog. The buttons are inserted automatically or can be called via shortcode or PHP method.
+Implement the Social Share and Follow Us Widget of the major social networks, including the Whats App on your website or blog. The buttons are inserted automatically or can be called via shortcode or PHP method.
 
 > If you like the plugin, feel free to rate it (on the right side of this page) or [donate](https://www.redcross.org/donate/donation). I am very pleased to dedicate myself to this plugin. Thank you so much! :)
 
@@ -108,7 +108,7 @@ The following plugins are recommended
 * New: Update Widget share options
 * New: Real time preview share buttons customization in Dashboard page
 * Update font icons
-* Widget selective preview improvents
+* Widget selective preview improvements
 * Update languages
 * Support for PHP version 5.1 is being deprecated
 * Bitly URL shortener improvements performance
