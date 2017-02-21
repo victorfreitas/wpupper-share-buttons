@@ -94,11 +94,13 @@ final class WPUSB_Scripts {
 	 */
 	public static function add_front_scripts() {
 		if ( WPUSB_Utils::is_disabled_by_meta() ) {
+			if ( WPUSB_Utils::is_active_widget_follow() ) :
+				self::front_styles();
+			endif;
 			return;
 		}
 
-		$active_scripts    = WPUSB_Utils::is_active();
-		$load_scripts      = apply_filters( WPUSB_App::SLUG . '-add-scripts', $active_scripts );
+		$load_scripts      = apply_filters( WPUSB_App::SLUG . '-add-scripts', WPUSB_Utils::is_active() );
 		$customize_preview = WPUSB_Utils::is_customize_preview();
 
 		if ( ! $customize_preview && ( ! WPUSB_Utils::is_active_widget() && ! $load_scripts ) ) {
@@ -106,11 +108,6 @@ final class WPUSB_Scripts {
 		}
 
 		self::front_javascripts();
-
-		if ( 'on' === WPUSB_Utils::option( 'css_footer' ) ) {
-			return add_action( 'wp_footer', array( __CLASS__, 'front_styles' ) );
-		}
-
 		self::front_styles();
 	}
 
@@ -147,17 +144,32 @@ final class WPUSB_Scripts {
 	}
 
 	/**
-	 * Enqueue front styles
+	 * Front styles validate
 	 *
 	 * @since 3.1.0
 	 * @param Null
 	 * @return Void
 	 */
 	public static function front_styles() {
-		if ( 'on' === WPUSB_Utils::option( 'disable_css' ) ) {
+		if ( WPUSB_Utils::is_disabled_css() ) {
 			return;
 		}
 
+		if ( 'on' === WPUSB_Utils::option( 'css_footer' ) ) {
+			return add_action( 'wp_footer', array( __CLASS__, 'add_style_front' ) );
+		}
+
+		self::add_style_front();
+	}
+
+	/**
+	 * Enqueue front styles
+	 *
+	 * @since 3.1.0
+	 * @param Null
+	 * @return Void
+	 */
+	public static function add_style_front() {
 		wp_enqueue_style(
 			WPUSB_App::SLUG . '-style',
 			WPUSB_Utils::plugin_url( self::get_front_css_path() ),

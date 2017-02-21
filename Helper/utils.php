@@ -1673,8 +1673,42 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return Mixed
 	 */
 	public static function is_active_widget() {
+		return ( self::is_active_widget_share() || self::is_active_widget_follow() );
+	}
+
+	/**
+	 * Check plugin widget share is activated
+	 *
+	 * @since 3.27
+	 * @param null
+	 * @return Mixed
+	 */
+	public static function is_active_widget_share() {
 		$id_base = self::get_widget_id_base();
 		return is_active_widget( false, false, $id_base, true );
+	}
+
+	/**
+	 * Check plugin widget follow is activated
+	 *
+	 * @since 3.27
+	 * @param null
+	 * @return Mixed
+	 */
+	public static function is_active_widget_follow() {
+		$id_base = self::get_widget_follow_id_base();
+		return is_active_widget( false, false, $id_base, true );
+	}
+
+	/**
+	 * Check is disabled css
+	 *
+	 * @since 3.27
+	 * @param null
+	 * @return Mixed
+	 */
+	public static function is_disabled_css() {
+		return ( 'on' === self::option( 'disable_css' ) );
 	}
 
 	/**

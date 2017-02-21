@@ -36,6 +36,10 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
 
+		if ( WPUSB_Utils::is_disabled_css() ) {
+			printf( '<h4>%s</h4>', __( 'CSS is disabled!', WPUSB_App::TEXTDOMAIN ) );
+		}
+
 		$items = $this->get_property( 'items', array() );
 
 		WPUSB_Widget_Follow_View::render_fields( $this, $items );

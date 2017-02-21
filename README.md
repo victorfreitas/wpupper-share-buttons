@@ -68,6 +68,24 @@ Layout options: default, buttons, rounded, square
 
 ## Changelog
 
+## 3.27
+
+* New option: Alter share text on layout fixed rounded
+* New option: Alter count share background color in Dashboard and Widget
+* New option: Alter count share text color in Dashboard and Widget
+* New option: Alter buttons title color in Dashboard and Widget
+* New option: Add Widget Follow Us
+* New option: Deactivate share buttons for specific Post, Page and publics Custom Post Types via metabox
+* New: Update Widget share options
+* New: Real time preview share buttons customization in Dashboard page
+* Update font icons
+* Widget selective preview improvents
+* Update languages
+* Support for PHP version 5.1 is being deprecated
+* Bitly URL shortener improvements performance
+* Bug fixes
+* Code improvements
+
 ## 3.26
 
 * New option: Custom background color icons

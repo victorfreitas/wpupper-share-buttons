@@ -6,7 +6,7 @@ Donate link: https://www.redcross.org/donate/donation
 Tags: share, social, buttons, share buttons, compartir, botones compartir, free share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, sharing, social bookmarking, email form, social media buttons, click to tweet, reddit, viber, telegram, gmail, skype, like, pinterest, linkedin
 Requires at least: 3.0
 Tested up to: 4.7.1
-Stable tag: 3.26
+Stable tag: 3.27
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,24 @@ The following plugins are recommended
 * ["Remove WP Version"](https://wordpress.org/plugins/jogar-mais-wp-security/) by victorfreitas - Remove version WordPress in WP Generator, Feeds, css and js file.
 
 == Changelog ==
+
+= 3.27 =
+
+* New option: Alter share text on layout fixed rounded
+* New option: Alter count share background color in Dashboard and Widget
+* New option: Alter count share text color in Dashboard and Widget
+* New option: Alter buttons title color in Dashboard and Widget
+* New option: Add Widget Follow Us
+* New option: Deactivate share buttons for specific Post, Page and publics Custom Post Types via metabox
+* New: Update Widget share options
+* New: Real time preview share buttons customization in Dashboard page
+* Update font icons
+* Widget selective preview improvents
+* Update languages
+* Support for PHP version 5.1 is being deprecated
+* Bitly URL shortener improvements performance
+* Bug fixes
+* Code improvements
 
 = 3.26 =
 
@@ -620,13 +638,3 @@ The following plugins are recommended
 = 1.0.0 =
 
 * Initial release
-
-== Upgrade Notice ==
-
-= 3.26 =
-
-* New option: Custom background color buttons
-* Style improvements in admin settings page
-* Bug fixes
-* Improvements performance
-* Update languages
