@@ -10,11 +10,11 @@ Stable tag: 3.27
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Implement the Social Share and Follow Us Widget of the major social networks, including the Whats App on your website or blog.
+Implement the Social Share and Follow Us Widget of the major social networks, including the WhatsApp on your website or blog.
 
 == Description ==
 
-Implement the Social Share and Follow Us Widget of the major social networks, including the Whats App on your website or blog. The buttons are inserted automatically or can be called via shortcode or PHP method.
+Implement the Social Share and Follow Us Widget of the major social networks, including the WhatsApp on your website or blog. The buttons are inserted automatically or can be called via shortcode or PHP method.
 
 > If you like the plugin, feel free to rate it (on the right side of this page) or [donate](https://www.redcross.org/donate/donation). I am very pleased to dedicate myself to this plugin. Thank you so much! :)
 
