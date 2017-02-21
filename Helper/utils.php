@@ -1821,6 +1821,14 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		return sprintf( "#widget-%s-%s%d", $prefix, $follow, $number );
     }
 
+	/**
+	 * Get CSS option by key
+	 *
+	 * @since 3.27
+	 * @param String $key
+	 * @param Array $options
+	 * @return String
+	 */
     public static function get_field_css_by_key( $key, $options ) {
     	$field = '';
 
@@ -1835,6 +1843,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		return $field;
     }
 
+	/**
+	 * Get CSS icon size option
+	 *
+	 * @since 3.27
+	 * @param Array $options
+	 * @return String
+	 */
     public static function get_css_icons_size( $options ) {
     	$size = self::get_field_css_by_key( 'icons_size', $options );
 
@@ -1845,6 +1860,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		return $size;
     }
 
+	/**
+	 * Get CSS icon color option
+	 *
+	 * @since 3.27
+	 * @param Array $options
+	 * @return String
+	 */
     public static function get_css_icons_color( $options ) {
 		$color = self::get_field_css_by_key( 'icons_color', $options );
 
@@ -1855,32 +1877,81 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		return $color;
     }
 
+	/**
+	 * Get CSS btn inside option
+	 *
+	 * @since 3.27
+	 * @param Array $options
+	 * @return String
+	 */
     public static function get_css_btn_inside( $options ) {
 		return self::get_field_css_by_key( 'btn_inside_color', $options );
     }
 
+	/**
+	 * Get CSS text count color option
+	 *
+	 * @since 3.27
+	 * @param Array $options
+	 * @return String
+	 */
     public static function get_css_counts_color( $options ) {
     	return self::get_field_css_by_key( 'counts_text_color', $options );
     }
 
+	/**
+	 * Get CSS background color share counts option
+	 *
+	 * @since 3.27
+	 * @param Array $options
+	 * @return String
+	 */
     public static function get_css_counts_bg_color( $options ) {
     	return self::get_field_css_by_key( 'counts_bg_color', $options );
     }
 
+	/**
+	 * Get CSS background color buttons option
+	 *
+	 * @since 3.27
+	 * @param Array $options
+	 * @return String
+	 */
     public static function get_css_bg_color( $options ) {
 		return self::get_field_css_by_key( 'button_bg_color', $options );
     }
 
+	/**
+	 * Get plugin post meta value
+	 *
+	 * @since 3.27
+	 * @param Insteger $post_id
+	 * @return String
+	 */
     public static function get_meta( $post_id ) {
     	$value = get_post_meta( $post_id, WPUSB_Setting::META_KEY, true );
     	return self::rm_tags( $value );
     }
 
+	/**
+	 * Check is plugin deactivate on current post
+	 *
+	 * @since 3.27
+	 * @param Integer $ID
+	 * @return Boolean
+	 */
     public static function is_disabled_by_meta( $ID = 0 ) {
     	$ID = ( $ID ) ? $ID : self::get_id();
     	return ( self::get_meta( $ID ) === 'yes' );
     }
 
+	/**
+	 * Check is customize preview
+	 *
+	 * @since 3.27
+	 * @param Null
+	 * @return String
+	 */
     public static function is_customize_preview() {
     	if ( ! function_exists( 'is_customize_preview' ) ) {
     		return false;
@@ -1889,6 +1960,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
     	return is_customize_preview();
     }
 
+	/**
+	 * Get all public Bitly domains
+	 *
+	 * @since 3.27
+	 * @param Null
+	 * @return Array
+	 */
     public static function get_bitly_domains() {
 		return array(
 			'com' => 'bitly.com',
@@ -1897,6 +1975,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		);
     }
 
+	/**
+	 * Get Bitly domain by key
+	 *
+	 * @since 3.27
+	 * @param String $key
+	 * @return Mixed String|Boolean
+	 */
     public static function get_bitly_domain( $key ) {
     	if ( $key === 'default' ) {
     		return false;

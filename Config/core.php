@@ -199,6 +199,7 @@ final class WPUSB_Core {
 		self::delete_options();
 		self::delete_transients();
 		self::drop_table();
+		self::delete_metabox();
 	}
 
 	/**
@@ -246,6 +247,27 @@ final class WPUSB_Core {
 
 		$wpdb->query( "DROP TABLE IF EXISTS {$table_share_report}" );
 		$wpdb->query( "DROP TABLE IF EXISTS {$table_bitly}" );
+	}
+
+	/**
+	 * Delete metabox plugin on uninstall
+	 *
+	 * @since 3.27
+	 * @global $wpdb
+	 * @param Null
+	 * @return Void
+	 */
+	public static function delete_metabox() {
+		global $wpdb;
+
+		$wpdb->query( $wpdb->prepare(
+			"DELETE FROM
+				`{$wpdb->postmeta}`
+			 WHERE
+			 	`meta_key` = %s
+			",
+			WPUSB_Setting::META_KEY
+		) );
 	}
 
 	/**

@@ -5,7 +5,7 @@ Contributors: victorfreitas
 Donate link: https://www.redcross.org/donate/donation
 Tags: share, social, buttons, share buttons, compartir, botones compartir, free share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, sharing, social bookmarking, email form, social media buttons, click to tweet, reddit, viber, telegram, gmail, skype, like, pinterest, linkedin
 Requires at least: 3.0
-Tested up to: 4.7.1
+Tested up to: 4.7.2
 Stable tag: 3.27
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

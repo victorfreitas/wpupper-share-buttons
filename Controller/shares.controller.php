@@ -240,8 +240,13 @@ class WPUSB_Shares_Controller {
 			return;
 		}
 
-		$value = WPUSB_Utils::post( WPUSB_Setting::META_KEY );
+		$meta_key = WPUSB_Setting::META_KEY;
+		$value    = WPUSB_Utils::post( $meta_key );
 
-		update_post_meta( $post_id, WPUSB_Setting::META_KEY, $value );
+		if ( empty( $value ) ) {
+			return delete_post_meta( $post_id, $meta_key );
+		}
+
+		update_post_meta( $post_id, $meta_key, $value );
 	}
 }

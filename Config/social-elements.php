@@ -406,7 +406,8 @@ class WPUSB_Social_Elements {
 	 * Sortable elements share
 	 *
 	 * @since 3.1.4
-	 * @version 1.1.0
+	 * @since 3.27
+	 * @version 1.2
 	 * @param Array $elements
 	 * @return Object
 	 */
