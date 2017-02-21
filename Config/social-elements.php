@@ -417,27 +417,30 @@ class WPUSB_Social_Elements {
 			return apply_filters( $tag, self::$social_networks );
 		}
 
-		$order  = WPUSB_Utils::option( 'order', false );
-		$social = $elements;
+		$order = WPUSB_Utils::option( 'order', false );
 
-		if ( $order ) :
-			$social = new stdClass();
-			$order  = json_decode( $order );
+		if ( ! $order ) {
+			return apply_filters( $tag, $elements );
+		}
 
-			foreach ( $elements as $key => $element ) :
-				if ( ! isset( $order[ $key ] ) ) {
-					$order[ $key ] = $key;
+		$networks = new stdClass();
+		$order    = WPUSB_Utils::json_decode( $order );
+
+		if ( is_array( $order ) ) :
+			foreach ( $order as $item ) :
+				if ( ! isset( $elements->{$item} ) ) {
+					continue;
 				}
+
+				$networks->{$item} = $elements->{$item};
 			endforeach;
 
-			foreach ( $order as $items ) :
-				$social->{$items} = apply_filters( WPUSB_App::SLUG . "-{$items}-items", $elements->{$items} );
-			endforeach;
+			$elements = $networks;
 		endif;
 
-		self::$social_networks = $social;
+		self::$social_networks = $elements;
 
-		return apply_filters( $tag, $social );
+		return apply_filters( $tag, $elements );
 	}
 
 	/**

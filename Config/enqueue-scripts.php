@@ -54,6 +54,7 @@ final class WPUSB_Scripts {
 			'WPUSBVars',
 			array(
 				'ajaxUrl'       => esc_url( admin_url( 'admin-ajax.php' ) ),
+				'homeUrl'       => esc_url( get_home_url() ),
 				'WPLANG'        => get_locale(),
 				'previewTitles' => array(
 					'titleRemove'   => __( 'View Untitled', WPUSB_App::TEXTDOMAIN ),

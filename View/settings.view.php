@@ -365,7 +365,7 @@ class WPUSB_Settings_View {
 									<label for="<?php echo $prefix; ?>-share-count-label">
 										<?php
 											printf(
-												__( '%s: Text bellow sharing count', WPUSB_App::TEXTDOMAIN ),
+												__( '%s: Text below sharing count', WPUSB_App::TEXTDOMAIN ),
 												__( 'Square plus', WPUSB_App::TEXTDOMAIN )
 											);
 										?>
@@ -440,7 +440,7 @@ class WPUSB_Settings_View {
 											'data-style'   => 'background-color',
 										),
 										'description' => sprintf(
-											__( 'By layouts: %s, %s, %s and %s.', WPUSB_App::TEXTDOMAIN ),
+											__( 'Layouts: %s, %s, %s and %s.', WPUSB_App::TEXTDOMAIN ),
 											__( 'Default', WPUSB_App::TEXTDOMAIN ),
 											__( 'Button', WPUSB_App::TEXTDOMAIN ),
 											__( 'Rounded', WPUSB_App::TEXTDOMAIN ),
@@ -521,7 +521,7 @@ class WPUSB_Settings_View {
 											'data-style'   => 'background-color',
 										),
 										'description' => sprintf(
-											__( 'By layouts: %s, %s, and %s.', WPUSB_App::TEXTDOMAIN ),
+											__( 'Layouts: %s, %s, and %s.', WPUSB_App::TEXTDOMAIN ),
 											__( 'Button', WPUSB_App::TEXTDOMAIN ),
 											__( 'Square plus', WPUSB_App::TEXTDOMAIN ),
 											__( 'Position fixed', WPUSB_App::TEXTDOMAIN )

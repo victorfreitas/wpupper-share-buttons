@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPUpper Share Buttons 3.25\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-buttons\n"
-"POT-Creation-Date: 2017-01-28 12:27-0200\n"
+"POT-Creation-Date: 2017-02-20 20:13-0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -116,7 +116,7 @@ msgstr ""
 msgid "Like"
 msgstr ""
 
-#: Config/social-elements.php:332 Templates/layouts-primary.php:158
+#: Config/social-elements.php:332 Templates/layouts-primary.php:167
 msgid "Open modal social networks"
 msgstr ""
 
@@ -144,40 +144,41 @@ msgstr ""
 msgid "I just saw"
 msgstr ""
 
-#: Controller/ajax.controller.php:326
+#: Controller/ajax.controller.php:328
 msgid "Error: Could not process css file."
 msgstr ""
 
-#: Controller/settings.controller.php:52 View/settings.view.php:43
+#: Controller/settings.controller.php:52 View/settings.view.php:46
 msgid "Settings"
 msgstr ""
 
-#: Controller/settings.controller.php:69 View/settings-custom-css.view.php:29
+#: Controller/settings.controller.php:71 View/settings-custom-css.view.php:29
 #: View/settings-extra.view.php:29 View/settings-faq.view.php:28
-#: View/settings.view.php:31 View/share-report.view.php:35
+#: View/settings.view.php:34 View/share-report.view.php:35
 msgid "WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/settings.controller.php:70
+#: Controller/settings.controller.php:72
 msgid "WPUpper Share"
 msgstr ""
 
-#: Controller/settings.controller.php:77 View/settings-extra.view.php:41
-#: View/settings.view.php:530
+#: Controller/settings.controller.php:79 View/settings-extra.view.php:41
+#: View/settings.view.php:735
 msgid "Extra Settings"
 msgstr ""
 
-#: Controller/settings.controller.php:87 View/settings-custom-css.view.php:32
-#: View/settings.view.php:535
+#: Controller/settings.controller.php:89 View/settings-custom-css.view.php:32
+#: View/settings.view.php:740
 msgid "Custom CSS"
 msgstr ""
 
-#: Controller/settings.controller.php:99 Controller/settings.controller.php:100
-#: View/settings-faq.view.php:34 View/settings.view.php:540
+#: Controller/settings.controller.php:101
+#: Controller/settings.controller.php:102 View/settings-faq.view.php:34
+#: View/settings.view.php:745
 msgid "Use options"
 msgstr ""
 
-#: Controller/share-reports.controller.php:222 View/settings.view.php:366
+#: Controller/share-reports.controller.php:222 View/settings.view.php:571
 msgid "Title"
 msgstr ""
 
@@ -217,79 +218,170 @@ msgstr ""
 msgid "Sharing Report | WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/share-reports.controller.php:305 View/settings.view.php:548
+#: Controller/share-reports.controller.php:305 View/settings.view.php:753
 msgid "Sharing Report"
 msgstr ""
 
-#: Controller/widgets.controller.php:27
-msgid "Insert share buttons of social networks."
+#: Controller/widget-follow.controller.php:23
+msgid "Insert the Follow Us of your social networks."
 msgstr ""
 
-#: Controller/widgets.controller.php:85
+#: Controller/widget-follow.controller.php:60
+#: Controller/widgets.controller.php:72
 msgid "Widget title"
 msgstr ""
 
-#: Controller/widgets.controller.php:86
-msgid "Custom post title"
+#: Controller/widget-follow.controller.php:65 View/settings.view.php:555
+msgid "Custom class"
 msgstr ""
 
-#: Controller/widgets.controller.php:87
-msgid "Custom url"
+#: Controller/widget-follow.controller.php:70
+#: Controller/widgets.controller.php:87 View/settings.view.php:391
+msgid "Icons size"
 msgstr ""
 
-#: Controller/widgets.controller.php:88 View/settings.view.php:277
-msgid "Custom icons size"
+#: Controller/widget-follow.controller.php:76
+#: Controller/widgets.controller.php:93 View/settings.view.php:475
+msgid "Icons color"
 msgstr ""
 
-#: Controller/widgets.controller.php:89 View/settings.view.php:295
-msgid "Custom icons color"
-msgstr ""
-
-#: Controller/widgets.controller.php:90 View/settings.view.php:311
-msgid "Custom buttons background color"
-msgstr ""
-
-#: Controller/widgets.controller.php:91
+#: Controller/widget-follow.controller.php:82
+#: Controller/widgets.controller.php:123
 msgid "Layout"
 msgstr ""
 
-#: Controller/widgets.controller.php:92 View/settings.view.php:451
+#: Controller/widget-follow.controller.php:156
+msgid "Follow us on Facebook"
+msgstr ""
+
+#: Controller/widget-follow.controller.php:165
+msgid "Follow us on Twitter"
+msgstr ""
+
+#: Controller/widget-follow.controller.php:174
+msgid "Find us on Linkedin"
+msgstr ""
+
+#: Controller/widget-follow.controller.php:183
+msgid "Follow us on Google+"
+msgstr ""
+
+#: Controller/widget-follow.controller.php:192
+msgid "My Pinterest board"
+msgstr ""
+
+#: Controller/widget-follow.controller.php:201
+msgid "Check out our Instagram"
+msgstr ""
+
+#: Controller/widget-follow.controller.php:210
+msgid "Follow us Reddit"
+msgstr ""
+
+#: Controller/widget-follow.controller.php:219
+msgid "Subscribe to our YouTube"
+msgstr ""
+
+#: Controller/widget-follow.controller.php:228
+msgid "Find us on vimeo"
+msgstr ""
+
+#: Controller/widget-follow.controller.php:237
+msgid "Subscribe to our RSS Feed"
+msgstr ""
+
+#: Controller/widget-follow.controller.php:246
+msgid "Find us on Tumblr"
+msgstr ""
+
+#: Controller/widget-follow.controller.php:255
+msgid "Check out our Flickr"
+msgstr ""
+
+#: Controller/widget-follow.controller.php:264
+msgid "Check out our Foursquare"
+msgstr ""
+
+#: Controller/widget-follow.controller.php:273
+msgid "Check out our GitHub"
+msgstr ""
+
+#: Controller/widget-follow.controller.php:282
+msgid "Contact Us"
+msgstr ""
+
+#: Controller/widget-follow.controller.php:291
+msgid "Follow us on Snapchat"
+msgstr ""
+
+#: Controller/widgets.controller.php:17
+msgid "Insert share buttons of social networks."
+msgstr ""
+
+#: Controller/widgets.controller.php:77
+msgid "Post title"
+msgstr ""
+
+#: Controller/widgets.controller.php:82
+msgid "URL"
+msgstr ""
+
+#: Controller/widgets.controller.php:99
+msgid "Buttons background color. <br>By layouts: Square plus and Button"
+msgstr ""
+
+#: Controller/widgets.controller.php:105 View/settings.view.php:535
+msgid "Buttons title color"
+msgstr ""
+
+#: Controller/widgets.controller.php:111 View/settings.view.php:455
+msgid "Share count text color"
+msgstr ""
+
+#: Controller/widgets.controller.php:117
+msgid "Share count background color. <br>By layouts: Default, Button, Rounded and Square."
+msgstr ""
+
+#: Controller/widgets.controller.php:129 View/settings.view.php:656
 msgid "Remove counter"
 msgstr ""
 
-#: Controller/widgets.controller.php:93 View/settings.view.php:436
+#: Controller/widgets.controller.php:134 View/settings.view.php:641
 msgid "Remove button title"
 msgstr ""
 
-#: Helper/utils-share.php:418 View/settings.view.php:172
+#: Helper/utils-share.php:419 View/settings.view.php:175
+#: View/settings.view.php:444
 msgid "Default"
 msgstr ""
 
-#: Helper/utils-share.php:419 View/settings.view.php:181
-#: View/settings.view.php:323
+#: Helper/utils-share.php:420 View/settings.view.php:187
+#: View/settings.view.php:445 View/settings.view.php:525
 msgid "Button"
 msgstr ""
 
-#: Helper/utils-share.php:420 View/settings.view.php:190
-#: View/settings.view.php:270
+#: Helper/utils-share.php:421 View/settings.view.php:199
+#: View/settings.view.php:307 View/settings.view.php:346
+#: View/settings.view.php:446
 msgid "Rounded"
 msgstr ""
 
-#: Helper/utils-share.php:421 View/settings.view.php:199
-#: View/settings.view.php:260
+#: Helper/utils-share.php:422 View/settings.view.php:211
+#: View/settings.view.php:294 View/settings.view.php:447
 msgid "Square"
 msgstr ""
 
-#: Helper/utils-share.php:422 View/settings.view.php:208
-#: View/settings.view.php:324 View/settings.view.php:359
+#: Helper/utils-share.php:423 View/settings.view.php:223
+#: View/settings.view.php:369 View/settings.view.php:381
+#: View/settings.view.php:526
 msgid "Square plus"
 msgstr ""
 
-#: Helper/utils.php:1306
+#: Helper/utils.php:1340
 msgid "SHARES"
 msgstr ""
 
-#: Templates/fixed-left.php:137
+#: Templates/fixed-left.php:145
 msgid "Shares"
 msgstr ""
 
@@ -297,12 +389,12 @@ msgstr ""
 msgid "Enter your custom CSS ..."
 msgstr ""
 
-#: View/settings-custom-css.view.php:65 View/settings.view.php:490
+#: View/settings-custom-css.view.php:65 View/settings.view.php:695
 msgid "Save Changes"
 msgstr ""
 
 #: View/settings-extra.view.php:37 View/settings-faq.view.php:29
-#: View/settings.view.php:39 View/share-report.view.php:36
+#: View/settings.view.php:42 View/share-report.view.php:36
 msgid "Add the Share Buttons automatically."
 msgstr ""
 
@@ -411,158 +503,185 @@ msgstr ""
 msgid "Available filters"
 msgstr ""
 
-#: View/settings.view.php:59
+#: View/settings.view.php:62
 msgid "Places available"
 msgstr ""
 
-#: View/settings.view.php:68
+#: View/settings.view.php:71
 msgid "Page home"
 msgstr ""
 
-#: View/settings.view.php:77
+#: View/settings.view.php:80
 msgid "Archive/Category"
 msgstr ""
 
-#: View/settings.view.php:86
+#: View/settings.view.php:89
 msgid "Pages"
 msgstr ""
 
-#: View/settings.view.php:95
+#: View/settings.view.php:98
 msgid "Single"
 msgstr ""
 
-#: View/settings.view.php:106
+#: View/settings.view.php:109
 msgid "WooCommerce share"
 msgstr ""
 
-#: View/settings.view.php:117
+#: View/settings.view.php:120
 msgid "Before content"
 msgstr ""
 
-#: View/settings.view.php:126
+#: View/settings.view.php:129
 msgid "After content"
 msgstr ""
 
-#: View/settings.view.php:133
+#: View/settings.view.php:136
 msgid "Social networks available"
 msgstr ""
 
-#: View/settings.view.php:159
+#: View/settings.view.php:162
 msgid "Layout options"
 msgstr ""
 
-#: View/settings.view.php:161
+#: View/settings.view.php:164
 msgid "All layout supports responsive"
 msgstr ""
 
-#: View/settings.view.php:214 View/settings.view.php:325
+#: View/settings.view.php:232 View/settings.view.php:527
 msgid "Position fixed"
 msgstr ""
 
-#: View/settings.view.php:224
+#: View/settings.view.php:242
 msgid "Fixed left"
 msgstr ""
 
-#: View/settings.view.php:234
+#: View/settings.view.php:255
 msgid "Fixed right"
 msgstr ""
 
-#: View/settings.view.php:241
+#: View/settings.view.php:265
 msgid "Clear"
 msgstr ""
 
-#: View/settings.view.php:242
+#: View/settings.view.php:266
 msgid "Click to clear the positions."
 msgstr ""
 
-#: View/settings.view.php:247
+#: View/settings.view.php:281 View/settings.view.php:345
 msgid "Position fixed layout"
 msgstr ""
 
-#: View/settings.view.php:322
+#: View/settings.view.php:327
+msgid "Text below sharing count"
+msgstr ""
+
+#: View/settings.view.php:340 View/settings.view.php:380
+msgid "Change text below sharing count. Default SHARES"
+msgstr ""
+
+#: View/settings.view.php:344
 #, php-format
-msgid "By layouts: %s, %s, and %s."
+msgid "Used in %s %s."
 msgstr ""
 
-#: View/settings.view.php:333
-msgid "Custom class"
+#: View/settings.view.php:368
+#, php-format
+msgid "%s: Text bellow sharing count"
 msgstr ""
 
-#: View/settings.view.php:342
-msgid "Custom class for primary div"
-msgstr ""
-
-#: View/settings.view.php:349
-msgid "Share count label"
-msgstr ""
-
-#: View/settings.view.php:358
-msgid "Change text of the share count title. Default SHARES"
-msgstr ""
-
-#: View/settings.view.php:359
+#: View/settings.view.php:381
 #, php-format
 msgid "Used in %s layout."
 msgstr ""
 
-#: View/settings.view.php:375
+#: View/settings.view.php:428
+msgid "Share count background color"
+msgstr ""
+
+#: View/settings.view.php:443
+#, php-format
+msgid "By layouts: %s, %s, %s and %s."
+msgstr ""
+
+#: View/settings.view.php:509
+msgid "Buttons background color"
+msgstr ""
+
+#: View/settings.view.php:524
+#, php-format
+msgid "By layouts: %s, %s, and %s."
+msgstr ""
+
+#: View/settings.view.php:564
+msgid "Custom class for primary div"
+msgstr ""
+
+#: View/settings.view.php:580
 msgid "Insert the title here."
 msgstr ""
 
-#: View/settings.view.php:376
+#: View/settings.view.php:581
 msgid "Text to display above the sharing buttons."
 msgstr ""
 
-#: View/settings.view.php:383
+#: View/settings.view.php:588
 msgid "HTML id attribute"
 msgstr ""
 
-#: View/settings.view.php:392
+#: View/settings.view.php:597
 msgid "Enter name to context of search. ID of content tag"
 msgstr ""
 
-#: View/settings.view.php:393
+#: View/settings.view.php:598
 msgid "This is to set the fixed layout to the left of the post content. <strong>Example:</strong> <code>wrap</code> use {id} for post id."
 msgstr ""
 
-#: View/settings.view.php:400
+#: View/settings.view.php:605
 msgid "Fixed Items in top"
 msgstr ""
 
-#: View/settings.view.php:412
+#: View/settings.view.php:617
 msgid "It is activated when scrolling the page on the buttons position."
 msgstr ""
 
-#: View/settings.view.php:418
+#: View/settings.view.php:623
 msgid "Highlighted by reference"
 msgstr ""
 
-#: View/settings.view.php:430
+#: View/settings.view.php:635
 msgid "This allows highlight the social network where the user Came from."
 msgstr ""
 
-#: View/settings.view.php:472
+#: View/settings.view.php:677
 msgid "The share count Twitter is powered by <a href=\"http://newsharecounts.com\" target=\"_blank\">newsharecounts.com</a>, you have to sign up with your Twitter account to get free service and twitter count. Just visit the website, fill in the domain of your site and click Sign in with Twitter. That, and nothing else!"
 msgstr ""
 
-#: View/settings.view.php:508
+#: View/settings.view.php:713
 msgid "Settings saved."
 msgstr ""
 
-#: View/settings.view.php:525
+#: View/settings.view.php:730
 msgid "General"
 msgstr ""
 
-#: View/settings.view.php:661
+#: View/settings.view.php:842
+msgid "YES"
+msgstr ""
+
+#: View/settings.view.php:843
+msgid "NO"
+msgstr ""
+
+#: View/settings.view.php:875
 #, php-format
 msgid "Help keep the free %s, you can make a donation or vote with %s at WordPress.org. Thank you very much!"
 msgstr ""
 
-#: View/settings.view.php:674
+#: View/settings.view.php:888
 msgid "Make a donation"
 msgstr ""
 
-#: View/settings.view.php:682
+#: View/settings.view.php:896
 msgid "Make a review"
 msgstr ""
 
@@ -583,10 +702,54 @@ msgstr ""
 msgid "%d minute"
 msgstr ""
 
-#: View/widgets.view.php:27
+#: View/shares.view.php:33
+msgid "Disable on this post"
+msgstr ""
+
+#: View/widget-follow.view.php:19
+msgid "No social networks were enabled in the Widget."
+msgstr ""
+
+#: View/widgets.view.php:34
 msgid "Override post title"
 msgstr ""
 
-#: View/widgets.view.php:28
+#: View/widgets.view.php:35
 msgid "Override permalinks"
+msgstr ""
+
+#: View/widgets.view.php:36
+msgid "Class name for CSS customization"
+msgstr ""
+
+#: View/widgets.view.php:140 View/widgets.view.php:165
+msgid "Drag & Drop to order and click to select"
+msgstr ""
+
+#: View/widgets.view.php:168
+msgid "The [item] URL field is empty."
+msgstr ""
+
+#: View/widgets.view.php:209
+msgid "Enter the network URL here:"
+msgstr ""
+
+#: View/widgets.view.php:223
+msgid "Example:"
+msgstr ""
+
+#: View/widgets.view.php:239
+msgid "Your email:"
+msgstr ""
+
+#: View/widgets.view.php:248
+msgid "Subject:"
+msgstr ""
+
+#: View/widgets.view.php:259
+msgid "Give the title:"
+msgstr ""
+
+#: wpupper-share-buttons.php:118
+msgid "It does not support your PHP version. Please, install a version greater than or equal to 5.2.0."
 msgstr ""

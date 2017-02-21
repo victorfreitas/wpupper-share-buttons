@@ -25,7 +25,7 @@ class WPUSB_Settings_Extra_View {
 		$prefix        = WPUSB_App::SLUG;
 		$extra_setting = "{$prefix}_extra_settings";
 	?>
-		<div class="wrap">
+		<div class="wrap" <?php printf( 'data-%s-component="extra-settings"', $prefix ); ?>>
 			<h2><?php _e( 'WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ); ?></h2>
 
 			<?php
@@ -43,7 +43,11 @@ class WPUSB_Settings_Extra_View {
 			<?php WPUSB_Settings_View::menu_top(); ?>
 
 			<div class="<?php echo "{$prefix}-wrap extra-settings-wrap"; ?>">
-				<form action="options.php" method="post">
+				<form action="options.php"
+					  method="post"
+					  data-action="form"
+					  data-element="form">
+
 					<table class="form-table table-extras" data-table="extras">
 						<tbody>
 							<tr>
@@ -165,6 +169,7 @@ class WPUSB_Settings_Extra_View {
 									<input type="text"
 										   name="<?php echo "{$extra_setting}[bitly_token]"; ?>"
 									       value="<?php echo $model->bitly_token; ?>"
+									       data-element="bitly-token"
 									       placeholder="<?php _e( 'Insert your access token Bitly', WPUSB_App::TEXTDOMAIN ); ?>"
 									       id="<?php echo $prefix; ?>-short-url"
 									       class="large-text">
@@ -274,6 +279,8 @@ class WPUSB_Settings_Extra_View {
 						settings_fields( "{$extra_setting}_group" );
 						submit_button();
 					?>
+					<div class="<?php echo $prefix; ?>-info-error"
+						 data-element="bitly-message"></div>
 				</form>
 			</div>
 		</div>

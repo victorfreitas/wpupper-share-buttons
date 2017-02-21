@@ -110,7 +110,8 @@ $supported = true;
 if ( version_compare( PHP_VERSION, '5.2', '<' ) ) {
 	$supported = false;
 
-	function wpusb_not_supported_php_version() { ?>
+	function wpusb_not_supported_php_version() {
+	?>
 		<div class="error notice is-dismissible">
 			<p>
 				<strong><?php echo WPUSB_App::NAME; ?></strong>
@@ -119,7 +120,8 @@ if ( version_compare( PHP_VERSION, '5.2', '<' ) ) {
 				?>
 			</p>
 		</div>
-	<?php }
+	<?php
+	}
 	add_action( 'admin_notices', 'wpusb_not_supported_php_version' );
 }
 

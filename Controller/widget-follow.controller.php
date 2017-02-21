@@ -225,7 +225,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		$std->vimeo        = new stdClass();
 		$std->vimeo->name  = 'Vimeo';
 		$std->vimeo->url   = 'https://vimeo.com/your-id';
-		$std->vimeo->title = __( 'Find us on vimeo', $domain );
+		$std->vimeo->title = __( 'Find us on Vimeo', $domain );
 
 		/**
 		 * @var Object

@@ -96,7 +96,7 @@ class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
 		);
 
 		WPUSB_Widgets_View::field_input(
-			__( 'Buttons background color. <br>By layouts: Square plus and Button', $domain ),
+			__( 'Buttons background color. <br>Layouts: Square plus and Button', $domain ),
 			'icons_background',
 			'color'
 		);
@@ -114,7 +114,7 @@ class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
 		);
 
 		WPUSB_Widgets_View::field_input(
-			__( 'Share count background color. <br>By layouts: Default, Button, Rounded and Square.', $domain ),
+			__( 'Share count background color. <br>Layouts: Default, Button, Rounded and Square.', $domain ),
 			'counts_bg_color',
 			'color'
 		);

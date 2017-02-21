@@ -164,7 +164,7 @@ class WPUSB_Widgets_View {
 						<span class="strong">
 							<?php _e( 'Drag & Drop to order and click to select', WPUSB_App::TEXTDOMAIN ); ?>
 						</span>
-						<span class="info-error <?php echo $prefix; ?>-hide"
+						<span class="<?php echo $prefix; ?>-info-error <?php echo $prefix; ?>-hide"
 						      data-message="<?php _e( 'The [item] URL field is empty.', WPUSB_App::TEXTDOMAIN ); ?>"
 						      data-element="info-message"></span>
 					</th>
