@@ -1889,6 +1889,23 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
     	return is_customize_preview();
     }
 
+    public static function get_bitly_domains() {
+		return array(
+			'com' => 'bitly.com',
+			'ly'  => 'bit.ly',
+			'mp'  => 'j.mp',
+		);
+    }
+
+    public static function get_bitly_domain( $key ) {
+    	if ( $key === 'default' ) {
+    		return false;
+    	}
+
+    	$domains = self::get_bitly_domains();
+    	return self::isset_get( $domains, $key, false );
+    }
+
 	public static function log( $data, $log_name = 'debug' )
 	{
 		$name = sprintf( '%s-%s.log', $log_name, date( 'd-m-Y' ) );

@@ -181,6 +181,34 @@ class WPUSB_Settings_Extra_View {
 							</tr>
 							<tr>
 								<th scope="row">
+									<label for="<?php echo $prefix; ?>-bitly-domain">
+										<?php _e( 'Select Bitly domain', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<td>
+									<select id="<?php echo $prefix; ?>-bitly-domain"
+									        name="<?php echo "{$extra_setting}[bitly_domain]"; ?>"
+									        class="regular-text">
+										<option value="default" selected="selected">
+											<?php _e( 'Default', WPUSB_App::TEXTDOMAIN ); ?>
+										</option>
+										<?php
+											$domains = WPUSB_Utils::get_bitly_domains();
+
+											foreach ( $domains as $key => $domain ) :
+												printf(
+													'<option value="%s" %s>%s</option>',
+													$key,
+													selected( $model->bitly_domain, $key, false ),
+													$domain
+												);
+											endforeach;
+										?>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">
 									<label for="<?php echo $prefix; ?>-minify-html">
 										<?php _e( 'Minify html buttons share', WPUSB_App::TEXTDOMAIN ); ?>
 									</label>

@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2017-02-20 22:15-0300\n"
-"PO-Revision-Date: 2017-02-20 22:24-0300\n"
+"POT-Creation-Date: 2017-02-21 00:23-0300\n"
+"PO-Revision-Date: 2017-02-21 00:24-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -224,91 +224,95 @@ msgstr "Informe compartir"
 msgid "Insert the Follow Us of your social networks."
 msgstr "Inserte el Follow Us de sus redes sociales."
 
-#: Controller/widget-follow.controller.php:60
+#: Controller/widget-follow.controller.php:40
+msgid "CSS is disabled!"
+msgstr "CSS está deshabilitado!"
+
+#: Controller/widget-follow.controller.php:64
 #: Controller/widgets.controller.php:72
 msgid "Widget title"
 msgstr "Título del widget"
 
-#: Controller/widget-follow.controller.php:65 View/settings.view.php:555
+#: Controller/widget-follow.controller.php:69 View/settings.view.php:555
 msgid "Custom class"
 msgstr "Clase personalizada"
 
-#: Controller/widget-follow.controller.php:70
+#: Controller/widget-follow.controller.php:74
 #: Controller/widgets.controller.php:87 View/settings.view.php:391
 msgid "Icons size"
 msgstr "Tamaño de los iconos"
 
-#: Controller/widget-follow.controller.php:76
+#: Controller/widget-follow.controller.php:80
 #: Controller/widgets.controller.php:93 View/settings.view.php:475
 msgid "Icons color"
 msgstr "Color de los iconos"
 
-#: Controller/widget-follow.controller.php:82
+#: Controller/widget-follow.controller.php:86
 #: Controller/widgets.controller.php:123
 msgid "Layout"
 msgstr "Layout"
 
-#: Controller/widget-follow.controller.php:156
+#: Controller/widget-follow.controller.php:160
 msgid "Follow us on Facebook"
 msgstr "Síguenos en Facebook"
 
-#: Controller/widget-follow.controller.php:165
+#: Controller/widget-follow.controller.php:169
 msgid "Follow us on Twitter"
 msgstr "Síganos en Twitter"
 
-#: Controller/widget-follow.controller.php:174
+#: Controller/widget-follow.controller.php:178
 msgid "Find us on Linkedin"
 msgstr "Encuentranos en Linkedin"
 
-#: Controller/widget-follow.controller.php:183
+#: Controller/widget-follow.controller.php:187
 msgid "Follow us on Google+"
 msgstr "Síguenos en Google+"
 
-#: Controller/widget-follow.controller.php:192
+#: Controller/widget-follow.controller.php:196
 msgid "My Pinterest board"
 msgstr "Mi tablero de Pinterest"
 
-#: Controller/widget-follow.controller.php:201
+#: Controller/widget-follow.controller.php:205
 msgid "Check out our Instagram"
 msgstr "Echa un vistazo a nuestro Instagram"
 
-#: Controller/widget-follow.controller.php:210
+#: Controller/widget-follow.controller.php:214
 msgid "Follow us Reddit"
 msgstr "Siguenos Reddit"
 
-#: Controller/widget-follow.controller.php:219
+#: Controller/widget-follow.controller.php:223
 msgid "Subscribe to our YouTube"
 msgstr "Suscríbete a nuestro YouTube"
 
-#: Controller/widget-follow.controller.php:228
+#: Controller/widget-follow.controller.php:232
 msgid "Find us on Vimeo"
 msgstr "Encuentranos en Vimeo"
 
-#: Controller/widget-follow.controller.php:237
+#: Controller/widget-follow.controller.php:241
 msgid "Subscribe to our RSS Feed"
 msgstr "Suscríbete a nuestro RSS Feed"
 
-#: Controller/widget-follow.controller.php:246
+#: Controller/widget-follow.controller.php:250
 msgid "Find us on Tumblr"
 msgstr "Encuentranos en Tumblr"
 
-#: Controller/widget-follow.controller.php:255
+#: Controller/widget-follow.controller.php:259
 msgid "Check out our Flickr"
 msgstr "Echa un vistazo a nuestro Flickr"
 
-#: Controller/widget-follow.controller.php:264
+#: Controller/widget-follow.controller.php:268
 msgid "Check out our Foursquare"
 msgstr "Echa un vistazo a nuestro Foursquare"
 
-#: Controller/widget-follow.controller.php:273
+#: Controller/widget-follow.controller.php:277
 msgid "Check out our GitHub"
 msgstr "Echa un vistazo a nuestro GitHub"
 
-#: Controller/widget-follow.controller.php:282
+#: Controller/widget-follow.controller.php:286
 msgid "Contact Us"
 msgstr "Contáctenos"
 
-#: Controller/widget-follow.controller.php:291
+#: Controller/widget-follow.controller.php:295
 msgid "Follow us on Snapchat"
 msgstr "Siguenos en Snapchat"
 
@@ -352,8 +356,8 @@ msgstr "Retire counter"
 msgid "Remove button title"
 msgstr "Retire título botón"
 
-#: Helper/utils-share.php:419 View/settings.view.php:175
-#: View/settings.view.php:444
+#: Helper/utils-share.php:419 View/settings-extra.view.php:193
+#: View/settings.view.php:175 View/settings.view.php:444
 msgid "Default"
 msgstr "Defecto"
 
@@ -379,7 +383,7 @@ msgstr "Cuadrado"
 msgid "Square plus"
 msgstr "Cuadrado más"
 
-#: Helper/utils.php:1340
+#: Helper/utils.php:1351
 msgid "SHARES"
 msgstr "ACCIONES"
 
@@ -476,18 +480,22 @@ msgid "Shorten urls using bitly, generate token in "
 msgstr "Encurtar urls usando bitly, gerar chave em "
 
 #: View/settings-extra.view.php:185
+msgid "Select Bitly domain"
+msgstr "Seleccionar Bitly domain"
+
+#: View/settings-extra.view.php:213
 msgid "Minify html buttons share"
 msgstr "Minify html botones de compartir"
 
-#: View/settings-extra.view.php:198
+#: View/settings-extra.view.php:226
 msgid "Minify the HTML helps site performance."
 msgstr "Minificar el HTML ayuda al rendimiento del sitio."
 
-#: View/settings-extra.view.php:205
+#: View/settings-extra.view.php:233
 msgid "Deactivate sharing report"
 msgstr "Desactivar informe de uso compartido"
 
-#: View/settings-extra.view.php:218
+#: View/settings-extra.view.php:246
 msgid ""
 "This allows you to disable counting of the shares report. You will not lose "
 "the report you have already computed."
@@ -495,19 +503,19 @@ msgstr ""
 "Esto le permite desactivar la cuenta del informe de recursos compartidos. No "
 "perderá el informe que ya ha calculado."
 
-#: View/settings-extra.view.php:225
+#: View/settings-extra.view.php:253
 msgid "Disable CSS"
 msgstr "CSS Desactivar"
 
-#: View/settings-extra.view.php:242
+#: View/settings-extra.view.php:270
 msgid "Disable JS"
 msgstr "Inhabilitar JS"
 
-#: View/settings-extra.view.php:259
+#: View/settings-extra.view.php:287
 msgid "CSS file in footer"
 msgstr "Archivo CSS en el pie de página"
 
-#: View/settings-extra.view.php:272
+#: View/settings-extra.view.php:300
 msgid ""
 "Keep the CSS style in the footer is recommended to improve the performance "
 "of your website."
@@ -734,11 +742,6 @@ msgstr "Este informe tiene un caché de"
 msgid "minutes"
 msgstr "minutos"
 
-#: View/share-report.view.php:30
-#, php-format
-msgid "%d minute"
-msgstr "%d minutos"
-
 #: View/shares.view.php:33
 msgid "Disable on this post"
 msgstr "Desactivar en esta publicación"
@@ -794,6 +797,9 @@ msgid ""
 msgstr ""
 "No es compatible con la versión de PHP. Instale una versión mayor o igual a "
 "5.2.0."
+
+#~ msgid "%d minute"
+#~ msgstr "%d minutos"
 
 #~ msgid "Custom post title"
 #~ msgstr "Título de la publicación personalizada"

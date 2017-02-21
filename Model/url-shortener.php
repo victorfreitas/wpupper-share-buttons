@@ -17,12 +17,6 @@ class WPUSB_URL_Shortener {
 
 	private $token;
 
-	private $domains = array(
-		'com' => 'bitly.com',
-		'ly'  => 'bit.ly',
-		'mp'  => 'j.mp',
-	);
-
 	const TABLE_NAME = 'wpusb_url_shortener';
 	const API = 'https://api-ssl.bitly.com/v3/shorten';
 
@@ -192,10 +186,17 @@ class WPUSB_URL_Shortener {
     		return false;
     	}
 
+		$value  = WPUSB_Utils::option( 'bitly_domain' );
+		$domain = WPUSB_Utils::get_bitly_domain( $value );
 		$params = array(
 			'access_token' => $this->token,
 			'longUrl'      => $this->permalink,
 		);
+
+		if ( $domain ) {
+			$params['domain'] = $domain;
+		}
+
 		$url = esc_url_raw( add_query_arg( $params, self::API ) );
 		$ch  = curl_init();
 

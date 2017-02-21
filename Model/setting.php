@@ -406,6 +406,14 @@ class WPUSB_Setting {
 	private $counts_bg_color;
 
 	/**
+	 * Bitly URL shortener domain
+	 *
+	 * @since 3.27
+	 * @var String
+	 */
+	private $bitly_domain;
+
+	/**
 	 * Instance singleton
 	 *
 	 * @since 1.0
