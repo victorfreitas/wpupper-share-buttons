@@ -1548,7 +1548,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 				'button_bg_color'   => self::isset_get( $option, 'icons_background' ),
 			);
 			$widget_id    = self::get_widget_attr_id( $number );
-			$widgets_css .= WPUSB_Shares_View::get_css_buttons_styles( $widget_options, $widget_id );
+			$widgets_css .= WPUSB_Shares_View::get_css_buttons_styles( $widget_options, "#{$widget_id}" );
 		endforeach;
 
 		return $widgets_css;
@@ -1557,7 +1557,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	/**
 	 * Get Widget Follow custom CSS
 	 *
-	 * @since 3.25
+	 * @since 3.27
 	 * @version 1.0
 	 * @param Null
 	 * @return String
@@ -1586,11 +1586,24 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 				'counts_bg_color'   => '',
 				'button_bg_color'   => '',
 			);
-			$widget_id    = self::get_widget_attr_id( $number, 'follow-' );
-			$widgets_css .= WPUSB_Shares_View::get_css_buttons_styles( $widget_options, $widget_id );
+			$widget_id    = self::get_widget_follow_attr_id( $number );
+			$widgets_css .= WPUSB_Shares_View::get_css_buttons_styles( $widget_options, "#{$widget_id}" );
 		endforeach;
 
 		return $widgets_css;
+	}
+
+	/**
+	 * Get Widget follow attribute ID
+	 *
+	 * @since 3.27
+	 * @version 1.0
+	 * @param Null
+	 * @return String
+	 */
+	public static function get_widget_follow_attr_id( $number ) {
+		$prefix = WPUSB_App::SLUG;
+		return sprintf( '%s-follow-widget-%d', $prefix, $number );
 	}
 
 	/**
@@ -1816,9 +1829,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Integer $number
 	 * @return String
 	 */
-    public static function get_widget_attr_id( $number, $follow = '' ) {
+    public static function get_widget_attr_id( $number ) {
 		$prefix = WPUSB_App::SLUG;
-		return sprintf( "#widget-%s-%s%d", $prefix, $follow, $number );
+		return sprintf( '%s-share-widget-%d', $prefix, $number );
     }
 
 	/**
