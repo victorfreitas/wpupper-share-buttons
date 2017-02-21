@@ -195,7 +195,6 @@ class WPUSB_URL_Shortener {
 		$params = array(
 			'access_token' => $this->token,
 			'longUrl'      => $this->permalink,
-			'domain'       => $this->domains['ly'],
 		);
 		$url = esc_url_raw( add_query_arg( $params, self::API ) );
 		$ch  = curl_init();
