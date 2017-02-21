@@ -76,6 +76,7 @@ Layout options: default, buttons, rounded, square
 * New option: Alter buttons title color in Dashboard and Widget
 * New option: Add Widget Follow Us
 * New option: Deactivate share buttons for specific Post, Page and publics Custom Post Types via metabox
+* New option: Select the Bitly domain
 * New: Update Widget share options
 * New: Real time preview share buttons customization in Dashboard page
 * Update font icons
