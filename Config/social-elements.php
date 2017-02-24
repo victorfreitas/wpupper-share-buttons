@@ -563,19 +563,29 @@ class WPUSB_Social_Elements {
 
 		$text = WPUSB_Utils::option( 'twitter_text', false );
 
-		if ( $text && WPUSB_Utils::indexof( $text, '{' ) ) {
-			$search             = array( '{title}', '{', '}' );
-			$replace            = array( self::$title, '', '' );
-			self::$twitter_text = str_replace( $search, $replace, $text );
+		if ( ! empty( $text ) ) :
+			if ( WPUSB_Utils::indexof( $text, '{' ) ) :
+				$search             = array( '{title}', '{', '}' );
+				$replace            = array( self::$title, '', '' );
+				self::$twitter_text = str_replace( $search, $replace, $text );
+				return;
+			endif;
+
+			self::$twitter_text = $text;
 			return;
-		}
+		endif;
 
 		$slug        = WPUSB_App::SLUG;
 		$domain      = WPUSB_App::TEXTDOMAIN;
 		$before_text = apply_filters( "{$slug}-twitter-before", __( 'Click to see also', $domain ) );
 		$after_text  = apply_filters( "{$slug}-twitter-after", __( 'I just saw', $domain ) );
 
-		self::$twitter_text = WPUSB_Utils::get_twitter_text( self::$title, $after_text, $before_text, self::$caracter );
+		self::$twitter_text = WPUSB_Utils::get_twitter_text(
+			self::$title,
+			$after_text,
+			$before_text,
+			self::$caracter
+		);
 	}
 
 	/**

@@ -478,20 +478,19 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$has_param = self::indexof( $permalink, '?' );
 
 		if ( ! empty( $tracking ) && empty( $query_string ) && ! $has_param ) {
-			$url = esc_url( $permalink );
-			return rawurlencode( $url . $tracking );
+			$url         = esc_url( $permalink );
+			$build_query = self::build_query( $tracking );
+			return rawurlencode( "{$url}?{$build_query}" );
 		}
 
 		if ( empty( $tracking ) && ! empty( $query_string ) && ! $has_param ) {
-			$url = esc_url( $permalink );
-			return rawurlencode( "{$url}?{$query_string}" );
+			$url         = esc_url( $permalink );
+			$build_query = self::build_query( $query_string );
+			return rawurlencode( "{$url}?{$build_query}" );
 		}
 
-		$args = add_query_arg( $tracking, '', $query_string );
-
-		parse_str( str_replace( '?', '', $args ), $params );
-
-		$build_query = http_build_query( $params );
+		$args        = add_query_arg( $tracking, '', $query_string );
+		$build_query = self::build_query( $args );
 
 		if ( $has_param ) {
 			$url = remove_query_arg( array_keys( $params ), $permalink );
@@ -504,6 +503,19 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$url = str_replace( '&#038;', '&', $url );
 
 		return rawurlencode( $url );
+	}
+
+	/**
+	 * Query string parse
+	 *
+	 * @since 3.27.1
+	 * @version 1.0.0
+	 * @param Null
+	 * @return String
+	 */
+	public static function build_query( $query_string ) {
+		parse_str( str_replace( '?', '', $query_string ), $params );
+		return http_build_query( $params );
 	}
 
 	/**
