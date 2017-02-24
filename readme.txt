@@ -98,7 +98,7 @@ The following plugins are recommended
 
 = 3.27.1 =
 
-* Fix: URL with params
+* Fix: URL with space in query string
 * Fix: Twitter text option
 
 = 3.27 =
@@ -217,7 +217,7 @@ The following plugins are recommended
 = 3.15 =
 
 * Required PHP version 5.2.4 or above
-* Bug fix permalink params
+* Bug fix permalink parameters
 
 = 3.14 =
 
@@ -512,7 +512,7 @@ The following plugins are recommended
 
 = 2.2.2 =
 
-* Bug fix whatsapp UTM Tracking params
+* Bug fix whatsapp UTM Tracking parameters
 
 = 2.2.1 =
 
