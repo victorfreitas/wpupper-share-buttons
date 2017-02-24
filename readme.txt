@@ -98,8 +98,8 @@ The following plugins are recommended
 
 = 3.27.1 =
 
-* Fix: URL with space in query string
-* Fix: Twitter text option
+* Fix: URL with space in query string. [Related by @robertkyambo]
+* Fix: Twitter text option. [Related by @robertkyambo]
 
 = 3.27 =
 

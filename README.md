@@ -70,7 +70,7 @@ Layout options: default, buttons, rounded, square
 
 ## 3.27.1
 
-* Fix: URL with params. [Related by @robertkyambo]
+* Fix: URL with space in query string. [Related by @robertkyambo]
 * Fix: Twitter text option. [Related by @robertkyambo]
 
 ## 3.27
