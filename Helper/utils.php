@@ -194,13 +194,15 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	/**
 	 * Get filtered super global server by key
 	 *
-	 * @since 1.0
+	 * @since 1.2
 	 * @param String $key
 	 * @return String
 	*/
 	public static function get_server( $key ) {
-		$name = strtoupper( $key );
-		return filter_input( INPUT_SERVER, $name, FILTER_SANITIZE_STRING );
+		$name  = strtoupper( $key );
+		$value = self::isset_get( $_SERVER, $name );
+
+		return self::rm_tags( $value, true );
 	}
 
 	/**

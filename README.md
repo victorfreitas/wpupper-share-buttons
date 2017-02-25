@@ -6,7 +6,7 @@ Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google
 Requires at least: 3.0  
 Tested up to: 4.7.2  
 PHP version: 5.2.4  
-Stable tag: 3.27.1  
+Stable tag: 3.27.2  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -68,9 +68,13 @@ Layout options: default, buttons, rounded, square
 
 ## Changelog
 
+## 3.27.2
+
+* Fix: URLs with query string. It was not returning the query strings on some servers. [Related by @robertkyambo]
+
 ## 3.27.1
 
-* Fix: URL with space in query string. [Related by @robertkyambo]
+* Fix: URL with space in query string.
 * Fix: Twitter text option. [Related by @robertkyambo]
 
 ## 3.27
