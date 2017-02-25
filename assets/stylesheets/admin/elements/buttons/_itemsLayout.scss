@@ -1,4 +1,4 @@
-$_items_mobile : ( whatsapp, telegram, viber );
+$_items_mobile : ( whatsapp, viber );
 
 @each $item in $_items_mobile {
     .#{$prefix} .#{$prefix}-#{$item} {

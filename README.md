@@ -6,7 +6,7 @@ Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google
 Requires at least: 3.0  
 Tested up to: 4.7.2  
 PHP version: 5.2.4  
-Stable tag: 3.27.2  
+Stable tag: 3.28  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -67,6 +67,13 @@ Layout options: default, buttons, rounded, square
 4. Using the content editor -> [wpusb class_first="" class_second="" class_link="" class_icon="" layout="default" remove_inside="0" remove_counter="0"]  
 
 ## Changelog
+
+## 3.28
+
+* New: Behance follow us
+* New: Buffer share button
+* Share Telegram on desktop available.
+* Bug fix. [related by @ablekinetic]
 
 ## 3.27.2
 

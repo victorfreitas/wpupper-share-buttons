@@ -50,6 +50,7 @@ class WPUSB_Social_Elements {
 		'reddit'    => 'reddit',
 		'flipboard' => 'flipboard',
 		'messenger' => 'messenger',
+		'buffer'    => 'buffer',
 	);
 
 	/**
@@ -260,7 +261,7 @@ class WPUSB_Social_Elements {
 		$std->telegram              = new stdClass();
 		$std->telegram->name        = 'Telegram';
 		$std->telegram->element     = 'telegram';
-		$std->telegram->link        = 'tg://msg_url?url=' . self::$url . '&text=' . self::$title;
+		$std->telegram->link        = 'https://telegram.me/share/url?url=' . self::$url . '&text=' . self::$title;
 		$std->telegram->title       = __( 'Share on Telegram', WPUSB_App::TEXTDOMAIN );
 		$std->telegram->class       = $prefix . '-telegram';
 		$std->telegram->class_item  = self::$item;
@@ -389,6 +390,23 @@ class WPUSB_Social_Elements {
 		$std->messenger->inside      = __( 'Messenger', WPUSB_App::TEXTDOMAIN );
 		$std->messenger->has_counter = false;
 
+		/**
+		 * @var Object
+		 * @see Buffer
+		 */
+		$std->buffer              = new stdClass();
+		$std->buffer->name        = 'Buffer';
+		$std->buffer->element     = 'buffer';
+		$std->buffer->link        = 'https://bufferapp.com/add?' . self::_get_buffer_param();
+		$std->buffer->title       = __( 'Share on Buffer', WPUSB_App::TEXTDOMAIN );
+		$std->buffer->class       = $prefix . '-buffer';
+		$std->buffer->class_item  = self::$item;
+		$std->buffer->class_link  = self::$class_button;
+		$std->buffer->class_icon  = apply_filters( "{$prefix}_class_icon", $prefix_icons . 'buffer' );
+		$std->buffer->popup       = self::$action;
+		$std->buffer->inside      = __( 'Buffer', WPUSB_App::TEXTDOMAIN );
+		$std->buffer->has_counter = false;
+
 		$args = array(
 			'title'        => self::$title,
 			'url'          => self::$url,
@@ -428,6 +446,8 @@ class WPUSB_Social_Elements {
 		$order    = WPUSB_Utils::json_decode( $order );
 
 		if ( is_array( $order ) ) :
+			$order = array_merge( $order, array_values( self::$items_available ) );
+
 			foreach ( $order as $item ) :
 				if ( ! isset( $elements->{$item} ) ) {
 					continue;
@@ -605,5 +625,32 @@ class WPUSB_Social_Elements {
 
 		self::$twitter_via      = ( ! empty( $via ) ) ? "&via={$via}" : '';
 		self::$twitter_hashtags = ( ! empty( $hashtags ) ) ? "&hashtags={$hashtags}" : '';
+	}
+
+	/**
+	 * Buffer Parameters
+	 *
+	 * @since 3.28
+	 * @param Null
+	 * @return Void
+	 */
+	public static function _get_buffer_param() {
+		$via     = WPUSB_Utils::option( 'twitter_username' );
+		$mention = WPUSB_Utils::sanitize_twitter_params( $via );
+
+		$args = array(
+			'url'  => self::$url,
+			'text' => self::$title,
+		);
+
+		if ( ! empty( self::$thumbnail ) ) {
+			$args['picture'] = rawurldecode( self::$thumbnail );
+		}
+
+		if ( ! empty( $mention ) ) {
+			$args['via'] = $mention;
+		}
+
+		return http_build_query( $args );
 	}
 }

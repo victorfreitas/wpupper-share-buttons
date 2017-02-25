@@ -14,6 +14,8 @@ $btnColor           : #2489c5;
 $colorCheckboxOff   : #ea6262;
 $colorCheckboxOn    : #2fb175;
 $colorDarken        : #454545;
+$colorBehance       : #1769ff;
+$colorBuffer        : #323b43;
 $colorEmail         : #0082b3;
 $colorfacebook      : #3b5998;
 $colorfacebookLike  : #4C63A5;
@@ -43,6 +45,8 @@ $colorVK			: #45668e;
 $colorWhatsapp      : #4BC557;
 $colorYouTube       : #cd201f;
 $colors             : (
+	behance     : $colorBehance,
+	buffer      : $colorBuffer,
 	email       : $colorEmail,
 	facebook    : $colorfacebook,
 	flickr      : $colorFlickr,
