@@ -53,3 +53,15 @@
     right: 2px;
     top: -6px;
 }
+
+.#{$prefix}-layout-widget {
+	display: inline-block;
+	margin-top: 0;
+	width: 100%;
+
+	label {
+		font-size: 15px;
+		font-weight: bold;
+		margin-bottom: 3px;
+	}
+}

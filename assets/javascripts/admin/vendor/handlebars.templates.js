@@ -65,7 +65,11 @@ templates['fixed'] = template({"1":function(container,depth0,helpers,partials,da
     + ((stack1 = helpers["if"].call(depth0,(depth0 != null ? depth0.is_fixed_2 : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\n				</div>\n			</div>\n";
 },"3":function(container,depth0,helpers,partials,data) {
-    return "						<span data-element=\"fixed-label-text\"\n							  data-item=\"text\">Shares</span>\n";
+    var helper;
+
+  return "						<span data-element=\"fixed-label-text\"\n							  data-item=\"text\">"
+    + container.escapeExpression(((helper = (helper = helpers.share_count_label || (depth0 != null ? depth0.share_count_label : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"share_count_label","hash":{},"data":data}) : helper)))
+    + "</span>\n";
 },"5":function(container,depth0,helpers,partials,data) {
     var helper;
 

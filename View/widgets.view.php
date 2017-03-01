@@ -83,8 +83,9 @@ class WPUSB_Widgets_View {
 	public static function field_select( $text, $id, $options ) {
 		$instance = self::$instance;
 		$current  = $instance->get_property( $id );
+		$prefix   = WPUSB_App::SLUG;
 	?>
-		<p class="<?php echo WPUSB_App::SLUG . '-widget-select-content'; ?>">
+		<p class="<?php printf( '%1$s-%2$s %1$s-%3$s-widget', $prefix, 'widget-select-content', $id ); ?>">
 			<label for="<?php echo esc_attr( $instance->get_field_id( $id ) ); ?>">
 				<?php echo $text; ?>
 			</label>
@@ -116,7 +117,7 @@ class WPUSB_Widgets_View {
 				<?php echo $text; ?>
 			</div>
 	<?php
-		WPUSB_Settings_View::add_checkbox(array(
+		self::add_checkbox(array(
 			'name'    => esc_attr( $instance->get_field_name( $id ) ),
 			'id'      => esc_attr( $instance->get_field_id( $id ) ),
 			'checked' => checked( 1, $value, false ),
@@ -267,5 +268,39 @@ class WPUSB_Widgets_View {
 			</span>
 		</p>
 	<?php
+	}
+
+	public static function add_checkbox( $args = array() ) {
+		$prefix   = WPUSB_App::SLUG;
+		$defaults = array(
+			'name'        => '',
+			'id'          => '',
+			'checked'     => '',
+			'value'       => '',
+			'description' => '',
+		);
+		$args      = array_merge( $defaults, $args );
+		$on_title  = __( 'YES', WPUSB_App::SLUG );
+		$off_title = __( 'NO', WPUSB_App::SLUG );
+
+		echo <<<EOD
+			<div class="{$prefix}-custom-switch">
+
+			    <input type="checkbox"
+			    	   id="{$prefix}-{$args['id']}"
+			    	   class="{$prefix}-check"
+			    	   name="{$args['name']}"
+			    	   value="{$args['value']}"
+			    	   {$args['checked']}>
+
+			    <label for="{$prefix}-{$args['id']}">
+			        <span class="{$prefix}-inner"
+			        	  data-title-on="{$on_title}"
+			        	  data-title-off="{$off_title}"></span>
+			        <span class="{$prefix}-switch"></span>
+			    </label>
+
+			</div>
+EOD;
 	}
 }

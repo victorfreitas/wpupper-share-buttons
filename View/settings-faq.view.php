@@ -28,13 +28,13 @@ class WPUSB_Settings_Faq_View {
 			<h2><?php _e( 'WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ); ?></h2>
 			<p class="description"><?php _e( 'Add the Share Buttons automatically.', WPUSB_App::TEXTDOMAIN ); ?></p>
 
-			<?php WPUSB_Settings_View::home_page_notice(); ?>
+			<?php WPUSB_Utils_View::page_notice(); ?>
 
 			<span class="<?php echo "{$prefix}-title-wrap"; ?>">
 				<?php _e( 'Use options', WPUSB_App::TEXTDOMAIN ); ?>
 			</span>
 
-			<?php WPUSB_Settings_View::menu_top(); ?>
+			<?php WPUSB_Utils_View::menu_top(); ?>
 
 			<div class="<?php echo "{$prefix}-wrap-faq"; ?>">
 <pre data-element="highlight">

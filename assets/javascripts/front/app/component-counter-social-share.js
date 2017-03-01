@@ -41,7 +41,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 
 	Model.fn.addEventListeners = function() {
 		this.$el.addEvent( 'click', 'open-popup', this );
-		WPUSB.ToggleButtons.create( this.$el.data( 'element' ), this.$el );
+		WPUSB.ToggleButtons.create( this.$el.data( 'element' ), this );
 	};
 
 	Model.fn.request = function() {
