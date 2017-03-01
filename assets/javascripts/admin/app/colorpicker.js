@@ -1,6 +1,7 @@
 WPUSB( 'WPUSB.ColorPicker', function(Model, $) {
 
 	Model.create = function(container) {
+        this.$el = container.find( '.' + this.utils.prefix + '-wrap' );
 		this.init();
 	};
 
@@ -9,12 +10,11 @@ WPUSB( 'WPUSB.ColorPicker', function(Model, $) {
 	};
 
 	Model.renderColorPicker = function() {
-		var className = '.' + this.utils.prefix + '-colorpicker'
-		  , options   = {
+		var options = {
 		    change: this._onChangeColorPicker.bind( this )
 		};
 
-		$( className ).wpColorPicker( options );
+		this.$el.find( '[data-colorpicker="true"]' ).wpColorPicker( options );
 	};
 
 	Model._onChangeColorPicker = function(event, ui) {

@@ -32,25 +32,25 @@ class WPUSB_Social_Elements {
 	public static $social_networks = null;
 
 	public static $items_available = array(
-		'facebook'  => 'facebook',
-		'twitter'   => 'twitter',
-		'google'    => 'google',
-		'whatsapp'  => 'whatsapp',
-		'pinterest' => 'pinterest',
-		'linkedin'  => 'linkedin',
-		'tumblr'    => 'tumblr',
-		'email'     => 'email',
-		'gmail'     => 'gmail',
-		'printer'   => 'printer',
-		'telegram'  => 'telegram',
-		'skype'     => 'skype',
-		'viber'     => 'viber',
-		'like'      => 'like',
-		'share'     => 'share',
-		'reddit'    => 'reddit',
-		'flipboard' => 'flipboard',
-		'messenger' => 'messenger',
-		'buffer'    => 'buffer',
+		'facebook'  => 'Facebook',
+		'twitter'   => 'Twitter',
+		'google'    => 'Google Plus',
+		'whatsapp'  => 'Whatsapp',
+		'pinterest' => 'Pinterest',
+		'linkedin'  => 'Linkedin',
+		'tumblr'    => 'Tumblr',
+		'email'     => 'Email',
+		'gmail'     => 'Gmail',
+		'printer'   => 'PrintFriendly',
+		'telegram'  => 'Telegram',
+		'skype'     => 'Skype',
+		'viber'     => 'Viber',
+		'like'      => 'Like',
+		'share'     => 'Share',
+		'reddit'    => 'Reddit',
+		'flipboard' => 'Flipboard',
+		'messenger' => 'Messenger',
+		'buffer'    => 'Buffer',
 	);
 
 	/**
@@ -62,13 +62,9 @@ class WPUSB_Social_Elements {
 	 * @return Boolean
 	 */
 	public static function items_available( $item ) {
-		$items = apply_filters( WPUSB_App::SLUG . '-items-available', self::$items_available );
+		$items = apply_filters( WPUSB_Utils::get_filter( '-items-available' ), self::$items_available );
 
-		if ( isset( $items[ $item ] ) ) {
-			return true;
-		}
-
-		return false;
+		return isset( $items[ $item ] );
 	}
 
 	/**
@@ -430,38 +426,31 @@ class WPUSB_Social_Elements {
 	 * @return Object
 	 */
 	private static function _ksort( $elements ) {
-		$tag = WPUSB_App::SLUG . '-elements-args';
+		$tag = WPUSB_Utils::get_filter( '-elements-args' );
 
 		if ( ! is_null( self::$social_networks ) ) {
 			return apply_filters( $tag, self::$social_networks );
 		}
 
-		$order = WPUSB_Utils::option( 'order', false );
+		$elements_order = WPUSB_Utils::get_networks_order( true );
 
-		if ( ! $order ) {
+		if ( ! $elements_order ) {
 			return apply_filters( $tag, $elements );
 		}
 
 		$networks = new stdClass();
-		$order    = WPUSB_Utils::json_decode( $order );
 
-		if ( is_array( $order ) ) :
-			$order = array_merge( $order, array_values( self::$items_available ) );
+		foreach ( $elements_order as $element => $title ) :
+			if ( ! isset( $elements->{$element} ) ) {
+				continue;
+			}
 
-			foreach ( $order as $item ) :
-				if ( ! isset( $elements->{$item} ) ) {
-					continue;
-				}
+			$networks->{$element} = $elements->{$element};
+		endforeach;
 
-				$networks->{$item} = $elements->{$item};
-			endforeach;
+		self::$social_networks = $networks;
 
-			$elements = $networks;
-		endif;
-
-		self::$social_networks = $elements;
-
-		return apply_filters( $tag, $elements );
+		return apply_filters( $tag, $networks );
 	}
 
 	/**

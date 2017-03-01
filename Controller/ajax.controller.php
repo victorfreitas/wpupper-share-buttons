@@ -235,7 +235,7 @@ class WPUSB_Ajax_Controller {
 		global $wp_version;
 
 		$list         = array();
-		$social       = WPUSB_Social_Elements::social_media();
+		$networks     = WPUSB_Social_Elements::social_media();
 		$count        = 0;
 		$fixed_layout = WPUSB_Utils::post( 'fixed_layout', 'buttons' );
 
@@ -244,13 +244,15 @@ class WPUSB_Ajax_Controller {
 		}
 
 		$total = ( count( $checkeds ) - 1 );
+		$title = WPUSB_Utils::option( 'title' );
+		$label = WPUSB_Utils::get_share_count_label();
 
 		foreach ( $checkeds as $element ) {
-			if ( ! WPUSB_Social_Elements::items_available( $element ) ) {
+			if ( ! isset( $networks->{$element} ) ) {
 				continue;
 			}
 
-			$item   = $social->{$element};
+			$item   = $networks->{$element};
 			$list[] = array(
 				'prefix'            => WPUSB_App::SLUG,
 				'counter'           => str_replace( '.', '', $wp_version ),
@@ -264,10 +266,10 @@ class WPUSB_Ajax_Controller {
 				'has_counter'       => $item->has_counter,
 				'item_inside'       => ( $item->inside ) ? $item->inside : '',
 				'fixed_layout'      => $fixed_layout,
-				'btn_class'         => ( $fixed_layout == 'buttons' ) ? 'button' : $fixed_layout,
-				'is_fixed_2'        => ( $fixed_layout == 'buttons' ) ? false : true,
-				'share_count_label' => WPUSB_Utils::get_share_count_label(),
-				'title'             => WPUSB_Utils::option( 'title' ),
+				'btn_class'         => ( $fixed_layout === 'buttons' ) ? 'button' : $fixed_layout,
+				'is_fixed_2'        => ( $fixed_layout === 'default' ),
+				'share_count_label' => $label,
+				'title'             => $title,
 			);
 			$count++;
 		}

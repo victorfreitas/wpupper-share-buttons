@@ -73,10 +73,8 @@
 
             i,
             i:hover {
-                color: inherit;
                 font-size: 26px;
-                width: auto;
-                height: auto;
+                color: inherit;
                 line-height: 1;
             }
 
@@ -141,6 +139,14 @@
     .#{$prefix}-facebook i {
         position: relative;
         top: 2px;
+    }
+
+    .#{$prefix}-item {
+        i,
+        i:hover {
+            width: auto;
+            height: auto;
+        }
     }
 }
 

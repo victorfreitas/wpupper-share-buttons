@@ -120,7 +120,7 @@ abstract class WPUSB_Utils_Share {
 		$share_modal  = false;
 
 		foreach ( $social_items as $item ) :
-			if ( ! WPUSB_Social_Elements::items_available( $item ) ) {
+			if ( ! isset( $elements->{$item} ) ) {
 				continue;
 			}
 

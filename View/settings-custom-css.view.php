@@ -24,17 +24,22 @@ class WPUSB_Settings_Custom_CSS_View {
 	 */
 	public static function render() {
 		$prefix = WPUSB_App::SLUG;
+		$domain = WPUSB_App::TEXTDOMAIN;
 	?>
 		<div class="wrap <?php echo "{$prefix}-custom-css-wrap"; ?>">
-			<h2><?php _e( 'WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ); ?></h2>
+			<h2><?php _e( 'WPUpper Share Buttons', $domain ); ?></h2>
+
+			<p class="description"><?php _e( 'Add the Share Buttons automatically.', $domain ); ?></p>
+
+			<?php WPUSB_Utils_View::page_notice(); ?>
 
 			<span class="<?php echo "{$prefix}-title-wrap"; ?>">
-				<?php _e( 'Custom CSS', WPUSB_App::TEXTDOMAIN ); ?>
+				<?php _e( 'Custom CSS', $domain ); ?>
 			</span>
 
-			<?php WPUSB_Settings_View::menu_top(); ?>
+			<?php WPUSB_Utils_View::menu_top(); ?>
 
-			<?php WPUSB_Settings_View::update_notice_message(); ?>
+			<?php WPUSB_Utils_View::update_notice(); ?>
 
 			<div class="<?php echo "{$prefix}-wrap"; ?>"
 				 <?php echo "data-{$prefix}-component=\"custom-css\""; ?>>
@@ -48,7 +53,7 @@ class WPUSB_Settings_Custom_CSS_View {
 									rows="30"
 									data-element="css-field"
 									name="custom-css"
-									placeholder="<?php echo __( 'Enter your custom CSS ...', WPUSB_App::TEXTDOMAIN ); ?>"><?php
+									placeholder="<?php echo __( 'Enter your custom CSS ...', $domain ); ?>"><?php
 									echo WPUSB_Utils::get_custom_css();
 								?></textarea>
 							</td>

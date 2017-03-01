@@ -530,11 +530,11 @@ class WPUSB_Setting {
 		switch ( $prop_name ) {
 
 			case 'social_media' :
-				$this->{$prop_name} = WPUSB_Utils::get_option( self::PREFIX . '_social_media' );
+				$this->social_media = WPUSB_Utils::get_option( WPUSB_Utils::get_filter( '_social_media' ) );
 				break;
 
 			default :
-				$this->{$prop_name} = WPUSB_Utils::option( $prop_name );
+				$this->{$prop_name} = WPUSB_Utils::get_value_by( $this->options, $prop_name );
 		}
 
 		return $this->{$prop_name};

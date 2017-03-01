@@ -21,7 +21,7 @@ WPUSB( 'WPUSB.Components.SharePreview', function(Model, $) {
 
 	Model.fn.addEventListener = function() {
 		this.layoutOptions.on( 'click', this._onClickLayout.bind( this ) );
-		this.list.on( 'click', this._onClick.bind( this ) );
+		this.list.on( 'click', this._onClickList.bind( this ) );
 		this.order.sortable( this.sortOptions() );
 	};
 
@@ -34,13 +34,12 @@ WPUSB( 'WPUSB.Components.SharePreview', function(Model, $) {
 
 		$( '.' + this.prefix + '-layout-options' ).trigger( 'changeLayout', this.layout );
 
-		this._onClick();
+		this._update();
+		this._stop();
 	};
 
-	Model.fn._onClick = function(event) {
-		if ( event ) {
-			this.layout = $( '.layout-preview:checked' ).val();
-		}
+	Model.fn._onClickList = function(event) {
+		this.layout = $( '.layout-preview:checked' ).val();
 
 		this._update();
 		this._stop();
@@ -67,7 +66,7 @@ WPUSB( 'WPUSB.Components.SharePreview', function(Model, $) {
 		this.inputOrder.val( JSON.stringify( order ) );
 	};
 
-	Model.fn._stop = function(event, ui) {
+	Model.fn._stop = function() {
 		this.itemsChecked = [];
 
 		this.each( this.order.find( 'input:checked' ) );

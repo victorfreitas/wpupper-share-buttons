@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 WPUSB_App::uses( 'utils-share', 'Helper' );
 WPUSB_App::uses( 'utils', 'Helper' );
+WPUSB_App::uses( 'utils', 'View' );
 
 /*
  * Widget

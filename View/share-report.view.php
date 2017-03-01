@@ -35,7 +35,7 @@ class WPUSB_Sharing_Report_View {
 			<h2><?php _e( 'WPUpper Share Buttons', $text_domain ); ?></h2>
 			<p class="description"><?php _e( 'Add the Share Buttons automatically.', $text_domain ); ?></p>
 
-			<?php WPUSB_Settings_View::home_page_notice(); ?>
+			<?php WPUSB_Utils_View::page_notice(); ?>
 
 			<span class="<?php echo $prefix; ?>-settings-title">
 				<span class="description information-cache">
@@ -45,7 +45,7 @@ class WPUSB_Sharing_Report_View {
 
 			<div class="<?php echo $prefix; ?>-settings-wrap">
 
-				<form action="<?php echo esc_url( get_admin_url( null, 'admin.php' ) ); ?>"
+				<form action="<?php echo WPUSB_Utils::get_admin_url( 'admin.php' ); ?>"
 				      class="share-report-form">
 					<input type="hidden"
 					       name="page"
@@ -54,7 +54,7 @@ class WPUSB_Sharing_Report_View {
 					<?php $list_table->search_box( $text_button, $prefix ); ?>
 				</form>
 
-				<?php WPUSB_Settings_View::menu_top(); ?>
+				<?php WPUSB_Utils_View::menu_top(); ?>
 
 				<?php $list_table->display(); ?>
 

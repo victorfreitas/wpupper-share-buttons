@@ -1,33 +1,33 @@
-WPUSB( 'WPUSB.ToggleButtons', function(ToggleButtons, $) {
+WPUSB( 'WPUSB.ToggleButtons', function(Model, $) {
 
-	ToggleButtons.create = function(context, container) {
-		if ( context !== 'fixed' ) {
+	Model.create = function(layout, context) {
+		if ( layout !== 'fixed' ) {
 			return;
 		}
 
-		this.$el          = container;
-		this.prefix       = WPUSB.vars.prefix + '-';
-		this.closeButtons = WPUSB.vars.body.byAction( 'close-buttons' );
-		this.buttons      = container.byElement( 'buttons' );
+		this.$el     = context.$el;
+		this.buttons = context.elements.buttons;
+		this.prefix  = this.utils.prefix + '-';
 		this.init();
 	};
 
-	ToggleButtons.init = function() {
+	Model.init = function() {
 		this.addEventListener();
 	};
 
-	ToggleButtons.addEventListener = function() {
-		this.closeButtons.on( 'click', this._onCloseButtons.bind( this ) );
+	Model.addEventListener = function() {
+		this.$el.addEvent( 'click', 'close-buttons', this );
 	};
 
-	ToggleButtons._onCloseButtons = function(event) {
-		event.preventDefault();
-
+	Model._onClickCloseButtons = function(event) {
 		var iconRight = this.prefix + 'icon-right'
-		  , active    = this.prefix + 'toggle-active';
+		  , active    = this.prefix + 'toggle-active'
+		;
 
-		this.buttons.toggleClass( this.prefix + 'buttons' );
-		this.closeButtons.toggleClass( iconRight + ' ' + active );
+		this.buttons.toggleClass( this.prefix + 'buttons-hide' );
+		$( event.currentTarget ).toggleClass( iconRight + ' ' + active );
+
+		event.preventDefault();
 	};
 
 });
