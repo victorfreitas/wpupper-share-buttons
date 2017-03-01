@@ -92,6 +92,11 @@
             return this.getGlobalVars( 'previewTitles' );
         },
 
+        getMinCount: function() {
+            var minCount = ( this.getGlobalVars( 'minCount' ) || 0 );
+            return parseInt( minCount );
+        },
+
         getPathUrl: function(url) {
             return decodeURIComponent( url ).split(/[?#]/)[0];
         },

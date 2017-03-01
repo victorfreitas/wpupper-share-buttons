@@ -6,7 +6,7 @@ Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google
 Requires at least: 3.0  
 Tested up to: 4.7.2  
 PHP version: 5.2.4  
-Stable tag: 3.28  
+Stable tag: 3.29  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -67,6 +67,12 @@ Layout options: default, buttons, rounded, square
 4. Using the content editor -> [wpusb class_first="" class_second="" class_link="" class_icon="" layout="default" remove_inside="0" remove_counter="0"]  
 
 ## Changelog
+
+## 3.29
+
+* New option: Now you can enter a minimum value to start displaying the amount of sharing for each supported social network.
+* Update banner
+* Update languages
 
 ## 3.28
 

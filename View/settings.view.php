@@ -667,9 +667,27 @@ class WPUSB_Settings_View {
 								</td>
 							</tr>
 
+							<tr>
+								<th scope="row">
+									<label for="<?php echo $prefix; ?>-min-count-display">
+										<?php _e( 'Min count to display', WPUSB_App::TEXTDOMAIN ); ?>
+									</label>
+								</th>
+								<?php
+									self::td(array(
+										'type'        => 'number',
+										'id'          => 'min-count-display',
+										'class'       => 'small-text',
+										'name'        => "{$option_name}[min_count_display]",
+										'value'       => $model->min_count_display,
+										'default'     => 0,
+										'description' => __( 'When you enter the value, share counts are only displayed when the total counts of each item than equal to or greater than the informed value.', WPUSB_App::TEXTDOMAIN ),
+									));
+								?>
+							</tr>
 							<tr class="<?php echo $prefix; ?>-info-twitter">
 								<th scope="row">
-									Twiiter share counter
+									<?php _e( 'Twitter share counter', WPUSB_App::TEXTDOMAIN ); ?>
 								</th>
 								<td>
 									<p class="description">
@@ -780,6 +798,7 @@ class WPUSB_Settings_View {
 			'span'        => true,
 			'tag'         => 'td',
 			'label'       => true,
+			'default'     => '',
 		);
 
 		return array_merge( $defaults, $args );
@@ -799,7 +818,7 @@ class WPUSB_Settings_View {
                    id="<?php printf( '%s-%s', $prefix, $args['id'] ); ?>"
                    class="<?php echo $args['class'] ; ?>"
             	   name="<?php echo $args['name'] ; ?>"
-            	   value="<?php echo $args['value'] ; ?>"
+            	   value="<?php echo empty( $args['value'] ) ? $args['default'] : $args['value']; ?>"
             	   placeholder="<?php echo $args['placeholder'] ; ?>"
                    <?php echo self::get_attrs( $args ); ?>
             	   <?php echo $args['is_checked']; ?>>

@@ -6,7 +6,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 			return;
 		}
 
-		this.setParams();
+		this.setPropNames();
 		this.init();
 	};
 
@@ -14,7 +14,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 		return ( this.data.disabledShareCounts === 1 );
 	};
 
-	Model.fn.setParams = function() {
+	Model.fn.setPropNames = function() {
 		this.prefix           = this.utils.prefix + '-';
 		this.facebook         = this.elements.facebook;
 		this.twitter          = this.elements.twitter;
@@ -31,6 +31,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 		this.pinterestCounter = 0;
 		this.tumblrCounter    = 0;
 		this.max              = 6;
+		this.minCount         = this.utils.getMinCount();
 	};
 
 	Model.fn.init = function() {
@@ -116,6 +117,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 	};
 
 	Model.fn._done = function(request, response) {
+		var classHide           = this.prefix + 'hide';
 		var number              = this.getNumberByData( request.element, response );
 		this[request.reference] = number;
 		this.max               -= 1;
@@ -123,10 +125,18 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 
 		if ( this[request.element] ) {
 			this[request.element].text( this.formatCounts( number ) );
+
+			if ( number >= this.minCount ) {
+				this[request.element].removeClass( classHide );
+			}
 		}
 
 		if ( !this.max && this.totalShare ) {
 			this.totalShare.text( this.formatCounts( this.totalCounter ) );
+
+			if ( this.totalCounter >= this.minCount ) {
+				this.totalShare.closest( '.' + this.prefix + 'item' ).removeClass( classHide );
+			}
 		}
 	};
 

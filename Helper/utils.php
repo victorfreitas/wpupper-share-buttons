@@ -146,6 +146,10 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			return array_map( __METHOD__, $values );
 		}
 
+		if ( is_numeric( $value ) ) {
+			return absint( $value );
+		}
+
 	    return wp_strip_all_tags( $value, $remove_breaks );
 	}
 
@@ -769,7 +773,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function option( $name, $default = '', $sanitize = 'rm_tags' ) {
 		$setting = WPUSB_Setting::get_instance();
-		$option  = self::isset_get( $setting->options, $name, false );
+		$option  = self::isset_get( $setting->get_options(), $name, false );
 
 		unset( $setting );
 
@@ -2030,6 +2034,20 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 
     	$domains = self::get_bitly_domains();
     	return self::isset_get( $domains, $key, false );
+    }
+
+	/**
+	 * Get the class for min count display
+	 *
+	 * @since 3.29
+	 * @param Null
+	 * @return String
+	 */
+    public static function get_hide_count_class() {
+		$min_count = self::option( 'min_count_display', '', 'absint' );
+		$prefix    = WPUSB_App::SLUG;
+
+		return empty( $min_count ) ? '' : "{$prefix}-hide";
     }
 
 	public static function log( $data, $log_name = 'debug' )

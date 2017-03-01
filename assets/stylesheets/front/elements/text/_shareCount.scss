@@ -19,3 +19,12 @@
         top: 50%;
     }
 }
+
+##{$prefix}-container-fixed,
+.#{$prefix} .#{$prefix}-item,
+##{$prefix}-container-square-plus {
+
+    .#{$prefix}-hide {
+        display: none;
+    }
+}

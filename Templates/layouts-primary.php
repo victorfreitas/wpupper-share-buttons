@@ -130,12 +130,14 @@ EOD;
 	public static function add_count( $args ) {
 		$active_counter = WPUSB_Utils::is_inactive_couter( $args->elements );
 		$content        = '';
+		$class_hide     = WPUSB_Utils::get_hide_count_class();
 
 		if ( $args->reference->has_counter && ! $active_counter ) {
 			$content = sprintf(
-				'<span data-element="%s" class="%s-count"></span>',
+				'<span data-element="%s" class="%s-count %s"></span>',
 				$args->reference->element,
-				$args->prefix
+				$args->prefix,
+				$class_hide
 			);
 		}
 

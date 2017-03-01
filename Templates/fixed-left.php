@@ -107,13 +107,14 @@ EOD;
 	 * @return String
 	 */
 	public static function add_count( $args ) {
-		$prefix  = $args->prefix;
-		$content = '';
+		$prefix     = $args->prefix;
+		$content    = '';
+		$class_hide = WPUSB_Utils::get_hide_count_class();
 
 		if ( ! WPUSB_Utils::is_inactive_couter( $args ) ) {
 			$inside  = self::_get_inside_count();
 			$content = <<<EOD
-				<div class="{$prefix}-item {$prefix}-total-share">
+				<div class="{$prefix}-item {$prefix}-total-share {$class_hide}">
 
 					<div class="{$prefix}-counts">
 						<span data-element="total-share"></span>

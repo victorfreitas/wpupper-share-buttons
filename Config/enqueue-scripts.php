@@ -137,8 +137,9 @@ final class WPUSB_Scripts {
 			WPUSB_App::SLUG . '-scripts',
 			'WPUSBVars',
 			array(
-				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-				'context' => str_replace( '{id}', WPUSB_Utils::get_id(), $context ),
+				'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
+				'context'  => str_replace( '{id}', WPUSB_Utils::get_id(), $context ),
+				'minCount' => WPUSB_Utils::option( 'min_count_display', 0, 'absint' ),
 			)
 		);
 	}

@@ -30,6 +30,7 @@ $_itemsAvailable : 'items-available';
 }
 
 .#{$prefix}-wrap {
+
     @extend %noSelect;
         background: $colorWhite;
         border-radius: 5px;
@@ -55,6 +56,10 @@ $_itemsAvailable : 'items-available';
         &:focus {
             border-color: #bbb;
         }
+    }
+
+    .#{$prefix}-select-item {
+        padding: 2px 5px;
     }
 }
 
