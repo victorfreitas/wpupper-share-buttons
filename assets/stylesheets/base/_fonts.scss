@@ -3,14 +3,14 @@
 // ===================================================
 @font-face {
     font-family: 'wpusb';
-    src: url('../fonts/wpusb.eot?l4ybmj');  /* IE9 Compat Modes */
-    src: url('../fonts/wpusb.eot?l4ybmj#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         url('../fonts/wpusb.woff2?l4ybmj') format('woff2'), /* Super Modern Browsers */
-         url('../fonts/wpusb.woff?l4ybmj') format('woff'), /* Pretty Modern Browsers */
-         url('../fonts/wpusb.ttf?l4ybmj') format('truetype'), /* Safari, Android, iOS */
-         url('../fonts/wpusb.svg?l4ybmj#wpusb') format('svg'); /* Legacy iOS */
-    font-weight: normal;
     font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/wpusb.woff2?l4ybmj') format('woff2'),                 /* Super Modern Browsers */
+         url('../fonts/wpusb.woff?l4ybmj') format('woff'),                   /* Pretty Modern Browsers */
+         url('../fonts/wpusb.ttf?l4ybmj') format('truetype'),                /* Safari, Android, iOS */
+         url('../fonts/wpusb.svg?l4ybmj#wpusb') format('svg'),               /* Legacy iOS */
+         url('../fonts/wpusb.eot?l4ybmj#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/wpusb.eot?l4ybmj') format('eot');                     /* IE9 Compat Modes */
 }
 
 [class^="wpusb-icon"], [class*=" wpusb-icon"] {
