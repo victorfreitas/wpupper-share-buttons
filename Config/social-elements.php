@@ -62,7 +62,7 @@ class WPUSB_Social_Elements {
 	 * @return Boolean
 	 */
 	public static function items_available( $item ) {
-		$items = apply_filters( WPUSB_Utils::get_filter( '-items-available' ), self::$items_available );
+		$items = apply_filters( WPUSB_Utils::add_prefix( '-items-available' ), self::$items_available );
 
 		return isset( $items[ $item ] );
 	}
@@ -96,6 +96,7 @@ class WPUSB_Social_Elements {
 		$std->facebook->popup       = self::$action;
 		$std->facebook->inside      = __( 'Share', WPUSB_App::TEXTDOMAIN );
 		$std->facebook->has_counter = true;
+		$std->facebook->target      = '_blank';
 
 		/**
 		 * @var Object
@@ -113,6 +114,7 @@ class WPUSB_Social_Elements {
 		$std->twitter->popup       = self::$action;
 		$std->twitter->inside      = __( 'Tweet', WPUSB_App::TEXTDOMAIN );
 		$std->twitter->has_counter = true;
+		$std->twitter->target      = '_blank';
 
 		/**
 		 * @var Object
@@ -130,6 +132,7 @@ class WPUSB_Social_Elements {
 		$std->google->popup       = self::$action;
 		$std->google->inside      = __( 'Share', WPUSB_App::TEXTDOMAIN );
 		$std->google->has_counter = true;
+		$std->google->target      = '_blank';
 
 		/**
 		 * @var Object
@@ -147,6 +150,7 @@ class WPUSB_Social_Elements {
 		$std->whatsapp->popup       = self::$action;
 		$std->whatsapp->inside      = __( 'Share', WPUSB_App::TEXTDOMAIN );
 		$std->whatsapp->has_counter = false;
+		$std->whatsapp->target      = '_self';
 
 		/**
 		 * @var Object
@@ -164,6 +168,7 @@ class WPUSB_Social_Elements {
 		$std->pinterest->popup       = self::$action;
 		$std->pinterest->inside      = __( 'Share', WPUSB_App::TEXTDOMAIN );
 		$std->pinterest->has_counter = true;
+		$std->pinterest->target      = '_blank';
 
 		/**
 		 * @var Object
@@ -181,6 +186,7 @@ class WPUSB_Social_Elements {
 		$std->linkedin->popup       = self::$action;
 		$std->linkedin->inside      = __( 'Share', WPUSB_App::TEXTDOMAIN );
 		$std->linkedin->has_counter = true;
+		$std->linkedin->target      = '_blank';
 
 		/**
 		 * @var Object
@@ -198,6 +204,7 @@ class WPUSB_Social_Elements {
 		$std->tumblr->popup       = self::$action;
 		$std->tumblr->inside      = __( 'Share', WPUSB_App::TEXTDOMAIN );
 		$std->tumblr->has_counter = true;
+		$std->tumblr->target      = '_blank';
 
 		/**
 		 * @var Object
@@ -215,6 +222,7 @@ class WPUSB_Social_Elements {
 		$std->email->popup       = self::$action;
 		$std->email->inside      = 'Email';
 		$std->email->has_counter = false;
+		$std->email->target      = '_self';
 
 		/**
 		 * @var Object
@@ -232,6 +240,7 @@ class WPUSB_Social_Elements {
 		$std->gmail->popup       = self::$action;
 		$std->gmail->inside      = 'Gmail';
 		$std->gmail->has_counter = false;
+		$std->gmail->target      = '_blank';
 
 		/**
 		 * @var Object
@@ -249,6 +258,7 @@ class WPUSB_Social_Elements {
 		$std->printer->popup       = self::$action;
 		$std->printer->inside      =  __( 'Print', WPUSB_App::TEXTDOMAIN );
 		$std->printer->has_counter = false;
+		$std->printer->target      = '_blank';
 
 		/**
 		 * @var Object
@@ -266,6 +276,7 @@ class WPUSB_Social_Elements {
 		$std->telegram->popup       = self::$action;
 		$std->telegram->inside      = __( 'Share', WPUSB_App::TEXTDOMAIN );
 		$std->telegram->has_counter = false;
+		$std->telegram->target      = '_blank';
 
 		/**
 		 * @var Object
@@ -283,6 +294,7 @@ class WPUSB_Social_Elements {
 		$std->skype->popup       = self::$action;
 		$std->skype->inside      = __( 'Share', WPUSB_App::TEXTDOMAIN );
 		$std->skype->has_counter = false;
+		$std->skype->target      = '_blank';
 
 		/**
 		 * @var Object
@@ -300,6 +312,7 @@ class WPUSB_Social_Elements {
 		$std->viber->popup       = self::$action;
 		$std->viber->inside      = __( 'Share', WPUSB_App::TEXTDOMAIN );
 		$std->viber->has_counter = false;
+		$std->viber->target      = '_blank';
 
 		/**
 		 * @var Object
@@ -317,6 +330,7 @@ class WPUSB_Social_Elements {
 		$std->like->popup       = self::$action;
 		$std->like->inside      = __( 'Like', WPUSB_App::TEXTDOMAIN );
 		$std->like->has_counter = false;
+		$std->like->target      = '_blank';
 
 		/**
 		 * @var Object
@@ -334,6 +348,7 @@ class WPUSB_Social_Elements {
 		$std->share->popup       = 'data-action="open-modal-networks"';
 		$std->share->inside      = false;
 		$std->share->has_counter = false;
+		$std->share->target      = '_blank';
 
 		/**
 		 * @var Object
@@ -351,6 +366,7 @@ class WPUSB_Social_Elements {
 		$std->reddit->popup       = self::$action;
 		$std->reddit->inside      = __( 'Share', WPUSB_App::TEXTDOMAIN );
 		$std->reddit->has_counter = false;
+		$std->reddit->target      = '_blank';
 
 		/**
 		 * @var Object
@@ -368,6 +384,7 @@ class WPUSB_Social_Elements {
 		$std->flipboard->popup       = self::$action;
 		$std->flipboard->inside      = __( 'Share', WPUSB_App::TEXTDOMAIN );
 		$std->flipboard->has_counter = false;
+		$std->flipboard->target      = '_blank';
 
 		/**
 		 * @var Object
@@ -385,6 +402,7 @@ class WPUSB_Social_Elements {
 		$std->messenger->popup       = 'data-messenger-mobile="fb-messenger://share?link=' . self::$url . '"';
 		$std->messenger->inside      = __( 'Messenger', WPUSB_App::TEXTDOMAIN );
 		$std->messenger->has_counter = false;
+		$std->messenger->target      = '_blank';
 
 		/**
 		 * @var Object
@@ -402,6 +420,7 @@ class WPUSB_Social_Elements {
 		$std->buffer->popup       = self::$action;
 		$std->buffer->inside      = __( 'Buffer', WPUSB_App::TEXTDOMAIN );
 		$std->buffer->has_counter = false;
+		$std->buffer->target      = '_blank';
 
 		$args = array(
 			'title'        => self::$title,
@@ -426,7 +445,7 @@ class WPUSB_Social_Elements {
 	 * @return Object
 	 */
 	private static function _ksort( $elements ) {
-		$tag = WPUSB_Utils::get_filter( '-elements-args' );
+		$tag = WPUSB_Utils::add_prefix( '-elements-args' );
 
 		if ( ! is_null( self::$social_networks ) ) {
 			return apply_filters( $tag, self::$social_networks );

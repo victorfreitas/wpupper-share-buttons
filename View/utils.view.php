@@ -427,11 +427,11 @@ abstract class WPUSB_Utils_View {
 	}
 
 	public static function get_field_id( $id ) {
-		return WPUSB_Utils::get_filter( "-{$id}" );
+		return WPUSB_Utils::add_prefix( "-{$id}" );
 	}
 
 	public static function page_notice() {
-		if ( apply_filters( WPUSB_Utils::get_filter( '-admin-message' ), false ) ) {
+		if ( apply_filters( WPUSB_Utils::add_prefix( '-admin-message' ), false ) ) {
 			return;
 		}
 	?>

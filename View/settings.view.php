@@ -25,9 +25,9 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 		$prefix              = WPUSB_App::SLUG;
 		$domain              = WPUSB_App::TEXTDOMAIN;
 		$model               = WPUSB_Setting::get_instance();
-		$settings_option     = WPUSB_Utils::get_filter( '_settings' );
-		$option_social_media = WPUSB_Utils::get_filter( '_social_media' );
-		$tr_class_hide       = WPUSB_Utils::get_filter( '-tr-hide' );
+		$settings_option     = WPUSB_Utils::add_prefix( '_settings' );
+		$option_social_media = WPUSB_Utils::add_prefix( '_social_media' );
+		$tr_class_hide       = WPUSB_Utils::add_prefix( '-tr-hide' );
 		$hide_class          = 'hide-input';
 
 		parent::set_options( $model->get_options() );

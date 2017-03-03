@@ -24,7 +24,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			return '';
 		}
 
-        return apply_filters( self::get_filter( '_esc_class' ), sanitize_html_class( $class ) );
+        return apply_filters( self::add_prefix( '_esc_class' ), sanitize_html_class( $class ) );
 	}
 
 	/**
@@ -327,7 +327,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function get_real_permalink( $fixed = false, $widget = false, $short = true ) {
-		$url = apply_filters( self::get_filter( '-real-permalink' ), false, $fixed, $widget );
+		$url = apply_filters( self::add_prefix( '-real-permalink' ), false, $fixed, $widget );
 
 		if ( $url ) {
 			return esc_url( $url );
@@ -426,7 +426,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function bitly_set_cache( $url_short, $permalink ) {
-		$tag  = self::get_filter( '-shorturl-cache-expire' );
+		$tag  = self::add_prefix( '-shorturl-cache-expire' );
 		$time = ( 12 * WEEK_IN_SECONDS );
 
 		WPUSB_URL_Shortener::set_cache(
@@ -579,7 +579,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function url_clean( $url ) {
-		$tag          = self::get_filter( '-url-share' );
+		$tag          = self::add_prefix( '-url-share' );
 		$filtered_url = apply_filters( $tag, $url, self::get_id() );
 
 		if ( $filtered_url === $url ) {
@@ -613,7 +613,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function get_real_title( $fixed = false, $widget = false ) {
-		$title = apply_filters( self::get_filter( '-real-title' ), false, $fixed );
+		$title = apply_filters( self::add_prefix( '-real-title' ), false, $fixed );
 
 		if ( $title ) {
 			return self::rm_tags( $title );
@@ -671,17 +671,17 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			$attachment_url = '';
 		}
 
-		return apply_filters( self::get_filter( '_thumbnail_url' ), $attachment_url );
+		return apply_filters( self::add_prefix( '_thumbnail_url' ), $attachment_url );
 	}
 
 	/**
-	 * The filter name with prefix
+	 * Add tag with prefix
 	 *
 	 * @since 1.0
 	 * @param String $tag
 	 * @return String
 	 */
-	public static function get_filter( $tag ) {
+	public static function add_prefix( $tag ) {
 		return WPUSB_App::SLUG . $tag;
 	}
 
@@ -707,7 +707,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 
 		$content = preg_replace( '/\[.*\]/', '', $content );
 
-		return apply_filters( self::get_filter( '-body-email' ), $content, $post );
+		return apply_filters( self::add_prefix( '-body-email' ), $content, $post );
 	}
 
 	/**
@@ -798,7 +798,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 
 		$value = self::sanitize( $value, $sanitize );
 
-		return apply_filters( self::get_filter( "-option-{$name}-value" ), $value );
+		return apply_filters( self::add_prefix( "-option-{$name}-value" ), $value );
 	}
 
 	/**
@@ -1059,7 +1059,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			'after'            => 'off',
 			'layout'           => 'default',
 		);
-		$value  = apply_filters( self::get_filter( '-options-settings' ), $value );
+		$value  = apply_filters( self::add_prefix( '-options-settings' ), $value );
 
 		self::add_option( $option['name'], $value );
 	}
@@ -1080,7 +1080,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			'whatsapp' => 'whatsapp',
 			'share'    => 'share',
 		);
-		$value  = apply_filters( self::get_filter( '-options-social-media' ), $value );
+		$value  = apply_filters( self::add_prefix( '-options-social-media' ), $value );
 
 		self::add_option( $option['name'], $value );
 	}
@@ -1099,7 +1099,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			'disable_js'        => 'off',
 			'report_cache_time' => 10,
 		);
-		$value = apply_filters( self::get_filter( '-options-extra-settings' ), $value );
+		$value = apply_filters( self::add_prefix( '-options-extra-settings' ), $value );
 
 		self::add_option( $option['name'], $value );
 	}
@@ -1134,7 +1134,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	public static function get_twitter_text( $title, $twitter_text_a, $twitter_text_b, $caracter ) {
 		$text = "{$twitter_text_a}%20{$title}%20-%20{$twitter_text_b}%20{$caracter}%20";
 
-		return apply_filters( self::get_filter( '-twitter-text' ), $text, $title );
+		return apply_filters( self::add_prefix( '-twitter-text' ), $text, $title );
 	}
 
 	/**
@@ -1171,7 +1171,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return Boolean
 	 */
 	public static function is_single() {
-		$tag = self::get_filter( '_is_single' );
+		$tag = self::add_prefix( '_is_single' );
 
 		if ( is_single() && self::option( 'single' ) === 'on' ) {
 			return apply_filters( $tag, true );
@@ -1188,7 +1188,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return Boolean
 	 */
 	public static function is_page() {
-		$tag = self::get_filter( '_is_page' );
+		$tag = self::add_prefix( '_is_page' );
 
 		if ( ( is_page() || is_page_template() ) && self::option( 'pages' ) === 'on' ) {
 			return apply_filters( $tag, true );
@@ -1205,7 +1205,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return Boolean
 	 */
 	public static function is_home() {
-		$tag = self::get_filter( '_is_home' );
+		$tag = self::add_prefix( '_is_home' );
 
 		if ( self::is_front_page() && self::option( 'home' ) === 'on' ) {
 			return apply_filters( $tag, true );
@@ -1233,7 +1233,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return Boolean
 	 */
 	public static function is_archive_category() {
-		$tag = self::get_filter( '_is_archive_category' );
+		$tag = self::add_prefix( '_is_archive_category' );
 
 		if ( ( is_archive() || is_category() ) && self::option( 'archive_category' ) === 'on' ) {
 			return apply_filters( $tag, true );
@@ -1250,7 +1250,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return Boolean
 	 */
 	public static function is_product() {
-		$tag = self::get_filter( '_is_product' );
+		$tag = self::add_prefix( '_is_product' );
 
 		if ( ! function_exists( 'is_product' ) ) {
 			return apply_filters( $tag, false );
@@ -1267,7 +1267,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return Boolean
 	 */
 	public static function is_active() {
-		$tag = self::get_filter( '_is_active' );
+		$tag = self::add_prefix( '_is_active' );
 
 		if ( self::is_home() || self::is_archive_category() ) {
 			return apply_filters( $tag, true );
@@ -1345,7 +1345,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 				break;
 		endswitch;
 
-		return apply_filters( self::get_filter( '-component-name' ), $attr_name, WPUSB_App::SLUG );
+		return apply_filters( self::add_prefix( '-component-name' ), $attr_name, WPUSB_App::SLUG );
 	}
 
 	/**
@@ -1897,7 +1897,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
     public static function get_class_btn() {
-    	return self::get_filter( '-btn' );
+    	return self::add_prefix( '-btn' );
     }
 
 	/**
@@ -1908,7 +1908,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
     public static function get_class_btn_inside() {
-    	return self::get_filter( '-btn-inside' );
+    	return self::add_prefix( '-btn-inside' );
     }
 
 	/**

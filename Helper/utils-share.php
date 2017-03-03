@@ -318,13 +318,14 @@ abstract class WPUSB_Utils_Share {
 	 * Verfy type and return links from icons
 	 *
 	 * @since 3.0.0
-	 * @param String $url_share
+	 * @param String $url
+	 * @param String $target
 	 * @return String
 	 */
-	public static function link_type( $url_share ) {
-		$attr_link = "href=\"{$url_share}\"";
+	public static function link_type( $url, $target ) {
+		$attr_link = sprintf( 'href="%s" target="%s"', $url, $target );
 
-		return apply_filters( WPUSB_App::SLUG . '-attr-link', $attr_link, $url_share );
+		return apply_filters( WPUSB_Utils::add_prefix( '-attr-link' ), $attr_link, $url );
 	}
 
 	/**

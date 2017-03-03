@@ -132,11 +132,6 @@
         top: 4px;
     }
 
-    &:hover .#{$prefix}-toggle,
-    .#{$prefix}-toggle-active {
-        display: inline-block;
-    }
-
     .#{$prefix}-toggle-active {
         background: #a5a5a5;
         color: #cecece;
@@ -151,6 +146,11 @@
     @media ( min-width: $tablet ) {
         .#{$prefix}-button:hover {
             text-decoration: none;
+        }
+
+        &:hover .#{$prefix}-toggle,
+        .#{$prefix}-toggle-active {
+            display: inline-block;
         }
     }
 }

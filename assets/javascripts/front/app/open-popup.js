@@ -7,7 +7,7 @@ WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $) {
 
     OpenPopup.init = function() {
     	if ( this.utils.isMobile() ) {
-    		return this.setMessengerUrl();
+    		this.setMessengerUrl();
     	}
 
         this.addEventListener();
@@ -18,22 +18,22 @@ WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $) {
 	};
 
 	OpenPopup._onClickOpenPopup = function(event) {
-		event.preventDefault();
-
-		var target = jQuery( event.currentTarget )
+		var target = $( event.currentTarget )
 		  , width  = '685'
 		  , height = '500'
 		;
 
 		this.popupCenter(
+			target.attr( 'target' ),
 			target.attr( 'href' ),
-			'Share',
 			width,
 			height
 		);
+
+		event.preventDefault();
 	};
 
-	OpenPopup.popupCenter = function(url, title, width, height) {
+	OpenPopup.popupCenter = function(name, url, width, height) {
 		var left
 		  , top
 		;
@@ -45,7 +45,7 @@ WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $) {
 
 		return window.open(
 			  url
-			, title
+			, name
 			, 'menubar=no,toolbar=no,status=no,width=' + width + ',height=' + height + ',toolbar=no,left=' + left + ',top=' + top
 		);
 	};
