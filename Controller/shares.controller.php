@@ -136,15 +136,13 @@ class WPUSB_Shares_Controller {
 	 * @return void
 	 */
 	public function buttons_fixed() {
-		if ( ! WPUSB_Utils::is_position_fixed() ) {
+		if ( ! WPUSB_Utils::is_position_fixed() || ! WPUSB_Utils::is_active() ) {
 			return;
 		}
 
-		if ( WPUSB_Utils::is_active() ) {
-			$buttons = $this->buttons_share( array(), true );
+		$buttons = $this->buttons_share( array(), true );
 
-			echo apply_filters( "{$this->_filter}-fixed", $buttons );
-		}
+		echo apply_filters( "{$this->_filter}-fixed", $buttons );
 	}
 
 	/**

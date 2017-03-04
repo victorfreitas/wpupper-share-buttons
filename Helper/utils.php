@@ -93,7 +93,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	*/
 	public static function get_server( $key ) {
-		$value = self::isset_get( $_SERVER, strtoupper( $key ) );
+		$value = self::get_value_by( $_SERVER, strtoupper( $key ) );
 
 		return self::rm_tags( $value, true );
 	}
@@ -159,7 +159,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function rm_tags( $value, $remove_breaks = false ) {
 		if ( empty( $value ) ) {
-			return $value;
+			return '';
 		}
 
 		if ( is_array( $value ) ) {
@@ -1019,13 +1019,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return Boolean
 	 */
 	public static function get_update( $key ) {
-		if ( ! ( $page = self::get( $key, false ) ) ) {
-			return false;
-		}
-
-		if ( 'true' === $page ) {
-			return true;
-		}
+		return ( 'true' === self::get( $key ) );
 	}
 
 	/**
@@ -1114,7 +1108,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function get_option_group_name( $name, $group = 'group' ) {
 		$prefix       = WPUSB_App::SLUG;
-		$option_name  = "{$prefix}_{$name}";
+		$option_name  = self::add_prefix( "_{$name}" );
 		$group_name   = ( 'group' !== $group ) ? $prefix : $option_name;
 		$option_group = "{$group_name}_{$group}";
 
@@ -1145,11 +1139,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String|NULL
 	 */
 	public static function selected_menu( $current ) {
-		if ( self::get( 'page' ) === $current ) {
-			return ' class="active"';
-		}
-
-		return null;
+		return ( self::get( 'page' ) === $current ) ? ' class="active"' : null;
 	}
 
 	/**
@@ -1222,7 +1212,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return Boolean
 	 */
 	public static function is_front_page() {
-		return ( is_home() || is_front_page() );
+		$tag = self::add_prefix( '_is_front_page' );
+
+		return apply_filters( $tag, ( is_home() || is_front_page() ) );
 	}
 
 	/**
@@ -1320,7 +1312,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			5 => WPUSB_App::SLUG . '_custom_css',
 		);
 
-		return self::isset_get( $options_name, $id, $options_name );
+		return self::get_value_by( $options_name, $id, $options_name );
 	}
 
 	/**
@@ -1548,7 +1540,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			$blog_id = get_current_blog_id();
 		}
 
-		return "stylesheets/style.min{$blog_id}.css";
+		return sprintf( 'stylesheets/style.min%s.css', $blog_id );
 	}
 
 	/**
@@ -1599,11 +1591,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$css .= $widgets_css;
 		$css .= $widget_follow_css;
 
-		if ( ! empty( $css ) ) {
-			return htmlspecialchars_decode( $css );
-		}
+		$css = apply_filters( self::add_prefix( '_custom_css' ), $css );
 
-		return '';
+		return empty( $css ) ? '' : htmlspecialchars_decode( $css );
 	}
 
 	/**
@@ -1631,12 +1621,12 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 
 		foreach ( $options as $number => $option ) :
 			$widget_options = array(
-				'icons_size'        => self::isset_get( $option, 'icons_size' ),
-				'icons_color'       => self::isset_get( $option, 'icons_color' ),
-				'btn_inside_color'  => self::isset_get( $option, 'btn_inside_color' ),
-				'counts_text_color' => self::isset_get( $option, 'counts_text_color' ),
-				'counts_bg_color'   => self::isset_get( $option, 'counts_bg_color' ),
-				'button_bg_color'   => self::isset_get( $option, 'icons_background' ),
+				'icons_size'        => self::get_value_by( $option, 'icons_size' ),
+				'icons_color'       => self::get_value_by( $option, 'icons_color' ),
+				'btn_inside_color'  => self::get_value_by( $option, 'btn_inside_color' ),
+				'counts_text_color' => self::get_value_by( $option, 'counts_text_color' ),
+				'counts_bg_color'   => self::get_value_by( $option, 'counts_bg_color' ),
+				'button_bg_color'   => self::get_value_by( $option, 'icons_background' ),
 			);
 			$widget_id    = self::get_widget_attr_id( $number );
 			$widgets_css .= WPUSB_Shares_View::get_css_buttons_styles( $widget_options, "#{$widget_id}" );
@@ -1670,8 +1660,8 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 
 		foreach ( $options as $number => $option ) :
 			$widget_options = array(
-				'icons_size'        => self::isset_get( $option, 'icons_size' ),
-				'icons_color'       => self::isset_get( $option, 'icons_color' ),
+				'icons_size'        => self::get_value_by( $option, 'icons_size' ),
+				'icons_color'       => self::get_value_by( $option, 'icons_color' ),
 				'btn_inside_color'  => '',
 				'counts_text_color' => '',
 				'counts_bg_color'   => '',
@@ -1693,8 +1683,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function get_widget_follow_attr_id( $number ) {
-		$prefix = WPUSB_App::SLUG;
-		return sprintf( '%s-follow-widget-%d', $prefix, $number );
+		return sprintf( '%s-follow-widget-%d', WPUSB_App::SLUG, $number );
 	}
 
 	/**
@@ -2093,7 +2082,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 
     	unset( $domains['default'] );
 
-    	return self::isset_get( $domains, $key, false );
+    	return self::get_value_by( $domains, $key, false );
     }
 
 	/**
@@ -2105,9 +2094,8 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
     public static function get_hide_count_class() {
 		$min_count = self::option( 'min_count_display', '', 'absint' );
-		$prefix    = WPUSB_App::SLUG;
 
-		return empty( $min_count ) ? '' : "{$prefix}-hide";
+		return empty( $min_count ) ? '' : self::add_prefix( '-hide' );
     }
 
 	/**

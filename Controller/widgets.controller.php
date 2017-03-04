@@ -45,16 +45,16 @@ class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
 
-		$share_args    = apply_filters( "{$prefix}_buttons_share_args_widget", $share_args, $this->number );
+		$share_args    = apply_filters( WPUSB_Utils::add_prefix( '_buttons_share_args_widget' ), $share_args, $this->number );
 		$buttons_share = WPUSB_Utils::buttons_share( $share_args );
 
 		printf( '<div id="%s">', WPUSB_Utils::get_widget_attr_id( $this->number ) );
 
-		do_action( "{$prefix}_before_buttons_widget", $instance, $this->number );
+		do_action( WPUSB_Utils::add_prefix( '_before_buttons_widget' ), $instance, $this->number );
 
-		echo apply_filters( "{$prefix}_buttons_share_widget", $buttons_share, $share_args, $this->number );
+		echo apply_filters( WPUSB_Utils::add_prefix( '_buttons_share_widget' ), $buttons_share, $share_args, $this->number );
 
-		do_action( "{$prefix}_after_buttons_widget", $instance, $this->number );
+		do_action( WPUSB_Utils::add_prefix( '_after_buttons_widget' ), $instance, $this->number );
 
 		echo '</div>';
 
@@ -139,7 +139,7 @@ class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
 			'inside'
 		);
 
-		do_action( "{$prefix}_widget_form", $instance, $prefix );
+		do_action( WPUSB_Utils::add_prefix( '_widget_form' ), $instance, $prefix );
 
 		WPUSB_Widgets_View::social_items();
 
