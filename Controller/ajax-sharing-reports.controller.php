@@ -90,13 +90,13 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 		$nonce = WPUSB_Utils::post( 'nonce', false );
 
 		if ( ! wp_verify_nonce( $nonce, WPUSB_Setting::NONCE_SHARING_REPORT ) ) {
-			$this->_error_request( __( 'Not valid request', WPUSB_App::TEXTDOMAIN ) );
+			$this->_send_json( __( 'Not valid request', WPUSB_App::TEXTDOMAIN ) );
 		}
 
 		$reference = WPUSB_Utils::post( 'reference', false, 'intval' );
 
 		if ( ! $reference ) {
-			$this->_error_request( __( 'Not valid reference', WPUSB_App::TEXTDOMAIN ) );
+			$this->_send_json( __( 'Not valid reference', WPUSB_App::TEXTDOMAIN ) );
 		}
 
 		$this->reference = $reference;
