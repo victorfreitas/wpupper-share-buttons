@@ -67,14 +67,13 @@ class WPUSB_Sharing_Report_View {
 	 * Insert link in column title in wp list table
 	 *
 	 * @since 1.0
-	 * @param Integer $id
-	 * @param String $post_title
+	 * @param Integer $post_id
 	 * @return String
 	 */
-	public static function get_permalink_title( $id, $post_title ) {
-		$permalink = get_permalink( $id );
-		$html      = "<a class=\"row-title\" href=\"{$permalink}\">{$post_title}</a>";
+	public static function get_permalink_title( $post_id ) {
+		$permalink = esc_url( get_permalink( $post_id ) );
+		$title     = WPUSB_Utils::rm_tags( get_the_title( $post_id ) );
 
-		return $html;
+		return sprintf( '<a href="%s" class="row-title" target="_blank">%s</a>', $permalink, $title );
 	}
 }

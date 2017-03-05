@@ -55,6 +55,7 @@ WPUSB_App::uses( 'modal', 'Templates' );
  */
 if ( WPUSB_App::is_admin() ) {
 	WPUSB_App::uses( 'ajax', 'Controller' );
+	WPUSB_App::uses( 'ajax-sharing-reports', 'Controller' );
 	WPUSB_App::uses( 'options', 'Controller' );
 	WPUSB_App::uses( 'share-reports', 'Controller' );
 }
@@ -128,6 +129,7 @@ final class WPUSB_Core {
 		}
 
 		new WPUSB_Ajax_Controller();
+		new WPUSB_Ajax_Sharing_Reports_Controller();
 		new WPUSB_Options_Controller();
 
 		if ( ! WPUSB_Utils::is_sharing_report_disabled() ) {
@@ -227,9 +229,8 @@ final class WPUSB_Core {
 	 */
 	protected static function delete_transients() {
 		// Transients
-		delete_transient( WPUSB_Setting::TRANSIENT );
-		delete_transient( WPUSB_Setting::TRANSIENT_SELECT_COUNT );
-		delete_transient( WPUSB_Setting::TRANSIENT_GOOGLE_PLUS );
+		delete_transient( WPUSB_Setting::TRANSIENT_SHARING_REPORT );
+		delete_transient( WPUSB_Setting::TRANSIENT_SHARING_REPORT_COUNT );
 	}
 
 	/**
@@ -243,11 +244,11 @@ final class WPUSB_Core {
 	protected static function drop_table() {
 		global $wpdb;
 
-		$table_share_report = WPUSB_Utils::get_table_name();
-		$table_bitly        = $wpdb->prefix . WPUSB_URL_Shortener::TABLE_NAME;
+		$table_share_report  = WPUSB_Utils::get_table_name();
+		$table_url_shortener = $wpdb->prefix . WPUSB_URL_Shortener::TABLE_NAME;
 
 		$wpdb->query( "DROP TABLE IF EXISTS {$table_share_report}" );
-		$wpdb->query( "DROP TABLE IF EXISTS {$table_bitly}" );
+		$wpdb->query( "DROP TABLE IF EXISTS {$table_url_shortener}" );
 	}
 
 	/**
@@ -312,6 +313,7 @@ final class WPUSB_Core {
 				id         BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 				post_title TEXT       NOT NULL,
 				post_id    BIGINT(20) NOT NULL DEFAULT 0,
+				post_date  DATETIME   NOT NULL DEFAULT '0000-00-00 00:00:00',
 				facebook   BIGINT(20) NOT NULL DEFAULT 0,
 				twitter    BIGINT(20) NOT NULL DEFAULT 0,
 				google     BIGINT(20) NOT NULL DEFAULT 0,
@@ -384,26 +386,90 @@ final class WPUSB_Core {
 
 		$table = WPUSB_Utils::get_table_name();
 
-		if ( ! self::column_exists( 'tumblr' ) ) {
-			$wpdb->query(
-				"ALTER TABLE
-					{$table}
-				 ADD
-					tumblr BIGINT(20) NOT NULL DEFAULT 0
-				 AFTER
-					pinterest;
-				"
-			);
+		self::_set_column_tumblr( $wpdb, $table );
+		self::_set_column_post_date( $wpdb, $table );
+		self::_create_table_short_url();
+	}
+
+	private static function _set_column_tumblr( $wpdb, $table ) {
+		if ( self::column_exists( 'tumblr' ) ) {
+			return;
 		}
 
-		self::_create_table_short_url();
+		$wpdb->query(
+			"ALTER TABLE
+				{$table}
+			 ADD
+				tumblr BIGINT(20) NOT NULL DEFAULT 0
+			 AFTER
+				pinterest;
+			"
+		);
+	}
+
+	private static function _set_column_post_date( $wpdb, $table ) {
+		if ( self::column_exists( 'post_date' ) ) {
+			return;
+		}
+
+		$inserted = $wpdb->query(
+			"ALTER TABLE
+				{$table}
+			 ADD
+				post_date DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00'
+			 AFTER
+				post_id;
+			"
+		);
+
+		if ( ! $inserted ) {
+			return;
+		}
+
+		$results = $wpdb->get_results(
+			"SELECT
+				`id`,
+				`post_id`
+			 FROM
+			 	`{$table}`
+			"
+		);
+
+		if ( empty( $results ) ) {
+			return;
+		}
+
+		foreach ( $results as $result ) :
+			$post_date = $wpdb->get_var( $wpdb->prepare(
+				"SELECT
+					`post_date`
+				 FROM
+				 	`{$wpdb->posts}`
+				 WHERE
+				 	`ID` = %d
+				",
+				$result->post_id
+			) );
+
+			$wpdb->query( $wpdb->prepare(
+				"UPDATE
+					`{$table}`
+				 SET
+				 	`post_date` = %s
+				 WHERE
+				 	`id` = %d
+				",
+				$post_date,
+				$result->id
+			) );
+		endforeach;
 	}
 
 	/**
 	 * Check column exists
 	 *
 	 * @since 3.27
-	 * @param Null
+	 * @param String $column
 	 * @return String
 	 */
 	public static function column_exists( $column ) {
@@ -416,12 +482,12 @@ final class WPUSB_Core {
 			 FROM
 			 	information_schema.COLUMNS
 			 WHERE
-			 	TABLE_NAME = %s
-			 	AND TABLE_SCHEMA = %s
+			 	    TABLE_SCHEMA = %s
+			 	AND TABLE_NAME = %s
 			 	AND COLUMN_NAME = %s;
 			",
-			$table,
 			$wpdb->dbname,
+			$table,
 			$column
 		);
 

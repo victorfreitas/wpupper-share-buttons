@@ -269,7 +269,7 @@ abstract class WPUSB_Utils_Share {
 	 */
 	public static function content_args( $atts ) {
 		$args = array(
-			'nonce'     => self::nonce( WPUSB_Setting::AJAX_VERIFY_NONCE_COUNTER ),
+			'nonce'     => self::nonce( WPUSB_Setting::NONCE_SHARING_REPORT ),
 			'prefix'    => WPUSB_App::SLUG,
 			'post_id'   => WPUSB_Utils::get_id(),
 			'permalink' => $atts->permalink,

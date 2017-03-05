@@ -1855,12 +1855,12 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param String $value
 	 * @return Mixed Object|false
 	 */
-    public static function json_decode( $value ) {
+    public static function json_decode( $value, $assoc = false ) {
         if ( ! self::has_json() || empty( $value ) ) {
         	return false;
         }
 
-        return json_decode( $value );
+        return json_decode( $value, $assoc );
     }
 
 	/**
@@ -2120,6 +2120,22 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		}
 
 		return array_merge( $new_order, $elements );
+    }
+
+	/**
+	 * Get the column post_date
+	 *
+	 * @since 3.30
+	 * @param Integer $post_id
+	 * @param String $sanitize
+	 * @return String
+	 */
+    public static function get_post_date( $post_id, $sanitize = 'esc_sql' ) {
+    	if ( ! $post = get_post( $post_id ) ) {
+    		return '0000-00-00 00:00:00';
+    	}
+
+    	return self::sanitize( $post->post_date, $sanitize );
     }
 
 	public static function log( $data, $log_name = 'debug' ) {

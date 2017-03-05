@@ -467,9 +467,8 @@ class WPUSB_Setting {
 	 * @since 1.0
 	 * @var string
 	 */
-	const TRANSIENT = 'transient-wpusb-report';
-	const TRANSIENT_SELECT_COUNT = 'transient-wpusb-report-count';
-	const TRANSIENT_GOOGLE_PLUS = 'transient-wpusb-google-plus';
+	const TRANSIENT_SHARING_REPORT = 'transient-wpusb-report';
+	const TRANSIENT_SHARING_REPORT_COUNT = 'transient-wpusb-report-count';
 
 	/**
 	 *	Define name menus
@@ -489,15 +488,7 @@ class WPUSB_Setting {
 	* @since 1.0
 	* @var string
 	*/
-	const AJAX_VERIFY_NONCE_COUNTER = 'wpusb-social-share-counts';
-
-	/**
-	* Nonce google plus counts
-	*
-	* @since 1.0
-	* @var string
-	*/
-	const AJAX_VERIFY_GPLUS_COUNTS = 'wpusb-google-plus-counts';
+	const NONCE_SHARING_REPORT = 'wpusb-social-share-counts';
 
 	private function __construct() {
 		$this->set_options();
