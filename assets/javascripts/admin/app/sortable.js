@@ -1,4 +1,4 @@
-WPUSB( 'WPUSB.Sortable', function(Model, $) {
+WPUSB( 'WPUSB.Sortable', function(Model, $, utils) {
 
 	Model.create = function(container) {
 		if ( !container.length ) {
@@ -19,7 +19,7 @@ WPUSB( 'WPUSB.Sortable', function(Model, $) {
 			cursor      : 'move',
 			tolerance   : 'pointer',
 			items       : '> td',
-			placeholder : this.utils.prefix + '-sortable-placeholder',
+			placeholder : this.addPrefix( 'sortable-placeholder' ),
 		};
 	};
 

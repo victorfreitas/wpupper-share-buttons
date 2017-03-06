@@ -1,4 +1,4 @@
-WPUSB( 'WPUSB.Components.WidgetFollow', function(Model, $) {
+WPUSB( 'WPUSB.Components.WidgetFollow', function(Model, $, utils) {
 
 	Model.fn.start = function() {
 		if ( !this.$el.length ) {

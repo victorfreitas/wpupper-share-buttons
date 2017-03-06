@@ -1,11 +1,11 @@
-WPUSB( 'WPUSB.Preview', function(Model, $) {
+WPUSB( 'WPUSB.Preview', function(Model, $, utils) {
 
 	Model.create = function(container, preview) {
 		this.$el     = container;
 		this.preview = preview;
 		this.title   = $( '[data-action="no-title"]' );
 		this.counter = $( '[data-action="no-counter"]' );
-		this.titles  = this.utils.getPreviewTitles();
+		this.titles  = utils.getPreviewTitles();
 		this.init();
 	};
 

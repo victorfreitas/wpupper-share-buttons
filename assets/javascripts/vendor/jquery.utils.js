@@ -17,7 +17,7 @@
 	};
 
 	$.fn.addEvent = function(event, action, context) {
-        var handle = context.utils.ucfirst( [ '_on', event, action ].join( '-' ) );
+        var handle = WPUSB.utils.ucfirst( [ '_on', event, action ].join( '-' ) );
         this.byAction( action ).on( event, $.proxy( context, handle ) );
 	};
 

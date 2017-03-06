@@ -236,7 +236,7 @@
 	};
 
 	$.fn.addEvent = function(event, action, context) {
-        var handle = context.utils.ucfirst( [ '_on', event, action ].join( '-' ) );
+        var handle = WPUSB.utils.ucfirst( [ '_on', event, action ].join( '-' ) );
         this.byAction( action ).on( event, $.proxy( context, handle ) );
 	};
 
@@ -551,7 +551,7 @@
 	var modalIds = {};
 
 	Modal.fn.start = function() {
-		this.id      = this.$el.find( this.addPrefix( 'share a' ) ).data( 'modal-id' );
+		this.id      = this.$el.find( '.' + this.addPrefix( 'share a' ) ).data( 'modal-id' );
 		this.modalId = this.addPrefix( 'modal-container-' + this.id );
 		this.maskId  = this.addPrefix( 'modal-' + this.id );
 		this.init();

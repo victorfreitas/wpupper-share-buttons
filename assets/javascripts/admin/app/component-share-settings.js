@@ -96,7 +96,7 @@ WPUSB( 'WPUSB.Components.ShareSettings', function(Model, $, utils) {
 			return;
 		}
 
-		$( '#' + this.utils.prefix + '-square-plus' ).click();
+		$( '#' + this.addPrefix( 'square-plus' ) ).click();
 	};
 
 	Model.fn._onChangePrimaryLayout = function(event) {

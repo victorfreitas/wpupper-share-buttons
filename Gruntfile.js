@@ -14,11 +14,6 @@ module.exports = function(grunt) {
 		};
 	}
 
-	function removeExtension(filePath) {
-	    var template = filePath.replace( /handlebars\/(.*)(\/\w+\.hbs)/, '$1' );
-	    return template.split( '/' ).join( '.' );
-	}
-
 	var config = {
 		package : grunt.file.readJSON( 'package.json' ),
 
@@ -46,9 +41,11 @@ module.exports = function(grunt) {
 		handlebars: {
 		    options: {
 		    	namespace   : 'WPUSB.Templates',
-				processName : removeExtension
+				processName : function(filePath) {
+				    return filePath.replace( /handlebars\/(.+)(\.hbs)/, '$1' );
+				}
 		    },
-			all: {
+			dest: {
 		        files: {
 		            "<%= package.jsroot %>/admin/vendor/handlebars.templates.js" : ["handlebars/**/*.hbs"]
 		        }
@@ -83,10 +80,12 @@ module.exports = function(grunt) {
 
 			templates : {
 				files : ['handlebars/**/*.hbs'],
-				tasks : ['handlebars:all']
+				tasks : ['handlebars:dest']
 			},
   		}
 	};
+
+	require('time-grunt')(grunt);
 
 	grunt.initConfig( config );
 
@@ -95,7 +94,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-concat' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-sass' );
-	grunt.loadNpmTasks( 'grunt-handlebars-compiler' );
+	grunt.loadNpmTasks( 'grunt-contrib-handlebars' );
 
-	grunt.registerTask( 'deploy', ['jshint', 'concat', 'uglify', 'sass:site', 'handlebars:all'] );
+	grunt.registerTask( 'deploy', ['jshint', 'concat', 'uglify', 'sass:site', 'handlebars:dest'] );
 };

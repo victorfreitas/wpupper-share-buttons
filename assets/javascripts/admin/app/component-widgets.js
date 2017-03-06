@@ -1,4 +1,4 @@
-WPUSB( 'WPUSB.Components.Widgets', function(Model, $) {
+WPUSB( 'WPUSB.Components.Widgets', function(Model, $, utils) {
 
 	Model.fn.start = function() {
 		if ( !this.$el.length ) {
