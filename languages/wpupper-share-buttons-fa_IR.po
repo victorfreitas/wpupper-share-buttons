@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2017-02-20 22:15-0300\n"
-"PO-Revision-Date: 2017-02-20 22:15-0300\n"
+"POT-Creation-Date: 2017-03-06 20:27-0300\n"
+"PO-Revision-Date: 2017-03-06 20:38-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -14,124 +14,205 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.12\n"
 
 #: Config/enqueue-scripts.php:60
 msgid "View Untitled"
-msgstr ""
+msgstr "نمایش بدون عنوان"
 
 #: Config/enqueue-scripts.php:61
 msgid "View without count"
-msgstr ""
+msgstr "نمایش بدون شمارش"
 
 #: Config/enqueue-scripts.php:62
 msgid "See with title"
-msgstr ""
+msgstr "مشاهده با عنوان"
 
 #: Config/enqueue-scripts.php:63
 msgid "See with count"
-msgstr ""
+msgstr "مشاهده با تعداد"
 
-#: Config/social-elements.php:94
+#: Config/social-elements.php:93 Controller/share-reports.controller.php:223
+msgid "Facebook"
+msgstr "فیس‌بوک"
+
+#: Config/social-elements.php:96
 msgid "Share on Facebook"
 msgstr "اشتراک در فیس بوک"
 
-#: Config/social-elements.php:100 Config/social-elements.php:134
-#: Config/social-elements.php:151 Config/social-elements.php:168
-#: Config/social-elements.php:185 Config/social-elements.php:202
-#: Config/social-elements.php:270 Config/social-elements.php:287
-#: Config/social-elements.php:304 Config/social-elements.php:355
-#: Config/social-elements.php:372
+#: Config/social-elements.php:102 Config/social-elements.php:136
+#: Config/social-elements.php:153 Config/social-elements.php:170
+#: Config/social-elements.php:187 Config/social-elements.php:204
+#: Config/social-elements.php:272 Config/social-elements.php:289
+#: Config/social-elements.php:306 Config/social-elements.php:340
+#: Config/social-elements.php:374 Config/social-elements.php:391
+#: Config/social-elements.php:408
 msgid "Share"
 msgstr "اشتراک"
 
-#: Config/social-elements.php:111 Config/social-elements.php:117
-msgid "Tweet"
-msgstr ""
+#: Config/social-elements.php:110 Controller/share-reports.controller.php:225
+msgid "Twitter"
+msgstr "توییتر"
 
-#: Config/social-elements.php:128
+#: Config/social-elements.php:113 Config/social-elements.php:119
+msgid "Tweet"
+msgstr "صدای جیر جیر"
+
+#: Config/social-elements.php:127
+msgid "Google Plus"
+msgstr "گوگل پلاس"
+
+#: Config/social-elements.php:130
 msgid "Share on Google+"
 msgstr "اشتراک گذاری در گوگل+"
 
-#: Config/social-elements.php:145
+#: Config/social-elements.php:144
+msgid "WhatsApp"
+msgstr ""
+
+#: Config/social-elements.php:147
 msgid "Share on WhatsApp"
-msgstr ""
+msgstr "اشتراک در WhatsApp"
 
-#: Config/social-elements.php:162
+#: Config/social-elements.php:161 Controller/share-reports.controller.php:227
+msgid "Pinterest"
+msgstr "پینترست"
+
+#: Config/social-elements.php:164
 msgid "Share on Pinterest"
-msgstr ""
+msgstr "اشتراک در Pinterest"
 
-#: Config/social-elements.php:179
+#: Config/social-elements.php:178 Controller/share-reports.controller.php:226
+msgid "Linkedin"
+msgstr "لینکداین"
+
+#: Config/social-elements.php:181
 msgid "Share on Linkedin"
+msgstr "اشتراک در Linkedin"
+
+#: Config/social-elements.php:195 Controller/share-reports.controller.php:228
+msgid "Tumblr"
 msgstr ""
 
-#: Config/social-elements.php:196
+#: Config/social-elements.php:198
 msgid "Share on Tumblr"
 msgstr "اشتراک‌گذاری روی تامبلر"
 
-#: Config/social-elements.php:213
+#: Config/social-elements.php:212
+msgid "Email"
+msgstr "پست الکترونیک"
+
+#: Config/social-elements.php:215
 msgid "Send by email"
+msgstr "ارسال از طریق ایمیل"
+
+#: Config/social-elements.php:229
+msgid "Gmail"
 msgstr ""
 
-#: Config/social-elements.php:230
+#: Config/social-elements.php:232
 msgid "Send by Gmail"
+msgstr "ارسال توسط gmail"
+
+#: Config/social-elements.php:246
+msgid "PrintFriendly"
 msgstr ""
 
-#: Config/social-elements.php:247
+#: Config/social-elements.php:249
 msgid "Print via PrintFriendly"
-msgstr ""
+msgstr "چاپ از طریق PrintFriendly"
 
-#: Config/social-elements.php:253
+#: Config/social-elements.php:255
 msgid "Print"
 msgstr "چاپ"
 
-#: Config/social-elements.php:264
+#: Config/social-elements.php:263
+msgid "Telegram"
+msgstr "تلگراف"
+
+#: Config/social-elements.php:266
 msgid "Share on Telegram"
+msgstr "اشتراک در تلگرام"
+
+#: Config/social-elements.php:280
+msgid "Skype"
 msgstr ""
 
-#: Config/social-elements.php:281
+#: Config/social-elements.php:283
 msgid "Share on Skype"
+msgstr "اشتراک در Skype"
+
+#: Config/social-elements.php:297
+msgid "Viber"
 msgstr ""
 
-#: Config/social-elements.php:298
+#: Config/social-elements.php:300
 msgid "Share on Viber"
-msgstr ""
+msgstr "اشتراک در Viber"
 
-#: Config/social-elements.php:315
-msgid "Like on Facebook"
-msgstr ""
-
-#: Config/social-elements.php:321
+#: Config/social-elements.php:314 Config/social-elements.php:323
 msgid "Like"
+msgstr "پسندیدن"
+
+#: Config/social-elements.php:317
+msgid "Like on Facebook"
+msgstr "مانند در فیس بوک"
+
+#: Config/social-elements.php:331
+msgid "Reddit"
 msgstr ""
 
-#: Config/social-elements.php:332 Templates/layouts-primary.php:167
-msgid "Open modal social networks"
-msgstr ""
-
-#: Config/social-elements.php:349
+#: Config/social-elements.php:334
 msgid "Share on Reddit"
-msgstr ""
+msgstr "اشتراک در Reddit"
 
-#: Config/social-elements.php:366
-msgid "Share on Flipboard"
-msgstr ""
-
-#: Config/social-elements.php:383
-msgid "Send on Facebook Messenger"
-msgstr ""
-
-#: Config/social-elements.php:389
+#: Config/social-elements.php:348 Config/social-elements.php:357
 msgid "Messenger"
 msgstr ""
 
-#: Config/social-elements.php:574
-msgid "Click to see also"
+#: Config/social-elements.php:351
+msgid "Send on Facebook Messenger"
+msgstr "ارسال در فیس بوک مسنجر"
+
+#: Config/social-elements.php:365
+msgid "Buffer"
 msgstr ""
 
-#: Config/social-elements.php:575 View/settings-extra.view.php:132
-msgid "I just saw"
+#: Config/social-elements.php:368
+msgid "Share on Buffer"
+msgstr "اشتراک در بافر"
+
+#: Config/social-elements.php:382
+msgid "VK"
 msgstr ""
+
+#: Config/social-elements.php:385
+msgid "Share on VK"
+msgstr "اشتراک در Vk"
+
+#: Config/social-elements.php:399
+msgid "Flipboard"
+msgstr ""
+
+#: Config/social-elements.php:402
+msgid "Share on Flipboard"
+msgstr "اشتراک در Flipboard به"
+
+#: Config/social-elements.php:416
+msgid "Modal Share"
+msgstr "مودال به اشتراک"
+
+#: Config/social-elements.php:419 Templates/layouts-primary.php:169
+msgid "Open modal social networks"
+msgstr "گسترش شبکه های اجتماعی معین"
+
+#: Config/social-elements.php:618
+msgid "Click to see also"
+msgstr "به همچنین نگاه کنید به کلیک کنید"
+
+#: Config/social-elements.php:619 View/settings-extra.view.php:132
+msgid "I just saw"
+msgstr "همین الان دیدم"
 
 #: Controller/ajax.controller.php:328
 msgid "Error: Could not process css file."
@@ -152,48 +233,28 @@ msgid "WPUpper Share"
 msgstr ""
 
 #: Controller/settings.controller.php:79 View/settings-extra.view.php:41
-#: View/settings.view.php:735
+#: View/settings.view.php:753
 msgid "Extra Settings"
-msgstr ""
+msgstr "تنظیمات اضافی"
 
 #: Controller/settings.controller.php:89 View/settings-custom-css.view.php:32
-#: View/settings.view.php:740
+#: View/settings.view.php:758
 msgid "Custom CSS"
-msgstr ""
+msgstr "CSS سفارشی"
 
 #: Controller/settings.controller.php:101
 #: Controller/settings.controller.php:102 View/settings-faq.view.php:34
-#: View/settings.view.php:745
+#: View/settings.view.php:763
 msgid "Use options"
-msgstr ""
+msgstr "استفاده از امکانات"
 
 #: Controller/share-reports.controller.php:222 View/settings.view.php:571
 msgid "Title"
 msgstr "تیتر"
 
-#: Controller/share-reports.controller.php:223
-msgid "Facebook"
-msgstr "فیس‌بوک"
-
 #: Controller/share-reports.controller.php:224
 msgid "Google+"
 msgstr "گوگل پلاس"
-
-#: Controller/share-reports.controller.php:225
-msgid "Twitter"
-msgstr "توییتر"
-
-#: Controller/share-reports.controller.php:226
-msgid "Linkedin"
-msgstr "لینکداین"
-
-#: Controller/share-reports.controller.php:227
-msgid "Pinterest"
-msgstr "پینترست"
-
-#: Controller/share-reports.controller.php:228
-msgid "Tumblr"
-msgstr ""
 
 #: Controller/share-reports.controller.php:229
 msgid "Total"
@@ -207,142 +268,150 @@ msgstr ""
 msgid "Sharing Report | WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/share-reports.controller.php:305 View/settings.view.php:753
+#: Controller/share-reports.controller.php:305 View/settings.view.php:771
 msgid "Sharing Report"
-msgstr ""
+msgstr "به اشتراک گذاری گزارش"
 
 #: Controller/widget-follow.controller.php:23
 msgid "Insert the Follow Us of your social networks."
 msgstr ""
 
-#: Controller/widget-follow.controller.php:60
-#: Controller/widgets.controller.php:72
+#: Controller/widget-follow.controller.php:40
+msgid "CSS is disabled!"
+msgstr ""
+
+#: Controller/widget-follow.controller.php:64
+#: Controller/widgets.controller.php:76
 msgid "Widget title"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:65 View/settings.view.php:555
+#: Controller/widget-follow.controller.php:69 View/settings.view.php:555
 msgid "Custom class"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:70
-#: Controller/widgets.controller.php:87 View/settings.view.php:391
+#: Controller/widget-follow.controller.php:74
+#: Controller/widgets.controller.php:91 View/settings.view.php:391
 msgid "Icons size"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:76
-#: Controller/widgets.controller.php:93 View/settings.view.php:475
+#: Controller/widget-follow.controller.php:80
+#: Controller/widgets.controller.php:97 View/settings.view.php:475
 msgid "Icons color"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:82
-#: Controller/widgets.controller.php:123
+#: Controller/widget-follow.controller.php:86
+#: Controller/widgets.controller.php:127
 msgid "Layout"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:156
+#: Controller/widget-follow.controller.php:161
 msgid "Follow us on Facebook"
-msgstr ""
+msgstr "ما را در فیسبوک دنبال کنید"
 
-#: Controller/widget-follow.controller.php:165
+#: Controller/widget-follow.controller.php:170
 msgid "Follow us on Twitter"
-msgstr ""
+msgstr "ما را در توییتر دنبال کنید"
 
-#: Controller/widget-follow.controller.php:174
+#: Controller/widget-follow.controller.php:179
 msgid "Find us on Linkedin"
-msgstr ""
+msgstr "یافتن ما در Linkedin"
 
-#: Controller/widget-follow.controller.php:183
+#: Controller/widget-follow.controller.php:188
 msgid "Follow us on Google+"
-msgstr ""
+msgstr "ما را در + Google دنبال کنید"
 
-#: Controller/widget-follow.controller.php:192
+#: Controller/widget-follow.controller.php:197
 msgid "My Pinterest board"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:201
+#: Controller/widget-follow.controller.php:206
 msgid "Check out our Instagram"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:210
+#: Controller/widget-follow.controller.php:215
 msgid "Follow us Reddit"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:219
+#: Controller/widget-follow.controller.php:224
 msgid "Subscribe to our YouTube"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:228
+#: Controller/widget-follow.controller.php:233
 msgid "Find us on Vimeo"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:237
+#: Controller/widget-follow.controller.php:242
 msgid "Subscribe to our RSS Feed"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:246
+#: Controller/widget-follow.controller.php:251
 msgid "Find us on Tumblr"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:255
+#: Controller/widget-follow.controller.php:260
 msgid "Check out our Flickr"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:264
+#: Controller/widget-follow.controller.php:269
 msgid "Check out our Foursquare"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:273
+#: Controller/widget-follow.controller.php:278
 msgid "Check out our GitHub"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:282
+#: Controller/widget-follow.controller.php:287
 msgid "Contact Us"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:291
+#: Controller/widget-follow.controller.php:296
 msgid "Follow us on Snapchat"
+msgstr ""
+
+#: Controller/widget-follow.controller.php:305
+msgid "Follow us on Behance"
 msgstr ""
 
 #: Controller/widgets.controller.php:17
 msgid "Insert share buttons of social networks."
 msgstr ""
 
-#: Controller/widgets.controller.php:77
+#: Controller/widgets.controller.php:81
 msgid "Post title"
 msgstr ""
 
-#: Controller/widgets.controller.php:82
+#: Controller/widgets.controller.php:86
 msgid "URL"
 msgstr ""
 
-#: Controller/widgets.controller.php:99
+#: Controller/widgets.controller.php:103
 msgid "Buttons background color. <br>Layouts: Square plus and Button"
 msgstr ""
 
-#: Controller/widgets.controller.php:105 View/settings.view.php:535
+#: Controller/widgets.controller.php:109 View/settings.view.php:535
 msgid "Buttons title color"
 msgstr ""
 
-#: Controller/widgets.controller.php:111 View/settings.view.php:455
+#: Controller/widgets.controller.php:115 View/settings.view.php:455
 msgid "Share count text color"
 msgstr ""
 
-#: Controller/widgets.controller.php:117
+#: Controller/widgets.controller.php:121
 msgid ""
 "Share count background color. <br>Layouts: Default, Button, Rounded and "
 "Square."
 msgstr ""
 
-#: Controller/widgets.controller.php:129 View/settings.view.php:656
+#: Controller/widgets.controller.php:133 View/settings.view.php:656
 msgid "Remove counter"
 msgstr ""
 
-#: Controller/widgets.controller.php:134 View/settings.view.php:641
+#: Controller/widgets.controller.php:138 View/settings.view.php:641
 msgid "Remove button title"
 msgstr ""
 
-#: Helper/utils-share.php:419 View/settings.view.php:175
-#: View/settings.view.php:444
+#: Helper/utils-share.php:419 View/settings-extra.view.php:193
+#: View/settings.view.php:175 View/settings.view.php:444
 msgid "Default"
 msgstr "پیش فرض"
 
@@ -368,19 +437,19 @@ msgstr "مربع"
 msgid "Square plus"
 msgstr ""
 
-#: Helper/utils.php:1340
+#: Helper/utils.php:1383
 msgid "SHARES"
-msgstr ""
+msgstr "سهام"
 
-#: Templates/fixed-left.php:145
+#: Templates/fixed-left.php:146
 msgid "Shares"
-msgstr ""
+msgstr "سهام"
 
 #: View/settings-custom-css.view.php:51
 msgid "Enter your custom CSS ..."
 msgstr ""
 
-#: View/settings-custom-css.view.php:65 View/settings.view.php:695
+#: View/settings-custom-css.view.php:65 View/settings.view.php:713
 msgid "Save Changes"
 msgstr "ذخیره ی تنظیمات"
 
@@ -461,36 +530,40 @@ msgid "Shorten urls using bitly, generate token in "
 msgstr ""
 
 #: View/settings-extra.view.php:185
+msgid "Select Bitly domain"
+msgstr ""
+
+#: View/settings-extra.view.php:213
 msgid "Minify html buttons share"
 msgstr ""
 
-#: View/settings-extra.view.php:198
+#: View/settings-extra.view.php:226
 msgid "Minify the HTML helps site performance."
 msgstr ""
 
-#: View/settings-extra.view.php:205
+#: View/settings-extra.view.php:233
 msgid "Deactivate sharing report"
 msgstr ""
 
-#: View/settings-extra.view.php:218
+#: View/settings-extra.view.php:246
 msgid ""
 "This allows you to disable counting of the shares report. You will not lose "
 "the report you have already computed."
 msgstr ""
 
-#: View/settings-extra.view.php:225
+#: View/settings-extra.view.php:253
 msgid "Disable CSS"
 msgstr "غیرفعال کردن استایل"
 
-#: View/settings-extra.view.php:242
+#: View/settings-extra.view.php:270
 msgid "Disable JS"
 msgstr ""
 
-#: View/settings-extra.view.php:259
+#: View/settings-extra.view.php:287
 msgid "CSS file in footer"
 msgstr ""
 
-#: View/settings-extra.view.php:272
+#: View/settings-extra.view.php:300
 msgid ""
 "Keep the CSS style in the footer is recommended to improve the performance "
 "of your website."
@@ -558,7 +631,7 @@ msgstr ""
 
 #: View/settings.view.php:265
 msgid "Clear"
-msgstr ""
+msgstr "واضح"
 
 #: View/settings.view.php:266
 msgid "Click to clear the positions."
@@ -651,7 +724,21 @@ msgstr ""
 msgid "This allows highlight the social network where the user Came from."
 msgstr ""
 
-#: View/settings.view.php:677
+#: View/settings.view.php:673
+msgid "Min count to display"
+msgstr ""
+
+#: View/settings.view.php:684
+msgid ""
+"When you enter the value, share counts are only displayed when the total "
+"counts of each item than equal to or greater than the informed value."
+msgstr ""
+
+#: View/settings.view.php:690
+msgid "Twitter share counter"
+msgstr ""
+
+#: View/settings.view.php:695
 msgid ""
 "The share count Twitter is powered by <a href=\"http://newsharecounts.com\" "
 "target=\"_blank\">newsharecounts.com</a>, you have to sign up with your "
@@ -660,34 +747,34 @@ msgid ""
 "That, and nothing else!"
 msgstr ""
 
-#: View/settings.view.php:713
+#: View/settings.view.php:731
 msgid "Settings saved."
 msgstr "تغییرات ذخیره شد."
 
-#: View/settings.view.php:730
+#: View/settings.view.php:748
 msgid "General"
 msgstr ""
 
-#: View/settings.view.php:842
+#: View/settings.view.php:861
 msgid "YES"
 msgstr ""
 
-#: View/settings.view.php:843
+#: View/settings.view.php:862
 msgid "NO"
 msgstr ""
 
-#: View/settings.view.php:875
+#: View/settings.view.php:894
 #, php-format
 msgid ""
 "Help keep the free %s, you can make a donation or vote with %s at WordPress."
 "org. Thank you very much!"
 msgstr ""
 
-#: View/settings.view.php:888
+#: View/settings.view.php:907
 msgid "Make a donation"
 msgstr ""
 
-#: View/settings.view.php:896
+#: View/settings.view.php:915
 msgid "Make a review"
 msgstr ""
 
@@ -710,7 +797,7 @@ msgstr ""
 
 #: View/shares.view.php:33
 msgid "Disable on this post"
-msgstr ""
+msgstr "غیر فعال کردن این نوشته"
 
 #: View/widget-follow.view.php:19
 msgid "No social networks were enabled in the Widget."
@@ -761,6 +848,8 @@ msgid ""
 "It does not support your PHP version. Please, install a version greater than "
 "or equal to 5.2.0."
 msgstr ""
+"آن نسخه پی اچ پی خود را پشتیبانی نمی کند. لطفا، نصب یک نسخه بزرگتر یا مساوی "
+"به 5.2.0."
 
 #~ msgid "Fixed"
 #~ msgstr "ثابت"

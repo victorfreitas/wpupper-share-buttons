@@ -5,14 +5,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPUpper Share Buttons 3.25\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-buttons\n"
-"POT-Creation-Date: 2017-03-01 03:45-0300\n"
+"POT-Creation-Date: 2017-03-06 20:23-0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: WPUpper <victorfreitasdev@gmail.com>\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-KeywordsList: _e;__;_n\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -43,112 +43,185 @@ msgstr ""
 msgid "See with count"
 msgstr ""
 
-#: Config/social-elements.php:95
+#: Config/social-elements.php:93 Controller/share-reports.controller.php:223
+msgid "Facebook"
+msgstr ""
+
+#: Config/social-elements.php:96
 msgid "Share on Facebook"
 msgstr ""
 
-#: Config/social-elements.php:101 Config/social-elements.php:135
-#: Config/social-elements.php:152 Config/social-elements.php:169
-#: Config/social-elements.php:186 Config/social-elements.php:203
-#: Config/social-elements.php:271 Config/social-elements.php:288
-#: Config/social-elements.php:305 Config/social-elements.php:356
-#: Config/social-elements.php:373
+#: Config/social-elements.php:102 Config/social-elements.php:136
+#: Config/social-elements.php:153 Config/social-elements.php:170
+#: Config/social-elements.php:187 Config/social-elements.php:204
+#: Config/social-elements.php:272 Config/social-elements.php:289
+#: Config/social-elements.php:306 Config/social-elements.php:340
+#: Config/social-elements.php:374 Config/social-elements.php:391
+#: Config/social-elements.php:408
 msgid "Share"
 msgstr ""
 
-#: Config/social-elements.php:112 Config/social-elements.php:118
+#: Config/social-elements.php:110 Controller/share-reports.controller.php:225
+msgid "Twitter"
+msgstr ""
+
+#: Config/social-elements.php:113 Config/social-elements.php:119
 msgid "Tweet"
 msgstr ""
 
-#: Config/social-elements.php:129
+#: Config/social-elements.php:127
+msgid "Google Plus"
+msgstr ""
+
+#: Config/social-elements.php:130
 msgid "Share on Google+"
 msgstr ""
 
-#: Config/social-elements.php:146
+#: Config/social-elements.php:144
+msgid "WhatsApp"
+msgstr ""
+
+#: Config/social-elements.php:147
 msgid "Share on WhatsApp"
 msgstr ""
 
-#: Config/social-elements.php:163
+#: Config/social-elements.php:161 Controller/share-reports.controller.php:227
+msgid "Pinterest"
+msgstr ""
+
+#: Config/social-elements.php:164
 msgid "Share on Pinterest"
 msgstr ""
 
-#: Config/social-elements.php:180
+#: Config/social-elements.php:178 Controller/share-reports.controller.php:226
+msgid "Linkedin"
+msgstr ""
+
+#: Config/social-elements.php:181
 msgid "Share on Linkedin"
 msgstr ""
 
-#: Config/social-elements.php:197
+#: Config/social-elements.php:195 Controller/share-reports.controller.php:228
+msgid "Tumblr"
+msgstr ""
+
+#: Config/social-elements.php:198
 msgid "Share on Tumblr"
 msgstr ""
 
-#: Config/social-elements.php:214
+#: Config/social-elements.php:212
+msgid "Email"
+msgstr ""
+
+#: Config/social-elements.php:215
 msgid "Send by email"
 msgstr ""
 
-#: Config/social-elements.php:231
+#: Config/social-elements.php:229
+msgid "Gmail"
+msgstr ""
+
+#: Config/social-elements.php:232
 msgid "Send by Gmail"
 msgstr ""
 
-#: Config/social-elements.php:248
+#: Config/social-elements.php:246
+msgid "PrintFriendly"
+msgstr ""
+
+#: Config/social-elements.php:249
 msgid "Print via PrintFriendly"
 msgstr ""
 
-#: Config/social-elements.php:254
+#: Config/social-elements.php:255
 msgid "Print"
 msgstr ""
 
-#: Config/social-elements.php:265
+#: Config/social-elements.php:263
+msgid "Telegram"
+msgstr ""
+
+#: Config/social-elements.php:266
 msgid "Share on Telegram"
 msgstr ""
 
-#: Config/social-elements.php:282
+#: Config/social-elements.php:280
+msgid "Skype"
+msgstr ""
+
+#: Config/social-elements.php:283
 msgid "Share on Skype"
 msgstr ""
 
-#: Config/social-elements.php:299
+#: Config/social-elements.php:297
+msgid "Viber"
+msgstr ""
+
+#: Config/social-elements.php:300
 msgid "Share on Viber"
 msgstr ""
 
-#: Config/social-elements.php:316
-msgid "Like on Facebook"
-msgstr ""
-
-#: Config/social-elements.php:322
+#: Config/social-elements.php:314 Config/social-elements.php:323
 msgid "Like"
 msgstr ""
 
-#: Config/social-elements.php:333 Templates/layouts-primary.php:169
-msgid "Open modal social networks"
+#: Config/social-elements.php:317
+msgid "Like on Facebook"
 msgstr ""
 
-#: Config/social-elements.php:350
+#: Config/social-elements.php:331
+msgid "Reddit"
+msgstr ""
+
+#: Config/social-elements.php:334
 msgid "Share on Reddit"
 msgstr ""
 
-#: Config/social-elements.php:367
-msgid "Share on Flipboard"
-msgstr ""
-
-#: Config/social-elements.php:384
-msgid "Send on Facebook Messenger"
-msgstr ""
-
-#: Config/social-elements.php:390
+#: Config/social-elements.php:348 Config/social-elements.php:357
 msgid "Messenger"
 msgstr ""
 
-#: Config/social-elements.php:401
-msgid "Share on Buffer"
+#: Config/social-elements.php:351
+msgid "Send on Facebook Messenger"
 msgstr ""
 
-#: Config/social-elements.php:407
+#: Config/social-elements.php:365
 msgid "Buffer"
 msgstr ""
 
-#: Config/social-elements.php:600
+#: Config/social-elements.php:368
+msgid "Share on Buffer"
+msgstr ""
+
+#: Config/social-elements.php:382
+msgid "VK"
+msgstr ""
+
+#: Config/social-elements.php:385
+msgid "Share on VK"
+msgstr ""
+
+#: Config/social-elements.php:399
+msgid "Flipboard"
+msgstr ""
+
+#: Config/social-elements.php:402
+msgid "Share on Flipboard"
+msgstr ""
+
+#: Config/social-elements.php:416
+msgid "Modal Share"
+msgstr ""
+
+#: Config/social-elements.php:419 Templates/layouts-primary.php:169
+msgid "Open modal social networks"
+msgstr ""
+
+#: Config/social-elements.php:618
 msgid "Click to see also"
 msgstr ""
 
-#: Config/social-elements.php:601 View/settings-extra.view.php:132
+#: Config/social-elements.php:619 View/settings-extra.view.php:132
 msgid "I just saw"
 msgstr ""
 
@@ -190,28 +263,8 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: Controller/share-reports.controller.php:223
-msgid "Facebook"
-msgstr ""
-
 #: Controller/share-reports.controller.php:224
 msgid "Google+"
-msgstr ""
-
-#: Controller/share-reports.controller.php:225
-msgid "Twitter"
-msgstr ""
-
-#: Controller/share-reports.controller.php:226
-msgid "Linkedin"
-msgstr ""
-
-#: Controller/share-reports.controller.php:227
-msgid "Pinterest"
-msgstr ""
-
-#: Controller/share-reports.controller.php:228
-msgid "Tumblr"
 msgstr ""
 
 #: Controller/share-reports.controller.php:229
@@ -678,6 +731,10 @@ msgstr ""
 
 #: View/settings.view.php:684
 msgid "When you enter the value, share counts are only displayed when the total counts of each item than equal to or greater than the informed value."
+msgstr ""
+
+#: View/settings.view.php:690
+msgid "Twitter share counter"
 msgstr ""
 
 #: View/settings.view.php:695

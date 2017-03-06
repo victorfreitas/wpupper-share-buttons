@@ -72,7 +72,7 @@ EOD;
 				$social = WPUSB_Utils::replace_link( $social, $permalink, $title );
 			}
 
-			$link_attr = WPUSB_Utils::link_type( $social->link );
+			$link_attr = WPUSB_Utils::link_type( $social->link, $social->element );
 
 			if ( $social->element === 'messenger' ) {
 				$social->popup = str_replace( '_permalink_', $permalink, $social->popup );

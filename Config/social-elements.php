@@ -46,11 +46,12 @@ class WPUSB_Social_Elements {
 		'skype'     => 'skype',
 		'viber'     => 'viber',
 		'like'      => 'like',
-		'share'     => 'share',
 		'reddit'    => 'reddit',
 		'flipboard' => 'flipboard',
 		'messenger' => 'messenger',
 		'buffer'    => 'buffer',
+		'vk'        => 'vk',
+		'share'     => 'share',
 	);
 
 	/**
@@ -89,7 +90,7 @@ class WPUSB_Social_Elements {
 		 * @see Facebook
 		 */
 		$std->facebook              = new stdClass();
-		$std->facebook->name        = 'Facebook';
+		$std->facebook->name        = __( 'Facebook', WPUSB_App::TEXTDOMAIN );
 		$std->facebook->element     = 'facebook';
 		$std->facebook->link        = 'https://www.facebook.com/sharer.php?u=' . self::$url;
 		$std->facebook->title       = __( 'Share on Facebook', WPUSB_App::TEXTDOMAIN );
@@ -106,7 +107,7 @@ class WPUSB_Social_Elements {
 		 * @see Twitter
 		 */
 		$std->twitter              = new stdClass();
-		$std->twitter->name        = 'Twitter';
+		$std->twitter->name        = __( 'Twitter', WPUSB_App::TEXTDOMAIN );
 		$std->twitter->element     = 'twitter';
 		$std->twitter->link        = 'https://twitter.com/intent/tweet?url=' . self::$url . '&text=' . self::$twitter_text . self::$twitter_via . self::$twitter_hashtags;
 		$std->twitter->title       = __( 'Tweet', WPUSB_App::TEXTDOMAIN );
@@ -123,7 +124,7 @@ class WPUSB_Social_Elements {
 		 * @see Google Plus
 		 */
 		$std->google              = new stdClass();
-		$std->google->name        = 'Google Plus';
+		$std->google->name        = __( 'Google Plus', WPUSB_App::TEXTDOMAIN );
 		$std->google->element     = 'google-plus';
 		$std->google->link        = 'https://plus.google.com/share?url=' . self::$url;
 		$std->google->title       = __( 'Share on Google+', WPUSB_App::TEXTDOMAIN );
@@ -140,7 +141,7 @@ class WPUSB_Social_Elements {
 		 * @see WhatsApp
 		 */
 		$std->whatsapp              = new stdClass();
-		$std->whatsapp->name        = 'WhatsApp';
+		$std->whatsapp->name        = __( 'WhatsApp', WPUSB_App::TEXTDOMAIN );
 		$std->whatsapp->element     = 'whatsapp';
 		$std->whatsapp->link        = 'whatsapp://send?text=' . self::$whatsapp_text . self::$url;
 		$std->whatsapp->title       = __( 'Share on WhatsApp', WPUSB_App::TEXTDOMAIN );
@@ -157,7 +158,7 @@ class WPUSB_Social_Elements {
 		 * @see Pinterest
 		 */
 		$std->pinterest              = new stdClass();
-		$std->pinterest->name        = 'Pinterest';
+		$std->pinterest->name        = __( 'Pinterest', WPUSB_App::TEXTDOMAIN );
 		$std->pinterest->element     = 'pinterest';
 		$std->pinterest->link        = 'https://pinterest.com/pin/create/bookmarklet/?url=' . self::$url . '&media=' . self::$thumbnail . '&description=' . self::$title;
 		$std->pinterest->title       = __( 'Share on Pinterest', WPUSB_App::TEXTDOMAIN );
@@ -174,7 +175,7 @@ class WPUSB_Social_Elements {
 		 * @see Linkedin
 		 */
 		$std->linkedin              = new stdClass();
-		$std->linkedin->name        = 'Linkedin';
+		$std->linkedin->name        = __( 'Linkedin', WPUSB_App::TEXTDOMAIN );
 		$std->linkedin->element     = 'linkedin';
 		$std->linkedin->link        = 'https://www.linkedin.com/shareArticle?mini=true&url=' . self::$url . '&title=' . self::$title;
 		$std->linkedin->title       = __( 'Share on Linkedin', WPUSB_App::TEXTDOMAIN );
@@ -191,7 +192,7 @@ class WPUSB_Social_Elements {
 		 * @see Tumblr
 		 */
 		$std->tumblr              = new stdClass();
-		$std->tumblr->name        = 'Tumblr';
+		$std->tumblr->name        = __( 'Tumblr', WPUSB_App::TEXTDOMAIN );
 		$std->tumblr->element     = 'tumblr';
 		$std->tumblr->link        = 'https://www.tumblr.com/widgets/share/tool?canonicalUrl=' . self::$url . '&title=' . self::$title;
 		$std->tumblr->title       = __( 'Share on Tumblr', WPUSB_App::TEXTDOMAIN );
@@ -208,7 +209,7 @@ class WPUSB_Social_Elements {
 		 * @see Email
 		 */
 		$std->email              = new stdClass();
-		$std->email->name        = 'Email';
+		$std->email->name        = __( 'Email', WPUSB_App::TEXTDOMAIN );
 		$std->email->element     = 'email';
 		$std->email->link        = 'mailto:?subject=' . self::$title . '&body=' . self::$url . "\n" . self::$body_mail;
 		$std->email->title       = __( 'Send by email', WPUSB_App::TEXTDOMAIN );
@@ -216,7 +217,7 @@ class WPUSB_Social_Elements {
 		$std->email->class_item  = self::$item;
 		$std->email->class_link  = self::$class_button;
 		$std->email->class_icon  = apply_filters( "{$prefix}_class_icon", $prefix_icons . 'email' );
-		$std->email->popup       = self::$action;
+		$std->email->popup       = '';
 		$std->email->inside      = 'Email';
 		$std->email->has_counter = false;
 
@@ -225,7 +226,7 @@ class WPUSB_Social_Elements {
 		 * @see Gmail
 		 */
 		$std->gmail              = new stdClass();
-		$std->gmail->name        = 'Gmail';
+		$std->gmail->name        = __( 'Gmail', WPUSB_App::TEXTDOMAIN );
 		$std->gmail->element     = 'gmail';
 		$std->gmail->link        = 'https://mail.google.com/mail/u/0/?view=cm&fs=1&su=' . self::$title . '&body=' . self::$url . "\n" . self::$body_mail . '&tf=1';
 		$std->gmail->title       = __( 'Send by Gmail', WPUSB_App::TEXTDOMAIN );
@@ -242,9 +243,9 @@ class WPUSB_Social_Elements {
 		 * @see PrintFriendly
 		 */
 		$std->printer              = new stdClass();
-		$std->printer->name        = 'PrintFriendly';
+		$std->printer->name        = __( 'PrintFriendly', WPUSB_App::TEXTDOMAIN );
 		$std->printer->element     = 'printer';
-		$std->printer->link        = 'http://www.printfriendly.com/print?url=' . self::$url;
+		$std->printer->link        = 'https://www.printfriendly.com/print?url=' . self::$url;
 		$std->printer->title       = __( 'Print via PrintFriendly', WPUSB_App::TEXTDOMAIN );
 		$std->printer->class       = $prefix . '-printer';
 		$std->printer->class_item  = self::$item;
@@ -259,7 +260,7 @@ class WPUSB_Social_Elements {
 		 * @see Telegram
 		 */
 		$std->telegram              = new stdClass();
-		$std->telegram->name        = 'Telegram';
+		$std->telegram->name        = __( 'Telegram', WPUSB_App::TEXTDOMAIN );
 		$std->telegram->element     = 'telegram';
 		$std->telegram->link        = 'https://telegram.me/share/url?url=' . self::$url . '&text=' . self::$title;
 		$std->telegram->title       = __( 'Share on Telegram', WPUSB_App::TEXTDOMAIN );
@@ -276,7 +277,7 @@ class WPUSB_Social_Elements {
 		 * @see Skype
 		 */
 		$std->skype              = new stdClass();
-		$std->skype->name        = 'Skype';
+		$std->skype->name        = __( 'Skype', WPUSB_App::TEXTDOMAIN );
 		$std->skype->element     = 'skype';
 		$std->skype->link        = 'https://web.skype.com/share?url=' . self::$url . '&text=' . self::$title;
 		$std->skype->title       = __( 'Share on Skype', WPUSB_App::TEXTDOMAIN );
@@ -293,7 +294,7 @@ class WPUSB_Social_Elements {
 		 * @see Viber
 		 */
 		$std->viber              = new stdClass();
-		$std->viber->name        = 'Viber';
+		$std->viber->name        = __( 'Viber', WPUSB_App::TEXTDOMAIN );
 		$std->viber->element     = 'viber';
 		$std->viber->link        = 'viber://forward?text=' . self::$viber_text . self::$url;
 		$std->viber->title       = __( 'Share on Viber', WPUSB_App::TEXTDOMAIN );
@@ -310,9 +311,9 @@ class WPUSB_Social_Elements {
 		 * @see Like
 		 */
 		$std->like              = new stdClass();
-		$std->like->name        = 'Like';
+		$std->like->name        = __( 'Like', WPUSB_App::TEXTDOMAIN );
 		$std->like->element     = 'like';
-		$std->like->link        = 'http://victorfreitas.github.io/wpupper-share-buttons/?href=' . self::$url_like;
+		$std->like->link        = 'https://victorfreitas.github.io/wpupper-share-buttons/?href=' . self::$url_like;
 		$std->like->title       = __( 'Like on Facebook', WPUSB_App::TEXTDOMAIN );
 		$std->like->class       = $prefix . '-like';
 		$std->like->class_item  = self::$item;
@@ -324,27 +325,10 @@ class WPUSB_Social_Elements {
 
 		/**
 		 * @var Object
-		 * @see Modal Share
-		 */
-		$std->share              = new stdClass();
-		$std->share->name        = 'Modal Share';
-		$std->share->element     = 'share';
-		$std->share->link        = 'javascript:void(0);';
-		$std->share->title       = __( 'Open modal social networks', WPUSB_App::TEXTDOMAIN );
-		$std->share->class       = $prefix . '-share';
-		$std->share->class_item  = self::$item;
-		$std->share->class_link  = self::$class_button;
-		$std->share->class_icon  = apply_filters( "{$prefix}_class_icon", $prefix_icons . 'share' );
-		$std->share->popup       = 'data-action="open-modal-networks"';
-		$std->share->inside      = false;
-		$std->share->has_counter = false;
-
-		/**
-		 * @var Object
 		 * @see Reddit
 		 */
 		$std->reddit              = new stdClass();
-		$std->reddit->name        = 'Reddit';
+		$std->reddit->name        = __( 'Reddit', WPUSB_App::TEXTDOMAIN );
 		$std->reddit->element     = 'reddit';
 		$std->reddit->link        = 'https://www.reddit.com/submit?url=' . self::$url . '&title=' . self::$title;
 		$std->reddit->title       = __( 'Share on Reddit', WPUSB_App::TEXTDOMAIN );
@@ -358,27 +342,10 @@ class WPUSB_Social_Elements {
 
 		/**
 		 * @var Object
-		 * @see Flipboard
-		 */
-		$std->flipboard              = new stdClass();
-		$std->flipboard->name        = 'Flipboard';
-		$std->flipboard->element     = 'flipboard';
-		$std->flipboard->link        = 'https://share.flipboard.com/bookmarklet/popout?v=2&ext=' . rawurlencode( WPUSB_App::NAME ) . '&title=' . self::$title . '&url=' . self::$url;
-		$std->flipboard->title       = __( 'Share on Flipboard', WPUSB_App::TEXTDOMAIN );
-		$std->flipboard->class       = $prefix . '-flipboard';
-		$std->flipboard->class_item  = self::$item;
-		$std->flipboard->class_link  = self::$class_button;
-		$std->flipboard->class_icon  = apply_filters( "{$prefix}_class_icon", $prefix_icons . 'flipboard' );
-		$std->flipboard->popup       = self::$action;
-		$std->flipboard->inside      = __( 'Share', WPUSB_App::TEXTDOMAIN );
-		$std->flipboard->has_counter = false;
-
-		/**
-		 * @var Object
 		 * @see Facebook messenger
 		 */
 		$std->messenger              = new stdClass();
-		$std->messenger->name        = 'Messenger';
+		$std->messenger->name        = __( 'Messenger', WPUSB_App::TEXTDOMAIN );
 		$std->messenger->element     = 'messenger';
 		$std->messenger->link        = 'https://www.facebook.com/dialog/send?app_id=140586622674265&link=' . self::$url . '&redirect_uri=' . self::$url;
 		$std->messenger->title       = __( 'Send on Facebook Messenger', WPUSB_App::TEXTDOMAIN );
@@ -395,7 +362,7 @@ class WPUSB_Social_Elements {
 		 * @see Buffer
 		 */
 		$std->buffer              = new stdClass();
-		$std->buffer->name        = 'Buffer';
+		$std->buffer->name        = __( 'Buffer', WPUSB_App::TEXTDOMAIN );
 		$std->buffer->element     = 'buffer';
 		$std->buffer->link        = 'https://bufferapp.com/add?' . self::_get_buffer_param();
 		$std->buffer->title       = __( 'Share on Buffer', WPUSB_App::TEXTDOMAIN );
@@ -404,8 +371,59 @@ class WPUSB_Social_Elements {
 		$std->buffer->class_link  = self::$class_button;
 		$std->buffer->class_icon  = apply_filters( "{$prefix}_class_icon", $prefix_icons . 'buffer' );
 		$std->buffer->popup       = self::$action;
-		$std->buffer->inside      = __( 'Buffer', WPUSB_App::TEXTDOMAIN );
+		$std->buffer->inside      = __( 'Share', WPUSB_App::TEXTDOMAIN );
 		$std->buffer->has_counter = false;
+
+		/**
+		 * @var Object
+		 * @see VK
+		 */
+		$std->vk              = new stdClass();
+		$std->vk->name        = __( 'VK', WPUSB_App::TEXTDOMAIN );
+		$std->vk->element     = 'vk';
+		$std->vk->link        = 'https://vk.com/share.php?url=' . self::$url . '&title=' . self::$title;
+		$std->vk->title       = __( 'Share on VK', WPUSB_App::TEXTDOMAIN );
+		$std->vk->class       = $prefix . '-vk';
+		$std->vk->class_item  = self::$item;
+		$std->vk->class_link  = self::$class_button;
+		$std->vk->class_icon  = apply_filters( "{$prefix}_class_icon", $prefix_icons . 'vk' );
+		$std->vk->popup       = self::$action;
+		$std->vk->inside      = __( 'Share', WPUSB_App::TEXTDOMAIN );
+		$std->vk->has_counter = false;
+
+		/**
+		 * @var Object
+		 * @see Flipboard
+		 */
+		$std->flipboard              = new stdClass();
+		$std->flipboard->name        = __( 'Flipboard', WPUSB_App::TEXTDOMAIN );
+		$std->flipboard->element     = 'flipboard';
+		$std->flipboard->link        = 'https://share.flipboard.com/bookmarklet/popout?v=2&ext=' . rawurlencode( WPUSB_App::NAME ) . '&title=' . self::$title . '&url=' . self::$url;
+		$std->flipboard->title       = __( 'Share on Flipboard', WPUSB_App::TEXTDOMAIN );
+		$std->flipboard->class       = $prefix . '-flipboard';
+		$std->flipboard->class_item  = self::$item;
+		$std->flipboard->class_link  = self::$class_button;
+		$std->flipboard->class_icon  = apply_filters( "{$prefix}_class_icon", $prefix_icons . 'flipboard' );
+		$std->flipboard->popup       = self::$action;
+		$std->flipboard->inside      = __( 'Share', WPUSB_App::TEXTDOMAIN );
+		$std->flipboard->has_counter = false;
+
+		/**
+		 * @var Object
+		 * @see Modal Share
+		 */
+		$std->share              = new stdClass();
+		$std->share->name        = __( 'Modal Share', WPUSB_App::TEXTDOMAIN );
+		$std->share->element     = 'share';
+		$std->share->link        = 'javascript:void(0);';
+		$std->share->title       = __( 'Open modal social networks', WPUSB_App::TEXTDOMAIN );
+		$std->share->class       = $prefix . '-share';
+		$std->share->class_item  = self::$item;
+		$std->share->class_link  = self::$class_button;
+		$std->share->class_icon  = apply_filters( "{$prefix}_class_icon", $prefix_icons . 'share' );
+		$std->share->popup       = 'data-action="open-modal-networks"';
+		$std->share->inside      = false;
+		$std->share->has_counter = false;
 
 		$args = array(
 			'title'        => self::$title,

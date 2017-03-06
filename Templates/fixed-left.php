@@ -54,7 +54,7 @@ EOD;
 	 */
 	public static function items( $args = OBJECT ) {
 		$classes    = self::get_classes_second( $args );
-		$link_type  = WPUSB_Utils::link_type( $args->reference->link );
+		$link_type  = WPUSB_Utils::link_type( $args->reference->link, $args->reference->element );
 		$layout     = self::$layout;
 		$btn_class  = ( 'buttons' == $layout ) ? 'button' : $layout;
 		$ga_event   = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
