@@ -1,4 +1,4 @@
-WPUSB( 'WPUSB.Components.SharePreview', function(Model, $) {
+WPUSB( 'WPUSB.Components.SharePreview', function(Model, $, utils) {
 
 	var SPINNER   = '<span class="ajax-spinner" style="visibility:visible">loading...</span>'
 	  , CLOSE_BTN = '<button class="button wpusb-preview-close" data-action="preview-close">x</button>'
@@ -6,12 +6,11 @@ WPUSB( 'WPUSB.Components.SharePreview', function(Model, $) {
 
 	Model.fn.start = function() {
 		this.spinner       = $( '.ajax-spinner' );
-		this.prefix        = this.utils.prefix;
-		this.wrap          = this.$el.closest( '.wpusb-wrap' );
+		this.wrap          = this.$el.closest( '.' + this.addPrefix( 'wrap' ) );
 		this.order         = this.wrap.byElement( 'sortable' );
 		this.inputOrder    = this.wrap.byElement( 'order' );
 		this.layoutOptions = $( '.layout-preview' );
-		this.list          = $( '.wpusb-select-item input' );
+		this.list          = $( '.' + this.addPrefix( 'select-item input' ) );
 		this.init();
 	};
 
@@ -32,7 +31,7 @@ WPUSB( 'WPUSB.Components.SharePreview', function(Model, $) {
 			this.layout = $( '[data-element="position-fixed"]:checked' ).val();
 		}
 
-		$( '.' + this.prefix + '-layout-options' ).trigger( 'changeLayout', this.layout );
+		$( '.' + this.addPrefix( 'layout-options' ) ).trigger( 'changeLayout', this.layout );
 
 		this._update();
 		this._stop();
@@ -51,7 +50,7 @@ WPUSB( 'WPUSB.Components.SharePreview', function(Model, $) {
 			cursor      : 'move',
 			tolerance   : 'pointer',
 			items       : '> td',
-			placeholder : this.prefix + '-highlight',
+			placeholder : this.addPrefix( 'highlight' ),
 	        update      : this._update.bind( this ),
 	        stop        : this._stop.bind( this )
 		};
@@ -84,12 +83,12 @@ WPUSB( 'WPUSB.Components.SharePreview', function(Model, $) {
 	Model.fn.request = function() {
 		this.elements
 			.preview
-			.addClass( this.prefix + '-preview-container preview-active' )
+			.addClass( this.addPrefix( 'preview-container preview-active' ) )
 			.append( SPINNER );
 
 		var fixed_layout = $( '.fixed-layout:checked' )
 		  , params       = {
-				action       : 'wpusb_share_preview',
+				action       : this.addPrefix( 'share_preview', '_' ),
 				layout       : this.layout,
 			    fixed_layout : fixed_layout.val(),
 				checked      : JSON.stringify( this.itemsChecked )
@@ -98,7 +97,7 @@ WPUSB( 'WPUSB.Components.SharePreview', function(Model, $) {
 
 		var ajax = $.ajax({
 			type     : 'POST',
-			url      : this.utils.getAjaxUrl(),
+			url      : utils.getAjaxUrl(),
 			data     : params,
 			dataType : 'json'
 		});

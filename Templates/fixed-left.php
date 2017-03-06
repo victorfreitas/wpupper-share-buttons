@@ -35,6 +35,7 @@ class WPUSB_Fixed_Left {
 		     data-element-url="{$args['permalink']}"
 		     data-element-title="{$args['title']}"
 		     data-attr-reference="{$args['post_id']}"
+		     data-is-term="{$args['is_term']}"
 		     data-element="fixed"
 		     data-attr-nonce="{$args['nonce']}"
 		     {$component}>

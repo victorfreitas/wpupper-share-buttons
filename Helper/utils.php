@@ -289,6 +289,21 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
+	 * Current page id
+	 *
+	 * @since 3.30
+	 * @param null
+	 * @return Integer
+	 */
+	public static function get_reference_id() {
+		if ( self::is_archive_category() ) {
+			return get_queried_object_id();
+		}
+
+		return self::get_id();
+	}
+
+	/**
 	 * Site home url
 	 *
 	 * @since 3.6.4
@@ -2132,7 +2147,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
     public static function get_post_date( $post_id, $sanitize = 'esc_sql' ) {
     	if ( ! $post = get_post( $post_id ) ) {
-    		return '0000-00-00 00:00:00';
+    		return esc_sql( date_i18n( 'Y-m-d H:i:s' ) );
     	}
 
     	return self::sanitize( $post->post_date, $sanitize );

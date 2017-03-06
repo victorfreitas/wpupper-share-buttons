@@ -1,7 +1,7 @@
-WPUSB( 'WPUSB.ColorPicker', function(Model, $) {
+WPUSB( 'WPUSB.ColorPicker', function(Model, $, utils) {
 
 	Model.create = function(container) {
-        this.$el = container.find( '.' + this.utils.prefix + '-wrap' );
+        this.$el = container.find( '.' + utils.addPrefix( 'wrap' ) );
 		this.init();
 	};
 

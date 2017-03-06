@@ -1,4 +1,4 @@
-WPUSB( 'WPUSB.ToggleButtons', function(Model, $) {
+WPUSB( 'WPUSB.ToggleButtons', function(Model, $, utils) {
 
 	Model.create = function(layout, context) {
 		if ( layout !== 'fixed' ) {
@@ -7,7 +7,6 @@ WPUSB( 'WPUSB.ToggleButtons', function(Model, $) {
 
 		this.$el     = context.$el;
 		this.buttons = context.elements.buttons;
-		this.prefix  = this.utils.prefix + '-';
 		this.init();
 	};
 
@@ -20,11 +19,11 @@ WPUSB( 'WPUSB.ToggleButtons', function(Model, $) {
 	};
 
 	Model._onClickCloseButtons = function(event) {
-		var iconRight = this.prefix + 'icon-right'
-		  , active    = this.prefix + 'toggle-active'
+		var iconRight = utils.addPrefix( 'icon-right' )
+		  , active    = utils.addPrefix( 'toggle-active' )
 		;
 
-		this.buttons.toggleClass( this.prefix + 'buttons-hide' );
+		this.buttons.toggleClass( utils.addPrefix( 'buttons-hide' ) );
 		$( event.currentTarget ).toggleClass( iconRight + ' ' + active );
 
 		event.preventDefault();

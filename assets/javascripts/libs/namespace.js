@@ -16,8 +16,7 @@
         }
 
         if ( 'function' === typeof callback ) {
-            parent.utils = WPUSB.utils;
-            callback.call( null, parent, $ );
+            callback.call( null, parent, $, WPUSB.utils );
         }
 
         return parent;
@@ -29,11 +28,12 @@
           , Constructor = function(context) {
                 var instance;
 
-                instance          = new Core();
-                instance.$el      = context;
-                instance.data     = context.data();
-                instance.utils    = self.utils;
-                instance.elements = self.getDataByName( context, 'element' );
+                instance           = new Core();
+                instance.$el       = context;
+                instance.data      = context.data();
+                instance.elements  = self.getDataByName( context, 'element' );
+                instance.addPrefix = self.utils.addPrefix;
+                instance.prefix    = self.utils.prefix;
 
                 instance.start.apply( instance, arguments );
 
@@ -71,6 +71,11 @@
     WPUSB.utils = {
 
         prefix: 'wpusb',
+
+        addPrefix: function(tag, separator) {
+            var sep = ( separator ) ? separator : '-';
+            return this.prefix + sep + tag;
+        },
 
         getGlobalVars: function(name) {
             return ( window.WPUSBVars || {} )[name];

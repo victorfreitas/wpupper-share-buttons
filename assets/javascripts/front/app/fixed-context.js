@@ -1,8 +1,8 @@
-WPUSB( 'WPUSB.FixedContext', function(Model, $) {
+WPUSB( 'WPUSB.FixedContext', function(Model, $, utils) {
 
 	Model.create = function(container) {
-		this.$el = container.find( '#' + this.utils.prefix + '-container-fixed' );
-		this.id  = this.utils.getContext();
+		this.$el = container.find( '#' + utils.addPrefix( 'container-fixed' ) );
+		this.id  = utils.getContext();
 
 		if ( !this.id || !this.$el.length ) {
 			return;
@@ -54,19 +54,17 @@ WPUSB( 'WPUSB.FixedContext', function(Model, $) {
 	};
 
 	Model.changeClass = function() {
-		var prefix = this.utils.prefix;
-
-		if ( this.$el.hasClass( prefix + '-fixed-left' ) ) {
+		if ( this.$el.hasClass( utils.addPrefix( 'fixed-left' ) ) ) {
 			return;
 		}
 
-		this.$el.removeClass( prefix + '-fixed-right' );
-		this.$el.addClass( prefix + '-fixed-left' );
+		this.$el.removeClass( utils.addPrefix( 'fixed-right' ) );
+		this.$el.addClass( utils.addPrefix( 'fixed-left' ) );
 	};
 
 	Model.getElement = function() {
 		var id = this.id.replace( /[^A-Z0-9a-z-_]/g, '' )
-		  , el = this.utils.getId( id )
+		  , el = utils.getId( id )
 		;
 
 		( !el ) ? this.addNotice( el, id ) : '';

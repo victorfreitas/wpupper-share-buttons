@@ -1,7 +1,7 @@
-WPUSB( 'WPUSB.FixedTop', function(FixedTop, $) {
+WPUSB( 'WPUSB.FixedTop', function(FixedTop, $, utils) {
 
 	FixedTop.create = function(container) {
-		this.class = WPUSB.vars.prefix + '-fixed-top';
+		this.class = utils.addPrefix( '-fixed-top' );
 		this.$el   = container.byElement( this.class );
 
 		if ( !this.$el.length ) {
@@ -16,7 +16,7 @@ WPUSB( 'WPUSB.FixedTop', function(FixedTop, $) {
 		this.scroll = this.$el.get(0).getBoundingClientRect();
 
 		if ( this.isInvalidScroll() ) {
-			this.scroll.static = 300;
+			this.scroll.static = 450;
 		}
 
 		this.context = window;
@@ -24,7 +24,7 @@ WPUSB( 'WPUSB.FixedTop', function(FixedTop, $) {
 	};
 
 	FixedTop.addEventListener = function() {
-		$(this.context).scroll( this._setPositionFixed.bind( this ) );
+		$( this.context ).scroll( this._setPositionFixed.bind( this ) );
 	};
 
 	FixedTop._setPositionFixed = function() {
@@ -39,7 +39,7 @@ WPUSB( 'WPUSB.FixedTop', function(FixedTop, $) {
 	};
 
 	FixedTop.isInvalidScroll = function() {
-		return 1 > this.scroll.top;
+		return ( 1 > this.scroll.top );
 	};
 
 }, {} );

@@ -1,4 +1,4 @@
-WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
+WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 
 	Model.fn.start = function() {
 		if ( this.isShareCountsDisabled() ) {
@@ -15,7 +15,6 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 	};
 
 	Model.fn.setPropNames = function() {
-		this.prefix           = this.utils.prefix + '-';
 		this.facebook         = this.elements.facebook;
 		this.twitter          = this.elements.twitter;
 		this.google           = this.elements.googlePlus;
@@ -31,7 +30,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 		this.pinterestCounter = 0;
 		this.tumblrCounter    = 0;
 		this.max              = 6;
-		this.minCount         = this.utils.getMinCount();
+		this.minCount         = utils.getMinCount();
 	};
 
 	Model.fn.init = function() {
@@ -117,7 +116,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 	};
 
 	Model.fn._done = function(request, response) {
-		var classHide           = this.prefix + 'hide';
+		var classHide           = this.addPrefix( 'hide' );
 		var number              = this.getNumberByData( request.element, response );
 		this[request.reference] = number;
 		this.max               -= 1;
@@ -135,7 +134,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 			this.totalShare.text( this.formatCounts( this.totalCounter ) );
 
 			if ( this.totalCounter >= this.minCount ) {
-				this.totalShare.closest( '.' + this.prefix + 'item' ).removeClass( classHide );
+				this.totalShare.closest( '.' + this.addPrefix( 'item' ) ).removeClass( classHide );
 			}
 		}
 	};
@@ -160,7 +159,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 				return this.getTotalShareGooglePlus( response );
 
 			default :
-				return ( parseInt( response.count ) || 0 );
+				return parseInt( response.count || 0 );
 		}
 	};
 
@@ -176,7 +175,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 			data.metadata     = ( response.result.metadata || {} );
 			data.globalCounts = ( data.metadata.globalCounts || {} );
 
-			return parseInt( data.globalCounts.count );
+			return parseInt( data.globalCounts.count || 0 );
 		}
 
 		console.log( 'Google+ count fail' );
@@ -186,7 +185,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 
 	Model.fn.getTotalShareFacebook = function(response) {
 		if ( typeof response === 'object' ) {
-			return parseInt( response.share_count );
+			return parseInt( response.share_count || 0 );
 		}
 
 		return 0;
@@ -194,7 +193,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 
 	Model.fn.getTotalShareTumblr = function(response) {
 		if ( typeof response === 'object' ) {
-			return parseInt( response.note_count );
+			return parseInt( response.note_count || 0 );
 		}
 
 		return 0;
@@ -202,14 +201,14 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 
 	Model.fn.getParamsGoogle = function() {
 		return JSON.stringify({
-			id         : this.utils.decodeUrl( this.data.elementUrl ),
+			id         : utils.decodeUrl( this.data.elementUrl ),
 			key        : 'p',
 			method     : 'pos.plusones.get',
 			jsonrpc    : '2.0',
 			apiVersion : 'v1',
 			params     : {
 				nolog   : true,
-				id      : this.utils.decodeUrl( this.data.elementUrl ),
+				id      : utils.decodeUrl( this.data.elementUrl ),
 				source  : 'widget',
 				userId  : '@viewer',
 				groupId : '@self'
@@ -223,8 +222,9 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 		}
 
 		var params = {
-	       	action          : 'wpusb_share_count_reports',
+	       	action          : this.addPrefix( 'share_count_reports', '_' ),
 		    reference       : this.data.attrReference,
+		    is_term         : this.data.isTerm,
 		    count_facebook  : this.facebookCounter,
 		    count_twitter   : this.twitterCounter,
 		    count_google    : this.googleCounter,
@@ -236,7 +236,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $) {
 
 		$.ajax({
 	       method : 'POST',
-	       url    : this.utils.getAjaxUrl(),
+	       url    : utils.getAjaxUrl(),
 	       data   : params
 	   });
 	};

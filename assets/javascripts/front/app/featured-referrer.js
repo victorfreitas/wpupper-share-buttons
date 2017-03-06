@@ -1,13 +1,12 @@
-WPUSB( 'WPUSB.FeaturedReferrer', function(Referrer, $) {
+WPUSB( 'WPUSB.FeaturedReferrer', function(Referrer, $, utils) {
 
 	Referrer.create = function(container) {
-		this.prefix = this.utils.prefix + '-';
-		this.$el    = container;
+		this.$el = container;
 		this.init();
 	};
 
 	Referrer.init = function() {
-		if ( this.$el.attr('class').match( '-fixed' ) ) {
+		if ( this.$el.attr( 'class' ).match( '-fixed' ) ) {
 			return;
 		}
 
@@ -36,17 +35,15 @@ WPUSB( 'WPUSB.FeaturedReferrer', function(Referrer, $) {
 	};
 
 	Referrer.showReferrer = function(referrer) {
-		var className = this.prefix + 'referrer'
+		var className = utils.addPrefix( 'referrer' )
 		  , element   = this.$el.byReferrer( referrer )
 		;
 
-		this.$el.find( '.' + this.prefix + 'count' ).remove();
-		this.$el.find( '.' + this.prefix + 'counter' ).remove();
+		this.$el.find( '.' + utils.addPrefix( 'count' ) ).remove();
+		this.$el.find( '.' + utils.addPrefix( 'counter' ) ).remove();
 
 		this.$el.prepend( element );
-
 		element.addClass( className );
-
 		this.refTitle( element );
 	};
 

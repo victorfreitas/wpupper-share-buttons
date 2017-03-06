@@ -1,4 +1,4 @@
-WPUSB( 'WPUSB.Application', function(Application, $) {
+WPUSB( 'WPUSB.Application', function(Application, $, utils) {
 
 	Application.init = function(container) {
 		WPUSB.BuildComponents.create( container );

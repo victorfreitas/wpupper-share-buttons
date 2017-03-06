@@ -1,7 +1,7 @@
-WPUSB( 'WPUSB.BuildComponents', function(Model, $) {
+WPUSB( 'WPUSB.BuildComponents', function(Model, $, utils) {
 
 	Model.create = function(container) {
-		var components = '[data-' + Model.utils.prefix + '-component]';
+		var components = '[data-' + utils.addPrefix( 'component' ) + ']';
 		container.findComponent( components, $.proxy( this, '_start' ) );
 	};
 
@@ -18,13 +18,13 @@ WPUSB( 'WPUSB.BuildComponents', function(Model, $) {
 
 		elements.each( function(index, element) {
 			element = $( element );
-			name    = this.utils.ucfirst( this.getComponent( element ) );
+			name    = utils.ucfirst( this.getComponent( element ) );
 			this._callback( name, element );
 		}.bind( this ) );
 	};
 
 	Model.getComponent = function(element) {
-		var component = element.data( this.utils.prefix + '-component' );
+		var component = element.data( utils.addPrefix( 'component' ) );
 
 		if ( !component ) {
 			return '';

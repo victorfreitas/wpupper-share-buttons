@@ -1,12 +1,11 @@
-WPUSB( 'WPUSB.Components.ButtonsSection', function(Modal, $) {
+WPUSB( 'WPUSB.Components.ButtonsSection', function(Modal, $, utils) {
 
 	var modalIds = {};
 
 	Modal.fn.start = function() {
-		this.prefix  = '.' + this.utils.prefix;
-		this.id      = this.$el.find( this.prefix + '-share a' ).data( 'modal-id' );
-		this.modalId = this.utils.prefix + '-modal-container-' + this.id;
-		this.maskId  = this.utils.prefix + '-modal-' + this.id;
+		this.id      = this.$el.find( this.addPrefix( 'share a' ) ).data( 'modal-id' );
+		this.modalId = this.addPrefix( 'modal-container-' + this.id );
+		this.maskId  = this.addPrefix( 'modal-' + this.id );
 		this.init();
 	};
 
@@ -30,7 +29,7 @@ WPUSB( 'WPUSB.Components.ButtonsSection', function(Modal, $) {
 		modal.show();
 
 		this.modal = WPUSB.vars.body.byElement( this.modalId );
-		this.close = this.modal.find( this.prefix + '-btn-close' );
+		this.close = this.modal.find( this.addPrefix( 'btn-close' ) );
 
 		this.setSizes();
 		this.setPosition();

@@ -1,4 +1,4 @@
-WPUSB( 'WPUSB.Components.CustomCss', function(Model, $) {
+WPUSB( 'WPUSB.Components.CustomCss', function(Model, $, utils) {
 
 	Model.fn.start = function() {
 		this.init();
@@ -61,13 +61,13 @@ WPUSB( 'WPUSB.Components.CustomCss', function(Model, $) {
 
 	Model.fn.request = function() {
 		var params = {
-			action     : this.utils.prefix + '_save_custom_css',
+			action     : this.addPrefix( 'save_custom_css', '_' ),
 			custom_css : this.codeMirror.getValue(),
 		};
 
 		var ajax = $.ajax({
 			type : 'POST',
-			url  : this.utils.getAjaxUrl(),
+			url  : utils.getAjaxUrl(),
 			data : params
 		});
 

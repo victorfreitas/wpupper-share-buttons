@@ -1,4 +1,4 @@
-WPUSB( 'WPUSB.Components.ExtraSettings', function(Model, $) {
+WPUSB( 'WPUSB.Components.ExtraSettings', function(Model, $, utils) {
 
 	Model.fn.start = function() {
 		this.validToken = false;
@@ -70,7 +70,7 @@ WPUSB( 'WPUSB.Components.ExtraSettings', function(Model, $) {
 	};
 
 	Model.fn.getHomeUrl = function() {
-		var homeUrl = this.utils.getGlobalVars( 'homeUrl' );
+		var homeUrl = utils.getGlobalVars( 'homeUrl' );
 		return encodeURI( homeUrl );
 	};
 

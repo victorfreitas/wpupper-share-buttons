@@ -271,10 +271,11 @@ abstract class WPUSB_Utils_Share {
 		$args = array(
 			'nonce'     => self::nonce( WPUSB_Setting::NONCE_SHARING_REPORT ),
 			'prefix'    => WPUSB_App::SLUG,
-			'post_id'   => WPUSB_Utils::get_id(),
+			'post_id'   => WPUSB_Utils::get_reference_id(),
 			'permalink' => $atts->permalink,
 			'title'     => $atts->title,
 			'fixed_top' => self::data_fixed_top( WPUSB_App::SLUG ),
+			'is_term'   => ( WPUSB_Utils::is_archive_category() ) ? 1 : 0,
 		);
 
 		return apply_filters( WPUSB_App::SLUG . '-content-args', $args, $atts );

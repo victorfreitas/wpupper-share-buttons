@@ -1,4 +1,4 @@
-WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $) {
+WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $, utils) {
 
 	OpenPopup.create = function(container) {
 		this.$el = container;
@@ -6,7 +6,7 @@ WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $) {
     };
 
     OpenPopup.init = function() {
-    	if ( this.utils.isMobile() ) {
+    	if ( utils.isMobile() ) {
     		this.setMessengerUrl();
     	}
 

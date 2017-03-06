@@ -1,4 +1,4 @@
-WPUSB( 'WPUSB.Components.ShareSettings', function(Model, $) {
+WPUSB( 'WPUSB.Components.ShareSettings', function(Model, $, utils) {
 
 	var currentIconSize;
 
