@@ -318,15 +318,15 @@ abstract class WPUSB_Utils_Share {
 	/**
 	 * Verfy type and return links from icons
 	 *
-	 * @since 3.0.0
-	 * @param String $url
-	 * @param String $target
+	 * @since 3.0
+	 * @since 3.31
+	 * @param Object $network
 	 * @return String
 	 */
-	public static function link_type( $url, $target ) {
-		$attr_link = sprintf( 'href="%s" target="%s"', $url, $target );
+	public static function link_type( $network ) {
+		$attr_link = sprintf( 'href="%s" target="%s"', $network->link, $network->target );
 
-		return apply_filters( WPUSB_Utils::add_prefix( '-attr-link' ), $attr_link, $url );
+		return apply_filters( WPUSB_Utils::add_prefix( '-attr-link' ), $attr_link, $network->link, $network->element );
 	}
 
 	/**

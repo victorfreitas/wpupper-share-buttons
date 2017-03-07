@@ -50,7 +50,7 @@ EOD;
 	 */
 	public static function items( $args = OBJECT ) {
 		$classes    = self::get_classes_second( $args );
-		$link_type  = WPUSB_Utils::link_type( $args->reference->link, $args->reference->target );
+		$link_type  = WPUSB_Utils::link_type( $args->reference );
 		$inside     = self::inside( $args );
 		$counter    = self::add_count( $args );
 		$referrer   = WPUSB_Utils::get_data_referrer( $args );
