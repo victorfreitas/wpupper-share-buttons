@@ -325,7 +325,7 @@ abstract class WPUSB_Utils_Share {
 		$target    = ( 'email' === $element ) ? '_self' : '_blank';
 		$attr_link = sprintf( 'href="%s" target="%s"', $url_share, $target );
 
-		return apply_filters( WPUSB_App::SLUG . '-attr-link', $attr_link, $url_share );
+		return apply_filters( WPUSB_App::SLUG . '-attr-link', $attr_link, $url_share, $element );
 	}
 
 	/**
