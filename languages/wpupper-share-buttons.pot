@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WPUpper Share Buttons 3.25\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-buttons\n"
-"POT-Creation-Date: 2017-03-06 20:23-0300\n"
+"POT-Creation-Date: 2017-03-08 03:06-0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -244,18 +244,18 @@ msgid "WPUpper Share"
 msgstr ""
 
 #: Controller/settings.controller.php:79 View/settings-extra.view.php:41
-#: View/settings.view.php:753
+#: View/settings.view.php:773
 msgid "Extra Settings"
 msgstr ""
 
 #: Controller/settings.controller.php:89 View/settings-custom-css.view.php:32
-#: View/settings.view.php:758
+#: View/settings.view.php:778
 msgid "Custom CSS"
 msgstr ""
 
 #: Controller/settings.controller.php:101
 #: Controller/settings.controller.php:102 View/settings-faq.view.php:34
-#: View/settings.view.php:763
+#: View/settings.view.php:783
 msgid "Use options"
 msgstr ""
 
@@ -279,7 +279,7 @@ msgstr ""
 msgid "Sharing Report | WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/share-reports.controller.php:305 View/settings.view.php:771
+#: Controller/share-reports.controller.php:305 View/settings.view.php:791
 msgid "Sharing Report"
 msgstr ""
 
@@ -411,7 +411,7 @@ msgstr ""
 msgid "Share count background color. <br>Layouts: Default, Button, Rounded and Square."
 msgstr ""
 
-#: Controller/widgets.controller.php:133 View/settings.view.php:656
+#: Controller/widgets.controller.php:133 View/settings.view.php:657
 msgid "Remove counter"
 msgstr ""
 
@@ -419,34 +419,34 @@ msgstr ""
 msgid "Remove button title"
 msgstr ""
 
-#: Helper/utils-share.php:419 View/settings-extra.view.php:193
+#: Helper/utils-share.php:420 View/settings-extra.view.php:193
 #: View/settings.view.php:175 View/settings.view.php:444
 msgid "Default"
 msgstr ""
 
-#: Helper/utils-share.php:420 View/settings.view.php:187
+#: Helper/utils-share.php:421 View/settings.view.php:187
 #: View/settings.view.php:445 View/settings.view.php:525
 msgid "Button"
 msgstr ""
 
-#: Helper/utils-share.php:421 View/settings.view.php:199
+#: Helper/utils-share.php:422 View/settings.view.php:199
 #: View/settings.view.php:307 View/settings.view.php:346
 #: View/settings.view.php:446
 msgid "Rounded"
 msgstr ""
 
-#: Helper/utils-share.php:422 View/settings.view.php:211
+#: Helper/utils-share.php:423 View/settings.view.php:211
 #: View/settings.view.php:294 View/settings.view.php:447
 msgid "Square"
 msgstr ""
 
-#: Helper/utils-share.php:423 View/settings.view.php:223
+#: Helper/utils-share.php:424 View/settings.view.php:223
 #: View/settings.view.php:369 View/settings.view.php:381
 #: View/settings.view.php:526
 msgid "Square plus"
 msgstr ""
 
-#: Helper/utils.php:1383
+#: Helper/utils.php:1406
 msgid "SHARES"
 msgstr ""
 
@@ -458,7 +458,7 @@ msgstr ""
 msgid "Enter your custom CSS ..."
 msgstr ""
 
-#: View/settings-custom-css.view.php:65 View/settings.view.php:713
+#: View/settings-custom-css.view.php:65 View/settings.view.php:733
 msgid "Save Changes"
 msgstr ""
 
@@ -726,47 +726,55 @@ msgid "This allows highlight the social network where the user Came from."
 msgstr ""
 
 #: View/settings.view.php:673
+msgid "Pinterest description"
+msgstr ""
+
+#: View/settings.view.php:685
+msgid "Use in description of Pinterest the alt text of highlighted image in place of title of post."
+msgstr ""
+
+#: View/settings.view.php:693
 msgid "Min count to display"
 msgstr ""
 
-#: View/settings.view.php:684
+#: View/settings.view.php:704
 msgid "When you enter the value, share counts are only displayed when the total counts of each item than equal to or greater than the informed value."
 msgstr ""
 
-#: View/settings.view.php:690
+#: View/settings.view.php:710
 msgid "Twitter share counter"
 msgstr ""
 
-#: View/settings.view.php:695
+#: View/settings.view.php:715
 msgid "The share count Twitter is powered by <a href=\"http://newsharecounts.com\" target=\"_blank\">newsharecounts.com</a>, you have to sign up with your Twitter account to get free service and twitter count. Just visit the website, fill in the domain of your site and click Sign in with Twitter. That, and nothing else!"
 msgstr ""
 
-#: View/settings.view.php:731
+#: View/settings.view.php:751
 msgid "Settings saved."
 msgstr ""
 
-#: View/settings.view.php:748
+#: View/settings.view.php:768
 msgid "General"
 msgstr ""
 
-#: View/settings.view.php:861
+#: View/settings.view.php:881
 msgid "YES"
 msgstr ""
 
-#: View/settings.view.php:862
+#: View/settings.view.php:882
 msgid "NO"
 msgstr ""
 
-#: View/settings.view.php:894
+#: View/settings.view.php:914
 #, php-format
 msgid "Help keep the free %s, you can make a donation or vote with %s at WordPress.org. Thank you very much!"
 msgstr ""
 
-#: View/settings.view.php:907
+#: View/settings.view.php:927
 msgid "Make a donation"
 msgstr ""
 
-#: View/settings.view.php:915
+#: View/settings.view.php:935
 msgid "Make a review"
 msgstr ""
 

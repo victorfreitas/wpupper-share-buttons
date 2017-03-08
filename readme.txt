@@ -99,6 +99,7 @@ The following plugins are recommended
 = 3.31 =
 
 * New option: Use in description of Pinterest the alt text of highlighted image in place of title of post.
+* Languages update
 
 = 3.30 =
 
