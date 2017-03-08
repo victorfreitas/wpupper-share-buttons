@@ -647,27 +647,50 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
-	 * Thumbnail posts
+	 * Post thumbnail URL
 	 *
 	 * @since 1.0
 	 * @param null
 	 * @return String
 	 */
 	public static function get_image() {
-		global $post;
+		$image_url = '';
 
-		$attachment_url = '';
-		$tag            = WPUSB_App::SLUG . '_thumbnail_url';
-
-		if ( isset( $post->ID ) && has_post_thumbnail() ) {
-			$attachment_url = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) );
+		if ( $image_id = self::get_image_id() ) {
+			$image_url = wp_get_attachment_url( $image_id );
 		}
 
-		if ( ! $attachment_url ) {
-			return apply_filters( $tag, '' );
+		return apply_filters( WPUSB_App::SLUG . '_thumbnail_url', $image_url );
+	}
+
+	/**
+	 * Post thumbnail ID
+	 *
+	 * @since 3.31
+	 * @param null
+	 * @return String
+	 */
+	public static function get_image_id() {
+		if ( $id = self::get_id() ) {
+			return (int)get_post_meta( $id, '_thumbnail_id', true );
 		}
 
-		return apply_filters( $tag, $attachment_url );
+		return false;
+	}
+
+	/**
+	 * Post thumbnail alt description
+	 *
+	 * @since 3.31
+	 * @param null
+	 * @return String
+	 */
+	public static function get_image_alt() {
+		if ( $image_id = self::get_image_id() ) {
+			return self::rm_tags( get_post_meta( $image_id, '_wp_attachment_image_alt', true ), true );
+		}
+
+		return '';
 	}
 
 	/**
@@ -2050,8 +2073,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		return empty( $min_count ) ? '' : "{$prefix}-hide";
     }
 
-	public static function log( $data, $log_name = 'debug' )
-	{
+	public static function log( $data, $log_name = 'debug' ) {
 		$name = sprintf( '%s-%s.log', $log_name, date( 'd-m-Y' ) );
 		$log  = print_r( $data, true ) . PHP_EOL;
 		$log .= "\n=============================\n";

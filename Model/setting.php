@@ -422,6 +422,14 @@ class WPUSB_Setting {
 	private $min_count_display;
 
 	/**
+	 * Pinterest alt description
+	 *
+	 * @since 3.31
+	 * @var String
+	 */
+	private $pin_image_alt;
+
+	/**
 	 * Instance singleton
 	 *
 	 * @since 1.0

@@ -651,6 +651,7 @@ class WPUSB_Settings_View {
 								?>
 								</td>
 							</tr>
+
 							<tr>
 								<th scope="row">
 									<?php _e( 'Remove counter', WPUSB_App::TEXTDOMAIN ); ?>
@@ -664,6 +665,25 @@ class WPUSB_Settings_View {
 										'value'   => 1,
 									));
 								?>
+								</td>
+							</tr>
+
+							<tr>
+								<th scope="row">
+									<?php _e( 'Pinterest description', WPUSB_App::TEXTDOMAIN ); ?>
+								</th>
+								<td>
+									<?php
+										self::add_checkbox(array(
+											'name'    => "{$option_name}[pin_image_alt]",
+											'id'      => 'pin-image-alt',
+											'checked' => checked( 'yes', $model->pin_image_alt, false ),
+											'value'   => 'yes',
+										));
+									?>
+									<p class="description">
+										<?php _e( 'Use in description of Pinterest the alt text of highlighted image in place of title of post.', WPUSB_App::TEXTDOMAIN ); ?>
+									</p>
 								</td>
 							</tr>
 
