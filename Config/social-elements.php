@@ -160,7 +160,7 @@ class WPUSB_Social_Elements {
 		$std->pinterest              = new stdClass();
 		$std->pinterest->name        = __( 'Pinterest', WPUSB_App::TEXTDOMAIN );
 		$std->pinterest->element     = 'pinterest';
-		$std->pinterest->link        = 'https://www.pinterest.com/pin/create/button/?' . self::_get_pinterest_param();
+		$std->pinterest->link        = 'https://pinterest.com/pin/create/bookmarklet/?' . self::_get_pinterest_param();
 		$std->pinterest->title       = __( 'Share on Pinterest', WPUSB_App::TEXTDOMAIN );
 		$std->pinterest->class       = $prefix . '-pinterest';
 		$std->pinterest->class_item  = self::$item;
