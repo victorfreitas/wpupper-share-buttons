@@ -241,9 +241,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 
 		if ( $post_id ) {
 			$post_title = get_the_title( $post_id );
-			$post_title = self::html_decode( $post_title );
-
-			return self::rm_tags( $post_title );
+			return self::rm_tags( self::html_decode( $post_title ) );
 		}
 
 		return self::site_name();
@@ -669,24 +667,51 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
-	 * Thumbnail posts
+	 * Post thumbnail URL
 	 *
 	 * @since 1.0
 	 * @param null
 	 * @return String
 	 */
 	public static function get_image() {
-		global $post;
+		$image_url = '';
 
-		if ( isset( $post->ID ) && has_post_thumbnail() ) {
-			$attachment_url = wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) );
+		if ( $image_id = self::get_image_id() ) {
+			$image_url = wp_get_attachment_url( $image_id );
 		}
 
-		if ( ! isset( $attachment_url ) ) {
-			$attachment_url = '';
+		return apply_filters( self::add_prefix( '_thumbnail_url' ), $image_url );
+	}
+
+	/**
+	 * Post thumbnail ID
+	 *
+	 * @since 3.31
+	 * @param null
+	 * @return String
+	 */
+	public static function get_image_id() {
+		if ( $id = self::get_id() ) {
+			return (int)get_post_meta( $id, '_thumbnail_id', true );
 		}
 
-		return apply_filters( self::add_prefix( '_thumbnail_url' ), $attachment_url );
+		return false;
+	}
+
+	/**
+	 * Post thumbnail alt description
+	 *
+	 * @since 3.31
+	 * @param null
+	 * @return String
+	 */
+	public static function get_image_alt() {
+		if ( $image_id = self::get_image_id() ) {
+			$image_alt = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+			return self::rm_tags( $image_alt, true );
+		}
+
+		return '';
 	}
 
 	/**
@@ -1295,9 +1320,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return Array
 	 */
 	public static function retrieve_body_json( $response ) {
-		$results = wp_remote_retrieve_body( $response );
+		$body = wp_remote_retrieve_body( $response );
 
-		return self::json_decode( $results );
+		return self::json_decode( $body );
 	}
 
 	/**

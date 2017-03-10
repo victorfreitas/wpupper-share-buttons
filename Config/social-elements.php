@@ -162,7 +162,7 @@ class WPUSB_Social_Elements {
 		$std->pinterest              = new stdClass();
 		$std->pinterest->name        = __( 'Pinterest', WPUSB_App::TEXTDOMAIN );
 		$std->pinterest->element     = 'pinterest';
-		$std->pinterest->link        = 'https://pinterest.com/pin/create/bookmarklet/?url=' . self::$url . '&media=' . self::$thumbnail . '&description=' . self::$title;
+		$std->pinterest->link        = 'https://pinterest.com/pin/create/bookmarklet/?' . self::_get_pinterest_param();
 		$std->pinterest->title       = __( 'Share on Pinterest', WPUSB_App::TEXTDOMAIN );
 		$std->pinterest->class       = WPUSB_Utils::add_prefix( '-pinterest' );
 		$std->pinterest->class_item  = self::$item;
@@ -623,8 +623,14 @@ class WPUSB_Social_Elements {
 			return;
 		endif;
 
-		$before_text = apply_filters( WPUSB_Utils::add_prefix( '-twitter-before' ), __( 'Click to see also', WPUSB_App::TEXTDOMAIN ) );
-		$after_text  = apply_filters( WPUSB_Utils::add_prefix( '-twitter-after' ), __( 'I just saw', WPUSB_App::TEXTDOMAIN ) );
+		$before_text = apply_filters(
+			WPUSB_Utils::add_prefix( '-twitter-before' ),
+			__( 'Click to see also', WPUSB_App::TEXTDOMAIN )
+		);
+		$after_text  = apply_filters(
+			WPUSB_Utils::add_prefix( '-twitter-after' ),
+			__( 'I just saw', WPUSB_App::TEXTDOMAIN )
+		);
 
 		self::$twitter_text = WPUSB_Utils::get_twitter_text(
 			self::$title,
@@ -658,9 +664,9 @@ class WPUSB_Social_Elements {
 	 *
 	 * @since 3.28
 	 * @param Null
-	 * @return Void
+	 * @return String
 	 */
-	public static function _get_buffer_param() {
+	private static function _get_buffer_param() {
 		$via     = WPUSB_Utils::option( 'twitter_username' );
 		$mention = WPUSB_Utils::sanitize_twitter_params( $via );
 
@@ -678,5 +684,30 @@ class WPUSB_Social_Elements {
 		}
 
 		return http_build_query( $args );
+	}
+
+	/**
+	 * Pinterest Parameters
+	 *
+	 * @since 3.31
+	 * @param Null
+	 * @return String
+	 */
+	private static function _get_pinterest_param() {
+		$alt = '';
+
+		if ( 'yes' === WPUSB_Utils::option( 'pin_image_alt' ) ) {
+			$alt = WPUSB_Utils::get_image_alt();
+		}
+
+		$title       = ( $alt ) ? $alt : self::$title;
+		$description = apply_filters( WPUSB_Utils::add_prefix( '_pinterest_description' ), $title );
+
+		return sprintf(
+			'url=%s&media=%s&description=%s',
+			self::$url,
+			self::$thumbnail,
+			rawurlencode( $description )
+		);
 	}
 }

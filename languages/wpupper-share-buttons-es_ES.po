@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2017-03-06 20:24-0300\n"
-"PO-Revision-Date: 2017-03-06 20:24-0300\n"
+"POT-Creation-Date: 2017-03-08 03:06-0300\n"
+"PO-Revision-Date: 2017-03-08 03:08-0300\n"
 "Last-Translator: Victor Freitas <victor.freitas@apiki.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -242,18 +242,18 @@ msgid "WPUpper Share"
 msgstr "WPUpper Share"
 
 #: Controller/settings.controller.php:79 View/settings-extra.view.php:41
-#: View/settings.view.php:753
+#: View/settings.view.php:773
 msgid "Extra Settings"
 msgstr "Configuraciones adicionales"
 
 #: Controller/settings.controller.php:89 View/settings-custom-css.view.php:32
-#: View/settings.view.php:758
+#: View/settings.view.php:778
 msgid "Custom CSS"
 msgstr "CSS personalizado"
 
 #: Controller/settings.controller.php:101
 #: Controller/settings.controller.php:102 View/settings-faq.view.php:34
-#: View/settings.view.php:763
+#: View/settings.view.php:783
 msgid "Use options"
 msgstr "Utilice las opciones"
 
@@ -277,7 +277,7 @@ msgstr "No hay registro disponible en este momento!"
 msgid "Sharing Report | WPUpper Share Buttons"
 msgstr "Informe compartir | Botones de Acciones Sociales"
 
-#: Controller/share-reports.controller.php:305 View/settings.view.php:771
+#: Controller/share-reports.controller.php:305 View/settings.view.php:791
 msgid "Sharing Report"
 msgstr "Informe compartir"
 
@@ -413,7 +413,7 @@ msgstr ""
 "Compartir el fondo de color de fondo. <br>Layouts: predeterminado, botón, "
 "redondeado y cuadrado."
 
-#: Controller/widgets.controller.php:133 View/settings.view.php:656
+#: Controller/widgets.controller.php:133 View/settings.view.php:657
 msgid "Remove counter"
 msgstr "Retire counter"
 
@@ -421,34 +421,34 @@ msgstr "Retire counter"
 msgid "Remove button title"
 msgstr "Retire título botón"
 
-#: Helper/utils-share.php:419 View/settings-extra.view.php:193
+#: Helper/utils-share.php:420 View/settings-extra.view.php:193
 #: View/settings.view.php:175 View/settings.view.php:444
 msgid "Default"
 msgstr "Defecto"
 
-#: Helper/utils-share.php:420 View/settings.view.php:187
+#: Helper/utils-share.php:421 View/settings.view.php:187
 #: View/settings.view.php:445 View/settings.view.php:525
 msgid "Button"
 msgstr "Botón"
 
-#: Helper/utils-share.php:421 View/settings.view.php:199
+#: Helper/utils-share.php:422 View/settings.view.php:199
 #: View/settings.view.php:307 View/settings.view.php:346
 #: View/settings.view.php:446
 msgid "Rounded"
 msgstr "Redondeado"
 
-#: Helper/utils-share.php:422 View/settings.view.php:211
+#: Helper/utils-share.php:423 View/settings.view.php:211
 #: View/settings.view.php:294 View/settings.view.php:447
 msgid "Square"
 msgstr "Cuadrado"
 
-#: Helper/utils-share.php:423 View/settings.view.php:223
+#: Helper/utils-share.php:424 View/settings.view.php:223
 #: View/settings.view.php:369 View/settings.view.php:381
 #: View/settings.view.php:526
 msgid "Square plus"
 msgstr "Cuadrado más"
 
-#: Helper/utils.php:1383
+#: Helper/utils.php:1406
 msgid "SHARES"
 msgstr "ACCIONES"
 
@@ -460,7 +460,7 @@ msgstr "Acciones"
 msgid "Enter your custom CSS ..."
 msgstr "Introduzca su CSS personalizado ..."
 
-#: View/settings-custom-css.view.php:65 View/settings.view.php:713
+#: View/settings-custom-css.view.php:65 View/settings.view.php:733
 msgid "Save Changes"
 msgstr "Guardar Cambios"
 
@@ -749,10 +749,22 @@ msgid "This allows highlight the social network where the user Came from."
 msgstr "Esto permite resaltar la red social donde vino el usuario."
 
 #: View/settings.view.php:673
+msgid "Pinterest description"
+msgstr "Descripción de Pinterest"
+
+#: View/settings.view.php:685
+msgid ""
+"Use in description of Pinterest the alt text of highlighted image in place "
+"of title of post."
+msgstr ""
+"Utilice en la descripción de Pinterest el texto alternativo de la imagen "
+"destacada en lugar del título de la publicación."
+
+#: View/settings.view.php:693
 msgid "Min count to display"
 msgstr "conteo mínimo para la visualización"
 
-#: View/settings.view.php:684
+#: View/settings.view.php:704
 msgid ""
 "When you enter the value, share counts are only displayed when the total "
 "counts of each item than equal to or greater than the informed value."
@@ -760,11 +772,11 @@ msgstr ""
 "Cuando ingresa el valor, los conteos de acciones sólo se muestran cuando el "
 "total de cuentas de cada elemento es igual o mayor que el valor informado."
 
-#: View/settings.view.php:690
+#: View/settings.view.php:710
 msgid "Twitter share counter"
 msgstr ""
 
-#: View/settings.view.php:695
+#: View/settings.view.php:715
 msgid ""
 "The share count Twitter is powered by <a href=\"http://newsharecounts.com\" "
 "target=\"_blank\">newsharecounts.com</a>, you have to sign up with your "
@@ -778,23 +790,23 @@ msgstr ""
 "recuento de twitter. Sólo hay que visitar la página web, rellenar el dominio "
 "de su sitio y haga clic en Iniciar sesión con Twitter. Eso, y nada más!"
 
-#: View/settings.view.php:731
+#: View/settings.view.php:751
 msgid "Settings saved."
 msgstr "Ajustes guardados."
 
-#: View/settings.view.php:748
+#: View/settings.view.php:768
 msgid "General"
 msgstr "General"
 
-#: View/settings.view.php:861
+#: View/settings.view.php:881
 msgid "YES"
 msgstr "SÍ"
 
-#: View/settings.view.php:862
+#: View/settings.view.php:882
 msgid "NO"
 msgstr "NO"
 
-#: View/settings.view.php:894
+#: View/settings.view.php:914
 #, php-format
 msgid ""
 "Help keep the free %s, you can make a donation or vote with %s at WordPress."
@@ -803,11 +815,11 @@ msgstr ""
 "Ayudar a mantener el %s libre, puede hacer una donación o votar con %s en "
 "WordPress.org. ¡Muchas gracias!"
 
-#: View/settings.view.php:907
+#: View/settings.view.php:927
 msgid "Make a donation"
 msgstr "Hacer una donación"
 
-#: View/settings.view.php:915
+#: View/settings.view.php:935
 msgid "Make a review"
 msgstr "Hacer una revisión"
 

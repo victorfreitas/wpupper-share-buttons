@@ -501,6 +501,14 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 								) );
 
 								parent::tr( array(
+									'type'    => 'checkbox',
+									'key'     => 'pin-image-alt',
+									'label'   => __( 'Pinterest alt text', $domain ),
+									'checked' => 'yes',
+									'text'    => __( 'Use in description of Pinterest the alt text of highlighted image in place of title of post.', $domain ),
+								) );
+
+								parent::tr( array(
 									'type'    => 'number',
 									'key'     => 'min-count-display',
 									'label'   => __( 'Min count to display', $domain ),
@@ -559,6 +567,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 			'span'        => true,
 			'tag'         => 'td',
 			'label'       => true,
+			'default'     => '',
 		);
 
 		return array_merge( $defaults, $args );
@@ -578,7 +587,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
                    id="<?php printf( '%s-%s', $prefix, $args['id'] ); ?>"
                    class="<?php echo $args['class'] ; ?>"
             	   name="<?php echo $args['name'] ; ?>"
-            	   value="<?php echo $args['value'] ; ?>"
+            	   value="<?php echo empty( $args['value'] ) ? $args['default'] : $args['value']; ?>"
             	   placeholder="<?php echo $args['placeholder'] ; ?>"
                    <?php echo self::_get_attributes( $args ); ?>
             	   <?php echo $args['is_checked']; ?>>
