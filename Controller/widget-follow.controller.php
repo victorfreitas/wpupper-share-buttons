@@ -29,6 +29,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		$this->set_instance( $instance );
 
 		$title = $this->get_widget_title();
+		$title = apply_filters( 'widget_title', $title, $this->id_base );
 
 		echo $args['before_widget'];
 
@@ -144,7 +145,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 			'behance'    => 'behance',
 		);
 
-		$this->networks = apply_filters( WPUSB_App::SLUG . '_networks_available', $networks );
+		$this->networks = apply_filters( WPUSB_Utils::add_prefix( '_networks_available' ), $networks );
 	}
 
 	public function get_networks() {
@@ -156,7 +157,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @see Facebook
 		 */
 		$std->facebook        = new stdClass();
-		$std->facebook->name  = 'Facebook';
+		$std->facebook->name  = __( 'Facebook', $domain );
 		$std->facebook->url   = 'https://www.facebook.com/your-id';
 		$std->facebook->title = __( 'Follow us on Facebook', $domain );
 
@@ -165,7 +166,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @see Twitter
 		 */
 		$std->twitter        = new stdClass();
-		$std->twitter->name  = 'Twitter';
+		$std->twitter->name  = __( 'Twitter', $domain );
 		$std->twitter->url   = 'https://twitter.com/your-id';
 		$std->twitter->title = __( 'Follow us on Twitter', $domain );
 
@@ -174,7 +175,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @see Linkedin
 		 */
 		$std->linkedin        = new stdClass();
-		$std->linkedin->name  = 'Linkedin';
+		$std->linkedin->name  = __( 'Linkedin', $domain );
 		$std->linkedin->url   = 'https://www.linkedin.com/in/your-id';
 		$std->linkedin->title = __( 'Find us on Linkedin', $domain );
 
@@ -183,7 +184,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @see Google Plus
 		 */
 		$std->google        = new stdClass();
-		$std->google->name  = 'Google Plus';
+		$std->google->name  = __( 'Google Plus', $domain );
 		$std->google->url   = 'https://plus.google.com/+your-id';
 		$std->google->title = __( 'Follow us on Google+', $domain );
 
@@ -192,7 +193,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @see Pinterest
 		 */
 		$std->pinterest        = new stdClass();
-		$std->pinterest->name  = 'Pinterest';
+		$std->pinterest->name  = __( 'Pinterest', $domain );
 		$std->pinterest->url   = 'https://www.pinterest.com/your-id/';
 		$std->pinterest->title = __( 'My Pinterest board', $domain );
 
@@ -201,7 +202,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @see Instagram
 		 */
 		$std->instagram        = new stdClass();
-		$std->instagram->name  = 'Instagram';
+		$std->instagram->name  = __( 'Instagram', $domain );
 		$std->instagram->url   = 'https://www.instagram.com/your-id/';
 		$std->instagram->title = __( 'Check out our Instagram', $domain );
 
@@ -210,7 +211,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @see Reddit
 		 */
 		$std->reddit        = new stdClass();
-		$std->reddit->name  = 'Reddit';
+		$std->reddit->name  = __( 'Reddit', $domain );
 		$std->reddit->url   = 'https://www.reddit.com/user/your-id';
 		$std->reddit->title = __( 'Follow us Reddit', $domain );
 
@@ -219,7 +220,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @see YouTube
 		 */
 		$std->youtube        = new stdClass();
-		$std->youtube->name  = 'YouTube';
+		$std->youtube->name  = __( 'YouTube', $domain );
 		$std->youtube->url   = 'https://www.youtube.com/channel/your-id';
 		$std->youtube->title = __( 'Subscribe to our YouTube', $domain );
 
@@ -228,7 +229,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @see Vimeo
 		 */
 		$std->vimeo        = new stdClass();
-		$std->vimeo->name  = 'Vimeo';
+		$std->vimeo->name  = __( 'Vimeo', $domain );
 		$std->vimeo->url   = 'https://vimeo.com/your-id';
 		$std->vimeo->title = __( 'Find us on Vimeo', $domain );
 
@@ -237,7 +238,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @see RSS
 		 */
 		$std->rss        = new stdClass();
-		$std->rss->name  = 'RSS Feed';
+		$std->rss->name  = __( 'RSS Feed', $domain );
 		$std->rss->url   = esc_url( get_feed_link() );
 		$std->rss->title = __( 'Subscribe to our RSS Feed', $domain );
 
@@ -246,7 +247,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @see Tumblr
 		 */
 		$std->tumblr        = new stdClass();
-		$std->tumblr->name  = 'Tumblr';
+		$std->tumblr->name  = __( 'Tumblr', $domain );
 		$std->tumblr->url   = 'https://your-id.tumblr.com/';
 		$std->tumblr->title = __( 'Find us on Tumblr', $domain );
 
@@ -255,7 +256,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @see Flickr
 		 */
 		$std->flickr        = new stdClass();
-		$std->flickr->name  = 'Flickr';
+		$std->flickr->name  = __( 'Flickr', $domain );
 		$std->flickr->url   = 'https://www.flickr.com/photos/your-id';
 		$std->flickr->title = __( 'Check out our Flickr', $domain );
 
@@ -264,7 +265,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @see Foursquare
 		 */
 		$std->foursquare        = new stdClass();
-		$std->foursquare->name  = 'Foursquare';
+		$std->foursquare->name  = __( 'Foursquare', $domain );
 		$std->foursquare->url   = 'https://foursquare.com/your-id';
 		$std->foursquare->title = __( 'Check out our Foursquare', $domain );
 
@@ -273,7 +274,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @see GitHub
 		 */
 		$std->github        = new stdClass();
-		$std->github->name  = 'GitHub';
+		$std->github->name  = __( 'GitHub', $domain );
 		$std->github->url   = 'https://github.com/your-id';
 		$std->github->title = __( 'Check out our GitHub', $domain );
 
@@ -282,7 +283,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @see E-mail
 		 */
 		$std->email          = new stdClass();
-		$std->email->name    = 'E-mail';
+		$std->email->name    = __( 'E-mail', $domain );
 		$std->email->subject = WPUSB_Utils::rm_tags( get_option( 'blogname' ) );
 		$std->email->title   = __( 'Contact Us', $domain );
 
@@ -291,7 +292,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @see Snapchat
 		 */
 		$std->snapchat        = new stdClass();
-		$std->snapchat->name  = 'Snapchat';
+		$std->snapchat->name  = __( 'Snapchat', $domain );
 		$std->snapchat->url   = 'https://www.snapchat.com/add/your-id';
 		$std->snapchat->title = __( 'Follow us on Snapchat', $domain );
 
@@ -300,10 +301,10 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		 * @see Behance
 		 */
 		$std->behance        = new stdClass();
-		$std->behance->name  = 'Behance';
+		$std->behance->name  = __( 'Behance', $domain );
 		$std->behance->url   = 'https://www.behance.net/your-id';
 		$std->behance->title = __( 'Follow us on Behance', $domain );
 
-		return apply_filters( WPUSB_App::SLUG . '_follow_us_networks', $std );
+		return apply_filters( WPUSB_Utils::add_prefix( '_follow_us_networks' ), $std );
 	}
 }

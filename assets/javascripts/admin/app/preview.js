@@ -27,10 +27,10 @@ WPUSB( 'WPUSB.Preview', function(Model, $, utils) {
 	};
 
 	Model._onClickTitle = function(event) {
-		event.preventDefault();
-		var text = this.titleChangeText( this.title.text() );
-		this.title.text( text );
+		this.title.text( this.titleChangeText( this.title.text() ) );
 		$( '.wpusb-title' ).toggle( 'fast' );
+
+		event.preventDefault();
 	};
 
 	Model._onClickCounter = function(event) {
@@ -49,7 +49,7 @@ WPUSB( 'WPUSB.Preview', function(Model, $, utils) {
 	};
 
 	Model.titleChangeText = function(text) {
-		if ( text == this.titles.titleRemove ) {
+		if ( text === this.titles.titleRemove ) {
 			return this.titles.titleInsert;
 		}
 

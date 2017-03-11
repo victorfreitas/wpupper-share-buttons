@@ -159,7 +159,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function rm_tags( $value, $remove_breaks = false ) {
 		if ( empty( $value ) ) {
-			return '';
+			return $value;
 		}
 
 		if ( is_array( $value ) ) {

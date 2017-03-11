@@ -19,7 +19,7 @@ WPUSB( 'WPUSB.Sortable', function(Model, $, utils) {
 			cursor      : 'move',
 			tolerance   : 'pointer',
 			items       : '> td',
-			placeholder : this.addPrefix( 'sortable-placeholder' ),
+			placeholder : utils.addPrefix( 'sortable-placeholder' ),
 		};
 	};
 

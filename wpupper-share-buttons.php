@@ -83,14 +83,25 @@ class WPUSB_App {
 	 */
 	public static function uses( $class, $location ) {
 		$extension = 'php';
-		$sep       = DIRECTORY_SEPARATOR;
 		$root      = dirname( __FILE__ );
+		$locations = array(
+			'View'       => 1,
+			'Controller' => 1,
+		);
 
-		if ( $location === 'View' ||  $location === 'Controller' ) {
+		if ( isset( $locations[ $location ] ) ) {
 			$extension = strtolower( $location ) . ".{$extension}";
 		}
 
-		require_once( "{$root}{$sep}{$location}{$sep}{$class}.{$extension}" );
+		$path = sprintf( '/%s/%s.%s', $location, $class, $extension );
+		$file = $root . $path;
+
+		if ( $location === 'Templates' ) {
+			$template = apply_filters( WPUSB_Utils::add_prefix( '_template_include' ), $file );
+			$file     = file_exists( $template ) ? $template : $file;
+		}
+
+		require_once( $file );
 	}
 
 	/**
