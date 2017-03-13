@@ -233,7 +233,6 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 		var params = {
 	       	action          : this.addPrefix( 'share_count_reports', '_' ),
 		    reference       : this.data.attrReference,
-		    is_term         : this.data.isTerm,
 		    count_facebook  : this.facebookCounter,
 		    count_twitter   : this.twitterCounter,
 		    count_tumblr    : this.tumblrCounter,
