@@ -17,19 +17,21 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 	Model.fn.setPropNames = function() {
 		this.facebook         = this.elements.facebook;
 		this.twitter          = this.elements.twitter;
-		this.google           = this.elements.googlePlus;
-		this.pinterest        = this.elements.pinterest;
-		this.linkedin         = this.elements.linkedin;
 		this.tumblr           = this.elements.tumblr;
+		this.google           = this.elements.googlePlus;
+		this.linkedin         = this.elements.linkedin;
+		this.pinterest        = this.elements.pinterest;
+		this.buffer           = this.elements.buffer;
 		this.totalShare       = this.elements.totalShare;
 		this.totalCounter     = 0;
 		this.facebookCounter  = 0;
 		this.twitterCounter   = 0;
+		this.tumblrCounter    = 0;
 		this.googleCounter    = 0;
 		this.linkedinCounter  = 0;
 		this.pinterestCounter = 0;
-		this.tumblrCounter    = 0;
-		this.max              = 6;
+		this.bufferCounter    = 0;
+		this.max              = 7;
 		this.minCount         = utils.getMinCount();
 	};
 
@@ -80,6 +82,11 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 				reference : 'pinterestCounter',
 				element   : 'pinterest',
 				url       : 'https://api.pinterest.com/v1/urls/count.json?url=' + this.data.elementUrl
+			},
+			{
+				reference : 'bufferCounter',
+				element   : 'buffer',
+				url       : 'https://api.bufferapp.com/1/links/shares.json?url=' + this.data.elementUrl
 			}
 		];
 
@@ -116,8 +123,10 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 	};
 
 	Model.fn._done = function(request, response) {
-		var classHide           = this.addPrefix( 'hide' );
-		var number              = this.getNumberByData( request.element, response );
+		var classHide = this.addPrefix( 'hide' )
+		  , number    = this.getNumberByData( request.element, response )
+		;
+
 		this[request.reference] = number;
 		this.max               -= 1;
 		this.totalCounter      += number;
@@ -159,7 +168,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 				return this.getTotalShareGooglePlus( response );
 
 			default :
-				return parseInt( response.count || 0 );
+				return parseInt( response.count || response.shares || 0 );
 		}
 	};
 
@@ -227,10 +236,11 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 		    is_term         : this.data.isTerm,
 		    count_facebook  : this.facebookCounter,
 		    count_twitter   : this.twitterCounter,
-		    count_google    : this.googleCounter,
-		    count_linkedin  : this.linkedinCounter,
-		    count_pinterest : this.pinterestCounter,
 		    count_tumblr    : this.tumblrCounter,
+		    count_linkedin  : this.linkedinCounter,
+		    count_google    : this.googleCounter,
+		    count_pinterest : this.pinterestCounter,
+		    count_buffer    : this.bufferCounter,
 		    nonce           : this.data.attrNonce
 	    };
 

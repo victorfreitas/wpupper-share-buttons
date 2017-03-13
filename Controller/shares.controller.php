@@ -186,6 +186,7 @@ class WPUSB_Shares_Controller {
 	 * @return String
 	 */
 	public function buttons_share( $atts = array(), $fixed = false ) {
+		$atts['url'] = 'https://www.facebook.com';
 		return WPUSB_Utils::buttons_share( $atts, $fixed );
 	}
 

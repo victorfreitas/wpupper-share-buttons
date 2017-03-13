@@ -25,15 +25,17 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 
 	private $twitter;
 
+	private $tumblr;
+
 	private $google;
 
 	private $linkedin;
 
 	private $pinterest;
 
-	private $tumblr;
+	private $buffer;
 
-	private $total;
+	private $total = 0;
 
 	/**
 	* Initialize the plugin by ajax requests
@@ -113,13 +115,21 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 		$this->table      = WPUSB_Utils::get_table_name();
 		$this->post_date  = WPUSB_Utils::get_post_date( $this->reference );
 		$this->post_title = WPUSB_Utils::rm_tags( get_the_title( $this->reference ), true );
-		$this->facebook   = WPUSB_Utils::post( 'count_facebook', 0, 'intval' );
-		$this->twitter    = WPUSB_Utils::post( 'count_twitter', 0, 'intval' );
-		$this->google     = WPUSB_Utils::post( 'count_google', 0, 'intval' );
-		$this->linkedin   = WPUSB_Utils::post( 'count_linkedin', 0, 'intval' );
-		$this->pinterest  = WPUSB_Utils::post( 'count_pinterest', 0, 'intval' );
-		$this->tumblr     = WPUSB_Utils::post( 'count_tumblr', 0, 'intval' );
-		$this->total      = ( $this->facebook + $this->twitter + $this->google + $this->linkedin + $this->pinterest + $this->tumblr );
+
+		$items = array(
+			'facebook',
+			'twitter',
+			'tumblr',
+			'google',
+			'linkedin',
+			'pinterest',
+			'buffer',
+		);
+
+		foreach ( $items as $item ) :
+			$this->{$item}  = WPUSB_Utils::post( "count_{$item}", 0, 'intval' );
+			$this->total   += $this->{$item};
+		endforeach;
 	}
 
 	/**
@@ -191,6 +201,7 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 				'linkedin'   => $this->linkedin,
 				'pinterest'  => $this->pinterest,
 				'tumblr'     => $this->tumblr,
+				'buffer'     => $this->buffer,
 				'total'      => $this->total,
 			),
 			array(
@@ -240,6 +251,7 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 				'linkedin'   => $this->linkedin,
 				'pinterest'  => $this->pinterest,
 				'tumblr'     => $this->tumblr,
+				'buffer'     => $this->buffer,
 				'total'      => $this->total,
 			),
 			array(

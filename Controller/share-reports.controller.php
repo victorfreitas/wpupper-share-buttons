@@ -226,6 +226,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			case 'linkedin'  :
 			case 'pinterest' :
 			case 'tumblr'    :
+			case 'buffer'    :
 			case 'total'     :
 				return WPUSB_Utils::number_format( $item->{$column} );
 
@@ -250,6 +251,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			'Linkedin'  => __( 'Linkedin', WPUSB_App::TEXTDOMAIN ),
 			'Pinterest' => __( 'Pinterest', WPUSB_App::TEXTDOMAIN ),
 			'Tumblr'    => __( 'Tumblr', WPUSB_App::TEXTDOMAIN ),
+			'Buffer'    => __( 'Buffer', WPUSB_App::TEXTDOMAIN ),
 			'Total'     => __( 'Total', WPUSB_App::TEXTDOMAIN ),
 			'Date'      => __( 'Post date', WPUSB_App::TEXTDOMAIN ),
 		);
@@ -273,6 +275,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			'Linkedin'  => array( 'linkedin', true ),
 			'Pinterest' => array( 'pinterest', true ),
 			'Tumblr'    => array( 'tumblr', true ),
+			'Buffer'    => array( 'buffer', true ),
 			'Total'     => array( 'total', true ),
 			'Date'      => array( 'post_date', true ),
 		);
@@ -344,6 +347,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			'linkedin'   => '',
 			'pinterest'  => '',
 			'tumblr'     => '',
+			'buffer'     => '',
 			'total'      => '',
 		);
 

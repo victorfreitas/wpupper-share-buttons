@@ -386,7 +386,7 @@ class WPUSB_Social_Elements {
 		$std->buffer->class_icon  = apply_filters( $tag_icon, $prefix_icons . 'buffer' );
 		$std->buffer->popup       = self::$action;
 		$std->buffer->inside      = __( 'Share', WPUSB_App::TEXTDOMAIN );
-		$std->buffer->has_counter = false;
+		$std->buffer->has_counter = true;
 		$std->buffer->target      = '_blank';
 
 		/**

@@ -320,6 +320,7 @@ final class WPUSB_Core {
 				linkedin   BIGINT(20) NOT NULL DEFAULT 0,
 				pinterest  BIGINT(20) NOT NULL DEFAULT 0,
 				tumblr     BIGINT(20) NOT NULL DEFAULT 0,
+				buffer     BIGINT(20) NOT NULL DEFAULT 0,
 				total      BIGINT(20) NOT NULL DEFAULT 0,
 				PRIMARY KEY id ( id ),
 				UNIQUE( post_id ),
@@ -388,6 +389,7 @@ final class WPUSB_Core {
 
 		self::_set_column_tumblr( $wpdb, $table );
 		self::_set_column_post_date( $wpdb, $table );
+		self::_set_column_buffer( $wpdb, $table );
 		self::_create_table_short_url();
 	}
 
@@ -463,6 +465,22 @@ final class WPUSB_Core {
 				$result->id
 			) );
 		endforeach;
+	}
+
+	private static function _set_column_buffer( $wpdb, $table ) {
+		if ( self::column_exists( 'buffer' ) ) {
+			return;
+		}
+
+		$wpdb->query(
+			"ALTER TABLE
+				{$table}
+			 ADD
+				buffer BIGINT(20) NOT NULL DEFAULT 0
+			 AFTER
+				tumblr;
+			"
+		);
 	}
 
 	/**
