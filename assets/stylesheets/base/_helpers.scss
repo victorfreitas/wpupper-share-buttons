@@ -90,22 +90,12 @@
             filter: brightness( 1.05 );
 }
 
-@-webkit-keyframes modal {
-    from {
-    	opacity: 0;
-   	}
+@-webkit-keyframes modalOpen {
+	100% {
+		-webkit-transform: scale3d( 1,1,1 );
+	}
 
-    to {
-    	opacity: 1;
-   	}
-}
-
-@keyframes modal {
-    from {
-    	opacity: 0;
-   	}
-
-    to {
-    	opacity: 1;
-   }
+	0% {
+		-webkit-transform: scale3d( 0.1,0.1,1 );
+	}
 }
