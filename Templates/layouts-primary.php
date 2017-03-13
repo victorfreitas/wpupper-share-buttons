@@ -33,6 +33,7 @@ class WPUSB_Layouts_Primary {
 		     	 data-element-title="{$args['title']}"
 			     data-attr-reference="{$args['post_id']}"
 			     data-attr-nonce="{$args['nonce']}"
+		     	 data-is-term="{$args['is_term']}"
 			     {$component}
 			     {$args['fixed_top']}>
 

@@ -278,7 +278,7 @@ abstract class WPUSB_Utils_Share {
 			'is_term'   => ( WPUSB_Utils::is_archive_category() ) ? 1 : 0,
 		);
 
-		return apply_filters( WPUSB_App::SLUG . '-content-args', $args, $atts );
+		return apply_filters( WPUSB_Utils::add_prefix( '-content-args' ), $args, $atts );
 	}
 
 	/**
@@ -293,26 +293,10 @@ abstract class WPUSB_Utils_Share {
 		$element = '';
 
 		if ( WPUSB_Utils::is_fixed_top() ) {
-			$element = "data-element=\"{$prefix}-fixed-top\"";
+			$element = sprintf( 'data-element="%s-fixed-top"', $prefix );
 		}
 
 		return $element;
-	}
-
-	/**
-	 * Get data token short url
-	 *
-	 * @since 3.0.0
-	 * @param String $token
-	 * @return String
-	 *
-	 */
-	public static function get_data_token( $token ) {
-		if ( empty( $token ) ) {
-			return '';
-		}
-
-		return "data-token=\"{$token}\"";
 	}
 
 	/**
