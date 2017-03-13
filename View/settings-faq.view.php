@@ -21,22 +21,23 @@ class WPUSB_Settings_Faq_View {
 	 * @return Void Display page
 	 */
 	public static function render_page_faq() {
-		$prefix           = WPUSB_App::SLUG;
-		$use_options_file = dirname( __FILE__ ) . '/use-options.php';
 	?>
 		<div class="wrap">
 			<h2><?php _e( 'WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ); ?></h2>
-			<p class="description"><?php _e( 'Add the Share Buttons automatically.', WPUSB_App::TEXTDOMAIN ); ?></p>
+
+			<p class="description">
+				<?php _e( 'Add the Share Buttons automatically.', WPUSB_App::TEXTDOMAIN ); ?>
+			</p>
 
 			<?php WPUSB_Utils_View::page_notice(); ?>
 
-			<span class="<?php echo "{$prefix}-title-wrap"; ?>">
+			<span class="<?php echo WPUSB_Utils::add_prefix( '-title-wrap' ); ?>">
 				<?php _e( 'Use options', WPUSB_App::TEXTDOMAIN ); ?>
 			</span>
 
 			<?php WPUSB_Utils_View::menu_top(); ?>
 
-			<div class="<?php echo "{$prefix}-wrap-faq"; ?>">
+			<div class="<?php echo WPUSB_Utils::add_prefix( '-wrap-faq' ); ?>">
 <pre data-element="highlight">
 	<code class="php">
 /*

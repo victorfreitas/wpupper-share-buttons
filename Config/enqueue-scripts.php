@@ -42,7 +42,7 @@ final class WPUSB_Scripts {
 		wp_enqueue_style( 'wp-color-picker' );
 
 		wp_enqueue_script(
-			WPUSB_App::SLUG . '-admin-scripts',
+			WPUSB_Utils::add_prefix( '-admin-scripts' ),
 			WPUSB_Utils::plugin_url( 'javascripts/admin/built.js' ),
 			array( 'jquery', 'jquery-ui-sortable', 'wp-color-picker' ),
 			WPUSB_App::VERSION,
@@ -50,7 +50,7 @@ final class WPUSB_Scripts {
 		);
 
 		wp_localize_script(
-			WPUSB_App::SLUG . '-admin-scripts',
+			WPUSB_Utils::add_prefix( '-admin-scripts' ),
 			'WPUSBVars',
 			array(
 				'ajaxUrl'       => esc_url( admin_url( 'admin-ajax.php' ) ),
@@ -66,7 +66,7 @@ final class WPUSB_Scripts {
 		);
 
 		$page_settings = ( WPUSB_App::SLUG === WPUSB_Utils::get( 'page' ) );
-		$handle        = WPUSB_App::SLUG . '-front-style';
+		$handle        = WPUSB_Utils::add_prefix( '-front-style' );
 
 		if ( $page_settings ) {
 			wp_register_style(
@@ -78,7 +78,7 @@ final class WPUSB_Scripts {
 		}
 
 		wp_enqueue_style(
-			WPUSB_App::SLUG . '-admin-style',
+			WPUSB_Utils::add_prefix( '-admin-style' ),
 			WPUSB_Utils::plugin_url( 'stylesheets/admin.css' ),
 			( $page_settings ) ? array( $handle ) : array(),
 			WPUSB_App::VERSION
@@ -93,14 +93,12 @@ final class WPUSB_Scripts {
 	 * @return Void
 	 */
 	public static function add_front_scripts() {
-		if ( WPUSB_Utils::is_disabled_by_meta() ) {
-			if ( WPUSB_Utils::is_active_widget_follow() ) :
-				self::front_styles();
-			endif;
+		if ( WPUSB_Utils::is_disabled_by_meta() && WPUSB_Utils::is_active_widget_follow() ) {
+			self::front_styles();
 			return;
 		}
 
-		$load_scripts      = apply_filters( WPUSB_App::SLUG . '-add-scripts', WPUSB_Utils::is_active() );
+		$load_scripts      = apply_filters( WPUSB_Utils::add_prefix( '-add-scripts' ), WPUSB_Utils::is_active() );
 		$customize_preview = WPUSB_Utils::is_customize_preview();
 
 		if ( ! $customize_preview && ( ! WPUSB_Utils::is_active_widget() && ! $load_scripts ) ) {
@@ -126,7 +124,7 @@ final class WPUSB_Scripts {
 		$context = WPUSB_Utils::option( 'fixed_context' );
 
 		wp_enqueue_script(
-			WPUSB_App::SLUG . '-scripts',
+			WPUSB_Utils::add_prefix( '-scripts' ),
 			WPUSB_Utils::plugin_url( 'javascripts/front/built.js' ),
 			array( 'jquery' ),
 			WPUSB_App::VERSION,
@@ -134,7 +132,7 @@ final class WPUSB_Scripts {
 		);
 
 		wp_localize_script(
-			WPUSB_App::SLUG . '-scripts',
+			WPUSB_Utils::add_prefix( '-scripts' ),
 			'WPUSBVars',
 			array(
 				'ajaxUrl'  => WPUSB_Utils::get_admin_url( 'admin-ajax.php' ),
@@ -172,7 +170,7 @@ final class WPUSB_Scripts {
 	 */
 	public static function add_style_front() {
 		wp_enqueue_style(
-			WPUSB_App::SLUG . '-style',
+			WPUSB_Utils::add_prefix( '-style' ),
 			WPUSB_Utils::plugin_url( self::get_front_css_path() ),
 			array(),
 			filemtime( WPUSB_Utils::file_path( self::get_front_css_path() ) )
@@ -188,14 +186,14 @@ final class WPUSB_Scripts {
 
 		//Lib
 		wp_enqueue_script(
-			WPUSB_App::SLUG . '-codemirror-js',
+			WPUSB_Utils::add_prefix( '-codemirror-js' ),
 			WPUSB_Utils::plugin_url( 'lib/codemirror.js', $path_codemirror ),
 			array(),
 			'5.22',
 			true
 		);
 		wp_enqueue_style(
-			WPUSB_App::SLUG . '-codemirror-css',
+			WPUSB_Utils::add_prefix( '-codemirror-css' ),
 			WPUSB_Utils::plugin_url( 'lib/codemirror.css', $path_codemirror ),
 			array(),
 			WPUSB_App::VERSION
@@ -203,7 +201,7 @@ final class WPUSB_Scripts {
 
 		//Theme
 		wp_enqueue_style(
-			WPUSB_App::SLUG . '-codemirror-theme-seti',
+			WPUSB_Utils::add_prefix( '-codemirror-theme-seti' ),
 			WPUSB_Utils::plugin_url( 'theme/seti.css', $path_codemirror ),
 			array(),
 			'5.22'
@@ -211,7 +209,7 @@ final class WPUSB_Scripts {
 
 		//Mode
 		wp_enqueue_script(
-			WPUSB_App::SLUG . '-codemirror-mode-css',
+			WPUSB_Utils::add_prefix( '-codemirror-mode-css' ),
 			WPUSB_Utils::plugin_url( 'mode/css/css.js', $path_codemirror ),
 			array(),
 			'5.22',
@@ -220,21 +218,21 @@ final class WPUSB_Scripts {
 
 		//AddOn Edit
 		wp_enqueue_script(
-			WPUSB_App::SLUG . '-codemirror-addon-edit-closebrackets',
+			WPUSB_Utils::add_prefix( '-codemirror-addon-edit-closebrackets' ),
 			WPUSB_Utils::plugin_url( 'addon/edit/closebrackets.js', $path_codemirror ),
 			array(),
 			'5.22',
 			true
 		);
 		wp_enqueue_script(
-			WPUSB_App::SLUG . '-codemirror-addon-edit-matchbrackets',
+			WPUSB_Utils::add_prefix( '-codemirror-addon-edit-matchbrackets' ),
 			WPUSB_Utils::plugin_url( 'addon/edit/matchbrackets.js', $path_codemirror ),
 			array(),
 			'5.22',
 			true
 		);
 		wp_enqueue_script(
-			WPUSB_App::SLUG . '-codemirror-addon-edit-trailingspace',
+			WPUSB_Utils::add_prefix( '-codemirror-addon-edit-trailingspace' ),
 			WPUSB_Utils::plugin_url( 'addon/edit/trailingspace.js', $path_codemirror ),
 			array(),
 			'5.22',
@@ -243,7 +241,7 @@ final class WPUSB_Scripts {
 
 		//AddOn Display
 		wp_enqueue_script(
-			WPUSB_App::SLUG . '-codemirror-addon-display-placeholder',
+			WPUSB_Utils::add_prefix( '-codemirror-addon-display-placeholder' ),
 			WPUSB_Utils::plugin_url( 'addon/display/placeholder.js', $path_codemirror ),
 			array(),
 			'5.22',
@@ -252,21 +250,21 @@ final class WPUSB_Scripts {
 
 		//AddOn Hint
 		wp_enqueue_script(
-			WPUSB_App::SLUG . '-codemirror-addon-hint-css-hint',
+			WPUSB_Utils::add_prefix( '-codemirror-addon-hint-css-hint' ),
 			WPUSB_Utils::plugin_url( 'addon/hint/css-hint.js', $path_codemirror ),
 			array(),
 			'5.22',
 			true
 		);
 		wp_enqueue_script(
-			WPUSB_App::SLUG . '-codemirror-addon-hint-show-hint-js',
+			WPUSB_Utils::add_prefix( '-codemirror-addon-hint-show-hint-js' ),
 			WPUSB_Utils::plugin_url( 'addon/hint/show-hint.js', $path_codemirror ),
 			array(),
 			'5.22',
 			true
 		);
 		wp_enqueue_style(
-			WPUSB_App::SLUG . '-codemirror-addon-hint-show-hint',
+			WPUSB_Utils::add_prefix( '-codemirror-addon-hint-show-hint' ),
 			WPUSB_Utils::plugin_url( 'addon/hint/show-hint.css', $path_codemirror ),
 			array(),
 			'5.22'
@@ -274,20 +272,20 @@ final class WPUSB_Scripts {
 
 		//AddOn Lint
 		wp_enqueue_style(
-			WPUSB_App::SLUG . '-codemirror-addon-lint-lint',
+			WPUSB_Utils::add_prefix( '-codemirror-addon-lint-lint' ),
 			WPUSB_Utils::plugin_url( 'addon/lint/lint.css', $path_codemirror ),
 			array(),
 			'5.22'
 		);
 		wp_enqueue_script(
-			WPUSB_App::SLUG . '-codemirror-addon-lint-lint-js',
+			WPUSB_Utils::add_prefix( '-codemirror-addon-lint-lint-js' ),
 			WPUSB_Utils::plugin_url( 'addon/lint/lint.js', $path_codemirror ),
 			array(),
 			'5.22',
 			true
 		);
 		wp_enqueue_script(
-			WPUSB_App::SLUG . '-codemirror-addon-lint-css-lint',
+			WPUSB_Utils::add_prefix( '-codemirror-addon-lint-css-lint' ),
 			WPUSB_Utils::plugin_url( 'addon/lint/css-lint.js', $path_codemirror ),
 			array(),
 			'5.22',
@@ -296,7 +294,7 @@ final class WPUSB_Scripts {
 
 		//AddOn Selection
 		wp_enqueue_script(
-			WPUSB_App::SLUG . '-codemirror-addon-selection-active-line',
+			WPUSB_Utils::add_prefix( '-codemirror-addon-selection-active-line' ),
 			WPUSB_Utils::plugin_url( 'addon/selection/active-line.js', $path_codemirror ),
 			array(),
 			'5.22',
