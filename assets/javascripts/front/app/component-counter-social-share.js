@@ -226,7 +226,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 	};
 
 	Model.fn._onClickOpenPopup = function(event) {
-		if ( this.data.report === 'no' || this.data.isTerm ) {
+		if ( !this.totalCounter || this.data.report === 'no' || this.data.isTerm ) {
 			return;
 		}
 
