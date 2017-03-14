@@ -58,7 +58,7 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 			return;
 		}
 
-		$action = "{$prefix}_share_count_reports";
+		$action = WPUSB_Utils::add_prefix( '_share_count_reports' );
 
 		add_action( "wp_ajax_{$action}", array( $this, 'request_init' ) );
 		add_action( "wp_ajax_nopriv_{$action}", array( $this, 'request_init' ) );

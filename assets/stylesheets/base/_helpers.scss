@@ -92,10 +92,18 @@
 
 @-webkit-keyframes modalOpen {
 	100% {
-		-webkit-transform: scale3d( 1,1,1 );
+		-webkit-transform: scale3d( 1, 1, 1 );
+		-moz-transform: scale3d( 1, 1, 1 );
+		-ms-transform: scale3d( 1, 1, 1 );
+		-o-transform: scale3d( 1, 1, 1 );
+		   transform: scale3d( 1, 1, 1 );
 	}
 
 	0% {
-		-webkit-transform: scale3d( 0.1,0.1,1 );
+		-webkit-transform: scale3d( 0.1, 0.1, 1 );
+		-moz-transform: scale3d( 0.1, 0.1, 1 );
+		-ms-transform: scale3d( 0.1, 0.1, 1 );
+		-o-transform: scale3d( 0.1, 0.1, 1 );
+		   transform: scale3d( 0.1, 0.1, 1 );
 	}
 }
