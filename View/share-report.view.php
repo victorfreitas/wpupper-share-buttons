@@ -70,13 +70,21 @@ class WPUSB_Sharing_Report_View {
 	 * Insert link in column title in wp list table
 	 *
 	 * @since 1.0
-	 * @param Integer $post_id
+	 * @param Object $list
 	 * @return String
 	 */
-	public static function get_permalink_title( $post_id ) {
-		$permalink = esc_url( get_permalink( $post_id ) );
-		$title     = WPUSB_Utils::rm_tags( get_the_title( $post_id ) );
+	public static function get_permalink_title( $list ) {
+		$permalink = esc_url( get_permalink( $list->post_id ) );
+		$title     = get_the_title( $list->post_id );
 
-		return sprintf( '<a href="%s" class="row-title" target="_blank">%s</a>', $permalink, $title );
+		if ( empty( $title ) ) {
+			$title = $list->post_title;
+		}
+
+		return sprintf(
+			'<a href="%s" class="row-title" target="_blank">%s</a>',
+			$permalink,
+			WPUSB_Utils::rm_tags( $title )
+		);
 	}
 }

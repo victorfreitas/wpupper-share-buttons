@@ -229,7 +229,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 
 		switch ( $column ) {
 			case 'title' :
-				return WPUSB_Sharing_Report_View::get_permalink_title( $item->post_id );
+				return WPUSB_Sharing_Report_View::get_permalink_title( $item );
 
 			case 'facebook'  :
 			case 'twitter'   :
