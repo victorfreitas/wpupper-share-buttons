@@ -52,18 +52,27 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 */
 	private $search;
 
+	/**
+	 * Table name
+	 *
+	 * @since 3.32
+	 * @var string
+	 */
+	private $table;
+
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'menu' ) );
 
 		$this->cache_time = WPUSB_Utils::option( 'report_cache_time', 10, 'intval' );
 		$this->search     = WPUSB_Utils::get( 's', false, 'esc_sql' );
+		$this->table      = WPUSB_Utils::get_table_name();
 
-		parent::__construct(array(
+		parent::__construct( array(
 			'singular' => 'social-share-report',
 			'plural'   => 'social-sharing-reports',
 			'screen'   => WPUSB_Utils::add_prefix( '_sharing_report' ),
 			'ajax'     => false,
-		));
+		) );
 	}
 
 	/**
@@ -97,36 +106,40 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	private function _get_sharing_report( $posts_per_page, $current_page, $orderby, $order ) {
 		global $wpdb;
 
-		$offset = ( ( $current_page - 1 ) * self::POSTS_PER_PAGE );
-		$cache  = get_transient( WPUSB_Setting::TRANSIENT_SHARING_REPORT );
-		$table  = WPUSB_Utils::get_table_name();
-		$where  = $this->_where();
+		$offset    = ( ( $current_page - 1 ) * self::POSTS_PER_PAGE );
+		$cache     = get_transient( WPUSB_Setting::TRANSIENT_SHARING_REPORT );
+		$where     = apply_filters( WPUSB_Utils::add_prefix( '_sharing_report_where' ), $this->_where() );
+		$is_search = apply_filters( WPUSB_Utils::add_prefix( '_sharing_report_is_search' ), $this->search );
 
-		if ( ! $this->_table_exists( $wpdb, $table ) ) {
+		if ( ! $this->_table_exists( $wpdb ) ) {
 			return;
 		}
 
-		if ( ! $this->search && false !== $cache && isset( $cache[ $current_page ][ $orderby ][ $order ] ) ) {
+		if ( ! $is_search && false !== $cache && isset( $cache[ $current_page ][ $orderby ][ $order ] ) ) {
 			return $cache[ $current_page ][ $orderby ][ $order ];
 		}
 
 		$query = $wpdb->prepare(
-			"SELECT * FROM `{$table}`
+			"SELECT * FROM
+				`{$this->table}`
 			 {$where}
-			 ORDER BY `{$orderby}` {$order}
-			 LIMIT %d OFFSET %d
+			 ORDER BY
+			 	`{$orderby}` {$order}
+			 LIMIT
+			 	%d OFFSET %d
 			",
 			$posts_per_page,
 			$offset
 		);
 
-		$cache[ $current_page ][ $orderby ][ $order ] = $wpdb->get_results( $query );
+		$results                                      = $wpdb->get_results( $query );
+		$cache[ $current_page ][ $orderby ][ $order ] = $results;
 
-		if ( ! $this->search ) {
+		if ( ! $is_search ) {
 			set_transient( WPUSB_Setting::TRANSIENT_SHARING_REPORT, $cache, $this->cache_time * MINUTE_IN_SECONDS );
 		}
 
-		return $cache[ $current_page ][ $orderby ][ $order ];
+		return $results;
 	}
 
 	/**
@@ -141,9 +154,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		global $wpdb;
 
 		$cache = get_transient( WPUSB_Setting::TRANSIENT_SHARING_REPORT_COUNT );
-		$table = WPUSB_Utils::get_table_name();
 
-		if ( ! $this->_table_exists( $wpdb, $table ) ) {
+		if ( ! $this->_table_exists( $wpdb ) ) {
 			return 0;
 		}
 
@@ -152,7 +164,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		}
 
 		$where       = $this->_where( ' ' );
-		$query       = "SELECT COUNT(*) FROM {$table}{$where}";
+		$query       = "SELECT COUNT(*) FROM {$this->table}{$where}";
 		$row_count   = $wpdb->get_var( $query );
 		$total_items = intval( $row_count );
 
@@ -181,11 +193,10 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 *
 	 * @since 1.0
 	 * @param Object $wpdb
-	 * @param String $table
 	 * @return Boolean
 	 */
-	private function _table_exists( $wpdb, $table ) {
-		return $wpdb->query( "SHOW TABLES LIKE '{$table}'" );
+	private function _table_exists( $wpdb ) {
+		return $wpdb->query( "SHOW TABLES LIKE '{$this->table}'" );
 	}
 
 	/**
@@ -281,6 +292,120 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		);
 
 		return $sortable_columns;
+	}
+
+	/**
+	 * Get an associative array ( id => link ) with the list
+	 * of views available on this table.
+	 *
+	 * @since 3.32
+	 * @param null
+	 * @return Array
+	 */
+	public function get_views() {
+		return apply_filters( WPUSB_Utils::add_prefix( '_sharing_report_views' ), array() );
+	}
+
+	/**
+	 * Display a monthly dropdown for filtering items
+	 *
+	 * @since 3.32
+	 * @param String $post_type
+	 * @global wpdb      $wpdb
+	 * @global WP_Locale $wp_locale
+	 * @return Void
+	 */
+	public function months_dropdown( $post_type = '' ) {
+		global $wpdb, $wp_locale;
+
+		/**
+		 * Filters whether to remove the 'Months' drop-down from the post list table.
+		 *
+		 * @since 4.2.0
+		 *
+		 * @param bool   $disable   Whether to disable the drop-down. Default false.
+		 * @param string $post_type The post type.
+		 */
+		if ( apply_filters( 'disable_months_dropdown', false, $post_type ) ) {
+			return;
+		}
+
+		$months = $wpdb->get_results("
+			SELECT DISTINCT YEAR( post_date ) AS year, MONTH( post_date ) AS month
+			FROM $this->table
+			ORDER BY post_date DESC
+		");
+
+		/**
+		 * Filters the 'Months' drop-down results.
+		 *
+		 * @since 3.7.0
+		 *
+		 * @param object $months    The months drop-down query results.
+		 * @param string $post_type The post type.
+		 */
+		$months = apply_filters( 'months_dropdown_results', $months, $post_type );
+
+		$month_count = count( $months );
+
+		if ( !$month_count || ( 1 == $month_count && 0 == $months[0]->month ) )
+			return;
+
+		$m = isset( $_GET['m'] ) ? (int) $_GET['m'] : 0;
+?>
+		<label for="filter-by-date" class="screen-reader-text"><?php _e( 'Filter by date' ); ?></label>
+		<select name="m" id="filter-by-date">
+			<option<?php selected( $m, 0 ); ?> value="0"><?php _e( 'All dates' ); ?></option>
+<?php
+		foreach ( $months as $arc_row ) {
+			if ( 0 == $arc_row->year )
+				continue;
+
+			$month = zeroise( $arc_row->month, 2 );
+			$year = $arc_row->year;
+
+			printf( "<option %s value='%s'>%s</option>\n",
+				selected( $m, $year . $month, false ),
+				esc_attr( $arc_row->year . $month ),
+				/* translators: 1: month name, 2: 4-digit year */
+				sprintf( __( '%1$s %2$d' ), $wp_locale->get_month( $month ), $year )
+			);
+		}
+?>
+		</select>
+<?php
+	}
+
+	public function extra_tablenav( $which ) {
+?>
+		<div class="alignleft actions">
+<?php
+		if ( 'top' === $which && !is_singular() ) {
+			ob_start();
+
+			$this->months_dropdown();
+
+			do_action( 'restrict_manage_posts', $this->screen->post_type, $which );
+
+			$output = ob_get_clean();
+
+			if ( ! empty( $output ) ) {
+				echo $output;
+				submit_button( __( 'Filter' ), '', 'filter_action', false, array( 'id' => 'post-query-submit' ) );
+			}
+		}
+?>
+		</div>
+<?php
+		/**
+		 * Fires immediately following the closing "actions" div in the tablenav for the posts
+		 * list table.
+		 *
+		 * @since 4.4.0
+		 *
+		 * @param string $which The location of the extra table nav markup: 'top' or 'bottom'.
+		 */
+		do_action( 'manage_posts_extra_tablenav', $which );
 	}
 
 	/**

@@ -42,12 +42,14 @@ class WPUSB_Sharing_Report_View {
 				</span>
 			</span>
 
+			<?php WPUSB_Utils_View::menu_top(); ?>
+
 			<div class="<?php echo $prefix; ?>-settings-wrap">
 
-				<?php WPUSB_Utils_View::menu_top(); ?>
+				<?php do_action( WPUSB_Utils::add_prefix( '_render_sharing_report' ), $list_table ); ?>
 
 				<form action="<?php echo WPUSB_Utils::get_admin_url( 'admin.php' ); ?>"
-				      class="share-report-form">
+					  class="share-report-form">
 
 					<input type="hidden"
 					       name="page"
