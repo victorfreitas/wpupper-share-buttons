@@ -369,7 +369,6 @@ abstract class WPUSB_Utils_Share {
 	 *
 	 */
 	public static function get_content_by_layout( $args, $method ) {
-		$layouts = self::get_layouts();
 		$content = '';
 
 		switch( $args->layout ) :
@@ -389,7 +388,7 @@ abstract class WPUSB_Utils_Share {
 				break;
 		endswitch;
 
-		return apply_filters( WPUSB_App::SLUG . "-content-buttons-{$args->layout}", $content, $args, $method );
+		return apply_filters( WPUSB_Utils::add_prefix( "-content-buttons-{$args->layout}" ), $content, $args, $method );
 	}
 
 	/**
@@ -533,10 +532,9 @@ abstract class WPUSB_Utils_Share {
 	}
 
 	public static function render_modal( $args, $number ) {
-		$prefix     = WPUSB_App::SLUG;
 		$modal_init = WPUSB_Modal::init( $args, $number );
 		$modal      = WPUSB_Utils::minify_html( $modal_init );
 
-		return apply_filters( "{$prefix}_rendered_modal", $modal, $args );
+		return apply_filters( WPUSB_Utils::add_prefix( '_rendered_modal' ), $modal, $args );
 	}
 }

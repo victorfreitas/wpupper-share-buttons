@@ -79,6 +79,7 @@ class WPUSB_App {
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
 	 * @since 2.0
+	 * @since 3.32
 	 * @return Void
 	 */
 	public static function uses( $class, $location ) {
@@ -93,12 +94,11 @@ class WPUSB_App {
 			$extension = strtolower( $location ) . ".{$extension}";
 		}
 
-		$path = sprintf( '/%s/%s.%s', $location, $class, $extension );
-		$file = $root . $path;
+		$path = sprintf( '/%s.%s', $class, $extension );
+		$file = $root . '/' . $location . $path;
 
 		if ( $location === 'Templates' ) {
-			$template = apply_filters( WPUSB_Utils::add_prefix( '_template_include' ), $file );
-			$file     = file_exists( $template ) ? $template : $file;
+			$file = WPUSB_Utils::get_template_located( $file, $path, $class );
 		}
 
 		require_once( $file );

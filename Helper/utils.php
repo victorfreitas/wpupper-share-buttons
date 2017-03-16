@@ -2178,6 +2178,31 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
     	return self::sanitize( $post->post_date, $sanitize );
     }
 
+	/**
+	 * Template file located
+	 *
+	 * @since 3.32
+	 * @param String $file
+	 * @param String $path
+	 * @param String $class_name
+	 * @return String
+	 */
+    public static function get_template_located( $file, $path, $class_name ) {
+    	$path               = '/' . self::add_prefix( $path );
+		$template_primary   = get_stylesheet_directory() . $path;
+		$template_secondary = get_template_directory() . $path;
+
+    	if ( file_exists( $template_primary ) ) {
+    		return $template_primary;
+    	} else if ( file_exists( $template_secondary ) ) {
+    		return $template_secondary;
+    	}
+
+		$template = apply_filters( self::add_prefix( '_template_include' ), $file, $class_name );
+
+		return file_exists( $template ) ? $template : $file;
+    }
+
 	public static function log( $data, $log_name = 'debug' ) {
 		$name = sprintf( '%s-%s.log', $log_name, date( 'd-m-Y' ) );
 		$log  = print_r( $data, true ) . PHP_EOL;
