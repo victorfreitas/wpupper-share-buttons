@@ -48,8 +48,7 @@ class WPUSB_Sharing_Report_View {
 
 				<?php do_action( WPUSB_Utils::add_prefix( '_render_sharing_report' ), $list_table ); ?>
 
-				<form action="<?php echo WPUSB_Utils::get_admin_url( 'admin.php' ); ?>"
-					  class="share-report-form">
+				<form class="share-report-form">
 
 					<input type="hidden"
 					       name="page"
@@ -86,5 +85,21 @@ class WPUSB_Sharing_Report_View {
 			$permalink,
 			WPUSB_Utils::rm_tags( $title )
 		);
+	}
+
+	public static function render_months_dropdown( $options, $selected ) {
+	?>
+		<label for="filter-by-date" class="screen-reader-text">
+			<?php _e( 'Filter by date' ); ?>
+		</label>
+
+		<select name="m" id="filter-by-date">
+			<option value="0" <?php echo WPUSB_Utils::selected( $selected, 0 ); ?>>
+				<?php _e( 'All dates' ); ?>
+			</option>
+
+			<?php echo $options; ?>
+		</select>
+	<?php
 	}
 }

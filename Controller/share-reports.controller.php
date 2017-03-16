@@ -68,12 +68,18 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 */
 	public $tag = '_sharing_report_';
 
-	public function __construct() {
-		add_action( 'admin_menu', array( $this, 'menu' ) );
+	/**
+	 * Month filter
+	 *
+	 * @since 3.32
+	 * @var Integer
+	 */
+	private $m;
 
-		$this->cache_time = WPUSB_Utils::option( 'report_cache_time', 10, 'intval' );
-		$this->search     = WPUSB_Utils::get( 's', false, 'esc_sql' );
-		$this->table      = WPUSB_Utils::get_table_name();
+	public function __construct() {
+		$this->_set_property();
+
+		add_action( 'admin_menu', array( $this, 'menu' ) );
 
 		parent::__construct( array(
 			'singular' => 'social-share-report',
@@ -81,6 +87,13 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			'screen'   => WPUSB_Utils::add_prefix( '_sharing_report' ),
 			'ajax'     => false,
 		) );
+	}
+
+	private function _set_property() {
+		$this->search     = WPUSB_Utils::get( 's', false, 'esc_sql' );
+		$this->cache_time = WPUSB_Utils::option( 'report_cache_time', 10, 'intval' );
+		$this->table      = WPUSB_Utils::get_table_name();
+		$this->m          = WPUSB_Utils::get( 'm', 0, 'intval' );
 	}
 
 	/**
@@ -114,16 +127,15 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	private function _get_sharing_report( $posts_per_page, $current_page, $orderby, $order ) {
 		global $wpdb;
 
-		$offset    = ( ( $current_page - 1 ) * self::POSTS_PER_PAGE );
-		$cache     = get_transient( WPUSB_Setting::TRANSIENT_SHARING_REPORT );
-		$where     = apply_filters( WPUSB_Utils::add_prefix( $this->tag . 'where' ), $this->_where() );
-		$is_search = apply_filters( WPUSB_Utils::add_prefix( $this->tag . 'is_search' ), $this->search );
+		$offset = ( ( $current_page - 1 ) * self::POSTS_PER_PAGE );
+		$cache  = get_transient( WPUSB_Setting::TRANSIENT_SHARING_REPORT );
+		$where  = apply_filters( WPUSB_Utils::add_prefix( $this->tag . 'where' ), $this->_where() );
 
 		if ( ! $this->_table_exists( $wpdb ) ) {
 			return;
 		}
 
-		if ( ! $is_search && false !== $cache && isset( $cache[ $current_page ][ $orderby ][ $order ] ) ) {
+		if ( ! $this->_is_filter() && false !== $cache && isset( $cache[ $current_page ][ $orderby ][ $order ] ) ) {
 			return $cache[ $current_page ][ $orderby ][ $order ];
 		}
 
@@ -143,7 +155,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		$results                                      = $wpdb->get_results( $query );
 		$cache[ $current_page ][ $orderby ][ $order ] = $results;
 
-		if ( ! $is_search ) {
+		if ( ! $this->_is_filter() ) {
 			set_transient(
 				WPUSB_Setting::TRANSIENT_SHARING_REPORT,
 				$cache,
@@ -171,7 +183,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			return 0;
 		}
 
-		if ( ! $this->search && false !== $cache ) {
+		if ( ! $this->_is_filter() && false !== $cache ) {
 			return $cache;
 		}
 
@@ -200,8 +212,19 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		global $wpdb;
 
 		$search = $wpdb->esc_like( $this->search );
+		$where  = '';
 
-		return ( $search ) ? "WHERE `post_title` LIKE '%%{$search}%%'" : '';
+		if ( ! empty( $search ) ) {
+			$where .= " `post_title` LIKE '%%{$search}%%'";
+		}
+
+		if ( $this->m ) :
+			$and    = ( $where ) ? ' AND' : '';
+			$where .= sprintf( '%s YEAR( `post_date` ) = %s', $and, substr( $this->m, 0, 4 ) );
+			$where .= sprintf( ' AND MONTH( `post_date` ) = %s', substr( $this->m, 4, 2 ) );
+		endif;
+
+		return ( $where ) ? 'WHERE' . $where : '';
 	}
 
 	/**
@@ -223,13 +246,19 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 * @return Void
 	 */
 	private function _set_cache_caunter( $total_items ) {
-		if ( ! $this->search ) {
+		if ( ! $this->_is_filter() ) {
 			set_transient(
 				WPUSB_Setting::TRANSIENT_SHARING_REPORT_COUNT,
 				$total_items,
 				$this->cache_time * MINUTE_IN_SECONDS
 			);
 		}
+	}
+
+	private function _is_filter() {
+		$is_filter = ( $this->search || $this->m );
+
+		return apply_filters( WPUSB_Utils::add_prefix( $this->tag . 'is_filter' ), $is_filter );
 	}
 
 	/**
@@ -334,7 +363,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	public function months_dropdown( $post_type = '' ) {
 		global $wpdb, $wp_locale;
 
-		$months = $wpdb->get_results(
+		$results = $wpdb->get_results(
 			"SELECT DISTINCT
 				YEAR( `post_date` ) AS year,
 				MONTH( `post_date` ) AS month
@@ -345,52 +374,48 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			"
 		);
 
-		$months = apply_filters(
+		$results = apply_filters(
 			WPUSB_Utils::add_prefix( $this->tag . 'months_dropdown_results' ),
-			$months
+			$results
 		);
 
-		$month_count = count( $months );
-
-		if ( ! $month_count || ( 1 === $month_count && 0 === (int)$months[0]->month ) ) {
+		if ( ! isset( $results[2] ) ) {
 			return;
 		}
 
-		$m = WPUSB_Utils::get( 'month', 0, 'intval' );
-?>
-		<label for="filter-by-date" class="screen-reader-text">
-			<?php _e( 'Filter by date' ); ?>
-		</label>
+		$m       = WPUSB_Utils::get( 'm', 0, 'intval' );
+		$options = '';
 
-		<select name="month" id="filter-by-date">
-			<option<?php selected( $m, 0 ); ?> value="0">
-				<?php _e( 'All dates' ); ?>
-			</option>
-<?php
-		foreach ( $months as $arc_row ) {
-			if ( 0 === (int)$arc_row->year ) {
+		foreach ( $results as $result ) :
+			if ( 0 === (int)$result->year ) {
 				continue;
 			}
 
-			$month = zeroise( $arc_row->month, 2 );
-			$year  = $arc_row->year;
+			$month = zeroise( $result->month, 2 );
+			$year  = $result->year;
 
-			printf(
-				"<option %s value='%s'>%s</option>\n",
-				selected( $m, $year . $month, false ),
-				esc_attr( $arc_row->year . $month ),
+			$options .= sprintf(
+				'<option value="%s" %s>%s</option>',
+				intval( $result->year . $month ),
+				WPUSB_Utils::selected( $m, $year . $month ),
 				sprintf( __( '%1$s %2$d' ), $wp_locale->get_month( $month ), $year )
 			);
-		}
-?>
-		</select>
-<?php
+		endforeach;
+
+		WPUSB_Sharing_Report_View::render_months_dropdown( $options, $m );
 	}
 
+	/**
+	 * Extra controls to be displayed between bulk actions and pagination
+	 *
+	 * @since 3.32
+	 * @param string $which
+	 * @return Void
+	 */
 	public function extra_tablenav( $which ) {
-?>
+	?>
 		<div class="alignleft actions">
-<?php
+	<?php
 		if ( 'top' === $which && ! is_singular() ) :
 			ob_start();
 
@@ -404,18 +429,41 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			if ( ! empty( $output ) ) :
 				echo $output;
 
-				submit_button(
-					__( 'Filter' ),
-					'',
-					'filter_action',
-					false
-				);
+				submit_button( __( 'Filter' ), '', '', false);
 			endif;
 		endif;
-?>
+	?>
 		</div>
-<?php
+	<?php
 		do_action( WPUSB_Utils::add_prefix( $this->tag . 'extra_tablenav' ), $which );
+	}
+
+	/**
+	 * Generate the table navigation above or below the table
+	 *
+	 * @since 3.32
+	 * @param string $which
+	 * @return Void
+	 */
+	public function display_tablenav( $which ) {
+	?>
+		<div class="tablenav <?php echo esc_attr( $which ); ?>">
+
+			<?php if ( $this->has_items() && ! empty( $this->actions ) ): ?>
+
+			<div class="alignleft actions bulkactions">
+				<?php $this->bulk_actions( $which ); ?>
+			</div>
+
+			<?php
+			endif;
+
+			$this->extra_tablenav( $which );
+			$this->pagination( $which );
+	?>
+			<br class="clear" />
+		</div>
+	<?php
 	}
 
 	/**
