@@ -129,7 +129,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 
 		$offset = ( ( $current_page - 1 ) * self::POSTS_PER_PAGE );
 		$cache  = get_transient( WPUSB_Setting::TRANSIENT_SHARING_REPORT );
-		$where  = apply_filters( WPUSB_Utils::add_prefix( $this->tag . 'where' ), $this->_where() );
+		$where  = $this->_where();
 
 		if ( ! $this->_table_exists( $wpdb ) ) {
 			return;
@@ -187,13 +187,15 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			return $cache;
 		}
 
-		$where = apply_filters(
-			WPUSB_Utils::add_prefix( $this->tag . 'where_count' ),
-			$this->_where()
+		$where     = $this->_where();;
+		$row_count = $wpdb->get_var(
+			"SELECT
+				COUNT(*)
+			 FROM
+			 	{$this->table}
+			 {$where}
+			"
 		);
-
-		$query       = "SELECT COUNT(*) FROM {$this->table} {$where}";
-		$row_count   = $wpdb->get_var( $query );
 		$total_items = intval( $row_count );
 
 		$this->_set_cache_caunter( $total_items );
@@ -224,7 +226,9 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			$where .= sprintf( ' AND MONTH( `post_date` ) = %s', substr( $this->m, 4, 2 ) );
 		endif;
 
-		return ( $where ) ? 'WHERE' . $where : '';
+		$where = ( $where ) ? 'WHERE' . $where : '';
+
+		return apply_filters( WPUSB_Utils::add_prefix( $this->tag . 'where' ), $where );
 	}
 
 	/**
