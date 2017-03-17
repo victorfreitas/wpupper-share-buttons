@@ -312,7 +312,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$site_url = get_home_url( null, "/{$path}" );
 		$url      = self::parse_url_params( $site_url );
 
-		return ( $short ) ? self::bitly_short_url( $url ) : $url;
+		return ( $short ) ? self::bitly_short_url( $url, true ) : $url;
 	}
 
 	/**
@@ -346,7 +346,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			return esc_url( $url );
 		}
 
-		if ( ( $fixed || $widget ) && self::is_home() || self::is_home() && is_page( self::get_id() ) ) {
+		$is_home = ( $widget ) ? self::is_front_page() : self::is_home();
+
+		if ( ( $fixed || $widget ) && $is_home || $is_home && is_page( self::get_id() ) ) {
 			return self::site_url();
 		}
 
@@ -398,14 +400,14 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Null
 	 * @return String
 	 */
-	public static function bitly_short_url( $permalink ) {
+	public static function bitly_short_url( $permalink, $is_fixed = false ) {
 		$token = self::option( 'bitly_token' );
 
 		if ( empty( $token ) || self::is_attachment() || self::is_customize_preview() ) {
 			return self::url_clean( $permalink );
 		}
 
-		return self::bitly_get_url( $token, $permalink );
+		return self::bitly_get_url( $token, $permalink, $is_fixed );
 	}
 
 	/**
@@ -416,7 +418,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param String $url
 	 * @return String
 	 */
-	public static function bitly_get_url( $token, $permalink ) {
+	public static function bitly_get_url( $token, $permalink, $is_fixed = false ) {
 		$id        = self::bitly_get_cache_id( $permalink );
 		$cache_url = WPUSB_URL_Shortener::get_cache( $id );
 
@@ -424,7 +426,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			return $cache_url;
 		}
 
-		if ( ! is_singular() ) {
+		if ( ! $is_fixed && ! is_singular() ) {
 			return $permalink;
 		}
 
@@ -459,10 +461,10 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function bitly_remote_get_url( $token, $permalink ) {
-		$bitly_api = new WPUSB_URL_Shortener( $permalink, $token );
-		$url_short = $bitly_api->get_short();
+		$model     = new WPUSB_URL_Shortener( $permalink, $token );
+		$url_short = $model->get_short();
 
-		unset( $bitly_api );
+		unset( $model );
 
 		if ( ! $url_short ) {
 			return $permalink;
@@ -632,7 +634,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			return self::rm_tags( $title );
 		}
 
-		if ( ( $fixed || $widget ) && self::is_home() || self::is_home() && is_page( self::get_id() ) ) {
+		$is_home = ( $widget ) ? self::is_front_page() : self::is_home();
+
+		if ( ( $fixed || $widget ) && $is_home || $is_home && is_page( self::get_id() ) ) {
 			return rawurlencode( self::site_name() );
 		}
 
