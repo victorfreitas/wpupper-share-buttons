@@ -2214,10 +2214,28 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		return ( 'on' === self::option( 'fixed' ) );
 	}
 
+    /**
+     * Convert date for sql
+     *
+     * @since 3.32
+     * @param String $date
+     * @param String $format
+     * @return Mixed String|Boolean
+     */
 	public static function convert_date_for_sql( $date, $format = 'Y-m-d H:i' ) {
-		return ( ! empty( $date ) ) ? self::convert_date( $date, $format, '/', '-' ) : false;
+		return ( empty( $date ) ? false : self::convert_date( $date, $format, '/', '-' ) );
 	}
 
+    /**
+     * Convert date format
+     *
+     * @since 3.32
+     * @param String $date
+     * @param String $format
+     * @param String $search
+     * @param String $replace
+     * @return String
+     */
 	public static function convert_date( $date, $format = 'Y-m-d H:i', $search = '/', $replace = '-' ) {
 		if ( $search && $replace ) {
 			$date = str_replace( $search, $replace, $date );
@@ -2226,6 +2244,14 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		return date_i18n( $format, strtotime( $date ) );
 	}
 
+    /**
+     * Generate log file
+     *
+     * @since 3.0
+     * @param Mixed $data
+     * @param String $log_name
+     * @return Void
+     */
 	public static function log( $data, $log_name = 'debug' ) {
 		$name = sprintf( '%s-%s.log', $log_name, date( 'd-m-Y' ) );
 		$log  = print_r( $data, true ) . PHP_EOL;

@@ -106,12 +106,12 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	}
 
 	private function _set_property() {
-		$this->search     = WPUSB_Utils::get( 's', false, 'esc_sql' );
+		$this->search     = WPUSB_Utils::get( 's', '', 'esc_sql' );
 		$this->cache_time = WPUSB_Utils::option( 'report_cache_time', 10, 'intval' );
 		$this->table      = WPUSB_Utils::get_table_name();
 		$this->m          = WPUSB_Utils::get( 'm', 0, 'intval' );
-		$this->start_date = WPUSB_Utils::get( 'start_date', false );
-		$this->end_date   = WPUSB_Utils::get( 'end_date', false );
+		$this->start_date = WPUSB_Utils::get( 'start_date' );
+		$this->end_date   = WPUSB_Utils::get( 'end_date' );
 	}
 
 	/**
@@ -252,6 +252,13 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		return apply_filters( WPUSB_Utils::add_prefix( $this->tag . 'where' ), $where );
 	}
 
+	/**
+	 * Add date range filter for query
+	 *
+	 * @since 1.0
+	 * @param String $where
+	 * @return String
+	 */
 	private function _get_date_range_where( $where ) {
 		$and        = ( $where ) ? ' AND' : '';
 		$start_date = WPUSB_Utils::convert_date_for_sql( $this->start_date, 'Y-m-d' );
@@ -296,24 +303,31 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 * @return Void
 	 */
 	private function _set_cache_caunter( $total_items ) {
-		if ( ! $this->_is_filter() ) {
-			set_transient(
-				WPUSB_Setting::TRANSIENT_SHARING_REPORT_COUNT,
-				$total_items,
-				$this->cache_time * MINUTE_IN_SECONDS
-			);
+		if ( $this->_is_filter() ) {
+			return;
 		}
+
+		set_transient(
+			WPUSB_Setting::TRANSIENT_SHARING_REPORT_COUNT,
+			$total_items,
+			$this->cache_time * MINUTE_IN_SECONDS
+		);
 	}
 
+	/**
+	 * Check is filter
+	 *
+	 * @since 3.32
+	 * @param null
+	 * @return Boolean
+	 */
 	private function _is_filter() {
 		$properties = array(
-			'm'          => $this->m,
-			'search'     => $this->search,
-			'start_date' => $this->start_date,
-			'end_date'   => $this->end_date
+			0 => ( $this->m !== 0 ),
+			1 => ( $this->search !== '' ),
+			2 => ( $this->start_date !== '' ),
+			3 => ( $this->end_date !== '' ),
 		);
-
-		var_dump( $properties );
 
 		$is_filter = ( false !== array_search( true, $properties ) );
 
