@@ -302,6 +302,19 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 
 										self::td( array(
 											'type'       => 'radio',
+											'id'         => 'fixed-sqaure-space',
+											'class'      => "{$hide_class} layout-preview fixed-layout",
+											'name'       => "{$settings_option}[fixed_layout]",
+											'value'      => 'square2',
+											'is_checked' => checked( 'square2', $model->fixed_layout, false ),
+											'title'      => __( 'Square', $domain ) . ' 2',
+											'attr'       => array(
+												'data-action' => 'fixed-layout',
+											),
+										) );
+
+										self::td( array(
+											'type'       => 'radio',
 											'id'         => 'fixed-rounded',
 											'class'      => "{$hide_class} layout-preview fixed-layout",
 											'name'       => "{$settings_option}[fixed_layout]",

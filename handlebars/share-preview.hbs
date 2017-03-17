@@ -12,20 +12,20 @@
 		 {{/if}}
 	{{/if}}
 
-	<div class="{{prefix}}-item {{prefix}}-{{item_class}}">
-		<a class="{{prefix}}-button {{prefix}}-btn" title="{{item_title}}"
+	<div class="{{prefix}}-item {{prefix}}-{{itemClass}}">
+		<a class="{{prefix}}-button {{prefix}}-btn" title="{{itemTitle}}"
 		   data-item="bg-color">
 
-			<i class="{{prefix}}-icon-{{item_class}}-{{layout}}"
+			<i class="{{prefix}}-icon-{{itemClass}}-{{layout}}"
 			   data-item="icons-color"></i>
 
-			{{#if item_inside}}
+			{{#if itemInside}}
 				<span class="{{prefix}}-title {{prefix}}-btn-inside"
-					  data-item="inside">{{item_inside}}</span>
+					  data-item="inside">{{itemInside}}</span>
 			{{/if}}
 		</a>
 
-		{{#if has_counter}}
+		{{#if hasCounter}}
 			<span class="{{prefix}}-count {{prefix}}-counter"
 				  data-item="text">{{counter}}</span>
 		{{/if}}

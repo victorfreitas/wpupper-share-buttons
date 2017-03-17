@@ -2203,6 +2203,17 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		return file_exists( $template ) ? $template : $file;
     }
 
+    /**
+     * Check fixed layout option
+     *
+     * @since 3.0
+     * @param Null
+     * @return Boolean
+     */
+	public static function is_position_fixed() {
+		return ( 'on' === self::option( 'fixed' ) );
+	}
+
 	public static function log( $data, $log_name = 'debug' ) {
 		$name = sprintf( '%s-%s.log', $log_name, date( 'd-m-Y' ) );
 		$log  = print_r( $data, true ) . PHP_EOL;

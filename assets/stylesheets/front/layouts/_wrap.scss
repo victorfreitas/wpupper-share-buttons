@@ -31,6 +31,15 @@
 }
 
 // ===================================================
+// --       Position fixed mobile - body fix
+// ===================================================
+@media ( max-width: $tablet ) {
+    .#{$prefix}-position-fixed-active {
+        margin-bottom: 44px;
+    }
+}
+
+// ===================================================
 // --          Items position fixed left
 // ===================================================
 .#{$prefix}-fixed {
@@ -56,6 +65,13 @@
             width: 48px;
         }
 
+        @media ( max-width: $tablet ) {
+            .#{$prefix}-default,
+            .#{$prefix}-button {
+                height: 44px;
+            }
+        }
+
         .#{$prefix}-button,
         .#{$prefix}-default,
         .#{$prefix}-counts {
@@ -77,12 +93,14 @@
             display: table-cell;
         }
 
-        .#{$prefix}-default {
+        .#{$prefix}-layout-default {
             background-color: $colorWhite;
             background: $colorWhite;
+        }
+
+        .#{$prefix}-default {
             border-radius: 100%;
             margin: 3px 0 0 2px;
-
 
             i {
                 font-size: 20px;

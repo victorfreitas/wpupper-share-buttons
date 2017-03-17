@@ -18,29 +18,29 @@
 				<div class="{{prefix}}-shares-text"
 					 data-element="square-plus-text"
 					 data-item="text"
-					 data-title="{{share_count_label}}"></div>
+					 data-title="{{shareCountLabel}}"></div>
 
 				<span class="{{prefix}}-pipe" data-pipe="&#x0007C;" data-item="text"></span>
 			</div>
 
-			<div class="{{prefix}}-item {{prefix}}-{{item_class}} {{prefix}}-full {{prefix}}-inside">
-				<a href="#" class="{{prefix}}-link {{prefix}}-btn" title="{{item_title}}" data-item="bg-color">
+			<div class="{{prefix}}-item {{prefix}}-{{itemClass}} {{prefix}}-full {{prefix}}-inside">
+				<a href="#" class="{{prefix}}-link {{prefix}}-btn" title="{{itemTitle}}" data-item="bg-color">
 
-					<i class="{{prefix}}-icon-{{item_class}}-square-plus" data-item="icons-color"></i>
+					<i class="{{prefix}}-icon-{{itemClass}}-square-plus" data-item="icons-color"></i>
 
 					{{#if inside}}
 						<span class="{{prefix}}-title {{prefix}}-btn-inside"
 							  data-item="inside"
-							  data-title="{{item_name}}"></span>
+							  data-title="{{itemName}}"></span>
 					{{/if}}
 				</a>
 			</div>
 	{{/if}}
 
 	{{#unless first}}
-		<div class="{{prefix}}-item {{prefix}}-{{item_class}}">
-			<a href="#" class="{{prefix}}-link {{prefix}}-btn" title="{{item_title}}" data-item="bg-color">
-				<i class="{{prefix}}-icon-{{item_class}}-square-plus" data-item="icons-color"></i>
+		<div class="{{prefix}}-item {{prefix}}-{{itemClass}}">
+			<a href="#" class="{{prefix}}-link {{prefix}}-btn" title="{{itemTitle}}" data-item="bg-color">
+				<i class="{{prefix}}-icon-{{itemClass}}-square-plus" data-item="icons-color"></i>
 			</a>
 		</div>
 	{{/unless}}

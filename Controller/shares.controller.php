@@ -32,6 +32,7 @@ class WPUSB_Shares_Controller {
 		add_action( 'wp_footer', array( $this, 'buttons_fixed' ) );
 		add_action( 'add_meta_boxes', array( $this, 'register_meta_boxes' ) );
 		add_action( 'save_post', array( $this, 'save_meta' ) );
+		add_action( 'body_class', array( $this, 'body_class' ) );
 	}
 
 	/**
@@ -47,7 +48,7 @@ class WPUSB_Shares_Controller {
 			return;
 		}
 
-		$args = apply_filters( WPUSB_App::SLUG . '_wc_share_args', array() );
+		$args = apply_filters( WPUSB_Utils::add_prefix( '_wc_share_args' ), array() );
 
 		echo apply_filters( $this->_filter, $this->buttons_share( $args ), 'woocommerce_share' );
 	}
@@ -189,14 +190,35 @@ class WPUSB_Shares_Controller {
 		return WPUSB_Utils::buttons_share( $atts, $fixed );
 	}
 
+	/**
+	 * Check woocommerce share is active
+	 *
+	 * @since 3.16
+	 * @param Null
+	 * @return Boolean
+	 */
 	public function is_wc_active() {
 		return ( WPUSB_Utils::option( 'woocommerce' ) === 'on' );
 	}
 
+	/**
+	 * Check is share button disable by post meta
+	 *
+	 * @since 3.27
+	 * @param Null
+	 * @return Bollean
+	 */
 	public function is_disabled() {
 		return WPUSB_Utils::is_disabled_by_meta();
 	}
 
+	/**
+	 * Get post types publics
+	 *
+	 * @since 3.27
+	 * @param Null
+	 * @return Array
+	 */
 	public function get_post_types() {
 		return get_post_types( array(
 			'public'  => true,
@@ -204,6 +226,13 @@ class WPUSB_Shares_Controller {
 		) );
 	}
 
+	/**
+	 * Register meta box for disable share button on specific post
+	 *
+	 * @since 3.27
+	 * @param NUll
+	 * @return Void
+	 */
 	public function register_meta_boxes() {
 		global $wp_version;
 
@@ -218,6 +247,13 @@ class WPUSB_Shares_Controller {
 		endforeach;
 	}
 
+	/**
+	 * Register post meta
+	 *
+	 * @since 3.27
+	 * @param Mixed Array|String $scren
+	 * @return Void
+	 */
 	public function add_meta_box( $screen ) {
 		add_meta_box(
 			WPUSB_App::TEXTDOMAIN,
@@ -229,10 +265,24 @@ class WPUSB_Shares_Controller {
 		);
 	}
 
+	/**
+	 * Render meta box html
+	 *
+	 * @since 3.27
+	 * @param Object WP_Post $post
+	 * @return Void
+	 */
 	public function render_meta_box( $post ) {
 		WPUSB_Shares_View::render_meta_box( $post );
 	}
 
+	/**
+	 * Save post meta share disable
+	 *
+	 * @since 3.27
+	 * @param Integer $post_id
+	 * @return Void
+	 */
 	public function save_meta( $post_id ) {
 		if ( wp_is_post_revision( $post_id ) || defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
@@ -246,5 +296,20 @@ class WPUSB_Shares_Controller {
 		}
 
 		update_post_meta( $post_id, $meta_key, $value );
+	}
+
+	/**
+	 * Add custom class on body tag for layout fixed
+	 *
+	 * @since 3.32
+	 * @param Array $classes
+	 * @return Array
+	 */
+	public function body_class( $classes ) {
+		if ( WPUSB_Utils::is_position_fixed() && WPUSB_Utils::is_active() ) {
+			$classes[] = WPUSB_Utils::add_prefix( '-position-fixed-active' );
+		}
+
+		return $classes;
 	}
 }

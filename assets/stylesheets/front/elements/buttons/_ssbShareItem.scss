@@ -68,6 +68,12 @@
             padding: 2px 0 2px 4px;
         }
 
+        @media ( max-width: $tablet ) {
+            .#{$prefix}-buttons:not(##{$prefix}-container-fixed) & {
+                border-radius: 0;
+            }
+        }
+
         .#{$prefix}-buttons & {
             color: #fff;
 

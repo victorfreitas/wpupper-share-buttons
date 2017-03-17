@@ -3,9 +3,9 @@
 	{{#if first}}
 	<div id="{{prefix}}-container-fixed"
 	     data-preview-layout="{{layout}}"
-		 class="{{prefix}} {{prefix}}-{{fixed_layout}} {{prefix}}-{{layout}} {{prefix}}-fixed {{prefix}}-fixed-{{fixed_layout}} social-share">
+		 class="{{prefix}} {{prefix}}-layout-{{currentLayout}}-content {{prefix}}-{{fixedLayout}} {{prefix}}-{{layout}} {{prefix}}-fixed {{prefix}}-fixed-{{fixedLayout}} social-share">
 
-		 <div data-element="buttons" class="{{prefix}}-{{layout}}-container">
+		 <div data-element="buttons" class="{{prefix}}-{{layout}}-container {{square2Class}}">
 
 			<div class="{{prefix}}-item {{prefix}}-total-share">
 				<div class="{{prefix}}-counts">
@@ -13,18 +13,18 @@
 						{{counter}}
 					</span>
 
-					{{#if is_fixed_2}}
+					{{#if isFixed2}}
 						<span data-element="fixed-label-text"
-							  data-item="text">{{share_count_label}}</span>
+							  data-item="text">{{shareCountLabel}}</span>
 					{{/if}}
 
 				</div>
 			</div>
 	{{/if}}
 
-			<div class="{{prefix}}-item {{prefix}}-{{item_class}}">
-				<a title="Tweet" class="{{prefix}}-{{btn_class}} {{prefix}}-btn" data-item="bg-color">
-					<i class="{{prefix}}-icon-{{item_class}}-{{fixed_layout}}" data-item="icons-color"></i>
+			<div class="{{prefix}}-item {{prefix}}-{{itemClass}}">
+				<a title="Tweet" class="{{prefix}}-{{btnClass}} {{prefix}}-btn {{prefix}}-layout-{{currentLayout}}" data-item="bg-color">
+					<i class="{{prefix}}-icon-{{itemClass}}-{{fixedLayout}}" data-item="icons-color"></i>
 				</a>
 			</div>
 

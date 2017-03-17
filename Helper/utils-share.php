@@ -426,18 +426,6 @@ abstract class WPUSB_Utils_Share {
 	}
 
 	/**
-	 * Verifies is position fixed
-	 *
-	 * @since 3.0.0
-	 * @param Null
-	 * @return Boolean
-	 *
-	 */
-	public static function is_position_fixed() {
-		return ( 'on' === WPUSB_Utils::option( 'fixed' ) );
-	}
-
-	/**
 	 * Add data featured by referrer
 	 *
 	 * @since 3.0.0

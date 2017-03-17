@@ -14,7 +14,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WPUSB_Fixed_Left {
 
-	protected static $layout;
+	public static $layout;
+	public static $current_layout;
+
 	/**
 	 * Open buttons container
 	 *
@@ -23,15 +25,19 @@ class WPUSB_Fixed_Left {
 	 * @return String
 	 */
 	public static function init( \stdClass $atts ) {
-		self::_set_layout();
+		$layout = WPUSB_Utils::option( 'fixed_layout', 'buttons' );
 
-		$args      = WPUSB_Utils::content_args( $atts );
-		$classes   = self::get_classes_first( $atts );
-		$counter   = self::add_count( $atts );
-		$component = WPUSB_Utils::get_component_by_type();
-		$content   = <<<EOD
-		<div class="{$classes} {$args['prefix']}-fixed {$args['prefix']}-fixed-{$atts->layout}"
-		     id="{$args['prefix']}-container-fixed"
+		self::_set_layout( $layout );
+
+		$args          = WPUSB_Utils::content_args( $atts );
+		$prefix        = $args['prefix'];
+		$classes       = self::get_classes_first( $atts );
+		$counter       = self::add_count( $atts );
+		$component     = WPUSB_Utils::get_component_by_type();
+		$square2_class = ( $layout === 'square2' ) ? WPUSB_Utils::add_prefix( '-buttons' ) : '';
+		$content       = <<<EOD
+		<div class="{$classes} {$prefix}-fixed {$prefix}-layout-{$layout}-content {$prefix}-fixed-{$atts->layout}"
+		     id="{$prefix}-container-fixed"
 		     data-element-url="{$args['permalink']}"
 		     data-element-title="{$args['title']}"
 		     data-attr-reference="{$args['post_id']}"
@@ -40,10 +46,10 @@ class WPUSB_Fixed_Left {
 		     data-attr-nonce="{$args['nonce']}"
 		     {$component}>
 
-			<div data-element="buttons" class="{$atts->position_fixed}-container">
+			<div data-element="buttons" class="{$atts->position_fixed}-container {$square2_class}">
 			{$counter}
 EOD;
-		return apply_filters( WPUSB_App::SLUG . 'init-buttons-fixed', $content );
+		return apply_filters( WPUSB_Utils::add_prefix( '-init-buttons-fixed' ), $content );
 	}
 
 	/**
@@ -54,24 +60,21 @@ EOD;
 	 * @return String
 	 */
 	public static function items( $args = OBJECT ) {
-		$classes    = self::get_classes_second( $args );
-		$link_type  = WPUSB_Utils::link_type( $args->reference );
-		$layout     = self::$layout;
-		$btn_class  = ( 'buttons' == $layout ) ? 'button' : $layout;
-		$ga_event   = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
-		$modal_data = WPUSB_Utils::get_modal_data_id( $args->reference->element, $args->number );
-		$class_btn  = WPUSB_Utils::get_class_btn();
-		$class_icon = apply_filters(
-			"{$args->prefix}_item_class_icon",
-			"{$args->reference->class_icon}-{$layout}",
-			$args->reference
-		);
-		$content   = <<<EOD
+		$classes        = self::get_classes_second( $args );
+		$link_type      = WPUSB_Utils::link_type( $args->reference );
+		$layout         = self::$layout;
+		$current_layout = self::$current_layout;
+		$btn_class      = ( 'buttons' === $layout ) ? 'button' : $layout;
+		$ga_event       = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
+		$modal_data     = WPUSB_Utils::get_modal_data_id( $args->reference->element, $args->number );
+		$class_btn      = WPUSB_Utils::get_class_btn();
+		$class_icon     = apply_filters( WPUSB_Utils::add_prefix( '_item_class_icon' ), "{$args->reference->class_icon}-{$layout}", $args->reference );
+		$content   	    = <<<EOD
 			<div class="{$classes}">
 
 				<a {$link_type}
 				   {$args->reference->popup}
-				   class="{$args->prefix}-{$btn_class} {$class_btn} {$args->class_link}"
+				   class="{$args->prefix}-{$btn_class} {$class_btn} {$args->class_link} {$args->prefix}-layout-{$current_layout}"
 				   title="{$args->reference->title}"
 				   {$ga_event}
 				   {$modal_data}
@@ -189,11 +192,12 @@ EOD;
 	 * Set property layout
 	 *
 	 * @since 3.5.0
-	 * @param Null
+	 * @param String $layout
 	 * @return Void
 	 *
 	 */
-	public static function _set_layout() {
-		self::$layout = WPUSB_Utils::option( 'fixed_layout', 'buttons' );
+	public static function _set_layout( $layout ) {
+		self::$layout         = ( $layout === 'square2' ) ? 'default' : $layout;
+		self::$current_layout = $layout;
 	}
 }
