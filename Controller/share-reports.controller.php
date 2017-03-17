@@ -213,22 +213,51 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	private function _where() {
 		global $wpdb;
 
-		$search = $wpdb->esc_like( $this->search );
-		$where  = '';
+		$search     = $wpdb->esc_like( $this->search );
+		$start_date = WPUSB_Utils::get( 'wpusb_start_date' );
+		$end_date   = WPUSB_Utils::get( 'wpusb_end_date' );
+		$where      = '';
 
 		if ( ! empty( $search ) ) {
 			$where .= " `post_title` LIKE '%%{$search}%%'";
 		}
 
-		if ( $this->m ) :
+		if ( $this->m && ! $start_date && ! $end_date ) {
 			$and    = ( $where ) ? ' AND' : '';
 			$where .= sprintf( '%s YEAR( `post_date` ) = %s', $and, substr( $this->m, 0, 4 ) );
 			$where .= sprintf( ' AND MONTH( `post_date` ) = %s', substr( $this->m, 4, 2 ) );
-		endif;
+		}
 
+		$where = $this->_get_date_range_where( $where, $start_date, $end_date );
 		$where = ( $where ) ? 'WHERE' . $where : '';
 
 		return apply_filters( WPUSB_Utils::add_prefix( $this->tag . 'where' ), $where );
+	}
+
+	private function _get_date_range_where( $where, $start_date, $end_date )
+	{
+		$and        = ( $where ) ? ' AND' : '';
+		$start_date = WPUSB_Utils::convert_date_for_sql( $start_date, 'Y-m-d' );
+		$end_date   = WPUSB_Utils::convert_date_for_sql( $end_date, 'Y-m-d' );
+
+		if ( ! $start_date && ! $end_date ) {
+			return $where;
+		}
+
+		if ( $start_date && $end_date ) {
+			$where .= sprintf( "%s `post_date` BETWEEN '%s' AND '%s'", $and, $start_date, $end_date );
+			return $where;
+		}
+
+		if ( $start_date ) {
+			$where .= sprintf( "%s `post_date` >= '%s'", $and, $start_date );
+			return $where;
+		}
+
+		if ( $end_date ) {
+			$where .= sprintf( "%s `post_date` <= '%s'", $and, $end_date );
+			return $where;
+		}
 	}
 
 	/**
@@ -424,6 +453,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			ob_start();
 
 			$this->months_dropdown();
+
+			WPUSB_Sharing_Report_View::render_date_range_filter();
 
 			do_action( WPUSB_Utils::add_prefix( $this->tag . 'restrict_manage_posts' ), $which );
 

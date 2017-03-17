@@ -40,11 +40,12 @@ final class WPUSB_Scripts {
 		self::codemirror_scripts();
 
 		wp_enqueue_style( 'wp-color-picker' );
+		wp_enqueue_style( 'jquery-ui' );
 
 		wp_enqueue_script(
 			WPUSB_Utils::add_prefix( '-admin-scripts' ),
 			WPUSB_Utils::plugin_url( 'javascripts/admin/built.js' ),
-			array( 'jquery', 'jquery-ui-sortable', 'wp-color-picker' ),
+			array( 'jquery', 'jquery-ui-sortable', 'jquery-ui-datepicker', 'wp-color-picker' ),
 			WPUSB_App::VERSION,
 			true
 		);

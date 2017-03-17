@@ -2221,4 +2221,17 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 
 		file_put_contents( self::file_path( $name, 'logs/' ), $log, FILE_APPEND );
 	}
+
+	public static function convert_date_for_sql( $date, $format = 'Y-m-d H:i' )
+	{
+		return ( ! empty( $date ) ) ? self::convert_date( $date, $format, '/', '-' ) : false;
+	}
+
+	public static function convert_date( $date, $format = 'Y-m-d H:i', $search = '/', $replace = '-' )
+	{
+		if ( $search && $replace )
+			$date = str_replace( $search, $replace, $date );
+
+		return date_i18n( $format, strtotime( $date ) );
+	}
 }
