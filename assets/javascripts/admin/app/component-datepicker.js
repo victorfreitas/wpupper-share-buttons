@@ -1,10 +1,6 @@
 WPUSB( 'WPUSB.Components.Datepicker', function(Model, $, utils) {
 
 	Model.fn.start = function() {
-		if ( ! this.$el.length ) {
-			return;
-		}
-
 		this.setDefaults();
 		this.init();
 		this.addEventListeners();

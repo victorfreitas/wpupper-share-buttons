@@ -89,8 +89,8 @@ class WPUSB_Sharing_Report_View {
 
 	public static function render_months_dropdown( $options, $selected )
 	{
-		$start_date = WPUSB_Utils::get( 'wpusb_start_date' );
-		$end_date   = WPUSB_Utils::get( 'wpusb_start_date' );
+		$start_date = WPUSB_Utils::get( 'start_date' );
+		$end_date   = WPUSB_Utils::get( 'end_date' );
 		$disabled   = ( $start_date || $end_date ) ? 'disabled ="disabled"' : '';
 
 		?>
@@ -117,19 +117,19 @@ class WPUSB_Sharing_Report_View {
 		<label class="wpusb-label">
 			<?php _e( 'Start date:', WPUSB_App::TEXTDOMAIN ); ?>
 			<input type="text" <?php echo $component; ?>
-				placeholder="dd/mm/yyyy"
-				class="wpusb-datepicker"
-				name="wpusb_start_date"
-				value="<?php echo WPUSB_Utils::get( 'wpusb_start_date' ); ?>"/>
+				placeholder="<?php _e( 'yyyy/mm/dd', WPUSB_App::TEXTDOMAIN ); ?>"
+				class="<?php echo WPUSB_Utils::add_prefix( '-datepicker' ); ?>"
+				name="start_date"
+				value="<?php echo WPUSB_Utils::get( 'start_date' ); ?>"/>
 		</label>
 
 		<label class="wpusb-label">
 			<?php _e( 'End date:', WPUSB_App::TEXTDOMAIN ); ?>
 			<input type="text" <?php echo $component; ?>
-				placeholder="dd/mm/yyyy"
-				class="wpusb-datepicker"
-				name="wpusb_end_date"
-				value="<?php echo WPUSB_Utils::get( 'wpusb_end_date' ); ?>"/>
+				placeholder="<?php _e( 'yyyy/mm/dd', WPUSB_App::TEXTDOMAIN ); ?>"
+				class="<?php echo WPUSB_Utils::add_prefix( '-datepicker' ); ?>"
+				name="end_date"
+				value="<?php echo WPUSB_Utils::get( 'end_date' ); ?>"/>
 		</label>
 		<?php
 	}

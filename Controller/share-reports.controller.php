@@ -76,6 +76,22 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 */
 	private $m;
 
+	/**
+	 * Start Date
+	 *
+	 * @since 3.32
+	 * @var string
+	 */
+	private $start_date;
+
+	/**
+	 * End Date
+	 *
+	 * @since 3.32
+	 * @var string
+	 */
+	private $end_date;
+
 	public function __construct() {
 		$this->_set_property();
 
@@ -94,6 +110,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		$this->cache_time = WPUSB_Utils::option( 'report_cache_time', 10, 'intval' );
 		$this->table      = WPUSB_Utils::get_table_name();
 		$this->m          = WPUSB_Utils::get( 'm', 0, 'intval' );
+		$this->start_date = WPUSB_Utils::get( 'start_date' );
+		$this->end_date   = WPUSB_Utils::get( 'end_date' );
 	}
 
 	/**
@@ -187,7 +205,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			return $cache;
 		}
 
-		$where     = $this->_where();;
+		$where     = $this->_where();
 		$row_count = $wpdb->get_var(
 			"SELECT
 				COUNT(*)
@@ -213,32 +231,30 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	private function _where() {
 		global $wpdb;
 
-		$search     = $wpdb->esc_like( $this->search );
-		$start_date = WPUSB_Utils::get( 'wpusb_start_date' );
-		$end_date   = WPUSB_Utils::get( 'wpusb_end_date' );
-		$where      = '';
+		$search = $wpdb->esc_like( $this->search );
+		$where  = '';
 
 		if ( ! empty( $search ) ) {
 			$where .= " `post_title` LIKE '%%{$search}%%'";
 		}
 
-		if ( $this->m && ! $start_date && ! $end_date ) {
+		if ( $this->m && ! $this->start_date && ! $this->end_date ) {
 			$and    = ( $where ) ? ' AND' : '';
 			$where .= sprintf( '%s YEAR( `post_date` ) = %s', $and, substr( $this->m, 0, 4 ) );
 			$where .= sprintf( ' AND MONTH( `post_date` ) = %s', substr( $this->m, 4, 2 ) );
 		}
 
-		$where = $this->_get_date_range_where( $where, $start_date, $end_date );
+		$where = $this->_get_date_range_where( $where );
 		$where = ( $where ) ? 'WHERE' . $where : '';
 
 		return apply_filters( WPUSB_Utils::add_prefix( $this->tag . 'where' ), $where );
 	}
 
-	private function _get_date_range_where( $where, $start_date, $end_date )
+	private function _get_date_range_where( $where )
 	{
 		$and        = ( $where ) ? ' AND' : '';
-		$start_date = WPUSB_Utils::convert_date_for_sql( $start_date, 'Y-m-d' );
-		$end_date   = WPUSB_Utils::convert_date_for_sql( $end_date, 'Y-m-d' );
+		$start_date = WPUSB_Utils::convert_date_for_sql( $this->start_date, 'Y-m-d' );
+		$end_date   = WPUSB_Utils::convert_date_for_sql( $this->end_date, 'Y-m-d' );
 
 		if ( ! $start_date && ! $end_date ) {
 			return $where;
@@ -289,7 +305,14 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	}
 
 	private function _is_filter() {
-		$is_filter = ( $this->search || $this->m );
+		$properties = array(
+			$this->m,
+			$this->search,
+			$this->start_date,
+			$this->end_date
+		);
+
+		$is_filter = ( false !== array_search( true, $properties ) );
 
 		return apply_filters( WPUSB_Utils::add_prefix( $this->tag . 'is_filter' ), $is_filter );
 	}
