@@ -3,7 +3,6 @@ WPUSB( 'WPUSB.Components.Datepicker', function(Model, $, utils) {
 	Model.fn.start = function() {
 		this.setDefaults();
 		this.init();
-		this.addEventListeners();
 	};
 
 	Model.fn.setDefaults = function() {
@@ -28,11 +27,9 @@ WPUSB( 'WPUSB.Components.Datepicker', function(Model, $, utils) {
 		$.datepicker.setDefaults( $.datepicker.regional['pt-BR'] );
 	};
 
-	Model.fn.addEventListeners = function() {
-		this.$el.on( 'keyup', this.onKeyUp.bind(this) );
-	};
-
 	Model.fn.init = function() {
+		this.addEventListeners();
+
 		this.$el.datepicker({
 			onSelect: function() {
 				var filter = $( '#filter-by-date' );
@@ -42,11 +39,17 @@ WPUSB( 'WPUSB.Components.Datepicker', function(Model, $, utils) {
 		});
 	};
 
-	Model.fn.onKeyUp = function(e) {
-		if ( this.$el.val() === '' ) {
-			if ( this.checkIfAllIsEmpty() ) {
-				$( '#filter-by-date' ).prop( 'disabled', false );
-			}
+	Model.fn.addEventListeners = function() {
+		this.$el.on( 'keyup', this._onKeyUp.bind( this ) );
+	};
+
+	Model.fn._onKeyUp = function(e) {
+		if ( this.$el.val() !== '' ) {
+			return;
+		}
+
+		if ( this.checkIfAllIsEmpty() ) {
+			$( '#filter-by-date' ).prop( 'disabled', false );
 		}
 	};
 
