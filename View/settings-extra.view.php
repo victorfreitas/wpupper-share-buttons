@@ -55,16 +55,6 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 						<tbody>
 						<?php
 							parent::tr( array(
-								'type'  => 'number',
-								'key'   => 'report-cache-time',
-								'label' => __( 'Cache time', $domain ),
-								'class' => 'small-text',
-								'min'   => 1,
-								'max'   => 720,
-								'text'  => __( 'Set the time in minutes that will be cached in the Sharing report page', $domain ),
-							) );
-
-							parent::tr( array(
 								'key'         => 'twitter-username',
 								'label'       => __( 'Twitter username', $domain ),
 								'text'        => __( 'Your twitter username', $domain ),

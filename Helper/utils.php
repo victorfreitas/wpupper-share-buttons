@@ -1129,9 +1129,11 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	private static function _add_options_extra_settings() {
 		$option = self::get_option_group_name( 'extra_settings' );
 		$value  = array(
-			'disable_css'       => 'off',
-			'disable_js'        => 'off',
-			'report_cache_time' => 10,
+			'disable_css'             => 'off',
+			'disable_js'              => 'off',
+			'css_footer'              => 'off',
+			'sharing_report_disabled' => 'off',
+			'minify_html'             => 'off',
 		);
 		$value = apply_filters( self::add_prefix( '-options-extra-settings' ), $value );
 

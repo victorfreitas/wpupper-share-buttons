@@ -206,14 +206,6 @@ class WPUSB_Setting {
 	private $tracking;
 
 	/**
-	 * Report cache time value
-	 *
-	 * @since 1.0
-	 * @var Integer
-	 */
-	private $report_cache_time;
-
-	/**
 	 * Social Media active
 	 *
 	 * @since 1.0

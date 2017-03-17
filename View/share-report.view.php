@@ -21,32 +21,25 @@ class WPUSB_Sharing_Report_View {
 	 * @return void
 	 */
 	public static function render_sharing_report( $list_table ) {
-		$time_cache  = WPUSB_Utils::option( 'report_cache_time', 10, 'intval' );
-		$domain      = WPUSB_App::TEXTDOMAIN;
-		$prefix      = WPUSB_App::SLUG;
-		$description = __( 'This report has a cache of ', $domain );
-		$minutes     = __( 'minutes', $domain );
-		$time        = sprintf( _n( '%d minute', "%d {$minutes}", $time_cache, $domain ), $time_cache );
+		$domain = WPUSB_App::TEXTDOMAIN;
+		$prefix = WPUSB_App::SLUG;
 
 		$list_table->prepare_items();
 	?>
 		<div class="wrap">
 			<h2><?php _e( 'WPUpper Share Buttons', $domain ); ?></h2>
-			<p class="description"><?php _e( 'Add the Share Buttons automatically.', $domain ); ?></p>
+
+			<p class="description">
+				<?php _e( 'Add the Share Buttons automatically.', $domain ); ?>
+			</p>
 
 			<?php WPUSB_Utils_View::page_notice(); ?>
-
-			<span class="<?php echo $prefix; ?>-settings-title">
-				<span class="description information-cache">
-					<?php echo "{$description}{$time}."; ?>
-				</span>
-			</span>
 
 			<?php WPUSB_Utils_View::menu_top(); ?>
 
 			<div class="<?php echo $prefix; ?>-settings-wrap">
 
-				<?php do_action( WPUSB_Utils::add_prefix( '_render_sharing_report' ), $list_table ); ?>
+				<?php do_action( WPUSB_Utils::add_prefix( 'sr_render' ), $list_table ); ?>
 
 				<form class="share-report-form">
 

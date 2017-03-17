@@ -37,14 +37,6 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	const POSTS_PER_PAGE = 15;
 
 	/**
-	 * Number for cache time
-	 *
-	 * @since 1.2
-	 * @var Integer
-	 */
-	private $cache_time;
-
-	/**
 	 * Search in list table
 	 *
 	 * @since 1.2
@@ -66,7 +58,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 * @since 3.32
 	 * @var string
 	 */
-	public $tag = '_sharing_report_';
+	public $tag = 'sr_';
 
 	/**
 	 * Month filter
@@ -106,9 +98,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	}
 
 	private function _set_property() {
-		$this->search     = WPUSB_Utils::get( 's', '', 'esc_sql' );
-		$this->cache_time = WPUSB_Utils::option( 'report_cache_time', 10, 'intval' );
 		$this->table      = WPUSB_Utils::get_table_name();
+		$this->search     = WPUSB_Utils::get( 's', '', 'esc_sql' );
 		$this->m          = WPUSB_Utils::get( 'm', 0, 'intval' );
 		$this->start_date = WPUSB_Utils::get( 'start_date' );
 		$this->end_date   = WPUSB_Utils::get( 'end_date' );
@@ -145,21 +136,13 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	private function _get_sharing_report( $posts_per_page, $current_page, $orderby, $order ) {
 		global $wpdb;
 
-		$offset = ( ( $current_page - 1 ) * self::POSTS_PER_PAGE );
-		$cache  = get_transient( WPUSB_Setting::TRANSIENT_SHARING_REPORT );
-		$where  = $this->_where();
-
 		if ( ! $this->_table_exists( $wpdb ) ) {
 			return;
 		}
 
-		$isset_cache = isset( $cache[ $current_page ][ $orderby ][ $order ] );
-
-		if ( ! $this->_is_filter() && false !== $cache && $isset_cache ) {
-			return $cache[ $current_page ][ $orderby ][ $order ];
-		}
-
-		$query = $wpdb->prepare(
+		$offset = ( ( $current_page - 1 ) * self::POSTS_PER_PAGE );
+		$where  = $this->_where();
+		$query  = $wpdb->prepare(
 			"SELECT * FROM
 				`{$this->table}`
 			 {$where}
@@ -172,18 +155,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			$offset
 		);
 
-		$results                                      = $wpdb->get_results( $query );
-		$cache[ $current_page ][ $orderby ][ $order ] = $results;
-
-		if ( ! $this->_is_filter() ) {
-			set_transient(
-				WPUSB_Setting::TRANSIENT_SHARING_REPORT,
-				$cache,
-				$this->cache_time * MINUTE_IN_SECONDS
-			);
-		}
-
-		return $results;
+		return $wpdb->get_results( $query );
 	}
 
 	/**
@@ -197,14 +169,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	private function _total_items() {
 		global $wpdb;
 
-		$cache = get_transient( WPUSB_Setting::TRANSIENT_SHARING_REPORT_COUNT );
-
 		if ( ! $this->_table_exists( $wpdb ) ) {
 			return 0;
-		}
-
-		if ( ! $this->_is_filter() && false !== $cache ) {
-			return $cache;
 		}
 
 		$where     = $this->_where();
@@ -216,11 +182,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			 {$where}
 			"
 		);
-		$total_items = intval( $row_count );
 
-		$this->_set_cache_caunter( $total_items );
-
-		return $total_items;
+		return intval( $row_count );
 	}
 
 	/**
@@ -293,45 +256,6 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 */
 	private function _table_exists( $wpdb ) {
 		return $wpdb->query( "SHOW TABLES LIKE '{$this->table}'" );
-	}
-
-	/**
-	 * Set transient cache items counter
-	 *
-	 * @since 1.0
-	 * @param Integer $total_items
-	 * @return Void
-	 */
-	private function _set_cache_caunter( $total_items ) {
-		if ( $this->_is_filter() ) {
-			return;
-		}
-
-		set_transient(
-			WPUSB_Setting::TRANSIENT_SHARING_REPORT_COUNT,
-			$total_items,
-			$this->cache_time * MINUTE_IN_SECONDS
-		);
-	}
-
-	/**
-	 * Check is filter
-	 *
-	 * @since 3.32
-	 * @param null
-	 * @return Boolean
-	 */
-	private function _is_filter() {
-		$properties = array(
-			0 => ( $this->m !== 0 ),
-			1 => ( $this->search !== '' ),
-			2 => ( $this->start_date !== '' ),
-			3 => ( $this->end_date !== '' ),
-		);
-
-		$is_filter = ( false !== array_search( true, $properties ) );
-
-		return apply_filters( WPUSB_Utils::add_prefix( $this->tag . 'is_filter' ), $is_filter );
 	}
 
 	/**
@@ -496,7 +420,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 
 			WPUSB_Sharing_Report_View::render_date_range_filter();
 
-			do_action( WPUSB_Utils::add_prefix( $this->tag . 'restrict_manage_posts' ), $which );
+			do_action( WPUSB_Utils::add_prefix( $this->tag . 'restrict_manage' ), $which );
 
 			$output = ob_get_clean();
 			ob_end_flush();
@@ -555,7 +479,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		$total_items           = self::_total_items();
 		$this->_column_headers = $this->get_column_info();
 		$per_page              = $this->get_items_per_page(
-			WPUSB_Utils::add_prefix( '_posts_per_page' ),
+			WPUSB_Utils::add_prefix( $this->tag . '_items_per_page' ),
 			self::POSTS_PER_PAGE
 		);
 
