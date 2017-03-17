@@ -38,17 +38,17 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 
 			<?php
 				if ( WPUSB_Utils::get_update( 'settings-updated' ) ) {
-					WPUSB_Utils_View::update_notice();
+					parent::update_notice();
 				}
 			?>
 
 			<p class="description"><?php _e( 'Add the Share Buttons automatically.', $domain ); ?></p>
 
-			<?php WPUSB_Utils_View::page_notice(); ?>
+			<?php parent::page_notice(); ?>
 
 			<span class="<?php echo "{$prefix}-title-wrap"; ?>"><?php _e( 'Settings', $domain ); ?></span>
 
-			<?php WPUSB_Utils_View::menu_top(); ?>
+			<?php parent::menu_top(); ?>
 
 			<div class="<?php echo "{$prefix}-wrap"; ?>" data-<?php echo $prefix; ?>-component="share-settings">
 
