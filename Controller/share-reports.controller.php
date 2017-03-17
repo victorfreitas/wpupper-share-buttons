@@ -110,8 +110,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		$this->cache_time = WPUSB_Utils::option( 'report_cache_time', 10, 'intval' );
 		$this->table      = WPUSB_Utils::get_table_name();
 		$this->m          = WPUSB_Utils::get( 'm', 0, 'intval' );
-		$this->start_date = WPUSB_Utils::get( 'start_date' );
-		$this->end_date   = WPUSB_Utils::get( 'end_date' );
+		$this->start_date = WPUSB_Utils::get( 'start_date', false );
+		$this->end_date   = WPUSB_Utils::get( 'end_date', false );
 	}
 
 	/**
@@ -153,7 +153,9 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			return;
 		}
 
-		if ( ! $this->_is_filter() && false !== $cache && isset( $cache[ $current_page ][ $orderby ][ $order ] ) ) {
+		$isset_cache = isset( $cache[ $current_page ][ $orderby ][ $order ] );
+
+		if ( ! $this->_is_filter() && false !== $cache && $isset_cache ) {
 			return $cache[ $current_page ][ $orderby ][ $order ];
 		}
 
@@ -250,8 +252,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		return apply_filters( WPUSB_Utils::add_prefix( $this->tag . 'where' ), $where );
 	}
 
-	private function _get_date_range_where( $where )
-	{
+	private function _get_date_range_where( $where ) {
 		$and        = ( $where ) ? ' AND' : '';
 		$start_date = WPUSB_Utils::convert_date_for_sql( $this->start_date, 'Y-m-d' );
 		$end_date   = WPUSB_Utils::convert_date_for_sql( $this->end_date, 'Y-m-d' );
@@ -306,11 +307,13 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 
 	private function _is_filter() {
 		$properties = array(
-			$this->m,
-			$this->search,
-			$this->start_date,
-			$this->end_date
+			'm'          => $this->m,
+			'search'     => $this->search,
+			'start_date' => $this->start_date,
+			'end_date'   => $this->end_date
 		);
+
+		var_dump( $properties );
 
 		$is_filter = ( false !== array_search( true, $properties ) );
 
