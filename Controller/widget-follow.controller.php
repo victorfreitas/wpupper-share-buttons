@@ -143,6 +143,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 			'email'      => 'email',
 			'snapchat'   => 'snapchat',
 			'behance'    => 'behance',
+			'vk'         => 'vk',
 		);
 
 		$this->networks = apply_filters( WPUSB_Utils::add_prefix( '_networks_available' ), $networks );
@@ -304,6 +305,15 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		$std->behance->name  = __( 'Behance', $domain );
 		$std->behance->url   = 'https://www.behance.net/your-id';
 		$std->behance->title = __( 'Follow us on Behance', $domain );
+
+		/**
+		 * @var Object
+		 * @see Behance
+		 */
+		$std->vk        = new stdClass();
+		$std->vk->name  = __( 'VK', $domain );
+		$std->vk->url   = 'https://vk.com/your-id';
+		$std->vk->title = __( 'Follow us on VKontakte', $domain );
 
 		return apply_filters( WPUSB_Utils::add_prefix( '_follow_us_networks' ), $std );
 	}
