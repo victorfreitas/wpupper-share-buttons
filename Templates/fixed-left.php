@@ -74,7 +74,7 @@ EOD;
 
 				<a {$link_type}
 				   {$args->reference->popup}
-				   class="{$args->prefix}-{$btn_class} {$class_btn} {$args->class_link} {$args->prefix}-layout-{$current_layout}"
+				   class="{$args->prefix}-layout-{$current_layout} {$args->prefix}-{$btn_class} {$class_btn} {$args->class_link}"
 				   title="{$args->reference->title}"
 				   {$ga_event}
 				   {$modal_data}
