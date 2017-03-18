@@ -101,29 +101,30 @@ class WPUSB_Sharing_Report_View {
 		<?php
 	}
 
-	public static function render_date_range_filter()
-	{
-		$prefix    = WPUSB_App::SLUG;
-		$component = "data-{$prefix}-component=\"datepicker\"";
-
-		?>
-		<label class="wpusb-label">
+	public static function render_date_range_filter() {
+		$component   = sprintf( 'data-%s-component="datepicker"', WPUSB_App::SLUG );
+		$date_format = _x( 'yyyy-mm-dd', 'placeholder', WPUSB_App::TEXTDOMAIN );
+		$label_class = WPUSB_Utils::add_prefix( '-label' );
+	?>
+		<label class="<?php echo $label_class; ?>">
 			<?php _e( 'Start date:', WPUSB_App::TEXTDOMAIN ); ?>
+
 			<input type="text" <?php echo $component; ?>
-				placeholder="<?php _e( 'yyyy/mm/dd', WPUSB_App::TEXTDOMAIN ); ?>"
-				class="<?php echo WPUSB_Utils::add_prefix( '-datepicker' ); ?>"
-				name="start_date"
-				value="<?php echo WPUSB_Utils::get( 'start_date' ); ?>"/>
+				   placeholder="<?php echo $date_format; ?>"
+				   class="<?php echo WPUSB_Utils::add_prefix( '-datepicker' ); ?>"
+				   name="start_date"
+				   value="<?php echo WPUSB_Utils::get( 'start_date' ); ?>"/>
 		</label>
 
-		<label class="wpusb-label">
+		<label class="<?php echo $label_class; ?>">
 			<?php _e( 'End date:', WPUSB_App::TEXTDOMAIN ); ?>
+
 			<input type="text" <?php echo $component; ?>
-				placeholder="<?php _e( 'yyyy/mm/dd', WPUSB_App::TEXTDOMAIN ); ?>"
-				class="<?php echo WPUSB_Utils::add_prefix( '-datepicker' ); ?>"
-				name="end_date"
-				value="<?php echo WPUSB_Utils::get( 'end_date' ); ?>"/>
+				   placeholder="<?php echo $date_format; ?>"
+				   class="<?php echo WPUSB_Utils::add_prefix( '-datepicker' ); ?>"
+				   name="end_date"
+				   value="<?php echo WPUSB_Utils::get( 'end_date' ); ?>"/>
 		</label>
-		<?php
+	<?php
 	}
 }
