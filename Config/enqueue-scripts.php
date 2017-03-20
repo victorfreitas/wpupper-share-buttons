@@ -40,12 +40,17 @@ final class WPUSB_Scripts {
 		self::codemirror_scripts();
 
 		wp_enqueue_style( 'wp-color-picker' );
-		wp_enqueue_style( 'jquery-ui' );
+		wp_enqueue_script( 'wp-color-picker' );
+		wp_enqueue_script( 'jquery-ui-sortable' );
+
+		if ( self::_is_sharing_report_page() ) {
+			wp_enqueue_script( 'jquery-ui-datepicker' );
+		}
 
 		wp_enqueue_script(
 			WPUSB_Utils::add_prefix( '-admin-scripts' ),
 			WPUSB_Utils::plugin_url( 'javascripts/admin/built.js' ),
-			array( 'jquery', 'jquery-ui-sortable', 'jquery-ui-datepicker', 'wp-color-picker' ),
+			array( 'jquery' ),
 			WPUSB_App::VERSION,
 			true
 		);
@@ -53,20 +58,10 @@ final class WPUSB_Scripts {
 		wp_localize_script(
 			WPUSB_Utils::add_prefix( '-admin-scripts' ),
 			'WPUSBVars',
-			array(
-				'ajaxUrl'       => esc_url( admin_url( 'admin-ajax.php' ) ),
-				'homeUrl'       => esc_url( get_home_url() ),
-				'WPLANG'        => get_locale(),
-				'previewTitles' => array(
-					'titleRemove'   => __( 'View Untitled', WPUSB_App::TEXTDOMAIN ),
-					'counterRemove' => __( 'View without count', WPUSB_App::TEXTDOMAIN ),
-					'titleInsert'   => __( 'See with title', WPUSB_App::TEXTDOMAIN ),
-					'counterInsert' => __( 'See with count', WPUSB_App::TEXTDOMAIN ),
-				),
-			)
+			self::_localize_script_args()
 		);
 
-		$page_settings = ( WPUSB_App::SLUG === WPUSB_Utils::get( 'page' ) );
+		$page_settings = self::_is_panel_home();
 		$handle        = WPUSB_Utils::add_prefix( '-front-style' );
 
 		if ( $page_settings ) {
@@ -87,6 +82,104 @@ final class WPUSB_Scripts {
 	}
 
 	/**
+	 * Check is home dashboard
+	 *
+	 * @since 3.32
+	 * @param Null
+	 * @return Boolean
+	 */
+	private static function _is_panel_home() {
+		return ( WPUSB_App::SLUG === WPUSB_Utils::get( 'page' ) );
+	}
+
+	/**
+	 * Check is sharing report page
+	 *
+	 * @since 3.32
+	 * @param Null
+	 * @return Boolean
+	 */
+	private static function _is_sharing_report_page() {
+		return ( WPUSB_Setting::SHARING_REPORT === WPUSB_Utils::get( 'page' ) );
+	}
+
+	/**
+	 * Check is custom css page
+	 *
+	 * @since 3.32
+	 * @param Null
+	 * @return Boolean
+	 */
+	private static function is_custom_css_page() {
+		return ( WPUSB_Setting::CUSTOM_CSS === WPUSB_Utils::get( 'page' ) );
+	}
+
+	/**
+	 * Arguments admin plugin scripts
+	 *
+	 * @since 3.32
+	 * @param Null
+	 * @return Array
+	 */
+	private static function _localize_script_args() {
+		$args = array(
+			'ajaxUrl' => WPUSB_Utils::get_admin_url( 'admin-ajax.php' ),
+			'homeUrl' => esc_url( get_home_url() ),
+			'WPLANG'  => get_locale(),
+		);
+
+		if ( self::_is_panel_home() ) {
+			$args['previewTitles'] = array(
+				'titleRemove'   => __( 'View Untitled', WPUSB_App::TEXTDOMAIN ),
+				'counterRemove' => __( 'View without count', WPUSB_App::TEXTDOMAIN ),
+				'titleInsert'   => __( 'See with title', WPUSB_App::TEXTDOMAIN ),
+				'counterInsert' => __( 'See with count', WPUSB_App::TEXTDOMAIN ),
+			);
+		}
+
+		if ( self::_is_sharing_report_page() ) {
+			$tag = WPUSB_Utils::add_prefix( '_datepicker_defaults' );
+
+			$args['datepickerDefaults'] = apply_filters( $tag, self::get_localize_datepicker() );
+		}
+
+		return $args;
+	}
+
+	/**
+	 * Localizes the jQuery UI datepicker.
+	 *
+	 * @since 3.32
+	 * @link http://api.jqueryui.com/datepicker/#options
+	 * @global WP_Locale $wp_locale
+	 * @return Array
+	 */
+	public static function get_localize_datepicker() {
+		global $wp_locale;
+
+		$date_format = __( 'mm/dd/yy', WPUSB_App::TEXTDOMAIN );
+
+		if ( function_exists( 'wp_localize_jquery_ui_datepicker' ) ) {
+			return array( 'dateFormat' => $date_format );
+		}
+
+		return array(
+			'closeText'       => __( 'Close', WPUSB_App::TEXTDOMAIN ),
+			'currentText'     => __( 'Today', WPUSB_App::TEXTDOMAIN ),
+			'dateFormat'      => $date_format,
+			'dayNames'        => array_values( $wp_locale->weekday ),
+			'dayNamesMin'     => array_values( $wp_locale->weekday_initial ),
+			'dayNamesShort'   => array_values( $wp_locale->weekday_abbrev ),
+			'firstDay'        => absint( get_option( 'start_of_week' ) ),
+			'isRTL'           => $wp_locale->is_rtl(),
+			'monthNames'      => array_values( $wp_locale->month ),
+			'monthNamesShort' => array_map( 'ucfirst', array_values( $wp_locale->month_abbrev ) ),
+			'nextText'        => __( 'Next', WPUSB_App::TEXTDOMAIN ),
+			'prevText'        => __( 'Previous', WPUSB_App::TEXTDOMAIN ),
+		);
+	}
+
+	/**
 	 * Enqueue scripts and styles
 	 *
 	 * @since 1.0
@@ -99,7 +192,8 @@ final class WPUSB_Scripts {
 			return;
 		}
 
-		$load_scripts      = apply_filters( WPUSB_Utils::add_prefix( '-add-scripts' ), WPUSB_Utils::is_active() );
+		$tag               = WPUSB_Utils::add_prefix( '-add-scripts' );
+		$load_scripts      = apply_filters( $tag, WPUSB_Utils::is_active() );
 		$customize_preview = WPUSB_Utils::is_customize_preview();
 
 		if ( ! $customize_preview && ( ! WPUSB_Utils::is_active_widget() && ! $load_scripts ) ) {
@@ -179,7 +273,7 @@ final class WPUSB_Scripts {
 	}
 
 	public static function codemirror_scripts() {
-		if ( WPUSB_Utils::get( 'page' ) !== WPUSB_Setting::CUSTOM_CSS ) {
+		if ( ! self::is_custom_css_page() ) {
 			return;
 		}
 

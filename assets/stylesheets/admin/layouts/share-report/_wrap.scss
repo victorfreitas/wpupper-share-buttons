@@ -5,13 +5,20 @@
 		margin-bottom: 6px;
 	}
 
-	.wpusb-label {
+	.#{$prefix}-label {
 		font-size: 14px;
 		margin-left: 5px;
 	}
 
-	.wpusb-datepicker {
+	.#{$prefix}-datepicker {
 		height: 28px;
-		width: 120px;
+		width: 130px;
+	}
+}
+
+.#{$prefix}-datepicker-container .ui-datepicker {
+	.ui-datepicker-prev,
+	.ui-datepicker-next {
+		display: none;
 	}
 }

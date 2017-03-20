@@ -103,7 +103,7 @@ class WPUSB_Sharing_Report_View {
 
 	public static function render_date_range_filter() {
 		$component   = sprintf( 'data-%s-component="datepicker"', WPUSB_App::SLUG );
-		$date_format = _x( 'yyyy-mm-dd', 'placeholder', WPUSB_App::TEXTDOMAIN );
+		$date_format = _x( 'mm/dd/yyyy', 'placeholder', WPUSB_App::TEXTDOMAIN );
 		$label_class = WPUSB_Utils::add_prefix( '-label' );
 	?>
 		<label class="<?php echo $label_class; ?>">
@@ -113,7 +113,7 @@ class WPUSB_Sharing_Report_View {
 				   placeholder="<?php echo $date_format; ?>"
 				   class="<?php echo WPUSB_Utils::add_prefix( '-datepicker' ); ?>"
 				   name="start_date"
-				   value="<?php echo WPUSB_Utils::get( 'start_date' ); ?>"/>
+				   value="<?php echo WPUSB_Utils::get( 'start_date' ); ?>">
 		</label>
 
 		<label class="<?php echo $label_class; ?>">
@@ -123,7 +123,7 @@ class WPUSB_Sharing_Report_View {
 				   placeholder="<?php echo $date_format; ?>"
 				   class="<?php echo WPUSB_Utils::add_prefix( '-datepicker' ); ?>"
 				   name="end_date"
-				   value="<?php echo WPUSB_Utils::get( 'end_date' ); ?>"/>
+				   value="<?php echo WPUSB_Utils::get( 'end_date' ); ?>">
 		</label>
 	<?php
 	}
