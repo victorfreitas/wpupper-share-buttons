@@ -14,11 +14,44 @@
 		height: 28px;
 		width: 130px;
 	}
+
+	.#{$prefix}-filter-date-content {
+		display: inline-block;
+
+		label {
+			display: block;
+		}
+	}
+
+	.#{$prefix}-filter-btn {
+		display: inline-block;
+
+		.button {
+			vertical-align: initial;
+		}
+	}
 }
 
 .#{$prefix}-datepicker-container .ui-datepicker {
 	.ui-datepicker-prev,
 	.ui-datepicker-next {
 		display: none;
+	}
+
+	.ui-datepicker-title select {
+		background: #2f2e2c;
+		color: #9d9d9d;
+		outline: none;
+		border: 1px solid #4c4c4c;
+		height: 40px;
+		width: 50%;
+		margin: 0;
+
+		&:active,
+		&:focus,
+		&:visited,
+		&:hover {
+			box-shadow: none;
+		}
 	}
 }

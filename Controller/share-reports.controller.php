@@ -61,14 +61,6 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	public $tag = 'sr_';
 
 	/**
-	 * Month filter
-	 *
-	 * @since 3.32
-	 * @var Integer
-	 */
-	private $m;
-
-	/**
 	 * Start Date
 	 *
 	 * @since 3.32
@@ -100,7 +92,6 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	private function _set_property() {
 		$this->table      = WPUSB_Utils::get_table_name();
 		$this->search     = WPUSB_Utils::get( 's', '', 'esc_sql' );
-		$this->m          = WPUSB_Utils::get( 'm', 0, 'intval' );
 		$this->start_date = WPUSB_Utils::get( 'start_date' );
 		$this->end_date   = WPUSB_Utils::get( 'end_date' );
 	}
@@ -201,12 +192,6 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 
 		if ( ! empty( $search ) ) {
 			$where .= " `post_title` LIKE '%%{$search}%%'";
-		}
-
-		if ( $this->m && ! $this->start_date && ! $this->end_date ) {
-			$and    = ( $where ) ? ' AND' : '';
-			$where .= sprintf( '%s YEAR( `post_date` ) = %s', $and, substr( $this->m, 0, 4 ) );
-			$where .= sprintf( ' AND MONTH( `post_date` ) = %s', substr( $this->m, 4, 2 ) );
 		}
 
 		$where = $this->_get_date_range_where( $where );
@@ -349,60 +334,6 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	}
 
 	/**
-	 * Display a monthly dropdown for filtering items
-	 *
-	 * @since 3.32
-	 * @param String $post_type
-	 * @global wpdb      $wpdb
-	 * @global WP_Locale $wp_locale
-	 * @return Void
-	 */
-	public function months_dropdown( $post_type = '' ) {
-		global $wpdb, $wp_locale;
-
-		$results = $wpdb->get_results(
-			"SELECT DISTINCT
-				YEAR( `post_date` ) AS year,
-				MONTH( `post_date` ) AS month
-			 FROM
-				`{$this->table}`
-			 ORDER BY
-				`post_date` DESC
-			"
-		);
-
-		$results = apply_filters(
-			WPUSB_Utils::add_prefix( $this->tag . 'months_dropdown_results' ),
-			$results
-		);
-
-		if ( ! isset( $results[2] ) ) {
-			return;
-		}
-
-		$m       = WPUSB_Utils::get( 'm', 0, 'intval' );
-		$options = '';
-
-		foreach ( $results as $result ) :
-			if ( 0 === (int)$result->year ) {
-				continue;
-			}
-
-			$month = zeroise( $result->month, 2 );
-			$year  = $result->year;
-
-			$options .= sprintf(
-				'<option value="%s" %s>%s</option>',
-				intval( $result->year . $month ),
-				WPUSB_Utils::selected( $m, $year . $month ),
-				sprintf( __( '%1$s %2$d' ), $wp_locale->get_month( $month ), $year )
-			);
-		endforeach;
-
-		WPUSB_Sharing_Report_View::render_months_dropdown( $options, $m );
-	}
-
-	/**
 	 * Extra controls to be displayed between bulk actions and pagination
 	 *
 	 * @since 3.32
@@ -416,8 +347,6 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		if ( 'top' === $which && ! is_singular() ) :
 			ob_start();
 
-			$this->months_dropdown();
-
 			WPUSB_Sharing_Report_View::render_date_range_filter();
 
 			do_action( WPUSB_Utils::add_prefix( $this->tag . 'restrict_manage' ), $which );
@@ -428,7 +357,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			if ( ! empty( $output ) ) :
 				echo $output;
 
-				submit_button( __( 'Filter' ), '', '', false);
+				submit_button( __( 'Filter' ), '', '', false );
 			endif;
 		endif;
 	?>

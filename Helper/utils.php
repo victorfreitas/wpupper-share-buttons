@@ -2229,7 +2229,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
      * @return Mixed String|Boolean
      */
 	public static function convert_date_for_sql( $date, $format = 'Y-m-d H:i' ) {
-		return ( empty( $date ) ? false : self::convert_date( $date, $format, '/', '-' ) );
+		return ( empty( $date ) ? false : esc_sql( self::convert_date( $date, $format, '/', '-' ) ) );
 	}
 
     /**

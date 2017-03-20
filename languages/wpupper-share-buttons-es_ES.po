@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2017-03-20 19:00:44+00:00\n"
+"POT-Creation-Date: 2017-03-20 22:10:44+00:00\n"
 "PO-Revision-Date: 2017-03-17 14:14-0300\n"
 "Last-Translator: Victor Freitas <victor.freitas@apiki.com>\n"
 "Language-Team: \n"
@@ -61,7 +61,7 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
-#: Config/social-elements.php:91 Controller/share-reports.controller.php:301
+#: Config/social-elements.php:91 Controller/share-reports.controller.php:286
 #: Controller/widget-follow.controller.php:161
 msgid "Facebook"
 msgstr "Facebook"
@@ -80,7 +80,7 @@ msgstr "Compartir en Facebook"
 msgid "Share"
 msgstr "Compartir"
 
-#: Config/social-elements.php:109 Controller/share-reports.controller.php:303
+#: Config/social-elements.php:109 Controller/share-reports.controller.php:288
 #: Controller/widget-follow.controller.php:170
 msgid "Twitter"
 msgstr "Twitter"
@@ -107,7 +107,7 @@ msgstr "Compartir en WhatsApp"
 msgid "Share on WhatsApp"
 msgstr "Compartir en WhatsApp"
 
-#: Config/social-elements.php:163 Controller/share-reports.controller.php:305
+#: Config/social-elements.php:163 Controller/share-reports.controller.php:290
 #: Controller/widget-follow.controller.php:197
 msgid "Pinterest"
 msgstr "Pinterest"
@@ -116,7 +116,7 @@ msgstr "Pinterest"
 msgid "Share on Pinterest"
 msgstr "Compartir en Pinterest"
 
-#: Config/social-elements.php:181 Controller/share-reports.controller.php:304
+#: Config/social-elements.php:181 Controller/share-reports.controller.php:289
 #: Controller/widget-follow.controller.php:179
 msgid "Linkedin"
 msgstr "Linkedin"
@@ -125,7 +125,7 @@ msgstr "Linkedin"
 msgid "Share on Linkedin"
 msgstr "Compartir en Linkedin"
 
-#: Config/social-elements.php:199 Controller/share-reports.controller.php:306
+#: Config/social-elements.php:199 Controller/share-reports.controller.php:291
 #: Controller/widget-follow.controller.php:251
 msgid "Tumblr"
 msgstr "Tumblr"
@@ -212,7 +212,7 @@ msgstr "Messenger"
 msgid "Send on Facebook Messenger"
 msgstr "Enviar via Facebook Messenger"
 
-#: Config/social-elements.php:379 Controller/share-reports.controller.php:307
+#: Config/social-elements.php:379 Controller/share-reports.controller.php:292
 msgid "Buffer"
 msgstr "Buffer"
 
@@ -300,44 +300,40 @@ msgstr "CSS personalizado"
 msgid "Use options"
 msgstr "Utilice las opciones"
 
-#: Controller/share-reports.controller.php:118
+#: Controller/share-reports.controller.php:109
 msgid "Sharing Report | WPUpper Share Buttons"
 msgstr "Informe compartir | Botones de Acciones Sociales"
 
-#: Controller/share-reports.controller.php:119 View/utils.view.php:511
+#: Controller/share-reports.controller.php:110 View/utils.view.php:511
 msgid "Sharing Report"
 msgstr "Informe compartir"
 
-#: Controller/share-reports.controller.php:287
+#: Controller/share-reports.controller.php:272
 msgid "Y/m/d g:i:s a"
 msgstr ""
 
-#: Controller/share-reports.controller.php:300 View/settings.view.php:474
+#: Controller/share-reports.controller.php:285 View/settings.view.php:474
 msgid "Title"
 msgstr "Título"
 
-#: Controller/share-reports.controller.php:302
+#: Controller/share-reports.controller.php:287
 msgid "Google+"
 msgstr "Google+"
 
-#: Controller/share-reports.controller.php:308
+#: Controller/share-reports.controller.php:293
 msgid "Total"
 msgstr "Total"
 
-#: Controller/share-reports.controller.php:309
+#: Controller/share-reports.controller.php:294
 #, fuzzy
 msgid "Post date"
 msgstr "Título de la entrada"
 
-#: Controller/share-reports.controller.php:398
-msgid "%1$s %2$d"
-msgstr ""
-
-#: Controller/share-reports.controller.php:431
+#: Controller/share-reports.controller.php:360
 msgid "Filter"
 msgstr ""
 
-#: Controller/share-reports.controller.php:503
+#: Controller/share-reports.controller.php:432
 msgid "There is no record available at the moment!"
 msgstr "No hay registro disponible en este momento!"
 
@@ -885,19 +881,11 @@ msgstr ""
 msgid "Search"
 msgstr "Buscar"
 
-#: View/share-report.view.php:91
-msgid "Filter by date"
-msgstr ""
-
-#: View/share-report.view.php:96
-msgid "All dates"
-msgstr ""
-
-#: View/share-report.view.php:110
+#: View/share-report.view.php:88
 msgid "Start date:"
 msgstr "Data de início:"
 
-#: View/share-report.view.php:120
+#: View/share-report.view.php:98
 msgid "End date:"
 msgstr "Data de término"
 
@@ -1010,7 +998,7 @@ msgstr ""
 msgid "https://github.com/victorfreitas"
 msgstr "https://github.com/victorfreitas"
 
-#: View/share-report.view.php:106
+#: View/share-report.view.php:85
 msgctxt "placeholder"
 msgid "mm/dd/yyyy"
 msgstr ""

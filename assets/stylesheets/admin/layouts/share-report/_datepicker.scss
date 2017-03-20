@@ -6,6 +6,12 @@
 		display: none;
 		border-radius: 0 0 3px 3px;
 		border: 1px solid rgba(221, 221, 221, 0.56);
+		padding: 0;
+	}
+
+	.ui-widget-header {
+		border: 0;
+	    font-weight: normal;
 	}
 
 	/* DATEPICKER HEADER */
@@ -15,6 +21,7 @@
 		color: #fff;
 		height: 40px;
 		line-height: 40px;
+		padding: 0;
 	}
 	.ui-datepicker .ui-datepicker-prev,
 	.ui-datepicker .ui-datepicker-next {
@@ -99,13 +106,21 @@
 	.ui-datepicker .ui-state-disabled { background: #EBEBEB; }
 
 	.ui-datepicker td a {
+		background: transparent;
+		border: none;
 		color: #333;
-		padding: 5px 0;
-		margin: -1px;
 		display: block;
+		font-weight: normal;
+		margin: -1px;
+		padding: 5px 0;
+		text-align: center;
 		text-decoration: none;
 	}
 	.ui-datepicker td a:hover { background: #f9f9f9; }
+
+	.ui-corner-all {
+		border-radius: 0;
+	}
 
 
 	/*  Range  */
