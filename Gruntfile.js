@@ -52,6 +52,31 @@ module.exports = function(grunt) {
 			}
 		},
 
+	    makepot : {
+	        target : {
+	            options : {
+	                type          : 'wp-plugin',
+	                domainPath    : '/<%= package.dirLang %>',
+	                mainFile      : '<%= package.slug %>.php',
+	                exclude       : ['node_modules/.*', '.sass-cache/.*', 'Vendor/.*', 'assets/.*', 'handlebars/.*'],
+	                include       : ['.*.php'],
+	                updatePoFiles : true,
+	                potHeaders    : {
+	                	poedit                   : true,
+						language                 : 'en',
+						'plural-forms'           : 'nplurals=2; plural=(n != 1);',
+						'x-poedit-country'       : 'United States',
+						'x-poedit-sourcecharset' : 'UTF-8',
+						'x-poedit-keywordslist'  : '__;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c;_nc:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;',
+						'x-poedit-basepath'      : '../',
+						'x-poedit-searchpath-0'  : '.',
+						'x-poedit-bookmarks'     : '',
+						'x-textdomain-support'   : 'yes'
+	                }
+	            }
+	        }
+	    },
+
   		jshint: {
 			options: {
 				jshintrc : true
@@ -95,6 +120,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-sass' );
 	grunt.loadNpmTasks( 'grunt-contrib-handlebars' );
+	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 
 	grunt.registerTask( 'deploy', ['jshint', 'concat', 'uglify', 'sass:site', 'handlebars:dest'] );
+	grunt.registerTask( 'i18n', ['makepot'] );
 };
