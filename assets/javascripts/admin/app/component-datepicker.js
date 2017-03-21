@@ -1,13 +1,17 @@
 WPUSB( 'WPUSB.Components.Datepicker', function(Model, $, utils) {
 
 	Model.fn.start = function() {
-		this.setDefaults();
 		this.init();
 	};
 
-	Model.fn.setDefaults = function() {
+	Model.fn.init = function() {
+		this.$el.datepicker( this.getOptions() );
+	};
+
+	Model.fn.getOptions = function() {
 		var overrideDefaults = ( utils.getGlobalVars( 'datepickerDefaults' ) || {} )
 		  , currentDefaults  = {
+		  	dateFormat       : 'yy-mm-dd',
 			maxDate          : '+0D',
 			yearRange        : '-25:+0',
 			changeMonth      : true,
@@ -16,20 +20,26 @@ WPUSB( 'WPUSB.Components.Datepicker', function(Model, $, utils) {
 			showButtonPanel  : true,
 			showOn           : 'focus',
 			hideIfNoPrevNext : true,
-			beforeShow       : function(element, instance) {
-				WPUSB.vars.body.addClass( utils.addPrefix( 'datepicker-container' ) );
-			}
+			numberOfMonths   : 1,
+			onSelect         : this._onSelectDate.bind( this ),
+			beforeShow       : this._onBeforeShow
 		};
 
-		$.datepicker.setDefaults( $.extend( currentDefaults, overrideDefaults ) );
+		return $.extend( currentDefaults, overrideDefaults );
 	};
 
-	Model.fn.init = function() {
-		this.$el.datepicker({
-			onSelect: function() {
-				$( '#filter-by-date' ).val(0);
-			}
-		});
+	Model.fn._onSelectDate = function(selectedDate, instance) {
+		var input  = instance.input
+		  , option = input.data( 'to' ) ? 'minDate' : 'maxDate'
+		  , name   = ( !input.data( 'to' ) ) ? 'start_date' : 'end_date'
+		  , date   = $.datepicker.parseDate( instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings )
+		;
+
+		WPUSB.vars.body.find( 'input[name="' + name + '"]' ).datepicker( 'option', option, date );
+	};
+
+	Model.fn._onBeforeShow = function(element, instance) {
+		WPUSB.vars.body.addClass( utils.addPrefix( 'datepicker-container' ) );
 	};
 
 });

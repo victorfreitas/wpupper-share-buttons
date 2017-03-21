@@ -157,16 +157,13 @@ final class WPUSB_Scripts {
 	public static function get_localize_datepicker() {
 		global $wp_locale;
 
-		$date_format = __( 'mm/dd/yy', WPUSB_App::TEXTDOMAIN );
-
 		if ( function_exists( 'wp_localize_jquery_ui_datepicker' ) ) {
-			return array( 'dateFormat' => $date_format );
+			return array();
 		}
 
 		return array(
 			'closeText'       => __( 'Close', WPUSB_App::TEXTDOMAIN ),
 			'currentText'     => __( 'Today', WPUSB_App::TEXTDOMAIN ),
-			'dateFormat'      => $date_format,
 			'dayNames'        => array_values( $wp_locale->weekday ),
 			'dayNamesMin'     => array_values( $wp_locale->weekday_initial ),
 			'dayNamesShort'   => array_values( $wp_locale->weekday_abbrev ),

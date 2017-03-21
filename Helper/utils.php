@@ -2176,12 +2176,12 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param String $sanitize
 	 * @return String
 	 */
-    public static function get_post_date( $post_id, $sanitize = 'esc_sql' ) {
+    public static function get_post_date( $post_id, $format = 'Y-m-d' ) {
     	if ( ! $post = get_post( $post_id ) ) {
-    		return esc_sql( date_i18n( 'Y-m-d H:i:s' ) );
+    		return esc_sql( date_i18n( $format ) );
     	}
 
-    	return self::sanitize( $post->post_date, $sanitize );
+    	return esc_sql( date_i18n( $format, strtotime( $post->post_date ) ) );
     }
 
 	/**

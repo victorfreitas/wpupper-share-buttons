@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WPUpper Share Buttons 2.8.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2017-03-20 22:10:44+00:00\n"
+"POT-Creation-Date: 2017-03-21 14:21:40+00:00\n"
 "PO-Revision-Date: 2017-03-01 03:45-0300\n"
 "Last-Translator: Victor Freitas <victor.freitas@apiki.com>\n"
 "Language-Team: burzhu.net <djsoldier@mail.ru>\n"
@@ -41,23 +41,19 @@ msgstr "Удалить название кнопки"
 msgid "See with count"
 msgstr "Удалить название кнопки"
 
-#: Config/enqueue-scripts.php:160
-msgid "mm/dd/yy"
-msgstr ""
-
-#: Config/enqueue-scripts.php:167
+#: Config/enqueue-scripts.php:165
 msgid "Close"
 msgstr ""
 
-#: Config/enqueue-scripts.php:168
+#: Config/enqueue-scripts.php:166
 msgid "Today"
 msgstr ""
 
-#: Config/enqueue-scripts.php:177
+#: Config/enqueue-scripts.php:174
 msgid "Next"
 msgstr ""
 
-#: Config/enqueue-scripts.php:178
+#: Config/enqueue-scripts.php:175
 msgid "Previous"
 msgstr ""
 
@@ -314,7 +310,7 @@ msgid "Sharing Report"
 msgstr "Поделиться отчетом"
 
 #: Controller/share-reports.controller.php:272
-msgid "Y/m/d g:i:s a"
+msgid "Y/m/d"
 msgstr ""
 
 #: Controller/share-reports.controller.php:285 View/settings.view.php:474
@@ -896,7 +892,7 @@ msgstr "Поиск"
 msgid "Start date:"
 msgstr ""
 
-#: View/share-report.view.php:98
+#: View/share-report.view.php:100
 msgid "End date:"
 msgstr ""
 
@@ -1009,7 +1005,7 @@ msgstr ""
 
 #: View/share-report.view.php:85
 msgctxt "placeholder"
-msgid "mm/dd/yyyy"
+msgid "YYYY-MM-DD"
 msgstr ""
 
 #~ msgid "Cache time"

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2017-03-20 22:10:44+00:00\n"
+"POT-Creation-Date: 2017-03-21 14:21:40+00:00\n"
 "PO-Revision-Date: 2017-02-20 22:14-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -34,23 +34,19 @@ msgstr ""
 msgid "See with count"
 msgstr "Konto na Twitterze"
 
-#: Config/enqueue-scripts.php:160
-msgid "mm/dd/yy"
-msgstr ""
-
-#: Config/enqueue-scripts.php:167
+#: Config/enqueue-scripts.php:165
 msgid "Close"
 msgstr ""
 
-#: Config/enqueue-scripts.php:168
+#: Config/enqueue-scripts.php:166
 msgid "Today"
 msgstr ""
 
-#: Config/enqueue-scripts.php:177
+#: Config/enqueue-scripts.php:174
 msgid "Next"
 msgstr ""
 
-#: Config/enqueue-scripts.php:178
+#: Config/enqueue-scripts.php:175
 msgid "Previous"
 msgstr ""
 
@@ -313,7 +309,7 @@ msgid "Sharing Report"
 msgstr "Udostępnij na Googl+"
 
 #: Controller/share-reports.controller.php:272
-msgid "Y/m/d g:i:s a"
+msgid "Y/m/d"
 msgstr ""
 
 #: Controller/share-reports.controller.php:285 View/settings.view.php:474
@@ -889,7 +885,7 @@ msgstr "Wyszukiwarka"
 msgid "Start date:"
 msgstr ""
 
-#: View/share-report.view.php:98
+#: View/share-report.view.php:100
 msgid "End date:"
 msgstr ""
 
@@ -997,7 +993,7 @@ msgstr ""
 
 #: View/share-report.view.php:85
 msgctxt "placeholder"
-msgid "mm/dd/yyyy"
+msgid "YYYY-MM-DD"
 msgstr ""
 
 #~ msgid "Minute"

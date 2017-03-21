@@ -151,8 +151,8 @@ final class WPUSB_Core {
 			return self::_create_table_for_network();
 		}
 
-		WPUSB_Utils::add_default_options();
 		self::_create_table();
+		WPUSB_Utils::add_default_options();
 	}
 
 	/**
@@ -313,7 +313,7 @@ final class WPUSB_Core {
 				id         BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 				post_title TEXT       NOT NULL,
 				post_id    BIGINT(20) NOT NULL DEFAULT 0,
-				post_date  DATETIME   NOT NULL DEFAULT '0000-00-00 00:00:00',
+				post_date  DATE       NOT NULL,
 				facebook   BIGINT(20) NOT NULL DEFAULT 0,
 				twitter    BIGINT(20) NOT NULL DEFAULT 0,
 				google     BIGINT(20) NOT NULL DEFAULT 0,
@@ -330,6 +330,7 @@ final class WPUSB_Core {
 
 		self::db_delta( $query );
 		self::_create_table_short_url();
+		self::alter_table();
 	}
 
 	/**
@@ -385,6 +386,10 @@ final class WPUSB_Core {
 	public static function alter_table() {
 		global $wpdb;
 
+		if ( self::is_new_installation() ) {
+			return;
+		}
+
 		$table = WPUSB_Utils::get_table_name();
 
 		self::_set_column_tumblr( $wpdb, $table );
@@ -418,7 +423,7 @@ final class WPUSB_Core {
 			"ALTER TABLE
 				{$table}
 			 ADD
-				post_date DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00'
+				post_date DATE NOT NULL
 			 AFTER
 				post_id;
 			"
@@ -461,7 +466,7 @@ final class WPUSB_Core {
 				 WHERE
 				 	`id` = %d
 				",
-				$post_date,
+				date_i18n( 'Y-m-d', strtotime( $post_date ) ),
 				$result->id
 			) );
 		endforeach;
@@ -510,6 +515,12 @@ final class WPUSB_Core {
 		);
 
 		return $wpdb->get_var( $query );
+	}
+
+	public static function is_new_installation() {
+		$option = WPUSB_Utils::get_options_name( 1 );
+
+		return WPUSB_Utils::get_option( $option ) ? false : true;
 	}
 
 	/**

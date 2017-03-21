@@ -269,7 +269,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 				return WPUSB_Utils::number_format( $item->{$column} );
 
 			case 'date' :
-				return esc_attr( date_i18n( __( 'Y/m/d g:i:s a' ), strtotime( $item->post_date ) ) );
+				return esc_attr( date_i18n( __( 'Y/m/d' ), strtotime( $item->post_date ) ) );
 		}
 	}
 
