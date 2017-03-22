@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
 "POT-Creation-Date: 2017-03-22 07:09:18+00:00\n"
-"PO-Revision-Date: 2017-03-17 14:14-0300\n"
+"PO-Revision-Date: 2017-03-22 04:19-0300\n"
 "Last-Translator: Victor Freitas <victor.freitas@apiki.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: Config\n"
@@ -43,19 +43,19 @@ msgstr "Ver con el recuento"
 
 #: Config/enqueue-scripts.php:165
 msgid "Close"
-msgstr ""
+msgstr "Cierra"
 
 #: Config/enqueue-scripts.php:166
 msgid "Today"
-msgstr ""
+msgstr "Hoy"
 
 #: Config/enqueue-scripts.php:174
 msgid "Next"
-msgstr ""
+msgstr "Siguiente"
 
 #: Config/enqueue-scripts.php:175
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #: Config/social-elements.php:91 Controller/share-reports.controller.php:286
 #: Controller/widget-follow.controller.php:161
@@ -86,18 +86,16 @@ msgid "Tweet"
 msgstr "Tweet"
 
 #: Config/social-elements.php:127 Controller/widget-follow.controller.php:188
-#, fuzzy
 msgid "Google Plus"
-msgstr "Google+"
+msgstr ""
 
 #: Config/social-elements.php:130
 msgid "Share on Google+"
 msgstr "Compartir en Google+"
 
 #: Config/social-elements.php:145
-#, fuzzy
 msgid "WhatsApp"
-msgstr "Compartir en WhatsApp"
+msgstr ""
 
 #: Config/social-elements.php:148
 msgid "Share on WhatsApp"
@@ -147,9 +145,8 @@ msgid "Send by Gmail"
 msgstr "Enviar por Gmail"
 
 #: Config/social-elements.php:253
-#, fuzzy
 msgid "PrintFriendly"
-msgstr "imprimir por PrintFriendly"
+msgstr ""
 
 #: Config/social-elements.php:256
 msgid "Print via PrintFriendly"
@@ -160,9 +157,8 @@ msgid "Print"
 msgstr "Impresión"
 
 #: Config/social-elements.php:271
-#, fuzzy
 msgid "Telegram"
-msgstr "Compartir en Telegram"
+msgstr ""
 
 #: Config/social-elements.php:274
 msgid "Share on Telegram"
@@ -225,16 +221,14 @@ msgid "Share on VK"
 msgstr "Compartir en VK"
 
 #: Config/social-elements.php:415
-#, fuzzy
 msgid "Flipboard"
-msgstr "Compartir en Flipboard"
+msgstr ""
 
 #: Config/social-elements.php:418
 msgid "Share on Flipboard"
 msgstr "Compartir en Flipboard"
 
 #: Config/social-elements.php:433
-#, fuzzy
 msgid "Modal Share"
 msgstr "Compartir"
 
@@ -251,18 +245,16 @@ msgid "I just saw"
 msgstr "Acabo de ver"
 
 #: Controller/ajax-sharing-reports.controller.php:95
-#, fuzzy
 msgid "Not valid request"
-msgstr "Resaltada por referencia"
+msgstr "Solicitud no válida"
 
 #: Controller/ajax-sharing-reports.controller.php:101
-#, fuzzy
 msgid "Not valid reference"
-msgstr "Resaltada por referencia"
+msgstr "Referencia no válida"
 
 #: Controller/ajax-sharing-reports.controller.php:159
 msgid "Empty counts"
-msgstr ""
+msgstr "Recuentos vacíos"
 
 #: Controller/ajax.controller.php:117
 msgid "Error: Could not process css file."
@@ -321,13 +313,12 @@ msgid "Total"
 msgstr "Total"
 
 #: Controller/share-reports.controller.php:294
-#, fuzzy
 msgid "Post date"
-msgstr "Título de la entrada"
+msgstr "Fecha del post"
 
 #: Controller/share-reports.controller.php:360
 msgid "Filter"
-msgstr ""
+msgstr "Filtrar"
 
 #: Controller/share-reports.controller.php:432
 msgid "There is no record available at the moment!"
@@ -434,9 +425,8 @@ msgid "Check out our Flickr"
 msgstr "Echa un vistazo a nuestro Flickr"
 
 #: Controller/widget-follow.controller.php:269
-#, fuzzy
 msgid "Foursquare"
-msgstr "Cuadrado"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:271
 msgid "Check out our Foursquare"
@@ -475,9 +465,8 @@ msgid "Follow us on Behance"
 msgstr "Síganos en Behance"
 
 #: Controller/widget-follow.controller.php:316
-#, fuzzy
 msgid "Follow us on VKontakte"
-msgstr "Síganos en Twitter"
+msgstr ""
 
 #: Controller/widgets.controller.php:17
 msgid "Insert share buttons of social networks."
@@ -830,9 +819,8 @@ msgid "This allows highlight the social network where the user Came from."
 msgstr "Esto permite resaltar la red social donde vino el usuario."
 
 #: View/settings.view.php:519
-#, fuzzy
 msgid "Pinterest alt text"
-msgstr "Pinterest"
+msgstr "Pinterest texto alternativo"
 
 #: View/settings.view.php:521
 msgid ""
@@ -855,9 +843,8 @@ msgstr ""
 "total de cuentas de cada elemento es igual o mayor que el valor informado."
 
 #: View/settings.view.php:537
-#, fuzzy
 msgid "Twitter share count"
-msgstr "Texto debajo del recuento compartido"
+msgstr "Cuota de Twitter"
 
 #: View/settings.view.php:541
 msgid ""
