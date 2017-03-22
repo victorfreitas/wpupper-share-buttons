@@ -30,6 +30,10 @@
 			vertical-align: initial;
 		}
 	}
+
+	.#{$prefix}-inline {
+		display: inline-block;
+	}
 }
 
 .#{$prefix}-datepicker-container .ui-datepicker {
