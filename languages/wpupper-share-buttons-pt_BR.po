@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: WPUpper Share Buttons 3.32\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2017-03-21 15:04:52+00:00\n"
+"POT-Creation-Date: 2017-03-22 07:09:18+00:00\n"
 "PO-Revision-Date: 2017-03-21 12:32-0300\n"
 "Last-Translator: Victor Freitas <victor.freitas@apiki.com>\n"
 "Language-Team: Victor Freitas <victorfreitasdev@gmail.com>\n"
@@ -861,11 +861,11 @@ msgstr ""
 msgid "Search"
 msgstr "Buscar"
 
-#: View/share-report.view.php:88
+#: View/share-report.view.php:90
 msgid "Start date:"
 msgstr "Data inicial:"
 
-#: View/share-report.view.php:100
+#: View/share-report.view.php:102
 msgid "End date:"
 msgstr "Data final:"
 
@@ -977,7 +977,7 @@ msgstr ""
 msgid "https://github.com/victorfreitas"
 msgstr "https://github.com/victorfreitas"
 
-#: View/share-report.view.php:85
+#: View/share-report.view.php:84
 msgctxt "placeholder"
 msgid "YYYY-MM-DD"
 msgstr ""

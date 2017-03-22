@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2017-03-21 14:21:40+00:00\n"
+"POT-Creation-Date: 2017-03-22 07:09:18+00:00\n"
 "PO-Revision-Date: 2017-02-20 22:15-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -874,11 +874,11 @@ msgstr ""
 msgid "Search"
 msgstr "dipencarian"
 
-#: View/share-report.view.php:88
+#: View/share-report.view.php:90
 msgid "Start date:"
 msgstr ""
 
-#: View/share-report.view.php:100
+#: View/share-report.view.php:102
 msgid "End date:"
 msgstr ""
 
@@ -984,7 +984,7 @@ msgstr ""
 msgid "https://github.com/victorfreitas"
 msgstr ""
 
-#: View/share-report.view.php:85
+#: View/share-report.view.php:84
 msgctxt "placeholder"
 msgid "YYYY-MM-DD"
 msgstr ""
