@@ -69,7 +69,7 @@ final class WPUSB_Scripts {
 				$handle,
 				WPUSB_Utils::plugin_url( self::get_front_css_path() ),
 				array(),
-				filemtime( WPUSB_Utils::file_path( self::get_front_css_path() ) )
+				WPUSB_Utils::filetime( WPUSB_Utils::file_path( self::get_front_css_path() ) )
 			);
 		}
 
@@ -265,7 +265,7 @@ final class WPUSB_Scripts {
 			WPUSB_Utils::add_prefix( '-style' ),
 			WPUSB_Utils::plugin_url( self::get_front_css_path() ),
 			array(),
-			filemtime( WPUSB_Utils::file_path( self::get_front_css_path() ) )
+			WPUSB_Utils::filetime( WPUSB_Utils::file_path( self::get_front_css_path() ) )
 		);
 	}
 

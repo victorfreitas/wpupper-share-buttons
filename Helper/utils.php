@@ -815,11 +815,15 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * Generate file time style and scripts
 	 *
 	 * @since 1.0
-	 * @param Int $path
-	 * @return Integer
+	 * @param String $path
+	 * @return String|Integer
 	 */
 	public static function filetime( $path ) {
-		return date( 'dmYHi', filemtime( $path ) );
+		if ( ! file_exists( $path ) ) {
+			return WPUSB_App::VERSION;
+		}
+
+		return filemtime( $path );
 	}
 
 	/**
