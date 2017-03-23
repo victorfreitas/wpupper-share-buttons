@@ -7,8 +7,8 @@ WPUSB( 'WPUSB.Application', function(Application, $, utils) {
 	};
 
 	Application.highlight = function(container) {
-		container.byElement( 'highlight' ).each(function(i, block) {
-			hljs.highlightBlock( block );
+		container.byElement( 'highlight' ).each(function(index, element) {
+			hljs.highlightBlock( element );
 		});
 	};
 

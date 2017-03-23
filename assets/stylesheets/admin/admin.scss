@@ -1,48 +1,33 @@
-// ----------------------------------------------------------------------------
-// BASE
-// ----------------------------------------------------------------------------
-
+// # BASE
 @import "../base/variables";
 @import "../base/functions";
 @import "../base/fonts";
 @import "../base/helpers";
 @import "../base/mixins";
 
-// ----------------------------------------------------------------------------
-// ELEMENTS
-// ----------------------------------------------------------------------------
+// # Components
+@import "components/select2";
 
-// -- Icons
+// # ELEMENTS
 @import "elements/icons/spinner";
-
-// -- Navigation
 @import "elements/navigation/menu";
-
-// -- Normalize
 @import "elements/normalize/reset";
-
-// -- Normalize
 @import "elements/text/general";
 
-// ----------------------------------------------------------------------------
-// LAYOUTS
-// ----------------------------------------------------------------------------
-
+// # LAYOUTS
 @import "layouts/useOptions";
 @import "layouts/extraSettings";
 @import "layouts/wrap";
 @import "layouts/monokaiSublime";
 
-// -- Share report
+// # SHARING REPORT
 @import "layouts/share-report/datepicker";
 @import "layouts/share-report/wrap";
 
-// -- Widgets
-@import "layouts/widgets";
-
-// -- Buttons
+// # BUTTONS
 @import "elements/buttons/itemsLayout";
 @import "elements/buttons/checkbox";
 
-// -- Widgets
+// # WIDGETS
+@import "layouts/widgets";
 @import "elements/widgets/fields";

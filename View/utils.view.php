@@ -211,6 +211,7 @@ abstract class WPUSB_Utils_View {
 	private static function _tr_select() {
 		$args     = self::$args;
 		$field_id = self::get_field_id( $args->key );
+		$prefix   = str_replace( '_', '-', $args->prefix );
 	?>
 		<tr class="<?php echo self::get_class( true ); ?>"
 		    <?php echo self::get_attrs( true ); ?>>
@@ -226,6 +227,7 @@ abstract class WPUSB_Utils_View {
 					    name="<?php echo self::get_field_name(); ?>"
 					    id="<?php echo $field_id; ?>"
 					    <?php
+					    	printf( 'data-%s-component="select2"', $prefix );
 					    	echo self::get_placeholder( 'data-' );
 					    	echo self::get_attrs();
 					    	echo ( $args->multiple ) ? ' multiple="multiple"' : '';

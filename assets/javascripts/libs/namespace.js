@@ -31,7 +31,7 @@
                 instance           = new Core();
                 instance.$el       = context;
                 instance.data      = context.data();
-                instance.elements  = self.getDataByName( context, 'element' );
+                instance.elements  = self.getElements( context, 'element' );
                 instance.addPrefix = self.utils.addPrefix;
                 instance.prefix    = self.utils.prefix;
 
@@ -48,7 +48,7 @@
         return Constructor;
     };
 
-    WPUSB.getDataByName = function(context, name) {
+    WPUSB.getElements = function(context, name) {
         var items = {}
           , self  = this
         ;
@@ -122,6 +122,18 @@
             return this.parseName( text, /(-)\w/g );
         },
 
+        hasParam: function() {
+            return ~window.location.href.indexOf( '?' );
+        },
+
+        getSpinner: function() {
+            var img       = document.createElement( 'img' );
+            img.src       = this.getSpinnerUrl();
+            img.className = this.prefix + '-spinner';
+
+            return img;
+        },
+
         isMobile: function() {
             return ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|Tablet OS|IEMobile|Opera Mini/i.test(
                 navigator.userAgent
@@ -148,25 +160,27 @@
             return document.getElementById( id );
         },
 
-        hashStr: function(str) {
-            var hash   = 0
-              , i      = 0
-              , length = str.length
-              , char
-            ;
+        get: function(key, defaultVal) {
+            var query, vars, varsLength, pair, i;
 
-            if ( !length ) {
-                return hash;
+            if ( !this.hasParam() ) {
+                return ( defaultVal || '' );
             }
 
-            for ( i; i < length; i++ ) {
-                char = str.charCodeAt( i );
-                hash = ( ( hash << 10 ) - hash ) + char;
-                hash = hash & hash;
+            query      = window.location.search.substring(1);
+            vars       = query.split( '&' );
+            varsLength = vars.length;
+
+            for ( i = 0; i < varsLength; i++ ) {
+                pair = vars[i].split( '=' );
+
+                if ( pair[0] === key ) {
+                    return pair[1];
+                }
             }
 
-            return Math.abs( hash );
-        }
+            return ( defaultVal || '' );
+        },
     };
 
     context.WPUSB = WPUSB;

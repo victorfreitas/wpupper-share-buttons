@@ -1409,6 +1409,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 
 	/**
 	 * Check is plugin admin page
+	 * Check is customizer page preview
 	 *
 	 * @since 3.16
 	 * @param Null
@@ -1425,6 +1426,17 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			return true;
 		}
 
+		return self::is_dashboard_page();
+	}
+
+	/**
+	 * Check is plugin dashboards page
+	 *
+	 * @since 3.32
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function is_dashboard_page() {
 		return self::indexof( self::get( 'page' ), WPUSB_App::SLUG );
 	}
 

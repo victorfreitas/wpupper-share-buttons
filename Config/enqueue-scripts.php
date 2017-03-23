@@ -51,7 +51,7 @@ final class WPUSB_Scripts {
 			WPUSB_Utils::add_prefix( '-admin-scripts' ),
 			WPUSB_Utils::plugin_url( 'javascripts/admin/built.js' ),
 			array( 'jquery' ),
-			WPUSB_App::VERSION,
+			WPUSB_Utils::filetime( WPUSB_Utils::file_path( 'javascripts/admin/built.js' ) ),
 			true
 		);
 
@@ -77,7 +77,7 @@ final class WPUSB_Scripts {
 			WPUSB_Utils::add_prefix( '-admin-style' ),
 			WPUSB_Utils::plugin_url( 'stylesheets/admin.css' ),
 			( $page_settings ) ? array( $handle ) : array(),
-			WPUSB_App::VERSION
+			WPUSB_Utils::filetime( WPUSB_Utils::file_path( 'stylesheets/admin.css' ) )
 		);
 	}
 
