@@ -722,11 +722,12 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * Add tag with prefix
 	 *
 	 * @since 1.0
-	 * @param String $tag
+	 * @param String $after
+	 * @param String $before
 	 * @return String
 	 */
-	public static function add_prefix( $tag ) {
-		return WPUSB_App::SLUG . $tag;
+	public static function add_prefix( $after, $before = '' ) {
+		return $before . WPUSB_App::SLUG . $after;
 	}
 
 	/**

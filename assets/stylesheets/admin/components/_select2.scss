@@ -1,4 +1,14 @@
-.#{$prefix}-wrap {
+.#{$prefix}-settings {
+
+    .select2-selection__rendered,
+    .select2-selection {
+        outline: none;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
     .select2-container {
       box-sizing: border-box;
       display: inline-block;

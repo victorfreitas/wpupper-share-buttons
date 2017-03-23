@@ -36,6 +36,7 @@ class WPUSB_Settings_Controller {
 		add_action( 'admin_menu', array( $this, 'menu_page' ) );
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 		add_action( "update_option_{$prefix}_settings", array( $this, 'rebuild_custom_css' ), 10, 3 );
+		add_action( 'admin_body_class', array( $this, 'body_class' ) );
 	}
 
 	/**
@@ -160,5 +161,20 @@ class WPUSB_Settings_Controller {
 	private function _rebuild_css( $value = array() ) {
 		$custom_css = WPUSB_Utils::get_all_custom_css( null, $value );
 		WPUSB_Utils::build_css( $custom_css );
+	}
+
+	/**
+	 * Add class plugin page
+	 *
+	 * @since 3.32
+	 * @param String $classes
+	 * @return String
+	 */
+	public function body_class( $classes ) {
+		if ( WPUSB_Utils::is_dashboard_page() ) {
+			$classes .= WPUSB_Utils::add_prefix( '-settings', ' ' );
+		}
+
+		return $classes;
 	}
 }
