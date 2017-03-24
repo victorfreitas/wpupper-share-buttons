@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Development (trunk) 3.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2017-03-22 07:09:18+00:00\n"
+"POT-Creation-Date: 2017-03-24 15:11:09+00:00\n"
 "PO-Revision-Date: 2017-02-20 22:13-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -271,7 +271,7 @@ msgstr ""
 msgid "Error: Could not process css file."
 msgstr ""
 
-#: Controller/settings.controller.php:52 View/settings.view.php:49
+#: Controller/settings.controller.php:53 View/settings.view.php:49
 msgid "Settings"
 msgstr "WP Slimbox2：設定"
 
@@ -279,24 +279,24 @@ msgstr "WP Slimbox2：設定"
 msgid "WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/settings.controller.php:72
+#: Controller/settings.controller.php:73
 msgid "WPUpper Share"
 msgstr ""
 
-#: Controller/settings.controller.php:79 View/settings-extra.view.php:44
-#: View/utils.view.php:493
+#: Controller/settings.controller.php:80 View/settings-extra.view.php:44
+#: View/utils.view.php:495
 #, fuzzy
 msgid "Extra Settings"
 msgstr "WP Slimbox2：設定"
 
-#: Controller/settings.controller.php:89 View/settings-custom-css.view.php:37
-#: View/utils.view.php:498
+#: Controller/settings.controller.php:90 View/settings-custom-css.view.php:37
+#: View/utils.view.php:500
 msgid "Custom CSS"
 msgstr ""
 
-#: Controller/settings.controller.php:101
-#: Controller/settings.controller.php:102 View/settings-faq.view.php:35
-#: View/utils.view.php:503
+#: Controller/settings.controller.php:102
+#: Controller/settings.controller.php:103 View/settings-faq.view.php:35
+#: View/utils.view.php:505
 msgid "Use options"
 msgstr ""
 
@@ -304,7 +304,7 @@ msgstr ""
 msgid "Sharing Report | WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/share-reports.controller.php:110 View/utils.view.php:511
+#: Controller/share-reports.controller.php:110 View/utils.view.php:513
 #, fuzzy
 msgid "Sharing Report"
 msgstr "分享到 Pinterest"
@@ -532,7 +532,7 @@ msgstr ""
 msgid "Remove button title"
 msgstr ""
 
-#: Helper/utils-share.php:404 Helper/utils.php:2108 View/settings.view.php:178
+#: Helper/utils-share.php:404 Helper/utils.php:2125 View/settings.view.php:178
 #: View/settings.view.php:401
 msgid "Default"
 msgstr "默认"
@@ -561,7 +561,7 @@ msgstr "方形"
 msgid "Square plus"
 msgstr "方形"
 
-#: Helper/utils.php:1480
+#: Helper/utils.php:1497
 msgid "SHARES"
 msgstr ""
 
@@ -650,37 +650,45 @@ msgstr ""
 msgid "Select Bitly domain"
 msgstr ""
 
-#: View/settings-extra.view.php:111
+#: View/settings-extra.view.php:113
+msgid "Post types is active"
+msgstr ""
+
+#: View/settings-extra.view.php:118
+msgid "Minimum 1 post type, default all."
+msgstr ""
+
+#: View/settings-extra.view.php:124
 msgid "Minify html buttons share"
 msgstr ""
 
-#: View/settings-extra.view.php:113
+#: View/settings-extra.view.php:126
 msgid "Minify the HTML helps site performance."
 msgstr ""
 
-#: View/settings-extra.view.php:119
+#: View/settings-extra.view.php:132
 msgid "Deactivate sharing report"
 msgstr ""
 
-#: View/settings-extra.view.php:121
+#: View/settings-extra.view.php:134
 msgid ""
 "This allows you to disable counting of the shares report. You will not lose "
 "the report you have already computed."
 msgstr ""
 
-#: View/settings-extra.view.php:127
+#: View/settings-extra.view.php:140
 msgid "Disable CSS"
 msgstr ""
 
-#: View/settings-extra.view.php:134
+#: View/settings-extra.view.php:147
 msgid "Disable JS"
 msgstr ""
 
-#: View/settings-extra.view.php:141
+#: View/settings-extra.view.php:154
 msgid "CSS file in footer"
 msgstr ""
 
-#: View/settings-extra.view.php:143
+#: View/settings-extra.view.php:156
 msgid ""
 "Keep the CSS style in the footer is recommended to improve the performance "
 "of your website."
@@ -891,33 +899,33 @@ msgstr ""
 msgid "Disable on this post"
 msgstr ""
 
-#: View/utils.view.php:310 View/widgets.view.php:283
+#: View/utils.view.php:312 View/widgets.view.php:283
 msgid "YES"
 msgstr ""
 
-#: View/utils.view.php:311 View/widgets.view.php:284
+#: View/utils.view.php:313 View/widgets.view.php:284
 msgid "NO"
 msgstr ""
 
-#: View/utils.view.php:442
+#: View/utils.view.php:444
 msgid ""
 "Help keep the free %s, you can make a donation or vote with %s at WordPress."
 "org. Thank you very much!"
 msgstr ""
 
-#: View/utils.view.php:454
+#: View/utils.view.php:456
 msgid "Make a donation"
 msgstr ""
 
-#: View/utils.view.php:461
+#: View/utils.view.php:463
 msgid "Make a review"
 msgstr ""
 
-#: View/utils.view.php:471
+#: View/utils.view.php:473
 msgid "Settings saved."
 msgstr "設定已保存"
 
-#: View/utils.view.php:488
+#: View/utils.view.php:490
 msgid "General"
 msgstr ""
 
