@@ -1,14 +1,5 @@
 .#{$prefix}-settings {
 
-    .select2-selection__rendered,
-    .select2-selection {
-        outline: none;
-
-        &:focus {
-            outline: none;
-        }
-    }
-
     .select2-container {
       box-sizing: border-box;
       display: inline-block;
@@ -493,4 +484,21 @@
 
     .select2-container--classic.select2-container--open .select2-dropdown {
       border-color: #5897fb; }
+
+    .select2-selection__rendered,
+    .select2-selection {
+        outline: none;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .select2-container--default.select2-container--focus .select2-selection--multiple {
+      border: 1px solid #aaa;
+    }
+
+    .select2-container .select2-selection--multiple .select2-selection__rendered {
+      display: block;
+    }
 }

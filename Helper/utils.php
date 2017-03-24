@@ -2267,6 +2267,24 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		return date_i18n( $format, strtotime( $date ) );
 	}
 
+	/**
+	 * Get post types publics
+	 *
+	 * @since 3.27
+	 * @param Null
+	 * @return Array
+	 */
+	public static function get_post_types( $args = array() ) {
+		$defaults = array(
+			'public'  => true,
+			'show_ui' => true,
+		);
+		$args = array_merge( $defaults, $args );
+		$args = apply_filters( self::add_prefix( '_post_types_args' ), $args );
+
+		return get_post_types( $args );
+	}
+
     /**
      * Generate log file
      *

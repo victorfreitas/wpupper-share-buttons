@@ -105,6 +105,19 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 								'default' => 'default',
 							) );
 
+							$post_types = WPUSB_Utils::get_post_types();
+
+							parent::tr( array(
+								'type'     => 'select',
+								'key'      => 'post-types-active',
+								'label'    => __( 'Post types is active', $domain ),
+								'class'    => 'regular-text',
+								'options'  => WPUSB_Utils::get_post_types(),
+								'default'  => $post_types,
+								'multiple' => true,
+								'text'     => __( 'Minimum 1 post type, default all.', $domain ),
+							) );
+
 							parent::tr( array(
 								'type'    => 'checkbox',
 								'key'     => 'minify-html',

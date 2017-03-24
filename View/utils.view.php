@@ -227,7 +227,7 @@ abstract class WPUSB_Utils_View {
 					    name="<?php echo self::get_field_name(); ?>"
 					    id="<?php echo $field_id; ?>"
 					    <?php
-					    	printf( 'data-%s-component="select2"', $prefix );
+					    	echo WPUSB_Utils::add_prefix( '-component="select2"', 'data-' );
 					    	echo self::get_placeholder( 'data-' );
 					    	echo self::get_attrs();
 					    	echo ( $args->multiple ) ? ' multiple="multiple"' : '';

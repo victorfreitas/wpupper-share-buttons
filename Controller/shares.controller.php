@@ -213,20 +213,6 @@ class WPUSB_Shares_Controller {
 	}
 
 	/**
-	 * Get post types publics
-	 *
-	 * @since 3.27
-	 * @param Null
-	 * @return Array
-	 */
-	public function get_post_types() {
-		return get_post_types( array(
-			'public'  => true,
-			'show_ui' => true,
-		) );
-	}
-
-	/**
 	 * Register meta box for disable share button on specific post
 	 *
 	 * @since 3.27
@@ -236,7 +222,7 @@ class WPUSB_Shares_Controller {
 	public function register_meta_boxes() {
 		global $wp_version;
 
-		$post_types = $this->get_post_types();
+		$post_types = WPUSB_Utils::get_post_types();
 
 		if ( version_compare( $wp_version, '4.4.0', '>=' ) ) {
 			return $this->add_meta_box( $post_types );
