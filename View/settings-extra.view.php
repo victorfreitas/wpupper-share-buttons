@@ -37,11 +37,15 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 				}
 			?>
 
-			<p class="description"><?php _e( 'Add the Share Buttons automatically.', $domain ); ?></p>
+			<p class="description">
+				<?php _e( 'Add the Share Buttons automatically.', $domain ); ?>
+			</p>
 
 			<?php parent::page_notice(); ?>
 
-			<span class="<?php echo "{$prefix}-title-wrap"; ?>"><?php _e( 'Extra Settings', $domain ); ?></span>
+			<span class="<?php echo "{$prefix}-title-wrap"; ?>">
+				<?php _e( 'Extra Settings', $domain ); ?>
+			</span>
 
 			<?php parent::menu_top(); ?>
 
@@ -109,10 +113,10 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 
 							parent::tr( array(
 								'type'     => 'select',
-								'key'      => 'post-types-active',
-								'label'    => __( 'Post types is active', $domain ),
+								'key'      => 'post-types',
+								'label'    => __( 'Post types is enabled', $domain ),
 								'class'    => 'regular-text',
-								'options'  => WPUSB_Utils::get_post_types(),
+								'options'  => $post_types,
 								'default'  => $post_types,
 								'multiple' => true,
 								'text'     => __( 'Minimum 1 post type, default all.', $domain ),

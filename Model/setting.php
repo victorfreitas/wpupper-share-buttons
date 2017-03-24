@@ -422,6 +422,14 @@ class WPUSB_Setting {
 	private $pin_image_alt;
 
 	/**
+	 * Active post types
+	 *
+	 * @since 3.31
+	 * @var String
+	 */
+	private $post_types;
+
+	/**
 	 * Instance singleton
 	 *
 	 * @since 1.0

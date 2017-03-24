@@ -219,8 +219,14 @@ class WPUSB_Shares_Controller {
 	 * @param NUll
 	 * @return Void
 	 */
-	public function register_meta_boxes() {
+	public function register_meta_boxes( $type = '' ) {
 		global $wp_version;
+
+		$post_types = WPUSB_Utils::option( 'post_types', false );
+
+		if ( $post_types && ! isset( $post_types[ $type ] ) ) {
+			return;
+		}
 
 		$post_types = WPUSB_Utils::get_post_types();
 

@@ -185,7 +185,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	*/
 	public static function filter_values_sanitize_option( $values, $filter ) {
 		if ( self::is_sanitize_option_filter( $filter ) ) {
-			return array_filter( $values );
+			return array_filter( self::parse_post_types( $values ) );
 		}
 
 		return $values;
@@ -837,9 +837,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function option( $name, $default = '', $sanitize = 'rm_tags' ) {
 		$model = WPUSB_Setting::get_instance();
-		$value = self::get_value_by( $model->get_options(), $name, false );
-
-		unset( $model );
+		$value = self::get_value_by( $model->get_options(), $name );
 
 		if ( empty( $value ) ) {
 			return $default;
@@ -2090,12 +2088,16 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * Check is plugin deactivate on current post
 	 *
 	 * @since 3.27
+	 * @since 3.32
 	 * @param Integer $ID
 	 * @return Boolean
 	 */
-    public static function is_disabled_by_meta( $ID = 0 ) {
-    	$ID = ( $ID ) ? $ID : self::get_id();
-    	return ( self::get_meta( $ID ) === 'yes' );
+    public static function is_disabled_by_meta( $ID = null ) {
+		$ID    = ( $ID ) ? $ID : self::get_id();
+		$type  = get_post_type( $ID );
+		$types = self::option( 'post_types' );
+
+    	return ( $types && ! isset( $types[ $type ] ) || self::get_meta( $ID ) === 'yes' );
     }
 
 	/**
@@ -2283,6 +2285,31 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$args = apply_filters( self::add_prefix( '_post_types_args' ), $args );
 
 		return get_post_types( $args );
+	}
+
+	/**
+	 * Parse post types option
+	 *
+	 * @since 3.32
+	 * @param Array $settings
+	 * @return Array
+	 */
+	public static function parse_post_types( $settings ) {
+		$key = 'post_types';
+
+		if ( ! isset( $settings[ $key ] ) || ! is_array( $settings[ $key ] ) ) {
+			return $settings;
+		}
+
+		$post_types = array();
+
+		foreach ( $settings[ $key ] as $type ) :
+			$post_types[ $type ] = $type;
+		endforeach;
+
+		$settings[ $key ] = $post_types;
+
+		return $settings;
 	}
 
     /**
