@@ -313,7 +313,6 @@ final class WPUSB_Core {
 				id         BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 				post_title TEXT       NOT NULL,
 				post_id    BIGINT(20) NOT NULL DEFAULT 0,
-				post_date  DATE       NOT NULL,
 				facebook   BIGINT(20) NOT NULL DEFAULT 0,
 				twitter    BIGINT(20) NOT NULL DEFAULT 0,
 				google     BIGINT(20) NOT NULL DEFAULT 0,
@@ -322,6 +321,7 @@ final class WPUSB_Core {
 				tumblr     BIGINT(20) NOT NULL DEFAULT 0,
 				buffer     BIGINT(20) NOT NULL DEFAULT 0,
 				total      BIGINT(20) NOT NULL DEFAULT 0,
+				post_date  DATE       NOT NULL,
 				PRIMARY KEY id ( id ),
 				UNIQUE( post_id ),
 				INDEX( post_id )
