@@ -7,7 +7,13 @@ WPUSB( 'WPUSB.Application', function(Application, $, utils) {
 	};
 
 	Application.highlight = function(container) {
-		container.byElement( 'highlight' ).each(function(index, element) {
+		var context = $( '.' + utils.addPrefix( 'settings' ) );
+
+		if ( typeof hljs !== 'object' ) {
+			return;
+		}
+
+		context.byElement( 'highlight' ).each(function(index, element) {
 			hljs.highlightBlock( element );
 		});
 	};
