@@ -1,7 +1,7 @@
 WPUSB( 'WPUSB.FixedTop', function(FixedTop, $, utils) {
 
 	FixedTop.create = function(container) {
-		this.class = utils.addPrefix( '-fixed-top' );
+		this.class = utils.addPrefix( 'fixed-top' );
 		this.$el   = container.byElement( this.class );
 
 		if ( !this.$el.length ) {
