@@ -28,7 +28,7 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 		parent::set_options();
 		parent::set_prefix( $extra_setting );
 	?>
-		<div class="wrap" <?php printf( 'data-%s-component="extra-settings"', $prefix ); ?>>
+		<div class="wrap" <?php echo WPUSB_Utils::get_component( 'extra-settings' ); ?>>
 			<h2><?php _e( 'WPUpper Share Buttons', $domain ); ?></h2>
 
 			<?php

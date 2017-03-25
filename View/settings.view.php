@@ -50,10 +50,11 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 
 			<?php parent::menu_top(); ?>
 
-			<div class="<?php echo "{$prefix}-wrap"; ?>" data-<?php echo $prefix; ?>-component="share-settings">
+			<div class="<?php echo "{$prefix}-wrap"; ?>"
+				 <?php echo WPUSB_Utils::get_component( 'share-settings' ); ?>>
 
 				<style data-element-style></style>
-				<div data-<?php echo $prefix; ?>-component="share-preview">
+				<div <?php echo WPUSB_Utils::get_component( 'share-preview' ); ?>>
 					<div data-element="preview"></div>
 				</div>
 

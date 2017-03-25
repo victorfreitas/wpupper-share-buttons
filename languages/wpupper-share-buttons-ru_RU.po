@@ -4,14 +4,14 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
 "POT-Creation-Date: 2017-03-25 07:12:41+00:00\n"
-"PO-Revision-Date: 2017-03-01 03:45-0300\n"
-"Last-Translator: Victor Freitas <victor.freitas@apiki.com>\n"
+"PO-Revision-Date: 2017-03-25 10:35-0300\n"
+"Last-Translator: Victor Freitas <victorfreitasdev@gmail.com>\n"
 "Language-Team: burzhu.net <djsoldier@mail.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
@@ -32,14 +32,12 @@ msgid "View without count"
 msgstr ""
 
 #: Config/enqueue-scripts.php:102
-#, fuzzy
 msgid "See with title"
-msgstr "Удалить название кнопки"
+msgstr ""
 
 #: Config/enqueue-scripts.php:103
-#, fuzzy
 msgid "See with count"
-msgstr "Удалить название кнопки"
+msgstr ""
 
 #: Config/enqueue-scripts.php:132
 msgid "Close"
@@ -86,18 +84,16 @@ msgid "Tweet"
 msgstr "Твитнуть"
 
 #: Config/social-elements.php:127 Controller/widget-follow.controller.php:188
-#, fuzzy
 msgid "Google Plus"
-msgstr "Google+"
+msgstr ""
 
 #: Config/social-elements.php:130
 msgid "Share on Google+"
 msgstr "Поделиться в Google+"
 
 #: Config/social-elements.php:145
-#, fuzzy
 msgid "WhatsApp"
-msgstr "Выложить на WhatsApp"
+msgstr ""
 
 #: Config/social-elements.php:148
 msgid "Share on WhatsApp"
@@ -143,14 +139,12 @@ msgid "Gmail"
 msgstr ""
 
 #: Config/social-elements.php:238
-#, fuzzy
 msgid "Send by Gmail"
-msgstr "Послать по электронной почте"
+msgstr ""
 
 #: Config/social-elements.php:253
-#, fuzzy
 msgid "PrintFriendly"
-msgstr "Печать через PrintFriendly"
+msgstr ""
 
 #: Config/social-elements.php:256
 msgid "Print via PrintFriendly"
@@ -161,9 +155,8 @@ msgid "Print"
 msgstr "Распечатать"
 
 #: Config/social-elements.php:271
-#, fuzzy
 msgid "Telegram"
-msgstr "Выложить в Телеграмм"
+msgstr ""
 
 #: Config/social-elements.php:274
 msgid "Share on Telegram"
@@ -198,51 +191,44 @@ msgid "Reddit"
 msgstr ""
 
 #: Config/social-elements.php:346
-#, fuzzy
 msgid "Share on Reddit"
-msgstr "Выложить на Linkedin"
+msgstr ""
 
 #: Config/social-elements.php:361 Config/social-elements.php:370
 msgid "Messenger"
 msgstr ""
 
 #: Config/social-elements.php:364
-#, fuzzy
 msgid "Send on Facebook Messenger"
-msgstr "Поделиться через фейсбук"
+msgstr ""
 
 #: Config/social-elements.php:379 Controller/share-reports.controller.php:305
 msgid "Buffer"
 msgstr ""
 
 #: Config/social-elements.php:382
-#, fuzzy
 msgid "Share on Buffer"
-msgstr "Выложить на Viber"
+msgstr ""
 
 #: Config/social-elements.php:397 Controller/widget-follow.controller.php:314
 msgid "VK"
 msgstr ""
 
 #: Config/social-elements.php:400
-#, fuzzy
 msgid "Share on VK"
-msgstr "Выложить на Viber"
+msgstr ""
 
 #: Config/social-elements.php:415
-#, fuzzy
 msgid "Flipboard"
-msgstr "Выложить на Viber"
+msgstr ""
 
 #: Config/social-elements.php:418
-#, fuzzy
 msgid "Share on Flipboard"
-msgstr "Выложить на Viber"
+msgstr ""
 
 #: Config/social-elements.php:433
-#, fuzzy
 msgid "Modal Share"
-msgstr "Поделиться"
+msgstr ""
 
 #: Config/social-elements.php:436 Templates/layouts-primary.php:170
 msgid "Open modal social networks"
@@ -291,9 +277,8 @@ msgstr "Дополнительные настройки"
 
 #: Controller/settings.controller.php:90 View/settings-custom-css.view.php:37
 #: View/utils.view.php:500
-#, fuzzy
 msgid "Custom CSS"
-msgstr "Пользовательский класс"
+msgstr ""
 
 #: Controller/settings.controller.php:100 View/settings-faq.view.php:35
 #: View/utils.view.php:505
@@ -346,9 +331,8 @@ msgstr ""
 
 #: Controller/widget-follow.controller.php:65
 #: Controller/widgets.controller.php:86
-#, fuzzy
 msgid "Widget title"
-msgstr "Удалить название кнопки"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:70 View/settings.view.php:468
 msgid "Custom class"
@@ -366,34 +350,28 @@ msgstr ""
 
 #: Controller/widget-follow.controller.php:87
 #: Controller/widgets.controller.php:137
-#, fuzzy
 msgid "Layout"
-msgstr "параметры макета"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:163
-#, fuzzy
 msgid "Follow us on Facebook"
-msgstr "Лайк в Фейсбук"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:172
-#, fuzzy
 msgid "Follow us on Twitter"
-msgstr "Поделиться в Google+"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:181
-#, fuzzy
 msgid "Find us on Linkedin"
-msgstr "Выложить на Linkedin"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:190
-#, fuzzy
 msgid "Follow us on Google+"
-msgstr "Поделиться в Google+"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:199
-#, fuzzy
 msgid "My Pinterest board"
-msgstr "Pinterest"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:206
 msgid "Instagram"
@@ -404,9 +382,8 @@ msgid "Check out our Instagram"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:217
-#, fuzzy
 msgid "Follow us Reddit"
-msgstr "Поделиться в Google+"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:224
 msgid "YouTube"
@@ -421,9 +398,8 @@ msgid "Vimeo"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:235
-#, fuzzy
 msgid "Find us on Vimeo"
-msgstr "Выложить на Linkedin"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:242
 msgid "RSS Feed"
@@ -434,9 +410,8 @@ msgid "Subscribe to our RSS Feed"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:253
-#, fuzzy
 msgid "Find us on Tumblr"
-msgstr "Выложить на Tumblr"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:260
 msgid "Flickr"
@@ -447,9 +422,8 @@ msgid "Check out our Flickr"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:269
-#, fuzzy
 msgid "Foursquare"
-msgstr "Квадрат"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:271
 msgid "Check out our Foursquare"
@@ -476,23 +450,20 @@ msgid "Snapchat"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:298
-#, fuzzy
 msgid "Follow us on Snapchat"
-msgstr "Лайк в Фейсбук"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:305
 msgid "Behance"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:307
-#, fuzzy
 msgid "Follow us on Behance"
-msgstr "Лайк в Фейсбук"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:316
-#, fuzzy
 msgid "Follow us on VKontakte"
-msgstr "Поделиться в Google+"
+msgstr ""
 
 #: Controller/widgets.controller.php:17
 msgid "Insert share buttons of social networks."
@@ -515,9 +486,8 @@ msgid "Buttons title color"
 msgstr ""
 
 #: Controller/widgets.controller.php:125 View/settings.view.php:410
-#, fuzzy
 msgid "Share count text color"
-msgstr "Поделиться через фейсбук"
+msgstr ""
 
 #: Controller/widgets.controller.php:131
 msgid ""
@@ -592,9 +562,8 @@ msgid "Your twitter username"
 msgstr "Ваше имя пользователя Twitter"
 
 #: View/settings-extra.view.php:70 View/settings-extra.view.php:71
-#, fuzzy
 msgid "Twitter hashtags"
-msgstr "Имя пользователя в Твиттере"
+msgstr ""
 
 #: View/settings-extra.view.php:72
 msgid ""
@@ -608,9 +577,8 @@ msgid "Example: "
 msgstr "Пример:"
 
 #: View/settings-extra.view.php:79 View/settings-extra.view.php:80
-#, fuzzy
 msgid "Twitter text"
-msgstr "Twitter"
+msgstr ""
 
 #: View/settings-extra.view.php:81
 msgid "Use {title} to add the post title"
@@ -665,9 +633,8 @@ msgid "Minify the HTML helps site performance."
 msgstr ""
 
 #: View/settings-extra.view.php:139
-#, fuzzy
 msgid "Deactivate sharing report"
-msgstr "Поделиться отчетом"
+msgstr ""
 
 #: View/settings-extra.view.php:141
 msgid ""
@@ -750,28 +717,24 @@ msgid "Fixed left"
 msgstr "Неподвижная слева"
 
 #: View/settings.view.php:258
-#, fuzzy
 msgid "Fixed right"
-msgstr "Неподвижная слева"
+msgstr ""
 
 #: View/settings.view.php:268
 msgid "Clear"
 msgstr ""
 
 #: View/settings.view.php:269
-#, fuzzy
 msgid "Click to clear the positions."
-msgstr "Нажмите, чтобы увидеть также"
+msgstr ""
 
 #: View/settings.view.php:284 View/settings.view.php:347
-#, fuzzy
 msgid "Position fixed layout"
-msgstr "Позиция фиксированной"
+msgstr ""
 
 #: View/settings.view.php:340
-#, fuzzy
 msgid "Text below sharing count"
-msgstr "Имя пользователя в Твиттере"
+msgstr ""
 
 #: View/settings.view.php:344 View/settings.view.php:364
 msgid "Change text below sharing count. Default SHARES"
@@ -790,9 +753,8 @@ msgid "Used in %s layout."
 msgstr ""
 
 #: View/settings.view.php:391
-#, fuzzy
 msgid "Share count background color"
-msgstr "Поделиться через фейсбук"
+msgstr ""
 
 #: View/settings.view.php:400
 msgid "Layouts: %s, %s, %s and %s."
@@ -849,9 +811,8 @@ msgid "This allows highlight the social network where the user Came from."
 msgstr ""
 
 #: View/settings.view.php:519
-#, fuzzy
 msgid "Pinterest alt text"
-msgstr "Pinterest"
+msgstr ""
 
 #: View/settings.view.php:521
 msgid ""
@@ -873,9 +834,8 @@ msgstr ""
 "осознанного значения."
 
 #: View/settings.view.php:537
-#, fuzzy
 msgid "Twitter share count"
-msgstr "Имя пользователя в Твиттере"
+msgstr ""
 
 #: View/settings.view.php:541
 msgid ""
@@ -948,9 +908,8 @@ msgid "No social networks were enabled in the Widget."
 msgstr ""
 
 #: View/widgets.view.php:34
-#, fuzzy
 msgid "Override post title"
-msgstr "Удалить название кнопки"
+msgstr ""
 
 #: View/widgets.view.php:35
 msgid "Override permalinks"
@@ -973,9 +932,8 @@ msgid "Enter the network URL here:"
 msgstr ""
 
 #: View/widgets.view.php:224
-#, fuzzy
 msgid "Example:"
-msgstr "Пример:"
+msgstr ""
 
 #: View/widgets.view.php:240
 msgid "Your email:"
@@ -986,9 +944,8 @@ msgid "Subject:"
 msgstr ""
 
 #: View/widgets.view.php:260
-#, fuzzy
 msgid "Give the title:"
-msgstr "Удалить название кнопки"
+msgstr ""
 
 #: wpupper-share-buttons.php:130
 msgid ""

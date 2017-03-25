@@ -68,31 +68,31 @@ abstract class WPUSB_Utils_View {
 
 	public static function get_default_args() {
 		return array(
-			'label'             => '',
-			'type'              => 'text',
-			'class'             => 'large-text',
-			'tr_class'          => '',
-			'key'               => '',
-			'text'              => '',
-			'link'              => '',
-			'tag_text'          => 'p',
-			'span'              => '',
-			'tr_attr'           => '',
-			'attr'              => '',
-			'placeholder'       => '',
-			'value'             => '',
-			'block_strong'      => '',
-			'block_text'        => '',
-			'options'           => array(),
-			'prefix'            => WPUSB_App::SLUG,
-			'multiple'          => false,
-			'cols'              => 100,
-			'rows'              => 5,
-			'default'           => '',
-			'checked'           => '1',
-			'min'               => '',
-			'max'               => '',
-			'step'              => 1,
+			'label'        => '',
+			'type'         => 'text',
+			'class'        => 'large-text',
+			'tr_class'     => '',
+			'key'          => '',
+			'text'         => '',
+			'link'         => '',
+			'tag_text'     => 'p',
+			'span'         => '',
+			'tr_attr'      => '',
+			'attr'         => '',
+			'placeholder'  => '',
+			'value'        => '',
+			'block_strong' => '',
+			'block_text'   => '',
+			'options'      => array(),
+			'prefix'       => WPUSB_App::SLUG,
+			'multiple'     => false,
+			'cols'         => 100,
+			'rows'         => 5,
+			'default'      => '',
+			'checked'      => '1',
+			'min'          => '',
+			'max'          => '',
+			'step'         => 1,
 		);
 	}
 
@@ -227,7 +227,7 @@ abstract class WPUSB_Utils_View {
 					    name="<?php echo self::get_field_name(); ?>"
 					    id="<?php echo $field_id; ?>"
 					    <?php
-					    	echo WPUSB_Utils::add_prefix( '-component="select2"', 'data-' );
+					    	echo WPUSB_Utils::get_component( 'select2' );
 					    	echo self::get_placeholder( 'data-' );
 					    	echo self::get_attrs();
 					    	echo ( $args->multiple ) ? ' multiple="multiple"' : '';

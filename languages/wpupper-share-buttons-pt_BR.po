@@ -6,8 +6,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
 "POT-Creation-Date: 2017-03-25 07:12:41+00:00\n"
-"PO-Revision-Date: 2017-03-25 10:20-0300\n"
-"Last-Translator: Victor Freitas <victor.freitas@apiki.com>\n"
+"PO-Revision-Date: 2017-03-25 10:30-0300\n"
+"Last-Translator: Victor Freitas <victorfreitasdev@gmail.com>\n"
 "Language-Team: Victor Freitas <victorfreitasdev@gmail.com>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -266,7 +266,7 @@ msgstr "Configurações"
 
 #. Plugin Name of the plugin/theme
 msgid "WPUpper Share Buttons"
-msgstr "WPUpper Share Buttons"
+msgstr ""
 
 #: Controller/settings.controller.php:73
 msgid "WPUpper Share"

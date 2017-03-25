@@ -91,7 +91,7 @@ class WPUSB_Sharing_Report_View {
 		$date_format = _x( 'YYYY-MM-DD', 'placeholder', WPUSB_App::TEXTDOMAIN );
 	?>
 		<div class="<?php echo WPUSB_Utils::add_prefix( '-inline' ); ?>"
-			 <?php printf( 'data-%s-component="datepicker"', WPUSB_App::SLUG ); ?>>
+			 <?php echo WPUSB_Utils::get_component( 'datepicker' ); ?>>
 
 			<label class="<?php echo WPUSB_Utils::add_prefix( '-label' ); ?>">
 				<?php _e( 'Start date:', WPUSB_App::TEXTDOMAIN ); ?>

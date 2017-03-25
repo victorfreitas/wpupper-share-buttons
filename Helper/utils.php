@@ -1383,21 +1383,12 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function get_component_by_type( $type = 'counter' ) {
-		$component  = 'data-' . WPUSB_App::SLUG . '-component=';
-		$attr_name  = ( self::is_sharing_report_disabled() ) ? 'data-report="no" ' : '';
-		$attr_name .= ( self::is_disabled_social_counts_js() ) ? ' data-disabled-share-counts="1" ' : '';
+		$attrs  = ( self::is_sharing_report_disabled() ) ? 'data-report="no" ' : '';
+		$attrs .= ( self::is_disabled_social_counts_js() ) ? ' data-disabled-share-counts="1" ' : '';
+		$name   = ( $type === 'counter' ) ? 'counter-social-share' : 'social-modal';
+		$attrs .= self::get_component( $name );
 
-		switch ( $type ) :
-			case 'counter' :
-				$attr_name .= $component . '"counter-social-share"';
-				break;
-
-			case 'modal' :
-				$attr_name .= $component . '"social-modal"';
-				break;
-		endswitch;
-
-		return apply_filters( self::add_prefix( '-component-name' ), $attr_name, WPUSB_App::SLUG );
+		return apply_filters( self::add_prefix( '-component-name' ), $attrs, WPUSB_App::SLUG );
 	}
 
 	/**

@@ -42,10 +42,11 @@ class WPUSB_Shares_View {
 			return $buttons;
 		}
 
-		$modal = WPUSB_Utils::render_modal( $args, $number );
+		$modal     = WPUSB_Utils::render_modal( $args, $number );
+		$component = WPUSB_Utils::get_component( 'buttons-section' );
 
 		return <<<EOD
-			<div data-{$prefix}-component="buttons-section">
+			<div {$component}>
 				{$buttons}
 				{$modal}
 			</div>

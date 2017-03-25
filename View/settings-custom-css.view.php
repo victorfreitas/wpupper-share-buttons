@@ -42,7 +42,7 @@ class WPUSB_Settings_Custom_CSS_View {
 			<?php WPUSB_Utils_View::update_notice(); ?>
 
 			<div class="<?php echo "{$prefix}-wrap"; ?>"
-				 <?php echo "data-{$prefix}-component=\"custom-css\""; ?>>
+				 <?php echo WPUSB_Utils::get_component( 'custom-css' ); ?>>
 
 				<table class="form-table">
 					<tbody>

@@ -6,15 +6,15 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
 "POT-Creation-Date: 2017-03-25 07:12:41+00:00\n"
-"PO-Revision-Date: 2017-03-01 03:43-0300\n"
-"Last-Translator: Victor Freitas <victor.freitas@apiki.com>\n"
+"PO-Revision-Date: 2017-03-25 10:33-0300\n"
+"Last-Translator: Victor Freitas <victorfreitasdev@gmail.com>\n"
 "Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.12\n"
 
 #: Config/enqueue-scripts.php:100
 msgid "View Untitled"
@@ -77,18 +77,16 @@ msgid "Tweet"
 msgstr "Tweeter"
 
 #: Config/social-elements.php:127 Controller/widget-follow.controller.php:188
-#, fuzzy
 msgid "Google Plus"
-msgstr "Google"
+msgstr ""
 
 #: Config/social-elements.php:130
 msgid "Share on Google+"
 msgstr "Partager sur Google+"
 
 #: Config/social-elements.php:145
-#, fuzzy
 msgid "WhatsApp"
-msgstr "Partager sur WhatsApp"
+msgstr ""
 
 #: Config/social-elements.php:148
 msgid "Share on WhatsApp"
@@ -138,9 +136,8 @@ msgid "Send by Gmail"
 msgstr "Envoyé par Gmail"
 
 #: Config/social-elements.php:253
-#, fuzzy
 msgid "PrintFriendly"
-msgstr "Imprimer via PrintFriendly"
+msgstr ""
 
 #: Config/social-elements.php:256
 msgid "Print via PrintFriendly"
@@ -151,9 +148,8 @@ msgid "Print"
 msgstr "Imprimer"
 
 #: Config/social-elements.php:271
-#, fuzzy
 msgid "Telegram"
-msgstr "Partager sur Telegram"
+msgstr ""
 
 #: Config/social-elements.php:274
 msgid "Share on Telegram"
@@ -204,32 +200,28 @@ msgid "Buffer"
 msgstr ""
 
 #: Config/social-elements.php:382
-#, fuzzy
 msgid "Share on Buffer"
-msgstr "Partager sur Viber"
+msgstr ""
 
 #: Config/social-elements.php:397 Controller/widget-follow.controller.php:314
 msgid "VK"
 msgstr ""
 
 #: Config/social-elements.php:400
-#, fuzzy
 msgid "Share on VK"
-msgstr "Partager sur Viber"
+msgstr ""
 
 #: Config/social-elements.php:415
-#, fuzzy
 msgid "Flipboard"
-msgstr "Partager sur Flipboard"
+msgstr ""
 
 #: Config/social-elements.php:418
 msgid "Share on Flipboard"
 msgstr "Partager sur Flipboard"
 
 #: Config/social-elements.php:433
-#, fuzzy
 msgid "Modal Share"
-msgstr "Partagez"
+msgstr ""
 
 #: Config/social-elements.php:436 Templates/layouts-primary.php:170
 msgid "Open modal social networks"
@@ -323,9 +315,8 @@ msgid "Y/m/d"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:23
-#, fuzzy
 msgid "Insert the Follow Us of your social networks."
-msgstr "réseaux sociaux modales ouverts"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:41
 msgid "CSS is disabled!"
@@ -333,9 +324,8 @@ msgstr ""
 
 #: Controller/widget-follow.controller.php:65
 #: Controller/widgets.controller.php:86
-#, fuzzy
 msgid "Widget title"
-msgstr "Voir Untitled"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:70 View/settings.view.php:468
 msgid "Custom class"
@@ -353,34 +343,28 @@ msgstr ""
 
 #: Controller/widget-follow.controller.php:87
 #: Controller/widgets.controller.php:137
-#, fuzzy
 msgid "Layout"
-msgstr "Options de présentation "
+msgstr ""
 
 #: Controller/widget-follow.controller.php:163
-#, fuzzy
 msgid "Follow us on Facebook"
-msgstr "Comme sur Facebook"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:172
-#, fuzzy
 msgid "Follow us on Twitter"
-msgstr "Partager sur Google+"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:181
-#, fuzzy
 msgid "Find us on Linkedin"
-msgstr "Partager sur Linkedin"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:190
-#, fuzzy
 msgid "Follow us on Google+"
-msgstr "Partager sur Google+"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:199
-#, fuzzy
 msgid "My Pinterest board"
-msgstr "Pinterest&nbsp;"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:206
 msgid "Instagram"
@@ -391,9 +375,8 @@ msgid "Check out our Instagram"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:217
-#, fuzzy
 msgid "Follow us Reddit"
-msgstr "Partager sur Google+"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:224
 msgid "YouTube"
@@ -408,9 +391,8 @@ msgid "Vimeo"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:235
-#, fuzzy
 msgid "Find us on Vimeo"
-msgstr "Partager sur Linkedin"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:242
 msgid "RSS Feed"
@@ -421,9 +403,8 @@ msgid "Subscribe to our RSS Feed"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:253
-#, fuzzy
 msgid "Find us on Tumblr"
-msgstr "Partager sur Tumblr"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:260
 msgid "Flickr"
@@ -434,9 +415,8 @@ msgid "Check out our Flickr"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:269
-#, fuzzy
 msgid "Foursquare"
-msgstr "Carrée"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:271
 msgid "Check out our Foursquare"
@@ -463,33 +443,28 @@ msgid "Snapchat"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:298
-#, fuzzy
 msgid "Follow us on Snapchat"
-msgstr "Comme sur Facebook"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:305
 msgid "Behance"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:307
-#, fuzzy
 msgid "Follow us on Behance"
-msgstr "Comme sur Facebook"
+msgstr ""
 
 #: Controller/widget-follow.controller.php:316
-#, fuzzy
 msgid "Follow us on VKontakte"
-msgstr "Partager sur Google+"
+msgstr ""
 
 #: Controller/widgets.controller.php:17
-#, fuzzy
 msgid "Insert share buttons of social networks."
-msgstr "réseaux sociaux modales ouverts"
+msgstr ""
 
 #: Controller/widgets.controller.php:91
-#, fuzzy
 msgid "Post title"
-msgstr "Voir Untitled"
+msgstr ""
 
 #: Controller/widgets.controller.php:96
 msgid "URL"
@@ -504,9 +479,8 @@ msgid "Buttons title color"
 msgstr ""
 
 #: Controller/widgets.controller.php:125 View/settings.view.php:410
-#, fuzzy
 msgid "Share count text color"
-msgstr "Partager sur Facebook"
+msgstr ""
 
 #: Controller/widgets.controller.php:131
 msgid ""
@@ -515,14 +489,12 @@ msgid ""
 msgstr ""
 
 #: Controller/widgets.controller.php:143 View/settings.view.php:512
-#, fuzzy
 msgid "Remove counter"
-msgstr "Avant le contenu"
+msgstr ""
 
 #: Controller/widgets.controller.php:148 View/settings.view.php:505
-#, fuzzy
 msgid "Remove button title"
-msgstr "Voir avec le titre"
+msgstr ""
 
 #: Helper/utils-share.php:404 Helper/utils.php:2138 View/settings.view.php:178
 #: View/settings.view.php:401
@@ -549,18 +521,16 @@ msgstr "Carrée"
 #: Helper/utils-share.php:408 View/settings.view.php:226
 #: View/settings.view.php:360 View/settings.view.php:365
 #: View/settings.view.php:451
-#, fuzzy
 msgid "Square plus"
-msgstr "Carrée"
+msgstr ""
 
 #: Helper/utils.php:1506
 msgid "SHARES"
 msgstr ""
 
 #: Templates/fixed-left.php:150
-#, fuzzy
 msgid "Shares"
-msgstr "Partagez"
+msgstr ""
 
 #: View/settings-custom-css.view.php:32 View/settings-extra.view.php:41
 #: View/settings-faq.view.php:29 View/settings.view.php:45
@@ -585,9 +555,8 @@ msgid "Your twitter username"
 msgstr "Votre nom d'utilisateur twitter"
 
 #: View/settings-extra.view.php:70 View/settings-extra.view.php:71
-#, fuzzy
 msgid "Twitter hashtags"
-msgstr "Texte Twitter"
+msgstr ""
 
 #: View/settings-extra.view.php:72
 msgid ""
@@ -609,9 +578,8 @@ msgid "Use {title} to add the post title"
 msgstr "Utilisez {title} pour ajouter le titre de poste"
 
 #: View/settings-extra.view.php:88
-#, fuzzy
 msgid "UTM tracking"
-msgstr "Ajouter un UTM  tracking (Analytics)"
+msgstr ""
 
 #: View/settings-extra.view.php:89
 msgid "Add UTM tracking (Analytics)"
@@ -642,9 +610,8 @@ msgid "Select Bitly domain"
 msgstr ""
 
 #: View/settings-extra.view.php:120
-#, fuzzy
 msgid "Post types is enabled"
-msgstr "Voir Untitled"
+msgstr ""
 
 #: View/settings-extra.view.php:125
 msgid "Minimum 1 post type, default all."
@@ -659,9 +626,8 @@ msgid "Minify the HTML helps site performance."
 msgstr ""
 
 #: View/settings-extra.view.php:139
-#, fuzzy
 msgid "Deactivate sharing report"
-msgstr "Rapport de partage"
+msgstr ""
 
 #: View/settings-extra.view.php:141
 msgid ""
@@ -674,9 +640,8 @@ msgid "Disable CSS"
 msgstr "Désactiver la feuille de style."
 
 #: View/settings-extra.view.php:154
-#, fuzzy
 msgid "Disable JS"
-msgstr "Désactiver la feuille de style."
+msgstr ""
 
 #: View/settings-extra.view.php:161
 msgid "CSS file in footer"
@@ -741,32 +706,28 @@ msgid "Position fixed"
 msgstr ""
 
 #: View/settings.view.php:245
-#, fuzzy
 msgid "Fixed left"
-msgstr "Fixe"
+msgstr ""
 
 #: View/settings.view.php:258
-#, fuzzy
 msgid "Fixed right"
-msgstr "Fixe"
+msgstr ""
 
 #: View/settings.view.php:268
 msgid "Clear"
 msgstr ""
 
 #: View/settings.view.php:269
-#, fuzzy
 msgid "Click to clear the positions."
-msgstr "Cliquez pour voir aussi"
+msgstr ""
 
 #: View/settings.view.php:284 View/settings.view.php:347
 msgid "Position fixed layout"
 msgstr ""
 
 #: View/settings.view.php:340
-#, fuzzy
 msgid "Text below sharing count"
-msgstr "Texte Twitter"
+msgstr ""
 
 #: View/settings.view.php:344 View/settings.view.php:364
 msgid "Change text below sharing count. Default SHARES"
@@ -785,9 +746,8 @@ msgid "Used in %s layout."
 msgstr ""
 
 #: View/settings.view.php:391
-#, fuzzy
 msgid "Share count background color"
-msgstr "Partager sur Facebook"
+msgstr ""
 
 #: View/settings.view.php:400
 msgid "Layouts: %s, %s, %s and %s."
@@ -844,9 +804,8 @@ msgid "This allows highlight the social network where the user Came from."
 msgstr ""
 
 #: View/settings.view.php:519
-#, fuzzy
 msgid "Pinterest alt text"
-msgstr "Pinterest&nbsp;"
+msgstr ""
 
 #: View/settings.view.php:521
 msgid ""
@@ -868,9 +827,8 @@ msgstr ""
 "valeur informée."
 
 #: View/settings.view.php:537
-#, fuzzy
 msgid "Twitter share count"
-msgstr "Texte Twitter"
+msgstr ""
 
 #: View/settings.view.php:541
 msgid ""
@@ -938,9 +896,8 @@ msgid "No social networks were enabled in the Widget."
 msgstr ""
 
 #: View/widgets.view.php:34
-#, fuzzy
 msgid "Override post title"
-msgstr "Voir avec le titre"
+msgstr ""
 
 #: View/widgets.view.php:35
 msgid "Override permalinks"
@@ -975,9 +932,8 @@ msgid "Subject:"
 msgstr ""
 
 #: View/widgets.view.php:260
-#, fuzzy
 msgid "Give the title:"
-msgstr "Voir avec le titre"
+msgstr ""
 
 #: wpupper-share-buttons.php:130
 msgid ""
