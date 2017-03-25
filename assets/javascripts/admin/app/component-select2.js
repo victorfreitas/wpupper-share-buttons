@@ -13,7 +13,7 @@ WPUSB( 'WPUSB.Components.Select2', function(Model, $, utils) {
 			minimumResultsForSearch: 10
 		};
 
-		return options;
+		return $.extend( options, ( this.data.options || {} ) );
 	};
 
 });

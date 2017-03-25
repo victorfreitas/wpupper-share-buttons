@@ -393,8 +393,8 @@ final class WPUSB_Core {
 		$table = WPUSB_Utils::get_table_name();
 
 		self::_set_column_tumblr( $wpdb, $table );
-		self::_set_column_post_date( $wpdb, $table );
 		self::_set_column_buffer( $wpdb, $table );
+		self::_set_column_post_date( $wpdb, $table );
 		self::_create_table_short_url();
 	}
 
@@ -423,9 +423,7 @@ final class WPUSB_Core {
 			"ALTER TABLE
 				{$table}
 			 ADD
-				post_date DATE NOT NULL
-			 AFTER
-				post_id;
+				post_date DATE NOT NULL;
 			"
 		);
 

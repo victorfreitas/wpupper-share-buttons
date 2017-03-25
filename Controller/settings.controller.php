@@ -97,10 +97,11 @@ class WPUSB_Settings_Controller {
 	  		array( 'WPUSB_Settings_Custom_CSS_View', 'render' )
 	  	);
 
+	  	$title = __( 'Use options', WPUSB_App::TEXTDOMAIN );
 	  	add_submenu_page(
 	  		WPUSB_App::SLUG,
-	  		__( 'Use options', WPUSB_App::TEXTDOMAIN ),
-	  		__( 'Use options', WPUSB_App::TEXTDOMAIN ),
+	  		$title,
+	  		$title,
 	  		$capability,
 	  		WPUSB_Setting::USE_OPTIONS,
 	  		array( 'WPUSB_Settings_Faq_View', 'render_page_faq' )

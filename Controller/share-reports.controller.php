@@ -80,6 +80,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		$this->_set_property();
 
 		add_action( 'admin_menu', array( $this, 'menu' ) );
+		add_action( 'admin_init', array( $this, 'export_csv' ) );
 
 		parent::__construct( array(
 			'singular' => 'social-share-report',
@@ -89,6 +90,13 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		) );
 	}
 
+	/**
+	 * Set property query string param
+	 *
+	 * @since 3.32
+	 * @param Null
+	 * @return Void
+	 */
 	private function _set_property() {
 		$this->table      = WPUSB_Utils::get_table_name();
 		$this->search     = WPUSB_Utils::get( 's', '', 'esc_sql' );
@@ -122,9 +130,10 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 * @param Int $page
 	 * @param String $orderby
 	 * @param String $order
+	 * @param $output String
 	 * @return Object
 	 */
-	private function _get_sharing_report( $posts_per_page, $current_page, $orderby, $order ) {
+	private function _get_sharing_report( $posts_per_page, $current_page, $orderby, $order, $output = OBJECT ) {
 		global $wpdb;
 
 		if ( ! $this->_table_exists( $wpdb ) ) {
@@ -133,20 +142,14 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 
 		$offset = ( ( $current_page - 1 ) * self::POSTS_PER_PAGE );
 		$where  = $this->_where();
-		$query  = $wpdb->prepare(
-			"SELECT * FROM
-				`{$this->table}`
-			 {$where}
-			 ORDER BY
-			 	`{$orderby}` {$order}
-			 LIMIT
-			 	%d OFFSET %d
-			",
-			$posts_per_page,
-			$offset
-		);
+		$limit  = ( $output === OBJECT ) ? 'LIMIT %d OFFSET %d' : '';
+		$query  = "SELECT * FROM `{$this->table}` {$where} ORDER BY `{$orderby}` {$order} {$limit}";
 
-		return $wpdb->get_results( $query );
+		if ( ! empty( $limit ) ) {
+			$query = $wpdb->prepare( $query, array( $posts_per_page, $offset ) );
+		}
+
+		return $wpdb->get_results( $query, $output );
 	}
 
 	/**
@@ -181,8 +184,9 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 * Create sql where post title for search
 	 *
 	 * @since 1.0
-	 * @param String $space
-	 * @return Mixed Null|String
+	 * @since 3.32
+	 * @param Null
+	 * @return String
 	 */
 	private function _where() {
 		global $wpdb;
@@ -203,7 +207,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	/**
 	 * Add date range filter for query
 	 *
-	 * @since 1.0
+	 * @since 3.32
 	 * @param String $where
 	 * @return String
 	 */
@@ -237,7 +241,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 *
 	 * @since 1.0
 	 * @param Object $wpdb
-	 * @return Boolean
+	 * @return String
 	 */
 	private function _table_exists( $wpdb ) {
 		return $wpdb->query( "SHOW TABLES LIKE '{$this->table}'" );
@@ -253,10 +257,12 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 */
 	public function column_default( $item, $column ) {
 		$column = strtolower( $column );
+		$value  = '';
 
-		switch ( $column ) {
+		switch ( $column ) :
 			case 'title' :
-				return WPUSB_Sharing_Report_View::get_permalink_title( $item );
+				$value = WPUSB_Sharing_Report_View::get_permalink_title( $item );
+				break;
 
 			case 'facebook'  :
 			case 'twitter'   :
@@ -266,11 +272,18 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			case 'tumblr'    :
 			case 'buffer'    :
 			case 'total'     :
-				return WPUSB_Utils::number_format( $item->{$column} );
+				$value = WPUSB_Utils::number_format( $item->{$column} );
+				break;
 
 			case 'date' :
-				return esc_attr( date_i18n( __( 'Y/m/d' ), strtotime( $item->post_date ) ) );
-		}
+				$value = $this->get_date_i18n( $item->post_date );
+				break;
+
+			default:
+				$value = '';
+		endswitch;
+
+		return apply_filters( WPUSB_Utils::add_prefix( $this->tag . 'column' ), $value, $item, $column );
 	}
 
 	/**
@@ -294,7 +307,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			'Date'      => __( 'Post date', WPUSB_App::TEXTDOMAIN ),
 		);
 
-		return $columns;
+		return apply_filters( WPUSB_Utils::add_prefix( $this->tag . 'columns' ), $columns );
 	}
 
 	/**
@@ -305,7 +318,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 * @return Array
 	 */
 	public function get_sortable_columns() {
-		$sortable_columns = array(
+		$sort_columns = array(
 			'Title'     => array( 'post_title', true ),
 			'Facebook'  => array( 'facebook', true ),
 			'Google'    => array( 'google', true ),
@@ -318,7 +331,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			'Date'      => array( 'post_date', true ),
 		);
 
-		return $sortable_columns;
+		return apply_filters( WPUSB_Utils::add_prefix( $this->tag . 'sort_columns' ), $sort_columns );
 	}
 
 	/**
@@ -341,29 +354,115 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 * @return Void
 	 */
 	public function extra_tablenav( $which ) {
-	?>
-		<div class="alignleft actions">
-	<?php
-		if ( 'top' === $which && ! is_singular() ) :
-			ob_start();
+		if ( 'top' !== $which || is_singular() ) {
+			return;
+		}
+
+		echo '<div class="alignleft actions">';
+
+			WPUSB_Sharing_Report_View::export_csv_btn();
 
 			WPUSB_Sharing_Report_View::render_date_range_filter();
 
-			do_action( WPUSB_Utils::add_prefix( $this->tag . 'restrict_manage' ), $which );
+			submit_button( __( 'Filter' ), '', '', false );
 
-			$output = ob_get_clean();
-			ob_end_flush();
+		echo '</div>';
 
-			if ( ! empty( $output ) ) :
-				echo $output;
+	}
 
-				submit_button( __( 'Filter' ), '', '', false );
-			endif;
-		endif;
-	?>
-		</div>
-	<?php
-		do_action( WPUSB_Utils::add_prefix( $this->tag . 'extra_tablenav' ), $which );
+	/**
+	 * Export to CSV curent results
+	 *
+	 * @since 3.32
+	 * @param Null
+	 * @return Void
+	 */
+	public function export_csv() {
+		if ( ! WPUSB_Utils::is_sharing_report_page() || 'true' !== WPUSB_Utils::get( 'export' ) ) {
+			return;
+		}
+
+		$this->prepare_items( ARRAY_A );
+		$this->csv_headers();
+		$this->render_csv();
+		exit(1);
+	}
+
+	/**
+	 * The post title
+	 *
+	 * @since 3.32
+	 * @param $integer $post_id
+	 * @return String
+	 */
+	public function get_title( $post_id ) {
+		return WPUSB_Utils::rm_tags( get_the_title( $post_id ) );
+	}
+
+	/**
+	 * Render CSV output
+	 *
+	 * @since 3.32
+	 * @param Null
+	 * @return Void
+	 */
+	public function render_csv() {
+		if ( empty( $this->items ) ) {
+			return;
+		}
+
+		ob_start();
+
+		$out = fopen( 'php://output', 'w' );
+
+		fputcsv( $out,  $this->get_columns() );
+
+		foreach ( $this->items as $rows ) :
+			$rows['post_date'] = $this->get_date_i18n( $rows['post_date'] );
+			$title             = $this->get_title( $rows['post_id'] );
+
+			if ( ! empty( $title ) ) {
+				$rows['post_title'] = $title;
+			}
+
+			unset( $rows['id'] );
+			unset( $rows['post_id'] );
+
+			fputcsv( $out, $rows );
+		endforeach;
+
+		fclose( $out );
+
+		$output = ob_get_contents();
+		ob_end_clean();
+
+		echo WPUSB_Utils::html_decode( $output );
+	}
+
+	/**
+	 * Get the CSV name formated
+	 *
+	 * @since 3.32
+	 * @param Null
+	 * @return String
+	 */
+	public function get_csv_name() {
+		$date = $this->get_date_i18n( date( 'Y-m-d' ), true );
+
+		return sprintf( '%s-sharing-report-%s.csv', WPUSB_App::SLUG, $date );
+	}
+
+	/**
+	 * Set CSV headers download
+	 *
+	 * @since 3.32
+	 * @param Null
+	 * @return Void
+	 */
+	public function csv_headers() {
+        header( 'Content-Encoding: ' . WPUSB_Utils::get_charset() );
+		header( 'Content-type: text/csv' );
+		header( 'Content-Disposition: attachment; filename=' . $this->get_csv_name() );
 	}
 
 	/**
@@ -401,7 +500,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 * @param Null
 	 * @return Array
 	 */
-	public function prepare_items() {
+	public function prepare_items( $output = OBJECT ) {
 		$orderby               = $this->_get_sql_orderby( WPUSB_Utils::get( 'orderby' ), 'total' );
 		$order_type            = $this->_get_sql_order( WPUSB_Utils::get( 'order' ), 'desc' );
 		$current_page          = $this->get_pagenum();
@@ -418,7 +517,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			'per_page'    => $per_page,
 		) );
 
-		$this->items = self::_get_sharing_report( $per_page, $current_page, $orderby, $order_type );
+		$this->items = self::_get_sharing_report( $per_page, $current_page, $orderby, $order_type, $output );
 	}
 
 	/**
@@ -481,5 +580,18 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		$order       = isset( $permissions[ $order ] ) ? $order : $default;
 
 		return strtoupper( $order );
+	}
+
+	/**
+	 * Translate post date
+	 *
+	 * @since 3.32
+	 * @param String $date
+	 * @return String
+	 */
+	public function get_date_i18n( $date, $is_file = false ) {
+		$date_i18n = esc_attr( date_i18n( __( 'Y/m/d' ), strtotime( $date ) ) );
+
+		return $is_file ? str_replace( '/', '-', $date_i18n ) : $date_i18n;
 	}
 }

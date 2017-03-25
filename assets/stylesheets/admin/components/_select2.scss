@@ -501,4 +501,10 @@
     .select2-container .select2-selection--multiple .select2-selection__rendered {
       display: block;
     }
+
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+      border-radius: 2px;
+      border: 1px solid #dedede;
+      padding: 2px 5px;
+    }
 }

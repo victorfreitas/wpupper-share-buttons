@@ -402,7 +402,7 @@ abstract class WPUSB_Utils_View {
 		$attributes = '';
 
 		foreach ( $attrs as $attr => $name ) :
-			$attributes .= sprintf( ' %s="%s"', $attr, $name );
+			$attributes .= sprintf( " %s='%s'", $attr, $name );
 		endforeach;
 
 		return $attributes;

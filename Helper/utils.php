@@ -731,6 +731,17 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
+	 * Component attribute
+	 *
+	 * @since 3.32
+	 * @param String $name
+	 * @return String
+	 */
+	public static function get_component( $name ) {
+		return self::add_prefix( sprintf( '-component="%s"', $name ), 'data-' );
+	}
+
+	/**
 	 * Get content posts
 	 *
 	 * @since 1.1
@@ -786,7 +797,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function html_decode( $string ) {
-		return html_entity_decode( $string, ENT_NOQUOTES, get_bloginfo( 'charset' ) );
+		return html_entity_decode( $string, ENT_NOQUOTES, self::get_charset() );
 	}
 
 	/**
@@ -2310,6 +2321,50 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$settings[ $key ] = $post_types;
 
 		return $settings;
+	}
+
+	/**
+	 * Check is home dashboard
+	 *
+	 * @since 3.32
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function is_panel_home() {
+		return ( WPUSB_App::SLUG === self::get( 'page' ) );
+	}
+
+	/**
+	 * Check is sharing report page
+	 *
+	 * @since 3.32
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function is_sharing_report_page() {
+		return ( WPUSB_Setting::SHARING_REPORT === self::get( 'page' ) );
+	}
+
+	/**
+	 * Check is custom css page
+	 *
+	 * @since 3.32
+	 * @param Null
+	 * @return Boolean
+	 */
+	public static function is_custom_css_page() {
+		return ( WPUSB_Setting::CUSTOM_CSS === self::get( 'page' ) );
+	}
+
+	/**
+	 * Get charset option
+	 *
+	 * @since 3.32
+	 * @param Null
+	 * @return String
+	 */
+	public static function get_charset() {
+		return self::rm_tags( get_bloginfo( 'charset' ) );
 	}
 
     /**

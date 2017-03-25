@@ -80,6 +80,13 @@ class WPUSB_Sharing_Report_View {
 		);
 	}
 
+	/**
+	 * Render date range filter
+	 *
+	 * @since 3.32
+	 * @param Null
+	 * @return Void
+	 */
 	public static function render_date_range_filter() {
 		$date_format = _x( 'YYYY-MM-DD', 'placeholder', WPUSB_App::TEXTDOMAIN );
 	?>
@@ -111,6 +118,21 @@ class WPUSB_Sharing_Report_View {
 			</label>
 
 		</div>
+	<?php
+	}
+
+	/**
+	 * Render btn export csv
+	 *
+	 * @since 3.32
+	 * @param Null
+	 * @return Void
+	 */
+	public static function export_csv_btn() {
+	?>
+		<button class="button button-primary" name="export" value="true">
+			<?php _e( 'Export CSV', WPUSB_App::TEXTDOMAIN ); ?>
+		</button>
 	<?php
 	}
 }

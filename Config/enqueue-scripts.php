@@ -43,7 +43,7 @@ final class WPUSB_Scripts {
 		wp_enqueue_script( 'wp-color-picker' );
 		wp_enqueue_script( 'jquery-ui-sortable' );
 
-		if ( self::_is_sharing_report_page() ) {
+		if ( WPUSB_Utils::is_sharing_report_page() ) {
 			wp_enqueue_script( 'jquery-ui-datepicker' );
 		}
 
@@ -61,7 +61,7 @@ final class WPUSB_Scripts {
 			self::_localize_script_args()
 		);
 
-		$page_settings = self::_is_panel_home();
+		$page_settings = WPUSB_Utils::is_panel_home();
 		$handle        = WPUSB_Utils::add_prefix( '-front-style' );
 
 		if ( $page_settings ) {
@@ -82,39 +82,6 @@ final class WPUSB_Scripts {
 	}
 
 	/**
-	 * Check is home dashboard
-	 *
-	 * @since 3.32
-	 * @param Null
-	 * @return Boolean
-	 */
-	private static function _is_panel_home() {
-		return ( WPUSB_App::SLUG === WPUSB_Utils::get( 'page' ) );
-	}
-
-	/**
-	 * Check is sharing report page
-	 *
-	 * @since 3.32
-	 * @param Null
-	 * @return Boolean
-	 */
-	private static function _is_sharing_report_page() {
-		return ( WPUSB_Setting::SHARING_REPORT === WPUSB_Utils::get( 'page' ) );
-	}
-
-	/**
-	 * Check is custom css page
-	 *
-	 * @since 3.32
-	 * @param Null
-	 * @return Boolean
-	 */
-	private static function is_custom_css_page() {
-		return ( WPUSB_Setting::CUSTOM_CSS === WPUSB_Utils::get( 'page' ) );
-	}
-
-	/**
 	 * Arguments admin plugin scripts
 	 *
 	 * @since 3.32
@@ -128,7 +95,7 @@ final class WPUSB_Scripts {
 			'WPLANG'  => get_locale(),
 		);
 
-		if ( self::_is_panel_home() ) {
+		if ( WPUSB_Utils::is_panel_home() ) {
 			$args['previewTitles'] = array(
 				'titleRemove'   => __( 'View Untitled', WPUSB_App::TEXTDOMAIN ),
 				'counterRemove' => __( 'View without count', WPUSB_App::TEXTDOMAIN ),
@@ -137,7 +104,7 @@ final class WPUSB_Scripts {
 			);
 		}
 
-		if ( self::_is_sharing_report_page() ) {
+		if ( WPUSB_Utils::is_sharing_report_page() ) {
 			$tag = WPUSB_Utils::add_prefix( '_datepicker_defaults' );
 
 			$args['datepickerDefaults'] = apply_filters( $tag, self::get_localize_datepicker() );
@@ -270,7 +237,7 @@ final class WPUSB_Scripts {
 	}
 
 	public static function codemirror_scripts() {
-		if ( ! self::is_custom_css_page() ) {
+		if ( ! WPUSB_Utils::is_custom_css_page() ) {
 			return;
 		}
 

@@ -98,6 +98,9 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 								'placeholder' => __( 'Insert your access token Bitly', $domain ),
 								'text'        => __( 'Shorten urls using bitly, generate token in ', $domain ),
 								'link'        => 'https://bitly.is/2lQjWHF',
+								'attr'        => array(
+									'data-element' => 'bitly-token',
+								),
 							) );
 
 							parent::tr( array(

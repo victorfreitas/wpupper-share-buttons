@@ -29,6 +29,17 @@ $_itemsAvailable : 'items-available';
     }
 }
 
+.#{$prefix}-settings {
+
+    .#{$prefix}-inline {
+        display: inline-block !important;
+
+        &.button {
+            margin: 0;
+        }
+    }
+}
+
 .#{$prefix}-wrap {
 
     @extend %noSelect;
