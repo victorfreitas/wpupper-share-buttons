@@ -6,7 +6,7 @@ Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google
 Requires at least: 3.0  
 Tested up to: 4.7.3  
 PHP version: 5.2.4  
-Stable tag: 3.31.1  
+Stable tag: 3.32  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -68,7 +68,28 @@ Layout options: default, buttons, rounded, square
 
 ## Changelog
 
-= 3.31.1 =
+## 3.32
+
+* NEW: Select which post types shows the sharing buttons. [Extra Settings Dashboard]
+* NEW: Share count Buffer
+* NEW: Sharing report post date field
+* NEW: Sharing report filtering by date range. Thanks @daniloalvess
+* NEW: Sharing report export to CSV
+* NEW: Layout fixed square 2
+* NEW: Follow US on VKontakte in Widget
+* NEW: Located templates or filter templates for developer customization.
+* Sharing report improvements
+* Removed cache on sharing report dashboard
+* Dashboard internal code structure improvements
+* Fix: Layout fixed button close
+* Bitly validation on add key
+* New fitlers
+* Add animation on open modal
+* Update grunt js, add grunt wp i18n
+* Languages update
+* Bug fixes
+
+## 3.31.1
 
 * Fix Pinterest icon
 
@@ -91,8 +112,8 @@ Layout options: default, buttons, rounded, square
 
 ## 3.28
 
-* New: Behance follow us
-* New: Buffer share button
+* NEW: Behance follow us
+* NEW: Buffer share button
 * Share Telegram on desktop available.
 * Bug fix. [related by @ablekinetic]
 
@@ -114,8 +135,8 @@ Layout options: default, buttons, rounded, square
 * New option: Add Widget Follow Us
 * New option: Deactivate share buttons for specific Post, Page and publics Custom Post Types via metabox
 * New option: Select the Bitly domain
-* New: Update Widget share options
-* New: Real time preview share buttons customization in Dashboard page
+* NEW: Update Widget share options
+* NEW: Real time preview share buttons customization in Dashboard page
 * Update font icons
 * Widget selective preview improvents
 * Update languages
@@ -161,14 +182,14 @@ Layout options: default, buttons, rounded, square
 
 ## 3.23
 
-* New: Add option insert title above the share buttons
+* NEW: Add option insert title above the share buttons
 * Improvements performance font icons. [Related by @marius84]
 * Update languages
 
 ## 3.22
 
-* New: Add option change share count label for theme Square Plus
-* New: Change layout share count for theme Square Plus
+* NEW: Add option change share count label for theme Square Plus
+* NEW: Change layout share count for theme Square Plus
 * Admin page layout improvements
 * Code improvements
 * Update languages
@@ -230,7 +251,7 @@ Layout options: default, buttons, rounded, square
 
 ### 3.13
 
-* New: Share count support on Tumblr
+* NEW: Share count support on Tumblr
 * Update Tumblr share API url
 * Update filters support
 * Bug fixes
@@ -256,9 +277,9 @@ Layout options: default, buttons, rounded, square
 
 * General coding standards and improvements
 * Improvements modal social networks
-* New: Add buton share on Flipboard
-* New: Option set url via shortcode or method php
-* New: Option set title via shortcode or method php
+* NEW: Add buton share on Flipboard
+* NEW: Option set url via shortcode or method php
+* NEW: Option set title via shortcode or method php
 * Bug fixes
 
 ### 3.8.2
@@ -278,7 +299,7 @@ Layout options: default, buttons, rounded, square
 
 ### 3.7.0
 
-* New: Option to choose which social networks show through shortcode, PHP method
+* NEW: Option to choose which social networks show through shortcode, PHP method
 * You can see more details on using the shortcode and PHP method on the "Use Options" in the administration of the plugin.
 
 ### 3.6.6
@@ -333,7 +354,7 @@ Layout options: default, buttons, rounded, square
 
 ### 3.5.0
 
-* New: Layout rounded for position fixed
+* NEW: Layout rounded for position fixed
 * Internal improvements
 * Bug fixes
 * Update translations
@@ -350,13 +371,13 @@ Layout options: default, buttons, rounded, square
 
 ### 3.4.0
 
-* New: Add share on Reddit
+* NEW: Add share on Reddit
 * Updating translations
 
 ### 3.3.0
 
 * Bug fixes
-* New: Possiblity add buttons share on Archive and Category
+* NEW: Possiblity add buttons share on Archive and Category
 * Minor improvements
 
 ### 3.2.1
@@ -364,7 +385,7 @@ Layout options: default, buttons, rounded, square
 * Bug fixes
 
 ### 3.2.0
-* New: Layout fixed by context
+* NEW: Layout fixed by context
 * Internal Improvements
 * Updating translations
 * Bug fixes

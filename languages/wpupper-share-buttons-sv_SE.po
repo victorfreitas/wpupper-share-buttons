@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2017-03-25 07:12:41+00:00\n"
+"POT-Creation-Date: 2017-03-25 16:06:44+00:00\n"
 "PO-Revision-Date: 2017-02-20 22:14-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,36 +16,36 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Poedit 1.8.11\n"
 
-#: Config/enqueue-scripts.php:100
+#: Config/enqueue-scripts.php:110
 msgid "View Untitled"
 msgstr ""
 
-#: Config/enqueue-scripts.php:101
+#: Config/enqueue-scripts.php:111
 msgid "View without count"
 msgstr ""
 
-#: Config/enqueue-scripts.php:102
+#: Config/enqueue-scripts.php:112
 msgid "See with title"
 msgstr ""
 
-#: Config/enqueue-scripts.php:103
+#: Config/enqueue-scripts.php:113
 #, fuzzy
 msgid "See with count"
 msgstr "Twitternamn"
 
-#: Config/enqueue-scripts.php:132
+#: Config/enqueue-scripts.php:142
 msgid "Close"
 msgstr ""
 
-#: Config/enqueue-scripts.php:133
+#: Config/enqueue-scripts.php:143
 msgid "Today"
 msgstr ""
 
-#: Config/enqueue-scripts.php:141
+#: Config/enqueue-scripts.php:151
 msgid "Next"
 msgstr ""
 
-#: Config/enqueue-scripts.php:142
+#: Config/enqueue-scripts.php:152
 msgid "Previous"
 msgstr ""
 
@@ -305,7 +305,7 @@ msgstr ""
 msgid "Sharing Report"
 msgstr "Dela på Pinterest"
 
-#: Controller/share-reports.controller.php:298 View/settings.view.php:474
+#: Controller/share-reports.controller.php:298 View/settings.view.php:475
 msgid "Title"
 msgstr "Tite"
 
@@ -325,11 +325,11 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#: Controller/share-reports.controller.php:531
+#: Controller/share-reports.controller.php:548
 msgid "There is no record available at the moment!"
 msgstr ""
 
-#: Controller/share-reports.controller.php:593
+#: Controller/share-reports.controller.php:610
 msgid "Y/m/d"
 msgstr ""
 
@@ -346,17 +346,17 @@ msgstr ""
 msgid "Widget title"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:70 View/settings.view.php:468
+#: Controller/widget-follow.controller.php:70 View/settings.view.php:469
 msgid "Custom class"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:75
-#: Controller/widgets.controller.php:101 View/settings.view.php:372
+#: Controller/widgets.controller.php:101 View/settings.view.php:373
 msgid "Icons size"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:81
-#: Controller/widgets.controller.php:107 View/settings.view.php:420
+#: Controller/widgets.controller.php:107 View/settings.view.php:421
 msgid "Icons color"
 msgstr ""
 
@@ -506,11 +506,11 @@ msgstr ""
 msgid "Buttons background color. <br>Layouts: Square plus and Button"
 msgstr ""
 
-#: Controller/widgets.controller.php:119 View/settings.view.php:458
+#: Controller/widgets.controller.php:119 View/settings.view.php:459
 msgid "Buttons title color"
 msgstr ""
 
-#: Controller/widgets.controller.php:125 View/settings.view.php:410
+#: Controller/widgets.controller.php:125 View/settings.view.php:411
 #, fuzzy
 msgid "Share count text color"
 msgstr "Dela på Facebook"
@@ -521,46 +521,46 @@ msgid ""
 "Square."
 msgstr ""
 
-#: Controller/widgets.controller.php:143 View/settings.view.php:512
+#: Controller/widgets.controller.php:143 View/settings.view.php:513
 #, fuzzy
 msgid "Remove counter"
 msgstr "Innan innehåll"
 
-#: Controller/widgets.controller.php:148 View/settings.view.php:505
+#: Controller/widgets.controller.php:148 View/settings.view.php:506
 #, fuzzy
 msgid "Remove button title"
 msgstr "Innan innehåll"
 
-#: Helper/utils-share.php:404 Helper/utils.php:2138 View/settings.view.php:178
-#: View/settings.view.php:401
+#: Helper/utils-share.php:404 Helper/utils.php:2129 View/settings.view.php:179
+#: View/settings.view.php:402
 msgid "Default"
 msgstr "Standard"
 
-#: Helper/utils-share.php:405 View/settings.view.php:190
-#: View/settings.view.php:402 View/settings.view.php:450
+#: Helper/utils-share.php:405 View/settings.view.php:191
+#: View/settings.view.php:403 View/settings.view.php:451
 msgid "Button"
 msgstr "﻿Knapp"
 
-#: Helper/utils-share.php:406 View/settings.view.php:202
-#: View/settings.view.php:323 View/settings.view.php:348
-#: View/settings.view.php:403
+#: Helper/utils-share.php:406 View/settings.view.php:203
+#: View/settings.view.php:324 View/settings.view.php:349
+#: View/settings.view.php:404
 msgid "Rounded"
 msgstr ""
 
-#: Helper/utils-share.php:407 View/settings.view.php:214
-#: View/settings.view.php:297 View/settings.view.php:310
-#: View/settings.view.php:404
+#: Helper/utils-share.php:407 View/settings.view.php:215
+#: View/settings.view.php:298 View/settings.view.php:311
+#: View/settings.view.php:405
 msgid "Square"
 msgstr "Kvadrat"
 
-#: Helper/utils-share.php:408 View/settings.view.php:226
-#: View/settings.view.php:360 View/settings.view.php:365
-#: View/settings.view.php:451
+#: Helper/utils-share.php:408 View/settings.view.php:227
+#: View/settings.view.php:361 View/settings.view.php:366
+#: View/settings.view.php:452
 #, fuzzy
 msgid "Square plus"
 msgstr "Kvadrat"
 
-#: Helper/utils.php:1506
+#: Helper/utils.php:1497
 msgid "SHARES"
 msgstr ""
 
@@ -579,7 +579,7 @@ msgstr ""
 msgid "Enter your custom CSS ..."
 msgstr ""
 
-#: View/settings-custom-css.view.php:70 View/settings.view.php:556
+#: View/settings-custom-css.view.php:70 View/settings.view.php:557
 msgid "Save Changes"
 msgstr "Spara uppdateringar"
 
@@ -698,183 +698,183 @@ msgstr ""
 msgid "Available filters"
 msgstr ""
 
-#: View/settings.view.php:65
+#: View/settings.view.php:66
 msgid "Places available"
 msgstr ""
 
-#: View/settings.view.php:74
+#: View/settings.view.php:75
 msgid "Page home"
 msgstr ""
 
-#: View/settings.view.php:83
+#: View/settings.view.php:84
 msgid "Archive/Category"
 msgstr ""
 
-#: View/settings.view.php:92
+#: View/settings.view.php:93
 msgid "Pages"
 msgstr "Antal sidor"
 
-#: View/settings.view.php:101
+#: View/settings.view.php:102
 msgid "Single"
 msgstr "Singel"
 
-#: View/settings.view.php:112
+#: View/settings.view.php:113
 msgid "WooCommerce share"
 msgstr ""
 
-#: View/settings.view.php:123
+#: View/settings.view.php:124
 msgid "Before content"
 msgstr "Innan innehåll"
 
-#: View/settings.view.php:132
+#: View/settings.view.php:133
 msgid "After content"
 msgstr "Efter innehåll"
 
-#: View/settings.view.php:139
+#: View/settings.view.php:140
 msgid "Social networks available"
 msgstr ""
 
-#: View/settings.view.php:165
+#: View/settings.view.php:166
 msgid "Layout options"
 msgstr "Layoutalternativ"
 
-#: View/settings.view.php:167
+#: View/settings.view.php:168
 msgid "All layout supports responsive"
 msgstr ""
 
-#: View/settings.view.php:235 View/settings.view.php:452
+#: View/settings.view.php:236 View/settings.view.php:453
 msgid "Position fixed"
 msgstr ""
 
-#: View/settings.view.php:245
+#: View/settings.view.php:246
 #, fuzzy
 msgid "Fixed left"
 msgstr "Fast"
 
-#: View/settings.view.php:258
+#: View/settings.view.php:259
 #, fuzzy
 msgid "Fixed right"
 msgstr "Fast"
 
-#: View/settings.view.php:268
+#: View/settings.view.php:269
 msgid "Clear"
 msgstr ""
 
-#: View/settings.view.php:269
+#: View/settings.view.php:270
 msgid "Click to clear the positions."
 msgstr ""
 
-#: View/settings.view.php:284 View/settings.view.php:347
+#: View/settings.view.php:285 View/settings.view.php:348
 msgid "Position fixed layout"
 msgstr ""
 
-#: View/settings.view.php:340
+#: View/settings.view.php:341
 #, fuzzy
 msgid "Text below sharing count"
 msgstr "Twitternamn"
 
-#: View/settings.view.php:344 View/settings.view.php:364
+#: View/settings.view.php:345 View/settings.view.php:365
 msgid "Change text below sharing count. Default SHARES"
 msgstr ""
 
-#: View/settings.view.php:346
+#: View/settings.view.php:347
 msgid "Used in %s %s."
 msgstr ""
 
-#: View/settings.view.php:360
+#: View/settings.view.php:361
 msgid "%s: Text below sharing count"
 msgstr ""
 
-#: View/settings.view.php:365
+#: View/settings.view.php:366
 msgid "Used in %s layout."
 msgstr ""
 
-#: View/settings.view.php:391
+#: View/settings.view.php:392
 #, fuzzy
 msgid "Share count background color"
 msgstr "Dela på Facebook"
 
-#: View/settings.view.php:400
+#: View/settings.view.php:401
 msgid "Layouts: %s, %s, %s and %s."
 msgstr ""
 
-#: View/settings.view.php:440
+#: View/settings.view.php:441
 msgid "Buttons background color"
 msgstr ""
 
-#: View/settings.view.php:449
+#: View/settings.view.php:450
 msgid "Layouts: %s, %s, and %s."
 msgstr ""
 
-#: View/settings.view.php:469
+#: View/settings.view.php:470
 msgid "Custom class for primary div"
 msgstr ""
 
-#: View/settings.view.php:475
+#: View/settings.view.php:476
 msgid "Insert the title here."
 msgstr ""
 
-#: View/settings.view.php:476
+#: View/settings.view.php:477
 msgid "Text to display above the sharing buttons."
 msgstr ""
 
-#: View/settings.view.php:481
+#: View/settings.view.php:482
 msgid "HTML id attribute"
 msgstr ""
 
-#: View/settings.view.php:482
+#: View/settings.view.php:483
 msgid "Enter name to context of search. ID of content tag"
 msgstr ""
 
-#: View/settings.view.php:483
+#: View/settings.view.php:484
 msgid ""
 "This is to set the fixed layout to the left of the post content. "
 "<strong>Example:</strong> <code>wrap</code> use {id} for post id."
 msgstr ""
 
-#: View/settings.view.php:489
+#: View/settings.view.php:490
 msgid "Fixed Items in top"
 msgstr ""
 
-#: View/settings.view.php:491
+#: View/settings.view.php:492
 msgid "It is activated when scrolling the page on the buttons position."
 msgstr ""
 
-#: View/settings.view.php:497
+#: View/settings.view.php:498
 msgid "Highlighted by reference"
 msgstr ""
 
-#: View/settings.view.php:499
+#: View/settings.view.php:500
 msgid "This allows highlight the social network where the user Came from."
 msgstr ""
 
-#: View/settings.view.php:519
+#: View/settings.view.php:520
 #, fuzzy
 msgid "Pinterest alt text"
 msgstr "Pintrest"
 
-#: View/settings.view.php:521
+#: View/settings.view.php:522
 msgid ""
 "Use in description of Pinterest the alt text of highlighted image in place "
 "of title of post."
 msgstr ""
 
-#: View/settings.view.php:527
+#: View/settings.view.php:528
 msgid "Min count to display"
 msgstr ""
 
-#: View/settings.view.php:530
+#: View/settings.view.php:531
 msgid ""
 "When you enter the value, share counts are only displayed when the total "
 "counts of each item than equal to or greater than the informed value."
 msgstr ""
 
-#: View/settings.view.php:537
+#: View/settings.view.php:538
 #, fuzzy
 msgid "Twitter share count"
 msgstr "Twitternamn"
 
-#: View/settings.view.php:541
+#: View/settings.view.php:542
 msgid ""
 "The share count Twitter is powered by <a href=\"http://newsharecounts.com\" "
 "target=\"_blank\">newsharecounts.com</a>, you have to sign up with your "
