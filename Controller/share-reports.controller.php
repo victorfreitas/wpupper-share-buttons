@@ -297,8 +297,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		$columns = array(
 			'Title'     => __( 'Title', WPUSB_App::TEXTDOMAIN ),
 			'Facebook'  => __( 'Facebook', WPUSB_App::TEXTDOMAIN ),
-			'Google'    => __( 'Google+', WPUSB_App::TEXTDOMAIN ),
 			'Twitter'   => __( 'Twitter', WPUSB_App::TEXTDOMAIN ),
+			'Google'    => __( 'Google+', WPUSB_App::TEXTDOMAIN ),
 			'Linkedin'  => __( 'Linkedin', WPUSB_App::TEXTDOMAIN ),
 			'Pinterest' => __( 'Pinterest', WPUSB_App::TEXTDOMAIN ),
 			'Tumblr'    => __( 'Tumblr', WPUSB_App::TEXTDOMAIN ),
