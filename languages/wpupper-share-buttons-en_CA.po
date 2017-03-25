@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2017-03-24 15:11:09+00:00\n"
+"POT-Creation-Date: 2017-03-25 07:12:41+00:00\n"
 "PO-Revision-Date: 2017-02-20 22:15-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,40 +16,40 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Poedit 1.8.11\n"
 
-#: Config/enqueue-scripts.php:133
+#: Config/enqueue-scripts.php:100
 msgid "View Untitled"
 msgstr ""
 
-#: Config/enqueue-scripts.php:134
+#: Config/enqueue-scripts.php:101
 msgid "View without count"
 msgstr ""
 
-#: Config/enqueue-scripts.php:135
+#: Config/enqueue-scripts.php:102
 msgid "See with title"
 msgstr ""
 
-#: Config/enqueue-scripts.php:136
+#: Config/enqueue-scripts.php:103
 #, fuzzy
 msgid "See with count"
 msgstr "Twitter username"
 
-#: Config/enqueue-scripts.php:165
+#: Config/enqueue-scripts.php:132
 msgid "Close"
 msgstr ""
 
-#: Config/enqueue-scripts.php:166
+#: Config/enqueue-scripts.php:133
 msgid "Today"
 msgstr ""
 
-#: Config/enqueue-scripts.php:174
+#: Config/enqueue-scripts.php:141
 msgid "Next"
 msgstr ""
 
-#: Config/enqueue-scripts.php:175
+#: Config/enqueue-scripts.php:142
 msgid "Previous"
 msgstr ""
 
-#: Config/social-elements.php:91 Controller/share-reports.controller.php:286
+#: Config/social-elements.php:91 Controller/share-reports.controller.php:299
 #: Controller/widget-follow.controller.php:161
 msgid "Facebook"
 msgstr "Facebook"
@@ -68,7 +68,7 @@ msgstr "Share on Facebook"
 msgid "Share"
 msgstr "Share"
 
-#: Config/social-elements.php:109 Controller/share-reports.controller.php:288
+#: Config/social-elements.php:109 Controller/share-reports.controller.php:301
 #: Controller/widget-follow.controller.php:170
 msgid "Twitter"
 msgstr "Twitter"
@@ -97,7 +97,7 @@ msgstr "Share on Pinterest"
 msgid "Share on WhatsApp"
 msgstr "Share on Pinterest"
 
-#: Config/social-elements.php:163 Controller/share-reports.controller.php:290
+#: Config/social-elements.php:163 Controller/share-reports.controller.php:303
 #: Controller/widget-follow.controller.php:197
 msgid "Pinterest"
 msgstr "Pinterest"
@@ -106,7 +106,7 @@ msgstr "Pinterest"
 msgid "Share on Pinterest"
 msgstr "Share on Pinterest"
 
-#: Config/social-elements.php:181 Controller/share-reports.controller.php:289
+#: Config/social-elements.php:181 Controller/share-reports.controller.php:302
 #: Controller/widget-follow.controller.php:179
 msgid "Linkedin"
 msgstr "Linkedin"
@@ -116,7 +116,7 @@ msgstr "Linkedin"
 msgid "Share on Linkedin"
 msgstr "Share on Pinterest"
 
-#: Config/social-elements.php:199 Controller/share-reports.controller.php:291
+#: Config/social-elements.php:199 Controller/share-reports.controller.php:304
 #: Controller/widget-follow.controller.php:251
 msgid "Tumblr"
 msgstr ""
@@ -208,7 +208,7 @@ msgstr ""
 msgid "Send on Facebook Messenger"
 msgstr "Share on Facebook"
 
-#: Config/social-elements.php:379 Controller/share-reports.controller.php:292
+#: Config/social-elements.php:379 Controller/share-reports.controller.php:305
 msgid "Buffer"
 msgstr ""
 
@@ -249,7 +249,7 @@ msgstr ""
 msgid "Click to see also"
 msgstr ""
 
-#: Config/social-elements.php:632 View/settings-extra.view.php:78
+#: Config/social-elements.php:632 View/settings-extra.view.php:82
 msgid "I just saw"
 msgstr ""
 
@@ -282,7 +282,7 @@ msgstr "WPUpper Share Buttons"
 msgid "WPUpper Share"
 msgstr "WPUpper Share Buttons"
 
-#: Controller/settings.controller.php:80 View/settings-extra.view.php:44
+#: Controller/settings.controller.php:80 View/settings-extra.view.php:47
 #: View/utils.view.php:495
 #, fuzzy
 msgid "Extra Settings"
@@ -293,49 +293,48 @@ msgstr "Settings"
 msgid "Custom CSS"
 msgstr ""
 
-#: Controller/settings.controller.php:102
-#: Controller/settings.controller.php:103 View/settings-faq.view.php:35
+#: Controller/settings.controller.php:100 View/settings-faq.view.php:35
 #: View/utils.view.php:505
 #, fuzzy
 msgid "Use options"
 msgstr "Layout options"
 
-#: Controller/share-reports.controller.php:109
+#: Controller/share-reports.controller.php:117
 #, fuzzy
 msgid "Sharing Report | WPUpper Share Buttons"
 msgstr "WPUpper Share Buttons"
 
-#: Controller/share-reports.controller.php:110 View/utils.view.php:513
+#: Controller/share-reports.controller.php:118 View/utils.view.php:513
 #, fuzzy
 msgid "Sharing Report"
 msgstr "Share on Pinterest"
 
-#: Controller/share-reports.controller.php:272
-msgid "Y/m/d"
-msgstr ""
-
-#: Controller/share-reports.controller.php:285 View/settings.view.php:474
+#: Controller/share-reports.controller.php:298 View/settings.view.php:474
 msgid "Title"
 msgstr "Title"
 
-#: Controller/share-reports.controller.php:287
+#: Controller/share-reports.controller.php:300
 msgid "Google+"
 msgstr "Google+"
 
-#: Controller/share-reports.controller.php:293
+#: Controller/share-reports.controller.php:306
 msgid "Total"
 msgstr "Total"
 
-#: Controller/share-reports.controller.php:294
+#: Controller/share-reports.controller.php:307
 msgid "Post date"
 msgstr ""
 
-#: Controller/share-reports.controller.php:360
+#: Controller/share-reports.controller.php:367
 msgid "Filter"
 msgstr ""
 
-#: Controller/share-reports.controller.php:432
+#: Controller/share-reports.controller.php:531
 msgid "There is no record available at the moment!"
+msgstr ""
+
+#: Controller/share-reports.controller.php:593
+msgid "Y/m/d"
 msgstr ""
 
 #: Controller/widget-follow.controller.php:23
@@ -533,7 +532,7 @@ msgstr ""
 msgid "Remove button title"
 msgstr ""
 
-#: Helper/utils-share.php:404 Helper/utils.php:2125 View/settings.view.php:178
+#: Helper/utils-share.php:404 Helper/utils.php:2138 View/settings.view.php:178
 #: View/settings.view.php:401
 msgid "Default"
 msgstr "Standard"
@@ -562,7 +561,7 @@ msgstr "Square"
 msgid "Square plus"
 msgstr "Square"
 
-#: Helper/utils.php:1497
+#: Helper/utils.php:1506
 msgid "SHARES"
 msgstr ""
 
@@ -571,7 +570,7 @@ msgstr ""
 msgid "Shares"
 msgstr "Share"
 
-#: View/settings-custom-css.view.php:32 View/settings-extra.view.php:40
+#: View/settings-custom-css.view.php:32 View/settings-extra.view.php:41
 #: View/settings-faq.view.php:29 View/settings.view.php:45
 #: View/share-report.view.php:33
 msgid "Add the Share Buttons automatically."
@@ -585,111 +584,111 @@ msgstr ""
 msgid "Save Changes"
 msgstr "Save Changes"
 
-#: View/settings-extra.view.php:59 View/settings-extra.view.php:61
+#: View/settings-extra.view.php:63 View/settings-extra.view.php:65
 msgid "Twitter username"
 msgstr "Twitter username"
 
-#: View/settings-extra.view.php:60
+#: View/settings-extra.view.php:64
 #, fuzzy
 msgid "Your twitter username"
 msgstr "Twitter username"
 
-#: View/settings-extra.view.php:66 View/settings-extra.view.php:67
+#: View/settings-extra.view.php:70 View/settings-extra.view.php:71
 #, fuzzy
 msgid "Twitter hashtags"
 msgstr "Twitter username"
 
-#: View/settings-extra.view.php:68
+#: View/settings-extra.view.php:72
 msgid ""
 "Optional Hashtags appended onto the tweet (comma separated. don't include \"#"
 "\")"
 msgstr ""
 
-#: View/settings-extra.view.php:70 View/settings-extra.view.php:79
-#: View/settings-extra.view.php:88
+#: View/settings-extra.view.php:74 View/settings-extra.view.php:83
+#: View/settings-extra.view.php:92
 msgid "Example: "
 msgstr ""
 
-#: View/settings-extra.view.php:75 View/settings-extra.view.php:76
+#: View/settings-extra.view.php:79 View/settings-extra.view.php:80
 #, fuzzy
 msgid "Twitter text"
 msgstr "Twitter"
 
-#: View/settings-extra.view.php:77
+#: View/settings-extra.view.php:81
 msgid "Use {title} to add the post title"
 msgstr ""
 
-#: View/settings-extra.view.php:84
+#: View/settings-extra.view.php:88
 msgid "UTM tracking"
 msgstr ""
 
-#: View/settings-extra.view.php:85
+#: View/settings-extra.view.php:89
 msgid "Add UTM tracking (Analytics)"
 msgstr ""
 
-#: View/settings-extra.view.php:86
+#: View/settings-extra.view.php:90
 msgid "Use <code>?</code> and"
 msgstr ""
 
-#: View/settings-extra.view.php:86
+#: View/settings-extra.view.php:90
 msgid "adding parameters to use <code>&</code> in the tracking."
 msgstr ""
 
-#: View/settings-extra.view.php:93
+#: View/settings-extra.view.php:97
 msgid "Bitly access token"
 msgstr ""
 
-#: View/settings-extra.view.php:94
+#: View/settings-extra.view.php:98
 msgid "Insert your access token Bitly"
 msgstr ""
 
-#: View/settings-extra.view.php:95
+#: View/settings-extra.view.php:99
 msgid "Shorten urls using bitly, generate token in "
 msgstr ""
 
-#: View/settings-extra.view.php:102
+#: View/settings-extra.view.php:109
 msgid "Select Bitly domain"
 msgstr ""
 
-#: View/settings-extra.view.php:113
-msgid "Post types is active"
+#: View/settings-extra.view.php:120
+msgid "Post types is enabled"
 msgstr ""
 
-#: View/settings-extra.view.php:118
+#: View/settings-extra.view.php:125
 msgid "Minimum 1 post type, default all."
 msgstr ""
 
-#: View/settings-extra.view.php:124
+#: View/settings-extra.view.php:131
 msgid "Minify html buttons share"
 msgstr ""
 
-#: View/settings-extra.view.php:126
+#: View/settings-extra.view.php:133
 msgid "Minify the HTML helps site performance."
 msgstr ""
 
-#: View/settings-extra.view.php:132
+#: View/settings-extra.view.php:139
 msgid "Deactivate sharing report"
 msgstr ""
 
-#: View/settings-extra.view.php:134
+#: View/settings-extra.view.php:141
 msgid ""
 "This allows you to disable counting of the shares report. You will not lose "
 "the report you have already computed."
 msgstr ""
 
-#: View/settings-extra.view.php:140
+#: View/settings-extra.view.php:147
 msgid "Disable CSS"
 msgstr ""
 
-#: View/settings-extra.view.php:147
+#: View/settings-extra.view.php:154
 msgid "Disable JS"
 msgstr ""
 
-#: View/settings-extra.view.php:154
+#: View/settings-extra.view.php:161
 msgid "CSS file in footer"
 msgstr ""
 
-#: View/settings-extra.view.php:156
+#: View/settings-extra.view.php:163
 msgid ""
 "Keep the CSS style in the footer is recommended to improve the performance "
 "of your website."
@@ -888,12 +887,16 @@ msgstr ""
 msgid "Search"
 msgstr "Search"
 
-#: View/share-report.view.php:90
+#: View/share-report.view.php:97
 msgid "Start date:"
 msgstr ""
 
-#: View/share-report.view.php:102
+#: View/share-report.view.php:109
 msgid "End date:"
+msgstr ""
+
+#: View/share-report.view.php:134
+msgid "Export CSV"
 msgstr ""
 
 #: View/shares.view.php:33
@@ -998,7 +1001,7 @@ msgstr ""
 msgid "https://github.com/victorfreitas"
 msgstr ""
 
-#: View/share-report.view.php:84
+#: View/share-report.view.php:91
 msgctxt "placeholder"
 msgid "YYYY-MM-DD"
 msgstr ""
