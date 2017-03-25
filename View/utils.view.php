@@ -309,8 +309,8 @@ abstract class WPUSB_Utils_View {
 
 				    <label for="<?php echo $field_id; ?>">
 				        <span class="<?php echo $prefix; ?>-inner"
-				        	  data-title-on="<?php _e( 'YES', WPUSB_App::SLUG ); ?>"
-				        	  data-title-off="<?php _e( 'NO', WPUSB_App::SLUG ); ?>"></span>
+				        	  data-title-on="<?php _e( 'YES', WPUSB_App::TEXTDOMAIN ); ?>"
+				        	  data-title-off="<?php _e( 'NO', WPUSB_App::TEXTDOMAIN ); ?>"></span>
 				        <span class="<?php echo $prefix; ?>-switch"></span>
 				    </label>
 				</div>

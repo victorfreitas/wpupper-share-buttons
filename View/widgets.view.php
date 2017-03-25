@@ -280,8 +280,8 @@ class WPUSB_Widgets_View {
 			'description' => '',
 		);
 		$args      = array_merge( $defaults, $args );
-		$on_title  = __( 'YES', WPUSB_App::SLUG );
-		$off_title = __( 'NO', WPUSB_App::SLUG );
+		$on_title  = __( 'YES', WPUSB_App::TEXTDOMAIN );
+		$off_title = __( 'NO', WPUSB_App::TEXTDOMAIN );
 
 		echo <<<EOD
 			<div class="{$prefix}-custom-switch">
