@@ -272,7 +272,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			case 'tumblr'    :
 			case 'buffer'    :
 			case 'total'     :
-				$value = WPUSB_Utils::number_format( $item->{$column} );
+				$value = $this->number_format( $item->{$column} );
 				break;
 
 			case 'date' :
@@ -428,6 +428,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			unset( $rows['id'] );
 			unset( $rows['post_id'] );
 
+			$rows = array_map( array( $this, 'number_format' ), $rows );
+
 			fputcsv( $out, $rows );
 		endforeach;
 
@@ -437,6 +439,21 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		ob_end_clean();
 
 		echo WPUSB_Utils::html_decode( $output );
+	}
+
+	/**
+	 * Format share counts
+	 *
+	 * @since 3.32
+	 * @param Integer $value
+	 * @return String
+	 */
+	public function number_format( $value ) {
+		if ( ! is_numeric( $value ) ) {
+			return $value;
+		}
+
+		return WPUSB_Utils::number_format( $value );
 	}
 
 	/**
