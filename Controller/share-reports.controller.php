@@ -354,7 +354,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 * @return Void
 	 */
 	public function extra_tablenav( $which ) {
-		if ( 'top' !== $which || is_singular() ) {
+		if ( ! $this->has_items() || 'top' !== $which || is_singular() ) {
 			return;
 		}
 
