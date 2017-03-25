@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
 "POT-Creation-Date: 2017-03-25 07:12:41+00:00\n"
-"PO-Revision-Date: 2017-03-22 04:10-0300\n"
+"PO-Revision-Date: 2017-03-25 10:20-0300\n"
 "Last-Translator: Victor Freitas <victor.freitas@apiki.com>\n"
 "Language-Team: Victor Freitas <victorfreitasdev@gmail.com>\n"
 "Language: pt_BR\n"
@@ -321,7 +321,7 @@ msgstr "Não existe relatório disponível no momento!"
 
 #: Controller/share-reports.controller.php:593
 msgid "Y/m/d"
-msgstr ""
+msgstr "d/m/Y"
 
 #: Controller/widget-follow.controller.php:23
 msgid "Insert the Follow Us of your social networks."
@@ -621,13 +621,12 @@ msgid "Select Bitly domain"
 msgstr "Selecione o domínio Bitly"
 
 #: View/settings-extra.view.php:120
-#, fuzzy
 msgid "Post types is enabled"
-msgstr "Título do post"
+msgstr "Tipos de post ativado."
 
 #: View/settings-extra.view.php:125
 msgid "Minimum 1 post type, default all."
-msgstr ""
+msgstr "Mínimo 1 tipo de post, padrão todos."
 
 #: View/settings-extra.view.php:131
 msgid "Minify html buttons share"
@@ -879,7 +878,7 @@ msgstr "Data final:"
 
 #: View/share-report.view.php:134
 msgid "Export CSV"
-msgstr ""
+msgstr "Exportar CSV"
 
 #: View/shares.view.php:33
 msgid "Disable on this post"

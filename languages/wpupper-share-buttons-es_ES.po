@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
 "POT-Creation-Date: 2017-03-25 07:12:41+00:00\n"
-"PO-Revision-Date: 2017-03-22 04:19-0300\n"
+"PO-Revision-Date: 2017-03-25 10:15-0300\n"
 "Last-Translator: Victor Freitas <victor.freitas@apiki.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -465,7 +465,7 @@ msgstr "Síganos en Behance"
 
 #: Controller/widget-follow.controller.php:316
 msgid "Follow us on VKontakte"
-msgstr ""
+msgstr "Síguenos en VKontakte"
 
 #: Controller/widgets.controller.php:17
 msgid "Insert share buttons of social networks."
@@ -623,13 +623,12 @@ msgid "Select Bitly domain"
 msgstr "Seleccionar Bitly domain"
 
 #: View/settings-extra.view.php:120
-#, fuzzy
 msgid "Post types is enabled"
-msgstr "Título de la entrada"
+msgstr "Tipo de contenido habilitado."
 
 #: View/settings-extra.view.php:125
 msgid "Minimum 1 post type, default all."
-msgstr ""
+msgstr "Mínimo 1 tipo de publicación, predeterminado todo."
 
 #: View/settings-extra.view.php:131
 msgid "Minify html buttons share"
@@ -882,7 +881,7 @@ msgstr "Data de término"
 
 #: View/share-report.view.php:134
 msgid "Export CSV"
-msgstr ""
+msgstr "Exportar CSV"
 
 #: View/shares.view.php:33
 msgid "Disable on this post"
