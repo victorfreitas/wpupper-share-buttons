@@ -321,8 +321,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 		$sort_columns = array(
 			'Title'     => array( 'post_title', true ),
 			'Facebook'  => array( 'facebook', true ),
-			'Google'    => array( 'google', true ),
 			'Twitter'   => array( 'twitter', true ),
+			'Google'    => array( 'google', true ),
 			'Linkedin'  => array( 'linkedin', true ),
 			'Pinterest' => array( 'pinterest', true ),
 			'Tumblr'    => array( 'tumblr', true ),
@@ -354,13 +354,15 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 * @return Void
 	 */
 	public function extra_tablenav( $which ) {
-		if ( ! $this->has_items() || 'top' !== $which || is_singular() ) {
+		if ( ( ! $this->has_items() && ! isset( $_GET['paged'] ) ) || 'top' !== $which || is_singular() ) {
 			return;
 		}
 
 		echo '<div class="alignleft actions">';
 
-			WPUSB_Sharing_Report_View::export_csv_btn();
+			if ( $this->has_items() ) {
+				WPUSB_Sharing_Report_View::export_csv_btn();
+			}
 
 			WPUSB_Sharing_Report_View::render_date_range_filter();
 
