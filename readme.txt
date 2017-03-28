@@ -16,7 +16,7 @@ Implement the Social Share and Follow Us Widget of the major social networks, in
 
 Implement the Social Share and Follow Us Widget of the major social networks, including the WhatsApp on your website or blog. The buttons are inserted automatically or can be called via shortcode or PHP method.
 
-> If you like the plugin, feel free to rate it (on the right side of this page) or [donate](https://www.redcross.org/donate/donation). I am very pleased to dedicate myself to this plugin. Thank you so much! :)
+> If you like the plugin, feel free to rate it (on the right side of this page) or [donate](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KYRMWXEEQN58L). I am very pleased to dedicate myself to this plugin. Thank you so much! :)
 
 * Adds before, after the contents post or both
 
