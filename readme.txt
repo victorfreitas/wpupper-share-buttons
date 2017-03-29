@@ -98,7 +98,7 @@ The following plugins are recommended
 
 = 3.33 =
 
-* Fix version update not working for WP
+* Fix: Add new tag version because the update was not working properly.
 
 = 3.32.1 =
 
