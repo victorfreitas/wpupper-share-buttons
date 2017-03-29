@@ -98,7 +98,8 @@ The following plugins are recommended
 
 = 3.32.1 =
 
-* Fix twitter hashtags with special characters. [Related by @madeiranetwork]
+* Fix twitter hashtags with special characters. [Reported by @madeiranetwork]
+* Request share counts performance improvements. [Reported by @madeiranetwork]
 * Show scripts improvements
 * Bug fixes
 
@@ -149,16 +150,16 @@ The following plugins are recommended
 * NEW: Behance follow us
 * NEW: Buffer share button
 * Share Telegram on desktop available.
-* Bug fix. [related by @ablekinetic]
+* Bug fix. [Reported by @ablekinetic]
 
 = 3.27.2 =
 
-* Fix: URLs with query string. It was not returning the query strings on some servers. [Related by @robertkyambo]
+* Fix: URLs with query string. It was not returning the query strings on some servers. [Reported by @robertkyambo]
 
 = 3.27.1 =
 
 * Fix: URL with space in query string.
-* Fix: Twitter text option. [Related by @robertkyambo]
+* Fix: Twitter text option. [Reported by @robertkyambo]
 
 = 3.27 =
 
@@ -205,7 +206,7 @@ The following plugins are recommended
 * Update languages
 * Improvements in multisite
 * Improvements on admin and frontend
-* Correction of alignment for layout fixed right. [Related by @talgalili]
+* Correction of alignment for layout fixed right. [Reported by @talgalili]
 * Bug fixes
 
 = 3.24 =
@@ -217,7 +218,7 @@ The following plugins are recommended
 = 3.23 =
 
 * New option: Insert title above the sharing buttons.
-* Improvements performance font icons. [Related by @marius84]
+* Improvements performance font icons. [Reported by @marius84]
 * Update languages
 
 = 3.22 =
@@ -231,7 +232,7 @@ The following plugins are recommended
 
 = 3.21.2 =
 
-* Bug fixes JS. [Related by @marius84]
+* Bug fixes JS. [Reported by @marius84]
 
 = 3.21.1 =
 
@@ -239,12 +240,12 @@ The following plugins are recommended
 
 = 3.21 =
 
-* Bug fixes. [Related by @countrygirlorg]
+* Bug fixes. [Reported by @countrygirlorg]
 * Improvements
 
 = 3.20 =
 
-* Added possibility of disabling the shares report. [Related by @marius84]
+* Added possibility of disabling the shares report. [Reported by @marius84]
 
 = 3.19 =
 
@@ -252,19 +253,19 @@ The following plugins are recommended
 
 = 3.18.1 =
 
-* Bug fix layout fixed on tablet. [Related by @marius84]
+* Bug fix layout fixed on tablet. [Reported by @marius84]
 
 = 3.18 =
 
-* Fix bug share on Messenger. [Related by @marius84]
-* Show mobile items on landscape tablet. [Related by @marius84]
+* Fix bug share on Messenger. [Reported by @marius84]
+* Show mobile items on landscape tablet. [Reported by @marius84]
 
 = 3.17 =
 
 * Tested in version 4.7
 * Add Twitter hashtags option
 * Performance improvements on get Google Plus share count
-* Bug fixes email send on mobile. [Related by @marius84]
+* Bug fixes email send on mobile. [Reported by @marius84]
 * Code improvements
 * Social share API improvements
 
@@ -567,7 +568,7 @@ The following plugins are recommended
 
 = 2.2.3 =
 
-* Bug fix counter sharing, before and after buttons on content. [Related by athalas]
+* Bug fix counter sharing, before and after buttons on content. [Reported by athalas]
 
 = 2.2.2 =
 
@@ -600,12 +601,12 @@ The following plugins are recommended
 
 = 2.0.4 =
 
-* Bug fix pagination sharing report page [Related by nagal #post-7832935]
+* Bug fix pagination sharing report page [Reported by nagal #post-7832935]
 
 = 2.0.3 =
 
-* Bug fix icon email, whatsapp. [Related by theadarshmehta]
-* Bug fix translate title icon email, printfriendly. [Related by theadarshmehta]
+* Bug fix icon email, whatsapp. [Reported by theadarshmehta]
+* Bug fix translate title icon email, printfriendly. [Reported by theadarshmehta]
 * Bug fix sharing report admin page in WordPress 4.4
 * Tested in WordPress 4.4
 * Releasing some filters for customization dev
