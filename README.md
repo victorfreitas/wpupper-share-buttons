@@ -6,7 +6,7 @@ Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google
 Requires at least: 3.0  
 Tested up to: 4.7.3  
 PHP version: 5.2.4  
-Stable tag: 3.32.1  
+Stable tag: 3.32.2  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -68,7 +68,7 @@ Layout options: default, buttons, rounded, square
 
 ## Changelog
 
-## 3.32.1
+## 3.32.2
 
 * Fix twitter hashtags with special characters. [Reported by @madeiranetwork]
 * Request share counts performance improvements. [Reported by @madeiranetwork]
