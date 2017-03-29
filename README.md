@@ -5,8 +5,12 @@ Donate link: [Donate Now](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&ho
 Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email form, social media buttons, click to tweet, pinterest, reddit, viber, telegram, gmail, skype, like, linkedin.  
 Requires at least: 3.0  
 Tested up to: 4.7.3  
-PHP version: 5.2.4  
-Stable tag: 3.32.2  
+
+## 3.32.2
+
+* Version update not working fixPHP version: 5.2.4
+
+Stable tag: 3.32.1  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -69,6 +73,10 @@ Layout options: default, buttons, rounded, square
 ## Changelog
 
 ## 3.32.2
+
+* Fix version update not working for WP
+
+## 3.32.1
 
 * Fix twitter hashtags with special characters. [Reported by @madeiranetwork]
 * Request share counts performance improvements. [Reported by @madeiranetwork]
