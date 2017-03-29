@@ -6,15 +6,25 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 			return;
 		}
 
-		this.setPropNames();
 		this.init();
 	};
 
-	Model.fn.isShareCountsDisabled = function() {
-		return ( this.data.disabledShareCounts === 1 );
+	Model.fn.init = function() {
+		this.renderExtras();
+		this.request( false );
 	};
 
-	Model.fn.setPropNames = function() {
+	Model.fn.addEventListeners = function() {
+		this.$el.addEvent( 'click', 'open-popup', this );
+		WPUSB.ToggleButtons.create( this.$el.data( 'element' ), this );
+	};
+
+	Model.fn.request = function(isReport) {
+		this.setPropNames( isReport );
+		this.fireRequest();
+	};
+
+	Model.fn.setPropNames = function(isReport) {
 		this.facebook         = this.elements.facebook;
 		this.twitter          = this.elements.twitter;
 		this.tumblr           = this.elements.tumblr;
@@ -32,21 +42,11 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 		this.pinterestCounter = 0;
 		this.bufferCounter    = 0;
 		this.max              = 7;
+		this.isReport         = isReport;
 		this.minCount         = utils.getMinCount();
 	};
 
-	Model.fn.init = function() {
-		this.renderExtras();
-		this.addEventListeners();
-		this.request();
-	};
-
-	Model.fn.addEventListeners = function() {
-		this.$el.addEvent( 'click', 'open-popup', this );
-		WPUSB.ToggleButtons.create( this.$el.data( 'element' ), this );
-	};
-
-	Model.fn.request = function() {
+	Model.fn.fireRequest = function() {
 		this.items = [
 			{
 				reference : 'facebookCounter',
@@ -139,6 +139,11 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 			}
 		}
 
+		if ( !this.max && this.isReport ) {
+			this.addReport();
+			return;
+		}
+
 		if ( !this.max && this.totalShare ) {
 			this.totalShare.text( this.formatCounts( this.totalCounter ) );
 
@@ -226,6 +231,15 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 	};
 
 	Model.fn._onClickOpenPopup = function(event) {
+		if ( this.isShareCountsDisabled() ) {
+			this.request( true );
+			return;
+		}
+
+		this.addReport();
+	};
+
+	Model.fn.addReport = function() {
 		if ( !this.totalCounter || this.data.report === 'no' || this.data.isTerm ) {
 			return;
 		}
@@ -286,7 +300,12 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 		return ( i && i !== '0' ) ? '.' + i : '';
 	};
 
+	Model.fn.isShareCountsDisabled = function() {
+		return ( this.data.disabledShareCounts === 1 );
+	};
+
 	Model.fn.renderExtras = function() {
+		this.addEventListeners();
 		WPUSB.FeaturedReferrer.create( this.$el );
 		WPUSB.OpenPopup.create( this.$el );
 	};

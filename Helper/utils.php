@@ -1389,7 +1389,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function get_component_by_type() {
 		$attrs  = ( self::is_sharing_report_disabled() ) ? 'data-report="no" ' : '';
-		$attrs .= ( self::is_disabled_social_counts_js() ) ? ' data-disabled-share-counts="1" ' : '';
+		$attrs .= ( self::is_count_disabled() ) ? ' data-disabled-share-counts="1" ' : '';
 		$attrs .= self::get_component( 'counter-social-share' );
 
 		return apply_filters( self::add_prefix( '-component-name' ), $attrs, WPUSB_App::SLUG );
@@ -1504,17 +1504,6 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function is_count_disabled() {
 		return ( 1 === self::option( 'disabled_count' ) );
-	}
-
-	/**
-	 * Check component js share counts is disabled
-	 *
-	 * @since 3.21
-	 * @param Null
-	 * @return Boolean
-	 */
-	public static function is_disabled_social_counts_js() {
-		return ( self::is_count_disabled() && self::is_sharing_report_disabled() );
 	}
 
 	/**
