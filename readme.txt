@@ -2,11 +2,11 @@
 
 Author URL: https://github.com/victorfreitas
 Contributors: victorfreitas
-Donate link: https://www.redcross.org/donate/donation
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KYRMWXEEQN58L
 Tags: share, social, buttons, share buttons, compartir, botones compartir, free share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, sharing, social bookmarking, email, social media buttons, click to tweet, reddit, viber, telegram, gmail, skype, like, pinterest, linkedin, follow us, follow, widget follow, Instagram, YouTube, GitHub, Vimeo, Flickr, Foursquare, SnapChat
 Requires at least: 3.0
 Tested up to: 4.7.3
-Stable tag: 3.32.2
+Stable tag: 3.33
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -96,7 +96,7 @@ The following plugins are recommended
 
 == Changelog ==
 
-= 3.32.2 =
+= 3.33 =
 
 * Fix version update not working for WP
 
