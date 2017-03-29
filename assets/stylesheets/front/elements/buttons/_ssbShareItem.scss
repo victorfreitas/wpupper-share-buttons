@@ -163,10 +163,12 @@
         margin: 0;
         padding: 0 3px;
 
+        .#{$prefix}-btn,
         .#{$prefix}-btn:hover,
         .#{$prefix}-btn:active,
         .#{$prefix}-btn:focus {
             outline: none;
+            box-shadow: none;
         }
 
         .#{$prefix}-btn i {

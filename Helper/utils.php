@@ -1503,7 +1503,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return Boolean
 	 */
 	public static function is_count_disabled() {
-		return ( '1' === self::option( 'disabled_count' ) );
+		return ( 1 === self::option( 'disabled_count' ) );
 	}
 
 	/**

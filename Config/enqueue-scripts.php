@@ -161,21 +161,23 @@ final class WPUSB_Scripts {
 	 * @return Void
 	 */
 	public static function add_front_scripts() {
-		if ( WPUSB_Utils::is_disabled_by_meta() && WPUSB_Utils::is_active_widget_follow() ) {
-			self::front_styles();
+		if ( WPUSB_Utils::is_disabled_by_meta() ) {
+			if ( WPUSB_Utils::is_active_widget_follow() ) {
+				self::front_styles();
+			}
 			return;
 		}
 
-		$tag               = WPUSB_Utils::add_prefix( '-add-scripts' );
-		$load_scripts      = apply_filters( $tag, WPUSB_Utils::is_active() );
+		$load_scripts      = apply_filters( WPUSB_Utils::add_prefix( '-add-scripts' ), WPUSB_Utils::is_active() );
 		$customize_preview = WPUSB_Utils::is_customize_preview();
 
-		if ( ! $customize_preview && ( ! WPUSB_Utils::is_active_widget() && ! $load_scripts ) ) {
-			return;
+		if ( $load_scripts || WPUSB_Utils::is_active_widget_share() || $customize_preview ) {
+			self::front_javascripts();
 		}
 
-		self::front_javascripts();
-		self::front_styles();
+		if ( $load_scripts || WPUSB_Utils::is_active_widget() || $customize_preview ) {
+			self::front_styles();
+		}
 	}
 
 	/**

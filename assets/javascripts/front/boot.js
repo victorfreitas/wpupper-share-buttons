@@ -2,9 +2,10 @@ jQuery(function($) {
 	var context = $( 'body' );
 
 	WPUSB.vars = {
-		  body   : context
-		, prefix : 'wpusb'
+		body : context
 	};
 
-	WPUSB.Application.init.apply( WPUSB.utils, [context] );
+	if ( document.getElementsByClassName( WPUSB.utils.prefix ).length ) {
+		WPUSB.Application.init.apply( WPUSB.utils, [context] );
+	}
 });
