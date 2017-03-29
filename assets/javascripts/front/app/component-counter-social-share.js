@@ -231,7 +231,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 	};
 
 	Model.fn._onClickOpenPopup = function(event) {
-		if ( this.isShareCountsDisabled() && !this.notReport() ) {
+		if ( utils.hasExpiredCache() && this.isShareCountsDisabled() && !this.notReport() ) {
 			this.request( true );
 			return;
 		}
