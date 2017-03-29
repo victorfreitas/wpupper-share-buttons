@@ -185,6 +185,10 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	*/
 	public static function filter_values_sanitize_option( $values, $filter ) {
 		if ( self::is_sanitize_option_filter( $filter ) ) {
+			if ( isset( $values['twitter_hashtags'] ) ) {
+				$values['twitter_hashtags'] = self::sanitize_twitter_hashtags( $values['twitter_hashtags'] );
+			}
+
 			return array_filter( self::parse_post_types( $values ) );
 		}
 
@@ -1450,6 +1454,34 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function sanitize_twitter_params( $value ) {
 		return empty( $value ) ? '' : preg_replace( '/[^a-zA-Z0-9_,]+/', '', $value );
+	}
+
+	/**
+	 * Sanitize twitter param hashtags
+	 *
+	 * @since 3.17
+	 * @param String $hashtags
+	 * @return String
+	 */
+	public static function sanitize_twitter_hashtags( $hashtags ) {
+		if ( empty( $hashtags ) ) {
+			return $hashtags;
+		}
+
+		$tags     = explode( ',', $hashtags );
+		$new_tags = array();
+
+		foreach ( $tags as $hashtag ) :
+			$tag = preg_replace( '/\s+/', ', ', self::rm_tags( $hashtag, true ) );
+
+			if ( empty( $tag ) ) {
+				continue;
+			}
+
+			$new_tags[ $tag ] = $tag;
+		endforeach;
+
+		return implode( ', ', $new_tags );
 	}
 
 	/**

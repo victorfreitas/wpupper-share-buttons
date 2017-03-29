@@ -651,8 +651,7 @@ class WPUSB_Social_Elements {
 	public static function _set_twitter_extra_params() {
 		$via      = WPUSB_Utils::option( 'twitter_username' );
 		$hashtags = WPUSB_Utils::option( 'twitter_hashtags' );
-		$hashtags = apply_filters( WPUSB_Utils::add_prefix( '-twitter-hashtags' ), $hashtags );
-		$hashtags = WPUSB_Utils::sanitize_twitter_params( $hashtags );
+		$hashtags = apply_filters( WPUSB_Utils::add_prefix( '-twitter-hashtags' ), WPUSB_Utils::rm_tags( $hashtags ) );
 		$via      = WPUSB_Utils::sanitize_twitter_params( $via );
 
 		self::$twitter_via      = ( ! empty( $via ) ) ? "&via={$via}" : '';
