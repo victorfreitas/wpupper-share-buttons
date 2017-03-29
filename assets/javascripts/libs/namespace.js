@@ -126,6 +126,46 @@
             return ~window.location.href.indexOf( '?' );
         },
 
+        isStorageAvailable: function() {
+            return this.storageAvailable( 'localStorage' );
+        },
+
+        getPathName: function() {
+            return this.addPrefix( window.location.pathname, 'r' );
+        },
+
+        timeKey: function() {
+            return this.strToCode( this.getPathName() + '/storage-time' );
+        },
+
+        setCacheTime: function() {
+            this.setItem( this.timeKey(), this.getTime() );
+        },
+
+        setItem: function(key, value) {
+            if ( !this.isStorageAvailable() ) {
+                return;
+            }
+
+            localStorage.setItem( key, value );
+        },
+
+        getItem: function(key) {
+            if ( !this.isStorageAvailable() ) {
+                return 0;
+            }
+
+            return localStorage.getItem( key );
+        },
+
+        hasExpiredCache: function() {
+            if ( !this.isStorageAvailable() ) {
+                return true;
+            }
+
+            return ( ( this.getTime() - this.getItem( this.timeKey() ) ) > ( 5 * 60 * 1000 ) );
+        },
+
         getSpinner: function() {
             var img       = document.createElement( 'img' );
             img.src       = this.getSpinnerUrl();
@@ -160,6 +200,20 @@
             return document.getElementById( id );
         },
 
+        storageAvailable: function(type) {
+            try {
+                var storage = window[type]
+                  , x       = '__storage_test__'
+                ;
+
+                storage.setItem(x, x);
+                storage.removeItem(x);
+                return true;
+            } catch(e) {
+                return false;
+            }
+        },
+
         get: function(key, defaultVal) {
             var query, vars, varsLength, pair, i;
 
@@ -181,6 +235,26 @@
 
             return ( defaultVal || '' );
         },
+
+        strToCode: function(str) {
+            var hash   = 0
+              , strLen = str.length
+              , i
+              , chr
+            ;
+
+            if ( !strLen ) {
+                return hash;
+            }
+
+            for ( i = 0; i < strLen; i++ ) {
+                chr   = str.charCodeAt( i );
+                hash  = ( ( hash << 5 ) - hash ) + chr;
+                hash |= 0;
+            }
+
+            return Math.abs( hash );
+        }
     };
 
     context.WPUSB = WPUSB;
