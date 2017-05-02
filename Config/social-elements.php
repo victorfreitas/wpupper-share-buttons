@@ -583,7 +583,7 @@ class WPUSB_Social_Elements {
 		$tracking            = apply_filters( WPUSB_Utils::add_prefix( '-tracking' ), $tracking, $post_id );
 		self::$thumbnail     = apply_filters( WPUSB_Utils::add_prefix( '-thumbnail' ), $thumbnail, $post_id );
 		self::$body_mail     = apply_filters( WPUSB_Utils::add_prefix( '-body-mail' ), $body_mail, $post_id );
-		self::$title         = $title;
+		self::$title         = WPUSB_Utils::rm_tags( $title );
 		self::$tracking      = $tracking;
 		self::$action        = 'data-action="open-popup"';
 		$caracter            = apply_filters( WPUSB_Utils::add_prefix( '-caracter' ), html_entity_decode( '&#x261B;' ) );
