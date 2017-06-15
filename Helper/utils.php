@@ -1677,7 +1677,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 
 		$css = apply_filters( self::add_prefix( '_custom_css' ), $css );
 
-		return empty( $css ) ? '' : htmlspecialchars_decode( $css );
+		return empty( $css ) ? '' : self::html_decode( $css );
 	}
 
 	/**
