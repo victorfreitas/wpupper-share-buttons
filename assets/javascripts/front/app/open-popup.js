@@ -1,23 +1,20 @@
-WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $, utils) {
+WPUSB( 'WPUSB.OpenPopup', function(Model, $, utils) {
 
-	OpenPopup.create = function(container) {
+	Model.create = function(container, context) {
 		this.$el = container;
+
         this.init();
     };
 
-    OpenPopup.init = function() {
-    	if ( utils.isMobile() ) {
-    		this.setMessengerUrl();
-    	}
-
+    Model.init = function() {
         this.addEventListener();
 	};
 
-	OpenPopup.addEventListener = function() {
+	Model.addEventListener = function() {
 		this.$el.addEvent( 'click', 'open-popup', this );
 	};
 
-	OpenPopup._onClickOpenPopup = function(event) {
+	Model._onClickOpenPopup = function(event) {
 		var target = $( event.currentTarget )
 		  , width  = '685'
 		  , height = '500'
@@ -33,7 +30,7 @@ WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $, utils) {
 		event.preventDefault();
 	};
 
-	OpenPopup.popupCenter = function(name, url, width, height) {
+	Model.popupCenter = function(name, url, width, height) {
 		var left
 		  , top
 		;
@@ -50,14 +47,5 @@ WPUSB( 'WPUSB.OpenPopup', function(OpenPopup, $, utils) {
 		);
 	};
 
-	OpenPopup.setMessengerUrl = function() {
-		var messenger = this.$el.find( '[data-messenger-mobile]' );
-
-		if ( !messenger.length ) {
-			return;
-		}
-
-		messenger.attr( 'href', messenger.data( 'messenger-mobile' ) );
-	};
 
 }, {} );

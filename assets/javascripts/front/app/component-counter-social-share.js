@@ -312,8 +312,9 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 
 	Model.fn.renderExtras = function() {
 		this.addEventListeners();
+
 		WPUSB.FeaturedReferrer.create( this.$el );
-		WPUSB.OpenPopup.create( this.$el );
+		WPUSB.OpenPopup.create( this.$el, this );
 	};
 
 });

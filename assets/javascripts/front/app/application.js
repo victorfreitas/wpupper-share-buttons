@@ -1,6 +1,7 @@
-WPUSB( 'WPUSB.Application', function(Application, $, utils) {
+WPUSB( 'WPUSB.Application', function(Model, $, utils) {
 
-	Application.init = function(container) {
+	Model.init = function(container) {
+		WPUSB.ProvidersProcess.create( container );
 		WPUSB.BuildComponents.create( container );
 		WPUSB.FixedTop.create( container );
 		WPUSB.FixedContext.create( container );

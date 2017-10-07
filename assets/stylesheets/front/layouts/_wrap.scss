@@ -281,7 +281,6 @@
 // ===================================================
 @media ( min-width: $tablet ) {
     .#{$prefix} {
-        .#{$prefix}-whatsapp,
         .#{$prefix}-viber {
             display: none;
         }
@@ -294,14 +293,12 @@
 
 @media only screen and (min-device-width : $tablet) and (max-device-width : $desktop)  {
     .#{$prefix} {
-        .#{$prefix}-whatsapp,
         .#{$prefix}-viber {
             display: inline-block;
         }
     }
 
     .#{$prefix}-fixed {
-        .#{$prefix}-whatsapp,
         .#{$prefix}-viber {
             display: table-cell;
         }

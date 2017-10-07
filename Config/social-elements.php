@@ -15,20 +15,35 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WPUSB_Social_Elements {
 
 	public static $action;
+
 	public static $url_like;
+
 	public static $url;
+
 	public static $item;
+
 	public static $class_button;
+
 	public static $caracter;
+
 	public static $twitter_text;
+
 	public static $twitter_via;
+
 	public static $twitter_hashtags;
+
 	public static $viber_text;
+
 	public static $whatsapp_text;
+
 	public static $thumbnail;
+
 	public static $title;
+
 	public static $tracking;
+
 	public static $body_mail;
+
 	public static $social_networks = null;
 
 	public static $items_available = array(
@@ -149,10 +164,10 @@ class WPUSB_Social_Elements {
 		$std->whatsapp->class_item  = self::$item;
 		$std->whatsapp->class_link  = self::$class_button;
 		$std->whatsapp->class_icon  = apply_filters( $tag_icon, $prefix_icons . 'whatsapp' );
-		$std->whatsapp->popup       = self::$action;
+		$std->whatsapp->popup       = 'data-whatsapp-wpusb="https://web.whatsapp.com/"';
 		$std->whatsapp->inside      = __( 'Share', 'wpupper-share-buttons' );
 		$std->whatsapp->has_counter = false;
-		$std->whatsapp->target      = '_self';
+		$std->whatsapp->target      = '_blank';
 
 		/**
 		 * @var Object
@@ -365,7 +380,7 @@ class WPUSB_Social_Elements {
 		$std->messenger->class_item  = self::$item;
 		$std->messenger->class_link  = self::$class_button;
 		$std->messenger->class_icon  = apply_filters( $tag_icon, $prefix_icons . 'messenger' );
-		$std->messenger->popup       = 'data-messenger-mobile="fb-messenger://share?link=' . self::$url . '"';
+		$std->messenger->popup       = 'data-messenger-wpusb="fb-messenger://share?link=' . self::$url . '"';
 		$std->messenger->inside      = __( 'Messenger', 'wpupper-share-buttons' );
 		$std->messenger->has_counter = false;
 		$std->messenger->target      = '_blank';

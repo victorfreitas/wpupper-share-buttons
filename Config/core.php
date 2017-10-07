@@ -152,6 +152,7 @@ final class WPUSB_Core {
 		}
 
 		self::_create_table();
+
 		WPUSB_Utils::add_default_options();
 	}
 
@@ -370,7 +371,11 @@ final class WPUSB_Core {
 	 * @return Void
 	 */
 	public static function db_delta( $query ) {
-		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		// Include upgrade file if dbDelta function not exists
+		if ( ! function_exists( 'dbDelta' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+		}
+
 		dbDelta( $query );
 	}
 

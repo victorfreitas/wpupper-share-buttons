@@ -13,7 +13,8 @@ WPUSB( 'WPUSB.Components.ButtonsSection', function(Modal, $, utils) {
 		this.setModal();
 		this.setMask();
 
-		WPUSB.OpenPopup.create( this.modal );
+		WPUSB.OpenPopup.create( this.modal, this );
+
 		this.addEventListener();
 
 		modalIds[this.id] = true;

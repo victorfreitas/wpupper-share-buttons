@@ -1627,12 +1627,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return string
 	 */
 	public static function get_path_css_min() {
-		$blog_id = '';
-
-		if ( is_multisite() ) {
-			$blog_id = get_current_blog_id();
-		}
-
+		$blog_id = is_multisite() ? get_current_blog_id() : '';
 		return sprintf( 'stylesheets/style.min%s.css', $blog_id );
 	}
 
@@ -1748,8 +1743,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			return '';
 		}
 
-		$widgets_css    = '';
-		$widget_options = array();
+		$widgets_css = '';
 
 		foreach ( $options as $number => $option ) :
 			$widget_options = array(
@@ -1828,7 +1822,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	public static function get_widget_id_base( $option = false ) {
 		$id_base = 'widget-' . WPUSB_App::SLUG;
 
-		return ( $option ) ? "widget_{$id_base}" : $id_base;
+		return $option ? "widget_{$id_base}" : $id_base;
 	}
 
 	/**
@@ -1841,7 +1835,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	public static function get_widget_follow_id_base( $option = false ) {
 		$id_base = self::get_widget_id_base() . '-follow';
 
-		return ( $option ) ? "widget_{$id_base}" : $id_base;
+		return $option ? "widget_{$id_base}" : $id_base;
 	}
 
 	/**
@@ -2125,7 +2119,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return Boolean
 	 */
     public static function is_disabled_by_meta( $ID = null ) {
-		$ID    = ( $ID ) ? $ID : self::get_id();
+		$ID    = $ID ? $ID : self::get_id();
 		$type  = get_post_type( $ID );
 		$types = self::option( 'post_types' );
 
@@ -2140,11 +2134,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
     public static function is_customize_preview() {
-    	if ( ! function_exists( 'is_customize_preview' ) ) {
-    		return false;
-    	}
-
-    	return is_customize_preview();
+    	return ( function_exists( 'is_customize_preview' ) && is_customize_preview() );
     }
 
 	/**
@@ -2207,7 +2197,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$elements = WPUSB_Social_Elements::$items_available;
 
 		if ( ! is_array( $order ) || empty( $order ) ) {
-			return ( $check ) ? false : $elements;
+			return $check ? false : $elements;
 		}
 
 		$new_order = array();
@@ -2280,7 +2270,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
      * @return Mixed String|Boolean
      */
 	public static function convert_date_for_sql( $date, $format = 'Y-m-d H:i' ) {
-		return ( empty( $date ) ? false : esc_sql( self::convert_date( $date, $format, '/', '-' ) ) );
+		return empty( $date ) ? false : esc_sql( self::convert_date( $date, $format, '/', '-' ) );
 	}
 
     /**
@@ -2402,21 +2392,5 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		}
 
 		return is_home();
-	}
-
-    /**
-     * Generate log file
-     *
-     * @since 3.0
-     * @param Mixed $data
-     * @param String $log_name
-     * @return Void
-     */
-	public static function log( $data, $log_name = 'debug' ) {
-		$name = sprintf( '%s-%s.log', $log_name, date( 'd-m-Y' ) );
-		$log  = print_r( $data, true ) . PHP_EOL;
-		$log .= "\n=============================\n";
-
-		file_put_contents( self::file_path( $name, 'logs/' ), $log, FILE_APPEND );
 	}
 }
