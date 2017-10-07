@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 class WPUSB_URL_Shortener {
@@ -115,7 +115,7 @@ class WPUSB_URL_Shortener {
 			$hash
 		);
 
-		return (int)$wpdb->get_var( $query );
+		return (int) $wpdb->get_var( $query );
 	}
 
 	/**
@@ -137,9 +137,11 @@ class WPUSB_URL_Shortener {
 				'short_url' => $short_url,
 				'expires'   => $expiration_time,
 			),
-			array( 'hash' => $hash ),
+			array(
+				'hash' => $hash,
+			),
 			array( '%s', '%d' ),
-			array( '%s', )
+			array( '%s' )
 		);
 	}
 
@@ -159,7 +161,11 @@ class WPUSB_URL_Shortener {
 
 		$table = $wpdb->prefix . self::TABLE_NAME;
 
-		$wpdb->delete( $table, array( 'post_id' => $post_id ) );
+		$wpdb->delete(
+			$table, array(
+				'post_id' => $post_id,
+			)
+		);
 
 		return $wpdb->insert(
 			$table,
@@ -181,10 +187,10 @@ class WPUSB_URL_Shortener {
 	 * @param Null
 	 * @return Mixed False|String
 	 */
-    public function get_short() {
-    	if ( ! WPUSB_Utils::has_curl() || ! WPUSB_Utils::has_json() ) {
-    		return false;
-    	}
+	public function get_short() {
+		if ( ! WPUSB_Utils::has_curl() || ! WPUSB_Utils::has_json() ) {
+			return false;
+		}
 
 		$value  = WPUSB_Utils::option( 'bitly_domain' );
 		$domain = WPUSB_Utils::get_bitly_domain( $value );
@@ -200,22 +206,22 @@ class WPUSB_URL_Shortener {
 		$url = esc_url_raw( add_query_arg( $params, self::API ) );
 		$ch  = curl_init();
 
-        curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 5 );
-        curl_setopt( $ch, CURLOPT_TIMEOUT, 5 );
-        curl_setopt( $ch, CURLOPT_URL, $url );
-        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-        curl_setopt( $ch, CURLOPT_HEADER, false );
+		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 5 );
+		curl_setopt( $ch, CURLOPT_TIMEOUT, 5 );
+		curl_setopt( $ch, CURLOPT_URL, $url );
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $ch, CURLOPT_HEADER, false );
 
-        $response = curl_exec( $ch );
+		$response = curl_exec( $ch );
 
-        curl_close( $ch );
+		curl_close( $ch );
 
-        $response = WPUSB_Utils::json_decode( $response );
+		$response = WPUSB_Utils::json_decode( $response );
 
-        if ( isset( $response->status_code ) && 200 === intval( $response->status_code ) ) {
-        	return $response->data->url;
-        }
+		if ( isset( $response->status_code ) && 200 === intval( $response->status_code ) ) {
+			return $response->data->url;
+		}
 
-        return false;
-    }
+		return false;
+	}
 }

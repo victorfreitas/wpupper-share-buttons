@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 class WPUSB_Settings_Faq_View {
@@ -48,7 +48,7 @@ class WPUSB_Settings_Faq_View {
  * Items Available:
 <?php
 foreach ( WPUSB_Social_Elements::$items_available as $item ) :
-echo " * {$item}\n";
+	echo " * {$item}\n";
 endforeach;
 ?>
  *
@@ -57,32 +57,32 @@ endforeach;
  * Default Arguments
  */
 $args = array(
-     'class_first'  => '', // String
-     'class_second' => '', // String
-     'class_link'   => '', // String
-     'class_icon'   => '', // String
-     'layout'       => 'default', //String
-     'items'        => '', // Mixed String|Array -- Example: 'facebook, google' | array( 'facebook', 'google' )
-     'title'        => '', //String
-     'header_title' => '', //String
-     'url'          => '', //string
-     'elements'     => array( // Array
-         'remove_inside'  =>  false, // Boolean
-         'remove_counter' =>  false, // Boolean
-    ),
+	 'class_first'  => '', // String
+	 'class_second' => '', // String
+	 'class_link'   => '', // String
+	 'class_icon'   => '', // String
+	 'layout'       => 'default', //String
+	 'items'        => '', // Mixed String|Array -- Example: 'facebook, google' | array( 'facebook', 'google' )
+	 'title'        => '', //String
+	 'header_title' => '', //String
+	 'url'          => '', //string
+	 'elements'     => array( // Array
+		 'remove_inside'  =>  false, // Boolean
+		 'remove_counter' =>  false, // Boolean
+	),
 );
 
 /*
  * Example usage
  */
 $args = array(
-    'layout' => 'square-plus',
-    'items'  => array( 'facebook', 'twitter', 'google', 'whatsapp' ),
+	'layout' => 'square-plus',
+	'items'  => array( 'facebook', 'twitter', 'google', 'whatsapp' ),
 );
 
 if ( class_exists( 'WPUSB_Shares_View' ) ) :
-    // $args is optional
-    echo WPUSB_Shares_View::buttons_share( $args );
+	// $args is optional
+	echo WPUSB_Shares_View::buttons_share( $args );
 endif;
 
 /*

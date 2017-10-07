@@ -9,7 +9,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 class WPUSB_Social_Elements {
@@ -273,7 +273,7 @@ class WPUSB_Social_Elements {
 		$std->printer->class_link  = self::$class_button;
 		$std->printer->class_icon  = apply_filters( $tag_icon, $prefix_icons . 'printer' );
 		$std->printer->popup       = self::$action;
-		$std->printer->inside      =  __( 'Print', 'wpupper-share-buttons' );
+		$std->printer->inside      = __( 'Print', 'wpupper-share-buttons' );
 		$std->printer->has_counter = false;
 		$std->printer->target      = '_blank';
 

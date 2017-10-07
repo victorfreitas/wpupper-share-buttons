@@ -7,7 +7,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 WPUSB_App::uses( 'widgets', 'View' );
@@ -103,22 +103,24 @@ class WPUpper_SB_Widget extends WP_Widget {
 		foreach ( $items as $name => $item ) :
 			$id = ( 'google' === $name ) ? "{$name}-plus" : $name;
 
-			WPUSB_Settings_View::td(array(
-				'type'        => 'checkbox',
-				'id'          => esc_attr( $this->get_field_id( $id ) ),
-				'name'        => esc_attr( $this->get_field_name( 'items' ) ) . "[{$name}]",
-				'value'       => $name,
-				'label-class' => "{$prefix}-icon {$prefix}-{$id}-icon",
-				'td-class'    => "{$prefix}-td",
-				'td-id'       => $name,
-				'td-title'    => ucfirst( $name ),
-				'span'        => false,
-				'class'       => 'hide-input',
-				'is_checked'  => $this->is_checked( $name ),
-				'attr'        => array(
-					'data-action' => 'networks',
-				),
-			));
+			WPUSB_Settings_View::td(
+				array(
+					'type'        => 'checkbox',
+					'id'          => esc_attr( $this->get_field_id( $id ) ),
+					'name'        => esc_attr( $this->get_field_name( 'items' ) ) . "[{$name}]",
+					'value'       => $name,
+					'label-class' => "{$prefix}-icon {$prefix}-{$id}-icon",
+					'td-class'    => "{$prefix}-td",
+					'td-id'       => $name,
+					'td-title'    => ucfirst( $name ),
+					'span'        => false,
+					'class'       => 'hide-input',
+					'is_checked'  => $this->is_checked( $name ),
+					'attr'        => array(
+						'data-action' => 'networks',
+					),
+				)
+			);
 		endforeach;
 	}
 

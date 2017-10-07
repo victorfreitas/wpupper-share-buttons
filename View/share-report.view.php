@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 class WPUSB_Sharing_Report_View {
@@ -41,8 +41,8 @@ class WPUSB_Sharing_Report_View {
 				<form class="share-report-form">
 
 					<input type="hidden"
-					       name="page"
-					       value="<?php echo WPUSB_App::SLUG . '-sharing-report'; ?>">
+						   name="page"
+						   value="<?php echo WPUSB_App::SLUG . '-sharing-report'; ?>">
 
 					<?php
 						$list_table->search_box( __( 'Search', 'wpupper-share-buttons' ), WPUSB_App::SLUG );
@@ -88,7 +88,7 @@ class WPUSB_Sharing_Report_View {
 		$date_format = _x( 'YYYY-MM-DD', 'placeholder', 'wpupper-share-buttons' );
 	?>
 		<div class="<?php echo WPUSB_Utils::add_prefix( '-inline' ); ?>"
-			 <?php echo WPUSB_Utils::get_component( 'datepicker' ); ?>>
+				<?php echo WPUSB_Utils::get_component( 'datepicker' ); ?>>
 
 			<label class="<?php echo WPUSB_Utils::add_prefix( '-label' ); ?>">
 				<?php _e( 'Start date:', 'wpupper-share-buttons' ); ?>

@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 final class WPUSB_Scripts {
@@ -391,7 +391,7 @@ final class WPUSB_Scripts {
 	 */
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
-			self::$instance = new self;
+			self::$instance = new self();
 		}
 	}
 }

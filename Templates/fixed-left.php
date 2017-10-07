@@ -9,7 +9,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 class WPUSB_Fixed_Left {
@@ -69,7 +69,7 @@ EOD;
 		$modal_data     = WPUSB_Utils::get_modal_data_id( $args->reference->element, $args->number );
 		$class_btn      = WPUSB_Utils::get_class_btn();
 		$class_icon     = apply_filters( WPUSB_Utils::add_prefix( '_item_class_icon' ), "{$args->reference->class_icon}-{$layout}", $args->reference );
-		$content   	    = <<<EOD
+		$content        = <<<EOD
 			<div class="{$classes}">
 
 				<a {$link_type}

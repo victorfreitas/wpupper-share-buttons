@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 /*
@@ -263,14 +263,12 @@ final class WPUSB_Core {
 	public static function delete_metabox() {
 		global $wpdb;
 
-		$wpdb->query( $wpdb->prepare(
-			"DELETE FROM
-				`{$wpdb->postmeta}`
-			 WHERE
-			 	`meta_key` = %s
-			",
-			WPUSB_Setting::META_KEY
-		) );
+		$wpdb->query(
+			$wpdb->prepare(
+				"DELETE FROM `{$wpdb->postmeta}` WHERE `meta_key` = %s",
+				WPUSB_Setting::META_KEY
+			)
+		);
 	}
 
 	/**
@@ -408,15 +406,7 @@ final class WPUSB_Core {
 			return;
 		}
 
-		$wpdb->query(
-			"ALTER TABLE
-				{$table}
-			 ADD
-				tumblr BIGINT(20) NOT NULL DEFAULT 0
-			 AFTER
-				pinterest;
-			"
-		);
+		$wpdb->query( "ALTER TABLE {$table} ADD tumblr BIGINT(20) NOT NULL DEFAULT 0 AFTER pinterest;" );
 	}
 
 	private static function _set_column_post_date( $wpdb, $table ) {
@@ -424,54 +414,33 @@ final class WPUSB_Core {
 			return;
 		}
 
-		$inserted = $wpdb->query(
-			"ALTER TABLE
-				{$table}
-			 ADD
-				post_date DATE NOT NULL;
-			"
-		);
+		$inserted = $wpdb->query( "ALTER TABLE {$table} ADD post_date DATE NOT NULL;" );
 
 		if ( ! $inserted ) {
 			return;
 		}
 
-		$results = $wpdb->get_results(
-			"SELECT
-				`id`,
-				`post_id`
-			 FROM
-			 	`{$table}`
-			"
-		);
+		$results = $wpdb->get_results( "SELECT `id`, `post_id` FROM `{$table}`" );
 
 		if ( empty( $results ) ) {
 			return;
 		}
 
 		foreach ( $results as $result ) :
-			$post_date = $wpdb->get_var( $wpdb->prepare(
-				"SELECT
-					`post_date`
-				 FROM
-				 	`{$wpdb->posts}`
-				 WHERE
-				 	`ID` = %d
-				",
-				$result->post_id
-			) );
+			$post_date = $wpdb->get_var(
+				$wpdb->prepare(
+					"SELECT `post_date` FROM `{$wpdb->posts}` WHERE `ID` = %d",
+					$result->post_id
+				)
+			);
 
-			$wpdb->query( $wpdb->prepare(
-				"UPDATE
-					`{$table}`
-				 SET
-				 	`post_date` = %s
-				 WHERE
-				 	`id` = %d
-				",
-				date_i18n( 'Y-m-d', strtotime( $post_date ) ),
-				$result->id
-			) );
+			$wpdb->query(
+				$wpdb->prepare(
+					"UPDATE `{$table}` SET `post_date` = %s WHERE `id` = %d",
+					date_i18n( 'Y-m-d', strtotime( $post_date ) ),
+					$result->id
+				)
+			);
 		endforeach;
 	}
 
@@ -480,15 +449,7 @@ final class WPUSB_Core {
 			return;
 		}
 
-		$wpdb->query(
-			"ALTER TABLE
-				{$table}
-			 ADD
-				buffer BIGINT(20) NOT NULL DEFAULT 0
-			 AFTER
-				tumblr;
-			"
-		);
+		$wpdb->query( "ALTER TABLE {$table} ADD buffer BIGINT(20) NOT NULL DEFAULT 0 AFTER tumblr;" );
 	}
 
 	/**
@@ -503,15 +464,15 @@ final class WPUSB_Core {
 
 		$table = WPUSB_Utils::get_table_name();
 		$query = $wpdb->prepare(
-			"SELECT
-				COLUMN_NAME
-			 FROM
-			 	information_schema.COLUMNS
-			 WHERE
-			 	    TABLE_SCHEMA = %s
-			 	AND TABLE_NAME = %s
-			 	AND COLUMN_NAME = %s;
-			",
+			'SELECT
+                COLUMN_NAME
+             FROM
+                information_schema.COLUMNS
+             WHERE
+                    TABLE_SCHEMA = %s
+                AND TABLE_NAME = %s
+                AND COLUMN_NAME = %s;
+            ',
 			$wpdb->dbname,
 			$table,
 			$column
@@ -535,7 +496,7 @@ final class WPUSB_Core {
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self;
+			self::$_instance = new self();
 		}
 	}
 }

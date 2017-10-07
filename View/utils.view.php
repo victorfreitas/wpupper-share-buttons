@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 abstract class WPUSB_Utils_View {
@@ -102,19 +102,19 @@ abstract class WPUSB_Utils_View {
 		self::set_args( array_merge( $defaults, $args ) );
 
 		switch ( self::$args->type ) :
-			case 'select' :
+			case 'select':
 				self::_tr_select();
 				break;
 
-			case 'textarea' :
+			case 'textarea':
 				self::_tr_textarea();
 				break;
 
-			case 'checkbox' :
+			case 'checkbox':
 				self::_tr_checkbox();
 				break;
 
-			default :
+			default:
 				self::_tr_input();
 		endswitch;
 
@@ -140,70 +140,71 @@ abstract class WPUSB_Utils_View {
 			</th>
 			<td>
 				<?php
-					if ( $args->type === 'checkbox' && $args->default !== '' ) {
-						printf(
-							'<input type="hidden" name="%s" value="%s">',
-							self::get_field_name(),
-							$args->default
-						);
-					}
+				if ( $args->type === 'checkbox' && $args->default !== '' ) {
+					printf(
+						'<input type="hidden" name="%s" value="%s">',
+						self::get_field_name(),
+						$args->default
+					);
+				}
 
-					if ( ! empty( $args->left_text ) ) {
-						printf(
-							'<span class="%s">%s</span>',
-							$args->left_text_class,
-							$args->left_text
-						);
-					}
+				if ( ! empty( $args->left_text ) ) {
+					printf(
+						'<span class="%s">%s</span>',
+						$args->left_text_class,
+						$args->left_text
+					);
+				}
 				?>
 				<input
 					   type="<?php echo $args->type; ?>"
-				       id="<?php echo $field_id; ?>"
+					   id="<?php echo $field_id; ?>"
 					   class="<?php echo self::get_class(); ?>"
-				       name="<?php echo self::get_field_name(); ?>"
-				       value="<?php echo $value; ?>"
-				       <?php if ( $args->type === 'number' && $args->min ) : ?>
-					       step="<?php echo $args->step; ?>"
-					       min="<?php echo $args->min; ?>"
-					       max="<?php echo $args->max; ?>"
-				   	   <?php endif; ?>
-				       <?php
-				       		echo self::checked();
-				       		echo self::get_placeholder();
-				       		echo self::get_attrs();
-				       	?>>
+					   name="<?php echo self::get_field_name(); ?>"
+					   value="<?php echo $value; ?>"
+						<?php if ( $args->type === 'number' && $args->min ) : ?>
+						   step="<?php echo $args->step; ?>"
+						   min="<?php echo $args->min; ?>"
+						   max="<?php echo $args->max; ?>"
+						<?php endif; ?>
+						<?php
+							   echo self::checked();
+							   echo self::get_placeholder();
+							   echo self::get_attrs();
+							?>
+						>
 				<?php
-					if ( ! empty( $args->span ) ) {
-						printf(
-							'<span class="description text-span">%s</span>',
-							$args->span
-						);
-					}
+				if ( ! empty( $args->span ) ) {
+					printf(
+						'<span class="description text-span">%s</span>',
+						$args->span
+					);
+				}
 
-					if ( ! empty( $args->text ) && empty( $args->block_text ) ) {
-						echo self::get_text();
-					}
+				if ( ! empty( $args->text ) && empty( $args->block_text ) ) {
+					echo self::get_text();
+				}
 
-					if ( ! empty( $args->block_text ) ) {
+				if ( ! empty( $args->block_text ) ) {
 					?>
-						<div class="<?php echo self::get_field_id( 'blockquote' ); ?>">
+					<div class="<?php echo self::get_field_id( 'blockquote' ); ?>">
 
-							<?php echo self::get_text(); ?>
+						<?php echo self::get_text(); ?>
 
-							<div class="description">
-								<?php
-									printf(
-										'<strong>%s</strong> %s',
-										$args->block_strong,
-										$args->block_text
-									);
-								?>
+						<div class="description">
+							<?php
+								printf(
+									'<strong>%s</strong> %s',
+									$args->block_strong,
+									$args->block_text
+								);
+							?>
 							</div>
 						</div>
 					<?php
-					}
+				}
 				?>
-            </td>
+			</td>
 		</tr>
 	<?php
 	}
@@ -214,7 +215,7 @@ abstract class WPUSB_Utils_View {
 		$prefix   = str_replace( '_', '-', $args->prefix );
 	?>
 		<tr class="<?php echo self::get_class( true ); ?>"
-		    <?php echo self::get_attrs( true ); ?>>
+			<?php echo self::get_attrs( true ); ?>>
 
 			<th scope="row">
 				<label for="<?php echo $field_id; ?>">
@@ -223,32 +224,33 @@ abstract class WPUSB_Utils_View {
 			</th>
 			<td>
 				<select
-					    class="<?php echo self::get_class(); ?>"
-					    name="<?php echo self::get_field_name(); ?>"
-					    id="<?php echo $field_id; ?>"
-					    <?php
-					    	echo WPUSB_Utils::get_component( 'select2' );
-					    	echo self::get_placeholder( 'data-' );
-					    	echo self::get_attrs();
-					    	echo ( $args->multiple ) ? ' multiple="multiple"' : '';
-					    ?>>
+						class="<?php echo self::get_class(); ?>"
+						name="<?php echo self::get_field_name(); ?>"
+						id="<?php echo $field_id; ?>"
+						<?php
+							echo WPUSB_Utils::get_component( 'select2' );
+							echo self::get_placeholder( 'data-' );
+							echo self::get_attrs();
+							echo ( $args->multiple ) ? ' multiple="multiple"' : '';
+						?>
+						>
 					<?php
-						foreach ( $args->options as $key => $option ) :
-							printf(
-								'<option value="%s" %s>%s</option>',
-								$key,
-								WPUSB_Utils::selected( $key, self::get_value() ),
-								$option
-							);
+					foreach ( $args->options as $key => $option ) :
+						printf(
+							'<option value="%s" %s>%s</option>',
+							$key,
+							WPUSB_Utils::selected( $key, self::get_value() ),
+							$option
+						);
 						endforeach;
 					?>
 				</select>
 				<?php
-					if ( ! empty( $args->text ) ) {
-						printf( '<p class="description">%s</p>', $args->text );
-					}
+				if ( ! empty( $args->text ) ) {
+					printf( '<p class="description">%s</p>', $args->text );
+				}
 				?>
-            </td>
+			</td>
 		</tr>
 	<?php
 	}
@@ -258,7 +260,7 @@ abstract class WPUSB_Utils_View {
 		$field_id = self::get_field_id( $args->key );
 	?>
 		<tr class="<?php echo self::get_class( true ); ?>"
-		    <?php echo self::get_attrs( true ); ?>>
+			<?php echo self::get_attrs( true ); ?>>
 
 			<th scope="row">
 				<label for="<?php echo $field_id; ?>">
@@ -272,15 +274,17 @@ abstract class WPUSB_Utils_View {
 						  id="<?php echo $field_id; ?>"
 						  rows="<?php echo $args->rows; ?>"
 						  cols="<?php echo $args->cols; ?>"
-						  <?php echo $args->attr; ?>><?php
-					echo self::get_value();
-				?></textarea>
-				<?php
-					if ( ! empty( $args->text ) ) {
-						printf( '<p class="description">%s</p>', $args->text );
-					}
+							<?php echo $args->attr; ?>>
+										<?php
+										echo self::get_value();
 				?>
-            </td>
+				</textarea>
+				<?php
+				if ( ! empty( $args->text ) ) {
+					printf( '<p class="description">%s</p>', $args->text );
+				}
+				?>
+			</td>
 		</tr>
 	<?php
 	}
@@ -299,26 +303,26 @@ abstract class WPUSB_Utils_View {
 			</th>
 			<td>
 				<div class="<?php echo $prefix; ?>-custom-switch">
-				    <input type="checkbox"
-				    	   id="<?php echo $field_id; ?>"
-				    	   class="<?php echo $prefix; ?>-check"
-				    	   name="<?php echo self::get_field_name(); ?>"
-				    	   value="<?php echo $args->checked; ?>"
-				    	   <?php checked( $args->checked, $value ); ?>
-				    	   <?php echo self::get_attrs(); ?>>
+					<input type="checkbox"
+						   id="<?php echo $field_id; ?>"
+						   class="<?php echo $prefix; ?>-check"
+						   name="<?php echo self::get_field_name(); ?>"
+						   value="<?php echo $args->checked; ?>"
+							<?php checked( $args->checked, $value ); ?>
+							<?php echo self::get_attrs(); ?>>
 
-				    <label for="<?php echo $field_id; ?>">
-				        <span class="<?php echo $prefix; ?>-inner"
-				        	  data-title-on="<?php _e( 'YES', 'wpupper-share-buttons' ); ?>"
-				        	  data-title-off="<?php _e( 'NO', 'wpupper-share-buttons' ); ?>"></span>
-				        <span class="<?php echo $prefix; ?>-switch"></span>
-				    </label>
+					<label for="<?php echo $field_id; ?>">
+						<span class="<?php echo $prefix; ?>-inner"
+							  data-title-on="<?php _e( 'YES', 'wpupper-share-buttons' ); ?>"
+							  data-title-off="<?php _e( 'NO', 'wpupper-share-buttons' ); ?>"></span>
+						<span class="<?php echo $prefix; ?>-switch"></span>
+					</label>
 				</div>
 
 				<?php
-					if ( ! empty( $args->text ) ) {
-						printf( '<p class="description">%s</p>', $args->text );
-					}
+				if ( ! empty( $args->text ) ) {
+					printf( '<p class="description">%s</p>', $args->text );
+				}
 				?>
 			</td>
 		</tr>
@@ -441,7 +445,7 @@ abstract class WPUSB_Utils_View {
 			<p>
 				<?php
 					$message = sprintf(
-						__( 'Help keep the free %s, you can make a donation or vote with %s at WordPress.org. Thank you very much!', 'wpupper-share-buttons' ),
+						__( 'Help keep the free %1$s, you can make a donation or vote with %2$s at WordPress.org. Thank you very much!', 'wpupper-share-buttons' ),
 						__( WPUSB_App::NAME, 'wpupper-share-buttons' ),
 						'★★★★★'
 					);
@@ -460,7 +464,7 @@ abstract class WPUSB_Utils_View {
 				   target="_blank"
 				   class="button button-secondary">
 
-			   		<?php _e( 'Make a review', 'wpupper-share-buttons' ); ?>
+						<?php _e( 'Make a review', 'wpupper-share-buttons' ); ?>
 			   </a>
 			</p>
 		</div>

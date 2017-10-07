@@ -36,37 +36,37 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	// Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 class WPUSB_App {
 
-    /**
-     * The short slug
-     *
-     * @var String
-     */
+	/**
+	 * The short slug
+	 *
+	 * @var String
+	 */
 	const SLUG = 'wpusb';
 
-    /**
-     * Plugin name
-     *
-     * @var String
-     */
+	/**
+	 * Plugin name
+	 *
+	 * @var String
+	 */
 	const NAME = 'WPUpper Share Buttons';
 
-    /**
-     * Initial file path
-     *
-     * @var String
-     */
+	/**
+	 * Initial file path
+	 *
+	 * @var String
+	 */
 	const FILE = __FILE__;
 
-    /**
-     * Version
-     *
-     * @var String
-     */
+	/**
+	 * Version
+	 *
+	 * @var String
+	 */
 	const VERSION = '3.34';
 
 	/**

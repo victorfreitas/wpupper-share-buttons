@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 class WPUSB_Ajax_Controller {
@@ -25,7 +25,7 @@ class WPUSB_Ajax_Controller {
 
 	public function share_preview_request() {
 		if ( ! WPUSB_Utils::is_request_ajax() || ! current_user_can( $this->capability ) ) {
-			exit(0);
+			exit( 0 );
 		}
 
 		$layout   = WPUSB_Utils::post( 'layout', false );
@@ -93,11 +93,11 @@ class WPUSB_Ajax_Controller {
 
 	public function save_custom_css_request() {
 		if ( ! WPUSB_Utils::is_request_ajax() || ! current_user_can( $this->capability ) ) {
-			exit(0);
+			exit( 0 );
 		}
 
 		if ( ! isset( $_POST['custom_css'] ) ) {
-			wp_send_json_error('');
+			wp_send_json_error( '' );
 		}
 
 		$this->_save_custom_css();
@@ -111,7 +111,7 @@ class WPUSB_Ajax_Controller {
 		$css = WPUSB_Utils::get_all_custom_css( $custom_css );
 
 		if ( WPUSB_Utils::build_css( $css ) ) {
-			wp_send_json_success('');
+			wp_send_json_success( '' );
 		}
 
 		wp_send_json_error( __( 'Error: Could not process css file.', 'wpupper-share-buttons' ) );

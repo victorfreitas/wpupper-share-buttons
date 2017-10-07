@@ -9,7 +9,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 abstract class WPUSB_Utils_Share {
@@ -31,15 +31,17 @@ abstract class WPUSB_Utils_Share {
 	 */
 	public static function set_buttons_args( $social, $args, $permalink, $title ) {
 		$social  = self::replace_link( $social, $permalink, $title );
-		$buttons = self::_set_buttons(array(
-			'social'       => $social,
-			'class_second' => $args['class_second'],
-			'class_icon'   => $args['class_icon'],
-			'class_link'   => $args['class_link'],
-			'layout'       => $args['layout'],
-			'permalink'    => $permalink,
-			'elements'     => $args['elements'],
-		));
+		$buttons = self::_set_buttons(
+			array(
+				'social'       => $social,
+				'class_second' => $args['class_second'],
+				'class_icon'   => $args['class_icon'],
+				'class_link'   => $args['class_link'],
+				'layout'       => $args['layout'],
+				'permalink'    => $permalink,
+				'elements'     => $args['elements'],
+			)
+		);
 
 		return $buttons;
 	}
@@ -333,7 +335,7 @@ abstract class WPUSB_Utils_Share {
 	 * @return Boolean
 	 */
 	public static function is_inactive_couter( $atts ) {
-		$args           = (object)$atts;
+		$args           = (object) $atts;
 		$remove_counter = $args->remove_counter;
 		$disabled_count = WPUSB_Utils::option( 'disabled_count', false, 'intval' );
 
@@ -367,19 +369,19 @@ abstract class WPUSB_Utils_Share {
 	public static function get_content_by_layout( $args, $method ) {
 		$content = '';
 
-		switch( $args->layout ) :
-			case 'square-plus' :
+		switch ( $args->layout ) :
+			case 'square-plus':
 				$content = WPUSB_Square_Plus::$method( $args );
 				break;
 
-			case 'default' :
-			case 'buttons' :
-			case 'rounded' :
-			case 'square'  :
+			case 'default':
+			case 'buttons':
+			case 'rounded':
+			case 'square':
 				$content = WPUSB_Layouts_Primary::$method( $args );
 				break;
 
-			case 'position_fixed' :
+			case 'position_fixed':
 				$content = WPUSB_Fixed_Left::$method( $args );
 				break;
 		endswitch;
@@ -491,7 +493,7 @@ abstract class WPUSB_Utils_Share {
 			'url'          => rawurlencode( esc_url( $url ) ),
 			'title'        => WPUSB_Utils::rm_tags( $title ),
 			'header_title' => WPUSB_Utils::rm_tags( $header_title ),
-			'is_widget'    => (bool)$is_widget,
+			'is_widget'    => (bool) $is_widget,
 			'elements'     => array(
 				'remove_inside'  => WPUSB_Utils::rm_tags( $remove_inside ),
 				'remove_counter' => WPUSB_Utils::rm_tags( $remove_counter ),

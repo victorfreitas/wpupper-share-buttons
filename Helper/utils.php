@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 class WPUSB_Utils extends WPUSB_Utils_Share {
@@ -24,7 +24,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			return '';
 		}
 
-        return apply_filters( self::add_prefix( '_esc_class' ), sanitize_html_class( $class ) );
+		return apply_filters( self::add_prefix( '_esc_class' ), sanitize_html_class( $class ) );
 	}
 
 	/**
@@ -120,7 +120,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	*/
 	public static function sanitize( $value, $sanitize ) {
 		if ( ! is_callable( $sanitize ) ) {
-	    	return self::rm_tags( $value );
+			return self::rm_tags( $value );
 		}
 
 		if ( is_array( $value ) ) {
@@ -171,7 +171,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			return absint( $value );
 		}
 
-	    return wp_strip_all_tags( $value, $remove_breaks );
+		return wp_strip_all_tags( $value, $remove_breaks );
 	}
 
 	/**
@@ -283,9 +283,8 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param null
 	 * @return Integer
 	 */
-	public static function get_page_posts_id()
-	{
-		return (int)get_option( 'page_for_posts' );
+	public static function get_page_posts_id() {
+		return (int) get_option( 'page_for_posts' );
 	}
 
 	/**
@@ -486,7 +485,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 
 		self::bitly_set_cache( $url_short, $permalink );
 
-	    return esc_url( $url_short );
+		return esc_url( $url_short );
 	}
 
 	/**
@@ -596,7 +595,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function sanitize_query_string( $query_string ) {
 		$query_string = rawurldecode( $query_string );
-	    return self::rm_tags( $query_string, true );
+		return self::rm_tags( $query_string, true );
 	}
 
 	/**
@@ -710,7 +709,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function get_image_id() {
 		if ( $id = self::get_id() ) {
-			return (int)get_post_meta( $id, '_thumbnail_id', true );
+			return (int) get_post_meta( $id, '_thumbnail_id', true );
 		}
 
 		return false;
@@ -882,15 +881,17 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return json
 	 */
 	public static function error_server_json( $code, $message = 'Message Error', $echo = true ) {
-		$response = self::json_encode(array(
-			'status'  => 'error',
-			'code'    => $code,
-			'message' => $message,
-		));
+		$response = self::json_encode(
+			array(
+				'status'  => 'error',
+				'code'    => $code,
+				'message' => $message,
+			)
+		);
 
 		if ( $echo ) {
 			echo $response;
-			exit(0);
+			exit( 0 );
 		}
 
 		return $response;
@@ -909,7 +910,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		if ( ! $request ) {
 			http_response_code( $code );
 			self::error_server_json( $code, $message );
-			exit(0);
+			exit( 0 );
 		}
 	}
 
@@ -1185,7 +1186,10 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$group_name   = ( 'group' !== $group ) ? $prefix : $option_name;
 		$option_group = "{$group_name}_{$group}";
 
-		return array( 'name' => $option_name, 'group' => $option_group );
+		return array(
+			'name' => $option_name,
+			'group' => $option_group,
+		);
 	}
 
 	/**
@@ -1580,12 +1584,12 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function minify_css( $css ) {
 		$css     = preg_replace( '!/\*[^*]*\*+([^\/][^*]*\*+)*/!', '', $css );
-		$css     = str_replace( array( "\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $css );
+		$css     = str_replace( array( "\r\n", "\r", "\n", "\t", '  ', '    ', '    ' ), '', $css );
 		$search  = array( ': ', ', ', ' {', '; ', ' ;', ';}' );
 		$replace = array( ':', ',', '{', ';', ';', '}' );
 		$css     = str_replace( $search, $replace, $css );
 
-	    return $css;
+		return $css;
 	}
 
 	/**
@@ -1601,9 +1605,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$file = @fopen( $base, 'r' );
 		$tmp  = @fread( $file, @filesize( $base ) );
 
-        @fclose( $file );
+		@fclose( $file );
 
-        return $tmp;
+		return $tmp;
 	}
 
 	/**
@@ -1853,7 +1857,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$search  = array( '/\>[^\S ]+/s', '/[^\S ]+\</s', '/(\s)+/s' );
 		$replace = array( '>', '<', '\\1' );
 
-	    return preg_replace( $search, $replace, $html );
+		return preg_replace( $search, $replace, $html );
 	}
 
 	/**
@@ -1920,9 +1924,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Null
 	 * @return Boolean
 	 */
-    public static function has_curl() {
-        return function_exists( 'curl_init' );
-    }
+	public static function has_curl() {
+		return function_exists( 'curl_init' );
+	}
 
 	/**
 	 * Check json functions exist
@@ -1931,9 +1935,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Null
 	 * @return Boolean
 	 */
-    public static function has_json() {
-        return function_exists( 'json_encode' );
-    }
+	public static function has_json() {
+		return function_exists( 'json_encode' );
+	}
 
 	/**
 	 * Json decode string to object
@@ -1942,13 +1946,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param String $value
 	 * @return Mixed Object|false
 	 */
-    public static function json_decode( $value, $assoc = false ) {
-        if ( ! self::has_json() || empty( $value ) ) {
-        	return false;
-        }
+	public static function json_decode( $value, $assoc = false ) {
+		if ( ! self::has_json() || empty( $value ) ) {
+			return false;
+		}
 
-        return json_decode( $value, $assoc );
-    }
+		return json_decode( $value, $assoc );
+	}
 
 	/**
 	 * Json encode string to object
@@ -1957,13 +1961,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param String $value
 	 * @return Mixed Object|Array
 	 */
-    public static function json_encode( $value ) {
-        if ( ! self::has_json() ) {
-        	return false;
-        }
+	public static function json_encode( $value ) {
+		if ( ! self::has_json() ) {
+			return false;
+		}
 
-        return json_encode( $value );
-    }
+		return json_encode( $value );
+	}
 
 	/**
 	 * Default class for all buttons link
@@ -1972,9 +1976,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Null
 	 * @return String
 	 */
-    public static function get_class_btn() {
-    	return self::add_prefix( '-btn' );
-    }
+	public static function get_class_btn() {
+		return self::add_prefix( '-btn' );
+	}
 
 	/**
 	 * Default class for all buttons inside title
@@ -1983,9 +1987,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Null
 	 * @return String
 	 */
-    public static function get_class_btn_inside() {
-    	return self::add_prefix( '-btn-inside' );
-    }
+	public static function get_class_btn_inside() {
+		return self::add_prefix( '-btn-inside' );
+	}
 
 	/**
 	 * Get widget attribute tag id by number
@@ -1994,9 +1998,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Integer $number
 	 * @return String
 	 */
-    public static function get_widget_attr_id( $number ) {
+	public static function get_widget_attr_id( $number ) {
 		return sprintf( '%s-share-widget-%d', WPUSB_App::SLUG, $number );
-    }
+	}
 
 	/**
 	 * Get CSS option by key
@@ -2006,8 +2010,8 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Array $options
 	 * @return String
 	 */
-    public static function get_field_css_by_key( $key, $options = '' ) {
-    	$field = '';
+	public static function get_field_css_by_key( $key, $options = '' ) {
+		$field = '';
 
 		if ( isset( $options[ $key ] ) && ! empty( $options[ $key ] ) ) {
 			$field = self::rm_tags( $options[ $key ] );
@@ -2018,7 +2022,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		}
 
 		return $field;
-    }
+	}
 
 	/**
 	 * Get CSS icon size option
@@ -2027,15 +2031,15 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Array $options
 	 * @return String
 	 */
-    public static function get_css_icons_size( $options ) {
-    	$size = self::get_field_css_by_key( 'icons_size', $options );
+	public static function get_css_icons_size( $options ) {
+		$size = self::get_field_css_by_key( 'icons_size', $options );
 
 		if ( ! empty( $size ) ) {
 			$size = sprintf( 'font-size: %dpx;', $size );
 		}
 
 		return $size;
-    }
+	}
 
 	/**
 	 * Get CSS icon color option
@@ -2044,7 +2048,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Array $options
 	 * @return String
 	 */
-    public static function get_css_icons_color( $options ) {
+	public static function get_css_icons_color( $options ) {
 		$color = self::get_field_css_by_key( 'icons_color', $options );
 
 		if ( ! empty( $color ) ) {
@@ -2052,7 +2056,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		}
 
 		return $color;
-    }
+	}
 
 	/**
 	 * Get CSS btn inside option
@@ -2061,9 +2065,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Array $options
 	 * @return String
 	 */
-    public static function get_css_btn_inside( $options ) {
+	public static function get_css_btn_inside( $options ) {
 		return self::get_field_css_by_key( 'btn_inside_color', $options );
-    }
+	}
 
 	/**
 	 * Get CSS text count color option
@@ -2072,9 +2076,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Array $options
 	 * @return String
 	 */
-    public static function get_css_counts_color( $options ) {
-    	return self::get_field_css_by_key( 'counts_text_color', $options );
-    }
+	public static function get_css_counts_color( $options ) {
+		return self::get_field_css_by_key( 'counts_text_color', $options );
+	}
 
 	/**
 	 * Get CSS background color share counts option
@@ -2083,9 +2087,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Array $options
 	 * @return String
 	 */
-    public static function get_css_counts_bg_color( $options ) {
-    	return self::get_field_css_by_key( 'counts_bg_color', $options );
-    }
+	public static function get_css_counts_bg_color( $options ) {
+		return self::get_field_css_by_key( 'counts_bg_color', $options );
+	}
 
 	/**
 	 * Get CSS background color buttons option
@@ -2094,9 +2098,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Array $options
 	 * @return String
 	 */
-    public static function get_css_bg_color( $options ) {
+	public static function get_css_bg_color( $options ) {
 		return self::get_field_css_by_key( 'button_bg_color', $options );
-    }
+	}
 
 	/**
 	 * Get plugin post meta value
@@ -2105,10 +2109,10 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Insteger $post_id
 	 * @return String
 	 */
-    public static function get_meta( $post_id ) {
-    	$value = get_post_meta( $post_id, WPUSB_Setting::META_KEY, true );
-    	return self::rm_tags( $value );
-    }
+	public static function get_meta( $post_id ) {
+		$value = get_post_meta( $post_id, WPUSB_Setting::META_KEY, true );
+		return self::rm_tags( $value );
+	}
 
 	/**
 	 * Check is plugin deactivate on current post
@@ -2118,13 +2122,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Integer $ID
 	 * @return Boolean
 	 */
-    public static function is_disabled_by_meta( $ID = null ) {
+	public static function is_disabled_by_meta( $ID = null ) {
 		$ID    = $ID ? $ID : self::get_id();
 		$type  = get_post_type( $ID );
 		$types = self::option( 'post_types' );
 
-    	return ( $types && ! isset( $types[ $type ] ) || self::get_meta( $ID ) === 'yes' );
-    }
+		return ( $types && ! isset( $types[ $type ] ) || self::get_meta( $ID ) === 'yes' );
+	}
 
 	/**
 	 * Check is customize preview
@@ -2133,9 +2137,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Null
 	 * @return String
 	 */
-    public static function is_customize_preview() {
-    	return ( function_exists( 'is_customize_preview' ) && is_customize_preview() );
-    }
+	public static function is_customize_preview() {
+		return ( function_exists( 'is_customize_preview' ) && is_customize_preview() );
+	}
 
 	/**
 	 * Get all public Bitly domains
@@ -2144,14 +2148,14 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Null
 	 * @return Array
 	 */
-    public static function get_bitly_domains() {
+	public static function get_bitly_domains() {
 		return array(
 			'default' => __( 'Default', 'wpupper-share-buttons' ),
 			'com'     => 'bitly.com',
 			'ly'      => 'bit.ly',
 			'mp'      => 'j.mp',
 		);
-    }
+	}
 
 	/**
 	 * Get Bitly domain by key
@@ -2160,17 +2164,17 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param String $key
 	 * @return Mixed String|Boolean
 	 */
-    public static function get_bitly_domain( $key ) {
-    	if ( $key === 'default' ) {
-    		return false;
-    	}
+	public static function get_bitly_domain( $key ) {
+		if ( $key === 'default' ) {
+			return false;
+		}
 
-    	$domains = self::get_bitly_domains();
+		$domains = self::get_bitly_domains();
 
-    	unset( $domains['default'] );
+		unset( $domains['default'] );
 
-    	return self::get_value_by( $domains, $key, false );
-    }
+		return self::get_value_by( $domains, $key, false );
+	}
 
 	/**
 	 * Get the class for min count display
@@ -2179,11 +2183,11 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Null
 	 * @return String
 	 */
-    public static function get_hide_count_class() {
+	public static function get_hide_count_class() {
 		$min_count = self::option( 'min_count_display', '', 'absint' );
 
 		return empty( $min_count ) ? '' : self::add_prefix( '-hide' );
-    }
+	}
 
 	/**
 	 * Get the social network order
@@ -2192,7 +2196,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param Boolean $check
 	 * @return Array|Boolean
 	 */
-    public static function get_networks_order( $check = false ) {
+	public static function get_networks_order( $check = false ) {
 		$order    = self::json_decode( self::option( 'order' ) );
 		$elements = WPUSB_Social_Elements::$items_available;
 
@@ -2207,7 +2211,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		}
 
 		return array_merge( $new_order, $elements );
-    }
+	}
 
 	/**
 	 * Get the column post_date
@@ -2217,13 +2221,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param String $sanitize
 	 * @return String
 	 */
-    public static function get_post_date( $post_id, $format = 'Y-m-d' ) {
-    	if ( ! $post = get_post( $post_id ) ) {
-    		return esc_sql( date_i18n( $format ) );
-    	}
+	public static function get_post_date( $post_id, $format = 'Y-m-d' ) {
+		if ( ! $post = get_post( $post_id ) ) {
+			return esc_sql( date_i18n( $format ) );
+		}
 
-    	return esc_sql( date_i18n( $format, strtotime( $post->post_date ) ) );
-    }
+		return esc_sql( date_i18n( $format, strtotime( $post->post_date ) ) );
+	}
 
 	/**
 	 * Template file located
@@ -2234,55 +2238,55 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param String $class_name
 	 * @return String
 	 */
-    public static function get_template_located( $file, $path, $class_name ) {
-    	$path               = '/' . self::add_prefix( $path );
+	public static function get_template_located( $file, $path, $class_name ) {
+		$path               = '/' . self::add_prefix( $path );
 		$template_primary   = get_stylesheet_directory() . $path;
 		$template_secondary = get_template_directory() . $path;
 
-    	if ( file_exists( $template_primary ) ) {
-    		return $template_primary;
-    	} else if ( file_exists( $template_secondary ) ) {
-    		return $template_secondary;
-    	}
+		if ( file_exists( $template_primary ) ) {
+			return $template_primary;
+		} elseif ( file_exists( $template_secondary ) ) {
+			return $template_secondary;
+		}
 
 		$template = apply_filters( self::add_prefix( '_template_include' ), $file, $class_name );
 
 		return file_exists( $template ) ? $template : $file;
-    }
+	}
 
-    /**
-     * Check fixed layout option
-     *
-     * @since 3.0
-     * @param Null
-     * @return Boolean
-     */
+	/**
+	 * Check fixed layout option
+	 *
+	 * @since 3.0
+	 * @param Null
+	 * @return Boolean
+	 */
 	public static function is_position_fixed() {
 		return ( 'on' === self::option( 'fixed' ) );
 	}
 
-    /**
-     * Convert date for sql
-     *
-     * @since 3.32
-     * @param String $date
-     * @param String $format
-     * @return Mixed String|Boolean
-     */
+	/**
+	 * Convert date for sql
+	 *
+	 * @since 3.32
+	 * @param String $date
+	 * @param String $format
+	 * @return Mixed String|Boolean
+	 */
 	public static function convert_date_for_sql( $date, $format = 'Y-m-d H:i' ) {
 		return empty( $date ) ? false : esc_sql( self::convert_date( $date, $format, '/', '-' ) );
 	}
 
-    /**
-     * Convert date format
-     *
-     * @since 3.32
-     * @param String $date
-     * @param String $format
-     * @param String $search
-     * @param String $replace
-     * @return String
-     */
+	/**
+	 * Convert date format
+	 *
+	 * @since 3.32
+	 * @param String $date
+	 * @param String $format
+	 * @param String $search
+	 * @param String $replace
+	 * @return String
+	 */
 	public static function convert_date( $date, $format = 'Y-m-d H:i', $search = '/', $replace = '-' ) {
 		if ( $search && $replace ) {
 			$date = str_replace( $search, $replace, $date );
@@ -2392,5 +2396,17 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		}
 
 		return is_home();
+	}
+
+	/**
+	 *
+	 * Get capability permission pages
+	 *
+	 * @since 3.34
+	 * @param null
+	 * @return String
+	 */
+	public static function get_capability() {
+		return apply_filters( WPUSB_App::SLUG . '_page_capability', 'manage_options' );
 	}
 }

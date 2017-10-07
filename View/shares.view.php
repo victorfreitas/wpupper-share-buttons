@@ -9,7 +9,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 class WPUSB_Shares_View {
@@ -58,7 +58,7 @@ EOD;
 			return '';
 		}
 
-	    return <<<EOD
+		return <<<EOD
 	    <div class="{$atts->prefix}-title">
 	     	<span>{$atts->header_title}</span>
 	     </div>

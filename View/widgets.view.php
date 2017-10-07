@@ -7,7 +7,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 class WPUSB_Widgets_View {
@@ -48,24 +48,24 @@ class WPUSB_Widgets_View {
 	?>
 		<p>
 			<?php
-				if ( ! $after_label ) {
-					echo $label;
-				}
+			if ( ! $after_label ) {
+				echo $label;
+			}
 			?>
 			<input type="<?php echo $type; ?>"
 				   id="<?php echo esc_attr( $instance->get_field_id( $id ) ); ?>"
-			       name="<?php echo esc_attr( $instance->get_field_name( $id ) ); ?>"
-			       class="<?php echo $class; ?>"
-			       value="<?php echo $value; ?>"
-			       placeholder="<?php echo $placeholder; ?>"
-			       <?php echo $attr; ?>>
+				   name="<?php echo esc_attr( $instance->get_field_name( $id ) ); ?>"
+				   class="<?php echo $class; ?>"
+				   value="<?php echo $value; ?>"
+				   placeholder="<?php echo $placeholder; ?>"
+					<?php echo $attr; ?>>
 
 			<?php echo ( $type === 'number' ) ? 'px' : ''; ?>
 
 			<?php
-				if ( $after_label ) {
-					echo $label;
-				}
+			if ( $after_label ) {
+				echo $label;
+			}
 			?>
 		</p>
 	<?php
@@ -88,15 +88,15 @@ class WPUSB_Widgets_View {
 			</label>
 
 			<select name="<?php echo esc_attr( $instance->get_field_name( $id ) ); ?>"
-				    id="<?php echo esc_attr( $instance->get_field_id( $id ) ); ?>">
+					id="<?php echo esc_attr( $instance->get_field_id( $id ) ); ?>">
 			<?php
-				foreach ( $options as $key => $option ) :
-					printf(
-						'<option value="%s"%s>%s</option>',
-						$key,
-						selected( $key, $current, false ),
-						$option
-					);
+			foreach ( $options as $key => $option ) :
+				printf(
+					'<option value="%s"%s>%s</option>',
+					$key,
+					selected( $key, $current, false ),
+					$option
+				);
 				endforeach;
 			?>
 			</select>
@@ -113,12 +113,14 @@ class WPUSB_Widgets_View {
 				<?php echo $text; ?>
 			</div>
 	<?php
-		self::add_checkbox(array(
-			'name'    => esc_attr( $instance->get_field_name( $id ) ),
-			'id'      => esc_attr( $instance->get_field_id( $id ) ),
-			'checked' => checked( 1, $value, false ),
-			'value'   => true,
-		));
+		self::add_checkbox(
+			array(
+				'name'    => esc_attr( $instance->get_field_name( $id ) ),
+				'id'      => esc_attr( $instance->get_field_id( $id ) ),
+				'checked' => checked( 1, $value, false ),
+				'value'   => true,
+			)
+		);
 	?>
 		</div>
 	<?php
@@ -160,8 +162,8 @@ class WPUSB_Widgets_View {
 							<?php _e( 'Drag & Drop to order and click to select', 'wpupper-share-buttons' ); ?>
 						</span>
 						<span class="<?php echo WPUSB_App::SLUG; ?>-info-error <?php echo WPUSB_App::SLUG; ?>-hide"
-						      data-message="<?php _e( 'The [item] URL field is empty.', 'wpupper-share-buttons' ); ?>"
-						      data-element="info-message"></span>
+							  data-message="<?php _e( 'The [item] URL field is empty.', 'wpupper-share-buttons' ); ?>"
+							  data-element="info-message"></span>
 					</th>
 					<?php
 						$items = $instance->get_property( 'items', array() );
@@ -182,22 +184,22 @@ class WPUSB_Widgets_View {
 		<p id="<?php printf( '%s-follow-us-item', WPUSB_App::SLUG ); ?>">
 
 			<a class="<?php printf( '%s-title', WPUSB_App::SLUG ); ?>"
-			      data-action="title"
-			      data-item="<?php echo $id; ?>">
+				  data-action="title"
+				  data-item="<?php echo $id; ?>">
 
 				<?php echo $network->name; ?>
 
 				<span class="<?php printf( '%s-arrow', WPUSB_App::SLUG ); ?>"
-				      data-element="arrow">
+					  data-element="arrow">
 					&#9662;
 				</span>
 			</a>
 
 			<span class="<?php printf( '%s-fields-content', WPUSB_App::SLUG ); ?>"
-			      data-field="content"
-			      data-element="<?php echo $id; ?>">
+				  data-field="content"
+				  data-element="<?php echo $id; ?>">
 
-			    <?php if ( ! $is_email ) : ?>
+				<?php if ( ! $is_email ) : ?>
 
 				<label for="<?php echo $field_id; ?>-url">
 					<?php _e( 'Enter the network URL here:', 'wpupper-share-buttons' ); ?>
@@ -207,8 +209,8 @@ class WPUSB_Widgets_View {
 					   class="large-text"
 					   data-action="field-url"
 					   data-element="<?php echo $id; ?>-url"
-				       name="<?php printf( '%s[url]', $field_name ); ?>"
-				       value="<?php echo esc_url( $instance->get_network( $id, 'url' ) ); ?>">
+					   name="<?php printf( '%s[url]', $field_name ); ?>"
+					   value="<?php echo esc_url( $instance->get_network( $id, 'url' ) ); ?>">
 
 				<span class="description">
 					<?php
@@ -223,29 +225,29 @@ class WPUSB_Widgets_View {
 				<?php endif; ?>
 
 				<?php
-					if ( $is_email ) :
-						$value       = esc_attr( $instance->get_network( $id, 'email' ) );
-						$admin_email = WPUSB_Utils::rm_tags( get_option( 'admin_email' ) );
-						$subject     = esc_attr( $instance->get_network( $id, 'subject' ) );
+				if ( $is_email ) :
+					$value       = esc_attr( $instance->get_network( $id, 'email' ) );
+					$admin_email = WPUSB_Utils::rm_tags( get_option( 'admin_email' ) );
+					$subject     = esc_attr( $instance->get_network( $id, 'subject' ) );
 				?>
 
 				<label for="<?php echo $field_id; ?>-email">
-					<?php _e( 'Your email:', 'wpupper-share-buttons' ); ?>
+				<?php _e( 'Your email:', 'wpupper-share-buttons' ); ?>
 				</label>
 				<input type="text"
-					   id="<?php echo $field_id; ?>-email"
-					   class="large-text"
-				       name="<?php printf( '%s[email]', $field_name ); ?>"
-				       value="<?php echo empty( $value ) ? $admin_email : $value; ?>">
+				   id="<?php echo $field_id; ?>-email"
+				   class="large-text"
+				   name="<?php printf( '%s[email]', $field_name ); ?>"
+				   value="<?php echo empty( $value ) ? $admin_email : $value; ?>">
 
 				<label for="<?php echo $field_id; ?>-subject">
-					<?php _e( 'Subject:', 'wpupper-share-buttons' ); ?>
+				<?php _e( 'Subject:', 'wpupper-share-buttons' ); ?>
 				</label>
 				<input type="text"
-					   id="<?php echo $field_id; ?>-subject"
-					   class="large-text"
-				       name="<?php printf( '%s[subject]', $field_name ); ?>"
-				       value="<?php echo empty( $subject ) ? $network->subject : $subject; ?>">
+				   id="<?php echo $field_id; ?>-subject"
+				   class="large-text"
+				   name="<?php printf( '%s[subject]', $field_name ); ?>"
+				   value="<?php echo empty( $subject ) ? $network->subject : $subject; ?>">
 
 				<?php endif; ?>
 
@@ -255,9 +257,9 @@ class WPUSB_Widgets_View {
 				<input type="text"
 					   id="<?php echo $field_id; ?>-title"
 					   class="large-text"
-				       name="<?php printf( '%s[title]', $field_name ); ?>"
-				       value="<?php echo esc_attr( $instance->get_network( $id, 'title' ) ); ?>"
-				       placeholder="<?php echo $network->title; ?>">
+					   name="<?php printf( '%s[title]', $field_name ); ?>"
+					   value="<?php echo esc_attr( $instance->get_network( $id, 'title' ) ); ?>"
+					   placeholder="<?php echo $network->title; ?>">
 			</span>
 		</p>
 	<?php

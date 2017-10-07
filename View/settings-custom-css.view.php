@@ -9,7 +9,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 class WPUSB_Settings_Custom_CSS_View {
@@ -44,7 +44,7 @@ class WPUSB_Settings_Custom_CSS_View {
 			<?php WPUSB_Utils_View::update_notice(); ?>
 
 			<div class="<?php echo WPUSB_App::SLUG . '-wrap'; ?>"
-				 <?php echo WPUSB_Utils::get_component( 'custom-css' ); ?>>
+					<?php echo WPUSB_Utils::get_component( 'custom-css' ); ?>>
 
 				<table class="form-table">
 					<tbody>
@@ -54,10 +54,8 @@ class WPUSB_Settings_Custom_CSS_View {
 									cols="100"
 									rows="30"
 									data-element="css-field"
-									name="custom-css"
-									placeholder="<?php esc_attr_e( 'Enter your custom CSS ...', 'wpupper-share-buttons' ); ?>"><?php
-									echo WPUSB_Utils::get_custom_css();
-								?></textarea>
+									placeholder="<?php esc_attr_e( 'Enter your custom CSS ...', 'wpupper-share-buttons' ); ?>"
+									name="custom-css"><?php echo WPUSB_Utils::get_custom_css(); ?></textarea>
 							</td>
 						</tr>
 					</tbody>
@@ -65,9 +63,9 @@ class WPUSB_Settings_Custom_CSS_View {
 
 				<p class="submit <?php echo WPUSB_App::SLUG; ?>-custom-css-btn-content">
 					<button type="submit"
-						    class="button button-primary"
-						    data-action="save-custom-css"
-						    data-element="btn-save">
+							class="button button-primary"
+							data-action="save-custom-css"
+							data-element="btn-save">
 						<?php _e( 'Save Changes' ); ?>
 					</button>
 					<span class="ajax-spinner" data-element="spinner"></span>

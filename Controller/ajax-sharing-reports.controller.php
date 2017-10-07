@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 class WPUSB_Ajax_Sharing_Reports_Controller {
@@ -86,7 +86,7 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 	 */
 	private function _validate() {
 		if ( ! WPUSB_Utils::is_request_ajax() ) {
-			exit(0);
+			exit( 0 );
 		}
 
 		$nonce     = WPUSB_Utils::post( 'nonce', false );
@@ -138,16 +138,12 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 		global $wpdb;
 
 		if ( $this->total > 0 ) {
-			$id = $wpdb->get_var( $wpdb->prepare(
-				"SELECT
-					`id`
-				 FROM
-				 	`{$this->table}`
-				 WHERE
-				 	`post_id` = %d
-				",
-				$this->reference
-			) );
+			$id = $wpdb->get_var(
+				$wpdb->prepare(
+					"SELECT `id` FROM `{$this->table}` WHERE `post_id` = %d",
+					$this->reference
+				)
+			);
 			$this->_add_counts( intval( $id ) );
 		}
 
@@ -275,6 +271,11 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 	 * @return Void
 	 */
 	private function _send_json( $message, $success = false ) {
-		wp_send_json( array( 'success' => (bool)$success, 'message' => $message ) );
+		wp_send_json(
+			array(
+				'success' => (bool) $success,
+				'message' => $message,
+			)
+		);
 	}
 }

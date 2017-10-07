@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 class WPUSB_Setting {
@@ -479,7 +479,7 @@ class WPUSB_Setting {
 	const TRANSIENT_SHARING_REPORT_COUNT = 'transient-wpusb-report-count';
 
 	/**
-	 *	Define name menus
+	 *  Define name menus
 	 *
 	 * @since 2.8.2
 	 * @var string
@@ -528,11 +528,11 @@ class WPUSB_Setting {
 	private function _get_property( $prop_name ) {
 		switch ( $prop_name ) {
 
-			case 'social_media' :
+			case 'social_media':
 				$this->social_media = WPUSB_Utils::get_option( WPUSB_Utils::add_prefix( '_social_media' ) );
 				break;
 
-			default :
+			default:
 				$this->{$prop_name} = WPUSB_Utils::get_value_by( $this->options, $prop_name );
 		}
 
@@ -551,8 +551,8 @@ class WPUSB_Setting {
 	}
 
 	/**
- 	 * Set all options
- 	 *
+	  * Set all options
+	  *
 	 * @since 1.1
 	 * @param Null
 	 * @return Array
@@ -562,8 +562,8 @@ class WPUSB_Setting {
 	}
 
 	/**
- 	 * Merge array all options
- 	 *
+	  * Merge array all options
+	  *
 	 * @since 1.0
 	 * @param String $settings
 	 * @param String $social
@@ -589,15 +589,15 @@ class WPUSB_Setting {
 	}
 
 	/**
- 	 * Singleton instance generate
- 	 *
+	  * Singleton instance generate
+	  *
 	 * @since 1.0
 	 * @param null
 	 * @return Object class
 	 */
 	public static function get_instance() {
 		if ( is_null( self::$instance ) ) {
-			self::$instance = new self;
+			self::$instance = new self();
 		}
 
 		return self::$instance;

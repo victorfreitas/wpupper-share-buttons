@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit(0);
+	exit( 0 );
 }
 
 //View
@@ -90,7 +90,7 @@ class WPUSB_Shares_Controller {
 		$this->_set_position();
 
 		if ( $this->position && WPUSB_Utils::is_active() ) {
-	    	return $this->_get_new_content( $content );
+			return $this->_get_new_content( $content );
 		}
 
 		return $content;
@@ -109,18 +109,18 @@ class WPUSB_Shares_Controller {
 		$buttons = apply_filters( $this->_filter, $this->buttons_share() );
 
 		switch ( $this->position ) {
-			case 'both' :
-	      		$new_content  = $buttons;
-	      		$new_content .= $content;
-	      		$new_content .= $buttons;
+			case 'both':
+				  $new_content  = $buttons;
+				  $new_content .= $content;
+				  $new_content .= $buttons;
 				break;
 
-			case 'before' :
+			case 'before':
 				$new_content  = $buttons;
 				$new_content .= $content;
 				break;
 
-			case 'after' :
+			case 'after':
 				$new_content  = $content;
 				$new_content .= $buttons;
 				break;
@@ -155,7 +155,7 @@ class WPUSB_Shares_Controller {
 	 *
 	 */
 	public function share( $atts = array() ) {
-		$atts =	shortcode_atts(
+		$atts = shortcode_atts(
 			array(
 				'class_first'    => '',
 				'class_second'   => '',
