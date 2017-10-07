@@ -278,6 +278,17 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
+	 * Get the blog post page ID
+	 *
+	 * @param null
+	 * @return Integer
+	 */
+	public static function get_page_posts_id()
+	{
+		return (int)get_option( 'page_for_posts' );
+	}
+
+	/**
 	 * Post ID
 	 *
 	 * @since 1.0
@@ -320,14 +331,14 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
-	 * Permalinks post
+	 * Permalink post
 	 *
 	 * @since 1.0
-	 * @param null
+	 * @param Integer $post
 	 * @return String
 	 */
-	public static function get_permalink() {
-		$post_id = self::get_id();
+	public static function get_permalink( $post = 0 ) {
+		$post_id = $post ? $post : self::get_id();
 
 		if ( $post_id ) {
 			return self::parse_url_params( get_permalink( $post_id ) );
@@ -350,20 +361,19 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			return esc_url( $url );
 		}
 
-		$is_home = ( $widget ) ? self::is_front_page() : self::is_home();
+		$is_home = $widget ? self::is_front_page() : self::is_home();
 
 		if ( ( $fixed || $widget ) && $is_home || $is_home && is_page( self::get_id() ) ) {
-			return self::site_url();
+			return self::is_blog_page() ? self::get_permalink( self::get_page_posts_id() ) : self::site_url();
 		}
 
 		if ( ! ( ( $fixed || $widget ) && self::is_archive_category() ) ) {
 			$url = self::get_permalink();
-			return ( $short ) ? self::bitly_short_url( $url ) : $url;
+			return $short ? self::bitly_short_url( $url ) : $url;
 		}
 
 		return self::get_term_link( $short );
 	}
-
 
 	/**
 	 * Get term link
@@ -2376,6 +2386,22 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function get_charset() {
 		return self::rm_tags( get_bloginfo( 'charset' ) );
+	}
+
+	/**
+	 *
+	 * Check the current page is blog page
+	 *
+	 * @since 3.34
+	 * @param null
+	 * @return Bool
+	 */
+	public static function is_blog_page() {
+		if ( is_front_page() && is_home() || is_front_page() ) {
+			return false;
+		}
+
+		return is_home();
 	}
 
     /**

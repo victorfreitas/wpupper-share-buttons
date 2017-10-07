@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 WPUSB_App::uses( 'setting', 'Model' );
 
 //View
-if ( WPUSB_App::is_admin() ) {
+if ( is_admin() ) {
 	WPUSB_App::uses( 'settings', 'View' );
 	WPUSB_App::uses( 'settings-extra', 'View' );
 	WPUSB_App::uses( 'settings-custom-css', 'View' );

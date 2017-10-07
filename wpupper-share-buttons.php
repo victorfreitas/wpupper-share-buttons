@@ -77,56 +77,39 @@ class WPUSB_App {
 	 * @return Void
 	 */
 	public static function uses( $class, $location ) {
-		$extension = 'php';
-		$root      = dirname( __FILE__ );
 		$locations = array(
 			'View'       => 1,
 			'Controller' => 1,
 		);
 
-		if ( isset( $locations[ $location ] ) ) {
-			$extension = strtolower( $location ) . ".{$extension}";
-		}
-
-		$path = sprintf( '/%s.%s', $class, $extension );
-		$file = $root . '/' . $location . $path;
+		$extension = isset( $locations[ $location ] ) ? strtolower( $location ) . '.php' : 'php';
+		$path      = "/{$class}.{$extension}";
+		$file      = dirname( __FILE__ ) . '/' . $location . $path;
 
 		if ( $location === 'Templates' ) {
 			$file = WPUSB_Utils::get_template_located( $file, $path, $class );
 		}
 
-		require_once( $file );
-	}
-
-	/**
-	 * Set is admin property true
-	 *
-	 * @since 3.0.0
-	 * @param Null
-	 * @return Void
-	 */
-	public static function is_admin() {
-		return is_admin();
+		require_once $file;
 	}
 }
 
-if ( version_compare( PHP_VERSION, '5.2', '>' ) ) {
+if ( version_compare( PHP_VERSION, '5.2.4', '>=' ) ) {
 	WPUSB_App::uses( 'core', 'Config' );
-	return;
+} else {
+	function wpusb_not_supported_php_version() {
+	?>
+		<div class="error notice is-dismissible">
+			<p>
+				<strong>
+					<?php echo WPUSB_App::NAME; ?>
+				</strong>
+				<?php
+					_e( 'It does not support your PHP version. Please, install a version greater than or equal to 5.2.4.', 'wpupper-share-buttons' );
+				?>
+			</p>
+		</div>
+	<?php
+	}
+	add_action( 'admin_notices', 'wpusb_not_supported_php_version' );
 }
-
-function wpusb_not_supported_php_version() {
-?>
-	<div class="error notice is-dismissible">
-		<p>
-			<strong>
-				<?php echo WPUSB_App::NAME; ?>
-			</strong>
-			<?php
-				esc_html_e( 'It does not support your PHP version. Please, install a version greater than or equal to 5.2.0.', 'wpupper-share-buttons' );
-			?>
-		</p>
-	</div>
-<?php
-}
-add_action( 'admin_notices', 'wpusb_not_supported_php_version' );

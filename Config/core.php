@@ -53,7 +53,7 @@ WPUSB_App::uses( 'modal', 'Templates' );
 /*
  * Controllers admin
  */
-if ( WPUSB_App::is_admin() ) {
+if ( is_admin() ) {
 	WPUSB_App::uses( 'ajax', 'Controller' );
 	WPUSB_App::uses( 'ajax-sharing-reports', 'Controller' );
 	WPUSB_App::uses( 'options', 'Controller' );
@@ -124,7 +124,7 @@ final class WPUSB_Core {
 	 * @return Void
 	 */
 	protected static function init_controllers_admin() {
-		if ( ! WPUSB_App::is_admin() ) {
+		if ( ! is_admin() ) {
 			return;
 		}
 
