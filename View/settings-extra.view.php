@@ -124,7 +124,12 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 								)
 							);
 
-							$post_types = WPUSB_Utils::get_post_types();
+							$post_types        = WPUSB_Utils::get_post_types( array(), 'objects' );
+							$options_post_type = array();
+
+							foreach ( $post_types as $name => $object ) :
+								$options_post_type[ $name ] = $object->label;
+							endforeach;
 
 							parent::tr(
 								array(
@@ -132,10 +137,11 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 									'key'      => 'post-types',
 									'label'    => __( 'Post types is enabled', 'wpupper-share-buttons' ),
 									'class'    => 'regular-text',
-									'options'  => $post_types,
-									'default'  => $post_types,
+									'options'  => $options_post_type,
+									'default'  => $options_post_type,
 									'multiple' => true,
 									'text'     => __( 'Minimum 1 post type, default all.', 'wpupper-share-buttons' ),
+									'reverse'  => true,
 								)
 							);
 

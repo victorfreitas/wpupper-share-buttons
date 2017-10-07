@@ -2299,10 +2299,11 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * Get post types publics
 	 *
 	 * @since 3.27
-	 * @param Null
+	 * @param Array $args
+	 * @param String $output
 	 * @return Array
 	 */
-	public static function get_post_types( $args = array() ) {
+	public static function get_post_types( $args = array(), $output = 'names' ) {
 		$defaults = array(
 			'public'  => true,
 			'show_ui' => true,
@@ -2310,7 +2311,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$args = array_merge( $defaults, $args );
 		$args = apply_filters( self::add_prefix( '_post_types_args' ), $args );
 
-		return get_post_types( $args );
+		return get_post_types( $args, $output );
 	}
 
 	/**

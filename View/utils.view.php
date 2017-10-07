@@ -235,11 +235,17 @@ abstract class WPUSB_Utils_View {
 						?>
 						>
 					<?php
+					$value = self::get_value();
+
+					if ( isset( $args->reverse ) && is_array( $value ) ) {
+						$value = array_flip( $value );
+					}
+
 					foreach ( $args->options as $key => $option ) :
 						printf(
 							'<option value="%s" %s>%s</option>',
 							$key,
-							WPUSB_Utils::selected( $key, self::get_value() ),
+							WPUSB_Utils::selected( $key, $value ),
 							$option
 						);
 						endforeach;
