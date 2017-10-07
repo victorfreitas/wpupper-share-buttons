@@ -23,25 +23,27 @@ class WPUSB_Settings_Custom_CSS_View {
 	 * @return Void
 	 */
 	public static function render() {
-		$prefix = WPUSB_App::SLUG;
-		$domain = WPUSB_App::TEXTDOMAIN;
 	?>
-		<div class="wrap <?php echo "{$prefix}-custom-css-wrap"; ?>">
-			<h2><?php _e( 'WPUpper Share Buttons', $domain ); ?></h2>
+		<div class="wrap <?php echo WPUSB_App::SLUG . '-custom-css-wrap'; ?>">
+			<h2>
+				<?php _e( 'WPUpper Share Buttons', 'wpupper-share-buttons' ); ?>
+			</h2>
 
-			<p class="description"><?php _e( 'Add the Share Buttons automatically.', $domain ); ?></p>
+			<p class="description">
+				<?php _e( 'Add the Share Buttons automatically.', 'wpupper-share-buttons' ); ?>
+			</p>
 
 			<?php WPUSB_Utils_View::page_notice(); ?>
 
-			<span class="<?php echo "{$prefix}-title-wrap"; ?>">
-				<?php _e( 'Custom CSS', $domain ); ?>
+			<span class="<?php echo WPUSB_App::SLUG . '-title-wrap'; ?>">
+				<?php _e( 'Custom CSS', 'wpupper-share-buttons' ); ?>
 			</span>
 
 			<?php WPUSB_Utils_View::menu_top(); ?>
 
 			<?php WPUSB_Utils_View::update_notice(); ?>
 
-			<div class="<?php echo "{$prefix}-wrap"; ?>"
+			<div class="<?php echo WPUSB_App::SLUG . '-wrap'; ?>"
 				 <?php echo WPUSB_Utils::get_component( 'custom-css' ); ?>>
 
 				<table class="form-table">
@@ -53,7 +55,7 @@ class WPUSB_Settings_Custom_CSS_View {
 									rows="30"
 									data-element="css-field"
 									name="custom-css"
-									placeholder="<?php echo __( 'Enter your custom CSS ...', $domain ); ?>"><?php
+									placeholder="<?php esc_attr_e( 'Enter your custom CSS ...', 'wpupper-share-buttons' ); ?>"><?php
 									echo WPUSB_Utils::get_custom_css();
 								?></textarea>
 							</td>
@@ -61,12 +63,11 @@ class WPUSB_Settings_Custom_CSS_View {
 					</tbody>
 				</table>
 
-				<p class="submit <?php echo $prefix; ?>-custom-css-btn-content">
+				<p class="submit <?php echo WPUSB_App::SLUG; ?>-custom-css-btn-content">
 					<button type="submit"
 						    class="button button-primary"
 						    data-action="save-custom-css"
 						    data-element="btn-save">
-
 						<?php _e( 'Save Changes' ); ?>
 					</button>
 					<span class="ajax-spinner" data-element="spinner"></span>

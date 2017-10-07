@@ -167,7 +167,7 @@ EOD;
 	 */
 	public static function get_btn_plus( $class = '' ) {
 		$prefix = WPUSB_App::SLUG;
-		$title  = __( 'Open modal social networks', WPUSB_App::TEXTDOMAIN );
+		$title  = __( 'Open modal social networks', 'wpupper-share-buttons' );
 
 		return <<<EOD
 			<div class="{$prefix}-{$class} {$prefix}-popup-open-networks">

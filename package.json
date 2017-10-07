@@ -1,28 +1,36 @@
 {
-    "jsroot"      : "assets/javascripts",
-    "cssroot"     : "assets/stylesheets",
-    "cssadmin"    : "assets/stylesheets/admin",
-    "cssfront"    : "assets/stylesheets/front",
-    "slug"        : "wpupper-share-buttons",
-    "dirLang"     : "languages",
-    "name"        : "WPUpperShareButtons",
-    "version"     : "1.0.0",
-    "description" : "Implements grunt in assets on plugin for WordPress.",
-    "main"        : "index.js",
-    "scripts"     : {
-        "test" : "echo \"Error: no test specified\" && exit 1"
-    },
-    "author"           : "@victorfreitas",
-    "license"          : "ISC",
-    "devDependencies"  : {
-        "grunt"                    : "^1.0.1",
-        "time-grunt"               : "^1.4.0",
-        "grunt-contrib-concat"     : "^1.0.1",
-        "grunt-contrib-handlebars" : "^1.0.0",
-        "grunt-contrib-jshint"     : "^1.1.0",
-        "grunt-contrib-sass"       : "^1.0.0",
-        "grunt-contrib-uglify"     : "^2.2.0",
-        "grunt-contrib-watch"      : "^1.0.0",
-        "grunt-wp-i18n"            : "^1.0.0"
-    }
+  "name": "wpupper-share-buttons",
+  "description": "Implements grunt in assets on this plugin for WordPress.",
+  "version": "1.0.1",
+  "jsroot": "assets/javascripts",
+  "cssroot": "assets/stylesheets",
+  "cssadmin": "assets/stylesheets/admin",
+  "cssfront": "assets/stylesheets/front",
+  "slug": "wpupper-share-buttons",
+  "dirLang": "languages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/victorfreitas/wpupper-share-buttons.git"
+  },
+  "author": "@victorfreitas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/victorfreitas/wpupper-share-buttons/issues"
+  },
+  "homepage": "https://github.com/victorfreitas/wpupper-share-buttons",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-handlebars": "^1.0.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^3.1.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-wp-i18n": "^1.0.0",
+    "time-grunt": "^1.4.0"
+  }
 }

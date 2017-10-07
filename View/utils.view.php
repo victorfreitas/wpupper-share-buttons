@@ -309,8 +309,8 @@ abstract class WPUSB_Utils_View {
 
 				    <label for="<?php echo $field_id; ?>">
 				        <span class="<?php echo $prefix; ?>-inner"
-				        	  data-title-on="<?php _e( 'YES', WPUSB_App::TEXTDOMAIN ); ?>"
-				        	  data-title-off="<?php _e( 'NO', WPUSB_App::TEXTDOMAIN ); ?>"></span>
+				        	  data-title-on="<?php _e( 'YES', 'wpupper-share-buttons' ); ?>"
+				        	  data-title-off="<?php _e( 'NO', 'wpupper-share-buttons' ); ?>"></span>
 				        <span class="<?php echo $prefix; ?>-switch"></span>
 				    </label>
 				</div>
@@ -441,8 +441,8 @@ abstract class WPUSB_Utils_View {
 			<p>
 				<?php
 					$message = sprintf(
-						__( 'Help keep the free %s, you can make a donation or vote with %s at WordPress.org. Thank you very much!', WPUSB_App::TEXTDOMAIN ),
-						__( WPUSB_App::NAME, WPUSB_App::TEXTDOMAIN ),
+						__( 'Help keep the free %s, you can make a donation or vote with %s at WordPress.org. Thank you very much!', 'wpupper-share-buttons' ),
+						__( WPUSB_App::NAME, 'wpupper-share-buttons' ),
 						'★★★★★'
 					);
 					echo WPUSB_Utils::rm_tags( $message );
@@ -453,14 +453,14 @@ abstract class WPUSB_Utils_View {
 				   target="_blank"
 				   class="button button-primary">
 
-					<?php _e( 'Make a donation', WPUSB_App::TEXTDOMAIN ); ?>
+					<?php _e( 'Make a donation', 'wpupper-share-buttons' ); ?>
 				</a>
 
 				<a href="https://wordpress.org/support/plugin/wpupper-share-buttons/reviews/?filter=5#postform"
 				   target="_blank"
 				   class="button button-secondary">
 
-			   		<?php _e( 'Make a review', WPUSB_App::TEXTDOMAIN ); ?>
+			   		<?php _e( 'Make a review', 'wpupper-share-buttons' ); ?>
 			   </a>
 			</p>
 		</div>
@@ -470,7 +470,7 @@ abstract class WPUSB_Utils_View {
 	public static function update_notice() {
 	?>
 		<div class="updated notice is-dismissible" id="updated-notice">
-			<p><strong><?php _e( 'Settings saved.', WPUSB_App::TEXTDOMAIN ); ?></strong></p>
+			<p><strong><?php _e( 'Settings saved.', 'wpupper-share-buttons' ); ?></strong></p>
 			<button class="notice-dismiss"></button>
 		</div>
 	<?php
@@ -487,22 +487,22 @@ abstract class WPUSB_Utils_View {
 			<ul>
 				<li<?php echo WPUSB_Utils::selected_menu( $general ); ?>>
 					<a href="<?php echo WPUSB_Utils::get_page_url( $general ); ?>">
-						<?php _e( 'General', WPUSB_App::TEXTDOMAIN ); ?>
+						<?php _e( 'General', 'wpupper-share-buttons' ); ?>
 					</a>
 				</li>
 				<li<?php echo WPUSB_Utils::selected_menu( $extra ); ?>>
 					<a href="<?php echo WPUSB_Utils::get_page_url( $extra ); ?>">
-						<?php _e( 'Extra Settings', WPUSB_App::TEXTDOMAIN ); ?>
+						<?php _e( 'Extra Settings', 'wpupper-share-buttons' ); ?>
 					</a>
 				</li>
 				<li<?php echo WPUSB_Utils::selected_menu( $custom_css ); ?>>
 					<a href="<?php echo WPUSB_Utils::get_page_url( $custom_css ); ?>">
-						<?php _e( 'Custom CSS', WPUSB_App::TEXTDOMAIN ); ?>
+						<?php _e( 'Custom CSS', 'wpupper-share-buttons' ); ?>
 					</a>
 				</li>
 				<li<?php echo WPUSB_Utils::selected_menu( $use_option ); ?>>
 					<a href="<?php echo WPUSB_Utils::get_page_url( $use_option ); ?>">
-						<?php _e( 'Use options', WPUSB_App::TEXTDOMAIN ); ?>
+						<?php _e( 'Use options', 'wpupper-share-buttons' ); ?>
 					</a>
 				</li>
 
@@ -510,7 +510,7 @@ abstract class WPUSB_Utils_View {
 
 				<li<?php echo WPUSB_Utils::selected_menu( $report ); ?>>
 					<a href="<?php echo WPUSB_Utils::get_page_url( $report ); ?>">
-						<?php _e( 'Sharing Report', WPUSB_App::TEXTDOMAIN ); ?>
+						<?php _e( 'Sharing Report', 'wpupper-share-buttons' ); ?>
 					</a>
 				</li>
 

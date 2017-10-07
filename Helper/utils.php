@@ -777,20 +777,19 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param null
 	 * @return String link base file
 	 */
-	public static function base_name( $filter = '' ) {
+	public static function basename( $filter = '' ) {
 		return $filter . plugin_basename( WPUSB_App::FILE );
 	}
 
-
 	/**
-	 * Plugin dir name
+	 * Plugin basename
 	 *
-	 * @since 1.0
+	 * @since 3.34
 	 * @param null
 	 * @return String
 	 */
-	public static function dirname( $path = '' ) {
-		return sprintf( '%s/%s', dirname( self::base_name() ), $path );
+	public static function plugin_basename() {
+		return plugin_basename( dirname( WPUSB_App::FILE ) );
 	}
 
 	/**
@@ -1515,7 +1514,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return Boolean
 	 */
 	public static function get_share_count_label() {
-		$share_text = __( 'SHARES', WPUSB_App::TEXTDOMAIN );
+		$share_text = __( 'SHARES', 'wpupper-share-buttons' );
 
 		return self::option( 'share_count_label', $share_text );
 	}
@@ -2147,7 +2146,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
     public static function get_bitly_domains() {
 		return array(
-			'default' => __( 'Default', WPUSB_App::TEXTDOMAIN ),
+			'default' => __( 'Default', 'wpupper-share-buttons' ),
 			'com'     => 'bitly.com',
 			'ly'      => 'bit.ly',
 			'mp'      => 'j.mp',

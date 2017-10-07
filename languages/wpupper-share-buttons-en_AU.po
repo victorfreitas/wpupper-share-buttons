@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2017-03-25 16:06:44+00:00\n"
+"POT-Creation-Date: 2017-10-07 11:39:10+00:00\n"
 "PO-Revision-Date: 2017-02-20 22:15-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -48,219 +48,215 @@ msgstr ""
 msgid "Previous"
 msgstr ""
 
-#: Config/social-elements.php:91 Controller/share-reports.controller.php:299
-#: Controller/widget-follow.controller.php:161
+#: Config/social-elements.php:90 Controller/share-reports.controller.php:299
+#: Controller/widget-follow.controller.php:158
 msgid "Facebook"
 msgstr "Facebook"
 
-#: Config/social-elements.php:94
+#: Config/social-elements.php:93
 msgid "Share on Facebook"
 msgstr "Share on Facebook"
 
-#: Config/social-elements.php:100 Config/social-elements.php:136
-#: Config/social-elements.php:154 Config/social-elements.php:172
-#: Config/social-elements.php:190 Config/social-elements.php:208
-#: Config/social-elements.php:280 Config/social-elements.php:298
-#: Config/social-elements.php:316 Config/social-elements.php:352
-#: Config/social-elements.php:388 Config/social-elements.php:406
-#: Config/social-elements.php:424
+#: Config/social-elements.php:99 Config/social-elements.php:135
+#: Config/social-elements.php:153 Config/social-elements.php:171
+#: Config/social-elements.php:189 Config/social-elements.php:207
+#: Config/social-elements.php:279 Config/social-elements.php:297
+#: Config/social-elements.php:315 Config/social-elements.php:351
+#: Config/social-elements.php:387 Config/social-elements.php:405
+#: Config/social-elements.php:423
 msgid "Share"
 msgstr "Share"
 
-#: Config/social-elements.php:109 Controller/share-reports.controller.php:301
-#: Controller/widget-follow.controller.php:170
+#: Config/social-elements.php:108 Controller/share-reports.controller.php:300
+#: Controller/widget-follow.controller.php:167
 msgid "Twitter"
 msgstr "Twitter"
 
-#: Config/social-elements.php:112 Config/social-elements.php:118
+#: Config/social-elements.php:111 Config/social-elements.php:117
 msgid "Tweet"
 msgstr ""
 
-#: Config/social-elements.php:127 Controller/widget-follow.controller.php:188
+#: Config/social-elements.php:126 Controller/widget-follow.controller.php:185
 #, fuzzy
 msgid "Google Plus"
 msgstr "Google+"
 
-#: Config/social-elements.php:130
+#: Config/social-elements.php:129
 #, fuzzy
 msgid "Share on Google+"
 msgstr "Share on Facebook"
 
-#: Config/social-elements.php:145
+#: Config/social-elements.php:144
 msgid "WhatsApp"
 msgstr ""
 
-#: Config/social-elements.php:148
+#: Config/social-elements.php:147
 #, fuzzy
 msgid "Share on WhatsApp"
 msgstr "Share on Facebook"
 
-#: Config/social-elements.php:163 Controller/share-reports.controller.php:303
-#: Controller/widget-follow.controller.php:197
+#: Config/social-elements.php:162 Controller/share-reports.controller.php:303
+#: Controller/widget-follow.controller.php:194
 msgid "Pinterest"
 msgstr "Pinterest"
 
-#: Config/social-elements.php:166
+#: Config/social-elements.php:165
 #, fuzzy
 msgid "Share on Pinterest"
 msgstr "Pinterest"
 
-#: Config/social-elements.php:181 Controller/share-reports.controller.php:302
-#: Controller/widget-follow.controller.php:179
+#: Config/social-elements.php:180 Controller/share-reports.controller.php:302
+#: Controller/widget-follow.controller.php:176
 msgid "Linkedin"
 msgstr ""
 
-#: Config/social-elements.php:184
+#: Config/social-elements.php:183
 #, fuzzy
 msgid "Share on Linkedin"
 msgstr "Share on Facebook"
 
-#: Config/social-elements.php:199 Controller/share-reports.controller.php:304
-#: Controller/widget-follow.controller.php:251
+#: Config/social-elements.php:198 Controller/share-reports.controller.php:304
+#: Controller/widget-follow.controller.php:248
 msgid "Tumblr"
 msgstr ""
 
-#: Config/social-elements.php:202
+#: Config/social-elements.php:201
 msgid "Share on Tumblr"
 msgstr "Share on Tumblr"
 
-#: Config/social-elements.php:217
+#: Config/social-elements.php:216
 msgid "Email"
 msgstr ""
 
-#: Config/social-elements.php:220
+#: Config/social-elements.php:219
 msgid "Send by email"
 msgstr ""
 
-#: Config/social-elements.php:235
+#: Config/social-elements.php:234
 msgid "Gmail"
 msgstr ""
 
-#: Config/social-elements.php:238
+#: Config/social-elements.php:237
 msgid "Send by Gmail"
 msgstr ""
 
-#: Config/social-elements.php:253
+#: Config/social-elements.php:252
 msgid "PrintFriendly"
 msgstr ""
 
-#: Config/social-elements.php:256
+#: Config/social-elements.php:255
 msgid "Print via PrintFriendly"
 msgstr ""
 
-#: Config/social-elements.php:262
+#: Config/social-elements.php:261
 msgid "Print"
 msgstr "Print"
 
-#: Config/social-elements.php:271
+#: Config/social-elements.php:270
 #, fuzzy
 msgid "Telegram"
 msgstr "Share on Tumblr"
 
-#: Config/social-elements.php:274
+#: Config/social-elements.php:273
 #, fuzzy
 msgid "Share on Telegram"
 msgstr "Share on Tumblr"
 
-#: Config/social-elements.php:289
+#: Config/social-elements.php:288
 msgid "Skype"
 msgstr ""
 
-#: Config/social-elements.php:292
+#: Config/social-elements.php:291
 #, fuzzy
 msgid "Share on Skype"
 msgstr "Share on Facebook"
 
-#: Config/social-elements.php:307
+#: Config/social-elements.php:306
 msgid "Viber"
 msgstr ""
 
-#: Config/social-elements.php:310
+#: Config/social-elements.php:309
 #, fuzzy
 msgid "Share on Viber"
 msgstr "Share on Tumblr"
 
-#: Config/social-elements.php:325 Config/social-elements.php:334
+#: Config/social-elements.php:324 Config/social-elements.php:333
 msgid "Like"
 msgstr ""
 
-#: Config/social-elements.php:328
+#: Config/social-elements.php:327
 #, fuzzy
 msgid "Like on Facebook"
 msgstr "Share on Facebook"
 
-#: Config/social-elements.php:343 Controller/widget-follow.controller.php:215
+#: Config/social-elements.php:342 Controller/widget-follow.controller.php:212
 msgid "Reddit"
 msgstr ""
 
-#: Config/social-elements.php:346
+#: Config/social-elements.php:345
 #, fuzzy
 msgid "Share on Reddit"
 msgstr "Share on Facebook"
 
-#: Config/social-elements.php:361 Config/social-elements.php:370
+#: Config/social-elements.php:360 Config/social-elements.php:369
 msgid "Messenger"
 msgstr ""
 
-#: Config/social-elements.php:364
+#: Config/social-elements.php:363
 #, fuzzy
 msgid "Send on Facebook Messenger"
 msgstr "Share on Facebook"
 
-#: Config/social-elements.php:379 Controller/share-reports.controller.php:305
+#: Config/social-elements.php:378 Controller/share-reports.controller.php:305
 msgid "Buffer"
 msgstr ""
 
-#: Config/social-elements.php:382
+#: Config/social-elements.php:381
 #, fuzzy
 msgid "Share on Buffer"
 msgstr "Share on Tumblr"
 
-#: Config/social-elements.php:397 Controller/widget-follow.controller.php:314
+#: Config/social-elements.php:396 Controller/widget-follow.controller.php:311
 msgid "VK"
 msgstr ""
 
-#: Config/social-elements.php:400
+#: Config/social-elements.php:399
 #, fuzzy
 msgid "Share on VK"
 msgstr "Share on Tumblr"
 
-#: Config/social-elements.php:415
+#: Config/social-elements.php:414
 #, fuzzy
 msgid "Flipboard"
 msgstr "Share on Facebook"
 
-#: Config/social-elements.php:418
+#: Config/social-elements.php:417
 #, fuzzy
 msgid "Share on Flipboard"
 msgstr "Share on Facebook"
 
-#: Config/social-elements.php:433
+#: Config/social-elements.php:432
 #, fuzzy
 msgid "Modal Share"
 msgstr "Share"
 
-#: Config/social-elements.php:436 Templates/layouts-primary.php:170
+#: Config/social-elements.php:435 Templates/layouts-primary.php:170
 msgid "Open modal social networks"
 msgstr ""
 
-#: Config/social-elements.php:628
+#: Config/social-elements.php:627
 msgid "Click to see also"
 msgstr ""
 
-#: Config/social-elements.php:632 View/settings-extra.view.php:82
+#: Config/social-elements.php:631 View/settings-extra.view.php:82
 msgid "I just saw"
 msgstr ""
 
-#: Controller/ajax-sharing-reports.controller.php:95
-msgid "Not valid request"
-msgstr ""
-
-#: Controller/ajax-sharing-reports.controller.php:101
+#: Controller/ajax-sharing-reports.controller.php:96
 msgid "Not valid reference"
 msgstr ""
 
-#: Controller/ajax-sharing-reports.controller.php:159
+#: Controller/ajax-sharing-reports.controller.php:154
 msgid "Empty counts"
 msgstr ""
 
@@ -268,7 +264,7 @@ msgstr ""
 msgid "Error: Could not process css file."
 msgstr ""
 
-#: Controller/settings.controller.php:53 View/settings.view.php:49
+#: Controller/settings.controller.php:53 View/settings.view.php:48
 msgid "Settings"
 msgstr "Settings"
 
@@ -286,12 +282,12 @@ msgstr ""
 msgid "Extra Settings"
 msgstr "Settings"
 
-#: Controller/settings.controller.php:90 View/settings-custom-css.view.php:37
+#: Controller/settings.controller.php:90 View/settings-custom-css.view.php:39
 #: View/utils.view.php:500
 msgid "Custom CSS"
 msgstr ""
 
-#: Controller/settings.controller.php:100 View/settings-faq.view.php:35
+#: Controller/settings.controller.php:100 View/settings-faq.view.php:37
 #: View/utils.view.php:505
 msgid "Use options"
 msgstr ""
@@ -305,11 +301,11 @@ msgstr ""
 msgid "Sharing Report"
 msgstr "Share on Facebook"
 
-#: Controller/share-reports.controller.php:298 View/settings.view.php:475
+#: Controller/share-reports.controller.php:298 View/settings.view.php:481
 msgid "Title"
 msgstr "Title"
 
-#: Controller/share-reports.controller.php:300
+#: Controller/share-reports.controller.php:301
 msgid "Google+"
 msgstr "Google+"
 
@@ -321,15 +317,15 @@ msgstr "Total"
 msgid "Post date"
 msgstr ""
 
-#: Controller/share-reports.controller.php:367
+#: Controller/share-reports.controller.php:369
 msgid "Filter"
 msgstr ""
 
-#: Controller/share-reports.controller.php:548
+#: Controller/share-reports.controller.php:550
 msgid "There is no record available at the moment!"
 msgstr ""
 
-#: Controller/share-reports.controller.php:610
+#: Controller/share-reports.controller.php:612
 msgid "Y/m/d"
 msgstr ""
 
@@ -341,149 +337,149 @@ msgstr ""
 msgid "CSS is disabled!"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:65
-#: Controller/widgets.controller.php:86
+#: Controller/widget-follow.controller.php:63
+#: Controller/widgets.controller.php:83
 msgid "Widget title"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:70 View/settings.view.php:469
+#: Controller/widget-follow.controller.php:68 View/settings.view.php:475
 msgid "Custom class"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:75
-#: Controller/widgets.controller.php:101 View/settings.view.php:373
+#: Controller/widget-follow.controller.php:73
+#: Controller/widgets.controller.php:98 View/settings.view.php:379
 msgid "Icons size"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:81
-#: Controller/widgets.controller.php:107 View/settings.view.php:421
+#: Controller/widget-follow.controller.php:79
+#: Controller/widgets.controller.php:104 View/settings.view.php:427
 msgid "Icons color"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:87
-#: Controller/widgets.controller.php:137
+#: Controller/widget-follow.controller.php:85
+#: Controller/widgets.controller.php:134
 msgid "Layout"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:163
+#: Controller/widget-follow.controller.php:160
 #, fuzzy
 msgid "Follow us on Facebook"
 msgstr "Share on Facebook"
 
-#: Controller/widget-follow.controller.php:172
+#: Controller/widget-follow.controller.php:169
 #, fuzzy
 msgid "Follow us on Twitter"
 msgstr "Share on Facebook"
 
-#: Controller/widget-follow.controller.php:181
+#: Controller/widget-follow.controller.php:178
 #, fuzzy
 msgid "Find us on Linkedin"
 msgstr "Share on Tumblr"
 
-#: Controller/widget-follow.controller.php:190
+#: Controller/widget-follow.controller.php:187
 #, fuzzy
 msgid "Follow us on Google+"
 msgstr "Share on Facebook"
 
-#: Controller/widget-follow.controller.php:199
+#: Controller/widget-follow.controller.php:196
 #, fuzzy
 msgid "My Pinterest board"
 msgstr "Pinterest"
 
-#: Controller/widget-follow.controller.php:206
+#: Controller/widget-follow.controller.php:203
 msgid "Instagram"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:208
+#: Controller/widget-follow.controller.php:205
 msgid "Check out our Instagram"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:217
+#: Controller/widget-follow.controller.php:214
 msgid "Follow us Reddit"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:224
+#: Controller/widget-follow.controller.php:221
 msgid "YouTube"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:226
+#: Controller/widget-follow.controller.php:223
 msgid "Subscribe to our YouTube"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:233
+#: Controller/widget-follow.controller.php:230
 msgid "Vimeo"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:235
+#: Controller/widget-follow.controller.php:232
 #, fuzzy
 msgid "Find us on Vimeo"
 msgstr "Share on Tumblr"
 
-#: Controller/widget-follow.controller.php:242
+#: Controller/widget-follow.controller.php:239
 msgid "RSS Feed"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:244
+#: Controller/widget-follow.controller.php:241
 msgid "Subscribe to our RSS Feed"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:253
+#: Controller/widget-follow.controller.php:250
 #, fuzzy
 msgid "Find us on Tumblr"
 msgstr "Share on Tumblr"
 
-#: Controller/widget-follow.controller.php:260
+#: Controller/widget-follow.controller.php:257
 msgid "Flickr"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:262
+#: Controller/widget-follow.controller.php:259
 msgid "Check out our Flickr"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:269
+#: Controller/widget-follow.controller.php:266
 #, fuzzy
 msgid "Foursquare"
 msgstr "Square"
 
-#: Controller/widget-follow.controller.php:271
+#: Controller/widget-follow.controller.php:268
 msgid "Check out our Foursquare"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:278
+#: Controller/widget-follow.controller.php:275
 msgid "GitHub"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:280
+#: Controller/widget-follow.controller.php:277
 msgid "Check out our GitHub"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:287
+#: Controller/widget-follow.controller.php:284
 msgid "E-mail"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:289
+#: Controller/widget-follow.controller.php:286
 msgid "Contact Us"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:296
+#: Controller/widget-follow.controller.php:293
 msgid "Snapchat"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:298
+#: Controller/widget-follow.controller.php:295
 #, fuzzy
 msgid "Follow us on Snapchat"
 msgstr "Share on Facebook"
 
-#: Controller/widget-follow.controller.php:305
+#: Controller/widget-follow.controller.php:302
 msgid "Behance"
 msgstr ""
 
-#: Controller/widget-follow.controller.php:307
+#: Controller/widget-follow.controller.php:304
 #, fuzzy
 msgid "Follow us on Behance"
 msgstr "Share on Facebook"
 
-#: Controller/widget-follow.controller.php:316
+#: Controller/widget-follow.controller.php:313
 #, fuzzy
 msgid "Follow us on VKontakte"
 msgstr "Share on Facebook"
@@ -492,71 +488,71 @@ msgstr "Share on Facebook"
 msgid "Insert share buttons of social networks."
 msgstr ""
 
-#: Controller/widgets.controller.php:91
+#: Controller/widgets.controller.php:88
 msgid "Post title"
 msgstr ""
 
-#: Controller/widgets.controller.php:96
+#: Controller/widgets.controller.php:93
 msgid "URL"
 msgstr ""
 
-#: Controller/widgets.controller.php:113
+#: Controller/widgets.controller.php:110
 msgid "Buttons background color. <br>Layouts: Square plus and Button"
 msgstr ""
 
-#: Controller/widgets.controller.php:119 View/settings.view.php:459
+#: Controller/widgets.controller.php:116 View/settings.view.php:465
 msgid "Buttons title color"
 msgstr ""
 
-#: Controller/widgets.controller.php:125 View/settings.view.php:411
+#: Controller/widgets.controller.php:122 View/settings.view.php:417
 #, fuzzy
 msgid "Share count text color"
 msgstr "Share on Facebook"
 
-#: Controller/widgets.controller.php:131
+#: Controller/widgets.controller.php:128
 msgid ""
 "Share count background color. <br>Layouts: Default, Button, Rounded and "
 "Square."
 msgstr ""
 
-#: Controller/widgets.controller.php:143 View/settings.view.php:513
+#: Controller/widgets.controller.php:140 View/settings.view.php:519
 msgid "Remove counter"
 msgstr ""
 
-#: Controller/widgets.controller.php:148 View/settings.view.php:506
+#: Controller/widgets.controller.php:145 View/settings.view.php:512
 msgid "Remove button title"
 msgstr ""
 
-#: Helper/utils-share.php:404 Helper/utils.php:2129 View/settings.view.php:179
-#: View/settings.view.php:402
+#: Helper/utils-share.php:400 Helper/utils.php:2149 View/settings.view.php:185
+#: View/settings.view.php:408
 msgid "Default"
 msgstr "Standard"
 
-#: Helper/utils-share.php:405 View/settings.view.php:191
-#: View/settings.view.php:403 View/settings.view.php:451
+#: Helper/utils-share.php:401 View/settings.view.php:197
+#: View/settings.view.php:409 View/settings.view.php:457
 msgid "Button"
 msgstr "Button"
 
-#: Helper/utils-share.php:406 View/settings.view.php:203
-#: View/settings.view.php:324 View/settings.view.php:349
-#: View/settings.view.php:404
+#: Helper/utils-share.php:402 View/settings.view.php:209
+#: View/settings.view.php:330 View/settings.view.php:355
+#: View/settings.view.php:410
 msgid "Rounded"
 msgstr ""
 
-#: Helper/utils-share.php:407 View/settings.view.php:215
-#: View/settings.view.php:298 View/settings.view.php:311
-#: View/settings.view.php:405
+#: Helper/utils-share.php:403 View/settings.view.php:221
+#: View/settings.view.php:304 View/settings.view.php:317
+#: View/settings.view.php:411
 msgid "Square"
 msgstr "Square"
 
-#: Helper/utils-share.php:408 View/settings.view.php:227
-#: View/settings.view.php:361 View/settings.view.php:366
-#: View/settings.view.php:452
+#: Helper/utils-share.php:404 View/settings.view.php:233
+#: View/settings.view.php:367 View/settings.view.php:372
+#: View/settings.view.php:458
 #, fuzzy
 msgid "Square plus"
 msgstr "Square"
 
-#: Helper/utils.php:1497
+#: Helper/utils.php:1517
 msgid "SHARES"
 msgstr ""
 
@@ -565,17 +561,17 @@ msgstr ""
 msgid "Shares"
 msgstr "Share"
 
-#: View/settings-custom-css.view.php:32 View/settings-extra.view.php:41
-#: View/settings-faq.view.php:29 View/settings.view.php:45
-#: View/share-report.view.php:33
+#: View/settings-custom-css.view.php:33 View/settings-extra.view.php:41
+#: View/settings-faq.view.php:31 View/settings.view.php:43
+#: View/share-report.view.php:30
 msgid "Add the Share Buttons automatically."
 msgstr ""
 
-#: View/settings-custom-css.view.php:56
+#: View/settings-custom-css.view.php:58
 msgid "Enter your custom CSS ..."
 msgstr ""
 
-#: View/settings-custom-css.view.php:70 View/settings.view.php:557
+#: View/settings-custom-css.view.php:71 View/settings.view.php:563
 msgid "Save Changes"
 msgstr "Save Changes"
 
@@ -691,186 +687,186 @@ msgid ""
 "of your website."
 msgstr ""
 
-#: View/settings-faq.view.php:108
+#: View/settings-faq.view.php:111
 msgid "Available filters"
 msgstr ""
 
-#: View/settings.view.php:66
+#: View/settings.view.php:67
 msgid "Places available"
 msgstr ""
 
-#: View/settings.view.php:75
+#: View/settings.view.php:77
 msgid "Page home"
 msgstr ""
 
-#: View/settings.view.php:84
+#: View/settings.view.php:86
 msgid "Archive/Category"
 msgstr ""
 
-#: View/settings.view.php:93
+#: View/settings.view.php:95
 msgid "Pages"
 msgstr "Pages"
 
-#: View/settings.view.php:102
+#: View/settings.view.php:104
 msgid "Single"
 msgstr ""
 
-#: View/settings.view.php:113
+#: View/settings.view.php:115
 msgid "WooCommerce share"
 msgstr ""
 
-#: View/settings.view.php:124
+#: View/settings.view.php:126
 msgid "Before content"
 msgstr ""
 
-#: View/settings.view.php:133
+#: View/settings.view.php:135
 msgid "After content"
 msgstr ""
 
-#: View/settings.view.php:140
+#: View/settings.view.php:143
 msgid "Social networks available"
 msgstr ""
 
-#: View/settings.view.php:166
+#: View/settings.view.php:171
 msgid "Layout options"
 msgstr ""
 
-#: View/settings.view.php:168
+#: View/settings.view.php:174
 msgid "All layout supports responsive"
 msgstr ""
 
-#: View/settings.view.php:236 View/settings.view.php:453
+#: View/settings.view.php:242 View/settings.view.php:459
 msgid "Position fixed"
 msgstr ""
 
-#: View/settings.view.php:246
+#: View/settings.view.php:252
 #, fuzzy
 msgid "Fixed left"
 msgstr "Fixed"
 
-#: View/settings.view.php:259
+#: View/settings.view.php:265
 #, fuzzy
 msgid "Fixed right"
 msgstr "Fixed"
 
-#: View/settings.view.php:269
+#: View/settings.view.php:275
 msgid "Clear"
 msgstr ""
 
-#: View/settings.view.php:270
+#: View/settings.view.php:276
 msgid "Click to clear the positions."
 msgstr ""
 
-#: View/settings.view.php:285 View/settings.view.php:348
+#: View/settings.view.php:291 View/settings.view.php:354
 msgid "Position fixed layout"
 msgstr ""
 
-#: View/settings.view.php:341
+#: View/settings.view.php:347
 msgid "Text below sharing count"
 msgstr ""
 
-#: View/settings.view.php:345 View/settings.view.php:365
+#: View/settings.view.php:351 View/settings.view.php:371
 msgid "Change text below sharing count. Default SHARES"
 msgstr ""
 
-#: View/settings.view.php:347
+#: View/settings.view.php:353
 msgid "Used in %s %s."
 msgstr ""
 
-#: View/settings.view.php:361
+#: View/settings.view.php:367
 msgid "%s: Text below sharing count"
 msgstr ""
 
-#: View/settings.view.php:366
+#: View/settings.view.php:372
 msgid "Used in %s layout."
 msgstr ""
 
-#: View/settings.view.php:392
+#: View/settings.view.php:398
 #, fuzzy
 msgid "Share count background color"
 msgstr "Share on Facebook"
 
-#: View/settings.view.php:401
+#: View/settings.view.php:407
 msgid "Layouts: %s, %s, %s and %s."
 msgstr ""
 
-#: View/settings.view.php:441
+#: View/settings.view.php:447
 msgid "Buttons background color"
 msgstr ""
 
-#: View/settings.view.php:450
+#: View/settings.view.php:456
 msgid "Layouts: %s, %s, and %s."
 msgstr ""
 
-#: View/settings.view.php:470
+#: View/settings.view.php:476
 msgid "Custom class for primary div"
 msgstr ""
 
-#: View/settings.view.php:476
+#: View/settings.view.php:482
 msgid "Insert the title here."
 msgstr ""
 
-#: View/settings.view.php:477
+#: View/settings.view.php:483
 msgid "Text to display above the sharing buttons."
 msgstr ""
 
-#: View/settings.view.php:482
+#: View/settings.view.php:488
 msgid "HTML id attribute"
 msgstr ""
 
-#: View/settings.view.php:483
+#: View/settings.view.php:489
 msgid "Enter name to context of search. ID of content tag"
 msgstr ""
 
-#: View/settings.view.php:484
+#: View/settings.view.php:490
 msgid ""
 "This is to set the fixed layout to the left of the post content. "
 "<strong>Example:</strong> <code>wrap</code> use {id} for post id."
 msgstr ""
 
-#: View/settings.view.php:490
+#: View/settings.view.php:496
 msgid "Fixed Items in top"
 msgstr ""
 
-#: View/settings.view.php:492
+#: View/settings.view.php:498
 msgid "It is activated when scrolling the page on the buttons position."
 msgstr ""
 
-#: View/settings.view.php:498
+#: View/settings.view.php:504
 msgid "Highlighted by reference"
 msgstr ""
 
-#: View/settings.view.php:500
+#: View/settings.view.php:506
 msgid "This allows highlight the social network where the user Came from."
 msgstr ""
 
-#: View/settings.view.php:520
+#: View/settings.view.php:526
 #, fuzzy
 msgid "Pinterest alt text"
 msgstr "Pinterest"
 
-#: View/settings.view.php:522
+#: View/settings.view.php:528
 msgid ""
 "Use in description of Pinterest the alt text of highlighted image in place "
 "of title of post."
 msgstr ""
 
-#: View/settings.view.php:528
+#: View/settings.view.php:534
 msgid "Min count to display"
 msgstr ""
 
-#: View/settings.view.php:531
+#: View/settings.view.php:537
 msgid ""
 "When you enter the value, share counts are only displayed when the total "
 "counts of each item than equal to or greater than the informed value."
 msgstr ""
 
-#: View/settings.view.php:538
+#: View/settings.view.php:544
 #, fuzzy
 msgid "Twitter share count"
 msgstr "Twitter"
 
-#: View/settings.view.php:542
+#: View/settings.view.php:548
 msgid ""
 "The share count Twitter is powered by <a href=\"http://newsharecounts.com\" "
 "target=\"_blank\">newsharecounts.com</a>, you have to sign up with your "
@@ -879,19 +875,19 @@ msgid ""
 "That, and nothing else!"
 msgstr ""
 
-#: View/share-report.view.php:51
+#: View/share-report.view.php:48
 msgid "Search"
 msgstr "Start Search"
 
-#: View/share-report.view.php:97
+#: View/share-report.view.php:94
 msgid "Start date:"
 msgstr ""
 
-#: View/share-report.view.php:109
+#: View/share-report.view.php:106
 msgid "End date:"
 msgstr ""
 
-#: View/share-report.view.php:134
+#: View/share-report.view.php:131
 msgid "Export CSV"
 msgstr ""
 
@@ -899,11 +895,11 @@ msgstr ""
 msgid "Disable on this post"
 msgstr ""
 
-#: View/utils.view.php:312 View/widgets.view.php:283
+#: View/utils.view.php:312 View/widgets.view.php:276
 msgid "YES"
 msgstr ""
 
-#: View/utils.view.php:313 View/widgets.view.php:284
+#: View/utils.view.php:313 View/widgets.view.php:277
 msgid "NO"
 msgstr ""
 
@@ -929,51 +925,51 @@ msgstr "Settings saved."
 msgid "General"
 msgstr ""
 
-#: View/widget-follow.view.php:19
+#: View/widget-follow.view.php:17
 msgid "No social networks were enabled in the Widget."
 msgstr ""
 
-#: View/widgets.view.php:34
+#: View/widgets.view.php:33
 msgid "Override post title"
 msgstr ""
 
-#: View/widgets.view.php:35
+#: View/widgets.view.php:34
 msgid "Override permalinks"
 msgstr ""
 
-#: View/widgets.view.php:36
+#: View/widgets.view.php:35
 msgid "Class name for CSS customization"
 msgstr ""
 
-#: View/widgets.view.php:141 View/widgets.view.php:166
+#: View/widgets.view.php:136 View/widgets.view.php:160
 msgid "Drag & Drop to order and click to select"
 msgstr ""
 
-#: View/widgets.view.php:169
+#: View/widgets.view.php:163
 msgid "The [item] URL field is empty."
 msgstr ""
 
-#: View/widgets.view.php:210
+#: View/widgets.view.php:203
 msgid "Enter the network URL here:"
 msgstr ""
 
-#: View/widgets.view.php:224
+#: View/widgets.view.php:217
 msgid "Example:"
 msgstr ""
 
-#: View/widgets.view.php:240
+#: View/widgets.view.php:233
 msgid "Your email:"
 msgstr ""
 
-#: View/widgets.view.php:249
+#: View/widgets.view.php:242
 msgid "Subject:"
 msgstr ""
 
-#: View/widgets.view.php:260
+#: View/widgets.view.php:253
 msgid "Give the title:"
 msgstr ""
 
-#: wpupper-share-buttons.php:130
+#: wpupper-share-buttons.php:126
 msgid ""
 "It does not support your PHP version. Please, install a version greater than "
 "or equal to 5.2.0."
@@ -997,7 +993,7 @@ msgstr ""
 msgid "https://github.com/victorfreitas"
 msgstr ""
 
-#: View/share-report.view.php:91
+#: View/share-report.view.php:88
 msgctxt "placeholder"
 msgid "YYYY-MM-DD"
 msgstr ""

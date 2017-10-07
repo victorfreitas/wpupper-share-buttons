@@ -93,7 +93,7 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 		$reference = WPUSB_Utils::post( 'reference', false, 'intval' );
 
 		if ( ! $reference || ! $nonce ) {
-			$this->_send_json( __( 'Not valid reference', WPUSB_App::TEXTDOMAIN ) );
+			$this->_send_json( __( 'Not valid reference', 'wpupper-share-buttons' ) );
 		}
 
 		$this->reference = $reference;
@@ -151,7 +151,7 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 			$this->_add_counts( intval( $id ) );
 		}
 
-		$this->_send_json( __( 'Empty counts', WPUSB_App::TEXTDOMAIN ) );
+		$this->_send_json( __( 'Empty counts', 'wpupper-share-buttons' ) );
 	}
 
 	/**

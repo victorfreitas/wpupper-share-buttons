@@ -147,7 +147,7 @@ EOD;
 		return sprintf(
 			'<span class="%s">%s</span>',
 			WPUSB_Utils::get_class_btn_inside(),
-			__( 'Shares', WPUSB_App::TEXTDOMAIN )
+			__( 'Shares', 'wpupper-share-buttons' )
 		);
 	}
 

@@ -13,10 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WPUSB_Widget_Follow_View {
 
 	public static function render_fields( $instance, $items ) {
-		$prefix = WPUSB_App::SLUG;
-
 		if ( empty( $items ) ) {
-			_e( 'No social networks were enabled in the Widget.', WPUSB_App::TEXTDOMAIN );
+			_e( 'No social networks were enabled in the Widget.', 'wpupper-share-buttons' );
 			return;
 		}
 
@@ -24,8 +22,8 @@ class WPUSB_Widget_Follow_View {
 		$layout       = $instance->get_property( 'layout' );
 	?>
 	  	<div id="<?php echo WPUSB_Utils::get_widget_follow_attr_id( $instance->number ); ?>">
-			<div id="<?php echo $prefix; ?>-container-follow"
-				 class="<?php printf( '%1$s-follow %1$s-follow-%2$s %3$s', $prefix, $layout, $custom_class ); ?>">
+			<div id="<?php echo WPUSB_App::SLUG; ?>-container-follow"
+				 class="<?php printf( '%1$s-follow %1$s-follow-%2$s %3$s', WPUSB_App::SLUG, $layout, $custom_class ); ?>">
 
 			<?php
 				$networks = $instance->get_networks();
@@ -50,13 +48,13 @@ class WPUSB_Widget_Follow_View {
 						$link    = sprintf( 'mailto:%s?subject=%s', $link, rawurlencode( $subject ) );
 					}
 			?>
-				<div class="<?php printf( '%1$s-item %1$s-%2$s', $prefix, $element ); ?>">
+				<div class="<?php printf( '%1$s-item %1$s-%2$s', WPUSB_App::SLUG, $element ); ?>">
 					<a href="<?php echo $is_email ? WPUSB_Utils::rm_tags( $link ) : esc_url( $link ); ?>"
 					   <?php echo ( $is_email ) ? '' : 'target="_blank"'; ?>
-					   class="<?php echo $prefix; ?>-btn"
+					   class="<?php echo WPUSB_App::SLUG; ?>-btn"
 					   title="<?php echo $title; ?>">
 
-						<i class="<?php printf( '%1$s-icon-%2$s-%3$s %1$s-follow-icon', $prefix, $element, $layout ); ?>"></i>
+						<i class="<?php printf( '%1$s-icon-%2$s-%3$s %1$s-follow-icon', WPUSB_App::SLUG, $element, $layout ); ?>"></i>
 					</a>
 				</div>
 

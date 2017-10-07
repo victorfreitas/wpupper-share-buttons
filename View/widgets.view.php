@@ -24,15 +24,14 @@ class WPUSB_Widgets_View {
 
 	public static function field_input( $text, $id, $type = 'text' ) {
 		$instance     = self::$instance;
-		$prefix       = WPUSB_App::SLUG;
 		$value        = $instance->get_property( $id );
 		$class        = ( $type === 'number' ) ? 'small-text' : 'large-text';
 		$after_label  = false;
 		$class_label  = '';
 		$attr         = '';
 		$placeholders = array(
-			'post_title'   => __( 'Override post title', WPUSB_App::TEXTDOMAIN ),
-			'url'          => __( 'Override permalinks', WPUSB_App::TEXTDOMAIN ),
+			'post_title'   => __( 'Override post title', 'wpupper-share-buttons' ),
+			'url'          => __( 'Override permalinks', 'wpupper-share-buttons' ),
 			'custom_class' => __( 'Class name for CSS customization' ),
 		);
 		$placeholder = isset( $placeholders[ $id ] ) ? $placeholders[ $id ] : '';
@@ -40,7 +39,7 @@ class WPUSB_Widgets_View {
 		if ( $type === 'color' ) {
 			$class       = '';
 			$after_label = true;
-			$class_label = "{$prefix}-label-color";
+			$class_label = WPUSB_App::SLUG . '-label-color';
 			$type        = 'text';
 			$attr        = 'data-element="color-picker"';
 		}
@@ -73,19 +72,17 @@ class WPUSB_Widgets_View {
 	}
 
 	public static function get_label( $instance, $id, $text, $class_label ) {
-		$prefix   = WPUSB_App::SLUG;
 		$field_id = esc_attr( $instance->get_field_id( $id ) );
-		$class    = "{$class_label} {$prefix}-{$id}";
+		$class    = WPUSB_App::SLUG . '-' . $id;
 
-		return sprintf( '<label for="%s" class="%s-label">%s</label>', $field_id, $class, $text );
+		return sprintf( '<label for="%s" class="%s %s-label">%s</label>', $field_id, $class_label, $class, $text );
 	}
 
 	public static function field_select( $text, $id, $options ) {
 		$instance = self::$instance;
 		$current  = $instance->get_property( $id );
-		$prefix   = WPUSB_App::SLUG;
 	?>
-		<p class="<?php printf( '%1$s-%2$s %1$s-%3$s-widget', $prefix, 'widget-select-content', $id ); ?>">
+		<p class="<?php printf( '%1$s-%2$s %1$s-%3$s-widget', WPUSB_App::SLUG, 'widget-select-content', $id ); ?>">
 			<label for="<?php echo esc_attr( $instance->get_field_id( $id ) ); ?>">
 				<?php echo $text; ?>
 			</label>
@@ -109,11 +106,10 @@ class WPUSB_Widgets_View {
 
 	public static function field_checkbox( $text, $id ) {
 		$instance = self::$instance;
-		$prefix   = WPUSB_App::SLUG;
 		$value    = $instance->get_property( $id );
 	?>
-		<div class="<?php echo $prefix; ?>-widget-checkbox-content">
-			<div class="<?php echo $prefix; ?>-widget-text">
+		<div class="<?php echo WPUSB_App::SLUG; ?>-widget-checkbox-content">
+			<div class="<?php echo WPUSB_App::SLUG; ?>-widget-text">
 				<?php echo $text; ?>
 			</div>
 	<?php
@@ -130,15 +126,14 @@ class WPUSB_Widgets_View {
 
 	public static function social_items() {
 		$instance = self::$instance;
-		$prefix   = WPUSB_App::SLUG;
 	?>
-		<table id="<?php echo $prefix; ?>-widget-table">
+		<table id="<?php echo WPUSB_App::SLUG; ?>-widget-table">
 			<tbody>
-				<tr class="<?php echo $prefix; ?>-social-networks"
+				<tr class="<?php echo WPUSB_App::SLUG; ?>-social-networks"
 					data-element="social-items">
 
 					<th class="strong">
-						<?php _e( 'Drag & Drop to order and click to select', WPUSB_App::TEXTDOMAIN ); ?>
+						<?php _e( 'Drag & Drop to order and click to select', 'wpupper-share-buttons' ); ?>
 					</th>
 					<?php
 						$order = $instance->get_property( 'items', array() );
@@ -154,19 +149,18 @@ class WPUSB_Widgets_View {
 
 	public static function follow_us_networks( $networks ) {
 		$instance = self::$instance;
-		$prefix   = WPUSB_App::SLUG;
 	?>
-		<table id="<?php echo $prefix; ?>-widget-table">
+		<table id="<?php echo WPUSB_App::SLUG; ?>-widget-table">
 			<tbody>
-				<tr class="<?php echo $prefix; ?>-social-networks"
+				<tr class="<?php echo WPUSB_App::SLUG; ?>-social-networks"
 					data-element="social-items">
 
 					<th>
 						<span class="strong">
-							<?php _e( 'Drag & Drop to order and click to select', WPUSB_App::TEXTDOMAIN ); ?>
+							<?php _e( 'Drag & Drop to order and click to select', 'wpupper-share-buttons' ); ?>
 						</span>
-						<span class="<?php echo $prefix; ?>-info-error <?php echo $prefix; ?>-hide"
-						      data-message="<?php _e( 'The [item] URL field is empty.', WPUSB_App::TEXTDOMAIN ); ?>"
+						<span class="<?php echo WPUSB_App::SLUG; ?>-info-error <?php echo WPUSB_App::SLUG; ?>-hide"
+						      data-message="<?php _e( 'The [item] URL field is empty.', 'wpupper-share-buttons' ); ?>"
 						      data-element="info-message"></span>
 					</th>
 					<?php
@@ -181,33 +175,32 @@ class WPUSB_Widgets_View {
 
 	public static function follow_us_fields( $network, $id ) {
 		$instance   = self::$instance;
-		$prefix     = WPUSB_App::SLUG;
 		$field_id   = esc_attr( $instance->get_field_id( $id ) );
 		$field_name = esc_attr( $instance->get_field_name( $id ) );
 		$is_email   = ( $id === 'email' );
 	?>
-		<p id="<?php printf( '%s-follow-us-item', $prefix ); ?>">
+		<p id="<?php printf( '%s-follow-us-item', WPUSB_App::SLUG ); ?>">
 
-			<a class="<?php printf( '%s-title', $prefix ); ?>"
+			<a class="<?php printf( '%s-title', WPUSB_App::SLUG ); ?>"
 			      data-action="title"
 			      data-item="<?php echo $id; ?>">
 
 				<?php echo $network->name; ?>
 
-				<span class="<?php printf( '%s-arrow', $prefix ); ?>"
+				<span class="<?php printf( '%s-arrow', WPUSB_App::SLUG ); ?>"
 				      data-element="arrow">
 					&#9662;
 				</span>
 			</a>
 
-			<span class="<?php printf( '%s-fields-content', $prefix ); ?>"
+			<span class="<?php printf( '%s-fields-content', WPUSB_App::SLUG ); ?>"
 			      data-field="content"
 			      data-element="<?php echo $id; ?>">
 
 			    <?php if ( ! $is_email ) : ?>
 
 				<label for="<?php echo $field_id; ?>-url">
-					<?php _e( 'Enter the network URL here:', WPUSB_App::TEXTDOMAIN ); ?>
+					<?php _e( 'Enter the network URL here:', 'wpupper-share-buttons' ); ?>
 				</label>
 				<input type="text"
 					   id="<?php echo $field_id; ?>-url"
@@ -221,7 +214,7 @@ class WPUSB_Widgets_View {
 					<?php
 						printf(
 							'<span class="bold">%s</span> %s',
-							__( 'Example:', WPUSB_App::TEXTDOMAIN ),
+							esc_html__( 'Example:', 'wpupper-share-buttons' ),
 							$network->url
 						);
 					?>
@@ -237,7 +230,7 @@ class WPUSB_Widgets_View {
 				?>
 
 				<label for="<?php echo $field_id; ?>-email">
-					<?php _e( 'Your email:', WPUSB_App::TEXTDOMAIN ); ?>
+					<?php _e( 'Your email:', 'wpupper-share-buttons' ); ?>
 				</label>
 				<input type="text"
 					   id="<?php echo $field_id; ?>-email"
@@ -246,7 +239,7 @@ class WPUSB_Widgets_View {
 				       value="<?php echo empty( $value ) ? $admin_email : $value; ?>">
 
 				<label for="<?php echo $field_id; ?>-subject">
-					<?php _e( 'Subject:', WPUSB_App::TEXTDOMAIN ); ?>
+					<?php _e( 'Subject:', 'wpupper-share-buttons' ); ?>
 				</label>
 				<input type="text"
 					   id="<?php echo $field_id; ?>-subject"
@@ -257,7 +250,7 @@ class WPUSB_Widgets_View {
 				<?php endif; ?>
 
 				<label for="<?php echo $field_id; ?>-title">
-					<?php _e( 'Give the title:', WPUSB_App::TEXTDOMAIN ); ?>
+					<?php _e( 'Give the title:', 'wpupper-share-buttons' ); ?>
 				</label>
 				<input type="text"
 					   id="<?php echo $field_id; ?>-title"
@@ -280,8 +273,8 @@ class WPUSB_Widgets_View {
 			'description' => '',
 		);
 		$args      = array_merge( $defaults, $args );
-		$on_title  = __( 'YES', WPUSB_App::TEXTDOMAIN );
-		$off_title = __( 'NO', WPUSB_App::TEXTDOMAIN );
+		$on_title  = __( 'YES', 'wpupper-share-buttons' );
+		$off_title = __( 'NO', 'wpupper-share-buttons' );
 
 		echo <<<EOD
 			<div class="{$prefix}-custom-switch">

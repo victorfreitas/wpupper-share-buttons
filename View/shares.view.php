@@ -30,7 +30,7 @@ class WPUSB_Shares_View {
 				%2$s
 			</label>',
 			WPUSB_Setting::META_KEY,
-			__( 'Disable on this post', WPUSB_App::TEXTDOMAIN ),
+			__( 'Disable on this post', 'wpupper-share-buttons' ),
 			checked( $is_disabled, true, false )
 		);
 	}

@@ -107,10 +107,10 @@ final class WPUSB_Scripts {
 
 		if ( WPUSB_Utils::is_panel_home() ) {
 			$args['previewTitles'] = array(
-				'titleRemove'   => __( 'View Untitled', WPUSB_App::TEXTDOMAIN ),
-				'counterRemove' => __( 'View without count', WPUSB_App::TEXTDOMAIN ),
-				'titleInsert'   => __( 'See with title', WPUSB_App::TEXTDOMAIN ),
-				'counterInsert' => __( 'See with count', WPUSB_App::TEXTDOMAIN ),
+				'titleRemove'   => __( 'View Untitled', 'wpupper-share-buttons' ),
+				'counterRemove' => __( 'View without count', 'wpupper-share-buttons' ),
+				'titleInsert'   => __( 'See with title', 'wpupper-share-buttons' ),
+				'counterInsert' => __( 'See with count', 'wpupper-share-buttons' ),
 			);
 		}
 
@@ -139,8 +139,8 @@ final class WPUSB_Scripts {
 		}
 
 		return array(
-			'closeText'       => __( 'Close', WPUSB_App::TEXTDOMAIN ),
-			'currentText'     => __( 'Today', WPUSB_App::TEXTDOMAIN ),
+			'closeText'       => __( 'Close', 'wpupper-share-buttons' ),
+			'currentText'     => __( 'Today', 'wpupper-share-buttons' ),
 			'dayNames'        => array_values( $wp_locale->weekday ),
 			'dayNamesMin'     => array_values( $wp_locale->weekday_initial ),
 			'dayNamesShort'   => array_values( $wp_locale->weekday_abbrev ),
@@ -148,8 +148,8 @@ final class WPUSB_Scripts {
 			'isRTL'           => $wp_locale->is_rtl(),
 			'monthNames'      => array_values( $wp_locale->month ),
 			'monthNamesShort' => array_map( 'ucfirst', array_values( $wp_locale->month_abbrev ) ),
-			'nextText'        => __( 'Next', WPUSB_App::TEXTDOMAIN ),
-			'prevText'        => __( 'Previous', WPUSB_App::TEXTDOMAIN ),
+			'nextText'        => __( 'Next', 'wpupper-share-buttons' ),
+			'prevText'        => __( 'Previous', 'wpupper-share-buttons' ),
 		);
 	}
 

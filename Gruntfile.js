@@ -136,5 +136,4 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 
 	grunt.registerTask( 'deploy', ['jshint', 'concat', 'uglify', 'sass:site', 'handlebars:dest'] );
-	grunt.registerTask( 'i18n', ['makepot'] );
 };

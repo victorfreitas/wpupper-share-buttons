@@ -21,15 +21,15 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 	 * @return Void, Display page
 	 */
 	public static function render_settings_extra() {
-		$prefix        = WPUSB_App::SLUG;
-		$extra_setting = sprintf( '%s_extra_settings', $prefix );
-		$domain        = WPUSB_App::TEXTDOMAIN;
+		$extra_setting = sprintf( '%s_extra_settings', WPUSB_App::SLUG );
 
 		parent::set_options();
 		parent::set_prefix( $extra_setting );
 	?>
 		<div class="wrap" <?php echo WPUSB_Utils::get_component( 'extra-settings' ); ?>>
-			<h2><?php _e( 'WPUpper Share Buttons', $domain ); ?></h2>
+			<h2>
+				<?php _e( 'WPUpper Share Buttons', 'wpupper-share-buttons' ); ?>
+			</h2>
 
 			<?php
 				if ( WPUSB_Utils::get_update( 'settings-updated' ) ) {
@@ -38,18 +38,18 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 			?>
 
 			<p class="description">
-				<?php _e( 'Add the Share Buttons automatically.', $domain ); ?>
+				<?php _e( 'Add the Share Buttons automatically.', 'wpupper-share-buttons' ); ?>
 			</p>
 
 			<?php parent::page_notice(); ?>
 
-			<span class="<?php echo "{$prefix}-title-wrap"; ?>">
-				<?php _e( 'Extra Settings', $domain ); ?>
+			<span class="<?php echo WPUSB_App::SLUG . '-title-wrap'; ?>">
+				<?php _e( 'Extra Settings', 'wpupper-share-buttons' ); ?>
 			</span>
 
 			<?php parent::menu_top(); ?>
 
-			<div class="<?php echo "{$prefix}-wrap extra-settings-wrap"; ?>">
+			<div class="<?php echo WPUSB_App::SLUG . '-wrap extra-settings-wrap'; ?>">
 				<form action="options.php"
 					  method="post"
 					  data-action="form"
@@ -60,43 +60,43 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 						<?php
 							parent::tr( array(
 								'key'         => 'twitter-username',
-								'label'       => __( 'Twitter username', $domain ),
-								'text'        => __( 'Your twitter username', $domain ),
-								'placeholder' => __( 'Twitter username', $domain ),
+								'label'       => __( 'Twitter username', 'wpupper-share-buttons' ),
+								'text'        => __( 'Your twitter username', 'wpupper-share-buttons' ),
+								'placeholder' => __( 'Twitter username', 'wpupper-share-buttons' ),
 							) );
 
 							parent::tr( array(
 								'key'          => 'twitter-hashtags',
-								'label'        => __( 'Twitter hashtags', $domain ),
-								'placeholder'  => __( 'Twitter hashtags', $domain ),
-								'text'         => __( 'Optional Hashtags appended onto the tweet (comma separated. don\'t include "#")', $domain ),
+								'label'        => __( 'Twitter hashtags', 'wpupper-share-buttons' ),
+								'placeholder'  => __( 'Twitter hashtags', 'wpupper-share-buttons' ),
+								'text'         => __( 'Optional Hashtags appended onto the tweet (comma separated. don\'t include "#")', 'wpupper-share-buttons' ),
 								'block_text'   => 'social, share, like',
-								'block_strong' => __( 'Example: ', $domain ),
+								'block_strong' => __( 'Example: ', 'wpupper-share-buttons' ),
 							) );
 
 							parent::tr( array(
 								'key'          => 'twitter-text',
-								'label'        => __( 'Twitter text', $domain ),
-								'placeholder'  => __( 'Twitter text', $domain ),
-								'text'         => __( 'Use {title} to add the post title', $domain ),
-								'block_text'   => __( 'I just saw', $domain ) . ' {title}',
-								'block_strong' => __( 'Example: ', $domain ),
+								'label'        => __( 'Twitter text', 'wpupper-share-buttons' ),
+								'placeholder'  => __( 'Twitter text', 'wpupper-share-buttons' ),
+								'text'         => __( 'Use {title} to add the post title', 'wpupper-share-buttons' ),
+								'block_text'   => __( 'I just saw', 'wpupper-share-buttons' ) . ' {title}',
+								'block_strong' => __( 'Example: ', 'wpupper-share-buttons' ),
 							) );
 
 							parent::tr( array(
 								'key'          => 'tracking',
-								'label'        => __( 'UTM tracking', $domain ),
-								'placeholder'  => __( 'Add UTM tracking (Analytics)', $domain ),
-								'text'         => __( 'Use <code>?</code> and', $domain ) . ' ' . __( 'adding parameters to use <code>&</code> in the tracking.', $domain ),
+								'label'        => __( 'UTM tracking', 'wpupper-share-buttons' ),
+								'placeholder'  => __( 'Add UTM tracking (Analytics)', 'wpupper-share-buttons' ),
+								'text'         => __( 'Use <code>?</code> and', 'wpupper-share-buttons' ) . ' ' . __( 'adding parameters to use <code>&</code> in the tracking.', 'wpupper-share-buttons' ),
 								'block_text'   => '?utm_source=share_buttons&utm_medium=social_media&utm_campaign=social_share',
-								'block_strong' => __( 'Example: ', $domain ),
+								'block_strong' => __( 'Example: ', 'wpupper-share-buttons' ),
 							) );
 
 							parent::tr( array(
 								'key'         => 'bitly-token',
-								'label'       => __( 'Bitly access token', $domain ),
-								'placeholder' => __( 'Insert your access token Bitly', $domain ),
-								'text'        => __( 'Shorten urls using bitly, generate token in ', $domain ),
+								'label'       => __( 'Bitly access token', 'wpupper-share-buttons' ),
+								'placeholder' => __( 'Insert your access token Bitly', 'wpupper-share-buttons' ),
+								'text'        => __( 'Shorten urls using bitly, generate token in ', 'wpupper-share-buttons' ),
 								'link'        => 'https://bitly.is/2lQjWHF',
 								'attr'        => array(
 									'data-element' => 'bitly-token',
@@ -106,7 +106,7 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 							parent::tr( array(
 								'type'    => 'select',
 								'key'     => 'bitly-domain',
-								'label'   => __( 'Select Bitly domain', $domain ),
+								'label'   => __( 'Select Bitly domain', 'wpupper-share-buttons' ),
 								'class'   => 'regular-text',
 								'options' => WPUSB_Utils::get_bitly_domains(),
 								'default' => 'default',
@@ -117,50 +117,50 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 							parent::tr( array(
 								'type'     => 'select',
 								'key'      => 'post-types',
-								'label'    => __( 'Post types is enabled', $domain ),
+								'label'    => __( 'Post types is enabled', 'wpupper-share-buttons' ),
 								'class'    => 'regular-text',
 								'options'  => $post_types,
 								'default'  => $post_types,
 								'multiple' => true,
-								'text'     => __( 'Minimum 1 post type, default all.', $domain ),
+								'text'     => __( 'Minimum 1 post type, default all.', 'wpupper-share-buttons' ),
 							) );
 
 							parent::tr( array(
 								'type'    => 'checkbox',
 								'key'     => 'minify-html',
-								'label'   => __( 'Minify html buttons share', $domain ),
+								'label'   => __( 'Minify html buttons share', 'wpupper-share-buttons' ),
 								'checked' => 'on',
-								'text'    => __( 'Minify the HTML helps site performance.', $domain ),
+								'text'    => __( 'Minify the HTML helps site performance.', 'wpupper-share-buttons' ),
 							) );
 
 							parent::tr( array(
 								'type'    => 'checkbox',
 								'key'     => 'sharing-report-disabled',
-								'label'   => __( 'Deactivate sharing report', $domain ),
+								'label'   => __( 'Deactivate sharing report', 'wpupper-share-buttons' ),
 								'checked' => 'on',
-								'text'    => __( 'This allows you to disable counting of the shares report. You will not lose the report you have already computed.', $domain ),
+								'text'    => __( 'This allows you to disable counting of the shares report. You will not lose the report you have already computed.', 'wpupper-share-buttons' ),
 							) );
 
 							parent::tr( array(
 								'type'    => 'checkbox',
 								'key'     => 'disable-css',
-								'label'   => __( 'Disable CSS', $domain ),
+								'label'   => __( 'Disable CSS', 'wpupper-share-buttons' ),
 								'checked' => 'on',
 							) );
 
 							parent::tr( array(
 								'type'    => 'checkbox',
 								'key'     => 'disable-js',
-								'label'   => __( 'Disable JS', $domain ),
+								'label'   => __( 'Disable JS', 'wpupper-share-buttons' ),
 								'checked' => 'on',
 							) );
 
 							parent::tr( array(
 								'type'    => 'checkbox',
 								'key'     => 'css-footer',
-								'label'   => __( 'CSS file in footer', $domain ),
+								'label'   => __( 'CSS file in footer', 'wpupper-share-buttons' ),
 								'checked' => 'on',
-								'text'    => __( 'Keep the CSS style in the footer is recommended to improve the performance of your website.', $domain ),
+								'text'    => __( 'Keep the CSS style in the footer is recommended to improve the performance of your website.', 'wpupper-share-buttons' ),
 							) );
 						?>
 						</tbody>
@@ -169,7 +169,7 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 						settings_fields( "{$extra_setting}_group" );
 						submit_button();
 					?>
-					<div class="<?php echo $prefix; ?>-info-error" data-element="bitly-message"></div>
+					<div class="<?php echo WPUSB_App::SLUG; ?>-info-error" data-element="bitly-message"></div>
 				</form>
 			</div>
 		</div>

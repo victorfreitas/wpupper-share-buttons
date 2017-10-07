@@ -114,8 +114,8 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	public function menu() {
 	  	add_submenu_page(
 	  		WPUSB_App::SLUG,
-	  		__( 'Sharing Report | WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ),
-	  		__( 'Sharing Report', WPUSB_App::TEXTDOMAIN ),
+	  		__( 'Sharing Report | WPUpper Share Buttons', 'wpupper-share-buttons' ),
+	  		__( 'Sharing Report', 'wpupper-share-buttons' ),
 	  		'manage_options',
 	  		WPUSB_Setting::SHARING_REPORT,
 	  		array( $this, 'report' )
@@ -295,16 +295,16 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 */
 	public function get_columns() {
 		$columns = array(
-			'Title'     => __( 'Title', WPUSB_App::TEXTDOMAIN ),
-			'Facebook'  => __( 'Facebook', WPUSB_App::TEXTDOMAIN ),
-			'Twitter'   => __( 'Twitter', WPUSB_App::TEXTDOMAIN ),
-			'Google'    => __( 'Google+', WPUSB_App::TEXTDOMAIN ),
-			'Linkedin'  => __( 'Linkedin', WPUSB_App::TEXTDOMAIN ),
-			'Pinterest' => __( 'Pinterest', WPUSB_App::TEXTDOMAIN ),
-			'Tumblr'    => __( 'Tumblr', WPUSB_App::TEXTDOMAIN ),
-			'Buffer'    => __( 'Buffer', WPUSB_App::TEXTDOMAIN ),
-			'Total'     => __( 'Total', WPUSB_App::TEXTDOMAIN ),
-			'Date'      => __( 'Post date', WPUSB_App::TEXTDOMAIN ),
+			'Title'     => __( 'Title', 'wpupper-share-buttons' ),
+			'Facebook'  => __( 'Facebook', 'wpupper-share-buttons' ),
+			'Twitter'   => __( 'Twitter', 'wpupper-share-buttons' ),
+			'Google'    => __( 'Google+', 'wpupper-share-buttons' ),
+			'Linkedin'  => __( 'Linkedin', 'wpupper-share-buttons' ),
+			'Pinterest' => __( 'Pinterest', 'wpupper-share-buttons' ),
+			'Tumblr'    => __( 'Tumblr', 'wpupper-share-buttons' ),
+			'Buffer'    => __( 'Buffer', 'wpupper-share-buttons' ),
+			'Total'     => __( 'Total', 'wpupper-share-buttons' ),
+			'Date'      => __( 'Post date', 'wpupper-share-buttons' ),
 		);
 
 		return apply_filters( WPUSB_Utils::add_prefix( $this->tag . 'columns' ), $columns );
@@ -547,7 +547,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 * @return String
 	 */
 	public function no_items() {
-		_e( 'There is no record available at the moment!', WPUSB_App::TEXTDOMAIN );
+		_e( 'There is no record available at the moment!', 'wpupper-share-buttons' );
 	}
 
 	/**

@@ -22,8 +22,6 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 	 * @return Void Display page
 	 */
 	public static function render_settings_page() {
-		$prefix              = WPUSB_App::SLUG;
-		$domain              = WPUSB_App::TEXTDOMAIN;
 		$model               = WPUSB_Setting::get_instance();
 		$settings_option     = WPUSB_Utils::add_prefix( '_settings' );
 		$option_social_media = WPUSB_Utils::add_prefix( '_social_media' );
@@ -34,7 +32,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 		parent::set_prefix( $settings_option );
 	?>
 		<div class="wrap">
-			<h2><?php _e( 'WPUpper Share Buttons', $domain ); ?></h2>
+			<h2><?php _e( 'WPUpper Share Buttons', 'wpupper-share-buttons' ); ?></h2>
 
 			<?php
 				if ( WPUSB_Utils::get_update( 'settings-updated' ) ) {
@@ -42,15 +40,17 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 				}
 			?>
 
-			<p class="description"><?php _e( 'Add the Share Buttons automatically.', $domain ); ?></p>
+			<p class="description"><?php _e( 'Add the Share Buttons automatically.', 'wpupper-share-buttons' ); ?></p>
 
 			<?php parent::page_notice(); ?>
 
-			<span class="<?php echo "{$prefix}-title-wrap"; ?>"><?php _e( 'Settings', $domain ); ?></span>
+			<span class="<?php echo WPUSB_App::SLUG . '-title-wrap'; ?>">
+				<?php _e( 'Settings', 'wpupper-share-buttons' ); ?>
+			</span>
 
 			<?php parent::menu_top(); ?>
 
-			<div class="<?php echo "{$prefix}-wrap"; ?>"
+			<div class="<?php echo WPUSB_App::SLUG . '-wrap'; ?>"
 				 <?php echo WPUSB_Utils::get_component( 'share-settings' ); ?>>
 
 				<style data-element-style></style>
@@ -59,11 +59,13 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 				</div>
 
 				<form action="options.php" method="post">
-					<table class="form-table <?php echo "{$prefix}-table"; ?>" data-table="configurations">
+					<table class="form-table <?php echo WPUSB_App::SLUG . '-table'; ?>" data-table="configurations">
 						<tbody>
-							<tr class="<?php echo $prefix; ?>-items-available">
+							<tr class="<?php echo WPUSB_App::SLUG; ?>-items-available">
 								<th scope="row">
-									<label><?php _e( 'Places available', $domain ); ?></label>
+									<label>
+										<?php _e( 'Places available', 'wpupper-share-buttons' ); ?>
+									</label>
 								</th>
 								<?php
 									self::td( array(
@@ -72,7 +74,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										'name'       => "{$settings_option}[home]",
 										'value'      => 'on',
 										'is_checked' => checked( 'on', $model->home, false ),
-										'title'      => __( 'Page home', $domain ),
+										'title'      => __( 'Page home', 'wpupper-share-buttons' ),
 										'class'      => $hide_class,
 									) );
 									self::td( array(
@@ -81,7 +83,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										'name'       => "{$settings_option}[archive_category]",
 										'value'      => 'on',
 										'is_checked' => checked( 'on', $model->archive_category, false ),
-										'title'      => __( 'Archive/Category', $domain ),
+										'title'      => __( 'Archive/Category', 'wpupper-share-buttons' ),
 										'class'      => $hide_class,
 									) );
 									self::td( array(
@@ -90,7 +92,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										'name'       => "{$settings_option}[pages]",
 										'value'      => 'on',
 										'is_checked' => checked( 'on', $model->pages, false ),
-										'title'      => __( 'Pages', $domain ),
+										'title'      => __( 'Pages', 'wpupper-share-buttons' ),
 										'class'      => $hide_class,
 									) );
 									self::td( array(
@@ -99,7 +101,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										'name'       => "{$settings_option}[single]",
 										'value'      => 'on',
 										'is_checked' => checked( 'on', $model->single, false ),
-										'title'      => __( 'Single', $domain ),
+										'title'      => __( 'Single', 'wpupper-share-buttons' ),
 										'class'      => $hide_class,
 									) );
 
@@ -110,7 +112,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 											'name'       => "{$settings_option}[woocommerce]",
 											'value'      => 'on',
 											'is_checked' => checked( 'on', $model->woocommerce, false ),
-											'title'      => __( 'WooCommerce share', $domain ),
+											'title'      => __( 'WooCommerce share', 'wpupper-share-buttons' ),
 											'class'      => $hide_class,
 										) );
 									endif;
@@ -121,7 +123,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										'name'       => "{$settings_option}[before]",
 										'value'      => 'on',
 										'is_checked' => checked( 'on', $model->before, false ),
-										'title'      => __( 'Before content', $domain ),
+										'title'      => __( 'Before content', 'wpupper-share-buttons' ),
 										'class'      => $hide_class,
 									) );
 									self::td( array(
@@ -130,14 +132,16 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										'name'       => "{$settings_option}[after]",
 										'value'      => 'on',
 										'is_checked' => checked( 'on', $model->after, false ),
-										'title'      => __( 'After content', $domain ),
+										'title'      => __( 'After content', 'wpupper-share-buttons' ),
 										'class'      => $hide_class,
 									) );
 								?>
 							</tr>
-							<tr class="<?php echo $prefix; ?>-social-networks" data-element="sortable">
+							<tr class="<?php echo WPUSB_App::SLUG; ?>-social-networks" data-element="sortable">
 								<th scope="row">
-									<label for="social-media"><?php _e( 'Social networks available', $domain ); ?></label>
+									<label for="social-media">
+										<?php _e( 'Social networks available', 'wpupper-share-buttons' ); ?>
+									</label>
 								</th>
 									<?php
 										$networks = WPUSB_Utils::get_networks_order();
@@ -151,8 +155,8 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 												'name'        => "{$option_social_media}[{$element}]",
 												'value'       => $element,
 												'is_checked'  => checked( $element, $option_value, false ),
-												'label-class' => "{$prefix}-icon {$prefix}-{$id}-icon",
-												'td-class'    => "{$prefix}-select-item",
+												'label-class' => sprintf( '%1$s-icon %1$s-%2$s-icon', WPUSB_App::SLUG, $id ),
+												'td-class'    => WPUSB_App::SLUG . '-select-item',
 												'td-id'       => $element,
 												'td-title'    => $title,
 												'span'        => false,
@@ -161,11 +165,13 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										}
 									?>
 							</tr>
-							<tr class="<?php echo $prefix; ?>-layout-options">
+							<tr class="<?php echo WPUSB_App::SLUG; ?>-layout-options">
 								<th scope="row">
-									<?php _e( 'Layout options', $domain ); ?>
+
+									<?php _e( 'Layout options', 'wpupper-share-buttons' ); ?>
+
 									<p class="description">
-										<?php _e( 'All layout supports responsive', $domain ); ?>
+										<?php _e( 'All layout supports responsive', 'wpupper-share-buttons' ); ?>
 									</p>
 								</th>
 								<?php
@@ -176,7 +182,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										'name'       => "{$settings_option}[layout]",
 										'value'      => 'default',
 										'is_checked' => checked( 'default', $model->layout, false ),
-										'title'      => __( 'Default', $domain ),
+										'title'      => __( 'Default', 'wpupper-share-buttons' ),
 										'attr'       => array(
 											'data-action' => 'primary-layout',
 										),
@@ -188,7 +194,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										'name'       => "{$settings_option}[layout]",
 										'value'      => 'buttons',
 										'is_checked' => checked( 'buttons', $model->layout, false ),
-										'title'      => __( 'Button', $domain ),
+										'title'      => __( 'Button', 'wpupper-share-buttons' ),
 										'attr'       => array(
 											'data-action' => 'primary-layout',
 										),
@@ -200,7 +206,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										'name'       => "{$settings_option}[layout]",
 										'value'      => 'rounded',
 										'is_checked' => checked( 'rounded', $model->layout, false ),
-										'title'      => __( 'Rounded', $domain ),
+										'title'      => __( 'Rounded', 'wpupper-share-buttons' ),
 										'attr'       => array(
 											'data-action' => 'primary-layout',
 										),
@@ -212,7 +218,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										'name'       => "{$settings_option}[layout]",
 										'value'      => 'square',
 										'is_checked' => checked( 'square', $model->layout, false ),
-										'title'      => __( 'Square', $domain ),
+										'title'      => __( 'Square', 'wpupper-share-buttons' ),
 										'attr'       => array(
 											'data-action' => 'primary-layout',
 										),
@@ -224,16 +230,16 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										'name'       => "{$settings_option}[layout]",
 										'value'      => 'square-plus',
 										'is_checked' => checked( 'square-plus', $model->layout, false ),
-										'title'      => __( 'Square plus', $domain ),
+										'title'      => __( 'Square plus', 'wpupper-share-buttons' ),
 										'attr'       => array(
 											'data-action' => 'primary-layout',
 										),
 									) );
 								?>
 							</tr>
-							<tr class="<?php echo $prefix; ?>-position-fixed">
+							<tr class="<?php echo WPUSB_App::SLUG; ?>-position-fixed">
 								<th scope="row">
-									<?php _e( 'Position fixed', $domain ); ?>
+									<?php _e( 'Position fixed', 'wpupper-share-buttons' ); ?>
 								</th>
 								<?php
 									self::td( array(
@@ -243,7 +249,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										'name'       => "{$settings_option}[position_fixed]",
 										'value'      => 'fixed-left',
 										'is_checked' => checked( 'fixed-left', $model->position_fixed, false ),
-										'title'      => __( 'Fixed left', $domain ),
+										'title'      => __( 'Fixed left', 'wpupper-share-buttons' ),
 										'attr'       => array(
 											'data-element' => 'position-fixed',
 											'data-action'  => 'position-fixed',
@@ -256,18 +262,18 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										'name'       => "{$settings_option}[position_fixed]",
 										'value'      => 'fixed-right',
 										'is_checked' => checked( 'fixed-right', $model->position_fixed, false ),
-										'title'      => __( 'Fixed right', $domain ),
+										'title'      => __( 'Fixed right', 'wpupper-share-buttons' ),
 										'attr'       => array(
 											'data-element' => 'position-fixed',
 											'data-action'  => 'position-fixed',
 										),
 									) );
 								?>
-								<td class="<?php echo "{$prefix}-fixed-clear"; ?>">
+								<td class="<?php echo WPUSB_App::SLUG . '-fixed-clear'; ?>">
 									<input type="button"
 									       data-action="fixed-disabled"
-									       value="<?php _e( 'Clear', $domain ); ?>">
-									<span><?php _e( 'Click to clear the positions.', $domain ); ?></span>
+									       value="<?php esc_attr_e( 'Clear', 'wpupper-share-buttons' ); ?>">
+									<span><?php _e( 'Click to clear the positions.', 'wpupper-share-buttons' ); ?></span>
 								</td>
 							</tr>
 
@@ -279,10 +285,10 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 								}
 							?>
 
-							<tr class="<?php echo $prefix; ?>-position-fixed <?php echo $class_tr_hide; ?>"
+							<tr class="<?php echo WPUSB_App::SLUG; ?>-position-fixed <?php echo $class_tr_hide; ?>"
 								data-element="tr-fixed-layout">
 								<th scope="row">
-									<?php _e( 'Position fixed layout', $domain ); ?>
+									<?php _e( 'Position fixed layout', 'wpupper-share-buttons' ); ?>
 								</th>
 									<?php
 										$fixed_layout   = WPUSB_Utils::option( 'fixed_layout', false );
@@ -295,7 +301,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 											'name'       => "{$settings_option}[fixed_layout]",
 											'value'      => 'buttons',
 											'is_checked' => ( $fixed_layout ) ? $checked_layout : 'checked="checked"',
-											'title'      => __( 'Square', $domain ),
+											'title'      => __( 'Square', 'wpupper-share-buttons' ),
 											'attr'       => array(
 												'data-action' => 'fixed-layout',
 											),
@@ -308,7 +314,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 											'name'       => "{$settings_option}[fixed_layout]",
 											'value'      => 'square2',
 											'is_checked' => checked( 'square2', $model->fixed_layout, false ),
-											'title'      => __( 'Square', $domain ) . ' 2',
+											'title'      => __( 'Square', 'wpupper-share-buttons' ) . ' 2',
 											'attr'       => array(
 												'data-action' => 'fixed-layout',
 											),
@@ -321,7 +327,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 											'name'       => "{$settings_option}[fixed_layout]",
 											'value'      => 'default',
 											'is_checked' => checked( 'default', $model->fixed_layout, false ),
-											'title'      => __( 'Rounded', $domain ),
+											'title'      => __( 'Rounded', 'wpupper-share-buttons' ),
 											'attr'       => array(
 												'data-action' => 'fixed-layout',
 											),
@@ -338,15 +344,15 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 
 								parent::tr( array(
 									'key'         => 'text-label-fixed-default',
-									'label'       => __( 'Text below sharing count', $domain ),
+									'label'       => __( 'Text below sharing count', 'wpupper-share-buttons' ),
 									'tr_class'    => $class_tr_hide,
 									'tr_attr'     => array( 'data-element' => 'tr-fixed-label' ),
 									'attr'        => array( 'data-action' => 'fixed-label' ),
-									'placeholder' => __( 'Change text below sharing count. Default SHARES', $domain ),
+									'placeholder' => __( 'Change text below sharing count. Default SHARES', 'wpupper-share-buttons' ),
 									'text'        => sprintf(
-										__( 'Used in %s %s.', $domain ),
-										strtolower(__( 'Position fixed layout', $domain ) ),
-										strtolower(__( 'Rounded', $domain ) )
+										__( 'Used in %s %s.', 'wpupper-share-buttons' ),
+										strtolower(__( 'Position fixed layout', 'wpupper-share-buttons' ) ),
+										strtolower(__( 'Rounded', 'wpupper-share-buttons' ) )
 									),
 								) );
 
@@ -358,19 +364,19 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 
 								parent::tr( array(
 									'key'         => 'share-count-label',
-									'label'       => sprintf( __( '%s: Text below sharing count', $domain ), __( 'Square plus', $domain ) ),
+									'label'       => sprintf( __( '%s: Text below sharing count', 'wpupper-share-buttons' ), __( 'Square plus', 'wpupper-share-buttons' ) ),
 									'tr_class'    => $plus_share_label_class,
 									'tr_attr'     => array( 'data-element' => 'tr-share-plus-label' ),
 									'attr'        => array( 'data-action' => 'plus-share-label' ),
-									'placeholder' => __( 'Change text below sharing count. Default SHARES', $domain ),
-									'text'        => sprintf( __( 'Used in %s layout.', $domain ), __( 'Square plus', $domain ) ),
+									'placeholder' => __( 'Change text below sharing count. Default SHARES', 'wpupper-share-buttons' ),
+									'text'        => sprintf( __( 'Used in %s layout.', 'wpupper-share-buttons' ), __( 'Square plus', 'wpupper-share-buttons' ) ),
 								) );
 
 								parent::tr( array(
 									'type'  => 'number',
 									'key'   => 'icons-size',
 									'class' => 'small-text',
-									'label' => __( 'Icons size', $domain ),
+									'label' => __( 'Icons size', 'wpupper-share-buttons' ),
 									'span'  => 'px',
 									'attr'  => array( 'data-action' => 'icons-size' ),
 								) );
@@ -389,7 +395,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 
 								parent::tr( array(
 									'key'      => 'counts-bg-color',
-									'label'    => __( 'Share count background color', $domain ),
+									'label'    => __( 'Share count background color', 'wpupper-share-buttons' ),
 									'tr_class' => $class_tr_hide,
 									'tr_attr'  => array( 'data-element' => 'tr-share-count-bg-color' ),
 									'attr'     => array(
@@ -398,17 +404,17 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										'data-colorpicker' => 'true',
 									),
 									'text' => sprintf(
-										__( 'Layouts: %s, %s, %s and %s.', $domain ),
-										__( 'Default', $domain ),
-										__( 'Button', $domain ),
-										__( 'Rounded', $domain ),
-										__( 'Square', $domain )
+										__( 'Layouts: %s, %s, %s and %s.', 'wpupper-share-buttons' ),
+										__( 'Default', 'wpupper-share-buttons' ),
+										__( 'Button', 'wpupper-share-buttons' ),
+										__( 'Rounded', 'wpupper-share-buttons' ),
+										__( 'Square', 'wpupper-share-buttons' )
 									),
 								) );
 
 								parent::tr( array(
 									'key' => 'counts-text-color',
-									'label' => __( 'Share count text color', $domain ),
+									'label' => __( 'Share count text color', 'wpupper-share-buttons' ),
 									'attr'     => array(
 										'data-element'     => 'text',
 										'data-style'       => 'color',
@@ -418,7 +424,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 
 								parent::tr( array(
 									'key'   => 'icons-color',
-									'label' => __( 'Icons color', $domain ),
+									'label' => __( 'Icons color', 'wpupper-share-buttons' ),
 									'attr'  => array(
 										'data-element'     => 'icons-color',
 										'data-style'       => 'color',
@@ -438,7 +444,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 
 								parent::tr( array(
 									'key'      => 'button-bg-color',
-									'label'    => __( 'Buttons background color', $domain ),
+									'label'    => __( 'Buttons background color', 'wpupper-share-buttons' ),
 									'tr_class' => $class_tr_hide,
 									'tr_attr'  => array( 'data-element' => 'tr-button-bg-color' ),
 									'attr'     => array(
@@ -447,16 +453,16 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										'data-colorpicker' => 'true',
 									),
 									'text' => sprintf(
-										__( 'Layouts: %s, %s, and %s.', $domain ),
-										__( 'Button', $domain ),
-										__( 'Square plus', $domain ),
-										__( 'Position fixed', $domain )
+										__( 'Layouts: %s, %s, and %s.', 'wpupper-share-buttons' ),
+										__( 'Button', 'wpupper-share-buttons' ),
+										__( 'Square plus', 'wpupper-share-buttons' ),
+										__( 'Position fixed', 'wpupper-share-buttons' )
 									),
 								) );
 
 								parent::tr( array(
 									'key'   => 'btn-inside-color',
-									'label' => __( 'Buttons title color', $domain ),
+									'label' => __( 'Buttons title color', 'wpupper-share-buttons' ),
 									'attr'  => array(
 										'data-element'     => 'inside',
 										'data-style'       => 'color',
@@ -466,80 +472,80 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 
 								parent::tr( array(
 									'key'         => 'class',
-									'label'       => __( 'Custom class', $domain ),
-									'placeholder' => __( 'Custom class for primary div', $domain ),
+									'label'       => __( 'Custom class', 'wpupper-share-buttons' ),
+									'placeholder' => __( 'Custom class for primary div', 'wpupper-share-buttons' ),
 								) );
 
 								parent::tr( array(
 									'key'         => 'title',
-									'label'       => __( 'Title', $domain ),
-									'placeholder' => __( 'Insert the title here.', $domain ),
-									'text'        => __( 'Text to display above the sharing buttons.', $domain ),
+									'label'       => __( 'Title', 'wpupper-share-buttons' ),
+									'placeholder' => __( 'Insert the title here.', 'wpupper-share-buttons' ),
+									'text'        => __( 'Text to display above the sharing buttons.', 'wpupper-share-buttons' ),
 								) );
 
 								parent::tr( array(
 									'key'         => 'fixed-context',
-									'label'       => __( 'HTML id attribute', $domain ),
-									'placeholder' => __( 'Enter name to context of search. ID of content tag', $domain ),
-									'text'        => __( 'This is to set the fixed layout to the left of the post content. <strong>Example:</strong> <code>wrap</code> use {id} for post id.', $domain ),
+									'label'       => __( 'HTML id attribute', 'wpupper-share-buttons' ),
+									'placeholder' => __( 'Enter name to context of search. ID of content tag', 'wpupper-share-buttons' ),
+									'text'        => __( 'This is to set the fixed layout to the left of the post content. <strong>Example:</strong> <code>wrap</code> use {id} for post id.', 'wpupper-share-buttons' ),
 								) );
 
 								parent::tr( array(
 									'type'    => 'checkbox',
 									'key'     => 'fixed-top',
-									'label'   => __( 'Fixed Items in top', $domain ),
+									'label'   => __( 'Fixed Items in top', 'wpupper-share-buttons' ),
 									'checked' => 'fixed-top',
-									'text'    => __( 'It is activated when scrolling the page on the buttons position.', $domain ),
+									'text'    => __( 'It is activated when scrolling the page on the buttons position.', 'wpupper-share-buttons' ),
 								) );
 
 								parent::tr( array(
 									'type'    => 'checkbox',
 									'key'     => 'referrer',
-									'label'   => __( 'Highlighted by reference', $domain ),
+									'label'   => __( 'Highlighted by reference', 'wpupper-share-buttons' ),
 									'checked' => 'yes',
-									'text'    => __( 'This allows highlight the social network where the user Came from.', $domain ),
+									'text'    => __( 'This allows highlight the social network where the user Came from.', 'wpupper-share-buttons' ),
 								) );
 
 								parent::tr( array(
 									'type'    => 'checkbox',
 									'key'     => 'disabled-inside',
-									'label'   => __( 'Remove button title', $domain ),
+									'label'   => __( 'Remove button title', 'wpupper-share-buttons' ),
 									'checked' => 1,
 								) );
 
 								parent::tr( array(
 									'type'    => 'checkbox',
 									'key'     => 'disabled-count',
-									'label'   => __( 'Remove counter', $domain ),
+									'label'   => __( 'Remove counter', 'wpupper-share-buttons' ),
 									'checked' => 1,
 								) );
 
 								parent::tr( array(
 									'type'    => 'checkbox',
 									'key'     => 'pin-image-alt',
-									'label'   => __( 'Pinterest alt text', $domain ),
+									'label'   => __( 'Pinterest alt text', 'wpupper-share-buttons' ),
 									'checked' => 'yes',
-									'text'    => __( 'Use in description of Pinterest the alt text of highlighted image in place of title of post.', $domain ),
+									'text'    => __( 'Use in description of Pinterest the alt text of highlighted image in place of title of post.', 'wpupper-share-buttons' ),
 								) );
 
 								parent::tr( array(
 									'type'    => 'number',
 									'key'     => 'min-count-display',
-									'label'   => __( 'Min count to display', $domain ),
+									'label'   => __( 'Min count to display', 'wpupper-share-buttons' ),
 									'class'   => 'small-text',
 									'default' => 0,
-									'text'    => __( 'When you enter the value, share counts are only displayed when the total counts of each item than equal to or greater than the informed value.', $domain ),
+									'text'    => __( 'When you enter the value, share counts are only displayed when the total counts of each item than equal to or greater than the informed value.', 'wpupper-share-buttons' ),
 								) );
 							?>
 						</tbody>
 					</table>
 
 					<h3>
-						<?php _e( 'Twitter share count', $domain ); ?>
+						<?php _e( 'Twitter share count', 'wpupper-share-buttons' ); ?>
 					</h3>
 					<p class="description">
 					<?php
-						_e( 'The share count Twitter is powered by <a href="http://newsharecounts.com" target="_blank">newsharecounts.com</a>, you have to sign up with your Twitter account to get free service and twitter count. Just visit the website, fill in the domain of your site and click Sign in with Twitter. That, and nothing else!', $domain );
+						_e( 'The share count Twitter is powered by <a href="http://newsharecounts.com" target="_blank">newsharecounts.com</a>, you have to sign up with your Twitter account to get free service and twitter count. Just visit the website, fill in the domain of your site and click Sign in with Twitter. That, and nothing else!', 'wpupper-share-buttons' );
 					?>
 					</p>
 
@@ -554,7 +560,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 		                   value="<?php echo WPUSB_Utils::option( 'fixed' ); ?>">
 					<?php
 						settings_fields( "{$settings_option}_group" );
-						submit_button( __( 'Save Changes', $domain ) );
+						submit_button( __( 'Save Changes', 'wpupper-share-buttons' ) );
 					?>
 				</form>
 			</div>
@@ -588,9 +594,8 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 	}
 
 	public static function td( $args = array() ) {
-		$prefix = WPUSB_App::SLUG;
 		$args   = self::_get_td_args( $args );
-		$label  = self::_get_label( $prefix, $args );
+		$label  = self::_get_label( WPUSB_App::SLUG, $args );
 	?>
 		<?php printf( '<%s', $args['tag'] ); ?>
 		    id="<?php echo $args['td-id']; ?>"
@@ -598,7 +603,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 		    title="<?php echo $args['td-title']; ?>">
 
             <input type="<?php echo $args['type']; ?>"
-                   id="<?php printf( '%s-%s', $prefix, $args['id'] ); ?>"
+                   id="<?php printf( '%s-%s', WPUSB_App::SLUG, $args['id'] ); ?>"
                    class="<?php echo $args['class'] ; ?>"
             	   name="<?php echo $args['name'] ; ?>"
             	   value="<?php echo empty( $args['value'] ) ? $args['default'] : $args['value']; ?>"

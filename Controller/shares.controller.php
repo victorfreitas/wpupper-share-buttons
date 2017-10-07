@@ -248,7 +248,7 @@ class WPUSB_Shares_Controller {
 	 */
 	public function add_meta_box( $screen ) {
 		add_meta_box(
-			WPUSB_App::TEXTDOMAIN,
+			'wpupper-share-buttons',
 			WPUSB_App::NAME,
 			array( $this, 'render_meta_box' ),
 			$screen,

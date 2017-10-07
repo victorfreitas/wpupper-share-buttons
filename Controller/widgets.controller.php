@@ -14,7 +14,7 @@ class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
 
 	public function __construct() {
 		$id_base     = WPUSB_Utils::get_widget_id_base();
-		$description = __( 'Insert share buttons of social networks.', WPUSB_App::TEXTDOMAIN );
+		$description = __( 'Insert share buttons of social networks.', 'wpupper-share-buttons' );
 
 		parent::__construct( $id_base, $description );
 	}
@@ -28,7 +28,6 @@ class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
 
 		$title      = $this->get_widget_title();
 		$title      = apply_filters( 'widget_title', $title, $this->id_base );
-		$prefix     = WPUSB_App::SLUG;
 		$share_args = array(
 			'layout'         => $this->get_property( 'layout', 'default' ),
 			'items'          => $this->get_property( 'items' ),
@@ -74,82 +73,80 @@ class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
 	public function form( $instance ) {
 		$this->set_instance( $instance );
 
-		$prefix = WPUSB_App::SLUG;
-		$domain = WPUSB_App::TEXTDOMAIN;
-		$hash   = md5( uniqid( rand(), true ) );
+		$hash = md5( uniqid( rand(), true ) );
 
 		WPUSB_Widgets_View::set_instance( $this );
 
 		printf( '<div data-widgets-hash="%s">', $hash );
 
 		WPUSB_Widgets_View::field_input(
-			__( 'Widget title', $domain ),
+			__( 'Widget title', 'wpupper-share-buttons' ),
 			'title'
 		);
 
 		WPUSB_Widgets_View::field_input(
-			__( 'Post title', $domain ),
+			__( 'Post title', 'wpupper-share-buttons' ),
 			'post_title'
 		);
 
 		WPUSB_Widgets_View::field_input(
-			__( 'URL', $domain ),
+			__( 'URL', 'wpupper-share-buttons' ),
 			'url'
 		);
 
 		WPUSB_Widgets_View::field_input(
-			__( 'Icons size', $domain ),
+			__( 'Icons size', 'wpupper-share-buttons' ),
 			'icons_size',
 			'number'
 		);
 
 		WPUSB_Widgets_View::field_input(
-			__( 'Icons color', $domain ),
+			__( 'Icons color', 'wpupper-share-buttons' ),
 			'icons_color',
 			'color'
 		);
 
 		WPUSB_Widgets_View::field_input(
-			__( 'Buttons background color. <br>Layouts: Square plus and Button', $domain ),
+			__( 'Buttons background color. <br>Layouts: Square plus and Button', 'wpupper-share-buttons' ),
 			'icons_background',
 			'color'
 		);
 
 		WPUSB_Widgets_View::field_input(
-			__( 'Buttons title color', $domain ),
+			__( 'Buttons title color', 'wpupper-share-buttons' ),
 			'btn_inside_color',
 			'color'
 		);
 
 		WPUSB_Widgets_View::field_input(
-			__( 'Share count text color', $domain ),
+			__( 'Share count text color', 'wpupper-share-buttons' ),
 			'counts_text_color',
 			'color'
 		);
 
 		WPUSB_Widgets_View::field_input(
-			__( 'Share count background color. <br>Layouts: Default, Button, Rounded and Square.', $domain ),
+			__( 'Share count background color. <br>Layouts: Default, Button, Rounded and Square.', 'wpupper-share-buttons' ),
 			'counts_bg_color',
 			'color'
 		);
 
 		WPUSB_Widgets_View::field_select(
-			__( 'Layout', $domain ),
+			__( 'Layout', 'wpupper-share-buttons' ),
 			'layout',
 			$this->get_layout()
 		);
 
 		WPUSB_Widgets_View::field_checkbox(
-			__( 'Remove counter', $domain ),
+			__( 'Remove counter', 'wpupper-share-buttons' ),
 			'counter'
 		);
 
 		WPUSB_Widgets_View::field_checkbox(
-			__( 'Remove button title', $domain ),
+			__( 'Remove button title', 'wpupper-share-buttons' ),
 			'inside'
 		);
 
-		do_action( WPUSB_Utils::add_prefix( '_widget_form' ), $instance, $prefix );
+		do_action( WPUSB_Utils::add_prefix( '_widget_form' ), $instance, WPUSB_App::SLUG );
 
 		WPUSB_Widgets_View::social_items();
 

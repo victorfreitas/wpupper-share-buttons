@@ -21,23 +21,20 @@ class WPUSB_Sharing_Report_View {
 	 * @return void
 	 */
 	public static function render_sharing_report( $list_table ) {
-		$domain = WPUSB_App::TEXTDOMAIN;
-		$prefix = WPUSB_App::SLUG;
-
 		$list_table->prepare_items();
 	?>
 		<div class="wrap">
-			<h2><?php _e( 'WPUpper Share Buttons', $domain ); ?></h2>
+			<h2><?php _e( 'WPUpper Share Buttons', 'wpupper-share-buttons' ); ?></h2>
 
 			<p class="description">
-				<?php _e( 'Add the Share Buttons automatically.', $domain ); ?>
+				<?php _e( 'Add the Share Buttons automatically.', 'wpupper-share-buttons' ); ?>
 			</p>
 
 			<?php WPUSB_Utils_View::page_notice(); ?>
 
 			<?php WPUSB_Utils_View::menu_top(); ?>
 
-			<div class="<?php echo $prefix; ?>-settings-wrap">
+			<div class="<?php echo WPUSB_App::SLUG; ?>-settings-wrap">
 
 				<?php do_action( WPUSB_Utils::add_prefix( 'sr_render' ), $list_table ); ?>
 
@@ -48,7 +45,7 @@ class WPUSB_Sharing_Report_View {
 					       value="<?php echo WPUSB_App::SLUG . '-sharing-report'; ?>">
 
 					<?php
-						$list_table->search_box( __( 'Search', $domain ), $prefix );
+						$list_table->search_box( __( 'Search', 'wpupper-share-buttons' ), WPUSB_App::SLUG );
 						$list_table->display();
 					?>
 				</form>
@@ -88,13 +85,13 @@ class WPUSB_Sharing_Report_View {
 	 * @return Void
 	 */
 	public static function render_date_range_filter() {
-		$date_format = _x( 'YYYY-MM-DD', 'placeholder', WPUSB_App::TEXTDOMAIN );
+		$date_format = _x( 'YYYY-MM-DD', 'placeholder', 'wpupper-share-buttons' );
 	?>
 		<div class="<?php echo WPUSB_Utils::add_prefix( '-inline' ); ?>"
 			 <?php echo WPUSB_Utils::get_component( 'datepicker' ); ?>>
 
 			<label class="<?php echo WPUSB_Utils::add_prefix( '-label' ); ?>">
-				<?php _e( 'Start date:', WPUSB_App::TEXTDOMAIN ); ?>
+				<?php _e( 'Start date:', 'wpupper-share-buttons' ); ?>
 
 				<input type="text"
 					   name="start_date"
@@ -106,7 +103,7 @@ class WPUSB_Sharing_Report_View {
 			</label>
 
 			<label class="<?php echo WPUSB_Utils::add_prefix( '-label' ); ?>">
-				<?php _e( 'End date:', WPUSB_App::TEXTDOMAIN ); ?>
+				<?php _e( 'End date:', 'wpupper-share-buttons' ); ?>
 
 				<input type="text"
 					   name="end_date"
@@ -131,7 +128,7 @@ class WPUSB_Sharing_Report_View {
 	public static function export_csv_btn() {
 	?>
 		<button class="button button-primary" name="export" value="true">
-			<?php _e( 'Export CSV', WPUSB_App::TEXTDOMAIN ); ?>
+			<?php _e( 'Export CSV', 'wpupper-share-buttons' ); ?>
 		</button>
 	<?php
 	}

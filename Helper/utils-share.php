@@ -62,11 +62,10 @@ abstract class WPUSB_Utils_Share {
 	 *
 	 */
 	private static function _set_buttons( $args = array() ) {
-		$prefix       = WPUSB_App::SLUG;
 		$social       = $args['social'];
 		$args_buttons = (object) array(
 			'reference'       => $social,
-			'prefix'          => $prefix,
+			'prefix'          => WPUSB_App::SLUG,
 			'class_second'    => $args['class_second'],
 			'class_icon'      => $args['class_icon'],
 			'class_link'      => $args['class_link'],
@@ -77,7 +76,7 @@ abstract class WPUSB_Utils_Share {
 			'number'          => self::$number,
 			'ga'              => apply_filters( WPUSB_App::SLUG . '-ga-event', false, $social ),
 			'item_class_icon' => apply_filters(
-				"{$prefix}_item_class_icon",
+				WPUSB_App::SLUG . '_item_class_icon',
 				"{$social->class_icon}-{$args['layout']}",
 				$social
 			),
@@ -224,12 +223,11 @@ abstract class WPUSB_Utils_Share {
 	 *
 	 */
 	public static function get_buttons_open( $atts, $model ) {
-		$prefix = WPUSB_App::SLUG;
-		$args   = array(
+		$args = array(
 			'custom_class'   => $model->class,
 			'layout'         => ( $atts['layout'] ) ? $atts['layout'] : 'default',
-			'prefix'         => $prefix,
-			'position_fixed' => ( $model->position_fixed ) ? "{$prefix}-{$model->position_fixed}" : '',
+			'prefix'         => WPUSB_App::SLUG,
+			'position_fixed' => ( $model->position_fixed ) ? WPUSB_App::SLUG . '-' . $model->position_fixed : '',
 			'remove_counter' => $atts['elements']['remove_counter'],
 			'remove_inside'  => $atts['elements']['remove_inside'],
 			'permalink'      => $atts['permalink'],
@@ -290,13 +288,11 @@ abstract class WPUSB_Utils_Share {
 	 *
 	 */
 	public static function data_fixed_top( $prefix ) {
-		$element = '';
-
 		if ( WPUSB_Utils::is_fixed_top() ) {
-			$element = sprintf( 'data-element="%s-fixed-top"', $prefix );
+			return sprintf( 'data-element="%s-fixed-top"', $prefix );
 		}
 
-		return $element;
+		return '';
 	}
 
 	/**
@@ -401,11 +397,11 @@ abstract class WPUSB_Utils_Share {
 	 */
 	public static function get_layouts() {
 		return array(
-			'default'     => __( 'Default', WPUSB_App::TEXTDOMAIN ),
-			'buttons'     => __( 'Button', WPUSB_App::TEXTDOMAIN ),
-			'rounded'     => __( 'Rounded', WPUSB_App::TEXTDOMAIN ),
-			'square'      => __( 'Square', WPUSB_App::TEXTDOMAIN ),
-			'square-plus' => __( 'Square plus', WPUSB_App::TEXTDOMAIN ),
+			'default'     => __( 'Default', 'wpupper-share-buttons' ),
+			'buttons'     => __( 'Button', 'wpupper-share-buttons' ),
+			'rounded'     => __( 'Rounded', 'wpupper-share-buttons' ),
+			'square'      => __( 'Square', 'wpupper-share-buttons' ),
+			'square-plus' => __( 'Square plus', 'wpupper-share-buttons' ),
 		);
 	}
 

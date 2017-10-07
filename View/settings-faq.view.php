@@ -23,16 +23,18 @@ class WPUSB_Settings_Faq_View {
 	public static function render_page_faq() {
 	?>
 		<div class="wrap">
-			<h2><?php _e( 'WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ); ?></h2>
+			<h2>
+				<?php _e( 'WPUpper Share Buttons', 'wpupper-share-buttons' ); ?>
+			</h2>
 
 			<p class="description">
-				<?php _e( 'Add the Share Buttons automatically.', WPUSB_App::TEXTDOMAIN ); ?>
+				<?php _e( 'Add the Share Buttons automatically.', 'wpupper-share-buttons' ); ?>
 			</p>
 
 			<?php WPUSB_Utils_View::page_notice(); ?>
 
 			<span class="<?php echo WPUSB_Utils::add_prefix( '-title-wrap' ); ?>">
-				<?php _e( 'Use options', WPUSB_App::TEXTDOMAIN ); ?>
+				<?php _e( 'Use options', 'wpupper-share-buttons' ); ?>
 			</span>
 
 			<?php WPUSB_Utils_View::menu_top(); ?>
@@ -105,7 +107,9 @@ echo do_shortcode( '[wpusb]' );
 
 <hr>
 
-<h2><?php _e( 'Available filters', WPUSB_App::TEXTDOMAIN ); ?></h2>
+<h2>
+	<?php _e( 'Available filters', 'wpupper-share-buttons' ); ?>
+</h2>
 
 <hr>
 

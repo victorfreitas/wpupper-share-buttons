@@ -87,7 +87,7 @@ final class WPUSB_Core {
 	}
 
 	public static function load_textdomain() {
-		load_plugin_textdomain( WPUSB_App::TEXTDOMAIN, false, WPUSB_Utils::dirname( 'languages' ) );
+		load_plugin_textdomain( 'wpupper-share-buttons', false, WPUSB_Utils::plugin_basename() . '/languages' );
 	}
 
 	/**
@@ -110,8 +110,8 @@ final class WPUSB_Core {
 	 * @return Void
 	 */
 	protected static function init_controllers() {
-		$share    = new WPUSB_Shares_Controller();
-		$settings = new WPUSB_Settings_Controller();
+		new WPUSB_Shares_Controller();
+		new WPUSB_Settings_Controller();
 
 		self::init_controllers_admin();
 	}
@@ -536,5 +536,6 @@ final class WPUSB_Core {
 }
 
 WPUSB_Core::register_actions();
+
 add_action( 'plugins_loaded', array( 'WPUSB_Core', 'instance' ) );
 add_action( 'init', array( 'WPUSB_Core', 'load_textdomain' ) );

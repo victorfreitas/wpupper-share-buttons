@@ -32,7 +32,7 @@ class WPUSB_Settings_Controller {
 	public function __construct() {
 		$prefix = WPUSB_App::SLUG;
 
-		add_filter( WPUSB_Utils::base_name( 'plugin_action_links_' ), array( $this, 'plugin_link' ) );
+		add_filter( WPUSB_Utils::basename( 'plugin_action_links_' ), array( $this, 'plugin_link' ) );
 		add_action( 'admin_menu', array( $this, 'menu_page' ) );
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 		add_action( "update_option_{$prefix}_settings", array( $this, 'rebuild_custom_css' ), 10, 3 );
@@ -50,7 +50,7 @@ class WPUSB_Settings_Controller {
 		$link = sprintf(
 			'<a href="%s">%s</a>',
 			WPUSB_Utils::get_page_url(),
-			__( 'Settings', WPUSB_App::TEXTDOMAIN )
+			__( 'Settings', 'wpupper-share-buttons' )
 		);
 
 		array_splice( $links, 0, 0, array( $link ) );
@@ -69,15 +69,15 @@ class WPUSB_Settings_Controller {
 		$capability = apply_filters( WPUSB_App::SLUG . '_page_capability', 'manage_options' );
 
 		add_menu_page(
-			__( 'WPUpper Share Buttons', WPUSB_App::TEXTDOMAIN ),
-			__( 'WPUpper Share', WPUSB_App::TEXTDOMAIN ),
+			__( 'WPUpper Share Buttons', 'wpupper-share-buttons' ),
+			__( 'WPUpper Share', 'wpupper-share-buttons' ),
 			$capability,
 			WPUSB_Setting::HOME_SETTINGS,
 			array( 'WPUSB_Settings_View', 'render_settings_page' ),
 			'dashicons-share'
 	  	);
 
-		$title = __( 'Extra Settings', WPUSB_App::TEXTDOMAIN );
+		$title = __( 'Extra Settings', 'wpupper-share-buttons' );
 	  	add_submenu_page(
 	  		WPUSB_App::SLUG,
 	  		$title,
@@ -87,7 +87,7 @@ class WPUSB_Settings_Controller {
 	  		array( 'WPUSB_Settings_Extra_View', 'render_settings_extra' )
 	  	);
 
-	  	$title = __( 'Custom CSS', WPUSB_App::TEXTDOMAIN );
+	  	$title = __( 'Custom CSS', 'wpupper-share-buttons' );
 	  	add_submenu_page(
 	  		WPUSB_App::SLUG,
 	  		$title,
@@ -97,7 +97,7 @@ class WPUSB_Settings_Controller {
 	  		array( 'WPUSB_Settings_Custom_CSS_View', 'render' )
 	  	);
 
-	  	$title = __( 'Use options', WPUSB_App::TEXTDOMAIN );
+	  	$title = __( 'Use options', 'wpupper-share-buttons' );
 	  	add_submenu_page(
 	  		WPUSB_App::SLUG,
 	  		$title,

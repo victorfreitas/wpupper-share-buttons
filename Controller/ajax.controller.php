@@ -114,7 +114,7 @@ class WPUSB_Ajax_Controller {
 			wp_send_json_success('');
 		}
 
-		wp_send_json_error( __( 'Error: Could not process css file.', WPUSB_App::TEXTDOMAIN ) );
+		wp_send_json_error( __( 'Error: Could not process css file.', 'wpupper-share-buttons' ) );
 	}
 
 	private function _change_custom_css_option( $custom_css ) {

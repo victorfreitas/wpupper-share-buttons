@@ -8,15 +8,16 @@
  * Version:     3.33.3
  * Author:      Victor Freitas
  * Author URI:  https://github.com/victorfreitas
- * License:     GPL2
+ * License:     GPLv3
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: wpupper-share-buttons
- * Domain Path: /languages
+ * Domain Path: /languages/
  * Description: Insert share buttons of social networks. The buttons are inserted automatically or can be called via shortcode or php method.
  *
  #═════════════════════════════════════════════════════════════════════════════════════#
  ║ This program is free software; you can redistribute it and/or                       ║
  ║ modify it under the terms of the GNU General Public License                         ║
- ║ as published by the Free Software Foundation; either version 2                      ║
+ ║ as published by the Free Software Foundation; either version 3                      ║
  ║ of the License, or (at your option) any later version.                              ║
  ║                                                                                     ║
  ║ This program is distributed in the hope that it will be useful,                     ║
@@ -30,7 +31,7 @@
  ║                                                                                     ║
  ║    By Victor Freitas (victorfreitasdev@gmail.com)                                   ║
  ║                                                                                     ║
- ║ Copyright 2015-2016 WPUpper Share Buttons                                           ║
+ ║ Copyright 2015-2017 WPUpper Share Buttons                                           ║
  #═════════════════════════════════════════════════════════════════════════════════════#
  */
 if ( ! defined( 'ABSPATH' ) ) {
@@ -46,13 +47,6 @@ class WPUSB_App {
      * @var String
      */
 	const SLUG = 'wpusb';
-
-    /**
-     * Text domain real dir name
-     *
-     * @var String
-     */
-	const TEXTDOMAIN = 'wpupper-share-buttons';
 
     /**
      * Plugin name
@@ -116,26 +110,23 @@ class WPUSB_App {
 	}
 }
 
-$supported = true;
-
-if ( version_compare( PHP_VERSION, '5.2', '<' ) ) {
-	$supported = false;
-
-	function wpusb_not_supported_php_version() {
-	?>
-		<div class="error notice is-dismissible">
-			<p>
-				<strong><?php echo WPUSB_App::NAME; ?></strong>
-				<?php
-					_e( 'It does not support your PHP version. Please, install a version greater than or equal to 5.2.0.', WPUSB_App::TEXTDOMAIN );
-				?>
-			</p>
-		</div>
-	<?php
-	}
-	add_action( 'admin_notices', 'wpusb_not_supported_php_version' );
-}
-
-if ( $supported ) {
+if ( version_compare( PHP_VERSION, '5.2', '>' ) ) {
 	WPUSB_App::uses( 'core', 'Config' );
+	return;
 }
+
+function wpusb_not_supported_php_version() {
+?>
+	<div class="error notice is-dismissible">
+		<p>
+			<strong>
+				<?php echo WPUSB_App::NAME; ?>
+			</strong>
+			<?php
+				esc_html_e( 'It does not support your PHP version. Please, install a version greater than or equal to 5.2.0.', 'wpupper-share-buttons' );
+			?>
+		</p>
+	</div>
+<?php
+}
+add_action( 'admin_notices', 'wpusb_not_supported_php_version' );
