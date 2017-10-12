@@ -6,7 +6,7 @@ Tags: share, social, buttons, share buttons, compartir, botones compartir, free 
 Requires at least: 4.0
 Requires PHP: 5.2.4
 Tested up to: 4.8.2
-Stable tag: 3.34
+Stable tag: 3.35
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -95,6 +95,11 @@ The following plugins are recommended
 * ["Remove WP Version"](https://wordpress.org/plugins/jogar-mais-wp-security/) by victorfreitas - Remove version WordPress in WP Generator, Feeds, css and js file.
 
 == Changelog ==
+
+= 3.35 =
+
+* Add classification by social network on sharing report page
+* Improvements list table
 
 = 3.34 =
 
