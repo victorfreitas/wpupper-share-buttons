@@ -132,7 +132,7 @@ final class WPUSB_Core {
 		new WPUSB_Ajax_Sharing_Reports_Controller();
 		new WPUSB_Options_Controller();
 
-		if ( ! WPUSB_Utils::is_sharing_report_disabled() ) {
+		if ( ! WPUSB_Utils::is_sharing_report_disabled() && class_exists( 'Walker_Category_Checklist' ) ) {
 			new WPUSB_Share_Reports_Controller();
 		}
 	}

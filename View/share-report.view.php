@@ -23,7 +23,9 @@ class WPUSB_Sharing_Report_View {
 	public static function render_sharing_report( $list_table ) {
 		$list_table->prepare_items();
 	?>
-		<div class="wrap">
+		<div class="wrap"
+		     data-cookie-name="<?php echo WPUSB_Share_Report::OPTION_CSN_CLOSED; ?>"
+			 <?php echo WPUSB_Utils::get_component( 'report' ); ?>>
 			<h2><?php _e( 'WPUpper Share Buttons', 'wpupper-share-buttons' ); ?></h2>
 
 			<p class="description">
@@ -37,6 +39,8 @@ class WPUSB_Sharing_Report_View {
 			<div class="<?php echo WPUSB_App::SLUG; ?>-settings-wrap">
 
 				<?php do_action( WPUSB_Utils::add_prefix( 'sr_render' ), $list_table ); ?>
+
+				<?php self::render_classification_by_provider(); ?>
 
 				<form class="share-report-form">
 
@@ -130,6 +134,80 @@ class WPUSB_Sharing_Report_View {
 		<button class="button button-primary" name="export" value="true">
 			<?php _e( 'Export CSV', 'wpupper-share-buttons' ); ?>
 		</button>
+	<?php
+	}
+
+	/**
+	 * Render table classification sharing counter by social network
+	 *
+	 * @since 3.35
+	 * @param null
+	 * @return Void
+	 */
+	public static function render_classification_by_provider() {
+		$model         = new WPUSB_Share_Report();
+		$top_providers = $model->get_total_share_by_provider();
+
+		if ( ! $top_providers ) {
+			return;
+		}
+
+		$active = WPUSB_Utils::cookie( WPUSB_Share_Report::OPTION_CSN_CLOSED, false, 'intval' ) ? '' : 'active';
+	?>
+		<div id="top-providers">
+			<table>
+				<caption data-action="toggle">
+					<?php _e( 'Classification by social network', 'wpupper-share-buttons' ); ?>
+					<i class="<?php echo $active ? '' : 'active'; ?>"></i>
+				</caption>
+			</table>
+			<div class="providers-content <?php echo $active; ?>" data-element="toggle">
+				<table>
+				    <thead>
+				        <tr>
+				            <th>#</th>
+				            <th><?php _e( 'Name', 'wpupper-share-buttons' ); ?></th>
+				            <th><?php _e( 'Count', 'wpupper-share-buttons' ); ?></th>
+				        </tr>
+				    </thead>
+				    <tbody>
+						<?php
+						$rank = 1;
+
+						foreach ( $top_providers as $name => $counts ) :
+							$provider = ( $name === 'google' ) ? 'google-plus' : $name;
+
+							printf(
+								'<tr class="%s-%s">
+									<td>%d</td>
+									<td>%s</td>
+									<td>%s</td>
+								 </tr>
+								',
+								WPUSB_App::SLUG,
+								$provider,
+								$rank,
+								ucfirst( $name ),
+								WPUSB_Utils::format_number( $counts )
+							);
+
+							$rank++;
+						endforeach;
+						?>
+				    </tbody>
+					<tfoot>
+						<tr>
+							<th colspan="2">
+								<?php _e( 'Total', 'wpupper-share-buttons' ); ?>
+							</th>
+							<th>
+								<?php echo WPUSB_Utils::format_number( array_sum( $top_providers ) ); ?>
+							</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
 	<?php
 	}
 }

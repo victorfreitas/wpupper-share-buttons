@@ -972,17 +972,15 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * Format number
 	 *
 	 * @since 1.0
-	 * @param Integer $number
+	 * @since 3.35
+	 * @param Float $number
+	 * @param Integer $dec
+	 * @param String $point
+	 * @param String $sep
 	 * @return String
 	 */
-	public static function number_format( $number ) {
-		$number = (double) $number;
-
-		if ( ! $number ) {
-			return $number;
-		}
-
-		return number_format( $number, 0, '.', '.' );
+	public static function format_number( $number, $dec = 0, $point = null, $sep = null ) {
+		return number_format( (float)$number, $dec, $point, $sep );
 	}
 
 	/**

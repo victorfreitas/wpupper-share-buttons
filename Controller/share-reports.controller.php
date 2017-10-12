@@ -13,10 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 //View
 WPUSB_App::uses( 'share-report', 'View' );
-
-if ( ! class_exists( 'WP_List_Table' ) ) {
-	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
-}
+WPUSB_App::uses( 'share-report', 'Model' );
+WPUSB_App::uses( 'list-table', 'Vendor' );
 
 if ( ! class_exists( 'WP_Screen' ) ) {
 	WPUSB_Utils::include_file_screen();
@@ -26,7 +24,7 @@ if ( ! class_exists( 'Walker_Category_Checklist' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/template.php' );
 }
 
-class WPUSB_Share_Reports_Controller extends WP_List_Table {
+class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 
 	/**
 	 * Number for posts per page
@@ -266,7 +264,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			case 'tumblr':
 			case 'buffer':
 			case 'total':
-				$value = $this->number_format( $item->{$column} );
+				$value = $this->format_number( $item->{$column} );
 				break;
 
 			case 'date':
@@ -424,7 +422,7 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 			unset( $rows['id'] );
 			unset( $rows['post_id'] );
 
-			$rows = array_map( array( $this, 'number_format' ), $rows );
+			$rows = array_map( array( $this, 'format_number' ), $rows );
 
 			fputcsv( $out, $rows );
 		endforeach;
@@ -444,12 +442,12 @@ class WPUSB_Share_Reports_Controller extends WP_List_Table {
 	 * @param Integer $value
 	 * @return String
 	 */
-	public function number_format( $value ) {
+	public function format_number( $value ) {
 		if ( ! is_numeric( $value ) ) {
 			return $value;
 		}
 
-		return WPUSB_Utils::number_format( $value );
+		return WPUSB_Utils::format_number( $value );
 	}
 
 	/**

@@ -122,3 +122,9 @@
         animation-duration: 0.4s
     }
 }
+
+@mixin socialBgColor($color, $element) {
+    .#{$prefix}-#{$element} {
+        background: $color;
+    }
+}
