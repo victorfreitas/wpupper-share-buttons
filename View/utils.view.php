@@ -487,39 +487,43 @@ abstract class WPUSB_Utils_View {
 	}
 
 	public static function menu_top() {
-		$general    = WPUSB_Setting::HOME_SETTINGS;
-		$extra      = WPUSB_Setting::EXTRA_SETTINGS;
-		$custom_css = WPUSB_Setting::CUSTOM_CSS;
-		$use_option = WPUSB_Setting::USE_OPTIONS;
-		$report     = WPUSB_Setting::SHARING_REPORT;
 	?>
 		<div class="<?php echo WPUSB_App::SLUG; ?>-menu">
 			<ul>
-				<li<?php echo WPUSB_Utils::selected_menu( $general ); ?>>
-					<a href="<?php echo WPUSB_Utils::get_page_url( $general ); ?>">
+				<li class="<?php echo WPUSB_Utils::selected_menu( WPUSB_Setting::HOME_SETTINGS ); ?>">
+					<a href="<?php echo WPUSB_Utils::get_page_url( WPUSB_Setting::HOME_SETTINGS ); ?>">
 						<?php _e( 'General', 'wpupper-share-buttons' ); ?>
 					</a>
 				</li>
-				<li<?php echo WPUSB_Utils::selected_menu( $extra ); ?>>
-					<a href="<?php echo WPUSB_Utils::get_page_url( $extra ); ?>">
+
+				<li class="<?php echo WPUSB_App::SLUG . '-addon'; ?> <?php echo WPUSB_Utils::selected_menu( WPUSB_Setting::EXTENSIONS ); ?>">
+					<a href="<?php echo WPUSB_Utils::get_page_url( WPUSB_Setting::EXTENSIONS ); ?>">
+						<?php _e( 'Extensions', 'wpupper-share-buttons' ); ?>
+					</a>
+				</li>
+
+				<li class="<?php echo WPUSB_Utils::selected_menu( WPUSB_Setting::EXTRA_SETTINGS ); ?>">
+					<a href="<?php echo WPUSB_Utils::get_page_url( WPUSB_Setting::EXTRA_SETTINGS ); ?>">
 						<?php _e( 'Extra Settings', 'wpupper-share-buttons' ); ?>
 					</a>
 				</li>
-				<li<?php echo WPUSB_Utils::selected_menu( $custom_css ); ?>>
-					<a href="<?php echo WPUSB_Utils::get_page_url( $custom_css ); ?>">
+
+				<li class="<?php echo WPUSB_Utils::selected_menu( WPUSB_Setting::CUSTOM_CSS ); ?>">
+					<a href="<?php echo WPUSB_Utils::get_page_url( WPUSB_Setting::CUSTOM_CSS ); ?>">
 						<?php _e( 'Custom CSS', 'wpupper-share-buttons' ); ?>
 					</a>
 				</li>
-				<li<?php echo WPUSB_Utils::selected_menu( $use_option ); ?>>
-					<a href="<?php echo WPUSB_Utils::get_page_url( $use_option ); ?>">
+
+				<li class="<?php echo WPUSB_Utils::selected_menu( WPUSB_Setting::USE_OPTIONS ); ?>">
+					<a href="<?php echo WPUSB_Utils::get_page_url( WPUSB_Setting::USE_OPTIONS ); ?>">
 						<?php _e( 'Use options', 'wpupper-share-buttons' ); ?>
 					</a>
 				</li>
 
 				<?php if ( ! WPUSB_Utils::is_sharing_report_disabled() ) : ?>
 
-				<li<?php echo WPUSB_Utils::selected_menu( $report ); ?>>
-					<a href="<?php echo WPUSB_Utils::get_page_url( $report ); ?>">
+				<li class="<?php echo WPUSB_Utils::selected_menu( WPUSB_Setting::SHARING_REPORT ); ?>">
+					<a href="<?php echo WPUSB_Utils::get_page_url( WPUSB_Setting::SHARING_REPORT ); ?>">
 						<?php _e( 'Sharing Report', 'wpupper-share-buttons' ); ?>
 					</a>
 				</li>

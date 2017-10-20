@@ -1214,7 +1214,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String|NULL
 	 */
 	public static function selected_menu( $current ) {
-		return ( self::get( 'page' ) === $current ) ? ' class="active"' : null;
+		return ( self::get( 'page' ) === $current ) ? 'active' : '';
 	}
 
 	/**

@@ -1,0 +1,87 @@
+.wpusb-addons-wrap {
+    background: #fff;
+    box-shadow: 0 0 1px rgba(0,0,0,.2);
+    margin: 10px 0 0 0;
+    padding: 20px;
+    width: 88%;
+
+	.addon-item {
+		border-radius: 3px;
+		border: 1px solid #e6e6e6;
+		display: inline-block;
+		margin: 10px;
+		max-width: 350px;
+		min-width: 200px;
+		width: 30%;
+
+		@media ( max-width: 1030px ) {
+			width: 46%;
+		}
+	}
+
+	.addon-thumb {
+		-ms-flex-align: center;
+		-ms-flex-pack: center;
+		-webkit-box-align: center;
+		-webkit-box-pack: center;
+		align-items: center;
+		background: #ebebeb;
+		display: -ms-flexbox;
+		display: -webkit-box;
+		display: flex;
+		height: 143px;
+		justify-content: center;
+		margin: 0;
+		padding: 0;
+
+		img {
+			height: auto;
+			width: 124px;
+		}
+	}
+
+	.addon-content {
+	    padding: 20px;
+	}
+
+	.addon-btn {
+		@extend %noSelect;
+		background: #ebebeb;
+		border-radius: 3px;
+		color: #fff;
+		display: inline-block;
+		height: 37px;
+		line-height: 37px;
+		text-align: center;
+		text-decoration: none;
+		width: 124px;
+
+		&:hover {
+			opacity: 0.7;
+		}
+
+		&:focus {
+			box-shadow: none;
+		}
+
+		i:before {
+			line-height: 16px;
+			vertical-align: middle;
+		}
+	}
+
+	.btn-buy {
+		background-color: $btnColor;
+
+		i {
+			margin-right: 2px;
+		}
+	}
+
+	.btn-video {
+		background: #a5a3a3;
+		float: right;
+		width: 110px;
+
+	}
+}

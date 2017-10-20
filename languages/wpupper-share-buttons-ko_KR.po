@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Development (trunk)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpupper-share-"
 "buttons\n"
-"POT-Creation-Date: 2017-10-12 03:55:44+00:00\n"
+"POT-Creation-Date: 2017-10-20 01:19:26+00:00\n"
 "PO-Revision-Date: 2017-02-20 22:14-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -264,7 +264,7 @@ msgstr ""
 msgid "Error: Could not process css file."
 msgstr ""
 
-#: Controller/settings.controller.php:53 View/settings.view.php:48
+#: Controller/settings.controller.php:54 View/settings.view.php:48
 msgid "Settings"
 msgstr "설정을"
 
@@ -272,23 +272,28 @@ msgstr "설정을"
 msgid "WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/settings.controller.php:73
+#: Controller/settings.controller.php:74
 msgid "WPUpper Share"
 msgstr ""
 
-#: Controller/settings.controller.php:80 View/settings-extra.view.php:47
-#: View/utils.view.php:505
+#: Controller/settings.controller.php:81 View/addons.view.php:38
+#: View/utils.view.php:501
+msgid "Extensions"
+msgstr ""
+
+#: Controller/settings.controller.php:91 View/settings-extra.view.php:47
+#: View/utils.view.php:507
 #, fuzzy
 msgid "Extra Settings"
 msgstr "설정을"
 
-#: Controller/settings.controller.php:90 View/settings-custom-css.view.php:39
-#: View/utils.view.php:510
+#: Controller/settings.controller.php:101 View/settings-custom-css.view.php:39
+#: View/utils.view.php:513
 msgid "Custom CSS"
 msgstr ""
 
-#: Controller/settings.controller.php:100 View/settings-faq.view.php:37
-#: View/utils.view.php:515
+#: Controller/settings.controller.php:111 View/settings-faq.view.php:37
+#: View/utils.view.php:519
 msgid "Use options"
 msgstr ""
 
@@ -296,7 +301,7 @@ msgstr ""
 msgid "Sharing Report | WPUpper Share Buttons"
 msgstr ""
 
-#: Controller/share-reports.controller.php:118 View/utils.view.php:523
+#: Controller/share-reports.controller.php:118 View/utils.view.php:527
 #, fuzzy
 msgid "Sharing Report"
 msgstr "Facebook으로 공유하기"
@@ -561,10 +566,14 @@ msgstr ""
 msgid "Shares"
 msgstr "공유"
 
-#: View/settings-custom-css.view.php:33 View/settings-extra.view.php:41
-#: View/settings-faq.view.php:31 View/settings.view.php:43
-#: View/share-report.view.php:32
+#: View/addons.view.php:32 View/settings-custom-css.view.php:33
+#: View/settings-extra.view.php:41 View/settings-faq.view.php:31
+#: View/settings.view.php:43 View/share-report.view.php:32
 msgid "Add the Share Buttons automatically."
+msgstr ""
+
+#: View/addons.view.php:70
+msgid "View video"
 msgstr ""
 
 #: View/settings-custom-css.view.php:57
@@ -932,7 +941,7 @@ msgstr ""
 msgid "Settings saved."
 msgstr "변경 사항이 저장되었습니다."
 
-#: View/utils.view.php:500
+#: View/utils.view.php:495
 msgid "General"
 msgstr ""
 

@@ -6,7 +6,7 @@ Tags: share, social, buttons, share buttons, compartir, botones compartir, free 
 Requires at least: 4.0
 Requires PHP: 5.2.4
 Tested up to: 4.8.2
-Stable tag: 3.35
+Stable tag: 3.36
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -25,6 +25,14 @@ Implement the Social Share and Follow Us Widget of the major social networks, in
 * Store some options with the data that will be used to show, hide, stylize and remove specific buttons.
 
 * The networks support are: - Facebook; - Google Plus; - Twitter; - Linkedin; - Pinterest; - Thumbler; - Whatsapp; - Mailto; - Print Friendly; Telegram; Skype; Viper; - Reddit; - Gmail
+
+### Extensions ###
+
+* Sharing count update
+
+[vimeo https://vimeo.com/237981148 ]
+
+*  [Buy Now](https://letzup.com/product/wpupper-share-buttons-sharing-count-update/)
 
 == Installation ==
 
@@ -95,6 +103,10 @@ The following plugins are recommended
 * ["Remove WP Version"](https://wordpress.org/plugins/jogar-mais-wp-security/) by victorfreitas - Remove version WordPress in WP Generator, Feeds, css and js file.
 
 == Changelog ==
+
+= 3.36 =
+
+* Add page Extensions with addons to add new features to your WPUpper Share Buttons
 
 = 3.35 =
 

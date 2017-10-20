@@ -20,6 +20,7 @@ if ( is_admin() ) {
 	WPUSB_App::uses( 'settings-extra', 'View' );
 	WPUSB_App::uses( 'settings-custom-css', 'View' );
 	WPUSB_App::uses( 'settings-faq', 'View' );
+	WPUSB_App::uses( 'addons', 'View' );
 }
 
 class WPUSB_Settings_Controller {
@@ -76,6 +77,16 @@ class WPUSB_Settings_Controller {
 			array( 'WPUSB_Settings_View', 'render_settings_page' ),
 			'dashicons-share'
 		);
+
+		  $title = __( 'Extensions', 'wpupper-share-buttons' );
+		  add_submenu_page(
+			  WPUSB_App::SLUG,
+			  $title,
+			  $title,
+			  $capability,
+			  WPUSB_Setting::EXTENSIONS,
+			  array( 'WPUSB_Addons', 'render' )
+		  );
 
 		$title = __( 'Extra Settings', 'wpupper-share-buttons' );
 		  add_submenu_page(
