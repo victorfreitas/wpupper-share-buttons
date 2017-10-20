@@ -604,7 +604,10 @@ class WPUSB_Setting {
 				'https://api.letzup.com/addons/list.json',
 				array(
 					'httpversion' => '1.1',
-					'user-agent'  => WPUSB_App::NAME . ' - Addons'
+					'user-agent'  => WPUSB_App::NAME . '/' . WPUSB_App::VERSION,
+					'headers'     => array(
+						'referer' => home_url(),
+					),
 				)
 			);
 

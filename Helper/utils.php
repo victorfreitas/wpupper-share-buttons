@@ -809,7 +809,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function html_decode( $string ) {
-		return html_entity_decode( $string, ENT_NOQUOTES, self::get_charset() );
+		return html_entity_decode( $string, ENT_NOQUOTES );
 	}
 
 	/**
