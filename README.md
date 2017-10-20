@@ -14,6 +14,14 @@ Implement the Share Buttons of the major social networks, including the Whats Ap
 
 ## Description
 
+#### Extensions
+
+* Sharing Count Update
+
+[![Sharing Count Update](https://i.vimeocdn.com/video/660548514.jpg)]
+(https://vimeo.com/237981148 "Sharing Count Update")
+[Buy Now](https://letzup.com/product/wpupper-share-buttons-sharing-count-update/)
+
 ### Credits
 * Plugin icon by [IcoMoon](https://icomoon.io/)
 
