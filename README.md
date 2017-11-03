@@ -1,14 +1,14 @@
 # WPUpper Share Buttons
-Author URL: Victor Freitas 
-Contributors: victorfreitas  
-Donate link: [Donate Now](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KYRMWXEEQN58L)  
-Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email form, social media buttons, click to tweet, pinterest, reddit, viber, telegram, gmail, skype, like, linkedin.  
-Requires at least: 3.0  
-Tested up to: 4.8.2  
-PHP version: 5.2  
-Stable tag: 3.36.1  
-License: GPLv2 or later  
-License URI: http://www.gnu.org/licenses/gpl-2.0.html  
+Author URL: Victor Freitas
+Contributors: victorfreitas
+Donate link: [Donate Now](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KYRMWXEEQN58L)
+Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email form, social media buttons, click to tweet, pinterest, reddit, viber, telegram, gmail, skype, like, linkedin.
+Requires at least: 3.0
+Tested up to: 4.8.2
+PHP version: 5.2
+Stable tag: 3.36.2
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Implement the Share Buttons of the major social networks, including the Whats App on your website or blog.
 
@@ -29,7 +29,7 @@ Implement the Share Buttons of the major social networks, including the Whats Ap
 You can either install it automatically from the WordPress admin, or do it manually:
 1. Upload the whole `wpupper-share-buttons` directory into your plugins folder(`/wp-content/plugins/`)
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Plugin settings page is located in WP-Admin -> Share Buttons 
+3. Plugin settings page is located in WP-Admin -> Share Buttons
 
 ## Screenshots
 1. [`WordPress Plugin Page`](https://wordpress.org/plugins/wpupper-share-buttons/screenshots/)
@@ -72,9 +72,13 @@ $args
 Layout options: default, buttons, rounded, square
 */
 ```
-4. Using the content editor -> [wpusb class_first="" class_second="" class_link="" class_icon="" layout="default" remove_inside="0" remove_counter="0"]  
+4. Using the content editor -> [wpusb class_first="" class_second="" class_link="" class_icon="" layout="default" remove_inside="0" remove_counter="0"]
 
 ## Changelog
+
+## 3.36.2
+
+* Bug fixes
 
 ## 3.36.1
 

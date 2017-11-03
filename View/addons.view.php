@@ -66,7 +66,7 @@ class WPUSB_Addons {
 
 							<?php if ( isset( $addon->video ) ) : ?>
 
-							<a href="<?php echo esc_url( $addon->video ); ?>" data-fancybox class="addon-btn btn-video">
+							<a href="<?php echo esc_url( $addon->video ); ?>" target="_blank" class="addon-btn btn-video">
 								<i class="dashicons-before dashicons-controls-play"></i> <?php _e( 'View video', 'wpupper-share-buttons' ); ?>
 							</a>
 
