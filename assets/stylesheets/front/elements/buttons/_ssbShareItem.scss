@@ -11,7 +11,7 @@
 }
 
 #wrapper .#{$prefix},
-#content .#{$prefix}:not(.#{$prefix}-buttons, .#{$prefix}-square-plus) {
+#content .#{$prefix}:not(.#{$prefix}-buttons):not(.#{$prefix}-square-plus) {
     .#{$prefix}-item .#{$prefix}-btn,
     .#{$prefix}-item .#{$prefix}-btn:hover,
     .#{$prefix}-item .#{$prefix}-btn:focus {
