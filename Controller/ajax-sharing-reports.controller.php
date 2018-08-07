@@ -167,54 +167,39 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 	 *
 	 * @since 1.0
 	 * @since 3.30
+	 * @since 3.37
 	 * @global $wpdb
-	 * @param String $table
-	 * @param Array $data
+	 * @param null
 	 * @return Void
 	 */
 	private function _update() {
 		global $wpdb;
 
-		$data = array(
-			'post_title' => $this->post_title,
-			'post_date'  => $this->post_date,
-			'facebook'   => $this->facebook,
-			'linkedin'   => $this->linkedin,
-			'pinterest'  => $this->pinterest,
-			'tumblr'     => $this->tumblr,
-			'buffer'     => $this->buffer,
-		);
-
-		$updated = $wpdb->update(
-			$this->table,
-			array_filter( $data ),
-			array( 'post_id' => $this->reference )
-		);
-
-		$this->_update_total();
-		$this->_send_json( '', $updated );
-	}
-
-	/**
-	 * Update column total share counts
-	 *
-	 * @since 3.37.0
-	 * @global $wpdb
-	 * @param null
-	 * @return Void
-	 */
-	private function _update_total() {
-		global $wpdb;
-
-		$wpdb->query(
+		$updated = $wpdb->query(
 			$wpdb->prepare(
 				"UPDATE `{$this->table}`
-				 SET `total` = (`facebook` + `twitter` + `google` + `linkedin` + `pinterest` + `tumblr` + `buffer`)
+				 SET `post_title` = %s,
+				     `post_date` = %s,
+				     `facebook` = %d,
+					 `linkedin` = %d,
+					 `pinterest` = %d,
+					 `tumblr` = %d,
+					 `buffer` = %d,
+					 `total`= (`facebook` + `twitter` + `google` + `linkedin` + `pinterest` + `tumblr` + `buffer`)
 				 WHERE `post_id` = %d
 				",
+				$this->post_title,
+				$this->post_date,
+				$this->facebook,
+				$this->linkedin,
+				$this->pinterest,
+				$this->tumblr,
+				$this->buffer,
 				$this->reference
 			)
 		);
+
+		$this->_send_json( '', $updated );
 	}
 
 	/**
@@ -223,8 +208,7 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 	 * @since 1.0
 	 * @since 3.30
 	 * @global $wpdb
-	 * @param String $table
-	 * @param Array $data
+	 * @param null
 	 * @return Void
 	 */
 	private function _insert() {
