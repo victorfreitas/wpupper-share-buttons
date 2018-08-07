@@ -23,11 +23,7 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 
 	private $facebook;
 
-	private $twitter;
-
 	private $tumblr;
-
-	private $google;
 
 	private $linkedin;
 
@@ -113,16 +109,14 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 
 		$items = array(
 			'facebook',
-			'twitter',
 			'tumblr',
-			'google',
 			'linkedin',
 			'pinterest',
 			'buffer',
 		);
 
 		foreach ( $items as $item ) :
-			$this->{$item}  = WPUSB_Utils::post( "count_{$item}", 0, 'intval' );
+			$this->{$item} = WPUSB_Utils::post( "count_{$item}", 0, 'intval' );
 			$this->total   += $this->{$item};
 		endforeach;
 	}
@@ -181,40 +175,46 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 	private function _update() {
 		global $wpdb;
 
-		$updated = $wpdb->update(
-			$this->table,
-			array(
-				'post_title' => $this->post_title,
-				'post_date'  => $this->post_date,
-				'facebook'   => $this->facebook,
-				'twitter'    => $this->twitter,
-				'google'     => $this->google,
-				'linkedin'   => $this->linkedin,
-				'pinterest'  => $this->pinterest,
-				'tumblr'     => $this->tumblr,
-				'buffer'     => $this->buffer,
-				'total'      => $this->total,
-			),
-			array(
-				'post_id' => $this->reference,
-			),
-			array(
-				'%s',
-				'%s',
-				'%d',
-				'%d',
-				'%d',
-				'%d',
-				'%d',
-				'%d',
-				'%d',
-			),
-			array(
-				'%d',
-			)
+		$data = array(
+			'post_title' => $this->post_title,
+			'post_date'  => $this->post_date,
+			'facebook'   => $this->facebook,
+			'linkedin'   => $this->linkedin,
+			'pinterest'  => $this->pinterest,
+			'tumblr'     => $this->tumblr,
+			'buffer'     => $this->buffer,
 		);
 
+		$updated = $wpdb->update(
+			$this->table,
+			array_filter( $data ),
+			array( 'post_id' => $this->reference )
+		);
+
+		$this->_update_total();
 		$this->_send_json( '', $updated );
+	}
+
+	/**
+	 * Update column total share counts
+	 *
+	 * @since 3.37.0
+	 * @global $wpdb
+	 * @param null
+	 * @return Void
+	 */
+	private function _update_total() {
+		global $wpdb;
+
+		$wpdb->query(
+			$wpdb->prepare(
+				"UPDATE `{$this->table}`
+				 SET `total` = (`facebook` + `twitter` + `google` + `linkedin` + `pinterest` + `tumblr` + `buffer`)
+				 WHERE `post_id` = %d
+				",
+				$this->reference
+			)
+		);
 	}
 
 	/**
@@ -237,25 +237,11 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 				'post_title' => $this->post_title,
 				'post_date'  => $this->post_date,
 				'facebook'   => $this->facebook,
-				'twitter'    => $this->twitter,
-				'google'     => $this->google,
 				'linkedin'   => $this->linkedin,
 				'pinterest'  => $this->pinterest,
 				'tumblr'     => $this->tumblr,
 				'buffer'     => $this->buffer,
 				'total'      => $this->total,
-			),
-			array(
-				'%d',
-				'%s',
-				'%s',
-				'%d',
-				'%d',
-				'%d',
-				'%d',
-				'%d',
-				'%d',
-				'%d',
 			)
 		);
 
