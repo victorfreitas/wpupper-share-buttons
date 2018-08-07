@@ -37,7 +37,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 		this.linkedinCounter  = 0;
 		this.pinterestCounter = 0;
 		this.bufferCounter    = 0;
-		this.max              = 7;
+		this.max              = 5;
 		this.isReport         = isReport;
 		this.minCount         = utils.getMinCount();
 	};
