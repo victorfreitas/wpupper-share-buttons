@@ -80,6 +80,7 @@ Layout options: default, buttons, rounded, square
 
 * Removed: Twitter share counts, because is dead-> https://newsharecounts.com
 * Removed: Google+ share counts, because Google+ discontinued -> https://plus.google.com/110610523830483756510/posts/Z1FfzduveUo
+* Query share counts improvements
 
 ## 3.36.3
 

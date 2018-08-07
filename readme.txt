@@ -106,6 +106,7 @@ The following plugins are recommended
 
 * Removed: Twitter share counts, because it has been discontinued -> https://newsharecounts.com
 * Removed: Google+ share counts because Google+ discontinued -> https://plus.google.com/110610523830483756510/posts/Z1FfzduveUo
+* Query share counts improvements
 
 = 3.36.3 =
 
