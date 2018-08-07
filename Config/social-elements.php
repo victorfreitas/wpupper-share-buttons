@@ -5,7 +5,7 @@
  * @subpackage Functions
  * @author  Victor Freitas
  * @since 3.7.0
- * @version 2.1.0
+ * @version 2.2.0
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
@@ -130,7 +130,7 @@ class WPUSB_Social_Elements {
 		$std->twitter->class_icon  = apply_filters( $tag_icon, $prefix_icons . 'twitter' );
 		$std->twitter->popup       = self::$action;
 		$std->twitter->inside      = __( 'Tweet', 'wpupper-share-buttons' );
-		$std->twitter->has_counter = true;
+		$std->twitter->has_counter = false;
 		$std->twitter->target      = '_blank';
 
 		/**
@@ -148,7 +148,7 @@ class WPUSB_Social_Elements {
 		$std->google->class_icon  = apply_filters( $tag_icon, $prefix_icons . 'google-plus' );
 		$std->google->popup       = self::$action;
 		$std->google->inside      = __( 'Share', 'wpupper-share-buttons' );
-		$std->google->has_counter = true;
+		$std->google->has_counter = false;
 		$std->google->target      = '_blank';
 
 		/**

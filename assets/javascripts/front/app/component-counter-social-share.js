@@ -26,18 +26,14 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 
 	Model.fn.setPropNames = function(isReport) {
 		this.facebook         = this.elements.facebook;
-		this.twitter          = this.elements.twitter;
 		this.tumblr           = this.elements.tumblr;
-		this.google           = this.elements.googlePlus;
 		this.linkedin         = this.elements.linkedin;
 		this.pinterest        = this.elements.pinterest;
 		this.buffer           = this.elements.buffer;
 		this.totalShare       = this.elements.totalShare;
 		this.totalCounter     = 0;
 		this.facebookCounter  = 0;
-		this.twitterCounter   = 0;
 		this.tumblrCounter    = 0;
-		this.googleCounter    = 0;
 		this.linkedinCounter  = 0;
 		this.pinterestCounter = 0;
 		this.bufferCounter    = 0;
@@ -54,24 +50,9 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 				url       : 'https://graph.facebook.com/?id=' + this.data.elementUrl
 			},
 			{
-				reference : 'twitterCounter',
-				element   : 'twitter',
-				url       : 'https://public.newsharecounts.com/count.json?url=' + this.data.elementUrl
-			},
-			{
 				reference : 'tumblrCounter',
 				element   : 'tumblr',
 				url       : 'https://api.tumblr.com/v2/share/stats?url=' + this.data.elementUrl
-			},
-			{
-				reference   : 'googleCounter',
-				element     : 'google',
-				url         : 'https://clients6.google.com/rpc',
-				data        : this.getParamsGoogle(),
-				method      : 'POST',
-				dataType    : 'json',
-				processData : true,
-				contentType : 'application/json'
 			},
 			{
 				reference : 'linkedinCounter',
@@ -169,32 +150,9 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 			case 'tumblr' :
 				return this.getTotalShareTumblr( response.response );
 
-			case 'google' :
-				return this.getTotalShareGooglePlus( response );
-
 			default :
 				return parseInt( response.count || response.shares || 0 );
 		}
-	};
-
-	Model.fn.getTotalShareGooglePlus = function(response) {
-		var data = {};
-
-		if ( typeof response.error === 'object' ) {
-			console.log( 'Google+ count error: ' + response.error.message );
-			return 0;
-		}
-
-		if ( typeof response.result === 'object' ) {
-			data.metadata     = ( response.result.metadata || {} );
-			data.globalCounts = ( data.metadata.globalCounts || {} );
-
-			return parseInt( data.globalCounts.count || 0 );
-		}
-
-		console.log( 'Google+ count fail' );
-
-		return 0;
 	};
 
 	Model.fn.getTotalShareFacebook = function(response) {
@@ -211,23 +169,6 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 		}
 
 		return 0;
-	};
-
-	Model.fn.getParamsGoogle = function() {
-		return JSON.stringify({
-			id         : utils.decodeUrl( this.data.elementUrl ),
-			key        : 'p',
-			method     : 'pos.plusones.get',
-			jsonrpc    : '2.0',
-			apiVersion : 'v1',
-			params     : {
-				nolog   : true,
-				id      : utils.decodeUrl( this.data.elementUrl ),
-				source  : 'widget',
-				userId  : '@viewer',
-				groupId : '@self'
-			}
-		});
 	};
 
 	Model.fn._onClickOpenPopup = function(event) {
@@ -248,10 +189,8 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 	       	action          : this.addPrefix( 'share_count_reports', '_' ),
 		    reference       : this.data.attrReference,
 		    count_facebook  : this.facebookCounter,
-		    count_twitter   : this.twitterCounter,
 		    count_tumblr    : this.tumblrCounter,
 		    count_linkedin  : this.linkedinCounter,
-		    count_google    : this.googleCounter,
 		    count_pinterest : this.pinterestCounter,
 		    count_buffer    : this.bufferCounter,
 		    nonce           : this.data.attrNonce

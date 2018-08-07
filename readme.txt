@@ -4,9 +4,9 @@ Contributors: victorfreitas
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KYRMWXEEQN58L
 Tags: share, sharing, social, buttons, share buttons, compartir, botones compartir, free share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email, social media buttons, click to tweet, reddit, viber, telegram, gmail, skype, like, pinterest, linkedin, follow us, follow, widget follow, Instagram, YouTube, GitHub, Vimeo, Flickr, Foursquare, SnapChat
 Requires at least: 4.0
-Requires PHP: 5.2.4
-Tested up to: 4.9.1
-Stable tag: 3.36.3
+Requires PHP: 5.2.4 or later
+Tested up to: 4.9.8
+Stable tag: 3.37.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -101,6 +101,11 @@ The following plugins are recommended
 * ["Remove WP Version"](https://wordpress.org/plugins/jogar-mais-wp-security/) by victorfreitas - Remove version WordPress in WP Generator, Feeds, css and js file.
 
 == Changelog ==
+
+= 3.37.0 =
+
+* Removed: Twitter share counts, because it has been discontinued -> https://newsharecounts.com
+* Removed: Google+ share counts because Google+ discontinued -> https://plus.google.com/110610523830483756510/posts/Z1FfzduveUo
 
 = 3.36.3 =
 
