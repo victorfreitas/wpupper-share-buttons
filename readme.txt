@@ -5,8 +5,8 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: share, sharing, social, buttons, share buttons, compartir, botones compartir, free share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email, social media buttons, click to tweet, reddit, viber, telegram, gmail, skype, like, pinterest, linkedin, follow us, follow, widget follow, Instagram, YouTube, GitHub, Vimeo, Flickr, Foursquare, SnapChat
 Requires at least: 4.0
 Requires PHP: 5.2.4 or later
-Tested up to: 4.9.8
-Stable tag: 3.37.0
+Tested up to: 5.2
+Stable tag: 3.37.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -101,6 +101,10 @@ The following plugins are recommended
 * ["Remove WP Version"](https://wordpress.org/plugins/jogar-mais-wp-security/) by victorfreitas - Remove version WordPress in WP Generator, Feeds, css and js file.
 
 == Changelog ==
+
+= 3.37.1 - 2019-05-08 =
+
+* Tested up to WP 5.2
 
 = 3.37.0 =
 
