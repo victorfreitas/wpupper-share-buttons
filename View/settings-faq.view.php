@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 class WPUSB_Settings_Faq_View {
@@ -62,7 +62,7 @@ $args = array(
 	 'class_link'   => '', // String
 	 'class_icon'   => '', // String
 	 'layout'       => 'default', //String
-	 'items'        => '', // Mixed String|Array -- Example: 'facebook, google' | array( 'facebook', 'google' )
+	 'items'        => '', // Mixed String|Array -- Example: 'facebook, twitter' | array( 'facebook', 'twitter' )
 	 'title'        => '', //String
 	 'header_title' => '', //String
 	 'url'          => '', //string
@@ -77,7 +77,7 @@ $args = array(
  */
 $args = array(
 	'layout' => 'square-plus',
-	'items'  => array( 'facebook', 'twitter', 'google', 'whatsapp' ),
+	'items'  => array( 'facebook', 'twitter', 'whatsapp' ),
 );
 
 if ( class_exists( 'WPUSB_Shares_View' ) ) :

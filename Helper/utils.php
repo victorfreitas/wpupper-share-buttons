@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 class WPUSB_Utils extends WPUSB_Utils_Share {
@@ -787,7 +787,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String link base file
 	 */
 	public static function basename( $filter = '' ) {
-		return $filter . plugin_basename( WPUSB_App::FILE );
+		return $filter . plugin_basename( WPUSB_PLUGIN_FILE );
 	}
 
 	/**
@@ -798,7 +798,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function plugin_basename() {
-		return plugin_basename( dirname( WPUSB_App::FILE ) );
+		return plugin_basename( dirname( WPUSB_PLUGIN_FILE ) );
 	}
 
 	/**
@@ -825,6 +825,28 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
+	 * Plugin build url.
+	 *
+	 * @since 3.40
+	 * @param string $file
+	 * @return string
+	 */
+	public static function build_url( $file ) {
+		return self::plugin_url( $file, 'build/' );
+	}
+
+	/**
+	 * Plugin build path.
+	 *
+	 * @since 3.40
+	 * @param string $file
+	 * @return string
+	 */
+	public static function build_path( $file ) {
+		return self::file_path( $file, 'build/' );
+	}
+
+	/**
 	 * Plugin file path in assets directory
 	 *
 	 * @since 1.0
@@ -844,7 +866,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function filetime( $path ) {
 		if ( ! file_exists( $path ) ) {
-			return WPUSB_App::VERSION;
+			return WPUSB_PLUGIN_VERSION;
 		}
 
 		return filemtime( $path );
@@ -891,7 +913,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 
 		if ( $echo ) {
 			echo $response;
-			exit( 0 );
+			exit;
 		}
 
 		return $response;
@@ -910,7 +932,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		if ( ! $request ) {
 			http_response_code( $code );
 			self::error_server_json( $code, $message );
-			exit( 0 );
+			exit;
 		}
 	}
 
@@ -1140,7 +1162,6 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$value  = array(
 			'facebook' => 'facebook',
 			'twitter'  => 'twitter',
-			'google'   => 'google',
 			'whatsapp' => 'whatsapp',
 			'share'    => 'share',
 		);
@@ -1599,7 +1620,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return String
 	 */
 	public static function get_css_base() {
-		$base = self::file_path( 'stylesheets/style.css' );
+		$base = self::build_path( 'style.css' );
 		$file = @fopen( $base, 'r' );
 		$tmp  = @fread( $file, @filesize( $base ) );
 
@@ -1617,7 +1638,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return string
 	 */
 	public static function get_file_css_min() {
-		return self::file_path( self::get_path_css_min() );
+		return self::build_path( self::get_path_css_min() );
 	}
 
 	/**
@@ -1630,7 +1651,8 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function get_path_css_min() {
 		$blog_id = is_multisite() ? get_current_blog_id() : '';
-		return sprintf( 'stylesheets/style.min%s.css', $blog_id );
+
+		return sprintf( 'style.min%s.css', $blog_id );
 	}
 
 	/**
@@ -1845,10 +1867,11 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 *
 	 * @since 3.25
 	 * @param String $html
+	 * @param boolean $force
 	 * @return String
 	 */
-	public static function minify_html( $html ) {
-		if ( 'on' !== self::option( 'minify_html' ) ) {
+	public static function minify_html( $html, $force = false ) {
+		if ( true !== $force && 'on' !== self::option( 'minify_html' ) ) {
 			return $html;
 		}
 
@@ -2033,7 +2056,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$size = self::get_field_css_by_key( 'icons_size', $options );
 
 		if ( ! empty( $size ) ) {
-			$size = sprintf( 'font-size: %dpx;', $size );
+			$size = sprintf( 'width: %1$dpx; height: %1$dpx;', $size );
 		}
 
 		return $size;
@@ -2050,7 +2073,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$color = self::get_field_css_by_key( 'icons_color', $options );
 
 		if ( ! empty( $color ) ) {
-			$color = sprintf( 'color: %s;', $color );
+			$color = sprintf( 'fill: %s;', $color );
 		}
 
 		return $color;
@@ -2205,7 +2228,9 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$new_order = array();
 
 		foreach ( $order as $item ) {
-			$new_order[ $item ] = $item;
+			if ( isset( $elements[ $item ] ) ) {
+				$new_order[ $item ] = $item;
+			}
 		}
 
 		return array_merge( $new_order, $elements );

@@ -81,19 +81,7 @@
 		&:hover {
 			color: #00a0d2;
 		}
-
-		i {
-			float: right;
-		}
-
-		i:before {
-			content: '\25B2';
-		}
-
-		i.active:before {
-			content: '\25BC';
-		}
-    }
+  }
 
 	.providers-content {
 		display: none;

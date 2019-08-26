@@ -20,10 +20,10 @@
 }
 
 .#{$prefix}-item {
-    display: inline-block;
+    display: inline-flex;
     font-family: Arial, Sans-serif;
     margin-bottom: 10px;
-    margin-right: 10px;
+    margin-right: 8px;
 
     &:last-child {
         margin-right: 0;
@@ -47,11 +47,10 @@
             text-align: center;
         }
 
-        i {
+        svg {
             font-style: normal;
-            font-size: $size;
-            height: auto;
-            width: auto;
+            height: $size;
+            width: $size;
         }
 
         span {
@@ -65,8 +64,7 @@
 
         .#{$prefix}-buttons:not(##{$prefix}-container-fixed) & {
             border-radius: 3px;
-            min-width: 32px;
-            padding: 2px 0 2px 4px;
+            padding: 4px 6px;
         }
 
         @media ( max-width: $tablet ) {
@@ -78,9 +76,10 @@
         .#{$prefix}-buttons & {
             color: #fff;
 
-            i,
-            i:hover {
-                font-size: 26px;
+            svg,
+            svg:hover {
+                width: 22px;
+                height: 22px;
                 color: inherit;
                 line-height: 1;
             }
@@ -107,7 +106,6 @@
         color: #424242;
     }
 }
-
 
 @each $key, $color in $colors {
     // Theme > Other
@@ -143,7 +141,7 @@
 }
 
 ##{$prefix}-container-buttons {
-    .#{$prefix}-facebook i {
+    .#{$prefix}-facebook svg {
         position: relative;
         top: 2px;
     }
@@ -160,9 +158,9 @@
 ##{$prefix}-container-follow {
 
     .#{$prefix}-item {
-        display: table-cell;
-        margin: 0;
-        padding: 0 3px;
+      display: inline-block;
+      margin: 0 5px 5px 0;
+      padding: 0 3px;
 
         .#{$prefix}-btn,
         .#{$prefix}-btn:hover,
@@ -172,8 +170,9 @@
             box-shadow: none;
         }
 
-        .#{$prefix}-btn i {
-            font-size: 32px;
+        .#{$prefix}-btn svg {
+            height: 32px;
+            width: 32px;
         }
     }
 }

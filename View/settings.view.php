@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 class WPUSB_Settings_View extends WPUSB_Utils_View {
@@ -54,7 +54,10 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 					<?php echo WPUSB_Utils::get_component( 'share-settings' ); ?>>
 
 				<style data-element-style></style>
-				<div <?php echo WPUSB_Utils::get_component( 'share-preview' ); ?>>
+				<div
+					id="<?php echo WPUSB_App::SLUG; ?>-share-preview"
+					<?php echo WPUSB_Utils::get_component( 'share-preview' ); ?>
+				>
 					<div data-element="preview"></div>
 				</div>
 
@@ -162,20 +165,21 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 
 									foreach ( $networks as $element => $title ) {
 										$option_value = WPUSB_Utils::option( $element );
-										$id           = ( 'google' === $element ) ? "{$element}-plus" : $element;
+
 										self::td(
 											array(
 												'type'        => 'checkbox',
-												'id'          => $id,
+												'id'          => $element,
 												'name'        => "{$option_social_media}[{$element}]",
 												'value'       => $element,
 												'is_checked'  => checked( $element, $option_value, false ),
-												'label-class' => sprintf( '%1$s-icon %1$s-%2$s-icon', WPUSB_App::SLUG, $id ),
+												'label-class' => sprintf( '%1$s-icon %1$s-%2$s-icon', WPUSB_App::SLUG, $element ),
 												'td-class'    => WPUSB_App::SLUG . '-select-item',
 												'td-id'       => $element,
 												'td-title'    => $title,
 												'span'        => false,
 												'class'       => $hide_class,
+												'svg-link'    => WPUSB_APP::SLUG . "-{$element}",
 											)
 										);
 									}
@@ -672,6 +676,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 			'tag'         => 'td',
 			'label'       => true,
 			'default'     => '',
+			'svg-link'    => '',
 		);
 
 		return array_merge( $defaults, $args );
@@ -687,7 +692,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 			title="<?php echo $args['td-title']; ?>">
 
 			<input type="<?php echo $args['type']; ?>"
-				   id="<?php printf( '%s-%s', WPUSB_App::SLUG, $args['id'] ); ?>"
+				   id="<?php printf( 'field-%s-%s', WPUSB_App::SLUG, $args['id'] ); ?>"
 				   class="<?php echo $args['class'] ; ?>"
 				   name="<?php echo $args['name'] ; ?>"
 				   value="<?php echo empty( $args['value'] ) ? $args['default'] : $args['value']; ?>"
@@ -705,16 +710,24 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 	}
 
 	private static function _get_label( $prefix, $args ) {
+		$svg  = '';
 		$span = '';
 
-		if ( $args['span'] ) {
+		if ( $args['span'] && $args['title'] ) {
 			$span = "<span>{$args['title']}</span>";
 		}
 
+		if ( ! empty( $args['svg-link'] ) ) {
+			$svg = WPUSB_Shares_View::get_svg_icon( $args['svg-link'] );
+		}
+
 		$label = <<<EOD
-	       	<label for="{$prefix}-{$args['id']}"
-	               class="{$args['label-class']}">
-	               {$span}
+			<label
+				for="field-{$prefix}-{$args['id']}"
+				class="{$args['label-class']}"
+			>
+				{$span}
+				{$svg}
 	        </label>
 EOD;
 		return $label;

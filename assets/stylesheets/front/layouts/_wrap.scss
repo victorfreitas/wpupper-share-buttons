@@ -5,14 +5,14 @@
     margin-top: 20px;
 
     .#{$prefix}-count {
-        display: none;
-        margin-left: 12px;
+      display: none;
+      margin-left: 12px;
     }
 
     .#{$prefix}-item,
     .#{$prefix}-count {
-        font-size: $fontSizeDefault;
-        vertical-align: middle;
+      font-size: $fontSizeDefault;
+      vertical-align: middle;
     }
 }
 // ===================================================
@@ -26,7 +26,7 @@
 
 .#{$prefix}-square-plus {
     .#{$prefix}-item {
-        margin-right: 5px;
+      margin-right: 5px;
     }
 }
 
@@ -35,7 +35,7 @@
 // ===================================================
 @media ( max-width: $tablet ) {
     .#{$prefix}-position-fixed-active {
-        margin-bottom: 44px;
+      margin-bottom: 44px;
     }
 }
 
@@ -44,13 +44,13 @@
 // ===================================================
 .#{$prefix}-fixed {
     position: fixed;
-    top: 20%;
-    z-index: 999;
+    top: 15%;
+    z-index: 9999;
 
     &:not(.#{$prefix}-default) {
-        .#{$prefix}-item .#{$prefix}-counts {
-            width: 48px;
-        }
+      .#{$prefix}-item .#{$prefix}-counts {
+        width: 48px;
+      }
     }
 
     .#{$prefix}-item {
@@ -59,10 +59,15 @@
         margin-right: 0;
 
         .#{$prefix}-button {
-            @extend %brightness;
-            @extend %transitionAll;
-            height: 48px;
-            width: 48px;
+          @extend %brightness;
+          @extend %transitionAll;
+          height: 48px;
+          width: 48px;
+        }
+
+        .#{$prefix}-btn svg {
+          height: 22px;
+          width: 22px;
         }
 
         @media ( max-width: $tablet ) {
@@ -75,9 +80,9 @@
         .#{$prefix}-button,
         .#{$prefix}-default,
         .#{$prefix}-counts {
-            border-radius: initial;
-            display: table;
-            text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .#{$prefix}-button span {
@@ -88,11 +93,6 @@
             display: none;
         }
 
-        .#{$prefix}-button i,
-        .#{$prefix}-default i {
-            display: table-cell;
-        }
-
         .#{$prefix}-layout-default {
             background-color: $colorWhite;
             background: $colorWhite;
@@ -100,15 +100,11 @@
 
         .#{$prefix}-default {
             border-radius: 100%;
+            height: 40px;
             margin: 3px 0 0 2px;
+            width: 40px;
 
-            i {
-                font-size: 20px;
-                height: 40px;
-                width: 40px;
-            }
-
-            &:hover i {
+            &:hover svg {
                 color: $colorWhite;
             }
         }
@@ -135,7 +131,6 @@
 
     .#{$prefix}-toggle {
         @extend %transitionAll;
-        @extend %icon;
         color: #383838;
         cursor: pointer;
         display: none;
@@ -150,25 +145,40 @@
         top: 4px;
     }
 
+    .#{$prefix}-angle-double-right {
+      display: none;
+    }
+
     .#{$prefix}-toggle-active {
         background: #a5a5a5;
         color: #cecece;
+        height: 32px;
         left: 0;
-        width: 25px;
+        width: 32px;
+
+        .#{$prefix}-angle-double-right {
+          display: inline-block;
+        }
+
+        .#{$prefix}-angle-double-left {
+          display: none;
+        }
     }
 
     div[data-element="buttons"] {
-        @extend %transitionAll;
+      @extend %transitionAll;
     }
 
     @media ( min-width: $tablet ) {
         .#{$prefix}-button:hover {
-            text-decoration: none;
+          text-decoration: none;
         }
 
         &:hover .#{$prefix}-toggle,
         .#{$prefix}-toggle-active {
-            display: inline-block;
+          align-items: center;
+          display: flex;
+          justify-content: center;
         }
     }
 }
@@ -185,19 +195,7 @@
     left: 0;
 
     .#{$prefix}-buttons-hide {
-        transform: translateX( -100% );
-    }
-
-    .#{$prefix}-toggle:not(.#{$prefix}-icon-right):before {
-        @extend .#{$prefix}-icon-angle-double-left:before;
-    }
-
-    .#{$prefix}-icon-right {
-        padding: 0 5px;
-
-        &:before {
-            @extend .#{$prefix}-icon-angle-double-right:before;
-        }
+      transform: translateX( -100% );
     }
 
     .#{$prefix}-item {
@@ -227,17 +225,9 @@
         right: 10px;
     }
 
-    .#{$prefix}-toggle:not(.#{$prefix}-icon-right):before {
-        @extend .#{$prefix}-icon-angle-double-right:before;
-    }
-
     .#{$prefix}-icon-right {
-        right: 0;
-        padding: 0 5px;
-
-        &:before {
-            @extend .#{$prefix}-icon-angle-double-left:before;
-        }
+      right: 0;
+      padding: 0 5px;
     }
 
     .#{$prefix}-item {
@@ -286,7 +276,9 @@
         }
 
         .#{$prefix}-count {
-            display: inline-block;
+          align-items: center;
+          display: inline-flex;
+          justify-content: center;
         }
     }
 }
@@ -404,11 +396,24 @@
 }
 
 .#{$prefix}-rounded,
-.#{$prefix}-square {
+.#{$prefix}-square,
+.#{$prefix}-default {
     .#{$prefix}-item .#{$prefix}-button {
-        color: #555;
+      color: #555;
     }
 }
+
+.#{$prefix}-rounded,
+.#{$prefix}-square,
+.#{$prefix}-default,
+.#{$prefix}-buttons {
+    .#{$prefix}-item .#{$prefix}-button {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    }
+}
+
 #post-entry .#{$prefix} {
     .#{$prefix}-link,
     .#{$prefix}-button {

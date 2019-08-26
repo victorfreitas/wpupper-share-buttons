@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 class WPUSB_Ajax_Controller {
@@ -25,7 +25,7 @@ class WPUSB_Ajax_Controller {
 
 	public function share_preview_request() {
 		if ( ! WPUSB_Utils::is_request_ajax() || ! current_user_can( $this->capability ) ) {
-			exit( 0 );
+			exit;
 		}
 
 		$layout   = WPUSB_Utils::post( 'layout', false );
@@ -93,7 +93,7 @@ class WPUSB_Ajax_Controller {
 
 	public function save_custom_css_request() {
 		if ( ! WPUSB_Utils::is_request_ajax() || ! current_user_can( $this->capability ) ) {
-			exit( 0 );
+			exit;
 		}
 
 		if ( ! isset( $_POST['custom_css'] ) ) {

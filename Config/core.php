@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 /*
@@ -64,6 +64,8 @@ final class WPUSB_Core {
 
 	private static $_instance = null;
 
+	const OPTION_PLUGIN_VERSION = 'wpusb_plugin_version';
+
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
@@ -71,7 +73,22 @@ final class WPUSB_Core {
 	 */
 	private function __construct() {
 		add_action( 'widgets_init', array( __CLASS__, 'add_widgets' ) );
+		add_action( 'admin_init', array( $this, 'admin_init' ) );
+
 		self::init_controllers();
+	}
+
+	/**
+	 * Handler on admin init.
+	 *
+	 * @return void
+	 */
+	public function admin_init() {
+		if ( WPUSB_Utils::get_option( self::OPTION_PLUGIN_VERSION ) === WPUSB_PLUGIN_VERSION ) {
+			return;
+		}
+
+		WPUSB_Utils::update_option( self::OPTION_PLUGIN_VERSION, WPUSB_PLUGIN_VERSION );
 	}
 
 	/**
@@ -98,8 +115,8 @@ final class WPUSB_Core {
 	 * @return Void
 	 */
 	public static function register_actions() {
-		register_activation_hook( WPUSB_App::FILE, array( __CLASS__, 'activate' ) );
-		register_deactivation_hook( WPUSB_App::FILE, array( __CLASS__, 'deactivate' ) );
+		register_activation_hook( WPUSB_PLUGIN_FILE, array( __CLASS__, 'activate' ) );
+		register_deactivation_hook( WPUSB_PLUGIN_FILE, array( __CLASS__, 'deactivate' ) );
 	}
 
 	/**
@@ -145,7 +162,7 @@ final class WPUSB_Core {
 	 * @return Void
 	 */
 	public static function activate( $network_wide = false ) {
-		register_uninstall_hook( WPUSB_App::FILE, array( __CLASS__, 'uninstall' ) );
+		register_uninstall_hook( WPUSB_PLUGIN_FILE, array( __CLASS__, 'uninstall' ) );
 
 		if ( $network_wide ) {
 			return self::_create_table_for_network();
@@ -314,7 +331,6 @@ final class WPUSB_Core {
 				post_id    BIGINT(20) NOT NULL DEFAULT 0,
 				facebook   BIGINT(20) NOT NULL DEFAULT 0,
 				twitter    BIGINT(20) NOT NULL DEFAULT 0,
-				google     BIGINT(20) NOT NULL DEFAULT 0,
 				linkedin   BIGINT(20) NOT NULL DEFAULT 0,
 				pinterest  BIGINT(20) NOT NULL DEFAULT 0,
 				tumblr     BIGINT(20) NOT NULL DEFAULT 0,

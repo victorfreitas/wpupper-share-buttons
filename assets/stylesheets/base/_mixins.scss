@@ -23,10 +23,10 @@
            }
         }
     } @else {
-        .#{$prefix} .#{$prefix}-#{$icon} i,
-        .#{$prefix} .#{$prefix}-#{$icon} i:hover,
-        ##{$prefix}-container-follow .#{$prefix}-#{$icon} i,
-        ##{$prefix}-container-follow .#{$prefix}-#{$icon} i:hover {
+        .#{$prefix} .#{$prefix}-#{$icon} svg,
+        .#{$prefix} .#{$prefix}-#{$icon} svg:hover,
+        ##{$prefix}-container-follow .#{$prefix}-#{$icon} svg,
+        ##{$prefix}-container-follow .#{$prefix}-#{$icon} svg:hover {
             color: $iconColor;
         }
     }
@@ -46,14 +46,14 @@
     .#{$prefix}-rounded,
     .#{$prefix}-square {
         .#{$prefix}-#{$element} a:hover,
-        .#{$prefix}-#{$element} a:hover i {
+        .#{$prefix}-#{$element} a:hover svg {
             color: darken( $color, 6 );
         }
     }
 
     ##{$prefix}-container-follow .#{$prefix}-#{$element} {
         .#{$prefix}-btn:hover,
-        .#{$prefix}-btn:hover i {
+        .#{$prefix}-btn:hover svg {
             color: darken( $color, 6 );
         }
     }
@@ -74,19 +74,14 @@
 @mixin social-item($color, $element) {
     .#{$prefix}-social-networks {
 
-        @if pinterest == $element {
-            input + label[for="#{$prefix}-#{$element}"],
-            input + label[for*="-#{$element}"] {
-                padding: 5px 11px;
-            }
-        }
-
         input + label[for*="-#{$element}"]:before {
-            background: $color;
+          background: $color;
         }
 
-        input + .#{$prefix}-#{$element}-icon:after {
-            @extend .#{$prefix}-icon-#{$element}:before;
+        input:checked + label[for*="-#{$element}"] svg {
+          fill: #fff;
+          position: relative;
+          vertical-align: middle;
         }
     }
 }
@@ -98,11 +93,11 @@
             border-radius: 3px;
             color: $colorWhite;
 
-            i {
+            svg {
                 color: $colorWhite;
             }
 
-            &:hover i {
+            &:hover svg {
                 color: $colorWhite;
             }
 

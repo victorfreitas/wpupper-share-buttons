@@ -26,7 +26,7 @@
 			<div class="{{prefix}}-item {{prefix}}-{{itemClass}} {{prefix}}-full {{prefix}}-inside">
 				<a href="#" class="{{prefix}}-link {{prefix}}-btn" title="{{itemTitle}}" data-item="bg-color">
 
-					<i class="{{prefix}}-icon-{{itemClass}}-square-plus" data-item="icons-color"></i>
+          {{> socialIcon }}
 
 					{{#if inside}}
 						<span class="{{prefix}}-title {{prefix}}-btn-inside"
@@ -40,7 +40,7 @@
 	{{#unless first}}
 		<div class="{{prefix}}-item {{prefix}}-{{itemClass}}">
 			<a href="#" class="{{prefix}}-link {{prefix}}-btn" title="{{itemTitle}}" data-item="bg-color">
-				<i class="{{prefix}}-icon-{{itemClass}}-square-plus" data-item="icons-color"></i>
+				{{> socialIcon }}
 			</a>
 		</div>
 	{{/unless}}

@@ -25,7 +25,7 @@ $_items_mobile : ( whatsapp, viber );
     color: #fff;
 }
 
-div[data-#{$prefix}-component="share-preview"] {
+##{$prefix}-share-preview {
     position: relative;
 
     button[data-action="no-title"],
@@ -34,48 +34,73 @@ div[data-#{$prefix}-component="share-preview"] {
         margin-top: 10px;
     }
 
+  .#{$prefix}-preview-close {
+      @extend %close-btn-style;
+      border-radius: 5px;
+      border: 0;
+      box-shadow: none;
+      float: right;
+      font-size: 20px;
+      line-height: 23px;
+      right: 50px;
+      top: 10px;
+      position: relative;
+
+      &:hover,
+      &:active,
+      &:focus {
+          @extend %close-btn-style;
+      }
+  }
+
+  .#{$prefix}-preview-container {
+      background: #fff;
+      border-bottom: 1px solid $btnColor;
+      left: 0;
+      margin: 0;
+      padding: 15px 0 15px 15px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999999;
+
+      .#{$prefix} {
+          margin: 0;
+          padding: 0;
+      }
+
+      .#{$prefix}-count {
+          padding: 5px 8px;
+      }
+
+      @media ( max-width: $tablet ) {
+          padding: 0;
+      }
+  }
+
+  &.#{$prefix}-layout-fixed-left,
+  &.#{$prefix}-layout-fixed-right {
     .#{$prefix}-preview-close {
-        @extend %close-btn-style;
-        border-radius: 5px;
-        border: 0;
-        box-shadow: none;
-        float: right;
-        font-size: 20px;
-        line-height: 23px;
-        margin-right: 50px;
-        margin-top: 10px;
-
-        &:hover,
-        &:active,
-        &:focus {
-            @extend %close-btn-style;
-        }
-    }
-}
-
-.#{$prefix}-preview-container {
-    background: #fff;
-    border-bottom: 1px solid $btnColor;
-    left: 0;
-    margin: 0;
-    padding: 15px 0 15px 15px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 999999;
-
-    .#{$prefix} {
-        margin: 0;
-        padding: 0;
+      right: 10px;
+      top: 0;
     }
 
-    .#{$prefix}-count {
-        padding: 5px 8px;
+    .#{$prefix}-preview-container {
+      height: 100%;
+      width: 100px;
+    }
+  }
+
+  &.#{$prefix}-layout-fixed-right {
+    .#{$prefix}-preview-close {
+      right: 75px;
     }
 
-    @media ( max-width: $tablet ) {
-        padding: 0;
+    .#{$prefix}-preview-container {
+      left: initial;
+      right: 0;
     }
+  }
 }
 
 .#{$prefix}-fixed {
@@ -85,6 +110,12 @@ div[data-#{$prefix}-component="share-preview"] {
 .#{$prefix}-item a span {
     position: relative;
     top: 7px;
+}
+
+.#{$prefix}-preview:not(.#{$prefix}-fixed) {
+  .#{$prefix}-item:not(.#{$prefix}-counter) {
+    display: inline-flex;
+  }
 }
 
 .#{$prefix}-wrap .#{$prefix}-custom-css-btn-content {

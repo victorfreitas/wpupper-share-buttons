@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 class WPUSB_Sharing_Report_View {
@@ -174,9 +174,7 @@ class WPUSB_Sharing_Report_View {
 						<?php
 						$rank = 1;
 
-						foreach ( $top_providers as $name => $counts ) :
-							$provider = ( $name === 'google' ) ? 'google-plus' : $name;
-
+						foreach ( $top_providers as $provider => $counts ) :
 							printf(
 								'<tr class="%s-%s">
 									<td>%d</td>
@@ -187,7 +185,7 @@ class WPUSB_Sharing_Report_View {
 								WPUSB_App::SLUG,
 								$provider,
 								$rank,
-								ucfirst( $name ),
+								ucfirst( $provider ),
 								WPUSB_Utils::format_number( $counts )
 							);
 

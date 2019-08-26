@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 //View
@@ -258,7 +258,6 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 
 			case 'facebook':
 			case 'twitter':
-			case 'google':
 			case 'linkedin':
 			case 'pinterest':
 			case 'tumblr':
@@ -290,7 +289,6 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 			'Title'     => __( 'Title', 'wpupper-share-buttons' ),
 			'Facebook'  => __( 'Facebook', 'wpupper-share-buttons' ),
 			'Twitter'   => __( 'Twitter', 'wpupper-share-buttons' ),
-			'Google'    => __( 'Google+', 'wpupper-share-buttons' ),
 			'Linkedin'  => __( 'Linkedin', 'wpupper-share-buttons' ),
 			'Pinterest' => __( 'Pinterest', 'wpupper-share-buttons' ),
 			'Tumblr'    => __( 'Tumblr', 'wpupper-share-buttons' ),
@@ -314,7 +312,6 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 			'Title'     => array( 'post_title', true ),
 			'Facebook'  => array( 'facebook', true ),
 			'Twitter'   => array( 'twitter', true ),
-			'Google'    => array( 'google', true ),
 			'Linkedin'  => array( 'linkedin', true ),
 			'Pinterest' => array( 'pinterest', true ),
 			'Tumblr'    => array( 'tumblr', true ),
@@ -569,7 +566,6 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 			'post_date'  => '',
 			'facebook'   => '',
 			'twitter'    => '',
-			'google'     => '',
 			'linkedin'   => '',
 			'pinterest'  => '',
 			'tumblr'     => '',

@@ -2,11 +2,11 @@ WPUSB( 'WPUSB.Application', function(Application, $, utils) {
 
 	Application.init = function(container) {
 		WPUSB.BuildComponents.create( container );
-		WPUSB.ColorPicker.create( container );
+    WPUSB.ColorPicker.create( container );
 		Application.highlight( container );
 	};
 
-	Application.highlight = function(container) {
+	Application.highlight = function() {
 		var context = $( '.' + utils.addPrefix( 'settings' ) );
 
 		if ( typeof hljs !== 'object' ) {

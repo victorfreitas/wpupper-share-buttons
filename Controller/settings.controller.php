@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 //Model
@@ -20,7 +20,6 @@ if ( is_admin() ) {
 	WPUSB_App::uses( 'settings-extra', 'View' );
 	WPUSB_App::uses( 'settings-custom-css', 'View' );
 	WPUSB_App::uses( 'settings-faq', 'View' );
-	WPUSB_App::uses( 'addons', 'View' );
 }
 
 class WPUSB_Settings_Controller {
@@ -38,6 +37,20 @@ class WPUSB_Settings_Controller {
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 		add_action( "update_option_{$prefix}_settings", array( $this, 'rebuild_custom_css' ), 10, 3 );
 		add_action( 'admin_body_class', array( $this, 'body_class' ) );
+		add_action( 'in_admin_header', array( $this, 'symbol_defs' ) );
+	}
+
+	/**
+	 * Render the svg defs.
+	 *
+	 * @since 3.18
+	 *
+	 * @return void
+	 */
+	public function symbol_defs() {
+		if ( WPUSB_Utils::is_plugin_page() ) {
+			WPUSB_Social_Elements::symbol_defs();
+		}
 	}
 
 	/**
@@ -77,16 +90,6 @@ class WPUSB_Settings_Controller {
 			array( 'WPUSB_Settings_View', 'render_settings_page' ),
 			'dashicons-share'
 		);
-
-		  $title = __( 'Extensions', 'wpupper-share-buttons' );
-		  add_submenu_page(
-			  WPUSB_App::SLUG,
-			  $title,
-			  $title,
-			  $capability,
-			  WPUSB_Setting::EXTENSIONS,
-			  array( 'WPUSB_Addons', 'render' )
-		  );
 
 		$title = __( 'Extra Settings', 'wpupper-share-buttons' );
 		  add_submenu_page(
@@ -141,11 +144,11 @@ class WPUSB_Settings_Controller {
 		$option     = WPUSB_Utils::get_options_name( 1 );
 		$db_version = WPUSB_Utils::get_option( $option );
 
-		if ( $db_version === WPUSB_App::VERSION ) {
+		if ( $db_version === WPUSB_PLUGIN_VERSION ) {
 			return;
 		}
 
-		WPUSB_Utils::update_option( $option, WPUSB_App::VERSION );
+		WPUSB_Utils::update_option( $option, WPUSB_PLUGIN_VERSION );
 		WPUSB_Core::alter_table();
 
 		$this->_rebuild_css();

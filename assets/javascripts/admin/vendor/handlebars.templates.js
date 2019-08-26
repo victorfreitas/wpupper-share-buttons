@@ -22,13 +22,9 @@ this["WPUSB"]["Templates"]["fixed"] = Handlebars.template({"1":function(containe
     + alias4(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"prefix","hash":{},"data":data}) : helper)))
     + "-layout-"
     + alias4(((helper = (helper = helpers.currentLayout || (depth0 != null ? depth0.currentLayout : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"currentLayout","hash":{},"data":data}) : helper)))
-    + "\" data-item=\"bg-color\">\n					<i class=\""
-    + alias4(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"prefix","hash":{},"data":data}) : helper)))
-    + "-icon-"
-    + alias4(((helper = (helper = helpers.itemClass || (depth0 != null ? depth0.itemClass : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"itemClass","hash":{},"data":data}) : helper)))
-    + "-"
-    + alias4(((helper = (helper = helpers.fixedLayout || (depth0 != null ? depth0.fixedLayout : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"fixedLayout","hash":{},"data":data}) : helper)))
-    + "\" data-item=\"icons-color\"></i>\n				</a>\n			</div>\n\n"
+    + "\" data-item=\"bg-color\">\n"
+    + ((stack1 = container.invokePartial(partials.socialIcon,depth0,{"name":"socialIcon","data":data,"indent":"\t\t\t\t\t","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
+    + "				</a>\n			</div>\n\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.last : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\n";
 },"2":function(container,depth0,helpers,partials,data) {
@@ -91,7 +87,7 @@ this["WPUSB"]["Templates"]["fixed"] = Handlebars.template({"1":function(containe
     var stack1;
 
   return ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
-},"useData":true});
+},"usePartial":true,"useData":true});
 
 this["WPUSB"]["Templates"]["share-preview"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
@@ -110,13 +106,9 @@ this["WPUSB"]["Templates"]["share-preview"] = Handlebars.template({"1":function(
     + alias4(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"prefix","hash":{},"data":data}) : helper)))
     + "-btn\" title=\""
     + alias4(((helper = (helper = helpers.itemTitle || (depth0 != null ? depth0.itemTitle : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"itemTitle","hash":{},"data":data}) : helper)))
-    + "\"\n		   data-item=\"bg-color\">\n\n			<i class=\""
-    + alias4(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"prefix","hash":{},"data":data}) : helper)))
-    + "-icon-"
-    + alias4(((helper = (helper = helpers.itemClass || (depth0 != null ? depth0.itemClass : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"itemClass","hash":{},"data":data}) : helper)))
-    + "-"
-    + alias4(((helper = (helper = helpers.layout || (depth0 != null ? depth0.layout : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"layout","hash":{},"data":data}) : helper)))
-    + "\"\n			   data-item=\"icons-color\"></i>\n\n"
+    + "\"\n		   data-item=\"bg-color\">\n\n"
+    + ((stack1 = container.invokePartial(partials.socialIcon,depth0,{"name":"socialIcon","data":data,"indent":"      ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
+    + "\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.itemInside : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "		</a>\n\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.hasCounter : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
@@ -172,8 +164,8 @@ this["WPUSB"]["Templates"]["share-preview"] = Handlebars.template({"1":function(
     var stack1;
 
   return ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</div>\n<button class=\"button\" data-action=\"no-title\"></button>\n<button class=\"button\" data-action=\"no-counter\"></button>";
-},"useData":true});
+    + "</div>\n<button class=\"button\" data-action=\"no-title\"></button>\n<button class=\"button\" data-action=\"no-counter\"></button>\n";
+},"usePartial":true,"useData":true});
 
 this["WPUSB"]["Templates"]["square-plus"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {});
@@ -231,11 +223,9 @@ this["WPUSB"]["Templates"]["square-plus"] = Handlebars.template({"1":function(co
     + alias4(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"prefix","hash":{},"data":data}) : helper)))
     + "-btn\" title=\""
     + alias4(((helper = (helper = helpers.itemTitle || (depth0 != null ? depth0.itemTitle : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"itemTitle","hash":{},"data":data}) : helper)))
-    + "\" data-item=\"bg-color\">\n\n					<i class=\""
-    + alias4(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"prefix","hash":{},"data":data}) : helper)))
-    + "-icon-"
-    + alias4(((helper = (helper = helpers.itemClass || (depth0 != null ? depth0.itemClass : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"itemClass","hash":{},"data":data}) : helper)))
-    + "-square-plus\" data-item=\"icons-color\"></i>\n\n"
+    + "\" data-item=\"bg-color\">\n\n"
+    + ((stack1 = container.invokePartial(partials.socialIcon,depth0,{"name":"socialIcon","data":data,"indent":"          ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
+    + "\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.inside : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "				</a>\n			</div>\n";
 },"3":function(container,depth0,helpers,partials,data) {
@@ -257,7 +247,7 @@ this["WPUSB"]["Templates"]["square-plus"] = Handlebars.template({"1":function(co
     + alias4(((helper = (helper = helpers.itemName || (depth0 != null ? depth0.itemName : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"itemName","hash":{},"data":data}) : helper)))
     + "\"></span>\n";
 },"7":function(container,depth0,helpers,partials,data) {
-    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
   return "		<div class=\""
     + alias4(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"prefix","hash":{},"data":data}) : helper)))
@@ -271,14 +261,12 @@ this["WPUSB"]["Templates"]["square-plus"] = Handlebars.template({"1":function(co
     + alias4(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"prefix","hash":{},"data":data}) : helper)))
     + "-btn\" title=\""
     + alias4(((helper = (helper = helpers.itemTitle || (depth0 != null ? depth0.itemTitle : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"itemTitle","hash":{},"data":data}) : helper)))
-    + "\" data-item=\"bg-color\">\n				<i class=\""
-    + alias4(((helper = (helper = helpers.prefix || (depth0 != null ? depth0.prefix : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"prefix","hash":{},"data":data}) : helper)))
-    + "-icon-"
-    + alias4(((helper = (helper = helpers.itemClass || (depth0 != null ? depth0.itemClass : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"itemClass","hash":{},"data":data}) : helper)))
-    + "-square-plus\" data-item=\"icons-color\"></i>\n			</a>\n		</div>\n";
+    + "\" data-item=\"bg-color\">\n"
+    + ((stack1 = container.invokePartial(partials.socialIcon,depth0,{"name":"socialIcon","data":data,"indent":"\t\t\t\t","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
+    + "			</a>\n		</div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
   return ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</div>\n<button class=\"button\" data-action=\"no-title\"></button>\n<button class=\"button\" data-action=\"no-counter\"></button>";
-},"useData":true});
+    + "</div>\n<button class=\"button\" data-action=\"no-title\"></button>\n<button class=\"button\" data-action=\"no-counter\"></button>\n";
+},"usePartial":true,"useData":true});

@@ -2,19 +2,20 @@
 Author URL: https://github.com/victorfreitas
 Contributors: victorfreitas
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KYRMWXEEQN58L
-Tags: share, sharing, social, buttons, share buttons, compartir, botones compartir, free share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email, social media buttons, click to tweet, reddit, viber, telegram, gmail, skype, like, pinterest, linkedin, follow us, follow, widget follow, Instagram, YouTube, GitHub, Vimeo, Flickr, Foursquare, SnapChat
+Tags: social share, social sharing, social, social network, share, share buttons, WhatsApp, follow, follow us
 Requires at least: 4.0
 Requires PHP: 5.2.4 or later
-Tested up to: 5.2
-Stable tag: 3.37.1
+Tested up to: 5.2.2
+Stable tag: 3.40
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Implement the Social Share and Follow Us Widget of the major social networks, including the WhatsApp on your website or blog.
+Free social share buttons, share to Facebook, WhatsApp, Messenger, Twitter, Reddit and much more.
 
 == Description ==
 
-Implement the Social Share and Follow Us Widget of the major social networks, including the WhatsApp on your website or blog. The buttons are inserted automatically or can be called via shortcode or PHP method.
+Free social share buttons, share to Facebook, WhatsApp, Messenger, Twitter, Reddit and much more.
+Follow US buttons include with Widgets.
 
 > If you like the plugin, feel free to rate it (on the right side of this page) or [donate](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KYRMWXEEQN58L). I am very pleased to dedicate myself to this plugin. Thank you so much! :)
 
@@ -24,7 +25,7 @@ Implement the Social Share and Follow Us Widget of the major social networks, in
 
 * Store some options with the data that will be used to show, hide, stylize and remove specific buttons.
 
-* The networks support are: - Facebook; - Google Plus; - Twitter; - Linkedin; - Pinterest; - Thumbler; - Whatsapp; - Mailto; - Print Friendly; Telegram; Skype; Viper; - Reddit; - Gmail
+* The networks support are: - Facebook; - Twitter; - Linkedin; - Pinterest; - Thumbler; - Whatsapp; - Mailto; - Print Friendly; Telegram; Skype; Viper; - Reddit; - Gmail
 
 ### Extensions ###
 
@@ -42,7 +43,7 @@ Implement the Social Share and Follow Us Widget of the major social networks, in
 
 == Frequently Asked Questions ==
 
-* Some social networks already have shares counters. Facebook, Linkedin, Pinterest and Google Plus
+* Some social networks already have shares counters. Facebook, Linkedin, Pinterest
 
 == Thanks ==
 
@@ -94,13 +95,15 @@ Translators who did a great job converting the text of the plugin to their nativ
 * Settings panel
 * Set for your sharing icons
 
-== Recommended Plugins ==
-
-The following plugins are recommended
-
-* ["Remove WP Version"](https://wordpress.org/plugins/jogar-mais-wp-security/) by victorfreitas - Remove version WordPress in WP Generator, Feeds, css and js file.
-
 == Changelog ==
+
+= 3.40 - 2019-08-25 =
+
+* Removed Google+ from our list of social sharing networks, this action has been discontinued.
+* Removed Linkedin sharing counts, this action has been discontinued.
+* Changed css icon fonts to SVG, performance improvements.
+* Removed Addons menu from our list.
+* Bug fixes with share counts.
 
 = 3.37.1 - 2019-05-08 =
 

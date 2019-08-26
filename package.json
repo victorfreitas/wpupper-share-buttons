@@ -1,16 +1,18 @@
 {
   "name": "wpupper-share-buttons",
   "description": "Implements grunt in assets on this plugin for WordPress.",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "jsroot": "assets/javascripts",
-  "cssroot": "assets/stylesheets",
-  "cssadmin": "assets/stylesheets/admin",
-  "cssfront": "assets/stylesheets/front",
+  "sassroot": "assets/stylesheets",
+  "sassadmin": "assets/stylesheets/admin",
+  "sassfront": "assets/stylesheets/front",
   "slug": "wpupper-share-buttons",
   "dirLang": "languages",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=development grunt watch",
+    "build": "NODE_ENV=production grunt build",
+    "makepot": "NODE_ENV=production grunt makepot"
   },
   "repository": {
     "type": "git",
@@ -23,17 +25,16 @@
   },
   "homepage": "https://github.com/victorfreitas/wpupper-share-buttons",
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-handlebars": "^1.0.0",
-    "grunt-contrib-jshint": "^1.1.0",
-    "grunt-contrib-sass": "^1.0.0",
-    "grunt-contrib-uglify": "^3.2.1",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-wp-i18n": "^1.0.1",
-    "time-grunt": "^1.4.0"
-  },
-  "dependencies": {
-    "gem": "^2.4.3"
+    "gem": "2.4.3",
+    "grunt": "1.0.1",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-concat": "1.0.1",
+    "grunt-contrib-handlebars": "1.0.0",
+    "grunt-contrib-jshint": "1.1.0",
+    "grunt-contrib-sass": "1.0.0",
+    "grunt-contrib-uglify": "3.2.1",
+    "grunt-contrib-watch": "1.0.0",
+    "grunt-wp-i18n": "1.0.1",
+    "time-grunt": "1.4.0"
   }
 }

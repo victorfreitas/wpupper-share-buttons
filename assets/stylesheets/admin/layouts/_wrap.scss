@@ -82,6 +82,9 @@ $_itemsAvailable : 'items-available';
     float: left;
     padding-right: 0;
 }
+##{$prefix}-widget-table .#{$prefix}-social-networks td {
+  float: none;
+}
 
 .#{$prefix}-title-wrap {
     color: #5B5959;
@@ -224,13 +227,7 @@ $_itemsAvailable : 'items-available';
 }
 
 .#{$prefix}-highlight {
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px dotted #a0a5aa;
-    left: 5px;
-    position: relative;
-    top: 14px;
-    width: 30px;
+  @extend %sortablePlaceholder;
 }
 
 @media ( min-width: 520px ) {

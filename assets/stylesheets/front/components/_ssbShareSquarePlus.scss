@@ -1,25 +1,28 @@
 .#{$prefix}-square-plus {
 	margin-bottom: 10px;
-	margin-top: 10px;
+  margin-top: 10px;
+
+  .#{$prefix}-item {
+    display: inline-block;
+  }
 
 	.#{$prefix}-item .#{$prefix}-btn {
-		border-radius: 3px;
-		color: #fff;
-		height: $size - 5;
-		position: relative;
-		padding: 2px 0 0 2px;
-	    display: table-cell;
-		text-align: center;
-		width: $size;
+    align-items: center;
+    border-radius: 3px;
+    color: #fff;
+    display: flex;
+    height: $size - 5;
+    justify-content: center;
+    position: relative;
+    width: $size;
 
-	    i {
-			color: #fff;
-			font-size: 22px;
-			height: initial;
-			left: -1px;
-			line-height: 27px;
-			position: relative;
-			width: initial;
+	    svg {
+        color: #fff;
+        width: 22px;
+        height: 22px;
+        left: -1px;
+        line-height: 27px;
+        position: relative;
 
 	    	&:hover {
 	    		color: inherit;
@@ -29,7 +32,7 @@
 
 	.#{$prefix}-inside .#{$prefix}-link {
 
-	    i {
+	    svg {
             vertical-align: -moz-middle-with-baseline;
             vertical-align: -webkit-baseline-middle;
 	    }
@@ -48,7 +51,7 @@
 				margin-left: 3px;
 				position: relative;
 				text-transform: uppercase;
-				top: 5px;
+				top: 2px;
 		    }
 	    }
 	}

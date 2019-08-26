@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 class WPUSB_Share_Report {
@@ -34,7 +34,6 @@ class WPUSB_Share_Report {
 			"SELECT
 				SUM(`facebook`) AS facebook,
 				SUM(`twitter`) AS twitter,
-				SUM(`google`) AS google,
 				SUM(`linkedin`) AS linkedin,
 				SUM(`pinterest`) AS pinterest,
 				SUM(`tumblr`) AS tumblr,

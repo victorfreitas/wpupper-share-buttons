@@ -9,7 +9,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 class WPUSB_Shares_View {
@@ -66,21 +66,20 @@ EOD;
 	}
 
 	public static function get_css_buttons_styles( $options, $widget_id = '' ) {
-		$css        = '';
-		$css       .= self::get_css_icons( $options, $widget_id );
-		$css       .= self::get_css_btn_inside( $options, $widget_id );
-		$css       .= self::get_css_counts_color( $options, $widget_id );
-		$css       .= self::get_css_counts_bg_color( $options, $widget_id );
-		$css       .= self::get_css_bg_color( $options, $widget_id );
+		$css  = '';
+		$css .= self::get_css_icons( $options, $widget_id );
+		$css .= self::get_css_btn_inside( $options, $widget_id );
+		$css .= self::get_css_counts_color( $options, $widget_id );
+		$css .= self::get_css_counts_bg_color( $options, $widget_id );
+		$css .= self::get_css_bg_color( $options, $widget_id );
 
 		return $css;
 	}
 
 	public static function get_css_icons( $options, $widget_id = '' ) {
-		$prefix      = WPUSB_App::SLUG;
-		$color       = WPUSB_Utils::get_css_icons_color( $options );
-		$size        = WPUSB_Utils::get_css_icons_size( $options );
-		$color_hover = '';
+		$prefix = WPUSB_App::SLUG;
+		$color  = WPUSB_Utils::get_css_icons_color( $options );
+		$size   = WPUSB_Utils::get_css_icons_size( $options );
 
 		if ( empty( $color ) && empty( $size ) ) {
 			return '';
@@ -93,11 +92,11 @@ EOD;
 		}
 
 		return <<<EOD
-		{$widget_id} .{$prefix_first} .{$prefix}-item .{$prefix}-btn i {
+		{$widget_id} .{$prefix_first} .{$prefix}-item .{$prefix}-btn svg {
 			{$color}
 			{$size}
 		}
-		{$widget_id} .{$prefix_first} .{$prefix}-item .{$prefix}-btn i:hover {
+		{$widget_id} .{$prefix_first} .{$prefix}-item .{$prefix}-btn svg:hover {
 			{$color}
 			{$size}
 		}
@@ -206,6 +205,17 @@ EOD;
 			opacity: 0.8;
 			zoom: 1;
 		}
+EOD;
+	}
+
+	public static function get_svg_icon( $class_item, $class_icon = '' ) {
+		$prefix = WPUSB_App::SLUG;
+		$id     = str_replace( array( '-buttons', '-default', '-square-plus' ), '', $class_item );
+
+		return <<<EOD
+			<svg class="{$prefix}-svg {$class_item} {$class_icon}">
+				<use xlink:href="#{$id}" />
+			</svg>
 EOD;
 	}
 }

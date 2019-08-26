@@ -10,7 +10,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 class WPUSB_Square_Plus {
@@ -60,18 +60,18 @@ EOD;
 		$ga_event   = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
 		$modal_data = WPUSB_Utils::get_modal_data_id( $args->reference->element, $args->number );
 		$class_btn  = WPUSB_Utils::get_class_btn();
+		$svg_icon   = WPUSB_Shares_View::get_svg_icon( $args->item_class_icon, $args->class_icon );
 		$content    = <<<EOD
 			<div class="{$classes}" {$referrer}>
-
 				<a {$link_type}
 				   class="{$args->prefix}-link {$class_btn} {$args->class_link}"
 				   title="{$args->reference->title}"
 				   rel="nofollow"
 				   {$args->reference->popup}
 				   {$ga_event}
-				   {$modal_data}>
-
-				   <i class="{$args->item_class_icon} {$args->class_icon}"></i>
+				   {$modal_data}
+				>
+				   {$svg_icon}
 				   {$inside}
 				</a>
 			</div>

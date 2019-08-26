@@ -175,9 +175,7 @@
         },
 
         isMobile: function() {
-            return ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|Tablet OS|IEMobile|Opera Mini/i.test(
-                navigator.userAgent
-            ) );
+          return /Android|webOS|iPhone|iPad|iPod|BlackBerry|Tablet OS|IEMobile|Opera Mini/i.test(navigator.userAgent);
         },
 
         parseName: function(text, regex) {

@@ -106,12 +106,14 @@
 }
 
 .#{$prefix}-icon-popup {
-    font-size: 22px;
+  fill: #fff;
+  height: 22px;
+  width: 22px;
 }
 
 @each $key, $color in $colors {
 	.#{$prefix}-#{$key}-popup {
-		background-color: $color;
+    background-color: $color;
 
 		&:hover {
 			background-color: darken( $color, 10% );

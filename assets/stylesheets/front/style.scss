@@ -3,8 +3,8 @@
 // ===================================================
 
 @import "../base/variables";
+@import "../base/icons";
 @import "../base/functions";
-@import "../base/fonts";
 @import "../base/helpers";
 @import "../base/mixins";
 
@@ -12,13 +12,6 @@
 // --              COMPONENTS
 // ===================================================
 @import "components/ssbShareSquarePlus";
-
-// ===================================================
-// --              ELEMENTS
-// ===================================================
-
-// -- Icons
-@import "elements/icons/icons";
 
 // -- Buttons
 @import "elements/buttons/ssbShareItem";

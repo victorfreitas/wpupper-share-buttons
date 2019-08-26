@@ -9,7 +9,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 class WPUSB_Layouts_Primary {
@@ -58,18 +58,18 @@ EOD;
 		$modal_data = WPUSB_Utils::get_modal_data_id( $args->reference->element, $args->number );
 		$ga_event   = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
 		$class_btn  = WPUSB_Utils::get_class_btn();
+		$svg_icon   = WPUSB_Shares_View::get_svg_icon( $args->item_class_icon, $args->class_icon );
 		$content    = <<<EOD
 			<div class="{$classes}" {$referrer}>
-
 				<a {$link_type}
 				   {$args->reference->popup}
 				   class="{$args->reference->class_link} {$class_btn} {$args->class_link}"
 				   title="{$args->reference->title}"
 				   {$ga_event}
 				   {$modal_data}
-				   rel="nofollow">
-
-				   <i class="{$args->item_class_icon} {$args->class_icon}"></i>
+				   rel="nofollow"
+				>
+				   {$svg_icon}
 				   {$inside}
 				</a>
 				{$counter}

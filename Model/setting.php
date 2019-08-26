@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 class WPUSB_Setting {
@@ -84,14 +84,6 @@ class WPUSB_Setting {
 	 * @var string
 	 */
 	private $printer;
-
-	/**
-	 * Google value
-	 *
-	 * @since 1.0
-	 * @var string
-	 */
-	private $google;
 
 	/**
 	 * Pinterest value
@@ -489,7 +481,6 @@ class WPUSB_Setting {
 	const USE_OPTIONS    = 'wpusb-faq';
 	const CUSTOM_CSS     = 'wpusb-custom-css';
 	const SHARING_REPORT = 'wpusb-sharing-report';
-	const EXTENSIONS     = 'wpusb-addons';
 
 	/**
 	* Nonce inset social share counts
@@ -587,38 +578,6 @@ class WPUSB_Setting {
 		endforeach;
 
 		return apply_filters( WPUSB_App::SLUG . 'options-args', $options );
-	}
-
-	/**
-	 * Search addons via API
-	 *
-	 * @since 3.36
-	 * @param null
-	 * @return Mixed
-	 */
-	public function get_addons() {
-		$addons = get_transient( WPUSB_App::SLUG . '_addons_list' );
-
-		if ( false === $addons ) {
-			$raw_addons = wp_safe_remote_get(
-				'https://api.letzup.com/addons/list.json',
-				array(
-					'httpversion' => '1.1',
-					'user-agent'  => WPUSB_App::NAME . '/' . WPUSB_App::VERSION,
-					'headers'     => array(
-						'referer' => home_url(),
-					),
-				)
-			);
-
-			$addons = WPUSB_Utils::retrieve_body_json( $raw_addons );
-
-			if ( $addons ) {
-				set_transient( WPUSB_App::SLUG . '_addons_list', $addons, DAY_IN_SECONDS );
-			}
-		}
-
-		return $addons;
 	}
 
 	/**

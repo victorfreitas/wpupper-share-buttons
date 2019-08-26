@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 class WPUSB_Ajax_Sharing_Reports_Controller {
@@ -82,7 +82,7 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 	 */
 	private function _validate() {
 		if ( ! WPUSB_Utils::is_request_ajax() ) {
-			exit( 0 );
+			exit;
 		}
 
 		$nonce     = WPUSB_Utils::post( 'nonce', false );
@@ -185,7 +185,7 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 					 `pinterest` = %d,
 					 `tumblr` = %d,
 					 `buffer` = %d,
-					 `total`= (`facebook` + `twitter` + `google` + `linkedin` + `pinterest` + `tumblr` + `buffer`)
+					 `total`= (`facebook` + `twitter` + `linkedin` + `pinterest` + `tumblr` + `buffer`)
 				 WHERE `post_id` = %d
 				",
 				$this->post_title,

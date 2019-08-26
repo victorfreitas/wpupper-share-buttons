@@ -7,7 +7,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 class WPUSB_Widgets_View {
@@ -138,10 +138,10 @@ class WPUSB_Widgets_View {
 						<?php _e( 'Drag & Drop to order and click to select', 'wpupper-share-buttons' ); ?>
 					</th>
 					<?php
-						$order = $instance->get_property( 'items', array() );
-						$items = array_merge( $order, WPUSB_Social_Elements::$items_available );
-
-						$instance->render_checkboxes( $items );
+					$instance->render_checkboxes( array_merge(
+						$instance->get_property( 'items', array() ),
+						WPUSB_Social_Elements::$items_available
+					) );
 					?>
 				</tr>
 			</tbody>
@@ -165,10 +165,7 @@ class WPUSB_Widgets_View {
 							  data-message="<?php _e( 'The [item] URL field is empty.', 'wpupper-share-buttons' ); ?>"
 							  data-element="info-message"></span>
 					</th>
-					<?php
-						$items = $instance->get_property( 'items', array() );
-						$instance->render_checkboxes( $networks );
-					?>
+					<?php $instance->render_checkboxes( $networks ); ?>
 				</tr>
 			</tbody>
 		</table>
@@ -179,7 +176,6 @@ class WPUSB_Widgets_View {
 		$instance   = self::$instance;
 		$field_id   = esc_attr( $instance->get_field_id( $id ) );
 		$field_name = esc_attr( $instance->get_field_name( $id ) );
-		$is_email   = ( $id === 'email' );
 	?>
 		<p id="<?php printf( '%s-follow-us-item', WPUSB_App::SLUG ); ?>">
 
@@ -199,58 +195,14 @@ class WPUSB_Widgets_View {
 				  data-field="content"
 				  data-element="<?php echo $id; ?>">
 
-				<?php if ( ! $is_email ) : ?>
-
-				<label for="<?php echo $field_id; ?>-url">
-					<?php _e( 'Enter the network URL here:', 'wpupper-share-buttons' ); ?>
-				</label>
-				<input type="text"
-					   id="<?php echo $field_id; ?>-url"
-					   class="large-text"
-					   data-action="field-url"
-					   data-element="<?php echo $id; ?>-url"
-					   name="<?php printf( '%s[url]', $field_name ); ?>"
-					   value="<?php echo esc_url( $instance->get_network( $id, 'url' ) ); ?>">
-
-				<span class="description">
-					<?php
-						printf(
-							'<span class="bold">%s</span> %s',
-							esc_html__( 'Example:', 'wpupper-share-buttons' ),
-							$network->url
-						);
-					?>
-				</span>
-
-				<?php endif; ?>
-
 				<?php
-				if ( $is_email ) :
-					$value       = esc_attr( $instance->get_network( $id, 'email' ) );
-					$admin_email = WPUSB_Utils::rm_tags( get_option( 'admin_email' ) );
-					$subject     = esc_attr( $instance->get_network( $id, 'subject' ) );
+				if ( method_exists( __CLASS__, "render_{$network->method}" ) ) {
+					call_user_func_array(
+						array( __CLASS__, "render_{$network->method}" ),
+						array( $instance, $id, $field_id, $field_name, $network )
+					);
+				}
 				?>
-
-				<label for="<?php echo $field_id; ?>-email">
-				<?php _e( 'Your email:', 'wpupper-share-buttons' ); ?>
-				</label>
-				<input type="text"
-				   id="<?php echo $field_id; ?>-email"
-				   class="large-text"
-				   name="<?php printf( '%s[email]', $field_name ); ?>"
-				   value="<?php echo empty( $value ) ? $admin_email : $value; ?>">
-
-				<label for="<?php echo $field_id; ?>-subject">
-				<?php _e( 'Subject:', 'wpupper-share-buttons' ); ?>
-				</label>
-				<input type="text"
-				   id="<?php echo $field_id; ?>-subject"
-				   class="large-text"
-				   name="<?php printf( '%s[subject]', $field_name ); ?>"
-				   value="<?php echo empty( $subject ) ? $network->subject : $subject; ?>">
-
-				<?php endif; ?>
-
 				<label for="<?php echo $field_id; ?>-title">
 					<?php _e( 'Give the title:', 'wpupper-share-buttons' ); ?>
 				</label>
@@ -262,6 +214,93 @@ class WPUSB_Widgets_View {
 					   placeholder="<?php echo $network->title; ?>">
 			</span>
 		</p>
+	<?php
+	}
+
+	public static function render_default( $instance, $id, $field_id, $field_name, $network ) {
+	?>
+		<label for="<?php echo $field_id; ?>-url">
+			<?php _e( 'Enter the network URL here:', 'wpupper-share-buttons' ); ?>
+		</label>
+		<input type="text"
+				id="<?php echo $field_id; ?>-url"
+				class="large-text"
+				data-action="field-url"
+				data-element="<?php echo $id; ?>-url"
+				name="<?php printf( '%s[url]', $field_name ); ?>"
+				value="<?php echo esc_url( $instance->get_network( $id, 'url' ) ); ?>">
+
+		<span class="description">
+			<?php
+				printf(
+					'<span class="bold">%s</span> %s',
+					esc_html__( 'Example:', 'wpupper-share-buttons' ),
+					$network->url
+				);
+			?>
+		</span>
+	<?php
+	}
+
+	public static function render_email( $instance, $id, $field_id, $field_name, $network ) {
+		$value       = esc_attr( $instance->get_network( $id, 'email' ) );
+		$admin_email = WPUSB_Utils::rm_tags( get_option( 'admin_email' ) );
+		$subject     = esc_attr( $instance->get_network( $id, 'subject' ) );
+	?>
+		<label for="<?php echo $field_id; ?>-email">
+		<?php _e( 'Your email:', 'wpupper-share-buttons' ); ?>
+		</label>
+		<input type="text"
+			id="<?php echo $field_id; ?>-email"
+			class="large-text"
+			name="<?php printf( '%s[email]', $field_name ); ?>"
+			value="<?php echo empty( $value ) ? $admin_email : $value; ?>">
+
+		<label for="<?php echo $field_id; ?>-subject">
+		<?php _e( 'Subject:', 'wpupper-share-buttons' ); ?>
+		</label>
+		<input type="text"
+			id="<?php echo $field_id; ?>-subject"
+			class="large-text"
+			name="<?php printf( '%s[subject]', $field_name ); ?>"
+			value="<?php echo empty( $subject ) ? $network->subject : $subject; ?>">
+	<?php
+	}
+
+	public static function render_whatsapp( $instance, $id, $field_id, $field_name, $network ) {
+		$value   = esc_attr( $instance->get_network( $id, 'phone' ) );
+		$message = esc_attr( $instance->get_network( $id, 'message' ) );
+	?>
+		<label for="<?php echo $field_id; ?>-whatsapp">
+			<?php _e( 'WhatsApp number:', 'wpupper-share-buttons' ); ?>
+		</label>
+
+		<input
+			type="number"
+			id="<?php echo $field_id; ?>-whatsapp"
+			class="large-text"
+			name="<?php printf( '%s[phone]', $field_name ); ?>"
+			value="<?php echo $value; ?>"
+		>
+
+		<span class="description">
+			<?php echo $network->helper_phone; ?>
+		</span>
+
+		<label for="<?php echo $field_id; ?>-message">
+			<?php _e( 'Message:', 'wpupper-share-buttons' ); ?>
+		</label>
+
+		<textarea
+			id="<?php echo $field_id; ?>-message"
+			class="large-text"
+			name="<?php printf( '%s[message]', $field_name ); ?>"
+			rows="4"
+		><?php echo $message; ?></textarea>
+
+		<span class="description">
+			<?php echo $network->helper_text; ?>
+		</span>
 	<?php
 	}
 

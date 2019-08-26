@@ -9,6 +9,16 @@
 	}
 }
 
+%sortablePlaceholder {
+  background: #f9f9f9;
+  border-radius: 5px;
+  border: 1px dotted #a0a5aa;
+  height: 25px;
+  position: relative;
+  top: 1px;
+  width: 33px;
+}
+
 %ellipsis {
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -25,18 +35,6 @@
 	display: block;
 	height: auto;
 	max-width: 100%;
-}
-
-%icon {
-	font-family: $prefix !important;
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 }
 
 %alignCenterV {

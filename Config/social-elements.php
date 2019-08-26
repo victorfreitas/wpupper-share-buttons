@@ -9,7 +9,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 class WPUSB_Social_Elements {
@@ -49,7 +49,6 @@ class WPUSB_Social_Elements {
 	public static $items_available = array(
 		'facebook'  => 'facebook',
 		'twitter'   => 'twitter',
-		'google'    => 'google',
 		'whatsapp'  => 'whatsapp',
 		'pinterest' => 'pinterest',
 		'linkedin'  => 'linkedin',
@@ -93,7 +92,7 @@ class WPUSB_Social_Elements {
 	 */
 	private static function _get_elements() {
 		$plugin_name  = rawurlencode( WPUSB_App::NAME );
-		$prefix_icons = apply_filters( WPUSB_Utils::add_prefix( '_prefix_class_icons' ), WPUSB_Utils::add_prefix( '-icon-' ) );
+		$prefix_icons = apply_filters( WPUSB_Utils::add_prefix( '_prefix_class_icons' ), WPUSB_Utils::add_prefix( '-' ) );
 		$tag_icon     = WPUSB_Utils::add_prefix( '_class_icon' );
 		$std          = new stdClass();
 
@@ -135,36 +134,18 @@ class WPUSB_Social_Elements {
 
 		/**
 		 * @var Object
-		 * @see Google Plus
-		 */
-		$std->google              = new stdClass();
-		$std->google->name        = __( 'Google Plus', 'wpupper-share-buttons' );
-		$std->google->element     = 'google-plus';
-		$std->google->link        = 'https://plus.google.com/share?url=' . self::$url;
-		$std->google->title       = __( 'Share on Google+', 'wpupper-share-buttons' );
-		$std->google->class       = WPUSB_Utils::add_prefix( '-google-plus' );
-		$std->google->class_item  = self::$item;
-		$std->google->class_link  = self::$class_button;
-		$std->google->class_icon  = apply_filters( $tag_icon, $prefix_icons . 'google-plus' );
-		$std->google->popup       = self::$action;
-		$std->google->inside      = __( 'Share', 'wpupper-share-buttons' );
-		$std->google->has_counter = false;
-		$std->google->target      = '_blank';
-
-		/**
-		 * @var Object
 		 * @see WhatsApp
 		 */
 		$std->whatsapp              = new stdClass();
 		$std->whatsapp->name        = __( 'WhatsApp', 'wpupper-share-buttons' );
 		$std->whatsapp->element     = 'whatsapp';
-		$std->whatsapp->link        = 'whatsapp://send?text=' . self::$whatsapp_text . self::$url;
+		$std->whatsapp->link        = 'https://web.whatsapp.com/send?text=' . self::$whatsapp_text . self::$url;
 		$std->whatsapp->title       = __( 'Share on WhatsApp', 'wpupper-share-buttons' );
 		$std->whatsapp->class       = WPUSB_Utils::add_prefix( '-whatsapp' );
 		$std->whatsapp->class_item  = self::$item;
 		$std->whatsapp->class_link  = self::$class_button;
 		$std->whatsapp->class_icon  = apply_filters( $tag_icon, $prefix_icons . 'whatsapp' );
-		$std->whatsapp->popup       = 'data-whatsapp-wpusb="https://web.whatsapp.com/"';
+		$std->whatsapp->popup       = sprintf( 'data-whatsapp-%s="whatsapp://"', WPUSB_App::SLUG );
 		$std->whatsapp->inside      = __( 'Share', 'wpupper-share-buttons' );
 		$std->whatsapp->has_counter = false;
 		$std->whatsapp->target      = '_blank';
@@ -202,7 +183,7 @@ class WPUSB_Social_Elements {
 		$std->linkedin->class_icon  = apply_filters( $tag_icon, $prefix_icons . 'linkedin' );
 		$std->linkedin->popup       = self::$action;
 		$std->linkedin->inside      = __( 'Share', 'wpupper-share-buttons' );
-		$std->linkedin->has_counter = true;
+		$std->linkedin->has_counter = false;
 		$std->linkedin->target      = '_blank';
 
 		/**
@@ -722,5 +703,37 @@ class WPUSB_Social_Elements {
 			self::$thumbnail,
 			rawurlencode( $description )
 		);
+	}
+
+	/**
+	 * Render the svg defs.
+	 *
+	 * @since 3.18
+	 *
+	 * @return void
+	 */
+	public static function symbol_defs() {
+		if ( ! file_exists( self::get_social_share_svg_path() ) ) {
+			return;
+		}
+
+		if ( apply_filters( WPUSB_App::SLUG . '/render_svg', true ) ) {
+			printf( '%1$s<!-- %2$s SVG ICONS -->%1$s', PHP_EOL, WPUSB_App::NAME );
+
+			include_once self::get_social_share_svg_path();
+
+			printf( '<!-- / %1$s SVG ICONS -->%2$s', WPUSB_App::NAME, PHP_EOL );
+		}
+	}
+
+	/**
+	 * Get the social share svg devs path.
+	 *
+	 * @since 3.18
+	 *
+	 * @return string
+	 */
+	public static function get_social_share_svg_path() {
+		return WPUSB_Utils::file_path('svg/icons.php');
 	}
 }

@@ -9,7 +9,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 class WPUSB_Modal {
@@ -33,8 +33,8 @@ class WPUSB_Modal {
 		return <<<EOD
 			<div class="{$prefix}-modal-mask"
 				 data-element="{$prefix}-modal-{$number}"
-			     style="display:none;">
-
+				 style="display:none;"
+			>
 				<a class="{$prefix}-btn-close" data-action="close-popup">
 					<i class="{$prefix}-icon-close"></i>
 				</a>
@@ -78,6 +78,8 @@ EOD;
 				$social->popup = str_replace( '_permalink_', $permalink, $social->popup );
 			}
 
+			$svg_icon = WPUSB_Shares_View::get_svg_icon( $social->class_icon, "{$prefix}-icon-popup" );
+
 			$items .= <<<EOD
 				<div class="{$prefix}-element-popup {$prefix}-item-{$social->element}">
 					<a {$link_attr}
@@ -85,9 +87,9 @@ EOD;
 					   rel="nofollow"
 					   title="{$social->title}"
 					   {$ga_event}
-					   {$social->popup}>
-
-						<i class="{$social->class_icon} {$prefix}-icon-popup"></i>
+					   {$social->popup}
+					>
+						{$svg_icon}
 						<span class="{$prefix}-name-popup" data-name="{$social->name}"></span>
 					</a>
 				</div>

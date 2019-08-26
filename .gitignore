@@ -1,6 +1,10 @@
+*.map
+*.log
+.phpintel
+
+yarn.lock
+
 .sass-cache
 node_modules
-.phpintel/
+
 assets/stylesheets/style.min*.css
-*.log
-yarn.lock

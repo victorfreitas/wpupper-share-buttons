@@ -9,7 +9,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 class WPUSB_Fixed_Left {
@@ -69,18 +69,18 @@ EOD;
 		$modal_data     = WPUSB_Utils::get_modal_data_id( $args->reference->element, $args->number );
 		$class_btn      = WPUSB_Utils::get_class_btn();
 		$class_icon     = apply_filters( WPUSB_Utils::add_prefix( '_item_class_icon' ), "{$args->reference->class_icon}-{$layout}", $args->reference );
+		$svg_icon       = WPUSB_Shares_View::get_svg_icon( $class_icon, $args->class_icon );
 		$content        = <<<EOD
 			<div class="{$classes}">
-
 				<a {$link_type}
 				   {$args->reference->popup}
 				   class="{$args->prefix}-layout-{$current_layout} {$args->prefix}-{$btn_class} {$class_btn} {$args->class_link}"
 				   title="{$args->reference->title}"
 				   {$ga_event}
 				   {$modal_data}
-				   rel="nofollow">
-
-				   <i class="{$class_icon} {$args->class_icon}"></i>
+				   rel="nofollow"
+				>
+				   {$svg_icon}
 				</a>
 			</div>
 EOD;
@@ -172,17 +172,20 @@ EOD;
 	/**
 	 * Close buttons container
 	 *
-	 * @since 3.0.0
-	 * @param Object $args
+	 * @since 3.18.0
 	 * @return String
 	 *
 	 */
-	public static function end( $args ) {
-		$prefix  = WPUSB_App::SLUG;
-		$content = <<<EOD
+	public static function end() {
+		$prefix    = WPUSB_App::SLUG;
+		$svg_left  = WPUSB_Shares_View::get_svg_icon( "{$prefix}-angle-double-left" );
+		$svg_right = WPUSB_Shares_View::get_svg_icon( "{$prefix}-angle-double-right" );
+		$content   = <<<EOD
 				</div>
-				<span class="{$prefix}-toggle"
-					  data-action="close-buttons"></span>
+				<span class="{$prefix}-toggle" data-action="close-buttons">
+					{$svg_left}
+					{$svg_right}
+				</span>
 			</div>
 EOD;
 		return apply_filters( WPUSB_App::SLUG . '-close-buttons-fixed', $content );
@@ -197,7 +200,7 @@ EOD;
 	 *
 	 */
 	public static function _set_layout( $layout ) {
-		self::$layout         = ( $layout === 'square2' ) ? 'default' : $layout;
+		self::$layout         = $layout === 'square2' ? 'default' : $layout;
 		self::$current_layout = $layout;
 	}
 }

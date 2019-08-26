@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 abstract class WPUSB_Utils_View {
@@ -493,12 +493,6 @@ abstract class WPUSB_Utils_View {
 				<li class="<?php echo WPUSB_Utils::selected_menu( WPUSB_Setting::HOME_SETTINGS ); ?>">
 					<a href="<?php echo WPUSB_Utils::get_page_url( WPUSB_Setting::HOME_SETTINGS ); ?>">
 						<?php _e( 'General', 'wpupper-share-buttons' ); ?>
-					</a>
-				</li>
-
-				<li class="<?php echo WPUSB_App::SLUG . '-addon'; ?> <?php echo WPUSB_Utils::selected_menu( WPUSB_Setting::EXTENSIONS ); ?>">
-					<a href="<?php echo WPUSB_Utils::get_page_url( WPUSB_Setting::EXTENSIONS ); ?>">
-						<?php _e( 'Extensions', 'wpupper-share-buttons' ); ?>
 					</a>
 				</li>
 

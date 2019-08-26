@@ -6,9 +6,8 @@ WPUSB( 'WPUSB.ProvidersProcess', function(Model, $, utils) {
 
 	Model.init = function() {
 		if ( utils.isMobile() ) {
-			this.parseMessengerLink();
-		} else {
-			this.parseWhatsAppLink();
+      this.parseMessengerLink();
+      this.parseWhatsAppLink();
 		}
 	};
 
@@ -17,8 +16,8 @@ WPUSB( 'WPUSB.ProvidersProcess', function(Model, $, utils) {
 	};
 
 	Model.parseWhatsAppLink = function() {
-		this.parseProviderLink( 'whatsapp', 'whatsapp://', true );
-	};
+		this.parseProviderLink( 'whatsapp', /https?:\/\/.+?\//, true );
+  };
 
 	Model.parseProviderLink = function(provider, search, changes) {
 		var i      = 0

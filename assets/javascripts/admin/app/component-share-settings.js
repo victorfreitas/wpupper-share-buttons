@@ -35,9 +35,8 @@ WPUSB( 'WPUSB.Components.ShareSettings', function(Model, $, utils) {
 	};
 
 	Model.fn._onKeyupIconsSize= function(event) {
-		var value  = Math.abs( event.currentTarget.value )
-		  , item   = $( '.wpusb-item i' )
-		  , layout = $( '[data-preview-layout]' ).data( 'preview-layout' )
+		var value = Math.abs( event.currentTarget.value )
+		  , item  = $( '.wpusb-item i' )
 		;
 
 		if ( value > 100 ) {

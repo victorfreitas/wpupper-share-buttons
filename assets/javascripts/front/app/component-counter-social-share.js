@@ -27,37 +27,30 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 	Model.fn.setPropNames = function(isReport) {
 		this.facebook         = this.elements.facebook;
 		this.tumblr           = this.elements.tumblr;
-		this.linkedin         = this.elements.linkedin;
 		this.pinterest        = this.elements.pinterest;
 		this.buffer           = this.elements.buffer;
 		this.totalShare       = this.elements.totalShare;
 		this.totalCounter     = 0;
 		this.facebookCounter  = 0;
 		this.tumblrCounter    = 0;
-		this.linkedinCounter  = 0;
 		this.pinterestCounter = 0;
 		this.bufferCounter    = 0;
 		this.max              = 5;
 		this.isReport         = isReport;
 		this.minCount         = utils.getMinCount();
-	};
+  };
 
 	Model.fn.fireRequest = function() {
 		this.items = [
 			{
 				reference : 'facebookCounter',
 				element   : 'facebook',
-				url       : 'https://graph.facebook.com/?id=' + this.data.elementUrl
+				url       : 'https://graph.facebook.com/?id='.concat(this.data.elementUrl, '&fields=engagement&access_token=936514436492766|kwOceyyPlXqKnVea3Xx-M28kV8s'),
 			},
 			{
 				reference : 'tumblrCounter',
 				element   : 'tumblr',
 				url       : 'https://api.tumblr.com/v2/share/stats?url=' + this.data.elementUrl
-			},
-			{
-				reference : 'linkedinCounter',
-				element   : 'linkedin',
-				url       : 'https://www.linkedin.com/countserv/count/share?url=' + this.data.elementUrl
 			},
 			{
 				reference : 'pinterestCounter',
@@ -157,7 +150,13 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 
 	Model.fn.getTotalShareFacebook = function(response) {
 		if ( typeof response === 'object' ) {
-			return parseInt( response.share_count || 0 );
+      var engagement = response.engagement || {};
+      var reactionCount = parseInt( engagement.reaction_count || 0, 10 );
+      var commentCount = parseInt( engagement.comment_count || 0, 10 );
+      var shareCount = parseInt( engagement.share_count || 0, 10 );
+      var commentPluginCount = parseInt( engagement.comment_plugin_count || 0, 10 );
+
+			return reactionCount + commentCount + shareCount + commentPluginCount;
 		}
 
 		return 0;
@@ -186,11 +185,10 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 		}
 
 		var params = {
-	       	action          : this.addPrefix( 'share_count_reports', '_' ),
+	       	action        : this.addPrefix( 'share_count_reports', '_' ),
 		    reference       : this.data.attrReference,
 		    count_facebook  : this.facebookCounter,
 		    count_tumblr    : this.tumblrCounter,
-		    count_linkedin  : this.linkedinCounter,
 		    count_pinterest : this.pinterestCounter,
 		    count_buffer    : this.bufferCounter,
 		    nonce           : this.data.attrNonce

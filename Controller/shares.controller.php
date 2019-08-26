@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 //View
@@ -33,6 +33,20 @@ class WPUSB_Shares_Controller {
 		add_action( 'add_meta_boxes', array( $this, 'register_meta_boxes' ) );
 		add_action( 'save_post', array( $this, 'save_meta' ) );
 		add_action( 'body_class', array( $this, 'body_class' ) );
+		add_action( 'wp_head', array( $this, 'symbol_defs' ), 99 );
+	}
+
+	/**
+	 * Render the svg defs.
+	 *
+	 * @since 3.18
+	 *
+	 * @return void
+	 */
+	public function symbol_defs() {
+		if ( WPUSB_Utils::is_active() ) {
+			WPUSB_Social_Elements::symbol_defs();
+		}
 	}
 
 	/**

@@ -1,11 +1,12 @@
 WPUSB( 'WPUSB.Sortable', function(Model, $, utils) {
 
-	Model.create = function(container) {
-		if ( !container.length ) {
+	Model.create = function(element) {
+		if ( !element.length ) {
 			return;
 		}
 
-		this.element = container;
+    this.element = element;
+
 		this.init();
 	};
 
@@ -14,13 +15,14 @@ WPUSB( 'WPUSB.Sortable', function(Model, $, utils) {
 	};
 
 	Model.sortOptions = function() {
+    var tdClassName = utils.addPrefix( 'td' );
+    var placeholder = utils.addPrefix( 'sortable-placeholder' );
+
 		return {
-			opacity     : 0.4,
-			cursor      : 'move',
-			tolerance   : 'pointer',
-			items       : '> td',
-			placeholder : utils.addPrefix( 'sortable-placeholder' ),
+			opacity: 0.4,
+			cursor: 'move',
+      items: '> td',
+      placeholder: tdClassName.concat( ' ', placeholder ),
 		};
 	};
-
 }, {} );

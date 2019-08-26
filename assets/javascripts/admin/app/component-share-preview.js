@@ -25,34 +25,41 @@ WPUSB( 'WPUSB.Components.SharePreview', function(Model, $, utils) {
 	};
 
 	Model.fn._onClickLayout = function(event) {
-		this.layout = event.currentTarget.value;
+    this.layout = event.currentTarget.value;
+    this.$el.attr('class', '');
 
 		if ( event.currentTarget.className.match( 'fixed-layout' ) ) {
-			this.layout = $( '[data-element="position-fixed"]:checked' ).val();
-		}
+      this.layout = $( '[data-element="position-fixed"]:checked' ).val();
+    }
 
-		$( '.' + this.addPrefix( 'layout-options' ) ).trigger( 'changeLayout', this.layout );
+    if ( /^(fixed-left|fixed-right)$/.test( this.layout ) ) {
+      this.$el.attr( 'class', utils.addPrefix( 'layout-'.concat( this.layout ) ) );
+    }
+
+    $( '.' + this.addPrefix( 'layout-options' ) ).trigger( 'changeLayout', this.layout );
 
 		this._update();
 		this._stop();
 	};
 
 	Model.fn._onClickList = function(event) {
-		this.layout = $( '.layout-preview:checked' ).val();
+    this.layout = $( '.layout-preview:checked' ).val();
 
 		this._update();
 		this._stop();
 	};
 
 	Model.fn.sortOptions = function() {
+    var tdClassName = this.addPrefix( 'select-item' );
+
 		return {
-			opacity     : 0.5,
-			cursor      : 'move',
-			tolerance   : 'pointer',
-			items       : '> td',
-			placeholder : this.addPrefix( 'highlight' ),
-	        update      : this._update.bind( this ),
-	        stop        : this._stop.bind( this )
+			opacity: 0.5,
+			cursor: 'move',
+			tolerance: 'pointer',
+			items: '> td',
+			placeholder: tdClassName.concat( ' ', this.addPrefix( 'highlight' ) ),
+      update: this._update.bind( this ),
+      stop: this._stop.bind( this ),
 		};
 	};
 

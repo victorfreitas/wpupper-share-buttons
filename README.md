@@ -3,11 +3,11 @@
 - Author: Victor Freitas
 - Contributors: victorfreitas
 - Donate link: [Donate Now](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KYRMWXEEQN58L)
-- Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, google plus, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email form, social media buttons, click to tweet, -pinterest, reddit, viber, telegram, gmail, skype, like, linkedin.
+- Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email form, social media buttons, click to tweet, -pinterest, reddit, viber, telegram, gmail, skype, like, linkedin.
 - Requires at least: 3.0
-- Tested up to: 4.9.8
+- Tested up to: 5.2.2
 - PHP version: 5.2
-- Stable tag: 3.37.0
+- Stable tag: 3.40
 - License: GPLv2 or later
 - License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,7 +53,7 @@ $args = array(
      'class_link'   => '', // String
      'class_icon'   => '', // String
      'layout'       => 'default', //String
-     'items'        => '', // Mixed String|Array -- Example: 'facebook, google' | array( 'facebook', 'google' )
+     'items'        => '', // Mixed String|Array -- Example: 'facebook' | array( 'facebook', 'twitter' )
      'title'        => '', //String
      'header_title' => '', //String
      'url'          => '', //string
@@ -76,6 +76,14 @@ Layout options: default, buttons, rounded, square
 4. Using the content editor -> [wpusb class_first="" class_second="" class_link="" class_icon="" layout="default" remove_inside="0" remove_counter="0"]
 
 ## Changelog
+
+## 3.40 - 2019-08-25
+
+* Removed Google+ from our list of social sharing networks, this action has been discontinued.
+* Removed Linkedin sharing counts, this action has been discontinued.
+* Changed css icon fonts to SVG, performance improvements.
+* Removed Addons menu from our list.
+* Bug fixes with share counts.
 
 ## 3.37.0
 

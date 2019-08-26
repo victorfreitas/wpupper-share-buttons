@@ -8,7 +8,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 final class WPUSB_Scripts {
@@ -59,9 +59,9 @@ final class WPUSB_Scripts {
 
 		wp_enqueue_script(
 			WPUSB_Utils::add_prefix( '-admin-scripts' ),
-			WPUSB_Utils::plugin_url( 'javascripts/admin/built.js' ),
+			WPUSB_Utils::build_url( 'admin.js' ),
 			array( 'jquery' ),
-			WPUSB_Utils::filetime( WPUSB_Utils::file_path( 'javascripts/admin/built.js' ) ),
+			WPUSB_Utils::filetime( WPUSB_Utils::build_path( 'admin.js' ) ),
 			true
 		);
 
@@ -72,22 +72,17 @@ final class WPUSB_Scripts {
 		);
 
 		$page_settings = WPUSB_Utils::is_panel_home();
-		$handle        = WPUSB_Utils::add_prefix( '-front-style' );
 
 		if ( $page_settings ) {
-			wp_register_style(
-				$handle,
-				WPUSB_Utils::plugin_url( self::get_front_css_path() ),
-				array(),
-				WPUSB_Utils::filetime( WPUSB_Utils::file_path( self::get_front_css_path() ) )
-			);
+			$handle = WPUSB_Utils::add_prefix( '-style' );
+			self::add_style_front();
 		}
 
 		wp_enqueue_style(
 			WPUSB_Utils::add_prefix( '-admin-style' ),
-			WPUSB_Utils::plugin_url( 'stylesheets/admin.css' ),
-			( $page_settings ) ? array( $handle ) : array(),
-			WPUSB_Utils::filetime( WPUSB_Utils::file_path( 'stylesheets/admin.css' ) )
+			WPUSB_Utils::build_url( 'admin.css' ),
+			$page_settings ? array( $handle ) : array(),
+			WPUSB_Utils::filetime( WPUSB_Utils::build_path( 'admin.css' ) )
 		);
 	}
 
@@ -196,9 +191,9 @@ final class WPUSB_Scripts {
 
 		wp_enqueue_script(
 			WPUSB_Utils::add_prefix( '-scripts' ),
-			WPUSB_Utils::plugin_url( 'javascripts/front/built.js' ),
+			WPUSB_Utils::build_url( 'front.js' ),
 			array( 'jquery' ),
-			WPUSB_App::VERSION,
+			WPUSB_PLUGIN_VERSION,
 			true
 		);
 
@@ -242,9 +237,9 @@ final class WPUSB_Scripts {
 	public static function add_style_front() {
 		wp_enqueue_style(
 			WPUSB_Utils::add_prefix( '-style' ),
-			WPUSB_Utils::plugin_url( self::get_front_css_path() ),
+			WPUSB_Utils::build_url( self::get_front_css_path() ),
 			array(),
-			WPUSB_Utils::filetime( WPUSB_Utils::file_path( self::get_front_css_path() ) )
+			WPUSB_Utils::filetime( WPUSB_Utils::build_path( self::get_front_css_path() ) )
 		);
 	}
 
@@ -267,7 +262,7 @@ final class WPUSB_Scripts {
 			WPUSB_Utils::add_prefix( '-codemirror-css' ),
 			WPUSB_Utils::plugin_url( 'lib/codemirror.css', $path_codemirror ),
 			array(),
-			WPUSB_App::VERSION
+			WPUSB_PLUGIN_VERSION
 		);
 
 		//Theme
@@ -373,13 +368,12 @@ final class WPUSB_Scripts {
 		);
 	}
 
-
 	public static function get_front_css_path() {
 		if ( WPUSB_Utils::file_css_min_exists() ) {
 			return WPUSB_Utils::get_path_css_min();
 		}
 
-		return 'stylesheets/style.css';
+		return 'style.css';
 	}
 
 	/**

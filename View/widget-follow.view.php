@@ -7,7 +7,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 class WPUSB_Widget_Follow_View {
@@ -26,35 +26,42 @@ class WPUSB_Widget_Follow_View {
 				 class="<?php printf( '%1$s-follow %1$s-follow-%2$s %3$s', WPUSB_App::SLUG, $layout, $custom_class ); ?>">
 
 			<?php
-				$networks = $instance->get_networks();
+				$networks = $instance->get_follow_us_networks();
 
 			foreach ( $items as $item ) :
-				$is_email = ( $item === 'email' );
-				$type     = $is_email ? 'email' : 'url';
-				$link     = $instance->get_network( $item, $type );
-				$element  = ( 'google' === $item ) ? "{$item}-plus" : $item;
-
-				if ( ! isset( $networks->{$item} ) || empty( $link ) ) {
+				if ( ! isset( $networks->{$item} ) ) {
 					continue;
 				}
 
 				$network       = $networks->{$item};
+				$type          = isset( $network->type ) ? $network->type : 'url';
+				$link          = $instance->get_network( $item, $type );
 				$current_title = $instance->get_network( $item, 'title' );
-				$title         = ( empty( $current_title ) ) ? $network->title : $current_title;
+				$title         = empty( $current_title ) ? $network->title : $current_title;
 
-				if ( $is_email ) {
-					$subject = $instance->get_network( $item, 'subject' );
+				if ( $item === 'email' ) {
+					$subject = sanitize_text_field( $instance->get_network( $item, 'subject' ) );
 					$subject = empty( $subject ) ? $network->subject : $subject;
-					$link    = sprintf( 'mailto:%s?subject=%s', $link, rawurlencode( $subject ) );
+					$link    = sprintf( $network->link, $link, rawurlencode( $subject ) );
 				}
-			?>
-			<div class="<?php printf( '%1$s-item %1$s-%2$s', WPUSB_App::SLUG, $element ); ?>">
-				<a href="<?php echo $is_email ? WPUSB_Utils::rm_tags( $link ) : esc_url( $link ); ?>"
-					<?php echo ( $is_email ) ? '' : 'target="_blank"'; ?>
-				   class="<?php echo WPUSB_App::SLUG; ?>-btn"
-				   title="<?php echo $title; ?>">
 
-					<i class="<?php printf( '%1$s-icon-%2$s-%3$s %1$s-follow-icon', WPUSB_App::SLUG, $element, $layout ); ?>"></i>
+				if ( $item === 'whatsapp' ) {
+					$phone   = (int) $instance->get_network( $item, 'phone' );
+					$message = sanitize_text_field( $instance->get_network( $item, 'message' ) );
+					$link    = sprintf( $network->link, $phone, rawurlencode( $message ) );
+				}
+
+				$prefix   = WPUSB_App::SLUG;
+				$svg_icon = WPUSB_Shares_View::get_svg_icon( "{$prefix}-{$item}-{$layout}", "{$prefix}-follow-icon" );
+			?>
+			<div class="<?php printf( '%1$s-item %1$s-%2$s', WPUSB_App::SLUG, $item ); ?>">
+				<a href="<?php echo esc_url( $link ); ?>"
+				   target="_blank"
+				   class="<?php echo WPUSB_App::SLUG; ?>-btn"
+				   title="<?php echo esc_attr( $title ); ?>"
+				   <?php echo isset( $network->attr ) ? $network->attr : ''; ?>
+				>
+					<?php echo $svg_icon; ?>
 				</a>
 			</div>
 

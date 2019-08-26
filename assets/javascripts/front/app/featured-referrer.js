@@ -19,11 +19,6 @@ WPUSB( 'WPUSB.FeaturedReferrer', function(Referrer, $, utils) {
 			return;
 		}
 
-		if ( this.isMatch( 'google' ) ) {
-			this.showReferrer( 'google-plus' );
-			return;
-		}
-
 		if ( this.isMatch( 'facebook' ) ) {
 			this.showReferrer( 'facebook' );
 			return;

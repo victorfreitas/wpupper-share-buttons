@@ -31,19 +31,14 @@
 	}
 
 	.#{$prefix}-td {
-		margin-bottom: 15px;
-		margin-left: 15px;
+      display: inline-block;
+      margin-bottom: 15px;
+      margin-left: 15px;
 	}
 
 	.#{$prefix}-sortable-placeholder {
-		background: #f9f9f9;
-		border-radius: 5px;
-		border: 1px dotted #a0a5aa;
-		height: 26px;
-		left: 8px;
-		position: relative;
-		top: 1px;
-		width: 28px;
+    @extend %sortablePlaceholder;
+    left: 8px;
 	}
 }
 

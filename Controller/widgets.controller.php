@@ -7,10 +7,12 @@
  */
 if ( ! defined( 'ABSPATH' ) ) {
 	 // Exit if accessed directly.
-	exit( 0 );
+	exit;
 }
 
 class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
+
+	public $widget_type = 'share';
 
 	public function __construct() {
 		$id_base     = WPUSB_Utils::get_widget_id_base();

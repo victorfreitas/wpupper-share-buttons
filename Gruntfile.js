@@ -1,21 +1,35 @@
 module.exports = function(grunt) {
 
-	function getObjectConcat(folder) {
+  var sassSiteOptions = {};
+
+  if (process.env.NODE_ENV === 'production') {
+    sassSiteOptions.sourcemap = 'none';
+    sassSiteOptions.style = 'compressed';
+  }
+
+	function getObjectConcat(type) {
 		return {
 			src : [
 				'<%= package.jsroot %>/libs/*.js',
-				'<%= package.jsroot %>/' + folder + '/libs/*.js',
+				'<%= package.jsroot %>/' + type + '/libs/*.js',
 				'<%= package.jsroot %>/vendor/*.js',
-				'<%= package.jsroot %>/' + folder + '/vendor/*.js',
-				'<%= package.jsroot %>/' + folder + '/app/*.js',
-				'<%= package.jsroot %>/' + folder + '/boot.js'
+				'<%= package.jsroot %>/' + type + '/vendor/*.js',
+				'<%= package.jsroot %>/' + type + '/app/*.js',
+				'<%= package.jsroot %>/' + type + '/boot.js'
 			],
-			dest : '<%= package.jsroot %>/' + folder + '/built.js',
+			dest : ''.concat('build/', type, '.js'),
 		};
-	}
+  }
 
 	var config = {
-		package : grunt.file.readJSON( 'package.json' ),
+    package : grunt.file.readJSON( 'package.json' ),
+
+    clean: {
+      options: {
+        force: true,
+      },
+      build: [''.concat(__dirname, '/build')],
+    },
 
 		concat : {
 		    options : {
@@ -27,13 +41,10 @@ module.exports = function(grunt) {
 
 		sass: {
 			site: {
-				options: {
-					style: 'compressed',
-					'sourcemap=none': '',
-				},
+				options: sassSiteOptions,
 				files: {
-					'<%= package.cssroot %>/admin.css': '<%= package.cssadmin %>/admin.scss',
-					'<%= package.cssroot %>/style.css': '<%= package.cssfront %>/style.scss'
+					'build/admin.css': '<%= package.sassadmin %>/admin.scss',
+					'build/style.css': '<%= package.sassfront %>/style.scss'
 				}
 			},
 		},
@@ -112,7 +123,7 @@ module.exports = function(grunt) {
 		    	tasks : ['jshint', 'concat']
 		    },
 			css : {
-				files : ['<%= package.cssroot %>/**/*.scss'],
+				files : ['<%= package.sassroot %>/**/*.scss'],
 				tasks : ['sass:site']
 			},
 
@@ -127,6 +138,7 @@ module.exports = function(grunt) {
 
 	grunt.initConfig( config );
 
+  grunt.loadNpmTasks( 'grunt-contrib-clean' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-contrib-concat' );
@@ -135,5 +147,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-handlebars' );
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 
-	grunt.registerTask( 'deploy', ['jshint', 'concat', 'uglify', 'sass:site', 'handlebars:dest'] );
+	grunt.registerTask( 'build', ['clean', 'jshint', 'concat', 'uglify', 'sass:site', 'handlebars:dest'] );
 };
