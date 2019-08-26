@@ -27,12 +27,6 @@ Follow US buttons include with Widgets.
 
 * The networks support are: - Facebook; - Twitter; - Linkedin; - Pinterest; - Thumbler; - Whatsapp; - Mailto; - Print Friendly; Telegram; Skype; Viper; - Reddit; - Gmail
 
-### Extensions ###
-
-* Sharing count update
-
-[vimeo https://vimeo.com/237981148 ]
-
 == Installation ==
 
 * Upload the files to the `/wp-content/plugins/` (keep the original folder plugin)
