@@ -7,7 +7,7 @@
 - Requires at least: 3.0
 - Tested up to: 5.2.2
 - PHP version: 5.2
-- Stable tag: 3.40
+- Stable tag: 3.40.1
 - License: GPLv2 or later
 - License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,6 +76,10 @@ Layout options: default, buttons, rounded, square
 4. Using the content editor -> [wpusb class_first="" class_second="" class_link="" class_icon="" layout="default" remove_inside="0" remove_counter="0"]
 
 ## Changelog
+
+## 3.40.1 - 2019-08-25
+
+* Bugfix Facebook share counts.
 
 ## 3.40 - 2019-08-25
 

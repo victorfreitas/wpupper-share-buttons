@@ -35,7 +35,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 		this.tumblrCounter    = 0;
 		this.pinterestCounter = 0;
 		this.bufferCounter    = 0;
-		this.max              = 5;
+		this.max              = 4;
 		this.isReport         = isReport;
 		this.minCount         = utils.getMinCount();
   };
@@ -45,7 +45,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 			{
 				reference : 'facebookCounter',
 				element   : 'facebook',
-				url       : 'https://graph.facebook.com/?id='.concat(this.data.elementUrl, '&fields=engagement&access_token=936514436492766|kwOceyyPlXqKnVea3Xx-M28kV8s'),
+				url       : 'https://graph.facebook.com/?id='.concat(this.data.elementUrl, '&fields=og_object{engagement}'),
 			},
 			{
 				reference : 'tumblrCounter',
@@ -138,7 +138,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 	Model.fn.getNumberByData = function(element, response) {
 		switch ( element ) {
 			case 'facebook' :
-				return this.getTotalShareFacebook( response.share );
+				return this.getTotalShareFacebook( response.og_object );
 
 			case 'tumblr' :
 				return this.getTotalShareTumblr( response.response );
@@ -149,17 +149,11 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 	};
 
 	Model.fn.getTotalShareFacebook = function(response) {
-		if ( typeof response === 'object' ) {
-      var engagement = response.engagement || {};
-      var reactionCount = parseInt( engagement.reaction_count || 0, 10 );
-      var commentCount = parseInt( engagement.comment_count || 0, 10 );
-      var shareCount = parseInt( engagement.share_count || 0, 10 );
-      var commentPluginCount = parseInt( engagement.comment_plugin_count || 0, 10 );
-
-			return reactionCount + commentCount + shareCount + commentPluginCount;
-		}
-
-		return 0;
+    try {
+      return parseInt( response.engagement.count, 10 );
+    } catch (e) {
+      return 0;
+    }
 	};
 
 	Model.fn.getTotalShareTumblr = function(response) {
