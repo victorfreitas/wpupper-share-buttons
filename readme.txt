@@ -99,6 +99,7 @@ Translators who did a great job converting the text of the plugin to their nativ
 
 = 3.40 - 2019-08-25 =
 
+* Adding WhatsApp to our widget Follow us.
 * Removed Google+ from our list of social sharing networks, this action has been discontinued.
 * Removed Linkedin sharing counts, this action has been discontinued.
 * Changed css icon fonts to SVG, performance improvements.
