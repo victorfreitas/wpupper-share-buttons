@@ -1870,8 +1870,8 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param boolean $force
 	 * @return String
 	 */
-	public static function minify_html( $html, $force = false ) {
-		if ( true !== $force && 'on' !== self::option( 'minify_html' ) ) {
+	public static function minify_html( $html ) {
+		if ( ! self::is_active_minify_html() ) {
 			return $html;
 		}
 
@@ -1879,6 +1879,16 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$replace = array( '>', '<', '\\1' );
 
 		return preg_replace( $search, $replace, $html );
+	}
+
+	/**
+	 * Verify is active minify html option.
+	 *
+	 * @since 3.40
+	 * @return bool
+	 */
+	public static function is_active_minify_html() {
+		return 'on' === self::option( 'minify_html' );
 	}
 
 	/**
@@ -1901,6 +1911,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function is_active_widget_share() {
 		$id_base = self::get_widget_id_base();
+
 		return is_active_widget( false, false, $id_base, true );
 	}
 
@@ -1913,6 +1924,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function is_active_widget_follow() {
 		$id_base = self::get_widget_follow_id_base();
+
 		return is_active_widget( false, false, $id_base, true );
 	}
 

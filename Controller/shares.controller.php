@@ -33,7 +33,16 @@ class WPUSB_Shares_Controller {
 		add_action( 'add_meta_boxes', array( $this, 'register_meta_boxes' ) );
 		add_action( 'save_post', array( $this, 'save_meta' ) );
 		add_action( 'body_class', array( $this, 'body_class' ) );
-		add_action( 'wp_head', array( $this, 'symbol_defs' ), 99 );
+		add_action( 'init', array( $this, 'svg_symbols' ) );
+	}
+
+	public function svg_symbols() {
+		$action   = apply_filters( WPUSB_App::SLUG . '_svg_symbols', 'wp_head' );
+		$priority = apply_filters( WPUSB_App::SLUG . '_svg_symbols_priority', 10 );
+
+		if ( $action ) {
+			add_action( $action, array( $this, 'include_svg_symbols' ), $priority );
+		}
 	}
 
 	/**
@@ -43,9 +52,9 @@ class WPUSB_Shares_Controller {
 	 *
 	 * @return void
 	 */
-	public function symbol_defs() {
+	public function include_svg_symbols() {
 		if ( WPUSB_Utils::is_active() ) {
-			WPUSB_Social_Elements::symbol_defs();
+			WPUSB_Social_Elements::include_svg_symbols();
 		}
 	}
 

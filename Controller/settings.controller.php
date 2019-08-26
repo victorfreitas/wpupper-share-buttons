@@ -37,7 +37,7 @@ class WPUSB_Settings_Controller {
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 		add_action( "update_option_{$prefix}_settings", array( $this, 'rebuild_custom_css' ), 10, 3 );
 		add_action( 'admin_body_class', array( $this, 'body_class' ) );
-		add_action( 'in_admin_header', array( $this, 'symbol_defs' ) );
+		add_action( 'in_admin_header', array( $this, 'include_svg_symbols' ) );
 	}
 
 	/**
@@ -47,9 +47,9 @@ class WPUSB_Settings_Controller {
 	 *
 	 * @return void
 	 */
-	public function symbol_defs() {
+	public function include_svg_symbols() {
 		if ( WPUSB_Utils::is_plugin_page() ) {
-			WPUSB_Social_Elements::symbol_defs();
+			WPUSB_Social_Elements::include_svg_symbols();
 		}
 	}
 

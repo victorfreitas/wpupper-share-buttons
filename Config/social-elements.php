@@ -712,18 +712,31 @@ class WPUSB_Social_Elements {
 	 *
 	 * @return void
 	 */
-	public static function symbol_defs() {
+	public static function include_svg_symbols() {
 		if ( ! file_exists( self::get_social_share_svg_path() ) ) {
 			return;
 		}
 
-		if ( apply_filters( WPUSB_App::SLUG . '/render_svg', true ) ) {
-			printf( '%1$s<!-- %2$s SVG ICONS -->%1$s', PHP_EOL, WPUSB_App::NAME );
-
-			include_once self::get_social_share_svg_path();
-
-			printf( '<!-- / %1$s SVG ICONS -->%2$s', WPUSB_App::NAME, PHP_EOL );
+		if ( ! apply_filters( WPUSB_App::SLUG . '_render_svg', true ) ) {
+			return;
 		}
+
+		$minify_html = WPUSB_Utils::is_active_minify_html();
+
+		printf( '%1$s<!-- %2$s SVG ICONS -->%1$s', PHP_EOL, WPUSB_App::NAME );
+
+		if ( $minify_html ) {
+			ob_start();
+		}
+
+		include_once self::get_social_share_svg_path();
+		self::include_icons_follow_us();
+
+		if ( $minify_html ) {
+			echo WPUSB_Utils::minify_html( ob_get_clean() );
+		}
+
+		printf( '<!-- / %1$s SVG ICONS -->%2$s', WPUSB_App::NAME, PHP_EOL );
 	}
 
 	/**
@@ -733,7 +746,26 @@ class WPUSB_Social_Elements {
 	 *
 	 * @return string
 	 */
-	public static function get_social_share_svg_path() {
-		return WPUSB_Utils::file_path('svg/icons.php');
+	public static function get_social_share_svg_path( $name = 'icons' ) {
+		return WPUSB_Utils::file_path( "svg/{$name}.php" );
+	}
+
+	/**
+	 * Get the social share svg devs path.
+	 *
+	 * @since 3.18
+	 *
+	 * @return string
+	 */
+	public static function include_icons_follow_us() {
+		if ( ! WPUSB_Utils::is_active_widget_follow() ) {
+			return;
+		}
+
+		$icons_path = self::get_social_share_svg_path( 'icons-follow' );
+
+		if ( file_exists( $icons_path ) ) {
+			require_once $icons_path;
+		}
 	}
 }
