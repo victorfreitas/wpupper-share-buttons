@@ -708,11 +708,12 @@ class WPUSB_Social_Elements {
 	/**
 	 * Render the svg defs.
 	 *
-	 * @since 3.18
+	 * @since 3.40
 	 *
+	 * @param bool $in_admin
 	 * @return void
 	 */
-	public static function include_svg_symbols() {
+	public static function include_svg_symbols( $in_admin = false ) {
 		if ( ! file_exists( self::get_social_share_svg_path() ) ) {
 			return;
 		}
@@ -730,7 +731,7 @@ class WPUSB_Social_Elements {
 		}
 
 		include_once self::get_social_share_svg_path();
-		self::include_icons_follow_us();
+		self::include_icons_follow_us( $in_admin );
 
 		if ( $minify_html ) {
 			echo WPUSB_Utils::minify_html( ob_get_clean() );
@@ -742,7 +743,7 @@ class WPUSB_Social_Elements {
 	/**
 	 * Get the social share svg devs path.
 	 *
-	 * @since 3.18
+	 * @since 3.40
 	 *
 	 * @return string
 	 */
@@ -753,12 +754,13 @@ class WPUSB_Social_Elements {
 	/**
 	 * Get the social share svg devs path.
 	 *
-	 * @since 3.18
+	 * @since 3.40
 	 *
+	 * @param bool $in_admin
 	 * @return string
 	 */
-	public static function include_icons_follow_us() {
-		if ( ! WPUSB_Utils::is_active_widget_follow() ) {
+	public static function include_icons_follow_us( $in_admin = false ) {
+		if ( ! $in_admin && ! WPUSB_Utils::is_active_widget_follow() ) {
 			return;
 		}
 

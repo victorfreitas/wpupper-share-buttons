@@ -49,7 +49,7 @@ class WPUSB_Settings_Controller {
 	 */
 	public function include_svg_symbols() {
 		if ( WPUSB_Utils::is_plugin_page() ) {
-			WPUSB_Social_Elements::include_svg_symbols();
+			WPUSB_Social_Elements::include_svg_symbols( true );
 		}
 	}
 

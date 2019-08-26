@@ -50,7 +50,7 @@ final class WPUSB_Scripts {
 		if ( WPUSB_Utils::get( 'page' ) === WPUSB_Setting::USE_OPTIONS ) {
 			wp_enqueue_script(
 				WPUSB_Utils::add_prefix( '-admin-scripts-highlight' ),
-				WPUSB_Utils::plugin_url( 'javascripts/admin/highlight.pack.js' ),
+				WPUSB_Utils::plugin_url( 'Vendor/highlight.pack.js', '' ),
 				array(),
 				'9.10.0',
 				true
