@@ -6,7 +6,7 @@ Tags: social share, social sharing, social, social network, share, share buttons
 Requires at least: 4.0
 Requires PHP: 5.2.4 or later
 Tested up to: 5.2.2
-Stable tag: 3.40.1
+Stable tag: 3.41
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -91,9 +91,13 @@ Translators who did a great job converting the text of the plugin to their nativ
 
 == Changelog ==
 
+= 3.41 2020-02-24 =
+
+* Bug fixes in widget follow us.
+
 = 3.40.1 - 2019-08-25 =
 
-* Bugfix Facebook share counts.
+* Bug fixes in Facebook share counts.
 
 = 3.40 - 2019-08-25 =
 

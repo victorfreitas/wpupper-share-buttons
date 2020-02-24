@@ -1350,22 +1350,22 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	/**
 	 * Verify is active page option
 	 *
-	 * @since 3.1.0
+	 * @since 3.2.0
 	 * @param Null
 	 * @return Boolean
 	 */
 	public static function is_active() {
-		$tag = self::add_prefix( '_is_active' );
-
-		if ( self::is_home() || self::is_archive_category() ) {
-			return apply_filters( $tag, true );
+		if (
+			self::is_home() ||
+			self::is_archive_category() ||
+			self::is_page() ||
+			self::is_single() ||
+			self::is_active_widget()
+		) {
+			$active = true;
 		}
 
-		if ( self::is_page() || self::is_single() ) {
-			return apply_filters( $tag, true );
-		}
-
-		return apply_filters( $tag, false );
+		return apply_filters( self::add_prefix( '_is_active' ), isset( $active ) );
 	}
 
 	/**
