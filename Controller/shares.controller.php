@@ -53,7 +53,7 @@ class WPUSB_Shares_Controller {
 	 * @return void
 	 */
 	public function include_svg_symbols() {
-		if ( WPUSB_Utils::is_active() ) {
+		if ( WPUSB_Utils::is_active() || WPUSB_Utils::is_active_widget() ) {
 			WPUSB_Social_Elements::include_svg_symbols();
 		}
 	}

@@ -156,10 +156,8 @@ final class WPUSB_Scripts {
 	 * @return Void
 	 */
 	public static function add_front_scripts() {
-		if ( WPUSB_Utils::is_disabled_by_meta() ) {
-			if ( WPUSB_Utils::is_active_widget_follow() ) {
-				self::front_styles();
-			}
+		if ( WPUSB_Utils::is_disabled_by_meta() && WPUSB_Utils::is_active_widget_follow() ) {
+			self::front_styles();
 			return;
 		}
 

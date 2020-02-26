@@ -1360,7 +1360,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			self::is_archive_category() ||
 			self::is_page() ||
 			self::is_single() ||
-			self::is_active_widget()
+			self::is_product()
 		) {
 			$active = true;
 		}
