@@ -121,7 +121,7 @@ class WPUSB_Social_Elements {
 		$std->twitter              = new stdClass();
 		$std->twitter->name        = __( 'Twitter', 'wpupper-share-buttons' );
 		$std->twitter->element     = 'twitter';
-		$std->twitter->link        = 'https://twitter.com/share?url=' . self::$url . '&text=' . self::$twitter_text . self::$twitter_via . self::$twitter_hashtags;
+		$std->twitter->link        = 'https://twitter.com/intent/tweet?url=' . self::$url . '&text=' . self::$twitter_text . self::$twitter_via . self::$twitter_hashtags;
 		$std->twitter->title       = __( 'Tweet', 'wpupper-share-buttons' );
 		$std->twitter->class       = WPUSB_Utils::add_prefix( '-twitter' );
 		$std->twitter->class_item  = self::$item;
