@@ -17,7 +17,7 @@ abstract class WPUSB_Utils_View {
 
 	protected static $prefix = null;
 
-	protected static $args = OBJECT;
+	protected static $args;
 
 	protected static function set_args( $args ) {
 		self::$args = (object) $args;
@@ -123,12 +123,8 @@ abstract class WPUSB_Utils_View {
 
 	private static function _tr_input() {
 		$args     = self::$args;
-		$value    = self::get_value();
+		$value    = $args->type === 'checkbox' ? $args->checked : esc_attr( self::get_value() );
 		$field_id = self::get_field_id( $args->key );
-
-		if ( $args->type === 'checkbox' ) {
-			$value = $args->checked;
-		}
 	?>
 		<tr class="<?php echo self::get_class( true ); ?>"
 			<?php echo self::get_attrs( true ); ?>>

@@ -20,7 +20,7 @@ class WPUSB_Square_Plus {
 	 *
 	 * @since 3.0.0
 	 * @param Object $args
-	 * @return String
+	 * @return string
 	 */
 	public static function init( \stdClass $atts ) {
 		$args         = WPUSB_Utils::content_args( $atts );
@@ -50,7 +50,7 @@ EOD;
 	 *
 	 * @since 3.0.0
 	 * @param Object $args
-	 * @return String
+	 * @return string
 	 */
 	public static function items( $args = OBJECT ) {
 		$classes    = self::get_classes_second( $args );
@@ -84,7 +84,7 @@ EOD;
 	 *
 	 * @since 3.0.0
 	 * @param Object $atts
-	 * @return String
+	 * @return string
 	 *
 	 */
 	public static function get_classes_second( $atts ) {
@@ -104,7 +104,7 @@ EOD;
 	 *
 	 * @since 3.0.0
 	 * @param Object $args
-	 * @return String
+	 * @return string
 	 */
 	public static function add_count( $args ) {
 		if ( WPUSB_Utils::is_inactive_couter( $args ) ) {
@@ -128,7 +128,7 @@ EOD;
 	 *
 	 * @since 3.0.0
 	 * @param Object $atts
-	 * @return String
+	 * @return string
 	 *
 	 */
 	public static function inside( $atts ) {
@@ -155,7 +155,7 @@ EOD;
 	 *
 	 * @since 3.0.0
 	 * @param Object $args
-	 * @return String
+	 * @return string
 	 *
 	 */
 	public static function end( $args ) {

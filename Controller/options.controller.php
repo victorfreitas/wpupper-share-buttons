@@ -27,7 +27,6 @@ class WPUSB_Options_Controller {
 	 * Register options settings general
 	 *
 	 * @since 1.0
-	 * @param Null
 	 * @return void
 	 */
 	public function register_options_settings() {
@@ -40,7 +39,6 @@ class WPUSB_Options_Controller {
 	 * Register options settings
 	 *
 	 * @since 1.0
-	 * @param Null
 	 * @return void
 	 */
 	private function _register_options_settings() {
@@ -53,7 +51,6 @@ class WPUSB_Options_Controller {
 	 * Register options social media
 	 *
 	 * @since 1.0
-	 * @param Null
 	 * @return void
 	 */
 	private function _register_options_social_media() {
@@ -66,7 +63,6 @@ class WPUSB_Options_Controller {
 	 * Register options extra settings
 	 *
 	 * @since 1.1
-	 * @param Null
 	 * @return void
 	 */
 	private function _register_options_extra_settings() {

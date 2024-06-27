@@ -18,12 +18,13 @@ class WPUSB_Modal {
 	 * The buttons container popup
 	 *
 	 * @since 3.0.0
-	 * @param Null
-	 * @return Void
+     * @param array $atts
+     * @param int $number
+	 * @return string
 	 */
 	public static function init( $atts = array(), $number = 0 ) {
 		if ( ! intval( $number ) ) {
-			return;
+			return '';
 		}
 
 		$prefix = WPUSB_App::SLUG;
@@ -50,8 +51,9 @@ EOD;
 	 * The items social popup
 	 *
 	 * @since 3.0.0
-	 * @param String $prefix
-	 * @return Void
+	 * @param string $prefix
+     * @param array $atts
+	 * @return string
 	 */
 	public static function items( $prefix, $atts ) {
 		$elements  = WPUSB_Social_Elements::social_media();
@@ -103,8 +105,7 @@ EOD;
 	 * Close buttons container popup
 	 *
 	 * @since 3.0.0
-	 * @param Null
-	 * @return Void
+	 * @return string
 	 */
 	public static function end() {
 		return '</div>';

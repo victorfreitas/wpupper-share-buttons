@@ -63,8 +63,7 @@ class WPUSB_Shares_Controller {
 	 *
 	 * @since 3.16
 	 * @version 0.0.1
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public function wc_render_share() {
 		if ( ! $this->is_wc_active() || $this->is_disabled() ) {
@@ -81,8 +80,7 @@ class WPUSB_Shares_Controller {
 	 *
 	 * @since 3.2.2
 	 * @version 1.2.0
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	protected function _set_position() {
 		$before = WPUSB_Utils::option( 'before' );
@@ -102,8 +100,8 @@ class WPUSB_Shares_Controller {
 	 *
 	 * @since 3.2.2
 	 * @version 2.0
-	 * @param String $content
-	 * @return String
+	 * @param string $content
+	 * @return string
 	 */
 	public function content( $content ) {
 		if ( $this->is_disabled() || is_feed() || WPUSB_Utils::is_product() ) {
@@ -125,8 +123,8 @@ class WPUSB_Shares_Controller {
 	 *
 	 * @since 3.2.2
 	 * @version 2.0.0
-	 * @param String $content
-	 * @return String
+	 * @param string $content
+	 * @return string
 	 */
 	private function _get_new_content( $content ) {
 		$buttons = apply_filters( $this->_filter, $this->buttons_share() );
@@ -156,7 +154,6 @@ class WPUSB_Shares_Controller {
 	 * Add buttons on footer case selected layout fixed
 	 *
 	 * @since 1.0
-	 * @param Null
 	 * @return void
 	 */
 	public function buttons_fixed() {
@@ -173,7 +170,7 @@ class WPUSB_Shares_Controller {
 	 * Generate all icons sharing
 	 *
 	 * @since 1.0
-	 * @param Array $atts
+	 * @param array $atts
 	 * @return HTML
 	 *
 	 */
@@ -205,9 +202,9 @@ class WPUSB_Shares_Controller {
 	 * Create custom class from icons
 	 *
 	 * @since 1.0
-	 * @param Array $atts
-	 * @param Boolean $fixed
-	 * @return String
+	 * @param array $atts
+	 * @param boolean $fixed
+	 * @return string
 	 */
 	public function buttons_share( $atts = array(), $fixed = false ) {
 		return WPUSB_Utils::buttons_share( $atts, $fixed );
@@ -217,8 +214,7 @@ class WPUSB_Shares_Controller {
 	 * Check woocommerce share is active
 	 *
 	 * @since 3.16
-	 * @param Null
-	 * @return Boolean
+	 * @return boolean
 	 */
 	public function is_wc_active() {
 		return ( WPUSB_Utils::option( 'woocommerce' ) === 'on' );
@@ -228,7 +224,6 @@ class WPUSB_Shares_Controller {
 	 * Check is share button disable by post meta
 	 *
 	 * @since 3.27
-	 * @param Null
 	 * @return Bollean
 	 */
 	public function is_disabled() {
@@ -239,8 +234,7 @@ class WPUSB_Shares_Controller {
 	 * Register meta box for disable share button on specific post
 	 *
 	 * @since 3.27
-	 * @param NUll
-	 * @return Void
+	 * @return void
 	 */
 	public function register_meta_boxes( $type = '' ) {
 		global $wp_version;
@@ -266,8 +260,8 @@ class WPUSB_Shares_Controller {
 	 * Register post meta
 	 *
 	 * @since 3.27
-	 * @param Mixed Array|String $scren
-	 * @return Void
+	 * @param mixed Array|String $scren
+	 * @return void
 	 */
 	public function add_meta_box( $screen ) {
 		add_meta_box(
@@ -285,7 +279,7 @@ class WPUSB_Shares_Controller {
 	 *
 	 * @since 3.27
 	 * @param Object WP_Post $post
-	 * @return Void
+	 * @return void
 	 */
 	public function render_meta_box( $post ) {
 		WPUSB_Shares_View::render_meta_box( $post );
@@ -295,8 +289,8 @@ class WPUSB_Shares_Controller {
 	 * Save post meta share disable
 	 *
 	 * @since 3.27
-	 * @param Integer $post_id
-	 * @return Void
+	 * @param int $post_id
+	 * @return void
 	 */
 	public function save_meta( $post_id ) {
 		if ( wp_is_post_revision( $post_id ) || defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
@@ -317,8 +311,8 @@ class WPUSB_Shares_Controller {
 	 * Add custom class on body tag for layout fixed
 	 *
 	 * @since 3.32
-	 * @param Array $classes
-	 * @return Array
+	 * @param array $classes
+	 * @return array
 	 */
 	public function body_class( $classes ) {
 		if ( WPUSB_Utils::is_position_fixed() && WPUSB_Utils::is_active() ) {

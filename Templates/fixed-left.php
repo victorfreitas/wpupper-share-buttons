@@ -22,7 +22,7 @@ class WPUSB_Fixed_Left {
 	 *
 	 * @since 3.0.0
 	 * @param Object $args
-	 * @return String
+	 * @return string
 	 */
 	public static function init( \stdClass $atts ) {
 		$layout = WPUSB_Utils::option( 'fixed_layout', 'buttons' );
@@ -57,7 +57,7 @@ EOD;
 	 *
 	 * @since 3.0.0
 	 * @param Object $args
-	 * @return String
+	 * @return string
 	 */
 	public static function items( $args = OBJECT ) {
 		$classes        = self::get_classes_second( $args );
@@ -92,7 +92,7 @@ EOD;
 	 *
 	 * @since 3.0.0
 	 * @param Object $atts
-	 * @return String
+	 * @return string
 	 *
 	 */
 	public static function get_classes_second( $atts ) {
@@ -108,7 +108,7 @@ EOD;
 	 *
 	 * @since 3.0.0
 	 * @param Object $args
-	 * @return String
+	 * @return string
 	 */
 	public static function add_count( $args ) {
 		$prefix     = $args->prefix;
@@ -136,8 +136,7 @@ EOD;
 	 * Add inside for layout rounded
 	 *
 	 * @since 3.0.0
-	 * @param Null
-	 * @return String
+	 * @return string
 	 */
 	private static function _get_inside_count() {
 		if ( 'default' !== self::$layout ) {
@@ -156,7 +155,7 @@ EOD;
 	 *
 	 * @since 3.0.0
 	 * @param Object $atts
-	 * @return String
+	 * @return string
 	 *
 	 */
 	public static function get_classes_first( $atts ) {
@@ -173,7 +172,7 @@ EOD;
 	 * Close buttons container
 	 *
 	 * @since 3.18.0
-	 * @return String
+	 * @return string
 	 *
 	 */
 	public static function end() {
@@ -195,8 +194,8 @@ EOD;
 	 * Set property layout
 	 *
 	 * @since 3.5.0
-	 * @param String $layout
-	 * @return Void
+	 * @param string $layout
+	 * @return void
 	 *
 	 */
 	public static function _set_layout( $layout ) {

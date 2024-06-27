@@ -14,14 +14,14 @@ class WPUSB_App {
 	/**
 	 * The short slug
 	 *
-	 * @var String
+	 * @var string
 	 */
 	const SLUG = 'wpusb';
 
 	/**
 	 * Plugin name
 	 *
-	 * @var String
+	 * @var string
 	 */
 	const NAME = 'WPUpper Share Buttons';
 
@@ -30,7 +30,7 @@ class WPUSB_App {
 	 *
 	 * @since 2.0
 	 * @since 3.32
-	 * @return Void
+	 * @return void
 	 */
 	public static function uses( $class, $location ) {
 		$locations = array(

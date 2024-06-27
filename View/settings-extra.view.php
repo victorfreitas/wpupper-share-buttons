@@ -17,8 +17,7 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 	 * Display page setting
 	 *
 	 * @since 1.2
-	 * @param Null
-	 * @return Void, Display page
+	 * @return void, Display page
 	 */
 	public static function render_settings_extra() {
 		$extra_setting = sprintf( '%s_extra_settings', WPUSB_App::SLUG );

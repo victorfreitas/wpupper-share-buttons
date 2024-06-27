@@ -73,8 +73,8 @@ class WPUSB_Social_Elements {
 	 *
 	 * @since 3.7.0
 	 * @version 1.0.0
-	 * @param String $item
-	 * @return Boolean
+	 * @param string $item
+	 * @return boolean
 	 */
 	public static function items_available( $item ) {
 		$items = apply_filters( WPUSB_Utils::add_prefix( '-items-available' ), self::$items_available );
@@ -87,8 +87,7 @@ class WPUSB_Social_Elements {
 	 *
 	 * @since 3.1.4
 	 * @version 1.1.0
-	 * @param Null
-	 * @return Object
+	 * @return object
 	 */
 	private static function _get_elements() {
 		$plugin_name  = rawurlencode( WPUSB_App::NAME );
@@ -97,7 +96,7 @@ class WPUSB_Social_Elements {
 		$std          = new stdClass();
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Facebook
 		 */
 		$std->facebook              = new stdClass();
@@ -115,7 +114,7 @@ class WPUSB_Social_Elements {
 		$std->facebook->target      = '_blank';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Twitter
 		 */
 		$std->twitter              = new stdClass();
@@ -133,7 +132,7 @@ class WPUSB_Social_Elements {
 		$std->twitter->target      = '_blank';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see WhatsApp
 		 */
 		$std->whatsapp              = new stdClass();
@@ -151,7 +150,7 @@ class WPUSB_Social_Elements {
 		$std->whatsapp->target      = '_blank';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Pinterest
 		 */
 		$std->pinterest              = new stdClass();
@@ -169,7 +168,7 @@ class WPUSB_Social_Elements {
 		$std->pinterest->target      = '_blank';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Linkedin
 		 */
 		$std->linkedin              = new stdClass();
@@ -187,7 +186,7 @@ class WPUSB_Social_Elements {
 		$std->linkedin->target      = '_blank';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Tumblr
 		 */
 		$std->tumblr              = new stdClass();
@@ -205,7 +204,7 @@ class WPUSB_Social_Elements {
 		$std->tumblr->target      = '_blank';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Email
 		 */
 		$std->email              = new stdClass();
@@ -223,7 +222,7 @@ class WPUSB_Social_Elements {
 		$std->email->target      = '_self';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Gmail
 		 */
 		$std->gmail              = new stdClass();
@@ -241,7 +240,7 @@ class WPUSB_Social_Elements {
 		$std->gmail->target      = '_blank';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see PrintFriendly
 		 */
 		$std->printer              = new stdClass();
@@ -259,7 +258,7 @@ class WPUSB_Social_Elements {
 		$std->printer->target      = '_blank';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Telegram
 		 */
 		$std->telegram              = new stdClass();
@@ -277,7 +276,7 @@ class WPUSB_Social_Elements {
 		$std->telegram->target      = '_blank';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Skype
 		 */
 		$std->skype              = new stdClass();
@@ -295,7 +294,7 @@ class WPUSB_Social_Elements {
 		$std->skype->target      = '_blank';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Viber
 		 */
 		$std->viber              = new stdClass();
@@ -313,7 +312,7 @@ class WPUSB_Social_Elements {
 		$std->viber->target      = '_blank';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Like
 		 */
 		$std->like              = new stdClass();
@@ -331,7 +330,7 @@ class WPUSB_Social_Elements {
 		$std->like->target      = '_blank';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Reddit
 		 */
 		$std->reddit              = new stdClass();
@@ -349,7 +348,7 @@ class WPUSB_Social_Elements {
 		$std->reddit->target      = '_blank';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Facebook messenger
 		 */
 		$std->messenger              = new stdClass();
@@ -367,7 +366,7 @@ class WPUSB_Social_Elements {
 		$std->messenger->target      = '_blank';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Buffer
 		 */
 		$std->buffer              = new stdClass();
@@ -385,7 +384,7 @@ class WPUSB_Social_Elements {
 		$std->buffer->target      = '_blank';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see VK
 		 */
 		$std->vk              = new stdClass();
@@ -403,7 +402,7 @@ class WPUSB_Social_Elements {
 		$std->vk->target      = '_blank';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Flipboard
 		 */
 		$std->flipboard              = new stdClass();
@@ -421,7 +420,7 @@ class WPUSB_Social_Elements {
 		$std->flipboard->target      = '_blank';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Modal Share
 		 */
 		$std->share              = new stdClass();
@@ -457,8 +456,8 @@ class WPUSB_Social_Elements {
 	 * @since 3.1.4
 	 * @since 3.27
 	 * @version 1.2
-	 * @param Array $elements
-	 * @return Object
+	 * @param object $elements
+	 * @return object
 	 */
 	private static function _ksort( $elements ) {
 		$tag = WPUSB_Utils::add_prefix( '-elements-args' );
@@ -493,8 +492,7 @@ class WPUSB_Social_Elements {
 	 *
 	 * @since 3.1.4
 	 * @version 1.0.0
-	 * @param Null
-	 * @return Object
+	 * @return object
 	 */
 	public static function get_elements() {
 		$arguments = self::_get_arguments();
@@ -517,8 +515,7 @@ class WPUSB_Social_Elements {
 	 *
 	 * @since 3.1.4
 	 * @version 1.0.0
-	 * @param Null
-	 * @return Array
+	 * @return array
 	 */
 	private static function _get_arguments() {
 		$body_mail = WPUSB_Utils::body_mail();
@@ -538,7 +535,7 @@ class WPUSB_Social_Elements {
 	 * @since 3.1.4
 	 * @version 1.0.0
 	 * @param string $url
-	 * @return String
+	 * @return string
 	 */
 	private static function _url_facilitate_replace( $url ) {
 		$name = WPUSB_App::SLUG . '-url-share';
@@ -550,8 +547,7 @@ class WPUSB_Social_Elements {
 	 *
 	 * @since 3.1.4
 	 * @version 1.0.0
-	 * @param Null
-	 * @return Object
+	 * @return object
 	 */
 	public static function social_media() {
 		$elements          = self::get_elements();
@@ -565,12 +561,12 @@ class WPUSB_Social_Elements {
 	 *
 	 * @since 3.1.4
 	 * @version 1.0.0
-	 * @param String $title
-	 * @param String $url
-	 * @param String $tracking
-	 * @param String $thumbnail
-	 * @param String $body_mail
-	 * @return Void
+	 * @param string $title
+	 * @param string $url
+	 * @param string $tracking
+	 * @param string $thumbnail
+	 * @param string $body_mail
+	 * @return void
 	 */
 	private static function _set_properts( $title, $url, $tracking, $thumbnail, $body_mail ) {
 		$post_id             = WPUSB_Utils::get_id();
@@ -598,8 +594,7 @@ class WPUSB_Social_Elements {
 	 *
 	 * @since 3.1.4
 	 * @version 2.0
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	private static function _set_properts_twitter() {
 		self::_set_twitter_extra_params();
@@ -640,8 +635,7 @@ class WPUSB_Social_Elements {
 	 *
 	 * @since 3.17
 	 * @version 1.0
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public static function _set_twitter_extra_params() {
 		$via      = WPUSB_Utils::option( 'twitter_username' );
@@ -657,8 +651,7 @@ class WPUSB_Social_Elements {
 	 * Buffer Parameters
 	 *
 	 * @since 3.28
-	 * @param Null
-	 * @return String
+	 * @return string
 	 */
 	private static function _get_buffer_param() {
 		$via     = WPUSB_Utils::option( 'twitter_username' );
@@ -684,8 +677,7 @@ class WPUSB_Social_Elements {
 	 * Pinterest Parameters
 	 *
 	 * @since 3.31
-	 * @param Null
-	 * @return String
+	 * @return string
 	 */
 	private static function _get_pinterest_param() {
 		$alt = '';

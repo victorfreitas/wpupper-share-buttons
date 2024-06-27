@@ -26,7 +26,7 @@ abstract class WPUSB_Utils_Share {
 	 * @since 3.0.0
 	 * @param object $social
 	 * @param array $args
-	 * @return String HTML
+	 * @return string HTML
 	 *
 	 */
 	public static function set_buttons_args( $social, $args, $permalink, $title ) {
@@ -59,8 +59,8 @@ abstract class WPUSB_Utils_Share {
 	 * Set and verify buttons
 	 *
 	 * @since 3.0.0
-	 * @param Array $args
-	 * @return String HTML
+	 * @param array $args
+	 * @return string HTML
 	 *
 	 */
 	private static function _set_buttons( $args = array() ) {
@@ -100,7 +100,7 @@ abstract class WPUSB_Utils_Share {
 	 * @since 3.7.0
 	 * @version 2.0.0
 	 * @param array $args
-	 * @return String
+	 * @return string
 	 */
 	public static function get_buttons( $args = array(), $fixed = false ) {
 		$model             = WPUSB_Setting::get_instance();
@@ -151,9 +151,9 @@ abstract class WPUSB_Utils_Share {
 	 *
 	 * @since 3.7.0
 	 * @version 1.1.0
-	 * @param Object Model | false $model
-	 * @param Mixed Array|String $items
-	 * @return Array
+	 * @param object Model | false $model
+	 * @param mixed Array|String $items
+	 * @return array
 	 */
 	public static function get_social_media( $model = false, $items = '' ) {
 		if ( ! empty( $items ) ) {
@@ -178,8 +178,8 @@ abstract class WPUSB_Utils_Share {
 	 *
 	 * @since 3.7.0
 	 * @version 1.0.0
-	 * @param Mixed Array|String $items
-	 * @return Array
+	 * @param mixed Array|String $items
+	 * @return array
 	 */
 	public static function get_selected_items( $items ) {
 		if ( is_array( $items ) ) {
@@ -197,7 +197,7 @@ abstract class WPUSB_Utils_Share {
 	 * @since 3.2.2
 	 * @version 1.0.0
 	 * @param array $social_media
-	 * @return Void
+	 * @return void
 	 */
 	private static function _set_social_media( $social_media ) {
 		if ( isset( $social_media['order'] ) ) {
@@ -219,9 +219,9 @@ abstract class WPUSB_Utils_Share {
 	 * Get buttons open
 	 *
 	 * @since 3.0.0
-	 * @param Array $args
+	 * @param array $args
 	 * @param object $model
-	 * @return String HTML
+	 * @return string HTML
 	 *
 	 */
 	public static function get_buttons_open( $atts, $model ) {
@@ -249,8 +249,8 @@ abstract class WPUSB_Utils_Share {
 	 * Create nonce from ajax counter share
 	 *
 	 * @since 3.0.0
-	 * @param String $action
-	 * @return String
+	 * @param string $action
+	 * @return string
 	 *
 	 */
 	public static function nonce( $action ) {
@@ -263,8 +263,8 @@ abstract class WPUSB_Utils_Share {
 	 * Arguments for content buttons start
 	 *
 	 * @since 3.0.0
-	 * @param empty
-	 * @return Array
+	 * @param object $atts
+	 * @return array
 	 *
 	 */
 	public static function content_args( $atts ) {
@@ -285,8 +285,8 @@ abstract class WPUSB_Utils_Share {
 	 * Get data element fixed top
 	 *
 	 * @since 3.0.0
-	 * @param String $prefix
-	 * @return String
+	 * @param string $prefix
+	 * @return string
 	 *
 	 */
 	public static function data_fixed_top( $prefix ) {
@@ -302,8 +302,8 @@ abstract class WPUSB_Utils_Share {
 	 *
 	 * @since 3.0
 	 * @since 3.31
-	 * @param Object $network
-	 * @return String
+	 * @param object $network
+	 * @return string
 	 */
 	public static function link_type( $network ) {
 		$attr_link = sprintf( 'href="%s" target="%s"', $network->link, $network->target );
@@ -315,8 +315,8 @@ abstract class WPUSB_Utils_Share {
 	 * Get classes for container
 	 *
 	 * @since 3.0.0
-	 * @param Object $atts
-	 * @return String
+	 * @param object $atts
+	 * @return string
 	 *
 	 */
 	public static function get_classes_first( $atts ) {
@@ -331,8 +331,8 @@ abstract class WPUSB_Utils_Share {
 	 * Verify is active counters
 	 *
 	 * @since 3.0.0
-	 * @param Array $atts
-	 * @return Boolean
+	 * @param array $atts
+	 * @return boolean
 	 */
 	public static function is_inactive_couter( $atts ) {
 		$args           = (object) $atts;
@@ -346,8 +346,8 @@ abstract class WPUSB_Utils_Share {
 	 * Verify is active title
 	 *
 	 * @since 3.0.0
-	 * @param Array $atts
-	 * @return Boolen
+	 * @param array $atts
+	 * @return boolean
 	 *
 	 */
 	public static function is_inactive_inside( $atts ) {
@@ -361,9 +361,9 @@ abstract class WPUSB_Utils_Share {
 	 * Get container button by layout
 	 *
 	 * @since 3.0.0
-	 * @param Array $args
-	 * @param String $method
-	 * @return String
+	 * @param object $args
+	 * @param string $method
+	 * @return string
 	 *
 	 */
 	public static function get_content_by_layout( $args, $method ) {
@@ -393,8 +393,7 @@ abstract class WPUSB_Utils_Share {
 	 * Set all layouts
 	 *
 	 * @since 3.0.0
-	 * @param Null
-	 * @return Array
+	 * @return array
 	 *
 	 */
 	public static function get_layouts() {
@@ -411,8 +410,7 @@ abstract class WPUSB_Utils_Share {
 	 * Verifies is first item
 	 *
 	 * @since 3.0.0
-	 * @param Null
-	 * @return Boolean
+	 * @return boolean
 	 *
 	 */
 	public static function is_first() {
@@ -427,8 +425,8 @@ abstract class WPUSB_Utils_Share {
 	 * Add data featured by referrer
 	 *
 	 * @since 3.0.0
-	 * @param Object $atts
-	 * @return String
+	 * @param object $atts
+	 * @return string
 	 *
 	 */
 	public static function get_data_referrer( $atts ) {
@@ -440,19 +438,21 @@ abstract class WPUSB_Utils_Share {
 
 			return $attr;
 		}
+
+        return '';
 	}
 
 	/**
 	 * Create custom class from icons
 	 *
 	 * @since 1.0
-	 * @param Array $atts
-	 * @param Boolean $fixed
-	 * @return String
+	 * @param array $atts
+	 * @param boolean $fixed
+	 * @return string
 	 */
 	public static function buttons_share( $atts = array(), $fixed = false ) {
 		if ( WPUSB_Utils::is_disabled_by_meta() ) {
-			return;
+			return '';
 		}
 
 		$args          = self::sanitize_atts( $atts );
@@ -466,8 +466,8 @@ abstract class WPUSB_Utils_Share {
 	 *
 	 * @since 1.0
 	 * @since 3.25
-	 * @param Array $atts
-	 * @return Array
+	 * @param array $atts
+	 * @return array
 	 */
 	public static function sanitize_atts( $atts = array() ) {
 		$class_first    = WPUSB_Utils::isset_get( $atts, 'class_first' );
@@ -505,9 +505,9 @@ abstract class WPUSB_Utils_Share {
 	 * Add filter on inside html buttons
 	 *
 	 * @since 3.17
-	 * @param Object $args
-	 * @param String $content
-	 * @return String
+	 * @param object $args
+	 * @param string $content
+	 * @return string
 	 */
 	public static function filter_inside( $args, $content = '' ) {
 		return apply_filters( WPUSB_App::SLUG . '-inside-html', $content, $args );

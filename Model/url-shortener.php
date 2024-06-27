@@ -38,8 +38,8 @@ class WPUSB_URL_Shortener {
 	 *
 	 * @since 3.27
 	 * @global $wpdb
-	 * @param String $hash
-	 * @return String
+	 * @param string $hash
+	 * @return string
 	 */
 	public static function get_cache( $hash ) {
 		global $wpdb;
@@ -73,11 +73,11 @@ class WPUSB_URL_Shortener {
 	 *
 	 * @since 3.27
 	 * @global $wpdb
-	 * @param String $hash
-	 * @param Integer $post_id
-	 * @param String $short_url
-	 * @param Integer $expiration
-	 * @return Integer
+	 * @param string $hash
+	 * @param int $post_id
+	 * @param string $short_url
+	 * @param int $expiration
+	 * @return int
 	 */
 	public static function set_cache( $hash, $post_id, $short_url, $expiration = 0 ) {
 		global $wpdb;
@@ -96,8 +96,8 @@ class WPUSB_URL_Shortener {
 	 *
 	 * @since 3.27
 	 * @global $wpdb
-	 * @param String $hash
-	 * @return Integer
+	 * @param string $hash
+	 * @return int
 	 */
 	private static function _is_exists( $hash ) {
 		global $wpdb;
@@ -123,10 +123,10 @@ class WPUSB_URL_Shortener {
 	 *
 	 * @since 3.27
 	 * @global $wpdb
-	 * @param String $short_url
-	 * @param Integer $expiration_time
-	 * @param String $hash
-	 * @return Integer
+	 * @param string $short_url
+	 * @param int $expiration_time
+	 * @param string $hash
+	 * @return int
 	 */
 	private static function _update( $short_url, $expiration_time, $hash ) {
 		global $wpdb;
@@ -150,11 +150,11 @@ class WPUSB_URL_Shortener {
 	 *
 	 * @since 3.27
 	 * @global $wpdb
-	 * @param Integer $post_id
-	 * @param String $hash
-	 * @param String $short_url
-	 * @param Integer $expiration_time
-	 * @return Integer
+	 * @param int $post_id
+	 * @param string $hash
+	 * @param string $short_url
+	 * @param int $expiration_time
+	 * @return int
 	 */
 	private static function _insert( $post_id, $hash, $short_url, $expiration_time ) {
 		global $wpdb;
@@ -184,8 +184,7 @@ class WPUSB_URL_Shortener {
 	 *
 	 * @since 3.27
 	 * @global $wpdb
-	 * @param Null
-	 * @return Mixed False|String
+	 * @return mixed False|String
 	 */
 	public function get_short() {
 		if ( ! WPUSB_Utils::has_curl() || ! WPUSB_Utils::has_json() ) {

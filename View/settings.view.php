@@ -18,8 +18,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 	 *
 	 * @since 3.1.0
 	 * @version 2.0.0
-	 * @param Null
-	 * @return Void Display page
+	 * @return void Display page
 	 */
 	public static function render_settings_page() {
 		$model               = WPUSB_Setting::get_instance();
@@ -627,15 +626,6 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 							?>
 						</tbody>
 					</table>
-
-					<h3>
-						<?php _e( 'Twitter share count', 'wpupper-share-buttons' ); ?>
-					</h3>
-					<p class="description">
-					<?php
-						_e( 'The share count Twitter is powered by <a href="http://newsharecounts.com" target="_blank">newsharecounts.com</a>, you have to sign up with your Twitter account to get free service and twitter count. Just visit the website, fill in the domain of your site and click Sign in with Twitter. That, and nothing else!', 'wpupper-share-buttons' );
-					?>
-					</p>
 
 					<input type="hidden"
 						   name="<?php echo $option_social_media; ?>[order]"

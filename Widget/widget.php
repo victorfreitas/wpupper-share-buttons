@@ -175,7 +175,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std = new stdClass();
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Facebook
 		 */
 		$std->facebook         = new stdClass();
@@ -185,7 +185,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std->facebook->method = 'default';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Twitter
 		 */
 		$std->twitter         = new stdClass();
@@ -195,7 +195,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std->twitter->method = 'default';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Linkedin
 		 */
 		$std->linkedin         = new stdClass();
@@ -205,7 +205,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std->linkedin->method = 'default';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Pinterest
 		 */
 		$std->pinterest         = new stdClass();
@@ -215,7 +215,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std->pinterest->method = 'default';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Instagram
 		 */
 		$std->instagram         = new stdClass();
@@ -225,7 +225,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std->instagram->method = 'default';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Reddit
 		 */
 		$std->reddit         = new stdClass();
@@ -235,7 +235,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std->reddit->method = 'default';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see YouTube
 		 */
 		$std->youtube         = new stdClass();
@@ -245,7 +245,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std->youtube->method = 'default';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Vimeo
 		 */
 		$std->vimeo         = new stdClass();
@@ -255,7 +255,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std->vimeo->method = 'default';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see RSS
 		 */
 		$std->rss         = new stdClass();
@@ -265,7 +265,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std->rss->method = 'default';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Tumblr
 		 */
 		$std->tumblr         = new stdClass();
@@ -275,7 +275,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std->tumblr->method = 'default';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Flickr
 		 */
 		$std->flickr         = new stdClass();
@@ -285,7 +285,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std->flickr->method = 'default';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Foursquare
 		 */
 		$std->foursquare         = new stdClass();
@@ -295,7 +295,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std->foursquare->method = 'default';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see GitHub
 		 */
 		$std->github         = new stdClass();
@@ -305,7 +305,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std->github->method = 'default';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see E-mail
 		 */
 		$std->email          = new stdClass();
@@ -317,7 +317,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std->email->link    = 'mailto:%s?subject=%s';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Snapchat
 		 */
 		$std->snapchat         = new stdClass();
@@ -327,7 +327,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std->snapchat->method = 'default';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Behance
 		 */
 		$std->behance         = new stdClass();
@@ -337,7 +337,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std->behance->method = 'default';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see Behance
 		 */
 		$std->vk         = new stdClass();
@@ -347,7 +347,7 @@ class WPUpper_SB_Widget extends WP_Widget {
 		$std->vk->method = 'default';
 
 		/**
-		 * @var Object
+		 * @var object
 		 * @see WhatsApp
 		 */
 		$std->whatsapp               = new stdClass();

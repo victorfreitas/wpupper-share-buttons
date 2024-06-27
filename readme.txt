@@ -5,8 +5,8 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: social share, social sharing, social, social network, share, share buttons, WhatsApp, follow, follow us
 Requires at least: 4.0
 Requires PHP: 5.2.4 or later
-Tested up to: 5.3.2
-Stable tag: 3.42
+Tested up to: 6.2.1
+Stable tag: 3.43
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -90,6 +90,10 @@ Translators who did a great job converting the text of the plugin to their nativ
 * Set for your sharing icons
 
 == Changelog ==
+
+= 3.43 2023-05-19 =
+
+* Security fixes and code documentation improvements.
 
 = 3.42 2020-02-26 =
 

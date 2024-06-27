@@ -46,7 +46,7 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 	 * Init actions
 	 *
 	 * @since 3.30
-	 * @param String $prefix
+	 * @param string $prefix
 	 * @return void
 	 */
 	public function init( $prefix ) {
@@ -64,7 +64,6 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 	 * Check is valid request and init proccess
 	 *
 	 * @since 3.30
-	 * @param null
 	 * @return void
 	 */
 	public function request_init() {
@@ -77,7 +76,6 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 	 * Check is valid request and set reference
 	 *
 	 * @since 3.30
-	 * @param null
 	 * @return void
 	 */
 	private function _validate() {
@@ -99,7 +97,6 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 	 * Set properties
 	 *
 	 * @since 3.30
-	 * @param null
 	 * @return void
 	 */
 	private function _set_fields() {
@@ -126,7 +123,7 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 	 *
 	 * @since 3.30
 	 * @global $wpdb
-	 * @return Void
+	 * @return void
 	 */
 	private function _insert_init() {
 		global $wpdb;
@@ -149,8 +146,8 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 	 *
 	 * @since 3.30
 	 * @global $wpdb
-	 * @param Integer $id
-	 * @return Void
+	 * @param int $id
+	 * @return void
 	 */
 	private function _add_counts( $id ) {
 		global $wpdb;
@@ -169,8 +166,7 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 	 * @since 3.30
 	 * @since 3.37
 	 * @global $wpdb
-	 * @param null
-	 * @return Void
+	 * @return void
 	 */
 	private function _update() {
 		global $wpdb;
@@ -208,8 +204,7 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 	 * @since 1.0
 	 * @since 3.30
 	 * @global $wpdb
-	 * @param null
-	 * @return Void
+	 * @return void
 	 */
 	private function _insert() {
 		global $wpdb;
@@ -236,9 +231,9 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 	 * Send json request error
 	 *
 	 * @since 3.30
-	 * @param String $message
-	 * @param Boolean $success
-	 * @return Void
+	 * @param string $message
+	 * @param boolean $success
+	 * @return void
 	 */
 	private function _send_json( $message, $success = false ) {
 		wp_send_json(

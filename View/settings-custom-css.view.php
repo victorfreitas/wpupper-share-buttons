@@ -19,8 +19,7 @@ class WPUSB_Settings_Custom_CSS_View {
 	 *
 	 * @since 3.24
 	 * @version 1.0
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public static function render() {
 	?>

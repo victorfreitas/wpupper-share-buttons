@@ -30,7 +30,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * Number for posts per page
 	 *
 	 * @since 1.1
-	 * @var Integer
+	 * @var int
 	 */
 	const POSTS_PER_PAGE = 15;
 
@@ -94,8 +94,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * Set property query string param
 	 *
 	 * @since 3.32
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	private function _set_property() {
 		$this->table      = WPUSB_Utils::get_table_name();
@@ -108,8 +107,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * Create submenu page
 	 *
 	 * @since 1.0
-	 * @param null
-	 * @return Void
+	 * @return void
 	 */
 	public function menu() {
 		  add_submenu_page(
@@ -127,11 +125,11 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 *
 	 * @since 1.4
 	 * @global $wpdb
-	 * @param Int $page
-	 * @param String $orderby
-	 * @param String $order
+	 * @param int $page
+	 * @param string $orderby
+	 * @param string $order
 	 * @param $output String
-	 * @return Object
+	 * @return object
 	 */
 	private function _get_sharing_report( $posts_per_page, $current_page, $orderby, $order, $output = OBJECT ) {
 		global $wpdb;
@@ -157,8 +155,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 *
 	 * @since 1.0
 	 * @global $wpdb
-	 * @param Null
-	 * @return Integer
+	 * @return int
 	 */
 	private function _total_items() {
 		global $wpdb;
@@ -177,8 +174,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 *
 	 * @since 1.0
 	 * @since 3.32
-	 * @param Null
-	 * @return String
+	 * @return string
 	 */
 	private function _where() {
 		global $wpdb;
@@ -200,8 +196,8 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * Add date range filter for query
 	 *
 	 * @since 3.32
-	 * @param String $where
-	 * @return String
+	 * @param string $where
+	 * @return string
 	 */
 	private function _get_date_range_where( $where ) {
 		$and        = ( $where ) ? ' AND' : '';
@@ -233,7 +229,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 *
 	 * @since 1.0
 	 * @param Object $wpdb
-	 * @return String
+	 * @return string
 	 */
 	private function _table_exists( $wpdb ) {
 		return $wpdb->query( "SHOW TABLES LIKE '{$this->table}'" );
@@ -244,8 +240,8 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 *
 	 * @since 1.0
 	 * @param Object $item
-	 * @param String $column
-	 * @return Mixed String|Int
+	 * @param string $column
+	 * @return mixed String|Int
 	 */
 	public function column_default( $item, $column ) {
 		$column = strtolower( $column );
@@ -281,8 +277,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * Set column wp list table
 	 *
 	 * @since 1.0
-	 * @param Null
-	 * @return Array
+	 * @return array
 	 */
 	public function get_columns() {
 		$columns = array(
@@ -304,8 +299,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * Set orderby in column wp list table
 	 *
 	 * @since 1.0
-	 * @param Null
-	 * @return Array
+	 * @return array
 	 */
 	public function get_sortable_columns() {
 		$sort_columns = array(
@@ -328,8 +322,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * of views available on this table.
 	 *
 	 * @since 3.32
-	 * @param null
-	 * @return Array
+	 * @return array
 	 */
 	public function get_views() {
 		return apply_filters( WPUSB_Utils::add_prefix( $this->tag . 'views' ), array() );
@@ -340,7 +333,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 *
 	 * @since 3.32
 	 * @param string $which
-	 * @return Void
+	 * @return void
 	 */
 	public function extra_tablenav( $which ) {
 		if ( ( ! $this->has_items() && ! isset( $_GET['paged'] ) ) || 'top' !== $which || is_singular() ) {
@@ -365,8 +358,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * Export to CSV curent results
 	 *
 	 * @since 3.32
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public function export_csv() {
 		if ( ! WPUSB_Utils::is_sharing_report_page() || 'true' !== WPUSB_Utils::get( 'export' ) ) {
@@ -384,7 +376,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 *
 	 * @since 3.32
 	 * @param $integer $post_id
-	 * @return String
+	 * @return string
 	 */
 	public function get_title( $post_id ) {
 		return WPUSB_Utils::rm_tags( get_the_title( $post_id ) );
@@ -394,8 +386,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * Render CSV output
 	 *
 	 * @since 3.32
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public function render_csv() {
 		if ( empty( $this->items ) ) {
@@ -436,8 +427,8 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * Format share counts
 	 *
 	 * @since 3.32
-	 * @param Integer $value
-	 * @return String
+	 * @param int $value
+	 * @return string
 	 */
 	public function format_number( $value ) {
 		if ( ! is_numeric( $value ) ) {
@@ -451,8 +442,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * Get the CSV name formated
 	 *
 	 * @since 3.32
-	 * @param Null
-	 * @return String
+	 * @return string
 	 */
 	public function get_csv_name() {
 		$date = $this->get_date_i18n( date( 'Y-m-d' ), true );
@@ -464,8 +454,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * Set CSV headers download
 	 *
 	 * @since 3.32
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public function csv_headers() {
 		header( 'Content-Encoding: ' . WPUSB_Utils::get_charset() );
@@ -478,7 +467,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 *
 	 * @since 3.32
 	 * @param string $which
-	 * @return Void
+	 * @return void
 	 */
 	public function display_tablenav( $which ) {
 	?>
@@ -505,8 +494,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * Prepare item for record add in wp list table
 	 *
 	 * @since 1.1
-	 * @param Null
-	 * @return Array
+	 * @return array
 	 */
 	public function prepare_items( $output = OBJECT ) {
 		$orderby               = $this->_get_sql_orderby( WPUSB_Utils::get( 'orderby' ), 'total' );
@@ -534,8 +522,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * Return message in wp list table case empty records
 	 *
 	 * @since 1.0
-	 * @param Null
-	 * @return String
+	 * @return string
 	 */
 	public function no_items() {
 		_e( 'There is no record available at the moment!', 'wpupper-share-buttons' );
@@ -545,8 +532,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * Set report page view
 	 *
 	 * @since 1.3
-	 * @param null
-	 * @return Void
+	 * @return void
 	 */
 	public function report() {
 		WPUSB_Sharing_Report_View::render_sharing_report( $this );
@@ -556,9 +542,9 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * Verify sql orderby param
 	 *
 	 * @since 1.2
-	 * @param String $orderby
-	 * @param String $default
-	 * @return String
+	 * @param string $orderby
+	 * @param string $default
+	 * @return string
 	 */
 	private function _get_sql_orderby( $orderby, $default = '' ) {
 		$permissions = array(
@@ -580,9 +566,9 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * Verify sql order param
 	 *
 	 * @since 1.0
-	 * @param String $order
-	 * @param String $default
-	 * @return String
+	 * @param string $order
+	 * @param string $default
+	 * @return string
 	 */
 	private function _get_sql_order( $order, $default = '' ) {
 		$permissions = array(
@@ -598,8 +584,8 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * Translate post date
 	 *
 	 * @since 3.32
-	 * @param String $date
-	 * @return String
+	 * @param string $date
+	 * @return string
 	 */
 	public function get_date_i18n( $date, $is_file = false ) {
 		$date_i18n = esc_attr( date_i18n( __( 'Y/m/d' ), strtotime( $date ) ) );

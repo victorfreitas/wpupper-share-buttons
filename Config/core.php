@@ -95,8 +95,7 @@ final class WPUSB_Core {
 	 * Widget register
 	 *
 	 * @since 3.25
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public static function add_widgets() {
 		register_widget( 'WPUSB_Widgets_Controller' );
@@ -111,8 +110,7 @@ final class WPUSB_Core {
 	 * Registers actions activation, deactivation and uninstall plugin
 	 *
 	 * @since 1.0
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public static function register_actions() {
 		register_activation_hook( WPUSB_PLUGIN_FILE, array( __CLASS__, 'activate' ) );
@@ -123,8 +121,7 @@ final class WPUSB_Core {
 	 * Instantiate controllers
 	 *
 	 * @since 1.0
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	protected static function init_controllers() {
 		new WPUSB_Shares_Controller();
@@ -137,8 +134,7 @@ final class WPUSB_Core {
 	 * Instantiate controller used in admin
 	 *
 	 * @since 1.0
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	protected static function init_controllers_admin() {
 		if ( ! is_admin() ) {
@@ -158,8 +154,7 @@ final class WPUSB_Core {
 	 * Register Activation Hook
 	 *
 	 * @since 1.1
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public static function activate( $network_wide = false ) {
 		register_uninstall_hook( WPUSB_PLUGIN_FILE, array( __CLASS__, 'uninstall' ) );
@@ -177,8 +172,7 @@ final class WPUSB_Core {
 	 * Register Deactivation Hook
 	 *
 	 * @since 1.0
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public static function deactivate( $network_wide = false ) {
 
@@ -188,8 +182,7 @@ final class WPUSB_Core {
 	 * Register Uninstall Hook
 	 *
 	 * @since 1.3
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public static function uninstall() {
 		if ( ! is_multisite() ) {
@@ -213,8 +206,7 @@ final class WPUSB_Core {
 	 * Delete settings
 	 *
 	 * @since 3.25
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	protected static function delete_settings() {
 		self::delete_options();
@@ -227,8 +219,7 @@ final class WPUSB_Core {
 	 * Delete options settings
 	 *
 	 * @since 1.0
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	protected static function delete_options() {
 		$options_name = WPUSB_Utils::get_options_name();
@@ -242,8 +233,7 @@ final class WPUSB_Core {
 	 * Delete transients
 	 *
 	 * @since 1.0
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	protected static function delete_transients() {
 		// Transients
@@ -256,8 +246,7 @@ final class WPUSB_Core {
 	 *
 	 * @since 1.3
 	 * @global $wpdb
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	protected static function drop_table() {
 		global $wpdb;
@@ -274,8 +263,7 @@ final class WPUSB_Core {
 	 *
 	 * @since 3.27
 	 * @global $wpdb
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public static function delete_metabox() {
 		global $wpdb;
@@ -293,8 +281,7 @@ final class WPUSB_Core {
 	 *
 	 * @since 3.25
 	 * @global $wpdb
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	private static function _create_table_for_network() {
 		$sites = WPUSB_Utils::get_sites();
@@ -316,8 +303,7 @@ final class WPUSB_Core {
 	 *
 	 * @since 1.1
 	 * @global $wpdb
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	private static function _create_table() {
 		global $wpdb;
@@ -353,8 +339,7 @@ final class WPUSB_Core {
 	 *
 	 * @since 1.1
 	 * @global $wpdb
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	private static function _create_table_short_url() {
 		global $wpdb;
@@ -381,8 +366,8 @@ final class WPUSB_Core {
 	 * Create table db delta support
 	 *
 	 * @since 1.0
-	 * @param String $query
-	 * @return Void
+	 * @param string $query
+	 * @return void
 	 */
 	public static function db_delta( $query ) {
 		// Include upgrade file if dbDelta function not exists
@@ -398,9 +383,8 @@ final class WPUSB_Core {
 	 *
 	 * @since 3.13
 	 * @version 1.2
-	 * @param Null
 	 * @global $wpdb
-	 * @return Void
+	 * @return void
 	 */
 	public static function alter_table() {
 		global $wpdb;
@@ -472,8 +456,8 @@ final class WPUSB_Core {
 	 * Check column exists
 	 *
 	 * @since 3.27
-	 * @param String $column
-	 * @return String
+	 * @param string $column
+	 * @return string
 	 */
 	public static function column_exists( $column ) {
 		global $wpdb;
@@ -507,8 +491,7 @@ final class WPUSB_Core {
 	 * Singleton instance
 	 *
 	 * @since 3.22
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {

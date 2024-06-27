@@ -29,8 +29,7 @@ final class WPUSB_Scripts {
 	 * Enqueue scripts and stylesheets on admin
 	 *
 	 * @since 1.2
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public static function admin_scripts() {
 		if ( ! WPUSB_Utils::is_plugin_page() ) {
@@ -90,8 +89,7 @@ final class WPUSB_Scripts {
 	 * Arguments admin plugin scripts
 	 *
 	 * @since 3.32
-	 * @param Null
-	 * @return Array
+	 * @return array
 	 */
 	private static function _localize_script_args() {
 		$args = array(
@@ -124,7 +122,7 @@ final class WPUSB_Scripts {
 	 * @since 3.32
 	 * @link http://api.jqueryui.com/datepicker/#options
 	 * @global WP_Locale $wp_locale
-	 * @return Array
+	 * @return array
 	 */
 	public static function get_localize_datepicker() {
 		global $wp_locale;
@@ -152,8 +150,7 @@ final class WPUSB_Scripts {
 	 * Enqueue scripts and styles
 	 *
 	 * @since 1.0
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public static function add_front_scripts() {
 		if ( WPUSB_Utils::is_disabled_by_meta() && WPUSB_Utils::is_active_widget_follow() ) {
@@ -177,8 +174,7 @@ final class WPUSB_Scripts {
 	 * Enqueue front scripts
 	 *
 	 * @since 3.1.0
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public static function front_javascripts() {
 		if ( 'on' === WPUSB_Utils::option( 'disable_js' ) ) {
@@ -210,8 +206,7 @@ final class WPUSB_Scripts {
 	 * Front styles validate
 	 *
 	 * @since 3.1.0
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public static function front_styles() {
 		if ( WPUSB_Utils::is_disabled_css() ) {
@@ -229,8 +224,7 @@ final class WPUSB_Scripts {
 	 * Enqueue front styles
 	 *
 	 * @since 3.1.0
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public static function add_style_front() {
 		wp_enqueue_style(
@@ -378,8 +372,7 @@ final class WPUSB_Scripts {
 	 * Singleton instance
 	 *
 	 * @since 3.22
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {

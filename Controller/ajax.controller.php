@@ -128,9 +128,6 @@ class WPUSB_Ajax_Controller {
 	}
 
 	private function _json_decode_quoted( $txt ) {
-		$text = htmlspecialchars_decode( $txt );
-		$text = WPUSB_Utils::rm_tags( $text, true );
-
-		return WPUSB_Utils::json_decode( $text, true );
+		return WPUSB_Utils::json_decode( html_entity_decode( $txt ), true );
 	}
 }

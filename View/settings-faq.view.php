@@ -17,8 +17,7 @@ class WPUSB_Settings_Faq_View {
 	 * Display page setting
 	 *
 	 * @since 1.3
-	 * @param Null
-	 * @return Void Display page
+	 * @return void Display page
 	 */
 	public static function render_page_faq() {
 	?>

@@ -57,8 +57,8 @@ class WPUSB_Settings_Controller {
 	 * Adds links page plugin action
 	 *
 	 * @since 1.0
-	 * @param Array $links
-	 * @return Array links action plugins
+	 * @param array $links
+	 * @return array links action plugins
 	 */
 	public function plugin_link( $links ) {
 		$link = sprintf(
@@ -76,7 +76,6 @@ class WPUSB_Settings_Controller {
 	 * Register menu page and submenus
 	 *
 	 * @since 1.0
-	 * @param Null
 	 * @return void
 	 */
 	public function menu_page() {
@@ -126,7 +125,6 @@ class WPUSB_Settings_Controller {
 	 * Action for admin init
 	 *
 	 * @since 3.25
-	 * @param Null
 	 * @return void
 	 */
 	public function admin_init() {
@@ -137,7 +135,6 @@ class WPUSB_Settings_Controller {
 	 * Register plugin updates
 	 *
 	 * @since 3.6.0
-	 * @param Null
 	 * @return void
 	 */
 	private function _plugin_update() {
@@ -171,7 +168,7 @@ class WPUSB_Settings_Controller {
 	 * Rebuild custom css file
 	 *
 	 * @since 3.25
-	 * @param Array $value
+	 * @param array $value
 	 * @return void
 	 */
 	private function _rebuild_css( $value = array() ) {
@@ -183,8 +180,8 @@ class WPUSB_Settings_Controller {
 	 * Add class plugin page
 	 *
 	 * @since 3.32
-	 * @param String $classes
-	 * @return String
+	 * @param string $classes
+	 * @return string
 	 */
 	public function body_class( $classes ) {
 		if ( WPUSB_Utils::is_dashboard_page() ) {

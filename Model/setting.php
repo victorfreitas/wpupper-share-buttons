@@ -17,7 +17,7 @@ class WPUSB_Setting {
 	 * All Options
 	 *
 	 * @since 1.0
-	 * @var Array
+	 * @var array
 	 */
 	private $options;
 
@@ -161,7 +161,7 @@ class WPUSB_Setting {
 	 * Layout value
 	 *
 	 * @since 1.0
-	 * @var String
+	 * @var string
 	 */
 	private $layout;
 
@@ -169,7 +169,7 @@ class WPUSB_Setting {
 	 * Layout position fixed value
 	 *
 	 * @since 1.0
-	 * @var String
+	 * @var string
 	 */
 	private $fixed_layout;
 
@@ -201,7 +201,7 @@ class WPUSB_Setting {
 	 * Social Media active
 	 *
 	 * @since 1.0
-	 * @var Array
+	 * @var array
 	 */
 	private $social_media;
 
@@ -209,7 +209,7 @@ class WPUSB_Setting {
 	 * Remove count buttons
 	 *
 	 * @since 1.0
-	 * @var Integer
+	 * @var int
 	 */
 	private $disabled_count;
 
@@ -217,7 +217,7 @@ class WPUSB_Setting {
 	 * Remove inside buttons name
 	 *
 	 * @since 1.0
-	 * @var Integer
+	 * @var int
 	 */
 	private $disabled_inside;
 
@@ -225,7 +225,7 @@ class WPUSB_Setting {
 	 * Elements position fixed
 	 *
 	 * @since 1.0
-	 * @var String
+	 * @var string
 	 */
 	private $position_fixed;
 
@@ -233,7 +233,7 @@ class WPUSB_Setting {
 	 * Elements position fixed right
 	 *
 	 * @since 3.1.0
-	 * @var String
+	 * @var string
 	 */
 	private $fixed_right;
 
@@ -241,7 +241,7 @@ class WPUSB_Setting {
 	 * Layout posisition
 	 *
 	 * @since 1.0
-	 * @var String
+	 * @var string
 	 */
 	private $fixed;
 
@@ -249,7 +249,7 @@ class WPUSB_Setting {
 	 * Layout scroll fixed top
 	 *
 	 * @since 1.0
-	 * @var String
+	 * @var string
 	 */
 	private $fixed_top;
 
@@ -257,7 +257,7 @@ class WPUSB_Setting {
 	 * Twitter text in share
 	 *
 	 * @since 1.0
-	 * @var String
+	 * @var string
 	 */
 	private $twitter_text;
 
@@ -265,7 +265,7 @@ class WPUSB_Setting {
 	 * Short url
 	 *
 	 * @since 1.0
-	 * @var String
+	 * @var string
 	 */
 	private $bitly_token;
 
@@ -273,7 +273,7 @@ class WPUSB_Setting {
 	 * Featured by referrence
 	 *
 	 * @since 1.0
-	 * @var String
+	 * @var string
 	 */
 	private $referrer;
 
@@ -281,7 +281,7 @@ class WPUSB_Setting {
 	 * The context to search
 	 *
 	 * @since 1.0
-	 * @var String
+	 * @var string
 	 */
 	private $fixed_context;
 
@@ -289,7 +289,7 @@ class WPUSB_Setting {
 	 * Style CSS in footer
 	 *
 	 * @since 1.0
-	 * @var String
+	 * @var string
 	 */
 	private $css_footer;
 
@@ -297,7 +297,7 @@ class WPUSB_Setting {
 	 * WooCommerce share
 	 *
 	 * @since 1.0
-	 * @var String
+	 * @var string
 	 */
 	private $woocommerce;
 
@@ -305,7 +305,7 @@ class WPUSB_Setting {
 	 * Disable sharing report counts
 	 *
 	 * @since 1.0
-	 * @var String
+	 * @var string
 	 */
 	private $sharing_report_disabled;
 
@@ -313,7 +313,7 @@ class WPUSB_Setting {
 	 * Share count label
 	 *
 	 * @since 1.0
-	 * @var String
+	 * @var string
 	 */
 	private $share_count_label;
 
@@ -321,7 +321,7 @@ class WPUSB_Setting {
 	 * Title above share buttons
 	 *
 	 * @since 1.0
-	 * @var String
+	 * @var string
 	 */
 	private $title;
 
@@ -329,7 +329,7 @@ class WPUSB_Setting {
 	 * Custom icons size
 	 *
 	 * @since 1.0
-	 * @var Integer
+	 * @var int
 	 */
 	private $icons_size;
 
@@ -337,7 +337,7 @@ class WPUSB_Setting {
 	 * Custom icons color
 	 *
 	 * @since 1.0
-	 * @var String
+	 * @var string
 	 */
 	private $icons_color;
 
@@ -345,7 +345,7 @@ class WPUSB_Setting {
 	 * Custom icons background color
 	 *
 	 * @since 1.0
-	 * @var String
+	 * @var string
 	 */
 	private $button_bg_color;
 
@@ -353,7 +353,7 @@ class WPUSB_Setting {
 	 * Minify html output
 	 *
 	 * @since 1.0
-	 * @var String
+	 * @var string
 	 */
 	private $minify_html;
 
@@ -361,7 +361,7 @@ class WPUSB_Setting {
 	 * Text color layout fixed default
 	 *
 	 * @since 3.27
-	 * @var String
+	 * @var string
 	 */
 	private $text_label_fixed_default;
 
@@ -369,7 +369,7 @@ class WPUSB_Setting {
 	 * Title color layout button
 	 *
 	 * @since 3.27
-	 * @var String
+	 * @var string
 	 */
 	private $btn_inside_color;
 
@@ -377,7 +377,7 @@ class WPUSB_Setting {
 	 * Share count text color
 	 *
 	 * @since 3.27
-	 * @var String
+	 * @var string
 	 */
 	private $counts_text_color;
 
@@ -385,7 +385,7 @@ class WPUSB_Setting {
 	 * Share count background color
 	 *
 	 * @since 3.27
-	 * @var String
+	 * @var string
 	 */
 	private $counts_bg_color;
 
@@ -393,7 +393,7 @@ class WPUSB_Setting {
 	 * Bitly URL shortener domain
 	 *
 	 * @since 3.27
-	 * @var String
+	 * @var string
 	 */
 	private $bitly_domain;
 
@@ -401,7 +401,7 @@ class WPUSB_Setting {
 	 * Min count to display
 	 *
 	 * @since 3.29
-	 * @var Integer
+	 * @var int
 	 */
 	private $min_count_display;
 
@@ -409,7 +409,7 @@ class WPUSB_Setting {
 	 * Pinterest alt description
 	 *
 	 * @since 3.31
-	 * @var String
+	 * @var string
 	 */
 	private $pin_image_alt;
 
@@ -417,7 +417,7 @@ class WPUSB_Setting {
 	 * Active post types
 	 *
 	 * @since 3.31
-	 * @var String
+	 * @var string
 	 */
 	private $post_types;
 
@@ -535,8 +535,7 @@ class WPUSB_Setting {
 	 * Get all options
 	 *
 	 * @since 1.1
-	 * @param Null
-	 * @return Array
+	 * @return array
 	 */
 	public function get_options() {
 		return $this->options;
@@ -546,8 +545,7 @@ class WPUSB_Setting {
 	  * Set all options
 	  *
 	 * @since 1.1
-	 * @param Null
-	 * @return Array
+	 * @return array
 	 */
 	public function set_options() {
 		$this->options = $this->_get_merged_options();
@@ -557,10 +555,10 @@ class WPUSB_Setting {
 	  * Merge array all options
 	  *
 	 * @since 1.0
-	 * @param String $settings
-	 * @param String $social
-	 * @param String $extra
-	 * @return Array
+	 * @param string $settings
+	 * @param string $social
+	 * @param string $extra
+	 * @return array
 	 */
 	private function _get_merged_options() {
 		$options_name = WPUSB_Utils::get_options_name();
@@ -584,8 +582,7 @@ class WPUSB_Setting {
 	  * Singleton instance generate
 	  *
 	 * @since 1.0
-	 * @param null
-	 * @return Object class
+	 * @return object class
 	 */
 	public static function get_instance() {
 		if ( is_null( self::$instance ) ) {

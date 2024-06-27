@@ -23,8 +23,7 @@ class WPUSB_Share_Report {
 	 * Get classication total sharing counter by provider
 	 *
 	 * @since 3.35
-	 * @param null
-	 * @return Array
+	 * @return array
 	 */
 	public function get_total_share_by_provider() {
 		global $wpdb;

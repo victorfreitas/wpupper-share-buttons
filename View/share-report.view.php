@@ -17,7 +17,7 @@ class WPUSB_Sharing_Report_View {
 	 * Display page sharing report
 	 *
 	 * @since 1.3
-	 * @param Object $list_table
+	 * @param object $list_table
 	 * @return void
 	 */
 	public static function render_sharing_report( $list_table ) {
@@ -63,8 +63,8 @@ class WPUSB_Sharing_Report_View {
 	 * Insert link in column title in wp list table
 	 *
 	 * @since 1.0
-	 * @param Object $list
-	 * @return String
+	 * @param object $list
+	 * @return string
 	 */
 	public static function get_permalink_title( $list ) {
 		$permalink = esc_url( get_permalink( $list->post_id ) );
@@ -85,8 +85,7 @@ class WPUSB_Sharing_Report_View {
 	 * Render date range filter
 	 *
 	 * @since 3.32
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public static function render_date_range_filter() {
 		$date_format = _x( 'YYYY-MM-DD', 'placeholder', 'wpupper-share-buttons' );
@@ -126,8 +125,7 @@ class WPUSB_Sharing_Report_View {
 	 * Render btn export csv
 	 *
 	 * @since 3.32
-	 * @param Null
-	 * @return Void
+	 * @return void
 	 */
 	public static function export_csv_btn() {
 	?>
@@ -141,8 +139,7 @@ class WPUSB_Sharing_Report_View {
 	 * Render table classification sharing counter by social network
 	 *
 	 * @since 3.35
-	 * @param null
-	 * @return Void
+	 * @return void
 	 */
 	public static function render_classification_by_provider() {
 		$model         = new WPUSB_Share_Report();
