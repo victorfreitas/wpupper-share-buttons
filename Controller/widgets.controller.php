@@ -22,7 +22,7 @@ class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
 	}
 
 	public function widget( $args, $instance ) {
-		if ( WPUSB_Utils::is_disabled_by_meta() ) {
+		if ( WPUSB_Utils::is_disabled() ) {
 			return;
 		}
 

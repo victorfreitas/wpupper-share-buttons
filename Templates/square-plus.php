@@ -4,6 +4,7 @@
  * @package WPUpper Share Buttons
  * @author  Victor Freitas
  * @since 3.0.0
+ * @since 3.50 - Typo in the method name.
  * @subpackage Social Icons Display
  * @version 1.0
  */
@@ -107,7 +108,7 @@ EOD;
 	 * @return string
 	 */
 	public static function add_count( $args ) {
-		if ( WPUSB_Utils::is_inactive_couter( $args ) ) {
+		if ( WPUSB_Utils::is_inactive_counter( $args ) ) {
 			return '';
 		}
 

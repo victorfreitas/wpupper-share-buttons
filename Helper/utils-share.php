@@ -5,6 +5,7 @@
  * @package WPUpper Share Buttons
  * @subpackage Social Icons Display
  * @since 3.0.0
+ * @since 3.50 - Add filter on inside html buttons.
  * @version 1.0
  */
 if ( ! defined( 'ABSPATH' ) ) {
@@ -298,7 +299,7 @@ abstract class WPUSB_Utils_Share {
 	}
 
 	/**
-	 * Verfy type and return links from icons
+	 * Verify type and return links from icons
 	 *
 	 * @since 3.0
 	 * @since 3.31
@@ -334,7 +335,7 @@ abstract class WPUSB_Utils_Share {
 	 * @param array $atts
 	 * @return boolean
 	 */
-	public static function is_inactive_couter( $atts ) {
+	public static function is_inactive_counter( $atts ) {
 		$args           = (object) $atts;
 		$remove_counter = $args->remove_counter;
 		$disabled_count = WPUSB_Utils::option( 'disabled_count', false, 'intval' );
@@ -451,7 +452,7 @@ abstract class WPUSB_Utils_Share {
 	 * @return string
 	 */
 	public static function buttons_share( $atts = array(), $fixed = false ) {
-		if ( WPUSB_Utils::is_disabled_by_meta() ) {
+		if ( WPUSB_Utils::is_disabled() ) {
 			return '';
 		}
 

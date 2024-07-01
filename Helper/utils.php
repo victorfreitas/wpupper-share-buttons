@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WPUSB_Utils extends WPUSB_Utils_Share {
 	/**
-	 * Escape string for atribute class
+	 * Escape string for attribute class
 	 *
 	 * @since 1.0
 	 * @param string $string
@@ -781,7 +781,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
-	 * Descode html entityes UTF-8
+	 * Decode html entity.
 	 *
 	 * @since 1.0
 	 * @param string $string
@@ -1192,11 +1192,11 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @param string $title
 	 * @param string $twitter_text_a
 	 * @param string $twitter_text_b
-	 * @param string $caracter
+	 * @param string $character
 	 * @return string
 	 */
-	public static function get_twitter_text( $title, $twitter_text_a, $twitter_text_b, $caracter ) {
-		$text = "{$twitter_text_a}%20{$title}%20-%20{$twitter_text_b}%20{$caracter}%20";
+	public static function get_twitter_text( $title, $twitter_text_a, $twitter_text_b, $character ) {
+		$text = "{$twitter_text_a}%20{$title}%20-%20{$twitter_text_b}%20{$character}%20";
 
 		return apply_filters( self::add_prefix( '-twitter-text' ), $text, $title );
 	}
@@ -1213,7 +1213,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
-	 * Ferify is button fixed in top
+	 * Verify is button fixed in top
 	 *
 	 * @since 1.0
 	 * @return string
@@ -1409,7 +1409,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 
 	/**
 	 * Check is plugin admin page
-	 * Check is customizer page preview
+	 * Check is customize page preview
 	 *
 	 * @since 3.16
 	 * @return boolean
@@ -1880,7 +1880,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	}
 
 	/**
-	 * Generate hash MD5 with json_econde
+	 * Generate hash MD5 with json_encode.
 	 *
 	 * @since 3.25.3
 	 * @param mixed $args
@@ -2097,6 +2097,17 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$types = self::option( 'post_types' );
 
 		return ( $types && ! isset( $types[ $type ] ) || self::get_meta( $ID ) === 'yes' );
+	}
+
+	/**
+	 * Check if plugin is disabled to showing in the current post.
+	 *
+	 * @since 3.50
+	 * @param int $ID
+	 * @return boolean
+	 */
+	public static function is_disabled( $ID = null ) {
+		return self::is_disabled_by_meta( $ID ) || post_password_required( $ID ? $ID : self::get_id() );
 	}
 
 	/**

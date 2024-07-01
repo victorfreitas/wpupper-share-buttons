@@ -5,6 +5,7 @@
  * @package WPUpper Share Buttons
  * @subpackage Social Icons Display
  * @since 3.0.0
+ * @since 3.50 - Typo in the method name.
  * @version 1.0
  */
 if ( ! defined( 'ABSPATH' ) ) {
@@ -129,7 +130,7 @@ EOD;
 	 * @return string
 	 */
 	public static function add_count( $args ) {
-		$active_counter = WPUSB_Utils::is_inactive_couter( $args->elements );
+		$active_counter = WPUSB_Utils::is_inactive_counter( $args->elements );
 		$content        = '';
 		$class_hide     = WPUSB_Utils::get_hide_count_class();
 

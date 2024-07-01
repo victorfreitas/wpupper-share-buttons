@@ -4,6 +4,7 @@
  * @package WPUpper Share Buttons
  * @author  Victor Freitas
  * @since 3.0.0
+ * @since 3.50 - Typo in the method name.
  * @subpackage Social Icons Display
  * @version 1.0
  */
@@ -115,7 +116,7 @@ EOD;
 		$content    = '';
 		$class_hide = WPUSB_Utils::get_hide_count_class();
 
-		if ( ! WPUSB_Utils::is_inactive_couter( $args ) ) {
+		if ( ! WPUSB_Utils::is_inactive_counter( $args ) ) {
 			$inside  = self::_get_inside_count();
 			$content = <<<EOD
 				<div class="{$prefix}-item {$prefix}-total-share {$class_hide}">

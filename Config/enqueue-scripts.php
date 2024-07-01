@@ -147,14 +147,20 @@ final class WPUSB_Scripts {
 	}
 
 	/**
-	 * Enqueue scripts and styles
+	 * Enqueue scripts and styles.
 	 *
 	 * @since 1.0
+	 * @since 3.50 - Change the condition to load scripts.
 	 * @return void
 	 */
 	public static function add_front_scripts() {
-		if ( WPUSB_Utils::is_disabled_by_meta() && WPUSB_Utils::is_active_widget_follow() ) {
+		$is_active_follow_us = WPUSB_Utils::is_active_widget_follow();
+
+		if ( $is_active_follow_us ) {
 			self::front_styles();
+		}
+
+		if ( WPUSB_Utils::is_disabled() ) {
 			return;
 		}
 
@@ -165,7 +171,7 @@ final class WPUSB_Scripts {
 			self::front_javascripts();
 		}
 
-		if ( $load_scripts || WPUSB_Utils::is_active_widget() || $customize_preview ) {
+		if ( ! $is_active_follow_us && ( $load_scripts || WPUSB_Utils::is_active_widget() || $customize_preview ) ) {
 			self::front_styles();
 		}
 	}

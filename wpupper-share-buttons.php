@@ -5,7 +5,7 @@
  * Description: The social share buttons. The buttons are inserted automatically, beautifully.
  * Author:      Victor Freitas
  * Author URI:  https://www.linkedin.com/in/viktorfreitas/
- * Version:     3.43
+ * Version:     3.50
  * License:     GPLv3
  * Text Domain: wpupper-share-buttons
  * Domain Path: /languages
@@ -36,25 +36,34 @@ if ( ! defined( 'WPUSB_PLUGIN_FILE' ) ) {
 }
 
 if ( ! defined( 'WPUSB_PLUGIN_VERSION' ) ) {
-	define( 'WPUSB_PLUGIN_VERSION', '3.43' );
+	define( 'WPUSB_PLUGIN_VERSION', '3.50' );
+}
+
+if ( ! defined( 'WPUSB_PLUGIN_REQUIRED_PHP_VERSION' ) ) {
+	define( 'WPUSB_PLUGIN_REQUIRED_PHP_VERSION', '7.0.0' );
 }
 
 // Class WPUSB_App to include classes.
 require_once dirname( __FILE__ ) . '/Config/app.php';
 
 // If supported PHP version init core or admin notice if not supported
-if ( version_compare( PHP_VERSION, '5.2.4', '>=' ) ) {
+if ( version_compare( PHP_VERSION, WPUSB_PLUGIN_REQUIRED_PHP_VERSION, '>=' ) ) {
 	WPUSB_App::uses( 'core', 'Config' );
 } else {
 	function wpusb_not_supported_php_version() {
 	?>
 		<div class="error notice is-dismissible">
 			<p>
-				<strong>
-					<?php echo WPUSB_App::NAME; ?>
-				</strong>
 				<?php
-					_e( 'It does not support your PHP version. Please, install a version greater than or equal to 5.2.4.', 'wpupper-share-buttons' );
+					echo esc_html(
+						sprintf(
+							/* translators: 1: The plugin name, 2: Minimum required PHP version number, 3: Current PHP version number. */
+							__( '%1$s requires PHP version %2$s or higher. You are running version %3$s.', 'wpupper-share-buttons' ),
+							WPUSB_App::NAME,
+							WPUSB_PLUGIN_REQUIRED_PHP_VERSION,
+							PHP_VERSION
+						)
+					);
 				?>
 			</p>
 		</div>

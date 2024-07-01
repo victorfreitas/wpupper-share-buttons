@@ -224,10 +224,11 @@ class WPUSB_Shares_Controller {
 	 * Check is share button disable by post meta
 	 *
 	 * @since 3.27
-	 * @return Bollean
+	 * @since 3.50 - Change the method to check if social buttons is disabled.
+	 * @return boolean
 	 */
 	public function is_disabled() {
-		return WPUSB_Utils::is_disabled_by_meta();
+		return WPUSB_Utils::is_disabled();
 	}
 
 	/**
@@ -260,7 +261,7 @@ class WPUSB_Shares_Controller {
 	 * Register post meta
 	 *
 	 * @since 3.27
-	 * @param mixed Array|String $scren
+	 * @param mixed Array|String $screen
 	 * @return void
 	 */
 	public function add_meta_box( $screen ) {
