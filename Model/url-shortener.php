@@ -18,7 +18,7 @@ class WPUSB_URL_Shortener {
 	private $token;
 
 	const TABLE_NAME = 'wpusb_url_shortener';
-	const API = 'https://api-ssl.bitly.com/v3/shorten';
+	const API = 'https://api-ssl.bitly.com/v4/shorten';
 
 	public function __construct( $permalink, $token ) {
 		$this->_set_permalink( $permalink );
@@ -46,20 +46,16 @@ class WPUSB_URL_Shortener {
 
 		$table        = $wpdb->prefix . self::TABLE_NAME;
 		$current_time = current_time( 'timestamp' );
-		$query        = $wpdb->prepare(
-			"SELECT
-				`short_url`
-			 FROM
-			 	`{$table}`
-			 USE INDEX(`hash`)
-			 WHERE
-			 	`hash` = %s
-			 	AND `expires` > %d
-			",
-			$hash,
-			$current_time
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$value = $wpdb->get_var(
+			$wpdb->prepare(
+				// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				"SELECT `short_url` FROM `{$table}` USE INDEX(`hash`) WHERE `hash` = %s AND `expires` > %d",
+				$hash,
+				$current_time
+			)
 		);
-		$value = $wpdb->get_var( $query );
 
 		if ( empty( $value ) ) {
 			return '';
@@ -103,19 +99,15 @@ class WPUSB_URL_Shortener {
 		global $wpdb;
 
 		$table = $wpdb->prefix . self::TABLE_NAME;
-		$query = $wpdb->prepare(
-			"SELECT
-				`post_id`
-			 FROM
-			 	`{$table}`
-			 	USE INDEX(`hash`)
-			 WHERE
-			 	`hash` = %s
-			",
-			$hash
-		);
 
-		return (int) $wpdb->get_var( $query );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+		return (int) $wpdb->get_var(
+			$wpdb->prepare(
+				// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+				"SELECT `post_id` FROM `{$table}` USE INDEX(`hash`) WHERE `hash` = %s",
+				$hash
+			)
+		);
 	}
 
 	/**
@@ -131,6 +123,7 @@ class WPUSB_URL_Shortener {
 	private static function _update( $short_url, $expiration_time, $hash ) {
 		global $wpdb;
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 		return $wpdb->update(
 			$wpdb->prefix . self::TABLE_NAME,
 			array(
@@ -161,12 +154,14 @@ class WPUSB_URL_Shortener {
 
 		$table = $wpdb->prefix . self::TABLE_NAME;
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 		$wpdb->delete(
 			$table, array(
 				'post_id' => $post_id,
 			)
 		);
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 		return $wpdb->insert(
 			$table,
 			array(
@@ -192,33 +187,32 @@ class WPUSB_URL_Shortener {
 		}
 
 		$value  = WPUSB_Utils::option( 'bitly_domain' );
-		$domain = WPUSB_Utils::get_bitly_domain( $value );
-		$params = array(
-			'access_token' => $this->token,
-			'longUrl'      => $this->permalink,
+		$args   = array(
+			'body' => json_encode(
+				array(
+					'long_url' => rawurldecode( $this->permalink ),
+					'domain'   => WPUSB_Utils::get_bitly_domain( $value ),
+				)
+			),
+			'headers'  => array(
+				'Authorization' => 'Bearer ' . $this->token,
+				'Content-Type'  => 'application/json',
+			),
 		);
 
-		if ( $domain ) {
-			$params['domain'] = $domain;
+		$response = wp_remote_post( esc_url( self::API ), $args );
+		$code     = wp_remote_retrieve_response_code( $response );
+
+		error_log( print_r( $response, true ) );
+
+		if ( empty( $code ) || ! in_array( $code, array( 200, 201 ), true ) ) {
+			return false;
 		}
 
-		$url = esc_url_raw( add_query_arg( $params, self::API ) );
-		$ch  = curl_init();
+		$data = WPUSB_Utils::json_decode( wp_remote_retrieve_body( $response ) );
 
-		curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 5 );
-		curl_setopt( $ch, CURLOPT_TIMEOUT, 5 );
-		curl_setopt( $ch, CURLOPT_URL, $url );
-		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt( $ch, CURLOPT_HEADER, false );
-
-		$response = curl_exec( $ch );
-
-		curl_close( $ch );
-
-		$response = WPUSB_Utils::json_decode( $response );
-
-		if ( isset( $response->status_code ) && 200 === intval( $response->status_code ) ) {
-			return $response->data->url;
+		if ( $data && ! empty( $data->link ) ) {
+			return $data->link;
 		}
 
 		return false;

@@ -2,11 +2,11 @@
 Author URL: https://github.com/victorfreitas
 Contributors: victorfreitas
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KYRMWXEEQN58L
-Tags: social share, social sharing, social, social network, share, share buttons, WhatsApp, follow, follow us
+Tags: share, share buttons, social media, widget, follow us
 Requires at least: 4.0
-Requires PHP: 7.0.0 or later
+Requires PHP: 7.0.0
 Tested up to: 6.5.5
-Stable tag: 3.50
+Stable tag: 3.51
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -91,12 +91,20 @@ Translators who did a great job converting the text of the plugin to their nativ
 
 == Changelog ==
 
+= 3.51 2024-06-30 =
+
+* Security improvements and bug fixes.
+* Change the use of some native PHP functions to WordPress functions.
+* Change bitly URL shortener API version.
+* Change x.com API URL to share link.
+* Use post excerpt if not empty to share via email otherwise use post content.
+
 = 3.50 2024-06-30 =
 
 * Security fixes.
 * Typo fixes.
 * Support for PHP 5 has been discontinued.
-* The new minimum supported version of PHP is 7.0.0.
+* Change the minimum supported version of PHP to 7.0.0.
 
 = 3.43 2023-05-19 =
 

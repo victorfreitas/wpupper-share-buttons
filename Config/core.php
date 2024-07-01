@@ -254,7 +254,10 @@ final class WPUSB_Core {
 		$table_share_report  = WPUSB_Utils::get_table_name();
 		$table_url_shortener = $wpdb->prefix . WPUSB_URL_Shortener::TABLE_NAME;
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		$wpdb->query( "DROP TABLE IF EXISTS {$table_share_report}" );
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		$wpdb->query( "DROP TABLE IF EXISTS {$table_url_shortener}" );
 	}
 
@@ -268,7 +271,7 @@ final class WPUSB_Core {
 	public static function delete_metabox() {
 		global $wpdb;
 
-		$wpdb->query(
+		$wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prepare(
 				"DELETE FROM `{$wpdb->postmeta}` WHERE `meta_key` = %s",
 				WPUSB_Setting::META_KEY
@@ -406,6 +409,7 @@ final class WPUSB_Core {
 			return;
 		}
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		$wpdb->query( "ALTER TABLE {$table} ADD tumblr BIGINT(20) NOT NULL DEFAULT 0 AFTER pinterest;" );
 	}
 
@@ -414,12 +418,14 @@ final class WPUSB_Core {
 			return;
 		}
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		$inserted = $wpdb->query( "ALTER TABLE {$table} ADD post_date DATE NOT NULL;" );
 
 		if ( ! $inserted ) {
 			return;
 		}
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		$results = $wpdb->get_results( "SELECT `id`, `post_id` FROM `{$table}`" );
 
 		if ( empty( $results ) ) {
@@ -427,6 +433,7 @@ final class WPUSB_Core {
 		}
 
 		foreach ( $results as $result ) :
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$post_date = $wpdb->get_var(
 				$wpdb->prepare(
 					"SELECT `post_date` FROM `{$wpdb->posts}` WHERE `ID` = %d",
@@ -434,8 +441,10 @@ final class WPUSB_Core {
 				)
 			);
 
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->query(
 				$wpdb->prepare(
+					// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 					"UPDATE `{$table}` SET `post_date` = %s WHERE `id` = %d",
 					date_i18n( 'Y-m-d', strtotime( $post_date ) ),
 					$result->id
@@ -449,6 +458,7 @@ final class WPUSB_Core {
 			return;
 		}
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		$wpdb->query( "ALTER TABLE {$table} ADD buffer BIGINT(20) NOT NULL DEFAULT 0 AFTER tumblr;" );
 	}
 
@@ -463,22 +473,24 @@ final class WPUSB_Core {
 		global $wpdb;
 
 		$table = WPUSB_Utils::get_table_name();
-		$query = $wpdb->prepare(
-			'SELECT
-                COLUMN_NAME
-             FROM
-                information_schema.COLUMNS
-             WHERE
-                    TABLE_SCHEMA = %s
-                AND TABLE_NAME = %s
-                AND COLUMN_NAME = %s;
-            ',
-			$wpdb->dbname,
-			$table,
-			$column
-		);
 
-		return $wpdb->get_var( $query );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+		return $wpdb->get_var(
+			$wpdb->prepare(
+				'SELECT
+					COLUMN_NAME
+				FROM
+					information_schema.COLUMNS
+				WHERE
+						TABLE_SCHEMA = %s
+					AND TABLE_NAME = %s
+					AND COLUMN_NAME = %s;
+				',
+				$wpdb->dbname,
+				$table,
+				$column
+			)
+		);
 	}
 
 	public static function is_new_installation() {

@@ -51,12 +51,12 @@ abstract class WPUSB_Utils_View {
 	public static function section( $title, $id ) {
 	?>
 		</table>
-		<table class="form-table" id="<?php echo self::get_field_id( $id ); ?>">
+		<table class="form-table" id="<?php echo esc_attr( self::get_field_id( $id ) ); ?>">
 			<tbody>
 				<tr>
 					<th class="no-padding">
 						<h2 class="size-section">
-							<?php echo $title; ?>
+							<?php echo esc_html( $title ); ?>
 						</h2>
 					</th>
 				</tr>
@@ -123,15 +123,15 @@ abstract class WPUSB_Utils_View {
 
 	private static function _tr_input() {
 		$args     = self::$args;
-		$value    = $args->type === 'checkbox' ? $args->checked : esc_attr( self::get_value() );
+		$value    = $args->type === 'checkbox' ? $args->checked : self::get_value();
 		$field_id = self::get_field_id( $args->key );
 	?>
-		<tr class="<?php echo self::get_class( true ); ?>"
-			<?php echo self::get_attrs( true ); ?>>
+		<tr class="<?php echo esc_attr( self::get_class( true ) ); ?>"
+			<?php echo self::get_attrs( true ); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>>
 
 			<th scope="row">
-				<label for="<?php echo $field_id; ?>">
-					<?php echo $args->label; ?>
+				<label for="<?php echo esc_attr( $field_id ); ?>">
+					<?php echo esc_html( $args->label ); ?>
 				</label>
 			</th>
 			<td>
@@ -139,60 +139,60 @@ abstract class WPUSB_Utils_View {
 				if ( $args->type === 'checkbox' && $args->default !== '' ) {
 					printf(
 						'<input type="hidden" name="%s" value="%s">',
-						self::get_field_name(),
-						$args->default
+						esc_attr( self::get_field_name() ),
+						esc_attr( $args->default )
 					);
 				}
 
 				if ( ! empty( $args->left_text ) ) {
 					printf(
 						'<span class="%s">%s</span>',
-						$args->left_text_class,
-						$args->left_text
+						esc_attr( $args->left_text_class ),
+						esc_attr( $args->left_text )
 					);
 				}
 				?>
 				<input
-					   type="<?php echo $args->type; ?>"
-					   id="<?php echo $field_id; ?>"
-					   class="<?php echo self::get_class(); ?>"
-					   name="<?php echo self::get_field_name(); ?>"
-					   value="<?php echo $value; ?>"
+					   type="<?php echo esc_attr( $args->type ); ?>"
+					   id="<?php echo esc_attr( $field_id ); ?>"
+					   class="<?php echo esc_attr( self::get_class() ); ?>"
+					   name="<?php echo esc_attr( self::get_field_name() ); ?>"
+					   value="<?php echo esc_attr( $value ); ?>"
 						<?php if ( $args->type === 'number' && $args->min ) : ?>
-						   step="<?php echo $args->step; ?>"
-						   min="<?php echo $args->min; ?>"
-						   max="<?php echo $args->max; ?>"
+						   step="<?php echo esc_attr( $args->step ); ?>"
+						   min="<?php echo esc_attr( $args->min ); ?>"
+						   max="<?php echo esc_attr( $args->max ); ?>"
 						<?php endif; ?>
 						<?php
-							   echo self::checked();
-							   echo self::get_placeholder();
-							   echo self::get_attrs();
+							   echo self::checked(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							   echo self::get_placeholder(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							   echo self::get_attrs(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							?>
 						>
 				<?php
 				if ( ! empty( $args->span ) ) {
 					printf(
 						'<span class="description text-span">%s</span>',
-						$args->span
+						esc_html( $args->span )
 					);
 				}
 
 				if ( ! empty( $args->text ) && empty( $args->block_text ) ) {
-					echo self::get_text();
+					echo self::get_text(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 
 				if ( ! empty( $args->block_text ) ) {
 					?>
-					<div class="<?php echo self::get_field_id( 'blockquote' ); ?>">
+					<div class="<?php echo esc_attr( self::get_field_id( 'blockquote' ) ); ?>">
 
-						<?php echo self::get_text(); ?>
+						<?php echo self::get_text(); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>
 
 						<div class="description">
 							<?php
 								printf(
-									'<strong>%s</strong> %s',
-									$args->block_strong,
-									$args->block_text
+									'<strong>%s</strong> %s', // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+									$args->block_strong, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+									$args->block_text // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								);
 							?>
 							</div>
@@ -208,28 +208,27 @@ abstract class WPUSB_Utils_View {
 	private static function _tr_select() {
 		$args     = self::$args;
 		$field_id = self::get_field_id( $args->key );
-		$prefix   = str_replace( '_', '-', $args->prefix );
 	?>
-		<tr class="<?php echo self::get_class( true ); ?>"
-			<?php echo self::get_attrs( true ); ?>>
+		<tr class="<?php echo esc_attr( self::get_class( true ) ); ?>"
+			<?php echo self::get_attrs( true ); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>>
 
 			<th scope="row">
-				<label for="<?php echo $field_id; ?>">
-					<?php echo $args->label; ?>
+				<label for="<?php echo esc_attr( $field_id ); ?>">
+					<?php echo esc_html( $args->label ); ?>
 				</label>
 			</th>
 			<td>
 				<select
-						class="<?php echo self::get_class(); ?>"
-						name="<?php echo self::get_field_name(); ?>"
-						id="<?php echo $field_id; ?>"
-						<?php
-							echo WPUSB_Utils::get_component( 'select2' );
-							echo self::get_placeholder( 'data-' );
-							echo self::get_attrs();
-							echo ( $args->multiple ) ? ' multiple="multiple"' : '';
-						?>
-						>
+					class="<?php echo esc_attr( self::get_class() ); ?>"
+					name="<?php echo esc_attr( self::get_field_name() ); ?>"
+					id="<?php echo esc_attr( $field_id ); ?>"
+					<?php
+						echo WPUSB_Utils::get_component( 'select2' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo self::get_placeholder( 'data-' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo self::get_attrs(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo ( $args->multiple ) ? ' multiple="multiple"' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					?>
+				>
 					<?php
 					$value = self::get_value();
 
@@ -240,16 +239,16 @@ abstract class WPUSB_Utils_View {
 					foreach ( $args->options as $key => $option ) :
 						printf(
 							'<option value="%s" %s>%s</option>',
-							$key,
-							WPUSB_Utils::selected( $key, $value ),
-							$option
+							esc_attr( $key ),
+							WPUSB_Utils::selected( $key, $value ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							esc_html( $option )
 						);
 						endforeach;
 					?>
 				</select>
 				<?php
 				if ( ! empty( $args->text ) ) {
-					printf( '<p class="description">%s</p>', $args->text );
+					printf( '<p class="description">%s</p>', esc_html( $args->text ) );
 				}
 				?>
 			</td>
@@ -261,29 +260,28 @@ abstract class WPUSB_Utils_View {
 		$args     = self::$args;
 		$field_id = self::get_field_id( $args->key );
 	?>
-		<tr class="<?php echo self::get_class( true ); ?>"
-			<?php echo self::get_attrs( true ); ?>>
+		<tr class="<?php echo esc_attr( self::get_class( true ) ); ?>"
+			<?php echo self::get_attrs( true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 
 			<th scope="row">
-				<label for="<?php echo $field_id; ?>">
-					<?php echo $args->label; ?>
+				<label for="<?php echo esc_attr( $field_id ); ?>">
+					<?php echo esc_html( $args->label ); ?>
 				</label>
 			</th>
 			<td>
 				<textarea
-						  name="<?php echo self::get_field_name(); ?>"
-						  class="<?php echo self::get_class(); ?>"
-						  id="<?php echo $field_id; ?>"
-						  rows="<?php echo $args->rows; ?>"
-						  cols="<?php echo $args->cols; ?>"
-							<?php echo $args->attr; ?>>
-										<?php
-										echo self::get_value();
-				?>
+					name="<?php echo esc_attr( self::get_field_name() ); ?>"
+					class="<?php echo esc_attr( self::get_class() ); ?>"
+					id="<?php echo esc_attr( $field_id ); ?>"
+					rows="<?php echo esc_attr( $args->rows ); ?>"
+					cols="<?php echo esc_attr( $args->cols ); ?>"
+					<?php echo $args->attr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				>
+					<?php echo self::get_value(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				</textarea>
 				<?php
 				if ( ! empty( $args->text ) ) {
-					printf( '<p class="description">%s</p>', $args->text );
+					printf( '<p class="description">%s</p>', esc_html( $args->text ) );
 				}
 				?>
 			</td>
@@ -297,33 +295,33 @@ abstract class WPUSB_Utils_View {
 		$prefix   = str_replace( '_', '-', $args->prefix );
 		$field_id = self::get_field_id( $args->key );
 	?>
-		<tr <?php echo self::get_attrs( true ); ?>>
+		<tr <?php echo self::get_attrs( true ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 			<th scope="row">
-				<label for="<?php echo $field_id; ?>">
-					<?php echo $args->label; ?>
+				<label for="<?php echo esc_attr( $field_id ); ?>">
+					<?php echo esc_html( $args->label ); ?>
 				</label>
 			</th>
 			<td>
-				<div class="<?php echo $prefix; ?>-custom-switch">
+				<div class="<?php echo esc_attr( $prefix ); ?>-custom-switch">
 					<input type="checkbox"
-						   id="<?php echo $field_id; ?>"
-						   class="<?php echo $prefix; ?>-check"
-						   name="<?php echo self::get_field_name(); ?>"
-						   value="<?php echo $args->checked; ?>"
-							<?php checked( $args->checked, $value ); ?>
-							<?php echo self::get_attrs(); ?>>
+						   id="<?php echo esc_attr( $field_id ); ?>"
+						   class="<?php echo esc_attr( $prefix ); ?>-check"
+						   name="<?php echo esc_attr( self::get_field_name() ); ?>"
+						   value="<?php echo esc_attr( $args->checked ); ?>"
+							<?php checked( $args->checked, $value ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							<?php echo self::get_attrs(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 
-					<label for="<?php echo $field_id; ?>">
-						<span class="<?php echo $prefix; ?>-inner"
-							  data-title-on="<?php _e( 'YES', 'wpupper-share-buttons' ); ?>"
-							  data-title-off="<?php _e( 'NO', 'wpupper-share-buttons' ); ?>"></span>
-						<span class="<?php echo $prefix; ?>-switch"></span>
+					<label for="<?php echo esc_attr( $field_id ); ?>">
+						<span class="<?php echo esc_attr( $prefix ); ?>-inner"
+							  data-title-on="<?php esc_html_e( 'YES', 'wpupper-share-buttons' ); ?>"
+							  data-title-off="<?php esc_html_e( 'NO', 'wpupper-share-buttons' ); ?>"></span>
+						<span class="<?php echo esc_attr( $prefix ); ?>-switch"></span>
 					</label>
 				</div>
 
 				<?php
 				if ( ! empty( $args->text ) ) {
-					printf( '<p class="description">%s</p>', $args->text );
+					printf( '<p class="description">%s</p>', esc_html( $args->text ) );
 				}
 				?>
 			</td>
@@ -348,7 +346,7 @@ abstract class WPUSB_Utils_View {
 			return '';
 		}
 
-		return sprintf( '<a href="%1$s" target="_blank">%1$s</a>', $link );
+		return sprintf( '<a href="%1$s" target="_blank">%1$s</a>', esc_url( $link ) );
 	}
 
 	public static function get_key_name( $key ) {
@@ -372,14 +370,14 @@ abstract class WPUSB_Utils_View {
 		$class = str_replace( '_', '-', $args->key );
 
 		if ( $tr ) {
-			return sprintf( 'tr-%s %s', $class, $args->tr_class );
+			return esc_attr( sprintf( 'tr-%s %s', $class, $args->tr_class ) );
 		}
 
 		if ( ! empty( $args->class ) ) {
-			return sprintf( '%s %s', $args->class, $class );
+			return esc_attr( sprintf( '%s %s', $args->class, $class ) );
 		}
 
-		return $class;
+		return esc_attr( $class );
 	}
 
 	public static function get_value() {
@@ -447,26 +445,27 @@ abstract class WPUSB_Utils_View {
 			<p>
 				<?php
 					$message = sprintf(
-						__( 'Help keep the free %1$s, you can make a donation or vote with %2$s at WordPress.org. Thank you very much!', 'wpupper-share-buttons' ),
-						__( WPUSB_App::NAME, 'wpupper-share-buttons' ),
+						// translators: %1$s is the plugin name, %2$s are the stars.
+						esc_html__( 'Help keep the free %1$s, you can make a donation or vote with %2$s at WordPress.org. Thank you very much!', 'wpupper-share-buttons' ),
+						esc_html( WPUSB_App::NAME ),
 						'★★★★★'
 					);
-					echo WPUSB_Utils::rm_tags( $message );
+					echo WPUSB_Utils::rm_tags( $message ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				?>
 			</p>
 			<p>
-				<a href="<?php echo WPUSB_Utils::get_url_donate(); ?>"
+				<a href="<?php echo esc_url( WPUSB_Utils::get_url_donate() ); ?>"
 				   target="_blank"
 				   class="button button-primary">
 
-					<?php _e( 'Make a donation', 'wpupper-share-buttons' ); ?>
+					<?php esc_html_e( 'Make a donation', 'wpupper-share-buttons' ); ?>
 				</a>
 
 				<a href="https://wordpress.org/support/plugin/wpupper-share-buttons/reviews/?filter=5#postform"
 				   target="_blank"
 				   class="button button-secondary">
 
-						<?php _e( 'Make a review', 'wpupper-share-buttons' ); ?>
+						<?php esc_html_e( 'Make a review', 'wpupper-share-buttons' ); ?>
 			   </a>
 			</p>
 		</div>
@@ -476,7 +475,7 @@ abstract class WPUSB_Utils_View {
 	public static function update_notice() {
 	?>
 		<div class="updated notice is-dismissible" id="updated-notice">
-			<p><strong><?php _e( 'Settings saved.', 'wpupper-share-buttons' ); ?></strong></p>
+			<p><strong><?php esc_html_e( 'Settings saved.', 'wpupper-share-buttons' ); ?></strong></p>
 			<button class="notice-dismiss"></button>
 		</div>
 	<?php
@@ -484,37 +483,37 @@ abstract class WPUSB_Utils_View {
 
 	public static function menu_top() {
 	?>
-		<div class="<?php echo WPUSB_App::SLUG; ?>-menu">
+		<div class="<?php echo esc_attr( WPUSB_App::SLUG ); ?>-menu">
 			<ul>
-				<li class="<?php echo WPUSB_Utils::selected_menu( WPUSB_Setting::HOME_SETTINGS ); ?>">
-					<a href="<?php echo WPUSB_Utils::get_page_url( WPUSB_Setting::HOME_SETTINGS ); ?>">
-						<?php _e( 'General', 'wpupper-share-buttons' ); ?>
+				<li class="<?php echo esc_attr( WPUSB_Utils::selected_menu( WPUSB_Setting::HOME_SETTINGS ) ); ?>">
+					<a href="<?php echo esc_url( WPUSB_Utils::get_page_url( WPUSB_Setting::HOME_SETTINGS ) ); ?>">
+						<?php esc_html_e( 'General', 'wpupper-share-buttons' ); ?>
 					</a>
 				</li>
 
-				<li class="<?php echo WPUSB_Utils::selected_menu( WPUSB_Setting::EXTRA_SETTINGS ); ?>">
-					<a href="<?php echo WPUSB_Utils::get_page_url( WPUSB_Setting::EXTRA_SETTINGS ); ?>">
-						<?php _e( 'Extra Settings', 'wpupper-share-buttons' ); ?>
+				<li class="<?php echo esc_attr( WPUSB_Utils::selected_menu( WPUSB_Setting::EXTRA_SETTINGS ) ); ?>">
+					<a href="<?php echo esc_url( WPUSB_Utils::get_page_url( WPUSB_Setting::EXTRA_SETTINGS ) ); ?>">
+						<?php esc_html_e( 'Extra Settings', 'wpupper-share-buttons' ); ?>
 					</a>
 				</li>
 
-				<li class="<?php echo WPUSB_Utils::selected_menu( WPUSB_Setting::CUSTOM_CSS ); ?>">
-					<a href="<?php echo WPUSB_Utils::get_page_url( WPUSB_Setting::CUSTOM_CSS ); ?>">
-						<?php _e( 'Custom CSS', 'wpupper-share-buttons' ); ?>
+				<li class="<?php echo esc_attr( WPUSB_Utils::selected_menu( WPUSB_Setting::CUSTOM_CSS ) ); ?>">
+					<a href="<?php echo esc_url( WPUSB_Utils::get_page_url( WPUSB_Setting::CUSTOM_CSS ) ); ?>">
+						<?php esc_html_e( 'Custom CSS', 'wpupper-share-buttons' ); ?>
 					</a>
 				</li>
 
-				<li class="<?php echo WPUSB_Utils::selected_menu( WPUSB_Setting::USE_OPTIONS ); ?>">
-					<a href="<?php echo WPUSB_Utils::get_page_url( WPUSB_Setting::USE_OPTIONS ); ?>">
-						<?php _e( 'Use options', 'wpupper-share-buttons' ); ?>
+				<li class="<?php echo esc_attr( WPUSB_Utils::selected_menu( WPUSB_Setting::USE_OPTIONS ) ); ?>">
+					<a href="<?php echo esc_url( WPUSB_Utils::get_page_url( WPUSB_Setting::USE_OPTIONS ) ); ?>">
+						<?php esc_html_e( 'Use options', 'wpupper-share-buttons' ); ?>
 					</a>
 				</li>
 
 				<?php if ( ! WPUSB_Utils::is_sharing_report_disabled() ) : ?>
 
-				<li class="<?php echo WPUSB_Utils::selected_menu( WPUSB_Setting::SHARING_REPORT ); ?>">
-					<a href="<?php echo WPUSB_Utils::get_page_url( WPUSB_Setting::SHARING_REPORT ); ?>">
-						<?php _e( 'Sharing Report', 'wpupper-share-buttons' ); ?>
+				<li class="<?php echo esc_attr( WPUSB_Utils::selected_menu( WPUSB_Setting::SHARING_REPORT ) ); ?>">
+					<a href="<?php echo esc_url( WPUSB_Utils::get_page_url( WPUSB_Setting::SHARING_REPORT ) ); ?>">
+						<?php esc_html_e( 'Sharing Report', 'wpupper-share-buttons' ); ?>
 					</a>
 				</li>
 

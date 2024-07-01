@@ -748,7 +748,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		$content = '';
 
 		if ( ( self::is_single() || self::is_page() ) && isset( $post->ID ) ) {
-			$content = self::rm_tags( $post->post_content ? $post->post_content : $post->post_excerpt );
+			$content = self::rm_tags( empty( $post->post_excerpt ) ? $post->post_content : $post->post_excerpt );
 		}
 
 		if ( empty( $content ) ) {
@@ -891,7 +891,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 		);
 
 		if ( $echo ) {
-			echo $response;
+			echo $response; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			exit;
 		}
 
@@ -1532,21 +1532,22 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return boolean
 	 */
 	public static function build_css( $custom_css ) {
+		global $wp_filesystem;
+
 		if ( empty( $custom_css ) ) {
 			self::delete_custom_css_file();
 			return ! self::file_css_min_exists();
 		}
 
-		$file     = self::get_file_css_min();
-		$css_base = self::get_css_base();
-		$fp       = @fopen( $file, 'wb' );
-		$css      = self::minify_css( $css_base . $custom_css );
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		\WP_Filesystem();
 
-		@fwrite( $fp, $css );
-		@fclose( $fp );
-		@chmod( $file, 0644 );
+		$file = self::get_file_css_min();
+		$css  = self::minify_css( self::get_css_base() . $custom_css );
 
-		return file_exists( $file );
+		$wp_filesystem->put_contents( $file, $css, FS_CHMOD_FILE );
+
+		return $wp_filesystem->exists( $file );
 	}
 
 	/**
@@ -1574,13 +1575,13 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return string
 	 */
 	public static function get_css_base() {
-		$base = self::build_path( 'style.css' );
-		$file = @fopen( $base, 'r' );
-		$tmp  = @fread( $file, @filesize( $base ) );
+		global $wp_filesystem;
 
-		@fclose( $file );
+		require_once ABSPATH . 'wp-admin/includes/file.php';
 
-		return $tmp;
+		\WP_Filesystem();
+
+		return $wp_filesystem->get_contents( self::build_path( 'style.css' ) );
 	}
 
 	/**
@@ -1769,6 +1770,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 			return array();
 		}
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 		return $wpdb->get_col(
 			"SELECT
 				`blog_id`
@@ -2143,11 +2145,11 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 * @return mixed String|boolean
 	 */
 	public static function get_bitly_domain( $key ) {
-		if ( $key === 'default' ) {
-			return false;
-		}
-
 		$domains = self::get_bitly_domains();
+
+		if ( $key === 'default' ) {
+			return $domains['ly'];
+		}
 
 		unset( $domains['default'] );
 

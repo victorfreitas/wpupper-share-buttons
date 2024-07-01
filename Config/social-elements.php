@@ -120,7 +120,7 @@ class WPUSB_Social_Elements {
 		$std->twitter              = new stdClass();
 		$std->twitter->name        = __( 'Twitter', 'wpupper-share-buttons' );
 		$std->twitter->element     = 'twitter';
-		$std->twitter->link        = 'https://twitter.com/share?url=' . self::$url . '&text=' . self::$twitter_text . self::$twitter_via . self::$twitter_hashtags;
+		$std->twitter->link        = 'https://twitter.com/intent/tweet?url=' . self::$url . '&text=' . self::$twitter_text . self::$twitter_via . self::$twitter_hashtags;
 		$std->twitter->title       = __( 'Tweet', 'wpupper-share-buttons' );
 		$std->twitter->class       = WPUSB_Utils::add_prefix( '-twitter' );
 		$std->twitter->class_item  = self::$item;
@@ -716,7 +716,7 @@ class WPUSB_Social_Elements {
 
 		$minify_html = WPUSB_Utils::is_active_minify_html();
 
-		printf( '%1$s<!-- %2$s SVG ICONS -->%1$s', PHP_EOL, WPUSB_App::NAME );
+		printf( '%1$s<!-- %2$s SVG ICONS -->%1$s', PHP_EOL, esc_html( WPUSB_App::NAME ) );
 
 		if ( $minify_html ) {
 			ob_start();
@@ -726,10 +726,11 @@ class WPUSB_Social_Elements {
 		self::include_icons_follow_us( $in_admin );
 
 		if ( $minify_html ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo WPUSB_Utils::minify_html( ob_get_clean() );
 		}
 
-		printf( '<!-- / %1$s SVG ICONS -->%2$s', WPUSB_App::NAME, PHP_EOL );
+		printf( '<!-- / %1$s SVG ICONS -->%2$s', esc_html( WPUSB_App::NAME ), PHP_EOL );
 	}
 
 	/**

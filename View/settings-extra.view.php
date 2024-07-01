@@ -25,9 +25,9 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 		parent::set_options();
 		parent::set_prefix( $extra_setting );
 	?>
-		<div class="wrap" <?php echo WPUSB_Utils::get_component( 'extra-settings' ); ?>>
+		<div class="wrap" <?php echo WPUSB_Utils::get_component( 'extra-settings' ); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>>
 			<h2>
-				<?php _e( 'WPUpper Share Buttons', 'wpupper-share-buttons' ); ?>
+				<?php esc_html_e( 'WPUpper Share Buttons', 'wpupper-share-buttons' ); ?>
 			</h2>
 
 			<?php
@@ -37,18 +37,18 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 			?>
 
 			<p class="description">
-				<?php _e( 'Add the Share Buttons automatically.', 'wpupper-share-buttons' ); ?>
+				<?php esc_html_e( 'Add the Share Buttons automatically.', 'wpupper-share-buttons' ); ?>
 			</p>
 
 			<?php parent::page_notice(); ?>
 
-			<span class="<?php echo WPUSB_App::SLUG . '-title-wrap'; ?>">
-				<?php _e( 'Extra Settings', 'wpupper-share-buttons' ); ?>
+			<span class="<?php echo esc_attr( WPUSB_App::SLUG ) . '-title-wrap'; ?>">
+				<?php esc_html_e( 'Extra Settings', 'wpupper-share-buttons' ); ?>
 			</span>
 
 			<?php parent::menu_top(); ?>
 
-			<div class="<?php echo WPUSB_App::SLUG . '-wrap extra-settings-wrap'; ?>">
+			<div class="<?php echo esc_attr( WPUSB_App::SLUG ) . '-wrap extra-settings-wrap'; ?>">
 				<form action="options.php"
 					  method="post"
 					  data-action="form"
@@ -120,6 +120,7 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 									'class'   => 'regular-text',
 									'options' => WPUSB_Utils::get_bitly_domains(),
 									'default' => 'default',
+									'text'    => __( 'Default is bit.ly', 'wpupper-share-buttons' ),
 								)
 							);
 
@@ -198,7 +199,7 @@ class WPUSB_Settings_Extra_View extends WPUSB_Utils_View {
 						settings_fields( "{$extra_setting}_group" );
 						submit_button();
 					?>
-					<div class="<?php echo WPUSB_App::SLUG; ?>-info-error" data-element="bitly-message"></div>
+					<div class="<?php echo esc_attr( WPUSB_App::SLUG ); ?>-info-error" data-element="bitly-message"></div>
 				</form>
 			</div>
 		</div>

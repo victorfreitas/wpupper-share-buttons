@@ -14,16 +14,16 @@ class WPUSB_Widget_Follow_View {
 
 	public static function render_fields( $instance, $items ) {
 		if ( empty( $items ) ) {
-			_e( 'No social networks were enabled in the Widget.', 'wpupper-share-buttons' );
+			esc_html_e( 'No social networks were enabled in the Widget.', 'wpupper-share-buttons' );
 			return;
 		}
 
 		$custom_class = WPUSB_Utils::esc_class( $instance->get_property( 'custom_class', false ) );
 		$layout       = $instance->get_property( 'layout' );
 	?>
-		  <div id="<?php echo WPUSB_Utils::get_widget_follow_attr_id( $instance->number ); ?>">
-			<div id="<?php echo WPUSB_App::SLUG; ?>-container-follow"
-				 class="<?php printf( '%1$s-follow %1$s-follow-%2$s %3$s', WPUSB_App::SLUG, $layout, $custom_class ); ?>">
+		  <div id="<?php echo esc_attr( WPUSB_Utils::get_widget_follow_attr_id( $instance->number ) ); ?>">
+			<div id="<?php echo esc_attr( WPUSB_App::SLUG ); ?>-container-follow"
+				 class="<?php echo esc_attr( sprintf( '%1$s-follow %1$s-follow-%2$s %3$s', WPUSB_App::SLUG, $layout, $custom_class ) ); ?>">
 
 			<?php
 				$networks = $instance->get_follow_us_networks();
@@ -54,14 +54,14 @@ class WPUSB_Widget_Follow_View {
 				$prefix   = WPUSB_App::SLUG;
 				$svg_icon = WPUSB_Shares_View::get_svg_icon( "{$prefix}-{$item}-{$layout}", "{$prefix}-follow-icon" );
 			?>
-			<div class="<?php printf( '%1$s-item %1$s-%2$s', WPUSB_App::SLUG, $item ); ?>">
+			<div class="<?php echo esc_attr( sprintf( '%1$s-item %1$s-%2$s', WPUSB_App::SLUG, $item ) ); ?>">
 				<a href="<?php echo esc_url( $link ); ?>"
 				   target="_blank"
-				   class="<?php echo WPUSB_App::SLUG; ?>-btn"
+				   class="<?php echo esc_attr( WPUSB_App::SLUG ); ?>-btn"
 				   title="<?php echo esc_attr( $title ); ?>"
-				   <?php echo isset( $network->attr ) ? $network->attr : ''; ?>
+				   <?php echo isset( $network->attr ) ? $network->attr : ''; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>
 				>
-					<?php echo $svg_icon; ?>
+					<?php echo $svg_icon; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>
 				</a>
 			</div>
 

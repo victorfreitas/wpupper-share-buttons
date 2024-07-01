@@ -96,7 +96,7 @@ class WPUSB_Ajax_Controller {
 			exit;
 		}
 
-		if ( ! isset( $_POST['custom_css'] ) ) {
+		if ( ! isset( $_POST['custom_css'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			wp_send_json_error( '' );
 		}
 

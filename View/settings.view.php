@@ -31,7 +31,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 		parent::set_prefix( $settings_option );
 	?>
 		<div class="wrap">
-			<h2><?php _e( 'WPUpper Share Buttons', 'wpupper-share-buttons' ); ?></h2>
+			<h2><?php esc_html_e( 'WPUpper Share Buttons', 'wpupper-share-buttons' ); ?></h2>
 
 			<?php
 			if ( WPUSB_Utils::get_update( 'settings-updated' ) ) {
@@ -39,34 +39,34 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 			}
 			?>
 
-			<p class="description"><?php _e( 'Add the Share Buttons automatically.', 'wpupper-share-buttons' ); ?></p>
+			<p class="description"><?php esc_html_e( 'Add the Share Buttons automatically.', 'wpupper-share-buttons' ); ?></p>
 
 			<?php parent::page_notice(); ?>
 
-			<span class="<?php echo WPUSB_App::SLUG . '-title-wrap'; ?>">
-				<?php _e( 'Settings', 'wpupper-share-buttons' ); ?>
+			<span class="<?php echo esc_attr( WPUSB_App::SLUG ) . '-title-wrap'; ?>">
+				<?php esc_html_e( 'Settings', 'wpupper-share-buttons' ); ?>
 			</span>
 
 			<?php parent::menu_top(); ?>
 
-			<div class="<?php echo WPUSB_App::SLUG . '-wrap'; ?>"
-					<?php echo WPUSB_Utils::get_component( 'share-settings' ); ?>>
+			<div class="<?php echo esc_attr( WPUSB_App::SLUG ) . '-wrap'; ?>"
+					<?php echo WPUSB_Utils::get_component( 'share-settings' ); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>>
 
 				<style data-element-style></style>
 				<div
-					id="<?php echo WPUSB_App::SLUG; ?>-share-preview"
-					<?php echo WPUSB_Utils::get_component( 'share-preview' ); ?>
+					id="<?php echo esc_attr( WPUSB_App::SLUG ); ?>-share-preview"
+					<?php echo WPUSB_Utils::get_component( 'share-preview' ); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>
 				>
 					<div data-element="preview"></div>
 				</div>
 
 				<form action="options.php" method="post">
-					<table class="form-table <?php echo WPUSB_App::SLUG . '-table'; ?>" data-table="configurations">
+					<table class="form-table <?php echo esc_attr( WPUSB_App::SLUG ) . '-table'; ?>" data-table="configurations">
 						<tbody>
-							<tr class="<?php echo WPUSB_App::SLUG; ?>-items-available">
+							<tr class="<?php echo esc_attr( WPUSB_App::SLUG ); ?>-items-available">
 								<th scope="row">
 									<label>
-										<?php _e( 'Places available', 'wpupper-share-buttons' ); ?>
+										<?php esc_html_e( 'Places available', 'wpupper-share-buttons' ); ?>
 									</label>
 								</th>
 								<?php
@@ -153,10 +153,10 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 									);
 								?>
 							</tr>
-							<tr class="<?php echo WPUSB_App::SLUG; ?>-social-networks" data-element="sortable">
+							<tr class="<?php echo esc_attr( WPUSB_App::SLUG ); ?>-social-networks" data-element="sortable">
 								<th scope="row">
 									<label for="social-media">
-										<?php _e( 'Social networks available', 'wpupper-share-buttons' ); ?>
+										<?php esc_html_e( 'Social networks available', 'wpupper-share-buttons' ); ?>
 									</label>
 								</th>
 									<?php
@@ -184,13 +184,13 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 									}
 									?>
 							</tr>
-							<tr class="<?php echo WPUSB_App::SLUG; ?>-layout-options">
+							<tr class="<?php echo esc_attr( WPUSB_App::SLUG ); ?>-layout-options">
 								<th scope="row">
 
-									<?php _e( 'Layout options', 'wpupper-share-buttons' ); ?>
+									<?php esc_html_e( 'Layout options', 'wpupper-share-buttons' ); ?>
 
 									<p class="description">
-										<?php _e( 'All layout supports responsive', 'wpupper-share-buttons' ); ?>
+										<?php esc_html_e( 'All layout supports responsive', 'wpupper-share-buttons' ); ?>
 									</p>
 								</th>
 								<?php
@@ -266,9 +266,9 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 									);
 								?>
 							</tr>
-							<tr class="<?php echo WPUSB_App::SLUG; ?>-position-fixed">
+							<tr class="<?php echo esc_attr( WPUSB_App::SLUG ); ?>-position-fixed">
 								<th scope="row">
-									<?php _e( 'Position fixed', 'wpupper-share-buttons' ); ?>
+									<?php esc_html_e( 'Position fixed', 'wpupper-share-buttons' ); ?>
 								</th>
 								<?php
 									self::td(
@@ -302,11 +302,11 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										)
 									);
 								?>
-								<td class="<?php echo WPUSB_App::SLUG . '-fixed-clear'; ?>">
+								<td class="<?php echo esc_attr( WPUSB_App::SLUG ) . '-fixed-clear'; ?>">
 									<input type="button"
 										   data-action="fixed-disabled"
 										   value="<?php esc_attr_e( 'Clear', 'wpupper-share-buttons' ); ?>">
-									<span><?php _e( 'Click to clear the positions.', 'wpupper-share-buttons' ); ?></span>
+									<span><?php esc_html_e( 'Click to clear the positions.', 'wpupper-share-buttons' ); ?></span>
 								</td>
 							</tr>
 
@@ -318,10 +318,10 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 							}
 							?>
 
-							<tr class="<?php echo WPUSB_App::SLUG; ?>-position-fixed <?php echo $class_tr_hide; ?>"
+							<tr class="<?php echo esc_attr( WPUSB_App::SLUG ); ?>-position-fixed <?php echo esc_attr( $class_tr_hide ); ?>"
 								data-element="tr-fixed-layout">
 								<th scope="row">
-									<?php _e( 'Position fixed layout', 'wpupper-share-buttons' ); ?>
+									<?php esc_html_e( 'Position fixed layout', 'wpupper-share-buttons' ); ?>
 								</th>
 									<?php
 										$fixed_layout   = WPUSB_Utils::option( 'fixed_layout', false );
@@ -394,6 +394,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 										),
 										'placeholder' => __( 'Change text below sharing count. Default SHARES', 'wpupper-share-buttons' ),
 										'text'        => sprintf(
+											// translators: %1$s: layout name, %2$s: layout name.
 											__( 'Used in %1$s %2$s.', 'wpupper-share-buttons' ),
 											strtolower( __( 'Position fixed layout', 'wpupper-share-buttons' ) ),
 											strtolower( __( 'Rounded', 'wpupper-share-buttons' ) )
@@ -410,6 +411,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 								parent::tr(
 									array(
 										'key'         => 'share-count-label',
+										// translators: %s: layout name.
 										'label'       => sprintf( __( '%s: Text below sharing count', 'wpupper-share-buttons' ), __( 'Square plus', 'wpupper-share-buttons' ) ),
 										'tr_class'    => $plus_share_label_class,
 										'tr_attr'     => array(
@@ -419,6 +421,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 											'data-action' => 'plus-share-label',
 										),
 										'placeholder' => __( 'Change text below sharing count. Default SHARES', 'wpupper-share-buttons' ),
+										// translators: %s: layout name.
 										'text'        => sprintf( __( 'Used in %s layout.', 'wpupper-share-buttons' ), __( 'Square plus', 'wpupper-share-buttons' ) ),
 									)
 								);
@@ -462,6 +465,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 											'data-colorpicker' => 'true',
 										),
 										'text' => sprintf(
+											// translators: %1$s: layout name, %2$s: layout name, %3$s: layout name, %4$s: layout name.
 											__( 'Layouts: %1$s, %2$s, %3$s and %4$s.', 'wpupper-share-buttons' ),
 											__( 'Default', 'wpupper-share-buttons' ),
 											__( 'Button', 'wpupper-share-buttons' ),
@@ -519,6 +523,7 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 											'data-colorpicker' => 'true',
 										),
 										'text' => sprintf(
+											// translators: %1$s: layout name, %2$s: layout name, %3$s: layout name.
 											__( 'Layouts: %1$s, %2$s, and %3$s.', 'wpupper-share-buttons' ),
 											__( 'Button', 'wpupper-share-buttons' ),
 											__( 'Square plus', 'wpupper-share-buttons' ),
@@ -628,14 +633,14 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 					</table>
 
 					<input type="hidden"
-						   name="<?php echo $option_social_media; ?>[order]"
+						   name="<?php echo esc_attr( $option_social_media ); ?>[order]"
 						   data-element="order"
-						   value='<?php echo WPUSB_Utils::option( 'order' ); ?>'>
+						   value='<?php echo esc_attr( WPUSB_Utils::option( 'order' ) ); ?>'>
 
 					<input type="hidden"
 						   data-element="fixed"
-						   name="<?php echo "{$settings_option}[fixed]"; ?>"
-						   value="<?php echo WPUSB_Utils::option( 'fixed' ); ?>">
+						   name="<?php echo esc_attr( $settings_option ); ?>[fixed]"
+						   value="<?php echo esc_attr( WPUSB_Utils::option( 'fixed' ) ); ?>">
 					<?php
 						settings_fields( "{$settings_option}_group" );
 						submit_button( __( 'Save Changes', 'wpupper-share-buttons' ) );
@@ -676,27 +681,27 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 		$args   = self::_get_td_args( $args );
 		$label  = self::_get_label( WPUSB_App::SLUG, $args );
 	?>
-		<?php printf( '<%s', $args['tag'] ); ?>
-			id="<?php echo $args['td-id']; ?>"
-			class="<?php echo $args['td-class']; ?>"
-			title="<?php echo $args['td-title']; ?>">
+		<?php printf( '<%s', $args['tag'] ); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>
+			id="<?php echo $args['td-id']; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>"
+			class="<?php echo $args['td-class']; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>"
+			title="<?php echo $args['td-title']; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>">
 
-			<input type="<?php echo $args['type']; ?>"
-				   id="<?php printf( 'field-%s-%s', WPUSB_App::SLUG, $args['id'] ); ?>"
-				   class="<?php echo $args['class'] ; ?>"
-				   name="<?php echo $args['name'] ; ?>"
-				   value="<?php echo empty( $args['value'] ) ? $args['default'] : $args['value']; ?>"
-				   placeholder="<?php echo $args['placeholder'] ; ?>"
-					<?php echo self::_get_attributes( $args ); ?>
-					<?php echo $args['is_checked']; ?>>
+			<input type="<?php echo $args['type']; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>"
+				   id="<?php printf( 'field-%s-%s', esc_attr( WPUSB_App::SLUG ), $args['id'] ); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>"
+				   class="<?php echo $args['class']; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>"
+				   name="<?php echo $args['name']; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>"
+				   value="<?php echo empty( $args['value'] ) ? $args['default'] : $args['value']; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>"
+				   placeholder="<?php echo $args['placeholder']; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>"
+					<?php echo self::_get_attributes( $args ); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>
+					<?php echo $args['is_checked']; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>>
 	<?php
-			echo $label;
+			echo $label; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 
 	if ( ! empty( $args['description'] ) ) :
-		printf( '<p class="description">%s</p>', $args['description'] );
+		printf( '<p class="description">%s</p>', $args['description'] ); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 			   endif;
 
-		printf( '</%s>', $args['tag'] );
+		printf( '</%s>', $args['tag'] ); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 	}
 
 	private static function _get_label( $prefix, $args ) {

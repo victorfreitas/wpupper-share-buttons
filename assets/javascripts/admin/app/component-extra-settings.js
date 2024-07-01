@@ -28,14 +28,18 @@ WPUSB( 'WPUSB.Components.ExtraSettings', function(Model, $, utils) {
 
 	Model.fn.request = function(token) {
 		var params = {
-			access_token : token,
-			longUrl      : this.getHomeUrl()
+			long_url : this.getHomeUrl()
 		};
 
 		var ajax = $.ajax({
-			url      : 'https://api-ssl.bitly.com/v3/shorten',
-			data     : params,
-			dataType : 'json'
+			url         : 'https://api-ssl.bitly.com/v4/shorten',
+      type        : 'POST',
+			data        : JSON.stringify( params ),
+      contentType : 'application/json',
+			dataType    : 'json',
+      headers     : {
+        'Authorization': 'Bearer '.concat( token ),
+      }
 		});
 
 		ajax.then(
@@ -44,10 +48,10 @@ WPUSB( 'WPUSB.Components.ExtraSettings', function(Model, $, utils) {
 		);
 	};
 
-	Model.fn._done = function(response) {
+	Model.fn._done = function(response, textStatus) {
 		this.clear();
 
-		if ( response.status_code !== 200 ) {
+		if ( ! ( textStatus === 'success' && response && response.link ) ) {
 			this.elements.bitlyMessage.text( 'Invalid Bitly token.' ).slideDown(200);
 			return;
 		}

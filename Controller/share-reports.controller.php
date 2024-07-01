@@ -144,9 +144,10 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 		$query  = "SELECT * FROM `{$this->table}` {$where} ORDER BY `{$orderby}` {$order} {$limit}";
 
 		if ( ! empty( $limit ) ) {
-			$query = $wpdb->prepare( $query, array( $posts_per_page, $offset ) );
+			$query = $wpdb->prepare( $query, array( $posts_per_page, $offset ) ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		}
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared
 		return $wpdb->get_results( $query, $output );
 	}
 
@@ -166,6 +167,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 
 		$where = $this->_where();
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		return (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$this->table} {$where}" );
 	}
 
@@ -232,6 +234,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * @return string
 	 */
 	private function _table_exists( $wpdb ) {
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		return $wpdb->query( "SHOW TABLES LIKE '{$this->table}'" );
 	}
 
@@ -336,6 +339,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * @return void
 	 */
 	public function extra_tablenav( $which ) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( ( ! $this->has_items() && ! isset( $_GET['paged'] ) ) || 'top' !== $which || is_singular() ) {
 			return;
 		}
@@ -348,7 +352,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 
 			WPUSB_Sharing_Report_View::render_date_range_filter();
 
-			submit_button( __( 'Filter' ), '', '', false );
+			submit_button( esc_html__( 'Filter' ), '', '', false );
 
 		echo '</div>';
 
@@ -415,12 +419,13 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 			fputcsv( $out, $rows );
 		endforeach;
 
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
 		fclose( $out );
 
 		$output = ob_get_contents();
 		ob_end_clean();
 
-		echo WPUSB_Utils::html_decode( $output );
+		echo WPUSB_Utils::html_decode( $output ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -445,7 +450,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * @return string
 	 */
 	public function get_csv_name() {
-		$date = $this->get_date_i18n( date( 'Y-m-d' ), true );
+		$date = $this->get_date_i18n( gmdate( 'Y-m-d' ), true );
 
 		return sprintf( '%s-sharing-report-%s.csv', WPUSB_App::SLUG, $date );
 	}
@@ -525,7 +530,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * @return string
 	 */
 	public function no_items() {
-		_e( 'There is no record available at the moment!', 'wpupper-share-buttons' );
+		esc_html_e( 'There is no record available at the moment!', 'wpupper-share-buttons' );
 	}
 
 	/**

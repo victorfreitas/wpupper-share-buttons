@@ -24,19 +24,19 @@ class WPUSB_Sharing_Report_View {
 		$list_table->prepare_items();
 	?>
 		<div class="wrap"
-		     data-cookie-name="<?php echo WPUSB_Share_Report::OPTION_CSN_CLOSED; ?>"
-			 <?php echo WPUSB_Utils::get_component( 'report' ); ?>>
-			<h2><?php _e( 'WPUpper Share Buttons', 'wpupper-share-buttons' ); ?></h2>
+		     data-cookie-name="<?php echo esc_attr( WPUSB_Share_Report::OPTION_CSN_CLOSED ); ?>"
+			 <?php echo WPUSB_Utils::get_component( 'report' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+			<h2><?php esc_html_e( 'WPUpper Share Buttons', 'wpupper-share-buttons' ); ?></h2>
 
 			<p class="description">
-				<?php _e( 'Add the Share Buttons automatically.', 'wpupper-share-buttons' ); ?>
+				<?php esc_html_e( 'Add the Share Buttons automatically.', 'wpupper-share-buttons' ); ?>
 			</p>
 
 			<?php WPUSB_Utils_View::page_notice(); ?>
 
 			<?php WPUSB_Utils_View::menu_top(); ?>
 
-			<div class="<?php echo WPUSB_App::SLUG; ?>-settings-wrap">
+			<div class="<?php echo esc_attr( WPUSB_App::SLUG ); ?>-settings-wrap">
 
 				<?php do_action( WPUSB_Utils::add_prefix( 'sr_render' ), $list_table ); ?>
 
@@ -46,10 +46,10 @@ class WPUSB_Sharing_Report_View {
 
 					<input type="hidden"
 						   name="page"
-						   value="<?php echo WPUSB_App::SLUG . '-sharing-report'; ?>">
+						   value="<?php echo esc_attr( WPUSB_App::SLUG ) . '-sharing-report'; ?>">
 
 					<?php
-						$list_table->search_box( __( 'Search', 'wpupper-share-buttons' ), WPUSB_App::SLUG );
+						$list_table->search_box( __( 'Search', 'wpupper-share-buttons' ), esc_attr( WPUSB_App::SLUG ) );
 						$list_table->display();
 					?>
 				</form>
@@ -67,17 +67,12 @@ class WPUSB_Sharing_Report_View {
 	 * @return string
 	 */
 	public static function get_permalink_title( $list ) {
-		$permalink = esc_url( get_permalink( $list->post_id ) );
-		$title     = get_the_title( $list->post_id );
-
-		if ( empty( $title ) ) {
-			$title = $list->post_title;
-		}
+		$title = get_the_title( $list->post_id ) ?: $list->post_title;
 
 		return sprintf(
 			'<a href="%s" class="row-title" target="_blank">%s</a>',
-			$permalink,
-			WPUSB_Utils::rm_tags( $title )
+			esc_url( get_permalink( $list->post_id ) ),
+			esc_html( $title )
 		);
 	}
 
@@ -90,31 +85,31 @@ class WPUSB_Sharing_Report_View {
 	public static function render_date_range_filter() {
 		$date_format = _x( 'YYYY-MM-DD', 'placeholder', 'wpupper-share-buttons' );
 	?>
-		<div class="<?php echo WPUSB_Utils::add_prefix( '-inline' ); ?>"
-				<?php echo WPUSB_Utils::get_component( 'datepicker' ); ?>>
+		<div class="<?php echo esc_attr( WPUSB_Utils::add_prefix( '-inline' ) ); ?>"
+				<?php echo WPUSB_Utils::get_component( 'datepicker' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 
-			<label class="<?php echo WPUSB_Utils::add_prefix( '-label' ); ?>">
-				<?php _e( 'Start date:', 'wpupper-share-buttons' ); ?>
+			<label class="<?php echo esc_attr( WPUSB_Utils::add_prefix( '-label' ) ); ?>">
+				<?php esc_html_e( 'Start date:', 'wpupper-share-buttons' ); ?>
 
 				<input type="text"
 					   name="start_date"
 					   data-element="start-date"
-					   class="<?php echo WPUSB_Utils::add_prefix( '-datepicker' ); ?>"
-					   placeholder="<?php echo $date_format; ?>"
+					   class="<?php echo esc_attr( WPUSB_Utils::add_prefix( '-datepicker' ) ); ?>"
+					   placeholder="<?php echo esc_attr( $date_format ); ?>"
 					   maxlength="10"
-					   value="<?php echo WPUSB_Utils::get( 'start_date' ); ?>">
+					   value="<?php echo esc_attr( WPUSB_Utils::get( 'start_date' ) ); ?>">
 			</label>
 
-			<label class="<?php echo WPUSB_Utils::add_prefix( '-label' ); ?>">
-				<?php _e( 'End date:', 'wpupper-share-buttons' ); ?>
+			<label class="<?php echo esc_attr( WPUSB_Utils::add_prefix( '-label' ) ); ?>">
+				<?php esc_html_e( 'End date:', 'wpupper-share-buttons' ); ?>
 
 				<input type="text"
 					   name="end_date"
 					   data-element="end-date"
-					   class="<?php echo WPUSB_Utils::add_prefix( '-datepicker' ); ?>"
-					   placeholder="<?php echo $date_format; ?>"
+					   class="<?php echo esc_attr( WPUSB_Utils::add_prefix( '-datepicker' ) ); ?>"
+					   placeholder="<?php echo esc_attr( $date_format ); ?>"
 					   maxlength="10"
-					   value="<?php echo WPUSB_Utils::get( 'end_date' ); ?>">
+					   value="<?php echo esc_attr( WPUSB_Utils::get( 'end_date' ) ); ?>">
 			</label>
 
 		</div>
@@ -130,7 +125,7 @@ class WPUSB_Sharing_Report_View {
 	public static function export_csv_btn() {
 	?>
 		<button class="button button-primary" name="export" value="true">
-			<?php _e( 'Export CSV', 'wpupper-share-buttons' ); ?>
+			<?php esc_html_e( 'Export CSV', 'wpupper-share-buttons' ); ?>
 		</button>
 	<?php
 	}
@@ -154,17 +149,17 @@ class WPUSB_Sharing_Report_View {
 		<div id="top-providers">
 			<table>
 				<caption data-action="toggle">
-					<?php _e( 'Classification by social network', 'wpupper-share-buttons' ); ?>
+					<?php esc_html_e( 'Classification by social network', 'wpupper-share-buttons' ); ?>
 					<i class="<?php echo $active ? '' : 'active'; ?>"></i>
 				</caption>
 			</table>
-			<div class="providers-content <?php echo $active; ?>" data-element="toggle">
+			<div class="providers-content <?php echo esc_attr( $active ); ?>" data-element="toggle">
 				<table>
 				    <thead>
 				        <tr>
 				            <th>#</th>
-				            <th><?php _e( 'Name', 'wpupper-share-buttons' ); ?></th>
-				            <th><?php _e( 'Count', 'wpupper-share-buttons' ); ?></th>
+				            <th><?php esc_html_e( 'Name', 'wpupper-share-buttons' ); ?></th>
+				            <th><?php esc_html_e( 'Count', 'wpupper-share-buttons' ); ?></th>
 				        </tr>
 				    </thead>
 				    <tbody>
@@ -179,11 +174,11 @@ class WPUSB_Sharing_Report_View {
 									<td>%s</td>
 								 </tr>
 								',
-								WPUSB_App::SLUG,
-								$provider,
-								$rank,
-								ucfirst( $provider ),
-								WPUSB_Utils::format_number( $counts )
+								esc_attr( WPUSB_App::SLUG ),
+								esc_attr( $provider ),
+								$rank, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+								esc_html( ucfirst( $provider ) ),
+								esc_html( WPUSB_Utils::format_number( $counts ) )
 							);
 
 							$rank++;
@@ -193,10 +188,10 @@ class WPUSB_Sharing_Report_View {
 					<tfoot>
 						<tr>
 							<th colspan="2">
-								<?php _e( 'Total', 'wpupper-share-buttons' ); ?>
+								<?php esc_html_e( 'Total', 'wpupper-share-buttons' ); ?>
 							</th>
 							<th>
-								<?php echo WPUSB_Utils::format_number( array_sum( $top_providers ) ); ?>
+								<?php echo esc_html( WPUSB_Utils::format_number( array_sum( $top_providers ) ) ); ?>
 							</th>
 						</tr>
 					</tfoot>

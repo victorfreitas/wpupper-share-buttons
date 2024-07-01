@@ -29,33 +29,33 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 		$title = $this->get_widget_title();
 		$title = apply_filters( 'widget_title', $title, $this->id_base );
 
-		echo $args['before_widget'];
+		echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		if ( ! empty( $title ) ) {
-			echo $args['before_title'] . $title . $args['after_title'];
+			echo $args['before_title'] . $title . $args['after_title']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		if ( WPUSB_Utils::is_disabled_css() ) {
-			printf( '<h4>%s</h4>', __( 'CSS is disabled!', 'wpupper-share-buttons' ) );
+			printf( '<h4>%s</h4>', esc_html__( 'CSS is disabled!', 'wpupper-share-buttons' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		$items = $this->get_property( 'items', array() );
 
 		WPUSB_Widget_Follow_View::render_fields( $this, $items );
 
-		echo $args['after_widget'];
+		echo $args['after_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	public function form( $instance ) {
 		$this->set_instance( $instance );
 
-		$hash  = md5( uniqid( rand(), true ) );
+		$hash  = md5( uniqid( wp_rand(), true ) );
 		$order = $this->get_property( 'items', array() );
 		$items = array_merge( $order, $this->follow_us_networks );
 
 		WPUSB_Widgets_View::set_instance( $this );
 
-		printf( '<div data-widgets-hash="%s">', $hash );
+		printf( '<div data-widgets-hash="%s">', $hash ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		WPUSB_Widgets_View::field_input(
 			__( 'Widget title', 'wpupper-share-buttons' ),
@@ -113,7 +113,7 @@ class WPUSB_Widget_Follow_Controller extends WPUpper_SB_Widget {
 
 				window.WPUSB.Components.WidgetFollow.call(
 					null,
-					context.find( '[data-widgets-hash="<?php echo $hash; ?>"]' )
+					context.find( '[data-widgets-hash="<?php echo $hash; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>"]' )
 				);
 			});
 		</script>

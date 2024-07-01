@@ -129,8 +129,9 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 		global $wpdb;
 
 		if ( $this->total > 0 ) {
-			$id = $wpdb->get_var(
+			$id = $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 				$wpdb->prepare(
+					// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 					"SELECT `id` FROM `{$this->table}` WHERE `post_id` = %d",
 					$this->reference
 				)
@@ -171,8 +172,9 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 	private function _update() {
 		global $wpdb;
 
-		$updated = $wpdb->query(
+		$updated = $wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->prepare(
+				// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 				"UPDATE `{$this->table}`
 				 SET `post_title` = %s,
 				     `post_date` = %s,
@@ -209,7 +211,7 @@ class WPUSB_Ajax_Sharing_Reports_Controller {
 	private function _insert() {
 		global $wpdb;
 
-		$inserted = $wpdb->insert(
+		$inserted = $wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 			$this->table,
 			array(
 				'post_id'    => $this->reference,

@@ -23,22 +23,22 @@ class WPUSB_Settings_Faq_View {
 	?>
 		<div class="wrap">
 			<h2>
-				<?php _e( 'WPUpper Share Buttons', 'wpupper-share-buttons' ); ?>
+				<?php esc_html_e( 'WPUpper Share Buttons', 'wpupper-share-buttons' ); ?>
 			</h2>
 
 			<p class="description">
-				<?php _e( 'Add the Share Buttons automatically.', 'wpupper-share-buttons' ); ?>
+				<?php esc_html_e( 'Add the Share Buttons automatically.', 'wpupper-share-buttons' ); ?>
 			</p>
 
 			<?php WPUSB_Utils_View::page_notice(); ?>
 
-			<span class="<?php echo WPUSB_Utils::add_prefix( '-title-wrap' ); ?>">
-				<?php _e( 'Use options', 'wpupper-share-buttons' ); ?>
+			<span class="<?php echo esc_attr( WPUSB_Utils::add_prefix( '-title-wrap' ) ); ?>">
+				<?php esc_html_e( 'Use options', 'wpupper-share-buttons' ); ?>
 			</span>
 
 			<?php WPUSB_Utils_View::menu_top(); ?>
 
-			<div class="<?php echo WPUSB_Utils::add_prefix( '-wrap-faq' ); ?>">
+			<div class="<?php echo esc_attr( WPUSB_Utils::add_prefix( '-wrap-faq' ) ); ?>">
 <pre data-element="highlight">
 	<code class="php">
 /*
@@ -47,7 +47,7 @@ class WPUSB_Settings_Faq_View {
  * Items Available:
 <?php
 foreach ( WPUSB_Social_Elements::$items_available as $item ) :
-	echo " * {$item}\n";
+	echo " * {$item}\n"; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */
 endforeach;
 ?>
  *
@@ -107,7 +107,7 @@ echo do_shortcode( '[wpusb]' );
 <hr>
 
 <h2>
-	<?php _e( 'Available filters', 'wpupper-share-buttons' ); ?>
+	<?php esc_html_e( 'Available filters', 'wpupper-share-buttons' ); ?>
 </h2>
 
 <hr>

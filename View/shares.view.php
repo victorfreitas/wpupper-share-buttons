@@ -29,8 +29,8 @@ class WPUSB_Shares_View {
 			<label for="%1$s">
 				%2$s
 			</label>',
-			WPUSB_Setting::META_KEY,
-			__( 'Disable on this post', 'wpupper-share-buttons' ),
+			esc_attr( WPUSB_Setting::META_KEY ),
+			esc_html__( 'Disable on this post', 'wpupper-share-buttons' ),
 			checked( $is_disabled, true, false )
 		);
 	}

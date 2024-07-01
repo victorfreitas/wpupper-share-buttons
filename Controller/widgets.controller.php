@@ -41,10 +41,10 @@ class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
 			'is_widget'      => true,
 		);
 
-		echo $args['before_widget'];
+		echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		if ( ! empty( $title ) ) {
-			echo $args['before_title'] . $title . $args['after_title'];
+			echo $args['before_title'] . $title . $args['after_title']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		$share_args = apply_filters(
@@ -54,10 +54,11 @@ class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
 		);
 		$buttons_share = WPUSB_Utils::buttons_share( $share_args );
 
-		printf( '<div id="%s">', WPUSB_Utils::get_widget_attr_id( $this->number ) );
+		printf( '<div id="%s">', esc_attr( WPUSB_Utils::get_widget_attr_id( $this->number ) ) );
 
 		do_action( WPUSB_Utils::add_prefix( '_before_buttons_widget' ), $instance, $this->number );
 
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo apply_filters(
 			WPUSB_Utils::add_prefix( '_buttons_share_widget' ),
 			$buttons_share,
@@ -69,17 +70,17 @@ class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
 
 		echo '</div>';
 
-		echo $args['after_widget'];
+		echo $args['after_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	public function form( $instance ) {
 		$this->set_instance( $instance );
 
-		$hash = md5( uniqid( rand(), true ) );
+		$hash = md5( uniqid( wp_rand(), true ) );
 
 		WPUSB_Widgets_View::set_instance( $this );
 
-		printf( '<div data-widgets-hash="%s">', $hash );
+		printf( '<div data-widgets-hash="%s">', $hash ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		WPUSB_Widgets_View::field_input(
 			__( 'Widget title', 'wpupper-share-buttons' ),
@@ -167,7 +168,7 @@ class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
 				context = $( '[class*="sidebars-column"], [id*="section-sidebar-widgets"]' );
 				WPUSB.Components.Widgets.call(
 					null,
-					context.find( '[data-widgets-hash="<?php echo $hash; ?>"]' )
+					context.find( '[data-widgets-hash="<?php echo $hash; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>"]' )
 				);
 			});
 		</script>

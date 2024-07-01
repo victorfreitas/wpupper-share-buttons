@@ -6,8 +6,8 @@
 - Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email form, social media buttons, click to tweet, -pinterest, reddit, viber, telegram, gmail, skype, like, linkedin.
 - Requires at least: 4.0
 - Tested up to: 6.5.5
-- PHP version: 7.0.0 or later
-- Stable tag: 3.50
+- PHP version: 7.0.0
+- Stable tag: 3.51
 - License: GPLv2 or later
 - License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,12 +88,20 @@ Layout options: default, buttons, rounded, square
 
 ## Changelog
 
+## 3.51 2024-06-30
+
+*Security improvements and bug fixes.
+*Change the use of some native PHP functions to WordPress functions.
+*Change bitly URL shortener API version.
+*Change x.com API URL to share link.
+*Use post excerpt if not empty to share via email otherwise use post content.
+
 ## 3.50 2024-06-30
 
 *Security fixes.
 *Typo fixes.
 *Support for PHP 5 has been discontinued.
-*The new minimum supported version of PHP is 7.0.0.
+*Change the minimum supported version of PHP to 7.0.0.
 
 ## 3.43 2023-05-19
 

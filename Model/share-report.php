@@ -29,6 +29,7 @@ class WPUSB_Share_Report {
 		global $wpdb;
 
 		$table   = WPUSB_Utils::get_table_name();
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 		$results = $wpdb->get_row(
 			"SELECT
 				SUM(`facebook`) AS facebook,
@@ -37,8 +38,7 @@ class WPUSB_Share_Report {
 				SUM(`pinterest`) AS pinterest,
 				SUM(`tumblr`) AS tumblr,
 				SUM(`buffer`) AS buffer
-			 FROM `{$table}`
-			",
+			 FROM `{$table}`", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			ARRAY_A
 		);
 

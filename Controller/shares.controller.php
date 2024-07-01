@@ -72,6 +72,7 @@ class WPUSB_Shares_Controller {
 
 		$args = apply_filters( WPUSB_Utils::add_prefix( '_wc_share_args' ), array() );
 
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo apply_filters( $this->_filter, $this->buttons_share( $args ), 'woocommerce_share' );
 	}
 
@@ -163,6 +164,7 @@ class WPUSB_Shares_Controller {
 
 		$buttons = $this->buttons_share( array(), true );
 
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo apply_filters( "{$this->_filter}-fixed", $buttons );
 	}
 

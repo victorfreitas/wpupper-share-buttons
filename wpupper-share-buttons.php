@@ -5,7 +5,7 @@
  * Description: The social share buttons. The buttons are inserted automatically, beautifully.
  * Author:      Victor Freitas
  * Author URI:  https://www.linkedin.com/in/viktorfreitas/
- * Version:     3.50
+ * Version:     3.51
  * License:     GPLv3
  * Text Domain: wpupper-share-buttons
  * Domain Path: /languages
@@ -36,7 +36,7 @@ if ( ! defined( 'WPUSB_PLUGIN_FILE' ) ) {
 }
 
 if ( ! defined( 'WPUSB_PLUGIN_VERSION' ) ) {
-	define( 'WPUSB_PLUGIN_VERSION', '3.50' );
+	define( 'WPUSB_PLUGIN_VERSION', '3.51' );
 }
 
 if ( ! defined( 'WPUSB_PLUGIN_REQUIRED_PHP_VERSION' ) ) {
