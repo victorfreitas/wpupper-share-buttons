@@ -98,6 +98,7 @@ Translators who did a great job converting the text of the plugin to their nativ
 * Change bitly URL shortener API version.
 * Change x.com API URL to share link.
 * Use post excerpt if not empty to share via email otherwise use post content.
+* Widgets bug fixes.
 
 = 3.50 2024-06-30 =
 

@@ -15,14 +15,6 @@ Implement the Share Buttons of the major social networks, including the Whats Ap
 
 ## Description
 
-### Extensions
-
-*Sharing Count Update
-
-[![Sharing Count Update](https://i.vimeocdn.com/video/660548514.jpg)](https://vimeo.com/237981148 "Sharing Count Update")
-
-*[Buy Now](https://letzup.com/product/wpupper-share-buttons-sharing-count-update/)
-
 ### Credits
 
 *Plugin icon by [IcoMoon](https://icomoon.io/)
@@ -95,6 +87,7 @@ Layout options: default, buttons, rounded, square
 *Change bitly URL shortener API version.
 *Change x.com API URL to share link.
 *Use post excerpt if not empty to share via email otherwise use post content.
+*Widgets bug fixes.
 
 ## 3.50 2024-06-30
 
