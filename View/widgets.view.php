@@ -177,11 +177,12 @@ class WPUSB_Widgets_View {
 		$field_id   = esc_attr( $instance->get_field_id( $id ) );
 		$field_name = esc_attr( $instance->get_field_name( $id ) );
 	?>
-		<p id="<?php printf( '%s-follow-us-item', esc_attr( WPUSB_App::SLUG ) ); ?>">
+		<p class="<?php printf( '%s-follow-us-item', esc_attr( WPUSB_App::SLUG ) ); ?>">
 
 			<a class="<?php printf( '%s-title', esc_attr( WPUSB_App::SLUG ) ); ?>"
-				  data-action="title"
-				  data-item="<?php echo esc_attr( $id ); ?>">
+			   onclick="! window.WPUSB?.legacyWidgetsInlineScriptLoaded && jQuery(this).closest('p').find('[data-field=content]').toggle(100);"
+			   data-action="title"
+			   data-item="<?php echo esc_attr( $id ); ?>">
 
 				<?php echo esc_html( $network->name ); ?>
 

@@ -117,6 +117,10 @@ class WPUpper_SB_Widget extends WP_Widget {
 	}
 
 	public function render_checkboxes( $items ) {
+		if ( ! class_exists( 'WPUSB_Settings_View' ) ) {
+			WPUSB_App::uses( 'settings', 'View' );
+		}
+
 		$prefix             = WPUSB_App::SLUG;
 		$names              = array_keys( $items );
 		$networks_available = $this->get_networks_available();

@@ -76,11 +76,11 @@ class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
 	public function form( $instance ) {
 		$this->set_instance( $instance );
 
-		$hash = md5( uniqid( wp_rand(), true ) );
+		$id = md5( uniqid( wp_rand(), true ) );
 
 		WPUSB_Widgets_View::set_instance( $this );
 
-		printf( '<div data-widgets-hash="%s">', $hash ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		printf( '<div data-widget-id="%s">', esc_attr( $id ) );
 
 		WPUSB_Widgets_View::field_input(
 			__( 'Widget title', 'wpupper-share-buttons' ),
@@ -159,16 +159,16 @@ class WPUSB_Widgets_Controller extends WPUpper_SB_Widget {
 	?>
 		<script>
 			jQuery(function($) {
-				var context;
-
-				if ( typeof WPUSB !== 'function' ) {
+				if ( typeof window.WPUSB !== 'function' ) {
 					return;
 				}
 
-				context = $( '[class*="sidebars-column"], [id*="section-sidebar-widgets"]' );
-				WPUSB.Components.Widgets.call(
+				const context = $( '[class*="sidebars-column"], [id*="section-sidebar-widgets"]' );
+
+				window.WPUSB.legacyWidgetsInlineScriptLoaded = true;
+				window.WPUSB.Components.Widgets.call(
 					null,
-					context.find( '[data-widgets-hash="<?php echo $hash; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>"]' )
+					context.find( '[data-widget-id="<?php echo esc_attr( $id ); ?>"]' )
 				);
 			});
 		</script>
