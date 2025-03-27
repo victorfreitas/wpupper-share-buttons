@@ -3,13 +3,13 @@
 - Author: Victor Freitas
 - Contributors: victorfreitas
 - Donate link: [Donate Now](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KYRMWXEEQN58L)
-- Tags: share, social, buttons, share buttons, whatsapp, facebook, twitter, compartilhar, redes sociais, social plugin, tweet button, share image, sharebar, social bookmarking, email form, social media buttons, click to tweet, -pinterest, reddit, viber, telegram, gmail, skype, like, linkedin.
-- Requires at least: 4.0
-- Tested up to: 6.5.5
-- PHP version: 7.0.0
-- Stable tag: 3.51
-- License: GPLv2 or later
-- License URI: http://www.gnu.org/licenses/gpl-2.0.html
+- Tags: share, social share, social media, share icons, share buttons
+- Requires at least: 6.3
+- Requires PHP: 7.0.0
+- Tested up to: 6.7.2
+- Stable tag: 3.52
+- License: GPLv3
+- License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Implement the Share Buttons of the major social networks, including the Whats App on your website or blog.
 
