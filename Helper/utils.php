@@ -1628,7 +1628,7 @@ class WPUSB_Utils extends WPUSB_Utils_Share {
 	 */
 	public static function delete_custom_css_file() {
 		if ( self::file_css_min_exists() ) {
-			@unlink( self::get_file_css_min() );
+			wp_delete_file( self::get_file_css_min() );
 		}
 	}
 

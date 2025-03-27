@@ -61,11 +61,14 @@ class WPUSB_Settings_Custom_CSS_View {
 				</table>
 
 				<p class="submit <?php echo esc_attr( WPUSB_App::SLUG ); ?>-custom-css-btn-content">
+					<input type="hidden"
+						   data-element="security"
+						   value="<?php echo esc_attr( wp_create_nonce( WPUSB_Setting::NONCE_CUSTOM_CSS ) ); ?>">
 					<button type="submit"
 							class="button button-primary"
 							data-action="save-custom-css"
 							data-element="btn-save">
-						<?php esc_html_e( 'Save Changes' ); ?>
+						<?php esc_html_e( 'Save Changes', 'wpupper-share-buttons' ); ?>
 					</button>
 					<span class="ajax-spinner" data-element="spinner"></span>
 					<span data-element="error"></span>

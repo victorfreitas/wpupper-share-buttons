@@ -11,47 +11,33 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 
 	Model.fn.init = function() {
 		this.renderExtras();
-		this.request( false );
+		this.request();
 	};
 
 	Model.fn.addEventListeners = function() {
-		this.$el.addEvent( 'click', 'open-popup', this );
 		WPUSB.ToggleButtons.create( this.$el.data( 'element' ), this );
 	};
 
-	Model.fn.request = function(isReport) {
-		this.setPropNames( isReport );
+	Model.fn.request = function() {
+		this.setPropNames();
 		this.fireRequest();
 	};
 
-	Model.fn.setPropNames = function(isReport) {
+	Model.fn.setPropNames = function() {
 		this.facebook         = this.elements.facebook;
 		this.tumblr           = this.elements.tumblr;
 		this.pinterest        = this.elements.pinterest;
 		this.buffer           = this.elements.buffer;
 		this.totalShare       = this.elements.totalShare;
 		this.totalCounter     = 0;
-		this.facebookCounter  = 0;
-		this.tumblrCounter    = 0;
 		this.pinterestCounter = 0;
 		this.bufferCounter    = 0;
-		this.max              = 4;
-		this.isReport         = isReport;
+		this.max              = 2;
 		this.minCount         = utils.getMinCount();
   };
 
 	Model.fn.fireRequest = function() {
 		this.items = [
-			{
-				reference : 'facebookCounter',
-				element   : 'facebook',
-				url       : 'https://graph.facebook.com/?id='.concat(this.data.elementUrl, '&fields=og_object{engagement}'),
-			},
-			{
-				reference : 'tumblrCounter',
-				element   : 'tumblr',
-				url       : 'https://api.tumblr.com/v2/share/stats?url=' + this.data.elementUrl
-			},
 			{
 				reference : 'pinterestCounter',
 				element   : 'pinterest',
@@ -71,7 +57,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 		this.items.forEach( this._iterateItems.bind( this ) );
 	};
 
-	Model.fn._iterateItems = function(item, index) {
+	Model.fn._iterateItems = function(item) {
 		var counter = 0;
 
 		if ( this.totalShare ) {
@@ -85,7 +71,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 		this._getJSON( item );
 	};
 
-	Model.fn._getJSON = function(request) {
+	Model.fn._getJSON = function( request ) {
 		var args = $.extend({
 				dataType : 'jsonp'
 			}, request )
@@ -96,7 +82,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 		ajax.fail( $.proxy( this, '_fail', request ) );
 	};
 
-	Model.fn._done = function(request, response) {
+	Model.fn._done = function( request, response ) {
 		var classHide = this.addPrefix( 'hide' )
 		  , number    = this.getNumberByData( request.element, response )
 		;
@@ -104,11 +90,6 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 		this[request.reference] = number;
 		this.max               -= 1;
 		this.totalCounter      += number;
-
-		if ( !this.max && this.isReport ) {
-			this.addReport();
-			return;
-		}
 
 		if ( this[request.element] ) {
 			this[request.element].text( this.formatCounts( number ) );
@@ -127,7 +108,7 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 		}
 	};
 
-	Model.fn._fail = function(request, throwError, status) {
+	Model.fn._fail = function( request ) {
 		this[request.reference] = 0;
 
 		if ( this[request.element] ) {
@@ -162,39 +143,6 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 		}
 
 		return 0;
-	};
-
-	Model.fn._onClickOpenPopup = function(event) {
-		if ( utils.hasExpiredCache() && this.isShareCountsDisabled() && !this.notReport() ) {
-			this.request( true );
-			return;
-		}
-
-		this.addReport();
-	};
-
-	Model.fn.addReport = function() {
-		if ( !utils.hasExpiredCache() || !this.totalCounter || this.notReport() ) {
-			return;
-		}
-
-		var params = {
-	       	action        : this.addPrefix( 'share_count_reports', '_' ),
-		    reference       : this.data.attrReference,
-		    count_facebook  : this.facebookCounter,
-		    count_tumblr    : this.tumblrCounter,
-		    count_pinterest : this.pinterestCounter,
-		    count_buffer    : this.bufferCounter,
-		    nonce           : this.data.attrNonce
-	    };
-
-		$.ajax({
-		   method : 'POST',
-		   url    : utils.getAjaxUrl(),
-		   data   : params
-		});
-
-		utils.setCacheTime();
 	};
 
 	Model.fn.formatCounts = function(counts) {
@@ -235,10 +183,6 @@ WPUSB( 'WPUSB.Components.CounterSocialShare', function(Model, $, utils) {
 
 	Model.fn.isShareCountsDisabled = function() {
 		return ( this.data.disabledShareCounts === 1 );
-	};
-
-	Model.fn.notReport = function() {
-		return ( this.data.report === 'no' || this.data.isTerm );
 	};
 
 	Model.fn.renderExtras = function() {

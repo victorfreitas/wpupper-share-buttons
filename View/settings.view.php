@@ -58,6 +58,9 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 					<?php echo WPUSB_Utils::get_component( 'share-preview' ); /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>
 				>
 					<div data-element="preview"></div>
+					<input type="hidden"
+						   data-element="security"
+						   value="<?php echo esc_attr( wp_create_nonce( WPUSB_Setting::NONCE_SHARE_PREVIEW ) ); ?>">
 				</div>
 
 				<form action="options.php" method="post">
@@ -716,16 +719,15 @@ class WPUSB_Settings_View extends WPUSB_Utils_View {
 			$svg = WPUSB_Shares_View::get_svg_icon( $args['svg-link'] );
 		}
 
-		$label = <<<EOD
+		return "
 			<label
-				for="field-{$prefix}-{$args['id']}"
-				class="{$args['label-class']}"
+				for=\"field-{$prefix}-{$args['id']}\"
+				class=\"{$args['label-class']}\"
 			>
 				{$span}
 				{$svg}
 	        </label>
-EOD;
-		return $label;
+	    ";
 	}
 
 	public static function _get_attributes( $args ) {

@@ -203,8 +203,6 @@ class WPUSB_URL_Shortener {
 		$response = wp_remote_post( esc_url( self::API ), $args );
 		$code     = wp_remote_retrieve_response_code( $response );
 
-		error_log( print_r( $response, true ) );
-
 		if ( empty( $code ) || ! in_array( $code, array( 200, 201 ), true ) ) {
 			return false;
 		}

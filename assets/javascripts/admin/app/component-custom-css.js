@@ -19,7 +19,7 @@ WPUSB( 'WPUSB.Components.CustomCss', function(Model, $, utils) {
 	};
 
 	Model.fn.setCodeMirror = function() {
-		this.codeMirror = CodeMirror.fromTextArea( this.elements.cssField.get(0), {
+		this.codeMirror = window.wp.CodeMirror.fromTextArea( this.elements.cssField.get(0), {
 			lineNumbers       : true,
 			lineWrapping      : true,
 			mode              : 'css',
@@ -63,6 +63,7 @@ WPUSB( 'WPUSB.Components.CustomCss', function(Model, $, utils) {
 		var params = {
 			action     : this.addPrefix( 'save_custom_css', '_' ),
 			custom_css : this.codeMirror.getValue(),
+      _security  : this.elements.security.val()
 		};
 
 		var ajax = $.ajax({

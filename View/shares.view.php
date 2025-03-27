@@ -45,12 +45,12 @@ class WPUSB_Shares_View {
 		$modal     = WPUSB_Utils::render_modal( $args, $number );
 		$component = WPUSB_Utils::get_component( 'buttons-section' );
 
-		return <<<EOD
+		return "
 			<div {$component}>
 				{$buttons}
 				{$modal}
 			</div>
-EOD;
+		";
 	}
 
 	public static function get_header_title( $atts ) {
@@ -58,11 +58,11 @@ EOD;
 			return '';
 		}
 
-		return <<<EOD
-	    <div class="{$atts->prefix}-title">
-	     	<span>{$atts->header_title}</span>
-	     </div>
-EOD;
+		return "
+			<div class=\"{$atts->prefix}-title\">
+				<span>{$atts->header_title}</span>
+			</div>
+	    ";
 	}
 
 	public static function get_css_buttons_styles( $options, $widget_id = '' ) {
@@ -91,7 +91,7 @@ EOD;
 			$prefix_first = "{$prefix}-follow";
 		}
 
-		return <<<EOD
+		return "
 		{$widget_id} .{$prefix_first} .{$prefix}-item .{$prefix}-btn svg {
 			{$color}
 			{$size}
@@ -99,8 +99,7 @@ EOD;
 		{$widget_id} .{$prefix_first} .{$prefix}-item .{$prefix}-btn svg:hover {
 			{$color}
 			{$size}
-		}
-EOD;
+		}";
 	}
 
 	public static function get_css_btn_inside( $options, $widget_id = '' ) {
@@ -111,11 +110,10 @@ EOD;
 			return '';
 		}
 
-		return <<<EOD
+		return "
 		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-btn-inside {
 			color: {$btn_inside};
-		}
-EOD;
+		}";
 	}
 
 	public static function get_css_counts_color( $options, $widget_id = '' ) {
@@ -126,13 +124,12 @@ EOD;
 			return '';
 		}
 
-		return <<<EOD
+		return "
 		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-counts,
 		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-count,
 		{$widget_id} .{$prefix} .{$prefix}-total-share {
 			color: {$counts_color};
-		}
-EOD;
+		}";
 	}
 
 	public static function get_css_counts_bg_color( $options, $widget_id = '' ) {
@@ -143,7 +140,7 @@ EOD;
 			return '';
 		}
 
-		return <<<EOD
+		return "
 		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-counter,
 		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-count {
 			background-color: {$bg_color};
@@ -151,8 +148,7 @@ EOD;
 		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-counter:after,
 		{$widget_id} .{$prefix} .{$prefix}-item .{$prefix}-count:after {
 			border-color: transparent {$bg_color} transparent transparent;
-		}
-EOD;
+		}";
 	}
 
 	public static function get_css_bg_color( $options, $widget_id = '' ) {
@@ -164,7 +160,7 @@ EOD;
 			return '';
 		}
 
-		return <<<EOD
+		return "
 		{$widget_id} .{$prefix}-buttons .{$prefix}-item .{$prefix}-btn,
 		{$widget_id} .{$prefix}-square-plus .{$prefix}-item .{$prefix}-btn,
 		{$widget_id} .{$prefix}-fixed .{$prefix}-item .{$prefix}-btn {
@@ -191,31 +187,29 @@ EOD;
 			box-shadow: none;
 		}
 
-		{$btn_hover}
-EOD;
+		{$btn_hover}";
 	}
 
 	public static function get_css_btn_hover() {
 		$prefix = WPUSB_App::SLUG;
 
-		return <<<EOD
+		return "
 		.{$prefix} .{$prefix}-item .{$prefix}-btn:hover {
 			filter: alpha(opacity=80);
 			-moz-opacity: 0.8;
 			opacity: 0.8;
 			zoom: 1;
-		}
-EOD;
+		}";
 	}
 
 	public static function get_svg_icon( $class_item, $class_icon = '' ) {
 		$prefix = WPUSB_App::SLUG;
 		$id     = str_replace( array( '-buttons', '-default', '-square-plus' ), '', $class_item );
 
-		return <<<EOD
-			<svg class="{$prefix}-svg {$class_item} {$class_icon}">
-				<use xlink:href="#{$id}" />
+		return "
+			<svg class=\"{$prefix}-svg {$class_item} {$class_icon}\">
+				<use xlink:href=\"#{$id}\" />
 			</svg>
-EOD;
+		";
 	}
 }

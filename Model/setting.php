@@ -490,6 +490,22 @@ class WPUSB_Setting {
 	*/
 	const NONCE_SHARING_REPORT = 'wpusb-social-share-counts';
 
+	/**
+	 * Nonce inset social share preview
+	 *
+	 * @since 1.0
+	 * @var string
+	 */
+	const NONCE_SHARE_PREVIEW = 'wpusb-social-share-preview';
+
+	/**
+	 * Nonce inset social share custom css settings
+	 *
+	 * @since 1.0
+	 * @var string
+	 */
+	const NONCE_CUSTOM_CSS = 'wpusb-social-share-custom-css';
+
 	private function __construct() {
 		$this->set_options();
 	}

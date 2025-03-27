@@ -44,7 +44,7 @@ class WPUSB_Options_Controller {
 	private function _register_options_settings() {
 		$option = WPUSB_Utils::get_option_group_name( 'settings' );
 
-		register_setting( $option['group'], $option['name'], array( 'WPUSB_Utils', 'rm_tags' ) );
+		$this->register_setting( $option['group'], $option['name'] );
 	}
 
 	/**
@@ -56,7 +56,7 @@ class WPUSB_Options_Controller {
 	private function _register_options_social_media() {
 		$option = WPUSB_Utils::get_option_group_name( 'social_media', 'settings_group' );
 
-		register_setting( $option['group'], $option['name'], array( 'WPUSB_Utils', 'rm_tags' ) );
+		$this->register_setting( $option['group'], $option['name'] );
 	}
 
 	/**
@@ -68,6 +68,21 @@ class WPUSB_Options_Controller {
 	private function _register_options_extra_settings() {
 		$option = WPUSB_Utils::get_option_group_name( 'extra_settings' );
 
-		register_setting( $option['group'], $option['name'], array( 'WPUSB_Utils', 'rm_tags' ) );
+		$this->register_setting( $option['group'], $option['name'] );
+	}
+
+	/**
+	 * Register setting
+	 *
+	 * @since 3.52
+	 * @param string $group
+	 * @param string $name
+	 * @return void
+	 */
+	private function register_setting( $group, $name ) {
+		$args = array( 'WPUSB_Utils', 'rm_tags' );
+
+		// phpcs:ignore PluginCheck.CodeAnalysis.SettingSanitization.register_settingDynamic
+		register_setting( sanitize_text_field( $group ), sanitize_text_field( $name ), $args );
 	}
 }

@@ -32,7 +32,7 @@ class WPUSB_Widgets_View {
 		$placeholders = array(
 			'post_title'   => __( 'Override post title', 'wpupper-share-buttons' ),
 			'url'          => __( 'Override permalinks', 'wpupper-share-buttons' ),
-			'custom_class' => __( 'Class name for CSS customization' ),
+			'custom_class' => __( 'Class name for CSS customization', 'wpupper-share-buttons' ),
 		);
 		$placeholder = isset( $placeholders[ $id ] ) ? $placeholders[ $id ] : '';
 
@@ -314,30 +314,23 @@ class WPUSB_Widgets_View {
 			'value'       => '',
 			'description' => '',
 		);
-		$args      = array_merge( $defaults, $args );
-		$on_title  = esc_attr__( 'YES', 'wpupper-share-buttons' );
-		$off_title = esc_attr__( 'NO', 'wpupper-share-buttons' );
+		$args     = array_merge( $defaults, $args );
+	?>
+		<div class="<?php echo esc_attr( $prefix ); ?>-custom-switch">
+			<input type="checkbox"
+				   id="<?php echo esc_attr( $prefix ); ?>-<?php echo esc_attr( $args['id'] ); ?>"
+				   class="<?php echo esc_attr( $prefix ); ?>-check"
+				   name="<?php echo esc_attr( $args['name'] ); ?>"
+				   value="<?php echo esc_attr( $args['value'] ); ?>"
+				   <?php echo $args['checked']; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?>>
 
-		// phpcs:disable WordPress.Security.EscapeOutput.HeredocOutputNotEscaped
-		echo <<<EOD
-			<div class="{$prefix}-custom-switch">
-
-			    <input type="checkbox"
-			    	   id="{$prefix}-{$args['id']}"
-			    	   class="{$prefix}-check"
-			    	   name="{$args['name']}"
-			    	   value="{$args['value']}"
-			    	   {$args['checked']}>
-
-			    <label for="{$prefix}-{$args['id']}">
-			        <span class="{$prefix}-inner"
-			        	  data-title-on="{$on_title}"
-			        	  data-title-off="{$off_title}"></span>
-			        <span class="{$prefix}-switch"></span>
-			    </label>
-
-			</div>
-EOD;
-// phpcs:enable WordPress.Security.EscapeOutput.HeredocOutputNotEscaped
+			<label for="<?php echo esc_attr( $prefix ); ?>-<?php echo esc_attr( $args['id'] ); ?>">
+			        <span class="<?php echo esc_attr( $prefix ); ?>-inner"
+						  data-title-on="<?php esc_attr_e( 'YES', 'wpupper-share-buttons' ); ?>"
+						  data-title-off="<?php esc_attr_e( 'NO', 'wpupper-share-buttons' ); ?>"></span>
+				<span class="<?php echo esc_attr( $prefix ); ?>-switch"></span>
+			</label>
+		</div>
+<?php
 	}
 }

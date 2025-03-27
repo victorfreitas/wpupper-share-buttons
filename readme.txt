@@ -1,12 +1,12 @@
 === WPUpper Share Buttons ===
-Author URL: https://github.com/victorfreitas
+Author URL: https://www.linkedin.com/in/viktorfreitas/
 Contributors: victorfreitas
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KYRMWXEEQN58L
-Tags: share, share buttons, social media, widget, follow us
-Requires at least: 4.0
+Tags: share, social share, social media, share icons, share buttons
+Requires at least: 6.3
 Requires PHP: 7.0.0
-Tested up to: 6.5.5
-Stable tag: 3.51
+Tested up to: 6.7.2
+Stable tag: 3.52
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -91,6 +91,12 @@ Translators who did a great job converting the text of the plugin to their nativ
 
 == Changelog ==
 
+= 3.52 2025-03-27 =
+
+* Security improvements.
+* Removed deprecated share counts API.
+* Replacement of the vendor CodeMirror to the internal WP CodeMirror.
+
 = 3.51 2024-06-30 =
 
 * Security improvements and bug fixes.
@@ -98,6 +104,7 @@ Translators who did a great job converting the text of the plugin to their nativ
 * Change bitly URL shortener API version.
 * Change x.com API URL to share link.
 * Use post excerpt if not empty to share via email otherwise use post content.
+* Widgets bug fixes.
 
 = 3.50 2024-06-30 =
 

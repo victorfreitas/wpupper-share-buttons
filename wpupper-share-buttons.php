@@ -1,14 +1,16 @@
 <?php
 /**
- * Plugin Name: WPUpper Share Buttons
- * Plugin URI:  https://github.com/victorfreitas/wpupper-share-buttons
- * Description: The social share buttons. The buttons are inserted automatically, beautifully.
- * Author:      Victor Freitas
- * Author URI:  https://www.linkedin.com/in/viktorfreitas/
- * Version:     3.51
- * License:     GPLv3
- * Text Domain: wpupper-share-buttons
- * Domain Path: /languages
+ * Plugin Name:       WPUpper Share Buttons
+ * Plugin URI:        https://github.com/victorfreitas/wpupper-share-buttons
+ * Description:       The social share buttons. The buttons are inserted automatically, beautifully.
+ * Author:            Victor Freitas
+ * Author URI:        https://www.linkedin.com/in/viktorfreitas/
+ * Version:           3.52
+ * Requires at least: 6.3
+ * Requires PHP:      7.0.0
+ * License:           GPLv3
+ * Text Domain:       wpupper-share-buttons
+ * Domain Path:       /languages
  *
  * WPUpper Share Buttons is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +38,7 @@ if ( ! defined( 'WPUSB_PLUGIN_FILE' ) ) {
 }
 
 if ( ! defined( 'WPUSB_PLUGIN_VERSION' ) ) {
-	define( 'WPUSB_PLUGIN_VERSION', '3.51' );
+	define( 'WPUSB_PLUGIN_VERSION', '3.52' );
 }
 
 if ( ! defined( 'WPUSB_PLUGIN_REQUIRED_PHP_VERSION' ) ) {

@@ -97,8 +97,9 @@ WPUSB( 'WPUSB.Components.SharePreview', function(Model, $, utils) {
 		  , params       = {
 				action       : this.addPrefix( 'share_preview', '_' ),
 				layout       : this.layout,
-			    fixed_layout : fixed_layout.val(),
-				checked      : JSON.stringify( this.itemsChecked )
+        fixed_layout : fixed_layout.val(),
+				checked      : JSON.stringify( this.itemsChecked ),
+        _security    : this.elements.security.val()
 			}
 		;
 

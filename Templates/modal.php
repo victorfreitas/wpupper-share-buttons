@@ -31,20 +31,20 @@ class WPUSB_Modal {
 		$items  = self::items( $prefix, $atts );
 		$end    = self::end();
 
-		return <<<EOD
-			<div class="{$prefix}-modal-mask"
-				 data-element="{$prefix}-modal-{$number}"
-				 style="display:none;"
+		return "
+			<div class=\"{$prefix}-modal-mask\"
+				 data-element=\"{$prefix}-modal-{$number}\"
+				 style=\"display:none;\"
 			>
-				<a class="{$prefix}-btn-close" data-action="close-popup">
-					<i class="{$prefix}-icon-close"></i>
+				<a class=\"{$prefix}-btn-close\" data-action=\"close-popup\">
+					<i class=\"{$prefix}-icon-close\"></i>
 				</a>
 			</div>
-			<div class="{$prefix}-modal-networks"
-			     data-element="{$prefix}-modal-container-{$number}">
+			<div class=\"{$prefix}-modal-networks\"
+			     data-element=\"{$prefix}-modal-container-{$number}\">
 			{$items}
 			{$end}
-EOD;
+		";
 	}
 
 	/**
@@ -82,20 +82,20 @@ EOD;
 
 			$svg_icon = WPUSB_Shares_View::get_svg_icon( $social->class_icon, "{$prefix}-icon-popup" );
 
-			$items .= <<<EOD
-				<div class="{$prefix}-element-popup {$prefix}-item-{$social->element}">
+			$items .= "
+				<div class=\"{$prefix}-element-popup {$prefix}-item-{$social->element}\">
 					<a {$link_attr}
-					   class="{$social->class_link}-popup {$class_btn} {$social->class}-popup"
-					   rel="nofollow"
-					   title="{$social->title}"
+					   class=\"{$social->class_link}-popup {$class_btn} {$social->class}-popup\"
+					   rel=\"nofollow\"
+					   title=\"{$social->title}\"
 					   {$ga_event}
 					   {$social->popup}
 					>
 						{$svg_icon}
-						<span class="{$prefix}-name-popup" data-name="{$social->name}"></span>
+						<span class=\"{$prefix}-name-popup\" data-name=\"{$social->name}\"></span>
 					</a>
 				</div>
-EOD;
+			";
 		}
 
 		return $items;

@@ -36,20 +36,20 @@ class WPUSB_Fixed_Left {
 		$counter       = self::add_count( $atts );
 		$component     = WPUSB_Utils::get_component_by_type();
 		$square2_class = ( $layout === 'square2' ) ? WPUSB_Utils::add_prefix( '-buttons' ) : '';
-		$content       = <<<EOD
-		<div class="{$classes} {$prefix}-fixed {$prefix}-layout-{$layout}-content {$prefix}-fixed-{$atts->layout}"
-		     id="{$prefix}-container-fixed"
-		     data-element-url="{$args['permalink']}"
-		     data-element-title="{$args['title']}"
-		     data-attr-reference="{$args['post_id']}"
-		     data-is-term="{$args['is_term']}"
-		     data-element="fixed"
-		     data-attr-nonce="{$args['nonce']}"
+		$content       = "
+			<div class=\"{$classes} {$prefix}-fixed {$prefix}-layout-{$layout}-content {$prefix}-fixed-{$atts->layout}\"
+		     id=\"{$prefix}-container-fixed\"
+		     data-element-url=\"{$args['permalink']}\"
+		     data-element-title=\"{$args['title']}\"
+		     data-attr-reference=\"{$args['post_id']}\"
+		     data-is-term=\"{$args['is_term']}\"
+		     data-element=\"fixed\"
+		     data-attr-nonce=\"{$args['nonce']}\"
 		     {$component}>
-
-			<div data-element="buttons" class="{$atts->position_fixed}-container {$square2_class}">
+			<div data-element=\"buttons\" class=\"{$atts->position_fixed}-container {$square2_class}\">
 			{$counter}
-EOD;
+		";
+
 		return apply_filters( WPUSB_Utils::add_prefix( '-init-buttons-fixed' ), $content );
 	}
 
@@ -71,20 +71,21 @@ EOD;
 		$class_btn      = WPUSB_Utils::get_class_btn();
 		$class_icon     = apply_filters( WPUSB_Utils::add_prefix( '_item_class_icon' ), "{$args->reference->class_icon}-{$layout}", $args->reference );
 		$svg_icon       = WPUSB_Shares_View::get_svg_icon( $class_icon, $args->class_icon );
-		$content        = <<<EOD
-			<div class="{$classes}">
+		$content        = "
+			<div class=\"{$classes}\">
 				<a {$link_type}
 				   {$args->reference->popup}
-				   class="{$args->prefix}-layout-{$current_layout} {$args->prefix}-{$btn_class} {$class_btn} {$args->class_link}"
-				   title="{$args->reference->title}"
+				   class=\"{$args->prefix}-layout-{$current_layout} {$args->prefix}-{$btn_class} {$class_btn} {$args->class_link}\"
+				   title=\"{$args->reference->title}\"
 				   {$ga_event}
 				   {$modal_data}
-				   rel="nofollow"
+				   rel=\"nofollow\"
 				>
 				   {$svg_icon}
 				</a>
 			</div>
-EOD;
+		";
+
 		return apply_filters( WPUSB_App::SLUG . '-btn-items', $content );
 	}
 
@@ -118,16 +119,14 @@ EOD;
 
 		if ( ! WPUSB_Utils::is_inactive_counter( $args ) ) {
 			$inside  = self::_get_inside_count();
-			$content = <<<EOD
-				<div class="{$prefix}-item {$prefix}-total-share {$class_hide}">
-
-					<div class="{$prefix}-counts">
-						<span data-element="total-share"></span>
+			$content = "
+				<div class=\"{$prefix}-item {$prefix}-total-share {$class_hide}\">
+					<div class=\"{$prefix}-counts\">
+						<span data-element=\"total-share\"></span>
 						{$inside}
 					</div>
-
 				</div>
-EOD;
+			";
 		}
 
 		return apply_filters( WPUSB_App::SLUG . '-total-counter-fixed', $content );
@@ -180,14 +179,15 @@ EOD;
 		$prefix    = WPUSB_App::SLUG;
 		$svg_left  = WPUSB_Shares_View::get_svg_icon( "{$prefix}-angle-double-left" );
 		$svg_right = WPUSB_Shares_View::get_svg_icon( "{$prefix}-angle-double-right" );
-		$content   = <<<EOD
+		$content   = "
 				</div>
-				<span class="{$prefix}-toggle" data-action="close-buttons">
+				<span class=\"{$prefix}-toggle\" data-action=\"close-buttons\">
 					{$svg_left}
 					{$svg_right}
 				</span>
 			</div>
-EOD;
+		";
+
 		return apply_filters( WPUSB_App::SLUG . '-close-buttons-fixed', $content );
 	}
 

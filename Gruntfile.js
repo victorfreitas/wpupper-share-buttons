@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   var sassSiteOptions = {};
 
   if (process.env.NODE_ENV === 'production') {
-    sassSiteOptions['no-source-map'] = true;
+    sassSiteOptions.sourcemap = 'none';
     sassSiteOptions.style = 'compressed';
   }
 

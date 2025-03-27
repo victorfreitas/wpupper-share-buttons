@@ -352,7 +352,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 
 			WPUSB_Sharing_Report_View::render_date_range_filter();
 
-			submit_button( esc_html__( 'Filter' ), '', '', false );
+			submit_button( esc_html__( 'Filter', 'wpupper-share-buttons' ), '', '', false );
 
 		echo '</div>';
 
@@ -593,7 +593,7 @@ class WPUSB_Share_Reports_Controller extends WPUSB_List_Table {
 	 * @return string
 	 */
 	public function get_date_i18n( $date, $is_file = false ) {
-		$date_i18n = esc_attr( date_i18n( __( 'Y/m/d' ), strtotime( $date ) ) );
+		$date_i18n = esc_attr( date_i18n( __( 'Y/m/d', 'wpupper-share-buttons' ), strtotime( $date ) ) );
 
 		return $is_file ? str_replace( '/', '-', $date_i18n ) : $date_i18n;
 	}

@@ -29,20 +29,20 @@ class WPUSB_Square_Plus {
 		$counter      = self::add_count( $atts );
 		$component    = WPUSB_Utils::get_component_by_type();
 		$header_title = WPUSB_Shares_View::get_header_title( $atts );
-		$content      = <<<EOD
-		<div class="{$classes}"
-			 id="{$args['prefix']}-container-square-plus"
-			 data-element-url="{$args['permalink']}"
-		     data-element-title="{$args['title']}"
-		     data-attr-reference="{$args['post_id']}"
-		     data-attr-nonce="{$args['nonce']}"
-		     data-is-term="{$args['is_term']}"
+		$content      = "
+		<div class=\"{$classes}\"
+			 id=\"{$args['prefix']}-container-square-plus\"
+			 data-element-url=\"{$args['permalink']}\"
+		     data-element-title=\"{$args['title']}\"
+		     data-attr-reference=\"{$args['post_id']}\"
+		     data-attr-nonce=\"{$args['nonce']}\"
+		     data-is-term=\"{$args['is_term']}\"
 		     {$component}
 		     {$args['fixed_top']}>
-
 			 {$header_title}
 		     {$counter}
-EOD;
+		";
+
 		return apply_filters( WPUSB_App::SLUG . 'start-buttons-html', $content );
 	}
 
@@ -62,12 +62,12 @@ EOD;
 		$modal_data = WPUSB_Utils::get_modal_data_id( $args->reference->element, $args->number );
 		$class_btn  = WPUSB_Utils::get_class_btn();
 		$svg_icon   = WPUSB_Shares_View::get_svg_icon( $args->item_class_icon, $args->class_icon );
-		$content    = <<<EOD
-			<div class="{$classes}" {$referrer}>
+		$content    = "
+			<div class=\"{$classes}\" {$referrer}>
 				<a {$link_type}
-				   class="{$args->prefix}-link {$class_btn} {$args->class_link}"
-				   title="{$args->reference->title}"
-				   rel="nofollow"
+				   class=\"{$args->prefix}-link {$class_btn} {$args->class_link}\"
+				   title=\"{$args->reference->title}\"
+				   rel=\"nofollow\"
 				   {$args->reference->popup}
 				   {$ga_event}
 				   {$modal_data}
@@ -76,7 +76,8 @@ EOD;
 				   {$inside}
 				</a>
 			</div>
-EOD;
+		";
+
 		return apply_filters( WPUSB_App::SLUG . '-btn-items', $content );
 	}
 
@@ -114,13 +115,14 @@ EOD;
 
 		$share_label = WPUSB_Utils::get_share_count_label();
 		$class_hide  = WPUSB_Utils::get_hide_count_class();
-		$content     = <<<EOD
-			<div class="{$args->prefix}-item {$args->prefix}-total-share {$class_hide}">
-				<div class="{$args->prefix}-shares-count" data-element="total-share"></div>
-				<div class="{$args->prefix}-shares-text" data-title="{$share_label}"></div>
-				<span class="{$args->prefix}-pipe" data-pipe="&#x0007C;"></span>
+		$content     = "
+			<div class=\"{$args->prefix}-item {$args->prefix}-total-share {$class_hide}\">
+				<div class=\"{$args->prefix}-shares-count\" data-element=\"total-share\"></div>
+				<div class=\"{$args->prefix}-shares-text\" data-title=\"{$share_label}\"></div>
+				<span class=\"{$args->prefix}-pipe\" data-pipe=\"&#x0007C;\"></span>
 			</div>
-EOD;
+		";
+
 		return apply_filters( WPUSB_App::SLUG . 'total-counter', $content );
 	}
 

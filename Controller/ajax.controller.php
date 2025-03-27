@@ -12,7 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class WPUSB_Ajax_Controller {
-
 	private $capability;
 
 	public function __construct() {
@@ -24,9 +23,7 @@ class WPUSB_Ajax_Controller {
 	}
 
 	public function share_preview_request() {
-		if ( ! WPUSB_Utils::is_request_ajax() || ! current_user_can( $this->capability ) ) {
-			exit;
-		}
+		$this->check_request_referer( WPUSB_Setting::NONCE_SHARE_PREVIEW );
 
 		$layout   = WPUSB_Utils::post( 'layout', false );
 		$checkeds = WPUSB_Utils::post( 'checked', false );
@@ -92,15 +89,22 @@ class WPUSB_Ajax_Controller {
 	}
 
 	public function save_custom_css_request() {
-		if ( ! WPUSB_Utils::is_request_ajax() || ! current_user_can( $this->capability ) ) {
-			exit;
-		}
+		$this->check_request_referer( WPUSB_Setting::NONCE_CUSTOM_CSS );
 
 		if ( ! isset( $_POST['custom_css'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-			wp_send_json_error( '' );
+			wp_send_json_error( '', 400 );
 		}
 
 		$this->_save_custom_css();
+	}
+
+	private function check_request_referer( $action ) {
+		if ( ! check_ajax_referer( $action, '_security', false ) || ! current_user_can( $this->capability ) ) {
+			wp_send_json_error(
+				__( 'You do not have sufficient permissions to access this page.', 'wpupper-share-buttons' ),
+				403
+			);
+		}
 	}
 
 	private function _save_custom_css() {

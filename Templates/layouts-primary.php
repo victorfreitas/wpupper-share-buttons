@@ -27,19 +27,20 @@ class WPUSB_Layouts_Primary {
 		$classes      = WPUSB_Utils::get_classes_first( $atts );
 		$component    = WPUSB_Utils::get_component_by_type();
 		$header_title = WPUSB_Shares_View::get_header_title( $atts );
-		$content      = <<<EOD
-			<div class="{$classes}"
-		     	 id="{$args['prefix']}-container-{$atts->layout}"
-				 data-element-url="{$args['permalink']}"
-		     	 data-element-title="{$args['title']}"
-			     data-attr-reference="{$args['post_id']}"
-			     data-attr-nonce="{$args['nonce']}"
-		     	 data-is-term="{$args['is_term']}"
+		$content      = "
+			<div class=\"{$classes}\"
+		     	 id=\"{$args['prefix']}-container-{$atts->layout}\"
+				 data-element-url=\"{$args['permalink']}\"
+		     	 data-element-title=\"{$args['title']}\"
+			     data-attr-reference=\"{$args['post_id']}\"
+			     data-attr-nonce=\"{$args['nonce']}\"
+		     	 data-is-term=\"{$args['is_term']}\"
 			     {$component}
 			     {$args['fixed_top']}>
 
 			 {$header_title}
-EOD;
+		";
+
 		return apply_filters( WPUSB_App::SLUG . '-start-buttons-html', $content, $atts );
 	}
 
@@ -60,22 +61,23 @@ EOD;
 		$ga_event   = ( $args->ga ) ? 'onClick="' . $args->ga . ';"' : '';
 		$class_btn  = WPUSB_Utils::get_class_btn();
 		$svg_icon   = WPUSB_Shares_View::get_svg_icon( $args->item_class_icon, $args->class_icon );
-		$content    = <<<EOD
-			<div class="{$classes}" {$referrer}>
+		$content    = "
+			<div class=\"{$classes}\" {$referrer}>
 				<a {$link_type}
 				   {$args->reference->popup}
-				   class="{$args->reference->class_link} {$class_btn} {$args->class_link}"
-				   title="{$args->reference->title}"
+				   class=\"{$args->reference->class_link} {$class_btn} {$args->class_link}\"
+				   title=\"{$args->reference->title}\"
 				   {$ga_event}
 				   {$modal_data}
-				   rel="nofollow"
+				   rel=\"nofollow\"
 				>
 				   {$svg_icon}
 				   {$inside}
 				</a>
 				{$counter}
 			</div>
-EOD;
+		";
+
 		return apply_filters( WPUSB_App::SLUG . '-btn-items', $content, $args );
 	}
 
@@ -169,13 +171,13 @@ EOD;
 		$prefix = WPUSB_App::SLUG;
 		$title  = __( 'Open modal social networks', 'wpupper-share-buttons' );
 
-		return <<<EOD
-			<div class="{$prefix}-{$class} {$prefix}-popup-open-networks">
-				<a href="#" data-action="open-modal-networks"
-				   class="wpusb-btn-open" title="{$title}" rel="nofollow">
-					<i class="{$prefix}-icon-share-rounded"></i>
+		return "
+			<div class=\"{$prefix}-{$class} {$prefix}-popup-open-networks\">
+				<a href=\"#\" data-action=\"open-modal-networks\"
+				   class=\"wpusb-btn-open\" title=\"{$title}\" rel=\"nofollow\">
+					<i class=\"{$prefix}-icon-share-rounded\"></i>
 				</a>
 			</div>
-EOD;
+		";
 	}
 }
